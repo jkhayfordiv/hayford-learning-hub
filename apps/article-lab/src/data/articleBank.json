@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "text_parts": ["In recent years, ", " rapid development of ", " artificial intelligence has transformed ", " traditional workplace."],
+    "answer_key": ["the", "none", "the"],
+    "explanations": [
+      "Use 'the' because we are talking about exactly which development we mean.",
+      "Do not use an article for 'artificial intelligence' because we are talking about it in general.",
+      "Use 'the' because we all know what 'traditional workplace' means."
+    ]
+  },
+  {
+    "id": "2",
+    "text_parts": ["", " photosynthesis is ", " complex process by which ", " plants convert sunlight into energy."],
+    "answer_key": ["none", "a", "none"],
+    "explanations": [
+      "Do not use an article because 'photosynthesis' is an idea in general.",
+      "Use 'a' because we are introducing one 'process' for the first time.",
+      "Do not use an article for 'plants' because it is a plural word and we mean plants in general."
+    ]
+  },
+  {
+    "id": "3",
+    "text_parts": ["During ", " Industrial Revolution, ", " introduction of ", " steam engine revolutionized global transportation networks."],
+    "answer_key": ["the", "the", "the"],
+    "explanations": [
+      "Always use 'the' for big historical events like 'the Industrial Revolution'.",
+      "Use 'the' because we are talking about the specific 'introduction of' something.",
+      "Use 'the' for important inventions like 'the steam engine'."
+    ]
+  },
+  {
+    "id": "4",
+    "text_parts": ["While conducting ", " experiment, researchers found that ", " unexpected variable altered ", " final outcome."],
+    "answer_key": ["an", "an", "the"],
+    "explanations": [
+      "Use 'an' because we are talking about one 'experiment' for the first time, and it starts with a vowel sound (a, e, i, o, u).",
+      "Use 'an' because we are introducing one 'variable' for the first time.",
+      "Use 'the' because there is only one specific 'final outcome'."
+    ]
+  }
+]
