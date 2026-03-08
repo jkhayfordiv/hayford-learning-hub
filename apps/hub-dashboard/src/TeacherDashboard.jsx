@@ -30,7 +30,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchClassData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3001/api/scores/class-overview', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores/class-overview', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -48,7 +48,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchClasses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3001/api/classes', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/classes', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -62,7 +62,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchRecentActivity = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3001/api/scores/recent', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores/recent', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -76,7 +76,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchAssignments = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3001/api/assignments', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -120,7 +120,7 @@ export default function TeacherDashboard({ user, onLogout }) {
         payload.student_id = 'all';
       }
 
-      const res = await fetch('http://localhost:3001/api/assignments', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(payload)
@@ -141,7 +141,7 @@ export default function TeacherDashboard({ user, onLogout }) {
     setClassStatus({ loading: true, error: null, success: false });
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:3001/api/classes', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/classes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(classFormData)
@@ -169,7 +169,7 @@ export default function TeacherDashboard({ user, onLogout }) {
     try {
       const token = localStorage.getItem('token');
       const assignment_ids = group.students.map(s => s.id);
-      const res = await fetch('http://localhost:3001/api/assignments/bulk', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments/bulk', {
          method: 'DELETE',
          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
          body: JSON.stringify({ assignment_ids })
@@ -189,7 +189,7 @@ export default function TeacherDashboard({ user, onLogout }) {
       const assignment_ids = editGroupData.students.map(s => s.id);
       // Ensure empty strings are sent as null for DB
       const due_date = editGroupData.new_due_date ? editGroupData.new_due_date : null;
-      const res = await fetch('http://localhost:3001/api/assignments/bulk', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments/bulk', {
          method: 'PUT',
          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
          body: JSON.stringify({ assignment_ids, due_date })
@@ -212,7 +212,7 @@ export default function TeacherDashboard({ user, onLogout }) {
     setRegisterStatus({ loading: true, error: null, success: false });
 
     try {
-      const res = await fetch('http://localhost:3001/api/auth/register', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, role: 'student' })

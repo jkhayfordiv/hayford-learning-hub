@@ -35,7 +35,14 @@ const DIAGNOSTIC_DICTIONARY = {
 
 export default function Dashboard() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  let user = {};
+  try {
+    user = JSON.parse(localStorage.getItem('user') || '{}');
+  } catch (e) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  }
   const [scores, setScores] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
@@ -58,7 +65,7 @@ export default function Dashboard() {
         const token = localStorage.getItem('token');
         if (!token) return navigate('/login');
 
-        const res = await fetch('http://localhost:3001/api/scores/my-scores', {
+        const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores/my-scores', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -78,7 +85,7 @@ export default function Dashboard() {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const res = await fetch('http://localhost:3001/api/assignments/my-tasks', {
+        const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments/my-tasks', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -113,7 +120,7 @@ export default function Dashboard() {
   const handleLaunchPractice = () => {
     // Pass JWT to the IELTS Writing App
     const token = localStorage.getItem('token');
-    window.location.href = `http://localhost:5174?token=${token}`;
+    window.location.href = `/ielts-writing?token=${token}`;
   };
 
   // Helper to calculate top 3 frequent errors for the student
@@ -300,7 +307,7 @@ export default function Dashboard() {
            <h3 className="font-black text-xl text-slate-900 tracking-tight mb-4 flex items-center gap-2">Interactive Learning Tools</h3>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div 
-                 onClick={() => window.location.href = `http://localhost:5174?token=${localStorage.getItem('token')}`}
+                 onClick={() => window.location.href = `/ielts-writing?token=${localStorage.getItem('token')}`}
                  className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-400 transition-all cursor-pointer group flex items-start gap-6"
               >
                  <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-slate-900 transition-colors border border-amber-100 group-hover:border-slate-900">
@@ -313,7 +320,7 @@ export default function Dashboard() {
               </div>
               
               <div 
-                 onClick={() => window.location.href = `http://localhost:5175?token=${localStorage.getItem('token')}`}
+                 onClick={() => window.location.href = `/vocab-tool?token=${localStorage.getItem('token')}`}
                  className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-amber-300 transition-all cursor-pointer group flex items-start gap-6"
               >
                  <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-amber-600 transition-colors border border-amber-100 group-hover:border-amber-600">
@@ -427,7 +434,7 @@ export default function Dashboard() {
                       </p>
                       {area.tag === 'Article Usage' && (
                         <button 
-                          onClick={() => window.location.href = `http://localhost:5176?token=${localStorage.getItem('token')}`}
+                          onClick={() => window.location.href = `/article-lab?token=${localStorage.getItem('token')}`}
                           className="mt-4 w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 shadow-sm"
                         >
                           Practice Now ⚡

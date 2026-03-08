@@ -19,7 +19,7 @@ export default function App() {
           </div>
         </div>
         <button 
-           onClick={() => window.location.href = 'http://localhost:5173'}
+           onClick={() => window.location.href = '/'}
            className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 text-sm font-bold px-4 py-2 rounded-xl shadow-sm transition-colors flex items-center gap-2 active:scale-95"
         >
           <LayoutDashboard size={16} /> Return to Hub

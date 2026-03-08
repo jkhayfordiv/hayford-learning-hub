@@ -336,13 +336,13 @@ export default function App() {
   const [activeTaskId, setActiveTaskId] = useState(initialTaskMeta?.assignment_id || null);
 
   const handleReturnToHub = () => {
-    window.location.href = "http://localhost:5173";
+    window.location.href = "/";
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "http://localhost:5173/login";
+    window.location.href = "/login";
   };
 
   useEffect(() => {
@@ -439,7 +439,7 @@ export default function App() {
           taskId: activeTaskId
         };
 
-        const saveRes = await fetch("http://localhost:3001/api/scores", {
+        const saveRes = await fetch("https://hayford-learning-hub.onrender.com/api/scores", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

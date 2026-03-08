@@ -112,7 +112,7 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
         COUNT(s.id) as assignments_completed,
         MAX(s.completed_at) as last_active_date,
         AVG(s.overall_score) as average_band_score,
-        GROUP_CONCAT(s.diagnostic_data, '||') as all_diagnostic_data
+        STRING_AGG(CAST(s.diagnostic_data AS TEXT), '||') as all_diagnostic_data
       FROM users u
       LEFT JOIN student_scores s ON u.id = s.student_id
       WHERE u.role = 'student'

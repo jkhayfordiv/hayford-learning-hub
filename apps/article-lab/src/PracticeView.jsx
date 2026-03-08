@@ -67,7 +67,7 @@ export default function PracticeView({ onReturnHome }) {
         part + (answers[i] ? `[${answers[i]}]` : '')
       ).join('');
 
-      const res = await fetch('http://localhost:3001/api/scores', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores', {
         method: 'POST',
         headers: {
            'Content-Type': 'application/json',

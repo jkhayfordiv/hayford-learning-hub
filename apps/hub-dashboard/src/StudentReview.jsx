@@ -14,7 +14,7 @@ export default function StudentReview({ user }) {
     const fetchStudentData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await fetch(`http://localhost:3001/api/scores/student/${id}`, {
+        const res = await fetch(`https://hayford-learning-hub.onrender.com/api/scores/student/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         

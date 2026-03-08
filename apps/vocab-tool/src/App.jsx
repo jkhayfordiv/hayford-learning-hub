@@ -141,7 +141,7 @@ export default function App() {
     const fullText = sessionResults.map(r => `Word: ${r.word}\nSentence: ${r.sentence}`).join('\n\n');
 
     try {
-      const res = await fetch('http://localhost:3001/api/scores', {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -177,7 +177,7 @@ export default function App() {
           <h1 className="text-2xl font-black text-slate-900 tracking-tight mb-2">Vocabulary Builder</h1>
           <p className="text-slate-500 mb-8">This app requires a task assignment from your teacher containing target words.</p>
           <button 
-             onClick={() => window.location.href = 'http://localhost:5173'}
+             onClick={() => window.location.href = '/'}
              className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-colors flex justify-center items-center gap-2"
           >
             <LayoutDashboard size={18} /> Return to Learning Hub
@@ -225,7 +225,7 @@ export default function App() {
             <div className="bg-green-50 text-green-800 p-6 rounded-2xl border border-green-200 text-center space-y-4">
               <p className="font-bold text-lg">Progress Synced Successfully!</p>
               <button 
-                onClick={() => window.location.href = 'http://localhost:5173'}
+                onClick={() => window.location.href = '/'}
                 className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold transition-colors"
                >
                 <LayoutDashboard size={18} /> Return to Hub
@@ -242,7 +242,7 @@ export default function App() {
                 {saveStatus.loading ? 'Syncing...' : 'Sync Progress to Hub'}
               </button>
               <button 
-                 onClick={() => window.location.href = 'http://localhost:5173'}
+                 onClick={() => window.location.href = '/'}
                  className="flex-1 bg-white border border-slate-200 text-slate-700 font-bold py-4 rounded-xl hover:bg-slate-50 transition-colors flex justify-center items-center gap-2"
               >
                 <LayoutDashboard size={18} /> Return to Hub
@@ -268,7 +268,7 @@ export default function App() {
           </div>
         </div>
         <button 
-           onClick={() => window.location.href = 'http://localhost:5173'}
+           onClick={() => window.location.href = '/'}
            className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 text-sm font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
         >
           <LayoutDashboard size={16} /> Hub

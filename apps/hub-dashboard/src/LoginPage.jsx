@@ -30,7 +30,7 @@ export default function LoginPage() {
       : { ...formData, role: isTeacherMode ? 'teacher' : 'student' };
 
     try {
-      const response = await fetch(`http://localhost:3001${endpoint}`, {
+      const response = await fetch(`https://hayford-learning-hub.onrender.com${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -48,15 +48,21 @@ export default function LoginPage() {
         navigate('/dashboard');
       } else {
         // Log them right in after successful registration
-        const loginRes = await fetch('http://localhost:3001/api/auth/login', {
+        const loginRes = await fetch('https://hayford-learning-hub.onrender.com/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: formData.email, password: formData.password })
+          body: JSON.stringify({ email: formData.email, password: formData.password, role: isTeacherMode ? 'teacher' : 'student' })
         });
-        const loginData = await loginRes.json();
-        localStorage.setItem('token', loginData.token);
-        localStorage.setItem('user', JSON.stringify(loginData.user));
-        navigate('/dashboard');
+        
+        if (loginRes.ok) {
+          const loginData = await loginRes.json();
+          localStorage.setItem('token', loginData.token);
+          localStorage.setItem('user', JSON.stringify(loginData.user));
+          navigate('/dashboard');
+        } else {
+          setError('Registration successful. Please log in.');
+          setIsLogin(true);
+        }
       }
 
     } catch (err) {
