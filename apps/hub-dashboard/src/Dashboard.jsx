@@ -285,8 +285,8 @@ export default function Dashboard() {
                   <button 
                     onClick={() => {
                       const instructionsObj = { assignment_id: task.id, instructions: task.instructions };
-                      const port = task.assignment_type === 'vocabulary' ? '5175' : '5174';
-                      window.location.href = `http://localhost:${port}?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
+                      const appPath = task.assignment_type === 'vocabulary' ? '/vocab-tool' : '/ielts-writing';
+                      window.location.href = `${appPath}?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                     }}
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors mt-auto ${
                       task.assignment_type === 'vocabulary' 
