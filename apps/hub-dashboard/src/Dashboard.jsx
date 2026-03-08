@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X } from 'lucide-react';
+import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 
 const DIAGNOSTIC_DICTIONARY = {
@@ -52,6 +52,47 @@ export default function Dashboard() {
   const [expandedScoreId, setExpandedScoreId] = useState(null);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  // New Features: Dark Mode & Join Class
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [isJoinModalOpen, setIsJoinModalOpen] = useState(false);
+  const [joinCode, setJoinCode] = useState('');
+  const [joinError, setJoinError] = useState('');
+  const [isJoining, setIsJoining] = useState(false);
+
+  useEffect(() => {
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [theme]);
+
+  const toggleTheme = () => {
+     const newTheme = theme === 'light' ? 'dark' : 'light';
+     setTheme(newTheme);
+     localStorage.setItem('theme', newTheme);
+  };
+
+  const handleJoinClass = async () => {
+    setIsJoining(true);
+    setJoinError('');
+    try {
+      const res = await fetch('https://hayford-learning-hub.onrender.com/api/classes/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        body: JSON.stringify({ class_code: joinCode })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to join class');
+      
+      const updatedUser = { ...user, class_id: data.class_id };
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      setIsJoinModalOpen(false);
+      window.location.reload();
+    } catch (err) {
+      setJoinError(err.message);
+    } finally {
+      setIsJoining(false);
+    }
+  };
 
   useEffect(() => {
     // Only fetch scores if it is a student dashboard
@@ -186,22 +227,34 @@ export default function Dashboard() {
              <ChevronDown size={14} className={`text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
           
-          {isDropdownOpen && (
-            <div className="absolute top-12 right-0 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
-               <div className="p-4 border-b border-slate-100 bg-slate-50/50">
-                  <p className="font-bold text-slate-900 text-sm">{user.first_name} {user.last_name}</p>
+           {isDropdownOpen && (
+            <div className="absolute top-12 right-0 w-56 bg-white dark:bg-brand-darkBg border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
+               <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+                  <p className="font-bold text-slate-900 dark:text-white text-sm">{user.first_name} {user.last_name}</p>
                   <p className="text-xs text-slate-500 truncate">{user.email}</p>
                </div>
                <div className="p-2 space-y-1">
-                 <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-colors text-left">
+                 <button onClick={toggleTheme} className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
+                   <div className="flex items-center gap-3">
+                     {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />} 
+                     Theme
+                   </div>
+                   <span className="text-[10px] font-black uppercase text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{theme}</span>
+                 </button>
+                 {!user.class_id && (
+                   <button onClick={() => { setIsDropdownOpen(false); setIsJoinModalOpen(true); }} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-brand-copper hover:bg-amber-50 dark:hover:bg-brand-navy rounded-xl transition-colors text-left">
+                     <Users size={16} /> Join a Class
+                   </button>
+                 )}
+                 <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                    <Settings size={16} /> My Account
                  </button>
-                 <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-colors text-left">
+                 <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                    <HelpCircle size={16} /> Help & Support
                  </a>
                </div>
-               <div className="p-2 border-t border-slate-100">
-                 <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl transition-colors text-left">
+               <div className="p-2 border-t border-slate-100 dark:border-slate-800">
+                 <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-left">
                    <LogOut size={16} /> Logout
                  </button>
                </div>
@@ -212,21 +265,29 @@ export default function Dashboard() {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-8 py-12">
-        <div className="flex justify-between items-end mb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
             {scores.length === 0 ? (
-               <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
+               <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-2">
                  Welcome to Hayford Global, {user.first_name || 'Student'}! 👋
                </h2>
             ) : (
-               <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
+               <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-2">
                  Welcome back, {user.first_name || 'Student'}! 👋
                </h2>
             )}
-            <p className="text-slate-500 font-medium">
+            <p className="text-slate-500 dark:text-slate-400 font-medium">
               Here's an overview of your recent learning progress and completed modules.
             </p>
           </div>
+          {!user.class_id && (
+            <button 
+              onClick={() => setIsJoinModalOpen(true)}
+              className="bg-brand-navy dark:bg-brand-copper text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-colors shadow-sm"
+            >
+              <Users size={18} /> Join a Class
+            </button>
+          )}
         </div>
 
         <div className="flex gap-4 border-b border-slate-200 mb-8 pb-4">
@@ -560,6 +621,45 @@ export default function Dashboard() {
                </p>
                <button onClick={() => setIsTourOpen(false)} className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-950 transition-colors mt-4 shadow-sm border border-slate-800">
                  Got it, thanks!
+               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Join Class Modal */}
+      {isJoinModalOpen && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-brand-darkBg border dark:border-slate-800 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-slate-900">
+              <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                <Users className="text-brand-copper" /> Join Class
+              </h3>
+              <button onClick={() => setIsJoinModalOpen(false)} className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            <div className="p-8">
+               <p className="text-slate-600 dark:text-slate-400 text-sm font-medium leading-relaxed mb-6">
+                 Ask your instructor for the 6-character class code and enter it below to join their roster.
+               </p>
+               {joinError && (
+                 <div className="text-xs font-bold text-red-600 bg-red-50 p-3 rounded-xl mb-4 text-center">{joinError}</div>
+               )}
+               <input 
+                 autoFocus
+                 type="text" 
+                 value={joinCode} 
+                 onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
+                 placeholder="e.g. A1B2C3" 
+                 maxLength={6}
+                 className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper transition-all font-black text-center tracking-[0.2em] text-xl placeholder:text-slate-300 placeholder:font-normal placeholder:tracking-normal mb-4 uppercase"
+               />
+               <button 
+                 disabled={isJoining || joinCode.length < 3}
+                 onClick={handleJoinClass} 
+                 className="w-full bg-brand-navy dark:bg-brand-copper text-white font-black py-4 rounded-xl hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+               >
+                 {isJoining ? 'Verifying...' : 'Join Roster'}
                </button>
             </div>
           </div>

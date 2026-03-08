@@ -79,14 +79,14 @@ export default function LoginPage() {
       <div className="absolute top-8 right-8 z-50">
          <button 
            onClick={() => setIsTeacherMode(!isTeacherMode)}
-           className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all ${isTeacherMode ? 'border-slate-800 text-slate-800 hover:bg-slate-800 hover:text-white' : 'border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white'}`}
+           className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all ${isTeacherMode ? 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-brand-navy' : 'border-brand-copper text-brand-copper hover:bg-brand-copper hover:text-white'}`}
          >
            {isTeacherMode ? 'Student Access →' : 'Teacher Access →'}
          </button>
       </div>
 
       {/* Left Side: Branding Panel */}
-      <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-indigo-950 via-indigo-900 to-indigo-800'}`}>
+      <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-navy via-[#0A1930] to-slate-900'}`}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 flex items-center gap-4">
            <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-xl flex items-center justify-center border border-white/20 shadow-glow">
@@ -96,7 +96,7 @@ export default function LoginPage() {
         </div>
 
         <div className="relative z-10 max-w-lg">
-          <h1 className={`text-5xl font-black tracking-tighter mb-6 leading-[1.1] text-transparent bg-clip-text drop-shadow-sm ${isTeacherMode ? 'bg-gradient-to-r from-white to-slate-400' : 'bg-gradient-to-r from-white to-indigo-200'}`}>
+          <h1 className={`text-5xl font-black tracking-tighter mb-6 leading-[1.1] text-transparent bg-clip-text drop-shadow-sm ${isTeacherMode ? 'bg-gradient-to-r from-white to-slate-400' : 'bg-gradient-to-r from-white to-brand-copper'}`}>
             {isTeacherMode ? 'Manage your institution seamlessly.' : 'Elevate your global learning journey.'}
           </h1>
           <p className={`${isTeacherMode ? 'text-slate-300' : 'text-indigo-200'} text-lg font-medium leading-relaxed max-w-md`}>
@@ -104,26 +104,26 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <div className={`relative z-10 flex items-center gap-4 text-xs font-bold tracking-widest uppercase ${isTeacherMode ? 'text-slate-500' : 'text-indigo-400'}`}>
+        <div className={`relative z-10 flex items-center gap-4 text-xs font-bold tracking-widest uppercase ${isTeacherMode ? 'text-slate-500' : 'text-brand-copper'}`}>
           <span>&copy; 2026 Hayford Global</span>
-          <span className={`w-1.5 h-1.5 rounded-full ${isTeacherMode ? 'bg-slate-500' : 'bg-indigo-400'}`}></span>
+          <span className={`w-1.5 h-1.5 rounded-full ${isTeacherMode ? 'bg-slate-500' : 'bg-brand-copper'}`}></span>
           <span>Terms & Privacy</span>
         </div>
       </div>
 
       {/* Right Side: Auth Form */}
-      <div className="flex flex-col items-center justify-center p-8 bg-white relative">
+      <div className="flex flex-col items-center justify-center p-8 bg-white dark:bg-brand-darkBg relative">
         <div className="w-full max-w-sm">
           
           <div className="lg:hidden flex items-center gap-3 mb-10 justify-center">
-             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-soft">
+             <div className="w-10 h-10 bg-brand-navy rounded-xl flex items-center justify-center shadow-soft">
                 <BookOpen className="text-white w-5 h-5" />
              </div>
-             <span className="font-extrabold text-xl tracking-tight text-slate-900">Hayford Hub</span>
+             <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">Hayford Hub</span>
           </div>
 
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-black tracking-tight text-slate-900 mb-2">
+            <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-2">
               {isLogin ? 'Welcome back' : 'Create an account'}
             </h2>
             <p className="text-slate-500 font-medium text-sm">
@@ -154,18 +154,18 @@ export default function LoginPage() {
             
             <div className="space-y-1">
               <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">Email Address</label>
-              <input required name="email" type="email" value={formData.email} placeholder="student@example.com" onChange={handleInputChange} className="w-full bg-slate-50 text-slate-900 border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all font-medium text-sm placeholder:text-slate-300" />
+              <input required name="email" type="email" value={formData.email} placeholder="student@example.com" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
             </div>
 
             <div className="space-y-1">
               <div className="flex justify-between items-center ml-1">
                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Password</label>
-                 {isLogin && <a href="#" className="text-[10px] font-black text-indigo-600 hover:text-indigo-800 transition-colors">Forgot password?</a>}
+                 {isLogin && <a href="#" className="text-[10px] font-black text-brand-copper hover:text-brand-navy transition-colors">Forgot password?</a>}
               </div>
-              <input required name="password" type="password" value={formData.password} placeholder="••••••••" onChange={handleInputChange} className="w-full bg-slate-50 text-slate-900 border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all font-medium text-sm placeholder:text-slate-300" />
+              <input required name="password" type="password" value={formData.password} placeholder="••••••••" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
             </div>
 
-            <button disabled={isLoading} type="submit" className={`w-full text-white font-black py-4 rounded-xl mt-4 shadow-soft transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide ${isTeacherMode ? 'bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 shadow-xl' : 'bg-indigo-600 hover:bg-indigo-700 hover:shadow-glow disabled:bg-indigo-300'}`}>
+            <button disabled={isLoading} type="submit" className={`w-full text-white font-black py-4 rounded-xl mt-4 shadow-soft transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide ${isTeacherMode ? 'bg-brand-navy hover:bg-slate-800 disabled:bg-slate-300 shadow-xl' : 'bg-brand-copper hover:bg-[#a6682f] hover:shadow-glow disabled:bg-orange-300'}`}>
               {isLoading ? <Loader2 size={18} className="animate-spin" /> : isLogin ? 'Sign In' : 'Create Account'}
               {!isLoading && <ArrowRight size={16} />}
             </button>
@@ -173,7 +173,7 @@ export default function LoginPage() {
 
           <div className="mt-8 text-center text-sm font-medium text-slate-500">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button onClick={handleToggle} className={`font-bold transition-colors ${isTeacherMode ? 'text-slate-800 hover:text-slate-600' : 'text-indigo-600 hover:text-indigo-800'}`}>
+            <button onClick={handleToggle} className={`font-bold transition-colors ${isTeacherMode ? 'text-slate-800 dark:text-slate-300 hover:text-slate-600' : 'text-brand-copper hover:text-brand-navy'}`}>
               {isLogin ? 'Sign up' : 'Log in instead'}
             </button>
           </div>

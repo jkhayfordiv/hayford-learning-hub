@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3 } from 'lucide-react';
+import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Moon, Sun, Copy } from 'lucide-react';
 
 export default function TeacherDashboard({ user, onLogout }) {
   const navigate = useNavigate();
@@ -26,6 +26,19 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [editStatus, setEditStatus] = useState({ loading: false, error: null, success: false });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [theme]);
+
+  const toggleTheme = () => {
+     const newTheme = theme === 'light' ? 'dark' : 'light';
+     setTheme(newTheme);
+     localStorage.setItem('theme', newTheme);
+  };
 
   const fetchClassData = async () => {
     try {
@@ -305,21 +318,28 @@ export default function TeacherDashboard({ user, onLogout }) {
           </button>
           
           {isDropdownOpen && (
-            <div className="absolute top-12 right-0 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
-               <div className="p-4 border-b border-slate-100 bg-slate-50/50">
-                  <p className="font-bold text-slate-900 text-sm">{user.first_name} {user.last_name}</p>
+            <div className="absolute top-12 right-0 w-56 bg-white dark:bg-brand-darkBg border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
+               <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+                  <p className="font-bold text-slate-900 dark:text-white text-sm">{user.first_name} {user.last_name}</p>
                   <p className="text-xs text-slate-500 truncate">{user.email}</p>
                </div>
                <div className="p-2 space-y-1">
-                 <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-colors text-left">
+                 <button onClick={toggleTheme} className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
+                   <div className="flex items-center gap-3">
+                     {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />} 
+                     Theme
+                   </div>
+                   <span className="text-[10px] font-black uppercase text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{theme}</span>
+                 </button>
+                 <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                    <Settings size={16} /> My Account
                  </button>
-                 <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900 rounded-xl transition-colors text-left">
+                 <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                    <HelpCircle size={16} /> Help & Support
                  </a>
                </div>
-               <div className="p-2 border-t border-slate-100">
-                 <button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl transition-colors text-left">
+               <div className="p-2 border-t border-slate-100 dark:border-slate-800">
+                 <button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-left">
                    <LogOut size={16} /> Logout
                  </button>
                </div>
@@ -386,13 +406,22 @@ export default function TeacherDashboard({ user, onLogout }) {
               <button
                 key={c.id}
                 onClick={() => setActiveClassId(c.id)}
-                className={`px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
+                className={`flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
                   activeClassId === c.id 
-                    ? 'bg-slate-900 text-white shadow-soft' 
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    ? 'bg-brand-navy text-white shadow-soft dark:bg-brand-copper dark:text-white' 
+                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
                 {c.class_name}
+                {c.class_code && (
+                  <span className={`px-1.5 py-0.5 rounded text-[10px] font-black tracking-widest uppercase border ${
+                    activeClassId === c.id 
+                      ? 'bg-white/20 border-white/30 text-white' 
+                      : 'bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-400'
+                  }`}>
+                    Code: {c.class_code}
+                  </span>
+                )}
               </button>
             ))}
           </div>

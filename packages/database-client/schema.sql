@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS classes (
     id SERIAL PRIMARY KEY,
     class_name VARCHAR(100) NOT NULL,
+    class_code VARCHAR(10) UNIQUE,
     teacher_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
