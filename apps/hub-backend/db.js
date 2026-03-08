@@ -1,41 +1,49 @@
-const sqlite3 = require('sqlite3').verbose();
-const { open } = require('sqlite');
-const fs = require('fs');
-const path = require('path');
+const { Pool } = require('pg');
+require('dotenv').config();
 
-let dbInstance = null;
+let poolInstance = null;
 
-async function initDb() {
-  if (dbInstance) return dbInstance;
-  
-  dbInstance = await open({
-    filename: path.join(__dirname, 'database.sqlite'),
-    driver: sqlite3.Database
-  });
-
-  const schemaPath = path.join(__dirname, '../../packages/database-client/schema.sql');
-  const schema = fs.readFileSync(schemaPath, 'utf8');
-  await dbInstance.exec(schema);
-  
-  console.log('📦 SQLite database initialized and schema verified');
-  return dbInstance;
+function initDb() {
+  if (!poolInstance) {
+    poolInstance = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    });
+    console.log('📦 Postgres database (Neon) initialized');
+  }
+  return poolInstance;
 }
 
 const pool = {
   getConnection: async () => {
-    const db = await initDb();
+    const pgPool = initDb();
+    const client = await pgPool.connect();
     return {
-      query: async (sql, params) => {
-        const queryUpper = sql.trim().toUpperCase();
+      query: async (sql, params = []) => {
+        let pgSql = sql;
+        
+        let paramIndex = 1;
+        pgSql = pgSql.replace(/\?/g, () => `$${paramIndex++}`);
+
+        const queryUpper = pgSql.trim().toUpperCase();
+        const isInsert = queryUpper.startsWith('INSERT');
+        
+        if (isInsert && !queryUpper.includes('RETURNING ID')) {
+          pgSql += ' RETURNING id';
+        }
+
+        const result = await client.query(pgSql, params);
+        
         if (queryUpper.startsWith('SELECT') || queryUpper.startsWith('PRAGMA')) {
-          const rows = await db.all(sql, params);
-          return [rows]; // Wrap in array to simulate mysql2 destructuring
+           return [result.rows];
         } else {
-          const result = await db.run(sql, params);
-          return [{ insertId: result.lastID, affectedRows: result.changes }];
+           const insertId = isInsert && result.rows.length > 0 ? result.rows[0].id : null;
+           return [{ insertId, affectedRows: result.rowCount }];
         }
       },
-      release: () => {}
+      release: () => {
+        client.release();
+      }
     };
   }
 };
