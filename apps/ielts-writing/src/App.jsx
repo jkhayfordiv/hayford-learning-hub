@@ -98,13 +98,16 @@ const PROMPT_BANK = [
   {
     id: 6,
     type: "Bar Chart",
-    title: "Internet Access in Schools",
-    instruction: "The chart shows the number of computers with internet access in primary and secondary schools from 2000 to 2010.",
+    title: "Internet Access in Schools by Region",
+    instruction: "The bar chart compares the number of internet-connected computers per 1,000 students in five regions in 2005 and 2015.",
     data: [
-      { label: 'Primary', v1: 15000, v2: 80000 },
-      { label: 'Secondary', v1: 40000, v2: 120000 }
+      { label: 'Europe', v1: 120, v2: 280 },
+      { label: 'N. America', v1: 180, v2: 320 },
+      { label: 'Asia', v1: 60, v2: 210 },
+      { label: 'S. America', v1: 75, v2: 190 },
+      { label: 'Africa', v1: 25, v2: 110 }
     ],
-    labels: { legend1: "2000", legend2: "2010", yUnit: "Computers" },
+    labels: { legend1: "2005", legend2: "2015", yUnit: "Computers per 1,000 students" },
     graphic: "bar"
   },
   {
@@ -128,12 +131,12 @@ const PROMPT_BANK = [
   { id: 11, type: "Process", title: "Electricity Production", instruction: "The diagram shows how electricity is produced in a coal-fired power station.", data: ["Coal Mining", "Furnace Burning", "Steam Production", "Turbine Rotation", "Generator", "Grid Distribution"], graphic: "process" },
   { id: 12, type: "Bar Chart", title: "Cinema Attendance", instruction: "The chart shows the frequency of cinema attendance by age group in a specific country in 2017.", data: [{ label: '14-24', v1: 45, v2: 50 }, { label: '25-34', v1: 30, v2: 35 }, { label: '35-44', v1: 15, v2: 20 }, { label: '45-54', v1: 10, v2: 12 }, { label: '55+', v1: 5, v2: 8 }], labels: { legend1: "Once/Month", legend2: "Weekly", yUnit: "%" }, graphic: "bar" },
   { id: 13, type: "Table", title: "International Student Numbers", instruction: "The table shows the number of international students in four countries over three decades.", data: [{ country: 'USA', y1: 300, y2: 600 }, { country: 'UK', y1: 150, y2: 400 }, { country: 'Australia', y1: 50, y2: 250 }, { country: 'Canada', y1: 40, y2: 200 }], headers: ["Country", "1990 (000s)", "2010 (000s)"], graphic: "table" },
-  { id: 14, type: "Pie Chart", title: "Water Usage by Sector", instruction: "The pie chart shows the average water consumption by different sectors in a developed nation.", data: [{ label: 'Agriculture', value: 70, color: '#22c55e' }, { label: 'Industry', value: 20, color: '#3b82f6' }, { label: 'Domestic', value: 10, color: '#ef4444' }], graphic: "pie" },
-  { id: 15, type: "Line Graph", title: "Gold Prices (2020-2024)", instruction: "The graph illustrates the price of gold per ounce (in USD) over a four-year period.", data: [{ year: '2020', v1: 1500, v2: 0, v3: 0 }, { year: '2021', v1: 1800, v2: 0, v3: 0 }, { year: '2022', v1: 1750, v2: 0, v3: 0 }, { year: '2023', v1: 1950, v2: 0, v3: 0 }, { year: '2024', v1: 2300, v2: 0, v3: 0 }], labels: { l1: "Gold Price", l2: "", l3: "" }, graphic: "line" },
+  { id: 14, type: "Pie Chart", title: "Water Consumption by Sector", instruction: "The pie chart shows how total water consumption was distributed across five sectors in a developed country in 2022.", data: [{ label: 'Agriculture', value: 42, color: '#22c55e' }, { label: 'Industry', value: 23, color: '#3b82f6' }, { label: 'Domestic', value: 18, color: '#ef4444' }, { label: 'Energy', value: 9, color: '#f59e0b' }, { label: 'Public Services', value: 8, color: '#8b5cf6' }], graphic: "pie" },
+  { id: 15, type: "Line Graph", title: "Metals Prices in Global Markets", instruction: "The line graph compares average monthly prices of gold, silver and copper between 2020 and 2024.", data: [{ year: '2020', v1: 1500, v2: 18, v3: 2.8 }, { year: '2021', v1: 1795, v2: 25, v3: 4.1 }, { year: '2022', v1: 1760, v2: 22, v3: 3.9 }, { year: '2023', v1: 1940, v2: 24, v3: 3.7 }, { year: '2024', v1: 2290, v2: 29, v3: 4.3 }], labels: { l1: "Gold (USD/oz)", l2: "Silver (USD/oz)", l3: "Copper (USD/lb)" }, graphic: "line" },
   { id: 16, type: "Process", title: "Paper Recycling", instruction: "The diagram shows the process of recycling paper.", data: ["Waste Collection", "De-inking", "Pulping", "Rolling", "Drying", "New Paper"], graphic: "process" },
   { id: 17, type: "Bar Chart", title: "Fruit Consumption", instruction: "The chart shows the average daily fruit consumption of adults in five different cities.", data: [{ label: 'City A', v1: 1.2, v2: 1.5 }, { label: 'City B', v1: 0.8, v2: 1.1 }, { label: 'City C', v1: 2.1, v2: 2.3 }, { label: 'City D', v1: 1.5, v2: 1.8 }, { label: 'City E', v1: 1.0, v2: 1.2 }], labels: { legend1: "Male", legend2: "Female", yUnit: "Portions" }, graphic: "bar" },
   { id: 18, type: "Table", title: "Urbanization Rates", instruction: "The table shows the percentage of the population living in urban areas in four regions.", data: [{ country: 'Africa', y1: 30, y2: 45 }, { country: 'Asia', y1: 40, y2: 55 }, { country: 'Europe', y1: 70, y2: 78 }, { country: 'N. America', y1: 75, y2: 82 }], headers: ["Region", "2000 (%)", "2020 (%)"], graphic: "table" },
-  { id: 19, type: "Pie Chart", title: "Student Accomodation", instruction: "The chart shows the preferred types of housing for international students.", data: [{ label: 'Dormitory', value: 45, color: '#6366f1' }, { label: 'Private Rent', value: 35, color: '#ec4899' }, { label: 'Homestay', value: 15, color: '#f59e0b' }, { label: 'Other', value: 5, color: '#94a3b8' }], graphic: "pie" },
+  { id: 19, type: "Pie Chart", title: "Student Accommodation", instruction: "The pie chart illustrates the preferred housing options of international students in a UK city in 2023.", data: [{ label: 'University Halls', value: 34, color: '#6366f1' }, { label: 'Private Rental', value: 29, color: '#ec4899' }, { label: 'Shared Flat', value: 19, color: '#06b6d4' }, { label: 'Homestay', value: 12, color: '#f59e0b' }, { label: 'Other', value: 6, color: '#94a3b8' }], graphic: "pie" },
   { id: 20, type: "Line Graph", title: "Software Subscriptions", instruction: "The graph shows the growth of subscribers for three software services.", data: [{ year: '2019', v1: 10, v2: 5, v3: 2 }, { year: '2020', v1: 15, v2: 8, v3: 5 }, { year: '2021', v1: 22, v2: 14, v3: 12 }, { year: '2022', v1: 30, v2: 25, v3: 20 }, { year: '2023', v1: 45, v2: 40, v3: 35 }], labels: { l1: "Cloud", l2: "Design", l3: "CRM" }, graphic: "line" }
 ];
 
@@ -272,6 +275,21 @@ const VisualRenderer = ({ prompt }) => {
   return null;
 };
 
+const normalizeBandScore = (rawBandScore, wordCount) => {
+  const score = Number(rawBandScore);
+  if (!Number.isFinite(score)) return 0;
+
+  let adjusted = score;
+
+  // Calibration: avoid under-scoring typical 6.0-6.5 level scripts.
+  if (wordCount >= 140 && adjusted >= 5 && adjusted < 6.5) {
+    adjusted += 0.5;
+  }
+
+  adjusted = Math.max(0, Math.min(9, adjusted));
+  return Math.round(adjusted * 2) / 2;
+};
+
 // Moving API call logic outside component for clarity and to avoid closure issues
 const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
   const delays = [1000, 2000, 4000, 8000, 16000];
@@ -391,12 +409,18 @@ export default function App() {
   const [saveMessage, setSaveMessage] = useState("");
 
   const submitWriting = async () => {
-    if (getWordCount(text) < 50) {
+    if (isLoading) return;
+
+    const wordCount = getWordCount(text);
+
+    if (wordCount < 50) {
       setErrorMessage("Please write at least 50 words before submitting.");
       return;
     }
+
     setIsLoading(true);
     setIsTimerRunning(false);
+    setShowWarning(false);
     setErrorMessage("");
     setSaveMessage("");
 
@@ -424,7 +448,13 @@ export default function App() {
         throw new Error("API Key is missing. Please configure VITE_GEMINI_API_KEY in a .env file.");
       }
       const feedbackData = await callGeminiWithRetry(`Student Response: ${text}`, systemPrompt);
-      setFeedback(feedbackData);
+      const calibratedBandScore = normalizeBandScore(feedbackData.bandScore, wordCount);
+      const normalizedFeedback = {
+        ...feedbackData,
+        bandScore: calibratedBandScore
+      };
+
+      setFeedback(normalizedFeedback);
       setView("feedback");
 
       // Save to History Database (and mark assignment completed if opened from To-Do)
@@ -433,10 +463,10 @@ export default function App() {
         const taskIdNum = activeTaskId != null ? parseInt(activeTaskId, 10) : null;
         const scorePayload = {
           submitted_text: text,
-          word_count: getWordCount(text),
-          overall_score: feedbackData.bandScore || 0,
-          ai_feedback: feedbackData,
-          diagnostic_tags: feedbackData.diagnostic_tags || [],
+          word_count: wordCount,
+          overall_score: calibratedBandScore,
+          ai_feedback: normalizedFeedback,
+          diagnostic_tags: normalizedFeedback.diagnostic_tags || [],
           taskId: Number.isInteger(taskIdNum) ? taskIdNum : undefined
         };
 
@@ -556,7 +586,10 @@ export default function App() {
             <h3 className="text-xl font-black mb-2">Time is Up!</h3>
             <p className="text-slate-500 text-sm mb-6">20 minutes have passed. You should finalize your response and submit for marking.</p>
             <div className="flex flex-col gap-2">
-              <button onClick={submitWriting} disabled={!apiKey} className="bg-slate-900 text-white py-3 rounded-xl font-bold disabled:bg-slate-300">Submit Response</button>
+              <button onClick={submitWriting} disabled={!apiKey || isLoading} className="bg-slate-900 text-white py-3 rounded-xl font-bold disabled:bg-slate-300 flex items-center justify-center gap-2">
+                {isLoading ? <RefreshCw className="animate-spin" size={16} /> : <Send size={16} />}
+                {isLoading ? "Submitting..." : "Submit Response"}
+              </button>
               <button onClick={() => setShowWarning(false)} className="text-slate-400 text-xs font-bold py-2">Keep Writing (Late)</button>
             </div>
           </div>
