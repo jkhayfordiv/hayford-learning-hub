@@ -115,3 +115,7 @@ hub.db
 # Any other sensitive files
 *.pem
 *.key
+
+# Hostinger pre-built deployment output
+!deploy_out/
+!deploy_out/**
