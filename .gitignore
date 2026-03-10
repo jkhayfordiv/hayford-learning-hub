@@ -116,6 +116,10 @@ hub.db
 *.pem
 *.key
 
-# Hostinger pre-built deployment output
-!deploy_out/
-!deploy_out/**
+# Hostinger pre-built deployment artifacts at repo root
+!/assets/
+!/assets/**
+!/index.html
+!/logo.png
+!/logo.svg
+!/vite.svg
