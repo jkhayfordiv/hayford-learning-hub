@@ -14,34 +14,36 @@ const ProtectedRoute = ({ children }) => {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route 
-          path="/dashboard/*" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/student/:id" 
-          element={
-            <ProtectedRoute>
-              <StudentReview />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/profile" 
-          element={
-            <ProtectedRoute>
-              <Profile user={JSON.parse(localStorage.getItem('user') || '{}')} onLogout={() => { localStorage.removeItem('token'); localStorage.removeItem('user'); window.location.href = '/login'; }} />
-            </ProtectedRoute>
-          } 
-        />
-      </Routes>
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0A1930]">
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route 
+            path="/dashboard/*" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/student/:id" 
+            element={
+              <ProtectedRoute>
+                <StudentReview />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile user={JSON.parse(localStorage.getItem('user') || '{}')} onLogout={() => { localStorage.removeItem('token'); localStorage.removeItem('user'); window.location.href = '/login'; }} />
+              </ProtectedRoute>
+            } 
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
