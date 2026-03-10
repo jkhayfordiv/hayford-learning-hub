@@ -427,19 +427,21 @@ export default function App() {
       setFeedback(feedbackData);
       setView("feedback");
 
-      // Save to History Database
+      // Save to History Database (and mark assignment completed if opened from To-Do)
       const token = localStorage.getItem('token');
       if (token) {
+        const taskIdNum = activeTaskId != null ? parseInt(activeTaskId, 10) : null;
         const scorePayload = {
           submitted_text: text,
           word_count: getWordCount(text),
           overall_score: feedbackData.bandScore || 0,
           ai_feedback: feedbackData,
           diagnostic_tags: feedbackData.diagnostic_tags || [],
-          taskId: activeTaskId
+          taskId: Number.isInteger(taskIdNum) ? taskIdNum : undefined
         };
 
-        const saveRes = await fetch("https://hayford-learning-hub.onrender.com/api/scores", {
+        const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
+        const saveRes = await fetch(`${apiBase}/api/scores`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -451,6 +453,19 @@ export default function App() {
         if (saveRes.ok) {
           setSaveMessage("Score Saved to Dashboard!");
           setTimeout(() => setSaveMessage(""), 4000);
+        } else {
+          const contentType = saveRes.headers.get("content-type") || "";
+          const errText = await saveRes.text();
+          let errMsg = "Failed to save score to dashboard.";
+          try {
+            if (errText && contentType.includes("application/json")) {
+              const errData = JSON.parse(errText);
+              errMsg = errData.error || errData.details || errMsg;
+            }
+          } catch (_) {}
+          setSaveMessage("");
+          setErrorMessage(errMsg);
+          console.error("Score save error", saveRes.status, errText);
         }
       }
 

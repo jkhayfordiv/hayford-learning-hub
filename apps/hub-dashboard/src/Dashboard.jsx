@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users } from 'lucide-react';
+import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 
 const DIAGNOSTIC_DICTIONARY = {
@@ -43,6 +43,9 @@ export default function Dashboard() {
     localStorage.removeItem('user');
     window.location.href = '/login';
   }
+
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
+
   const [scores, setScores] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
@@ -75,7 +78,7 @@ export default function Dashboard() {
     setIsJoining(true);
     setJoinError('');
     try {
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/classes/join', {
+      const res = await fetch(`${apiBase}/api/classes/join`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ class_code: joinCode })
@@ -106,7 +109,7 @@ export default function Dashboard() {
         const token = localStorage.getItem('token');
         if (!token) return navigate('/login');
 
-        const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores/my-scores', {
+        const res = await fetch(`${apiBase}/api/scores/my-scores`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -126,7 +129,7 @@ export default function Dashboard() {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments/my-tasks', {
+        const res = await fetch(`${apiBase}/api/assignments/my-tasks`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -152,6 +155,40 @@ export default function Dashboard() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [navigate]);
 
+  // Re-fetch scores and tasks when user returns to this tab (e.g. after submitting in IELTS tool)
+  useEffect(() => {
+    if (user.role === 'teacher' || user.role === 'admin') return;
+    const refreshStudentData = () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      fetch(`${apiBase}/api/scores/my-scores`, { headers: { 'Authorization': `Bearer ${token}` } })
+        .then(res => res.ok ? res.json() : [])
+        .then(data => setScores(data))
+        .catch(() => {});
+      fetch(`${apiBase}/api/assignments/my-tasks`, { headers: { 'Authorization': `Bearer ${token}` } })
+        .then(res => res.ok ? res.json() : [])
+        .then(data => setTasks(data))
+        .catch(() => {});
+    };
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') refreshStudentData();
+    };
+
+    const onFocus = () => refreshStudentData();
+    const onPageShow = () => refreshStudentData();
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    window.addEventListener('focus', onFocus);
+    window.addEventListener('pageshow', onPageShow);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('focus', onFocus);
+      window.removeEventListener('pageshow', onPageShow);
+    };
+  }, [user.role]);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -159,9 +196,21 @@ export default function Dashboard() {
   };
 
   const handleLaunchPractice = () => {
-    // Pass JWT to the IELTS Writing App
     const token = localStorage.getItem('token');
-    window.location.href = `/ielts-writing?token=${token}`;
+    window.location.href = `/ielts-writing/?token=${token}`;
+  };
+
+  const handleRefresh = () => {
+    const token = localStorage.getItem('token');
+    if (!token || user.role !== 'student') return;
+    fetch(`${apiBase}/api/scores/my-scores`, { headers: { 'Authorization': `Bearer ${token}` } })
+      .then(res => res.ok ? res.json() : [])
+      .then(data => setScores(data))
+      .catch(() => {});
+    fetch(`${apiBase}/api/assignments/my-tasks`, { headers: { 'Authorization': `Bearer ${token}` } })
+      .then(res => res.ok ? res.json() : [])
+      .then(data => setTasks(data))
+      .catch(() => {});
   };
 
   // Helper to calculate top 3 frequent errors for the student
@@ -202,7 +251,7 @@ export default function Dashboard() {
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
-           <img src="/logo.png" alt="Hayford Logo" className="w-10 h-10 object-contain" />
+           <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
           <div>
             <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">
               Hayford Global Learning Hub
@@ -214,6 +263,9 @@ export default function Dashboard() {
         </div>
 
         <div className="flex items-center gap-4 relative" ref={dropdownRef}>
+          <button onClick={handleRefresh} className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors" title="Refresh scores and tasks">
+            <RefreshCw size={18} />
+          </button>
           <button onClick={() => setIsTourOpen(true)} className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors hidden md:block" title="Quick Tour">
             <HelpIcon size={18} />
           </button>
@@ -346,7 +398,7 @@ export default function Dashboard() {
                   <button 
                     onClick={() => {
                       const instructionsObj = { assignment_id: task.id, instructions: task.instructions };
-                      const appPath = task.assignment_type === 'vocabulary' ? '/vocab-tool' : '/ielts-writing';
+                      const appPath = task.assignment_type === 'vocabulary' ? '/vocab-tool/' : '/ielts-writing/';
                       window.location.href = `${appPath}?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                     }}
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors mt-auto ${
@@ -368,7 +420,7 @@ export default function Dashboard() {
            <h3 className="font-black text-xl text-slate-900 tracking-tight mb-4 flex items-center gap-2">Interactive Learning Tools</h3>
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div 
-                 onClick={() => window.location.href = `/ielts-writing?token=${localStorage.getItem('token')}`}
+                 onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}`}
                  className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-400 transition-all cursor-pointer group flex items-start gap-6"
               >
                  <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-slate-900 transition-colors border border-amber-100 group-hover:border-slate-900">
@@ -381,7 +433,7 @@ export default function Dashboard() {
               </div>
               
               <div 
-                 onClick={() => window.location.href = `/vocab-tool?token=${localStorage.getItem('token')}`}
+                 onClick={() => window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}`}
                  className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-amber-300 transition-all cursor-pointer group flex items-start gap-6"
               >
                  <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-amber-600 transition-colors border border-amber-100 group-hover:border-amber-600">

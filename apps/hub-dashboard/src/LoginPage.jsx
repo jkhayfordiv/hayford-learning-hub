@@ -10,6 +10,8 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
+
   const handleToggle = () => {
     setIsLogin(!isLogin);
     setError('');
@@ -30,16 +32,23 @@ export default function LoginPage() {
       : { ...formData, role: isTeacherMode ? 'teacher' : 'student' };
 
     try {
-      const response = await fetch(`https://hayford-learning-hub.onrender.com${endpoint}`, {
+      const response = await fetch(`${apiBase}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       });
 
-      const data = await response.json();
+      const contentType = response.headers.get('content-type') || '';
+      const text = await response.text();
+      let data = {};
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {
+        data = {};
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || 'Authentication failed');
+        throw new Error(data.error || data.msg || (text ? text : 'Authentication failed'));
       }
 
       if (isLogin) {
@@ -48,14 +57,21 @@ export default function LoginPage() {
         navigate('/dashboard');
       } else {
         // Log them right in after successful registration
-        const loginRes = await fetch('https://hayford-learning-hub.onrender.com/api/auth/login', {
+        const loginRes = await fetch(`${apiBase}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: formData.email, password: formData.password, role: isTeacherMode ? 'teacher' : 'student' })
         });
         
         if (loginRes.ok) {
-          const loginData = await loginRes.json();
+          const loginContentType = loginRes.headers.get('content-type') || '';
+          const loginText = await loginRes.text();
+          let loginData = {};
+          try {
+            loginData = loginText && loginContentType.includes('application/json') ? JSON.parse(loginText) : {};
+          } catch (_) {
+            loginData = {};
+          }
           localStorage.setItem('token', loginData.token);
           localStorage.setItem('user', JSON.stringify(loginData.user));
           navigate('/dashboard');
@@ -89,9 +105,7 @@ export default function LoginPage() {
       <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-navy via-[#0A1930] to-slate-900'}`}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 flex items-center gap-4">
-           <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-xl flex items-center justify-center border border-white/20 shadow-glow">
-              <BookOpen className="text-white w-6 h-6" />
-           </div>
+           <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-copper/60 bg-white/10 backdrop-blur shadow-glow p-1" />
            <span className="font-extrabold text-2xl tracking-tight">Hayford Hub {isTeacherMode && <span className="opacity-50 font-normal">| Faculty</span>}</span>
         </div>
 
@@ -116,9 +130,7 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           
           <div className="lg:hidden flex items-center gap-3 mb-10 justify-center">
-             <div className="w-10 h-10 bg-brand-navy rounded-xl flex items-center justify-center shadow-soft">
-                <BookOpen className="text-white w-5 h-5" />
-             </div>
+             <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-navy shadow-soft bg-white p-1" />
              <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">Hayford Hub</span>
           </div>
 

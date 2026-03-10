@@ -6,6 +6,11 @@ const { initDb, pool } = require('./db');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+async function ensureRuntimeMigrations() {
+  const pgPool = initDb();
+  await pgPool.query("ALTER TABLE student_scores ADD COLUMN IF NOT EXISTS diagnostic_data JSONB DEFAULT '[]'::jsonb");
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -49,8 +54,23 @@ app.use('/api/classes', classesRoutes);
 const assignmentsRoutes = require('./routes/assignments');
 app.use('/api/assignments', assignmentsRoutes);
 
+// Users (teacher actions: assign class, etc.)
+const usersRoutes = require('./routes/users');
+app.use('/api/users', usersRoutes);
+
+// 404 for API routes - return JSON so clients don't get HTML
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: 'Not found', path: req.originalUrl });
+});
+
+// Global error handler - ensure JSON response
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ error: 'Server error', details: err.message });
+});
+
 // Start Server
 app.listen(PORT, async () => {
-  await initDb();
+  await ensureRuntimeMigrations();
   console.log(`🚀 Hub Backend API is running on http://localhost:${PORT}`);
 });

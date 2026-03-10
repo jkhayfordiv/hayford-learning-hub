@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Moon, Sun, Copy } from 'lucide-react';
+import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Moon, Sun, Copy, RefreshCw, UserPlus } from 'lucide-react';
 
 export default function TeacherDashboard({ user, onLogout }) {
   const navigate = useNavigate();
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState([]);
   const [activeClassId, setActiveClassId] = useState('all');
@@ -12,9 +13,15 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClassModalOpen, setIsClassModalOpen] = useState(false);
   const [formData, setFormData] = useState({ first_name: '', last_name: '', email: '', password: '', class_id: '' });
-  const [classFormData, setClassFormData] = useState({ class_name: '' });
+  const [classFormData, setClassFormData] = useState({ class_name: '', start_date: '', end_date: '' });
+  const [isEditClassModalOpen, setIsEditClassModalOpen] = useState(false);
+  const [editingClass, setEditingClass] = useState(null);
+  const [editClassStatus, setEditClassStatus] = useState({ loading: false, error: null, success: false });
   const [registerStatus, setRegisterStatus] = useState({ loading: false, error: null, success: false });
   const [classStatus, setClassStatus] = useState({ loading: false, error: null, success: false });
+  const [isAssignClassModalOpen, setIsAssignClassModalOpen] = useState(false);
+  const [assignClassForm, setAssignClassForm] = useState({ email: '', class_id: '' });
+  const [assignClassStatus, setAssignClassStatus] = useState({ loading: false, error: null, success: false });
 
   const [activeTab, setActiveTab] = useState('overview');
   const [assignments, setAssignments] = useState([]);
@@ -40,10 +47,39 @@ export default function TeacherDashboard({ user, onLogout }) {
      localStorage.setItem('theme', newTheme);
   };
 
+  const handleRemoveStudentFromClass = async (student) => {
+    if (!student?.class_id) return;
+    if (!window.confirm(`Remove ${student.first_name} ${student.last_name} from their class?`)) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/${student.id}/class`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const contentType = res.headers.get('content-type') || '';
+      const text = await res.text();
+      let data = {};
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {
+        data = {};
+      }
+
+      if (!res.ok) throw new Error(data.error || data.msg || (text || 'Failed to remove student from class'));
+
+      fetchClassData();
+      fetchClasses();
+    } catch (err) {
+      alert(err.message || 'Failed to remove student from class');
+    }
+  };
+
   const fetchClassData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores/class-overview', {
+      const res = await fetch(`${apiBase}/api/scores/class-overview`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
@@ -61,7 +97,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchClasses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/classes', {
+      const res = await fetch(`${apiBase}/api/classes?include_archived=true`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -75,7 +111,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchRecentActivity = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores/recent', {
+      const res = await fetch(`${apiBase}/api/scores/recent`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -89,7 +125,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchAssignments = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments', {
+      const res = await fetch(`${apiBase}/api/assignments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -115,6 +151,35 @@ export default function TeacherDashboard({ user, onLogout }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Re-fetch analytics when teacher returns to this tab (e.g. after student submitted)
+  useEffect(() => {
+    const refreshTeacherData = () => {
+      fetchClassData();
+      fetchAssignments();
+      fetchRecentActivity();
+      fetchClasses();
+    };
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        refreshTeacherData();
+      }
+    };
+
+    const onFocus = () => refreshTeacherData();
+    const onPageShow = () => refreshTeacherData();
+
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    window.addEventListener('focus', onFocus);
+    window.addEventListener('pageshow', onPageShow);
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      window.removeEventListener('focus', onFocus);
+      window.removeEventListener('pageshow', onPageShow);
+    };
+  }, []);
+
   const handleCreateAssignment = async (e) => {
     e.preventDefault();
     setAssignmentStatus({ loading: true, error: null, success: false });
@@ -133,7 +198,7 @@ export default function TeacherDashboard({ user, onLogout }) {
         payload.student_id = 'all';
       }
 
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments', {
+      const res = await fetch(`${apiBase}/api/assignments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(payload)
@@ -154,7 +219,7 @@ export default function TeacherDashboard({ user, onLogout }) {
     setClassStatus({ loading: true, error: null, success: false });
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/classes', {
+      const res = await fetch(`${apiBase}/api/classes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(classFormData)
@@ -163,7 +228,7 @@ export default function TeacherDashboard({ user, onLogout }) {
       if (!res.ok) throw new Error(data.error || 'Failed to create class');
       
       setClassStatus({ loading: false, error: null, success: true });
-      setClassFormData({ class_name: '' });
+      setClassFormData({ class_name: '', start_date: '', end_date: '' });
       fetchClasses();
       
       setTimeout(() => {
@@ -182,7 +247,7 @@ export default function TeacherDashboard({ user, onLogout }) {
     try {
       const token = localStorage.getItem('token');
       const assignment_ids = group.students.map(s => s.id);
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments/bulk', {
+      const res = await fetch(`${apiBase}/api/assignments/bulk`, {
          method: 'DELETE',
          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
          body: JSON.stringify({ assignment_ids })
@@ -202,7 +267,7 @@ export default function TeacherDashboard({ user, onLogout }) {
       const assignment_ids = editGroupData.students.map(s => s.id);
       // Ensure empty strings are sent as null for DB
       const due_date = editGroupData.new_due_date ? editGroupData.new_due_date : null;
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/assignments/bulk', {
+      const res = await fetch(`${apiBase}/api/assignments/bulk`, {
          method: 'PUT',
          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
          body: JSON.stringify({ assignment_ids, due_date })
@@ -220,12 +285,110 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
+  const openEditClass = (c) => {
+    setEditingClass(c);
+    setEditClassStatus({ loading: false, error: null, success: false });
+    setIsEditClassModalOpen(true);
+  };
+
+  const handleUpdateClass = async (e) => {
+    e.preventDefault();
+    if (!editingClass) return;
+    setEditClassStatus({ loading: true, error: null, success: false });
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/classes/${editingClass.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({
+          class_name: editingClass.class_name,
+          start_date: editingClass.start_date || null,
+          end_date: editingClass.end_date || null
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to update class');
+      setEditClassStatus({ loading: false, error: null, success: true });
+      fetchClasses();
+      setTimeout(() => {
+        setIsEditClassModalOpen(false);
+        setEditingClass(null);
+        setEditClassStatus(prev => ({ ...prev, success: false }));
+      }, 1500);
+    } catch (err) {
+      setEditClassStatus({ loading: false, error: err.message, success: false });
+    }
+  };
+
+  const handleDeleteClass = async (c) => {
+    if (!window.confirm(`Delete class "${c.class_name}"? Students will be unassigned from this class.`)) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/classes/${c.id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to delete class');
+      }
+      fetchClasses();
+      if (activeClassId === c.id) setActiveClassId('all');
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleAssignToClass = async (e) => {
+    e.preventDefault();
+    setAssignClassStatus({ loading: true, error: null, success: false });
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/assign-class`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ email: assignClassForm.email.trim(), class_id: assignClassForm.class_id || null })
+      });
+      const contentType = res.headers.get('content-type') || '';
+      const text = await res.text();
+      let data;
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {
+        setAssignClassStatus({
+          loading: false,
+          error: 'Server returned an invalid response. If you use a hosted backend, ensure it is deployed with the latest API (Assign to Class).',
+          success: false
+        });
+        return;
+      }
+      if (!res.ok) throw new Error(data.error || data.msg || 'Failed to assign student');
+      setAssignClassStatus({ loading: false, error: null, success: true });
+      setAssignClassForm({ email: '', class_id: '' });
+      fetchClassData();
+      fetchClasses();
+      setTimeout(() => {
+        setIsAssignClassModalOpen(false);
+        setAssignClassStatus(prev => ({ ...prev, success: false }));
+      }, 2000);
+    } catch (err) {
+      setAssignClassStatus({ loading: false, error: err.message, success: false });
+    }
+  };
+
+  const handleRefreshOverview = () => {
+    fetchClassData();
+    fetchAssignments();
+    fetchRecentActivity();
+    fetchClasses();
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setRegisterStatus({ loading: true, error: null, success: false });
 
     try {
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/auth/register', {
+      const res = await fetch(`${apiBase}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, role: 'student' })
@@ -259,7 +422,9 @@ export default function TeacherDashboard({ user, onLogout }) {
 
   // Helper to aggregate diagnostic tags for the currently filtered students
   const getAggregatedDiagnostics = () => {
-    const filteredStudents = students.filter(s => activeClassId === 'all' || s.class_id === activeClassId);
+    const filteredStudents = students.filter(s =>
+      activeClassId === 'all' ? true : activeClassId === 'none' ? !s.class_id : s.class_id === activeClassId
+    );
     const tagCounts = {};
 
     filteredStudents.forEach(student => {
@@ -285,18 +450,25 @@ export default function TeacherDashboard({ user, onLogout }) {
     return Object.entries(tagCounts)
       .sort((a, b) => b[1] - a[1]) // Sort by count descending
       .map(([tag, count]) => ({ tag, count }))
-      .slice(0, 10); // Show top 10
+      .slice(0, 3); // Top 3 common error types
   };
 
   const currentDiagnostics = getAggregatedDiagnostics();
-  const filteredStudents = students.filter(s => activeClassId === 'all' || s.class_id === activeClassId);
+  const filteredStudents = students.filter(s =>
+    activeClassId === 'all' ? true : activeClassId === 'none' ? !s.class_id : s.class_id === activeClassId
+  );
+
+  const today = new Date().toISOString().slice(0, 10);
+  const activeClasses = classes.filter(c => !c.end_date || c.end_date >= today);
+  const archivedClasses = classes.filter(c => c.end_date && c.end_date < today);
+  const unassignedStudents = students.filter(s => !s.class_id);
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
-           <img src="/logo.png" alt="Hayford Logo" className="w-10 h-10 object-contain mx-auto" />
+           <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain mx-auto" />
           <div>
             <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">
               Hayford Global Learning Hub
@@ -373,12 +545,25 @@ export default function TeacherDashboard({ user, onLogout }) {
             <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Class Overview</h2>
             <p className="text-slate-500 font-medium">Monitor your students' progress and identify those needing assistance.</p>
           </div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-3 items-center">
+            <button 
+              onClick={handleRefreshOverview}
+              className="bg-white border border-slate-200 text-slate-700 font-bold text-sm px-4 py-3 rounded-xl shadow-sm hover:bg-slate-50 transition-all flex items-center gap-2"
+              title="Refresh analytics and student data"
+            >
+              <RefreshCw size={18} /> Refresh
+            </button>
             <button 
               onClick={() => setIsClassModalOpen(true)}
               className="bg-white border border-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-xl shadow-sm hover:bg-slate-50 transition-all flex items-center gap-2"
             >
               <PlusCircle size={18} /> Create Class
+            </button>
+            <button 
+              onClick={() => setIsAssignClassModalOpen(true)}
+              className="bg-white border border-brand-copper text-brand-copper font-bold text-sm px-6 py-3 rounded-xl shadow-sm hover:bg-amber-50 transition-all flex items-center gap-2"
+            >
+              <UserPlus size={18} /> Assign to Class
             </button>
             <button 
               onClick={() => setIsModalOpen(true)}
@@ -389,41 +574,81 @@ export default function TeacherDashboard({ user, onLogout }) {
           </div>
         </div>
 
-        {/* Class Filter Tabs */}
+        {/* Class Filter Tabs: Active then Archived */}
         {classes.length > 0 && (
-          <div className="flex gap-2 mb-8 overflow-x-auto pb-2 scrollbar-hide">
-            <button
-              onClick={() => setActiveClassId('all')}
-              className={`px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
-                activeClassId === 'all' 
-                  ? 'bg-slate-900 text-white shadow-soft' 
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
-              }`}
-            >
-              All Students
-            </button>
-            {classes.map(c => (
+          <div className="flex flex-col gap-4 mb-8">
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide flex-wrap">
               <button
-                key={c.id}
-                onClick={() => setActiveClassId(c.id)}
-                className={`flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
-                  activeClassId === c.id 
-                    ? 'bg-brand-navy text-white shadow-soft dark:bg-brand-copper dark:text-white' 
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700'
+                onClick={() => setActiveClassId('all')}
+                className={`px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
+                  activeClassId === 'all' 
+                    ? 'bg-slate-900 text-white shadow-soft' 
+                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
                 }`}
               >
-                {c.class_name}
-                {c.class_code && (
-                  <span className={`px-1.5 py-0.5 rounded text-[10px] font-black tracking-widest uppercase border ${
-                    activeClassId === c.id 
-                      ? 'bg-white/20 border-white/30 text-white' 
-                      : 'bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-400'
-                  }`}>
-                    Code: {c.class_code}
-                  </span>
-                )}
+                All Students
               </button>
-            ))}
+              {unassignedStudents.length > 0 && (
+                <button
+                  onClick={() => setActiveClassId('none')}
+                  className={`px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
+                    activeClassId === 'none' 
+                      ? 'bg-amber-600 text-white shadow-soft' 
+                      : 'bg-amber-50 border border-amber-200 text-amber-800 hover:bg-amber-100'
+                  }`}
+                  title="Students not in any class"
+                >
+                  No class ({unassignedStudents.length})
+                </button>
+              )}
+              {activeClasses.map(c => (
+                <div key={c.id} className="flex items-center gap-1">
+                  <button
+                    onClick={() => setActiveClassId(c.id)}
+                    className={`flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
+                      activeClassId === c.id 
+                        ? 'bg-brand-navy text-white shadow-soft dark:bg-brand-copper dark:text-white' 
+                        : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700'
+                    }`}
+                  >
+                    {c.class_name}
+                    {c.class_code && (
+                      <span className={`px-1.5 py-0.5 rounded text-[10px] font-black tracking-widest uppercase border ${
+                        activeClassId === c.id 
+                          ? 'bg-white/20 border-white/30 text-white' 
+                          : 'bg-slate-100 border-slate-200 text-slate-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-400'
+                      }`}>
+                        Code: {c.class_code}
+                      </span>
+                    )}
+                  </button>
+                  <button onClick={(e) => { e.stopPropagation(); openEditClass(c); }} className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-700" title="Edit class"><Edit3 size={14} /></button>
+                  <button onClick={(e) => { e.stopPropagation(); handleDeleteClass(c); }} className="p-1.5 rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600" title="Delete class"><Trash2 size={14} /></button>
+                </div>
+              ))}
+              {archivedClasses.map(c => (
+                <div key={c.id} className="flex items-center gap-1">
+                  <button
+                    onClick={() => setActiveClassId(c.id)}
+                    className={`flex items-center gap-2 px-5 py-2 rounded-full font-bold text-sm transition-colors whitespace-nowrap ${
+                      activeClassId === c.id 
+                        ? 'bg-slate-600 text-white shadow-soft' 
+                        : 'bg-slate-100 border border-slate-200 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400'
+                    }`}
+                  >
+                    {c.class_name}
+                    <span className="px-1.5 py-0.5 rounded text-[10px] font-black uppercase bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-400">Archived</span>
+                    {c.class_code && (
+                      <span className="px-1.5 py-0.5 rounded text-[10px] font-black tracking-widest uppercase border bg-slate-100 border-slate-200 text-slate-500">
+                        Code: {c.class_code}
+                      </span>
+                    )}
+                  </button>
+                  <button onClick={(e) => { e.stopPropagation(); openEditClass(c); }} className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-200 hover:text-slate-700" title="Edit class"><Edit3 size={14} /></button>
+                  <button onClick={(e) => { e.stopPropagation(); handleDeleteClass(c); }} className="p-1.5 rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600" title="Delete class"><Trash2 size={14} /></button>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
@@ -473,7 +698,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                 <AlertCircle className="text-slate-400" /> Class Diagnostics
               </h3>
               <span className="text-xs font-bold text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200">
-                Top Frequency Errors
+                Top 3 Common Error Types
               </span>
             </div>
             <div className="p-8">
@@ -505,18 +730,19 @@ export default function TeacherDashboard({ user, onLogout }) {
                   <th className="px-8 py-4 text-center">Average Score</th>
                   <th className="px-8 py-4">Last Active</th>
                   <th className="px-8 py-4">Status</th>
+                  <th className="px-8 py-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
                 {isLoading ? (
-                  <tr><td colSpan="5" className="px-8 py-12 text-center text-slate-400">Loading class data...</td></tr>
+                  <tr><td colSpan="6" className="px-8 py-12 text-center text-slate-400">Loading class data...</td></tr>
                 ) : filteredStudents.length === 0 ? (
-                  <tr><td colSpan="5" className="px-8 py-12 text-center text-slate-400">No students found in this view.</td></tr>
+                  <tr><td colSpan="6" className="px-8 py-12 text-center text-slate-400">No students found in this view.</td></tr>
                 ) : (
                   filteredStudents.map((student) => (
                     <tr 
                       key={student.id} 
-                      onClick={() => window.location.href = `/student/${student.id}`} 
+                      onClick={() => window.location.href = `/student/${student.id}`}
                       className="hover:bg-slate-50 transition-colors cursor-pointer group"
                     >
                       <td className="px-8 py-6">
@@ -541,6 +767,21 @@ export default function TeacherDashboard({ user, onLogout }) {
                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-lg border border-green-200">
                               Active
                            </span>
+                        )}
+                      </td>
+                      <td className="px-8 py-6 text-right">
+                        {student.class_id ? (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveStudentFromClass(student);
+                            }}
+                            className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                          >
+                            Remove from Class
+                          </button>
+                        ) : (
+                          <span className="text-xs text-slate-400">Unassigned</span>
                         )}
                       </td>
                     </tr>
@@ -811,15 +1052,100 @@ export default function TeacherDashboard({ user, onLogout }) {
               {classStatus.error && <div className="p-3 bg-red-50 text-red-600 text-xs font-bold rounded-lg border border-red-100">{classStatus.error}</div>}
               {classStatus.success && <div className="p-3 bg-green-50 text-green-700 text-xs font-bold rounded-lg border border-green-100">Class successfully created!</div>}
 
-              <div className="space-y-1 border-b border-transparent">
+              <div className="space-y-1">
                 <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class Name</label>
                 <input required placeholder="E.g., IELTS Prep Focus Group" type="text" value={classFormData.class_name} onChange={e => setClassFormData({...classFormData, class_name: e.target.value})} className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none" />
               </div>
-              
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Start Date</label>
+                  <input type="date" value={classFormData.start_date} onChange={e => setClassFormData({...classFormData, start_date: e.target.value})} className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">End Date</label>
+                  <input type="date" value={classFormData.end_date} onChange={e => setClassFormData({...classFormData, end_date: e.target.value})} className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none" />
+                </div>
+              </div>
+              <p className="text-[10px] text-slate-500">Classes with an end date in the past are shown as Archived.</p>
               <div className="pt-4 border-t border-slate-100">
                 <button disabled={classStatus.loading || classStatus.success} type="submit" className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-950 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
                   {classStatus.loading && <Loader2 size={16} className="animate-spin" />}
                   Save Class
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Class Modal */}
+      {isEditClassModalOpen && editingClass && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-brand-darkBg dark:border dark:border-slate-700 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
+              <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight">Edit Class</h3>
+              <button onClick={() => { setIsEditClassModalOpen(false); setEditingClass(null); }} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            <form onSubmit={handleUpdateClass} className="p-8 space-y-4">
+              {editClassStatus.error && <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 text-xs font-bold rounded-lg border border-red-100 dark:border-red-800">{editClassStatus.error}</div>}
+              {editClassStatus.success && <div className="p-3 bg-green-50 dark:bg-green-900/20 text-green-700 text-xs font-bold rounded-lg border border-green-100 dark:border-green-800">Class updated successfully.</div>}
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class Name</label>
+                <input required type="text" value={editingClass.class_name} onChange={e => setEditingClass({ ...editingClass, class_name: e.target.value })} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Start Date</label>
+                  <input type="date" value={editingClass.start_date ? editingClass.start_date.slice(0, 10) : ''} onChange={e => setEditingClass({ ...editingClass, start_date: e.target.value || null })} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">End Date</label>
+                  <input type="date" value={editingClass.end_date ? editingClass.end_date.slice(0, 10) : ''} onChange={e => setEditingClass({ ...editingClass, end_date: e.target.value || null })} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white" />
+                </div>
+              </div>
+              <p className="text-[10px] text-slate-500">Set end date in the past to archive this class.</p>
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
+                <button disabled={editClassStatus.loading || editClassStatus.success} type="submit" className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-950 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
+                  {editClassStatus.loading && <Loader2 size={16} className="animate-spin" />}
+                  Update Class
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Assign existing student to class Modal */}
+      {isAssignClassModalOpen && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-brand-darkBg dark:border dark:border-slate-700 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-slate-50/50 dark:bg-slate-900/50">
+              <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight">Assign Student to Class</h3>
+              <button onClick={() => { setIsAssignClassModalOpen(false); setAssignClassStatus({ loading: false, error: null, success: false }); }} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+            <form onSubmit={handleAssignToClass} className="p-8 space-y-4">
+              {assignClassStatus.error && <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 text-xs font-bold rounded-lg border border-red-100 dark:border-red-800">{assignClassStatus.error}</div>}
+              {assignClassStatus.success && <div className="p-3 bg-green-50 dark:bg-green-900/20 text-green-700 text-xs font-bold rounded-lg border border-green-100 dark:border-green-800">Student assigned successfully.</div>}
+              <p className="text-xs text-slate-500 dark:text-slate-400">Enter the student&apos;s email to add them to a class (or remove from class).</p>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Student Email</label>
+                <input required type="email" placeholder="student@example.com" value={assignClassForm.email} onChange={e => setAssignClassForm({ ...assignClassForm, email: e.target.value })} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class</label>
+                <select value={assignClassForm.class_id} onChange={e => setAssignClassForm({ ...assignClassForm, class_id: e.target.value })} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white">
+                  <option value="">No class (unassign)</option>
+                  {classes.map(c => <option key={c.id} value={c.id}>{c.class_name}</option>)}
+                </select>
+              </div>
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
+                <button disabled={assignClassStatus.loading || assignClassStatus.success} type="submit" className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-950 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
+                  {assignClassStatus.loading && <Loader2 size={16} className="animate-spin" />}
+                  Assign to Class
                 </button>
               </div>
             </form>

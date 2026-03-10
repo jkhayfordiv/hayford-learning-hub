@@ -3,8 +3,16 @@ CREATE TABLE IF NOT EXISTS classes (
     class_name VARCHAR(100) NOT NULL,
     class_code VARCHAR(10) UNIQUE,
     teacher_id INTEGER NOT NULL,
+    start_date DATE,
+    end_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+ALTER TABLE classes
+ADD COLUMN IF NOT EXISTS start_date DATE;
+
+ALTER TABLE classes
+ADD COLUMN IF NOT EXISTS end_date DATE;
 
 CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
@@ -34,10 +42,14 @@ CREATE TABLE IF NOT EXISTS student_scores (
     word_count INTEGER DEFAULT 0,
     overall_score DECIMAL(3,1),
     ai_feedback JSON,
+    diagnostic_data JSONB DEFAULT '[]'::jsonb,
     completed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (module_id) REFERENCES learning_modules(id) ON DELETE CASCADE
 );
+
+ALTER TABLE student_scores
+ADD COLUMN IF NOT EXISTS diagnostic_data JSONB DEFAULT '[]'::jsonb;
 
 CREATE TABLE IF NOT EXISTS assigned_tasks (
     id SERIAL PRIMARY KEY,
