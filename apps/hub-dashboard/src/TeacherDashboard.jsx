@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Moon, Sun, Copy, RefreshCw, UserPlus } from 'lucide-react';
+import logo from './assets/logo.png';
 
 export default function TeacherDashboard({ user, onLogout }) {
   const navigate = useNavigate();
@@ -464,11 +465,11 @@ export default function TeacherDashboard({ user, onLogout }) {
   const unassignedStudents = students.filter(s => !s.class_id);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
+    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
-           <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain mx-auto" />
+           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain mx-auto" />
           <div>
             <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">
               Hayford Global Learning Hub

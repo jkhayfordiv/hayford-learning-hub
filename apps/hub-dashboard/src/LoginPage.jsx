@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, AlertCircle, ArrowRight, Loader2 } from 'lucide-react';
+import logo from './assets/logo.png';
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -105,7 +106,7 @@ export default function LoginPage() {
       <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-navy via-[#0A1930] to-slate-900'}`}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 flex items-center gap-4">
-           <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-copper/60 bg-white/10 backdrop-blur shadow-glow p-1" />
+           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-copper/60 bg-white/10 backdrop-blur shadow-glow p-1" />
            <span className="font-extrabold text-2xl tracking-tight">Hayford Hub {isTeacherMode && <span className="opacity-50 font-normal">| Faculty</span>}</span>
         </div>
 
@@ -130,7 +131,7 @@ export default function LoginPage() {
         <div className="w-full max-w-sm">
           
           <div className="lg:hidden flex items-center gap-3 mb-10 justify-center">
-             <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-navy shadow-soft bg-white p-1" />
+             <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-navy shadow-soft bg-white p-1" />
              <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">Hayford Hub</span>
           </div>
 

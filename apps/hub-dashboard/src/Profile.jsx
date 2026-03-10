@@ -4,6 +4,7 @@ import { User, Shield, ChevronLeft, Save, HelpCircle, Mail, Goal } from 'lucide-
 
 export default function Profile({ user, onLogout }) {
   const navigate = useNavigate();
+  const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
   const [formData, setFormData] = useState({
     first_name: user?.first_name || '',
     last_name: user?.last_name || '',
@@ -11,10 +12,46 @@ export default function Profile({ user, onLogout }) {
     target_score: user?.target_score || '7.0'
   });
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
+  const [deleteError, setDeleteError] = useState('');
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleDeleteAccount = async () => {
+    if (user?.role !== 'student') return;
+    const confirmed = window.confirm('Delete your account permanently? This will remove your submissions and cannot be undone.');
+    if (!confirmed) return;
+
+    setDeleteError('');
+    setIsDeletingAccount(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/me`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const contentType = res.headers.get('content-type') || '';
+      const text = await res.text();
+      let data = {};
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {
+        data = {};
+      }
+
+      if (!res.ok) {
+        throw new Error(data.error || data.msg || (text || 'Failed to delete account'));
+      }
+
+      onLogout();
+    } catch (err) {
+      setDeleteError(err.message || 'Failed to delete account');
+      setIsDeletingAccount(false);
+    }
   };
 
   const handleSave = (e) => {
@@ -35,7 +72,7 @@ export default function Profile({ user, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans pb-20">
+    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans pb-20">
       
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
@@ -125,6 +162,25 @@ export default function Profile({ user, onLogout }) {
                <Mail size={16} /> Contact Support
             </a>
          </div>
+
+         {user?.role === 'student' && (
+           <div className="bg-red-50 rounded-3xl p-8 border border-red-200 mt-8">
+             <h3 className="font-black text-lg text-red-700 tracking-tight mb-2">Danger Zone</h3>
+             <p className="text-red-700/80 text-sm font-medium mb-5">
+               You can permanently delete your account. This action cannot be undone.
+             </p>
+             {deleteError && (
+               <div className="mb-4 p-3 bg-white text-red-700 text-xs font-bold rounded-lg border border-red-200">{deleteError}</div>
+             )}
+             <button
+               onClick={handleDeleteAccount}
+               disabled={isDeletingAccount}
+               className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-colors disabled:opacity-50"
+             >
+               {isDeletingAccount ? 'Deleting Account...' : 'Delete My Account'}
+             </button>
+           </div>
+         )}
 
       </main>
     </div>

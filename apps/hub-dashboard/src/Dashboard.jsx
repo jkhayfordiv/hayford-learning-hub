@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
+import logo from './assets/logo.png';
 
 const DIAGNOSTIC_DICTIONARY = {
   // Nouns & Mechanics
@@ -247,11 +248,11 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
+    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
-           <img src="/logo.png" alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
+           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
           <div>
             <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">
               Hayford Global Learning Hub

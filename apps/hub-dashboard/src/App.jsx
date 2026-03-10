@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-slate-50 dark:bg-[#0A1930]">
+      <div className="min-h-screen bg-white dark:bg-[#0A1930]">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login" element={<LoginPage />} />
