@@ -1,7 +1,72 @@
 const express = require('express');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { getVocabularyFeedback, AiRequestError } = require('../services/aiService');
 
 const router = express.Router();
+
+// POST /api/ai/mark - Secure AI marking proxy
+router.post('/mark', async (req, res) => {
+  try {
+    const { prompt, responseSchema } = req.body;
+    
+    // Get API key from environment variables (secure on Render)
+    const apiKey = process.env.GOOGLE_API_KEY;
+    
+    if (!apiKey) {
+      return res.status(500).json({ 
+        error: 'API key not configured on server' 
+      });
+    }
+    
+    // Initialize Gemini AI
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-2.5-flash',
+      generationConfig: {
+        responseSchema: responseSchema,
+        responseMimeType: 'application/json',
+      }
+    });
+    
+    // Generate content
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    
+    // Parse JSON response
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(text);
+    } catch (parseError) {
+      console.error('Failed to parse AI response:', parseError);
+      return res.status(500).json({ 
+        error: 'Invalid AI response format' 
+      });
+    }
+    
+    res.json(parsedResponse);
+    
+  } catch (error) {
+    console.error('AI marking error:', error);
+    
+    // Handle specific Google API errors
+    if (error.message.includes('API_KEY_INVALID')) {
+      return res.status(500).json({ 
+        error: 'Invalid API key configured on server' 
+      });
+    }
+    
+    if (error.message.includes('QUOTA_EXCEEDED')) {
+      return res.status(429).json({ 
+        error: 'API quota exceeded. Please try again later.' 
+      });
+    }
+    
+    res.status(500).json({ 
+      error: 'AI service temporarily unavailable' 
+    });
+  }
+});
 
 router.post('/vocabulary-feedback', async (req, res) => {
   const { targetWord, sentence } = req.body || {};
