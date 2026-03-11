@@ -7,7 +7,7 @@ const { pool } = require('../db');
 // @desc    Submit a new score and AI feedback for a student
 // @access  Private
 router.post('/', auth, async (req, res) => {
-  const { submitted_text, word_count, overall_score, ai_feedback, diagnostic_tags, taskId, module_type } = req.body;
+  const { submitted_text, word_count, overall_score, ai_feedback, diagnostic_tags, grammar_error_counts, taskId, module_type } = req.body;
   const student_id = req.user.id;
   const type = module_type || 'writing';
 
@@ -44,6 +44,49 @@ router.post('/', auth, async (req, res) => {
        VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || [])]
     );
+
+    // Increment grammar progress by actual error counts if provided
+    if (grammar_error_counts && typeof grammar_error_counts === 'object') {
+      const ERROR_CATEGORY_MAP = {
+        '01_article_usage': 'Article Usage',
+        '02_countability_and_plurals': 'Countability & Plurals',
+        '03_pronoun_reference': 'Pronoun Reference',
+        '04_prepositional_accuracy': 'Prepositional Accuracy',
+        '05_word_forms': 'Word Forms',
+        '06_subject_verb_agreement': 'Subject-Verb Agreement',
+        '07_tense_consistency': 'Tense Consistency',
+        '08_present_perfect_vs_past_simple': 'Present Perfect vs. Past Simple',
+        '09_gerunds_vs_infinitives': 'Gerunds vs. Infinitives',
+        '10_passive_voice_construction': 'Passive Voice Construction',
+        '11_sentence_boundaries': 'Sentence Boundaries (Fragments/Comma Splices)',
+        '12_relative_clauses': 'Relative Clauses',
+        '13_subordination': 'Subordination',
+        '14_word_order': 'Word Order',
+        '15_parallel_structure': 'Parallel Structure',
+        '16_transitional_devices': 'Transitional Devices',
+        '17_collocations': 'Collocations',
+        '18_academic_register': 'Academic Register',
+        '19_nominalization': 'Nominalization',
+        '20_hedging': 'Hedging'
+      };
+
+      for (const [categoryKey, count] of Object.entries(grammar_error_counts)) {
+        const categoryName = ERROR_CATEGORY_MAP[categoryKey];
+        const errorCount = Number(count);
+        
+        if (categoryName && Number.isInteger(errorCount) && errorCount > 0) {
+          await connection.query(
+            `INSERT INTO grammar_progress (student_id, error_category, exercises_completed)
+             VALUES ($1, $2, $3)
+             ON CONFLICT (student_id, error_category)
+             DO UPDATE SET
+               exercises_completed = grammar_progress.exercises_completed + EXCLUDED.exercises_completed,
+               updated_at = CURRENT_TIMESTAMP`,
+            [student_id, categoryName, errorCount]
+          );
+        }
+      }
+    }
 
     // If a taskId was provided, mark the assignment as completed (parse to int for DB)
     const taskIdNum = taskId != null ? parseInt(taskId, 10) : null;

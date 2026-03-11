@@ -532,6 +532,12 @@ const getSystemPrompt = (writingTask, prompt) => {
     Sentence Architecture: Sentence Boundaries (Fragments/Comma Splices), Relative Clauses, Subordination, Word Order, Parallel Structure
     Academic Discourse: Transitional Devices, Collocations, Academic Register, Nominalization, Hedging
 
+    CRITICAL INSTRUCTION FOR GRAMMAR ERROR COUNTS:
+    Return a "grammar_error_counts" object with exact counts for each grammar category found in the text.
+    Use ONLY the exact 20 category keys below. Count ALL instances of each error type, not just presence/absence.
+    If no errors of a type are found, do not include that key in the object.
+    Category keys: "01_article_usage", "02_countability_and_plurals", "03_pronoun_reference", "04_prepositional_accuracy", "05_word_forms", "06_subject_verb_agreement", "07_tense_consistency", "08_present_perfect_vs_past_simple", "09_gerunds_vs_infinitives", "10_passive_voice_construction", "11_sentence_boundaries", "12_relative_clauses", "13_subordination", "14_word_order", "15_parallel_structure", "16_transitional_devices", "17_collocations", "18_academic_register", "19_nominalization", "20_hedging"
+
     CRITICAL INSTRUCTION FOR INLINE MAJOR ERRORS:
     Return a "major_errors" array with up to 5 items.
     Each item must include:
@@ -562,6 +568,12 @@ const getSystemPrompt = (writingTask, prompt) => {
     Verbs & Time: Subject-Verb Agreement, Tense Consistency, Present Perfect vs. Past Simple, Gerunds vs. Infinitives, Passive Voice Construction
     Sentence Architecture: Sentence Boundaries (Fragments/Comma Splices), Relative Clauses, Subordination, Word Order, Parallel Structure
     Academic Discourse: Transitional Devices, Collocations, Academic Register, Nominalization, Hedging
+
+    CRITICAL INSTRUCTION FOR GRAMMAR ERROR COUNTS:
+    Return a "grammar_error_counts" object with exact counts for each grammar category found in the text.
+    Use ONLY the exact 20 category keys below. Count ALL instances of each error type, not just presence/absence.
+    If no errors of a type are found, do not include that key in the object.
+    Category keys: "01_article_usage", "02_countability_and_plurals", "03_pronoun_reference", "04_prepositional_accuracy", "05_word_forms", "06_subject_verb_agreement", "07_tense_consistency", "08_present_perfect_vs_past_simple", "09_gerunds_vs_infinitives", "10_passive_voice_construction", "11_sentence_boundaries", "12_relative_clauses", "13_subordination", "14_word_order", "15_parallel_structure", "16_transitional_devices", "17_collocations", "18_academic_register", "19_nominalization", "20_hedging"
 
     CRITICAL INSTRUCTION FOR INLINE MAJOR ERRORS:
     Return a "major_errors" array with up to 5 items.
@@ -674,6 +686,31 @@ const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
                 improvementTips: { type: "ARRAY", items: { type: "STRING" } },
                 modelHighlights: { type: "STRING" },
                 diagnostic_tags: { type: "ARRAY", items: { type: "STRING" } },
+                grammar_error_counts: { 
+                  type: "OBJECT",
+                  properties: {
+                    "01_article_usage": { type: "NUMBER" },
+                    "02_countability_and_plurals": { type: "NUMBER" },
+                    "03_pronoun_reference": { type: "NUMBER" },
+                    "04_prepositional_accuracy": { type: "NUMBER" },
+                    "05_word_forms": { type: "NUMBER" },
+                    "06_subject_verb_agreement": { type: "NUMBER" },
+                    "07_tense_consistency": { type: "NUMBER" },
+                    "08_present_perfect_vs_past_simple": { type: "NUMBER" },
+                    "09_gerunds_vs_infinitives": { type: "NUMBER" },
+                    "10_passive_voice_construction": { type: "NUMBER" },
+                    "11_sentence_boundaries": { type: "NUMBER" },
+                    "12_relative_clauses": { type: "NUMBER" },
+                    "13_subordination": { type: "NUMBER" },
+                    "14_word_order": { type: "NUMBER" },
+                    "15_parallel_structure": { type: "NUMBER" },
+                    "16_transitional_devices": { type: "NUMBER" },
+                    "17_collocations": { type: "NUMBER" },
+                    "18_academic_register": { type: "NUMBER" },
+                    "19_nominalization": { type: "NUMBER" },
+                    "20_hedging": { type: "NUMBER" }
+                  }
+                },
                 major_errors: {
                   type: "ARRAY",
                   maxItems: 5,
@@ -688,7 +725,7 @@ const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
                   }
                 }
               },
-              required: ["bandScore", "taskAchievement", "coherenceCohesion", "lexicalResource", "grammarAccuracy", "improvementTips", "modelHighlights", "diagnostic_tags", "major_errors"]
+              required: ["bandScore", "taskAchievement", "coherenceCohesion", "lexicalResource", "grammarAccuracy", "improvementTips", "modelHighlights", "diagnostic_tags", "grammar_error_counts", "major_errors"]
             }
           }
         })
@@ -846,6 +883,7 @@ export default function App() {
           overall_score: calibratedBandScore,
           ai_feedback: normalizedFeedback,
           diagnostic_tags: normalizedFeedback.diagnostic_tags || [],
+          grammar_error_counts: normalizedFeedback.grammar_error_counts || {},
           module_type: 'writing',
           taskId: Number.isInteger(taskIdNum) ? taskIdNum : undefined
         };
