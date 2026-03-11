@@ -57,6 +57,10 @@ app.use('/api/users', usersRoutes);
 const grammarProgressRoutes = require('./routes/grammarProgress');
 app.use('/api/grammar-progress', grammarProgressRoutes);
 
+// AI routes
+const aiRoutes = require('./routes/ai');
+app.use('/api/ai', aiRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });

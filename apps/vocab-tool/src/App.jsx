@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, CheckCircle, XCircle, ArrowRight, Save, LayoutDashboard, Loader2, RefreshCw } from 'lucide-react';
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-
 export default function App() {
   const [token, setToken] = useState(null);
   const [taskId, setTaskId] = useState(null);
@@ -50,47 +48,24 @@ export default function App() {
     setFeedback(null);
 
     const currentWord = targetWords[currentIndex];
-    
-    const prompt = `
-      You are an English language tutor grading a vocabulary exercise.
-      The student was instructed to write exactly ONE sentence using the target word.
-      
-      Target Word: "${currentWord}"
-      Student Sentence: "${inputSentence}"
-      
-      Evaluate the sentence based on:
-      1. used_word: Did they use the target word (or a valid inflection/form of it)? true/false
-      2. grammar_ok: Is the sentence grammatically sound? true/false
-      3. context_ok: Does the context demonstrate they understand what the word means? true/false
-      4. explanation: A concise string explaining the grading, providing corrections if there are grammar errors, and confirming if the context was good.
-
-      Return ONLY a raw JSON object with those four keys. No markdown wrapping.
-      Example: {"used_word": true, "grammar_ok": false, "context_ok": true, "explanation": "Good context, but 'he run' should be 'he runs'."}
-    `;
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+      const apiBase = import.meta.env.VITE_API_URL || 'https://hayford-learning-hub.onrender.com';
+      const response = await fetch(`${apiBase}/api/ai/vocabulary-feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: {
-            temperature: 0.1,
-            responseMimeType: 'application/json'
-          }
-        })
+        body: JSON.stringify({ targetWord: currentWord, sentence: inputSentence })
       });
 
       const data = await response.json();
-      if (!response.ok) throw new Error('API Error');
-
-      const rawText = data.candidates[0].content.parts[0].text;
-      const parsed = JSON.parse(rawText.replace(/```json|```/g, '').trim());
+      if (!response.ok) {
+        throw new Error(data?.error || 'AI service request failed.');
+      }
       
-      const isPerfect = parsed.used_word && parsed.grammar_ok && parsed.context_ok;
+      const isPerfect = data.used_word && data.grammar_ok && data.context_ok;
       
       setFeedback({
-        ...parsed,
+        ...data,
         isPerfect
       });
 
