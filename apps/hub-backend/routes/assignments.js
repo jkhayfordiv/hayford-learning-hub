@@ -8,7 +8,7 @@ const { pool } = require('../db');
 // @desc    Create a new assignment(s) for a specific student, entire class, or all students
 // @access  Private (Teacher/Admin only)
 router.post('/', requireTeacher, async (req, res) => {
-  const { module_id, student_id, class_id, assignment_type, instructions, due_date } = req.body;
+  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
   
@@ -28,20 +28,36 @@ router.post('/', requireTeacher, async (req, res) => {
         "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('Vocabulary Builder', 'vocabulary', 'Practice vocabulary in sentences.')"
       );
     }
+    const [grammarModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'grammar' LIMIT 1");
+    if (grammarModules.length === 0) {
+      await connection.query(
+        "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('Grammar Lab', 'grammar', 'Targeted grammar drills by topic and level.')"
+      );
+    }
+    const [resolvedGrammarModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'grammar' LIMIT 1");
+
+    if (aType === 'grammar-practice' && !grammar_topic_id) {
+      connection.release();
+      return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
+    }
+
+    const resolvedModuleId = aType === 'grammar-practice'
+      ? resolvedGrammarModule?.[0]?.id
+      : (module_id || 1);
 
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, instructions, due_date)
-         VALUES (?, ?, ?, ?, ?, ?)`,
-        [teacher_id, student_id, module_id, aType, instructions || null, due_date || null]
+        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
+         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, instructions || null, due_date || null]
       );
       
       connection.release();
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
     } else if (class_id) {
       // Assign to an entire class
-      const [students] = await connection.query(`SELECT id FROM users WHERE role = 'student' AND class_id = ?`, [class_id]);
+      const [students] = await connection.query(`SELECT id FROM users WHERE role = 'student' AND class_id = $1`, [class_id]);
       
       if (students.length === 0) {
         connection.release();
@@ -51,9 +67,9 @@ router.post('/', requireTeacher, async (req, res) => {
       let count = 0;
       for (const student of students) {
         await connection.query(
-          `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, instructions, due_date)
-           VALUES (?, ?, ?, ?, ?, ?)`,
-          [teacher_id, student.id, module_id, aType, instructions || null, due_date || null]
+          `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, instructions || null, due_date || null]
         );
         count++;
       }
@@ -72,9 +88,9 @@ router.post('/', requireTeacher, async (req, res) => {
       let count = 0;
       for (const student of students) {
         await connection.query(
-          `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, instructions, due_date)
-           VALUES (?, ?, ?, ?, ?, ?)`,
-          [teacher_id, student.id, module_id, aType, instructions || null, due_date || null]
+          `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, instructions || null, due_date || null]
         );
         count++;
       }
@@ -97,13 +113,13 @@ router.get('/my-tasks', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.instructions, a.due_date, a.status, a.created_at,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.instructions, a.due_date, a.status, a.created_at,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name
        FROM assigned_tasks a
        JOIN learning_modules m ON a.module_id = m.id
        JOIN users u ON a.teacher_id = u.id
-       WHERE a.student_id = ?
+       WHERE a.student_id = $1
        ORDER BY CASE WHEN a.status = 'pending' THEN 0 ELSE 1 END, a.due_date ASC, a.created_at DESC`,
       [student_id]
     );
@@ -125,13 +141,13 @@ router.get('/', requireTeacher, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.instructions, a.due_date, a.status, a.created_at,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.instructions, a.due_date, a.status, a.created_at,
               m.module_name, m.module_type,
               u.first_name as student_first_name, u.last_name as student_last_name
        FROM assigned_tasks a
        JOIN learning_modules m ON a.module_id = m.id
        JOIN users u ON a.student_id = u.id
-       WHERE a.teacher_id = ?
+       WHERE a.teacher_id = $1
        ORDER BY a.created_at DESC`,
       [teacher_id]
     );
@@ -157,12 +173,12 @@ router.put('/bulk', requireTeacher, async (req, res) => {
 
   try {
     const connection = await pool.getConnection();
-    const placeholders = assignment_ids.map(() => '?').join(',');
+    const idPlaceholders = assignment_ids.map((_, idx) => `$${idx + 3}`).join(',');
     
     await connection.query(
       `UPDATE assigned_tasks 
-       SET due_date = ? 
-       WHERE teacher_id = ? AND id IN (${placeholders})`,
+       SET due_date = $1 
+       WHERE teacher_id = $2 AND id IN (${idPlaceholders})`,
       [due_date || null, teacher_id, ...assignment_ids]
     );
 
@@ -187,11 +203,11 @@ router.delete('/bulk', requireTeacher, async (req, res) => {
 
   try {
     const connection = await pool.getConnection();
-    const placeholders = assignment_ids.map(() => '?').join(',');
+    const idPlaceholders = assignment_ids.map((_, idx) => `$${idx + 2}`).join(',');
     
     await connection.query(
       `DELETE FROM assigned_tasks 
-       WHERE teacher_id = ? AND id IN (${placeholders})`,
+       WHERE teacher_id = $1 AND id IN (${idPlaceholders})`,
       [teacher_id, ...assignment_ids]
     );
 

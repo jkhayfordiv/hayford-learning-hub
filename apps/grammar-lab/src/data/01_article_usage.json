@@ -1,0 +1,997 @@
+{
+  "topicId": "01_article_usage",
+  "topicName": "Article Usage",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Core Rules</h3><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px;\"><tr style=\"background-color: #e2e8f0; text-align: left;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Article</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Rule</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>A / An</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Singular, countable, 1st mention.</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">She read <strong>an</strong> article.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>The</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Specific, known to reader.</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">She read <strong>the</strong> article.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Zero (&empty;)</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">General plural/uncountable.</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>&empty;</strong> Research takes time.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "The university built ___ new library for the science department.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' because 'library' is a singular countable noun mentioned for the first time."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "___ information provided in the lecture was difficult to understand.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Use 'The' because it refers to specific information from that specific lecture."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Many international students find that studying ___ English takes years of practice.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Languages do not take an article when spoken about generally."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "The professor asked us to write ___ essay about climate change.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Use 'an' before a singular noun that starts with a vowel sound (essay)."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Where is ___ textbook I left on the desk yesterday?",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' because the speaker is asking about a specific, known textbook."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "I need to buy ___ laptop before the semester begins.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' because the speaker means any laptop, not one specific laptop yet."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "___ water is essential for all living organisms.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "Use the zero article for uncountable nouns (water) when speaking in general."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Can you pass me ___ water bottle next to your bag?",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' because it refers to a specific water bottle that both people can see."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "She is studying to become ___ engineer.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Use 'a/an' when stating someone's profession. 'Engineer' starts with a vowel sound."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "___ sun rises in the east and sets in the west.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Use 'The' for unique objects; there is only one sun in our solar system."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "He has ___ hour to finish the final exam.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Use 'an' because 'hour' starts with a vowel sound (the 'h' is silent)."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "They are conducting a study on ___ behavior of dolphins.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' because it is specified by the prepositional phrase 'of dolphins'."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "___ computers have drastically changed how we work.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "Use the zero article for plural countable nouns when speaking generally about the whole category."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "We visited ___ Louvre Museum while studying in Paris.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Famous museums, galleries, and buildings usually require 'the'."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "I had ___ really good idea for my research project.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' for a singular countable noun ('idea') mentioned for the first time."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "The researchers found ___ solution to the problem.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "It is one of potentially many solutions, and is being introduced for the first time."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "___ solution they proposed was rejected by the board.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Use 'The' because it refers to the specific solution mentioned previously."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Most people agree that ___ health is more important than wealth.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Abstract uncountable nouns (health) take no article when speaking generally."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "The doctor was concerned about ___ health of the patient.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "It takes 'the' because it is specific: the health 'of the patient'."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Do you have ___ pen I could borrow for the test?",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The speaker doesn't need a specific pen, just any single pen."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Please return ___ pen I lent you yesterday.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' because it is a specific pen known to both speaker and listener."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "She applied to study at ___ University of Oxford.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Universities with the structure 'University of [Name]' take 'the'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "She applied to study at ___ Oxford University.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Universities with the structure '[Name] University' generally do not take an article."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "It is considered an honor to win ___ Nobel Prize.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Specific, unique awards take 'the'."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "The chart shows a rapid increase in ___ population of urban areas.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' when followed by 'of' specifying which population."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "In conclusion, ___ education plays a crucial role in society.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Education is an uncountable concept being discussed generally."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "___ education he received at that school was excellent.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "It is specific because it refers to the exact education 'he received at that school'."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "There is ___ European student in my speech class.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' because 'European' starts with a consonant sound ('y' sound), even though it starts with a vowel letter."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Look at ___ moon tonight; it's incredibly bright.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "There is only one moon (in our sky), so we use the definite article."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "I usually have ___ breakfast at 7:00 AM.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Routine meals (breakfast, lunch, dinner) do not take articles."
+        }
+      ]
+    }
+,
+    {
+      "level": 2,
+      "title": "Controlled Practice (L1 Traps)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The L1 Trap</h3><p>Japanese has no articles, so students often guess and put <strong>\"the\"</strong> in front of general words. <strong>Never use \"the\" for general statements!</strong></p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em><strong>The</strong> international students face <strong>the</strong> culture shock.</em></li><li>✅ <em><strong>&empty;</strong> International students face <strong>&empty;</strong> culture shock.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "___ global warming is a major concern for scientists today.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "'Global warming' is an uncountable noun being discussed as a general concept. No article is needed."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "___ computers in the main lab are currently being updated.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Even though it is plural, we use 'The' because we are talking about specific computers (the ones in the main lab)."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "In modern society, ___ smartphones have changed how we communicate.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "We are speaking generally about all smartphones, so we use the zero article."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "___ Japanese culture places a high value on social harmony.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "When discussing the general culture of a country, do not use 'the'."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "I am studying ___ history of the Japanese economic miracle.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Because it is a specific history (of the economic miracle), we must use 'the'."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "___ international students often experience homesickness during their first semester.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "General plural nouns (international students in general) take no article."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "___ international students in my writing class are from Vietnam.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "We use 'The' because we are specifying exactly which students (the ones in my writing class)."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Many people believe that ___ technology is advancing too quickly.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Technology is a general uncountable concept here, so it takes the zero article."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "We need to fix ___ technology in conference room B before the meeting.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Specific technology (in conference room B) requires 'the'."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "___ society must take responsibility for caring for the elderly.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "'Society' used generally is an uncountable noun that takes no article."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "We are studying the differences between the US and ___ Japanese society.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Even with an adjective (Japanese), general 'society' still takes no article."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "___ nature provides us with the resources we need to survive.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "The abstract concept of 'nature' never takes an article."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "We enjoyed walking through ___ nature reserve near the university.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Here, 'nature' is just an adjective describing a specific countable noun ('reserve')."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Governments should invest more money in ___ public transportation.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Public transportation is an uncountable concept being discussed generally."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "They are complaining about ___ public transportation in Osaka.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "It is specific because it is limited to the transportation 'in Osaka'."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "___ women live longer than men on average.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "General plural nouns ('women', 'men') take the zero article."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "___ children need at least eight hours of sleep per night.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "General plural nouns ('children') take the zero article."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Please tell ___ children to stop running in the hallway.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "This refers to specific children who are currently running in a specific hallway."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "___ pollution is becoming a severe problem in many Asian cities.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "Pollution is a general uncountable noun."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "The city council is trying to reduce ___ pollution caused by factories.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "This is specific pollution (the pollution caused by factories)."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "___ freedom of speech is a fundamental human right.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "Abstract rights spoken of generally do not take an article."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "___ English language has borrowed words from many other languages.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "While 'English' by itself takes no article, the phrase 'The [Language] language' always takes 'The'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "My major is ___ sociology.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Academic subjects never take an article."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "It is important to have ___ confidence when giving a presentation.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Confidence is an abstract uncountable noun."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "___ space exploration costs billions of dollars every year.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "General concepts like space exploration take the zero article."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "He wants to travel to ___ space someday.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "When referring to the universe outside Earth's atmosphere, 'space' takes no article."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "There isn't enough ___ space in this room for another desk.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "When referring to physical room/area, 'space' is uncountable and takes no article."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "I parked in ___ empty space near the entrance.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Here, 'space' means a specific, countable parking spot, so it takes 'an' (because of 'empty')."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "___ crime has decreased over the last decade.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "General uncountable noun."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "The detective solved ___ crime quickly.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Here it refers to a specific, countable criminal act."
+        }
+      ]
+    }
+,
+    {
+      "level": 3,
+      "title": "Application & Error Correction",
+     "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Essay Chain</h3><p>Articles act like glue between sentences in your essays. Follow the <strong>First Mention &rarr; Second Mention</strong> rule:</p><div style=\"background-color: #dcfce7; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; margin: 15px 0; border: 1px dashed #15803d;\">New Idea (A/An) &rarr; Same Idea (The)</div><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">🔵 <em>The university built <strong>a</strong> new laboratory.</em> (1st Mention)</li><li>🟢 <em><strong>The</strong> laboratory features new equipment.</em> (2nd Mention)</li></ul></div>","miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Essay Chain</h3><p>Articles act like glue between sentences in your essays. Follow the <strong>First Mention &rarr; Second Mention</strong> rule:</p><div style=\"background-color: #dcfce7; padding: 10px; border-radius: 5px; text-align: center; font-weight: bold; margin: 15px 0; border: 1px dashed #15803d;\">New Idea (A/An) &rarr; Same Idea (The)</div><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">🔵 <em>The university built <strong>a</strong> new laboratory.</em> (1st Mention)</li><li>🟢 <em><strong>The</strong> laboratory features new equipment.</em> (2nd Mention)</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Read the text and find the error: 'The government proposed a new law. A law will reduce pollution.'",
+          "options": ["Change 'The government' to 'A government'", "Change 'a new law' to 'the new law'", "Change 'A law' to 'The law'", "No error"],
+          "correctAnswer": "Change 'A law' to 'The law'",
+          "explanation": "Once the law is introduced in the first sentence, it becomes specific. The second sentence must use 'The'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Read the text: 'She has a degree in the biology from the University of Tokyo.' Which phrase contains an article error?",
+          "options": ["a degree", "the biology", "the University", "No error"],
+          "correctAnswer": "the biology",
+          "explanation": "Academic subjects like 'biology' are uncountable concepts that do not take an article."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Select the correct sentence:",
+          "options": ["The society needs to protect an environment.", "Society needs to protect the environment.", "A society needs to protect environment.", "Society needs to protect an environment."],
+          "correctAnswer": "Society needs to protect the environment.",
+          "explanation": "'Society' is general (no article), but 'the environment' is a unique, specific entity."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: 'The city opened ___ new park. ___ park is located downtown.'",
+          "options": ["a / A", "the / The", "a / The", "the / A"],
+          "correctAnswer": "a / The",
+          "explanation": "First mention introduces 'a new park'. Second mention refers back to 'The park'."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Scientists have discovered a new species of bird. A bird lives in the rainforest.'",
+          "options": ["Change 'a new species' to 'the new species'", "Change 'A bird' to 'The bird'", "Change 'the rainforest' to 'a rainforest'", "No error"],
+          "correctAnswer": "Change 'A bird' to 'The bird'",
+          "explanation": "The second sentence refers back to the specific bird introduced in the first sentence."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: 'I read ___ interesting article yesterday. ___ article argued that ___ global warming is accelerating.'",
+          "options": ["an / The / the", "an / An / no article", "an / The / no article", "the / The / no article"],
+          "correctAnswer": "an / The / no article",
+          "explanation": "First mention (an), second mention (The), and general concept (no article for global warming)."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'He works as an engineer for the large tech company. The company is based in Tokyo.'",
+          "options": ["Change 'an engineer' to 'the engineer'", "Change 'the large tech company' to 'a large tech company'", "Change 'The company' to 'A company'", "No error"],
+          "correctAnswer": "Change 'the large tech company' to 'a large tech company'",
+          "explanation": "When introducing the company for the first time, it should be 'a large tech company'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Select the most cohesive paragraph:",
+          "options": ["We face a major issue. An issue is poverty.", "We face the major issue. The issue is poverty.", "We face a major issue. The issue is poverty.", "We face major issue. An issue is poverty."],
+          "correctAnswer": "We face a major issue. The issue is poverty.",
+          "explanation": "Introduce the singular countable noun with 'a', then refer back to it with 'The'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: '___ education is important, but ___ education I received in high school was lacking.'",
+          "options": ["The / the", "No article / no article", "No article / the", "The / no article"],
+          "correctAnswer": "No article / the",
+          "explanation": "First 'education' is general (no article). Second 'education' is specific (the one I received)."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Find the error: 'A researcher conducted an experiment. An experiment's results were surprising.'",
+          "options": ["Change 'A researcher' to 'Researcher'", "Change 'an experiment' to 'the experiment'", "Change 'An experiment's' to 'The experiment's'", "No error"],
+          "correctAnswer": "Change 'An experiment's' to 'The experiment's'",
+          "explanation": "Because the experiment was introduced in the first sentence, the second mention must be definite."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: 'To write a good essay, you need ___ clear thesis statement and ___ strong evidence.'",
+          "options": ["a / a", "a / no article", "the / the", "no article / no article"],
+          "correctAnswer": "a / no article",
+          "explanation": "'Thesis statement' is a singular countable noun (needs 'a'). 'Evidence' is an uncountable noun (needs no article)."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The most people believe that the internet has improved communication.'",
+          "options": ["Change 'The most people' to 'Most people'", "Change 'the internet' to 'internet'", "Change 'communication' to 'the communication'", "No error"],
+          "correctAnswer": "Change 'The most people' to 'Most people'",
+          "explanation": "When using 'most' to mean the majority of a general group, do not use 'The'."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Select the correct sentence:",
+          "options": ["The life is full of surprises.", "Life is full of the surprises.", "Life is full of surprises.", "A life is full of surprises."],
+          "correctAnswer": "Life is full of surprises.",
+          "explanation": "'Life' and 'surprises' are both being used as general concepts here, so neither takes an article."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: '___ life of a student can be stressful during exams.'",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Because 'life' is specified by the phrase 'of a student', it becomes specific and needs 'The'."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'He gave me an advice about my career.'",
+          "options": ["Change 'He' to 'The he'", "Change 'an advice' to 'some advice'", "Change 'my career' to 'a career'", "No error"],
+          "correctAnswer": "Change 'an advice' to 'some advice'",
+          "explanation": "'Advice' is an uncountable noun and can never take 'a/an'."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Find the error: 'They stayed at the hotel in Tokyo. A hotel was very expensive.'",
+          "options": ["Change 'the hotel' to 'a hotel' (first mention) and 'A hotel' to 'The hotel' (second mention)", "Change 'in Tokyo' to 'in the Tokyo'", "Change 'very expensive' to 'a very expensive'", "No error"],
+          "correctAnswer": "Change 'the hotel' to 'a hotel' (first mention) and 'A hotel' to 'The hotel' (second mention)",
+          "explanation": "First mentions should be indefinite (a hotel). Second mentions must be definite (The hotel)."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Select the correct sequence: 'I bought ___ computer and ___ printer. ___ computer works well, but ___ printer is broken.'",
+          "options": ["a / a / A / a", "the / the / The / the", "a / a / The / the", "the / a / The / a"],
+          "correctAnswer": "a / a / The / the",
+          "explanation": "First mentions get 'a', second mentions get 'the'."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The poverty is a major issue in many developing countries.'",
+          "options": ["Change 'The poverty' to 'Poverty'", "Change 'a major issue' to 'the major issue'", "Change 'many developing countries' to 'the many developing countries'", "No error"],
+          "correctAnswer": "Change 'The poverty' to 'Poverty'",
+          "explanation": "Poverty is an abstract, general concept and does not take 'The'."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: '___ poverty in that specific region was caused by ___ drought.'",
+          "options": ["No article / no article", "The / a", "A / the", "The / no article"],
+          "correctAnswer": "The / a",
+          "explanation": "Poverty is specific ('in that specific region'), so it takes 'The'. Drought is a singular countable event being introduced."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Find the error: 'We had a terrible weather during our vacation.'",
+          "options": ["Change 'We had' to 'We had the'", "Change 'a terrible weather' to 'terrible weather'", "Change 'our vacation' to 'an our vacation'", "No error"],
+          "correctAnswer": "Change 'a terrible weather' to 'terrible weather'",
+          "explanation": "'Weather' is an uncountable noun. It cannot take 'a/an', even when preceded by an adjective."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Select the correct sentence:",
+          "options": ["I need a time to think.", "I need the time to think.", "I need some time to think.", "I need time to the think."],
+          "correctAnswer": "I need some time to think.",
+          "explanation": "'Time' (in the sense of duration) is uncountable, so 'a time' is incorrect here."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Find the error: 'She has a great knowledge of Japanese history.'",
+          "options": ["Change 'a great knowledge' to 'great knowledge'", "Change 'of Japanese' to 'of the Japanese'", "Change 'history' to 'a history'", "No error"],
+          "correctAnswer": "Change 'a great knowledge' to 'great knowledge'",
+          "explanation": "Knowledge is uncountable. Even with an adjective, it does not take 'a'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: '___ history of ___ internet is fascinating.'",
+          "options": ["A / an", "The / the", "No article / the", "The / no article"],
+          "correctAnswer": "The / the",
+          "explanation": "It is a specific history (needs 'The'). The internet is a unique entity (needs 'the')."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Find the error: 'He is studying a medicine at the university.'",
+          "options": ["Change 'a medicine' to 'medicine'", "Change 'at the university' to 'at a university'", "Change 'studying' to 'the studying'", "No error"],
+          "correctAnswer": "Change 'a medicine' to 'medicine'",
+          "explanation": "Academic subjects and fields of study do not take 'a/an'."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Select the correct sequence: 'There is ___ problem with ___ software. ___ problem causes the computer to crash.'",
+          "options": ["a / a / A", "the / the / The", "a / the / The", "the / a / A"],
+          "correctAnswer": "a / the / The",
+          "explanation": "Introduce the problem (a problem), specific software (the software), refer back to problem (The problem)."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Find the error: 'In the conclusion, I agree with the author.'",
+          "options": ["Change 'In the conclusion' to 'In conclusion'", "Change 'I agree' to 'I am agree'", "Change 'with the author' to 'with author'", "No error"],
+          "correctAnswer": "Change 'In the conclusion' to 'In conclusion'",
+          "explanation": "The standard academic transition phrase is simply 'In conclusion' (no article)."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: '___ conclusion of ___ report was very critical.'",
+          "options": ["A / a", "The / the", "No article / a", "The / no article"],
+          "correctAnswer": "The / the",
+          "explanation": "Both are specific: the specific conclusion belonging to the specific report."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Find the error: 'We are trying to find the solution to a problem we discussed earlier.'",
+          "options": ["Change 'the solution' to 'a solution'", "Change 'to a problem' to 'to the problem'", "Change 'earlier' to 'the earlier'", "No error"],
+          "correctAnswer": "Change 'to a problem' to 'to the problem'",
+          "explanation": "Because the problem was 'discussed earlier', it is known and specific, requiring 'the problem'."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Fill in the blanks: '___ dogs make great pets, but ___ dog I have barks too much.'",
+          "options": ["The / the", "No article / no article", "No article / the", "The / a"],
+          "correctAnswer": "No article / the",
+          "explanation": "First 'dogs' is general (no article). Second 'dog' is specific to the speaker (the dog)."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The air pollution in Beijing is improving, but a smog is still bad.'",
+          "options": ["Change 'The air pollution' to 'Air pollution'", "Change 'a smog' to 'the smog'", "Change 'in Beijing' to 'in the Beijing'", "No error"],
+          "correctAnswer": "Change 'a smog' to 'the smog'",
+          "explanation": "Smog is uncountable, so 'a smog' is impossible. It should be 'the smog' referring specifically to the smog in Beijing."
+        }
+      ]
+    }
+,
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: Task 1 Data Rules</h3><p>Examiners look for these exact collocations. Memorize them:</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📉 <strong>Trends:</strong> <em><strong>a</strong> significant increase, <strong>a</strong> dramatic drop</em></li><li>📊 <strong>Data Points:</strong> <em><strong>the</strong> number of, <strong>the</strong> highest percentage</em></li><li>🏔️ <strong>Peaks/Lows:</strong> <em>reached <strong>a</strong> peak of, remained at <strong>the</strong> same level</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Between 2010 and 2015, there was ___ sharp decline in oil prices.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' with singular adjective-noun combinations describing trends (a sharp decline, a steady rise)."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "The chart illustrates ___ proportion of students who study abroad.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "We use 'the' before 'proportion' or 'percentage' when describing a specific segment of a whole."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "In 2020, the sales figures reached ___ peak of 50,000 units.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The correct academic collocation for Task 1 is 'reached a peak of'."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "There was ___ dramatic increase in the number of tourists visiting Kyoto.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Noun phrases describing singular trends (increase, decrease, rise, fall) take 'a'."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "The data shows that ___ number of cars on the road doubled.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Always use 'the number of' when referring to a specific count of items in a chart."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Renewable energy experienced ___ period of stability between 2005 and 2008.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard collocation is 'a period of [noun]'."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "The graph compares ___ amount of electricity produced by coal and wind.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Always use 'the amount of' when referring to a specific uncountable quantity in a chart."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Unemployment hit ___ lowest point in 2019.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Superlatives (lowest, highest, most) always require 'the'."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "The population fell to ___ low of 2 million before recovering.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard Task 1 collocation is 'hit a low of' or 'fell to a low of'."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "___ majority of respondents preferred working from home.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "The standard phrase to describe more than 50% is 'The majority of'."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "After 2015, the figures remained at ___ same level for three years.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "The word 'same' is almost always preceded by 'the' (the same level, the same amount)."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "There was ___ slight fluctuation in the price of gold.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Like other trend nouns, 'fluctuation' takes 'a' when used as a singular noun phrase."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "The table illustrates ___ percentage of income spent on housing.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' when referring to a specific percentage shown in the data."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "To tackle this issue, ___ government should implement stricter laws.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "In IELTS Task 2, 'the government' is almost always used with 'the' because we assume each country has one specific ruling body."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "It is crucial to protect ___ environment for future generations.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "When referring to the natural world, 'the environment' always takes 'the'."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Education plays ___ vital role in reducing poverty.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard academic collocation is 'plays a role in'."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "This policy has ___ wide range of benefits for local communities.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard phrasing is 'a wide range of' or 'a variety of'."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "On ___ other hand, some people argue that taxes are too high.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "The transition phrase is strictly 'On the other hand'."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "As ___ result of this policy, crime rates dropped.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard transition phrase is 'As a result'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "___ internet has revolutionised the way we access information.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "'The internet' is considered a unique, specific entity and always takes 'the'."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "There is ___ lack of funding for public schools in this district.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard noun phrase is 'a lack of'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "In ___ future, renewable energy will likely replace fossil fuels.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "The standard phrase is 'In the future'."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Japan had ___ higher rate of recycling than the USA.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "When comparing rates using an adjective, use 'a' (a higher rate, a lower percentage)."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "In 2010, ___ UK saw a minor decrease in unemployment.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Countries with words like Kingdom, States, or Republic must take 'the' (The UK, The USA)."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Sales increased at ___ steady pace throughout the year.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The standard phrase for describing speed/manner is 'at a [adjective] pace/rate'."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "The graph shows ___ upward trend in the use of public transport.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Trend descriptions take a/an. 'Upward' starts with a vowel sound."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "This leads to ___ increase in global temperatures.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Use 'an' before 'increase' when referring to it generally as a consequence."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "There was ___ overall upward trend across all three categories.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "an",
+          "explanation": "Use 'an' because 'overall' starts with a vowel sound."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "By 2030, ___ population is expected to reach 9 billion.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "We use 'the' because it refers to the specific population of the area shown in the data."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Both charts highlight ___ differences in consumer spending.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "Use 'the' because it refers to the specific differences shown in the charts."
+        }
+      ]
+    }
+  ]
+}

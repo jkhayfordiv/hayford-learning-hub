@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
     const connection = await pool.getConnection();
     
     // Check if user already exists
-    const [existing] = await connection.query('SELECT id FROM users WHERE email = ? AND role = ?', [email, role || 'student']);
+    const [existing] = await connection.query('SELECT id FROM users WHERE email = $1 AND role = $2', [email, role || 'student']);
     if (existing.length > 0) {
       connection.release();
       return res.status(409).json({ error: 'Email already registered' });
@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
     
     // Insert new user
     const [result] = await connection.query(
-      'INSERT INTO users (first_name, last_name, email, password_hash, role, class_id) VALUES (?, ?, ?, ?, ?, ?)',
+      'INSERT INTO users (first_name, last_name, email, password_hash, role, class_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
       [first_name, last_name, email, password_hash, role || 'student', class_id || null]
     );
     
@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
 
   try {
     const connection = await pool.getConnection();
-    const [users] = await connection.query('SELECT * FROM users WHERE email = ? AND role = ?', [email, role]);
+    const [users] = await connection.query('SELECT * FROM users WHERE email = $1 AND role = $2', [email, role]);
     connection.release();
 
     if (users.length === 0) {

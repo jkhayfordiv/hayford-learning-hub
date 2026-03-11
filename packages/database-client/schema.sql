@@ -56,7 +56,8 @@ CREATE TABLE IF NOT EXISTS assigned_tasks (
     teacher_id INTEGER NOT NULL,
     student_id INTEGER NOT NULL,
     module_id INTEGER NOT NULL,
-    assignment_type VARCHAR(50) DEFAULT 'writing' CHECK(assignment_type IN ('writing', 'vocabulary')),
+    assignment_type VARCHAR(50) DEFAULT 'writing' CHECK(assignment_type IN ('writing', 'vocabulary', 'grammar-practice')),
+    grammar_topic_id VARCHAR(100),
     instructions TEXT,
     due_date TIMESTAMP,
     status VARCHAR(20) DEFAULT 'pending' CHECK(status IN ('pending', 'completed')),
@@ -66,10 +67,60 @@ CREATE TABLE IF NOT EXISTS assigned_tasks (
     FOREIGN KEY (module_id) REFERENCES learning_modules(id) ON DELETE CASCADE
 );
 
-ALTER TABLE classes
-ADD CONSTRAINT fk_classes_teacher
-FOREIGN KEY (teacher_id) REFERENCES users(id) ON DELETE CASCADE;
+CREATE TABLE IF NOT EXISTS grammar_progress (
+    id SERIAL PRIMARY KEY,
+    student_id INTEGER NOT NULL,
+    error_category VARCHAR(100) NOT NULL CHECK(error_category IN (
+        'Article Usage',
+        'Countability & Plurals',
+        'Pronoun Reference',
+        'Prepositional Accuracy',
+        'Word Forms',
+        'Subject-Verb Agreement',
+        'Tense Consistency',
+        'Present Perfect vs. Past Simple',
+        'Gerunds vs. Infinitives',
+        'Passive Voice Construction',
+        'Sentence Boundaries (Fragments/Comma Splices)',
+        'Relative Clauses',
+        'Subordination',
+        'Word Order',
+        'Parallel Structure',
+        'Transitional Devices',
+        'Collocations',
+        'Academic Register',
+        'Nominalization',
+        'Hedging'
+    )),
+    current_level INTEGER NOT NULL DEFAULT 1 CHECK(current_level BETWEEN 1 AND 4),
+    exercises_completed INTEGER NOT NULL DEFAULT 0 CHECK(exercises_completed >= 0),
+    passed_levels JSONB NOT NULL DEFAULT '[]'::jsonb,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE(student_id, error_category)
+);
 
-ALTER TABLE users
-ADD CONSTRAINT fk_users_class
-FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE SET NULL;
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'fk_classes_teacher'
+    ) THEN
+        ALTER TABLE classes
+        ADD CONSTRAINT fk_classes_teacher
+        FOREIGN KEY (teacher_id) REFERENCES users(id) ON DELETE CASCADE;
+    END IF;
+END
+$$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'fk_users_class'
+    ) THEN
+        ALTER TABLE users
+        ADD CONSTRAINT fk_users_class
+        FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE SET NULL;
+    END IF;
+END
+$$;

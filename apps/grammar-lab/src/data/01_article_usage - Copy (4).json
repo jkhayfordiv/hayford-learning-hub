@@ -1,0 +1,130 @@
+{
+  "topicId": "01_article_usage",
+  "topicName": "Article Usage",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0;\">🎯 Level 1: A, An, The, or Zero Article</h3><p>In English, articles tell the reader if a noun is <strong>specific</strong> or <strong>general</strong>.</p><ul><li><strong>A / An:</strong> Singular, countable nouns introduced for the first time. <em>(She read <strong>an</strong> article.)</em></li><li><strong>The:</strong> Specific nouns known to both the writer and reader. <em>(She read <strong>the</strong> article you assigned.)</em></li><li><strong>Zero Article (∅):</strong> Plural or uncountable nouns speaking generally. <em>(<strong>∅</strong> Research takes time.)</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "The university built ___ new library for the science department.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' because 'library' is a singular countable noun mentioned for the first time."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "___ information provided in the lecture was difficult to understand.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Use 'The' because it refers to specific information from that specific lecture."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Many international students find that studying ___ English takes years of practice.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "Languages do not take an article when spoken about generally."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "Controlled Practice (L1 Traps)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0;\">⚠️ Level 2: The Japanese L1 Trap</h3><p>Because Japanese does not use articles, it is very common to accidentally use \"the\" when talking about general plural or uncountable nouns. <strong>Do not use 'the' for general statements!</strong></p><p>❌ <em>The international students often face the culture shock.</em></p><p>✅ <em><strong>∅</strong> International students often face <strong>∅</strong> culture shock.</em></p></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "___ global warming is a major concern for scientists today.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "No article",
+          "explanation": "'Global warming' is an uncountable noun being discussed as a general concept."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "___ computers in the main lab are currently being updated.",
+          "options": ["A", "An", "The", "No article"],
+          "correctAnswer": "The",
+          "explanation": "Even though it is plural, we use 'The' because we are talking about specific computers (the ones in the main lab)."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "In modern society, ___ smartphones have changed how we communicate.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "no article",
+          "explanation": "We are speaking generally about all smartphones, so we use the zero article."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Error Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0;\">📝 Level 3: Paragraph Context</h3><p>In TOEFL and IELTS essays, articles help connect your sentences. When you introduce a new idea, use <strong>a/an</strong>. When you refer back to that same idea in the next sentence, switch to <strong>the</strong>.</p></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Read the sentence and find the error: 'The government proposed a new law. A law will reduce pollution.'",
+          "options": ["Change 'The government' to 'A government'", "Change 'a new law' to 'the new law'", "Change 'A law' to 'The law'", "No error"],
+          "correctAnswer": "Change 'A law' to 'The law'",
+          "explanation": "Once the law is introduced in the first sentence, it becomes specific. The second sentence must use 'The'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Read the sentence: 'She has a degree in the biology from the University of Tokyo.' Which article is incorrect?",
+          "options": ["a degree", "the biology", "the University"],
+          "correctAnswer": "the biology",
+          "explanation": "Academic subjects like 'biology' do not take an article."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Select the correct sentence:",
+          "options": ["The society needs to protect an environment.", "Society needs to protect the environment.", "A society needs to protect environment."],
+          "correctAnswer": "Society needs to protect the environment.",
+          "explanation": "'Society' is general (no article), but 'the environment' is a unique, specific entity."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0;\">📈 Level 4: Task 1 Data Articles</h3><p>In IELTS Task 1, articles are strictly graded when describing data. Memorize these specific collocations:</p><ul><li><strong>A</strong> significant increase / <strong>A</strong> dramatic drop</li><li><strong>The</strong> number of / <strong>The</strong> highest percentage</li><li>Reached <strong>a</strong> peak of / Remained at <strong>the</strong> same level</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Between 2010 and 2015, there was ___ sharp decline in oil prices.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "Use 'a' with singular adjective-noun combinations describing trends (a sharp decline, a steady rise)."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "The chart illustrates ___ proportion of students who study abroad.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "the",
+          "explanation": "We use 'the' before 'proportion' or 'percentage' when describing a specific segment of a whole."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "In 2020, the sales figures reached ___ peak of 50,000 units.",
+          "options": ["a", "an", "the", "no article"],
+          "correctAnswer": "a",
+          "explanation": "The correct academic collocation for Task 1 is 'reached a peak of'."
+        }
+      ]
+    }
+  ]
+}

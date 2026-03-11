@@ -1,7 +1,54 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Moon, Sun, Copy, RefreshCw, UserPlus } from 'lucide-react';
+import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown } from 'lucide-react';
 import logo from './assets/logo.png';
+
+const GRAMMAR_PRACTICE_SECTIONS = [
+  {
+    id: 'l1-interference',
+    title: 'L1 Interference Fixes',
+    topics: [
+      { label: 'Article Usage', topicId: '01_article_usage' },
+      { label: 'Countability & Plurals', topicId: '02_countability_and_plurals' },
+      { label: 'Pronoun Reference', topicId: '03_pronoun_reference' },
+      { label: 'Prepositional Accuracy', topicId: '04_prepositional_accuracy' },
+      { label: 'Word Forms', topicId: '05_word_forms' },
+    ],
+  },
+  {
+    id: 'academic-foundations',
+    title: 'Academic Foundations',
+    topics: [
+      { label: 'Subject-Verb Agreement', topicId: '06_subject_verb_agreement' },
+      { label: 'Tense Consistency', topicId: '07_tense_consistency' },
+      { label: 'Present Perfect vs. Past Simple', topicId: '08_present_perfect_vs_past_simple' },
+      { label: 'Gerunds vs. Infinitives', topicId: '09_gerunds_vs_infinitives' },
+      { label: 'Passive Voice Construction', topicId: '10_passive_voice_construction' },
+    ],
+  },
+  {
+    id: 'sentence-complexity',
+    title: 'Sentence Complexity',
+    topics: [
+      { label: 'Sentence Boundaries (Fragments/Comma Splices)', topicId: '11_sentence_boundaries' },
+      { label: 'Relative Clauses', topicId: '12_relative_clauses' },
+      { label: 'Subordination', topicId: '13_subordination' },
+      { label: 'Word Order', topicId: '14_word_order' },
+      { label: 'Parallel Structure', topicId: '15_parallel_structure' },
+    ],
+  },
+  {
+    id: 'cohesion-register',
+    title: 'Cohesion & Register',
+    topics: [
+      { label: 'Transitional Devices', topicId: '16_transitional_devices' },
+      { label: 'Collocations', topicId: '17_collocations' },
+      { label: 'Academic Register', topicId: '18_academic_register' },
+      { label: 'Nominalization', topicId: '19_nominalization' },
+      { label: 'Hedging', topicId: '20_hedging' },
+    ],
+  },
+];
 
 export default function TeacherDashboard({ user, onLogout }) {
   const navigate = useNavigate();
@@ -18,11 +65,14 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [isEditClassModalOpen, setIsEditClassModalOpen] = useState(false);
   const [editingClass, setEditingClass] = useState(null);
   const [editClassStatus, setEditClassStatus] = useState({ loading: false, error: null, success: false });
+  const [classToDelete, setClassToDelete] = useState(null);
+  const [deleteClassStatus, setDeleteClassStatus] = useState({ loading: false, error: null });
   const [registerStatus, setRegisterStatus] = useState({ loading: false, error: null, success: false });
   const [classStatus, setClassStatus] = useState({ loading: false, error: null, success: false });
   const [isAssignClassModalOpen, setIsAssignClassModalOpen] = useState(false);
   const [assignClassForm, setAssignClassForm] = useState({ email: '', class_id: '' });
   const [assignClassStatus, setAssignClassStatus] = useState({ loading: false, error: null, success: false });
+  const [rosterSort, setRosterSort] = useState({ key: 'student', direction: 'asc' });
 
   const [activeTab, setActiveTab] = useState('overview');
   const [assignments, setAssignments] = useState([]);
@@ -34,19 +84,13 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [editStatus, setEditStatus] = useState({ loading: false, error: null, success: false });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
-  useEffect(() => {
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
-  }, [theme]);
-
-  const toggleTheme = () => {
-     const newTheme = theme === 'light' ? 'dark' : 'light';
-     setTheme(newTheme);
-     localStorage.setItem('theme', newTheme);
-  };
+  const [isGrammarAssignModalOpen, setIsGrammarAssignModalOpen] = useState(false);
+  const [grammarAssignTarget, setGrammarAssignTarget] = useState(null);
+  const [selectedGrammarTopic, setSelectedGrammarTopic] = useState(null);
+  const [expandedGrammarSections, setExpandedGrammarSections] = useState(
+    GRAMMAR_PRACTICE_SECTIONS.map((section) => section.id)
+  );
+  const [grammarAssignStatus, setGrammarAssignStatus] = useState({ loading: false, error: null, success: false });
 
   const handleRemoveStudentFromClass = async (student) => {
     if (!student?.class_id) return;
@@ -321,22 +365,41 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
-  const handleDeleteClass = async (c) => {
-    if (!window.confirm(`Delete class "${c.class_name}"? Students will be unassigned from this class.`)) return;
+  const handleDeleteClass = (c) => {
+    setClassToDelete(c);
+    setDeleteClassStatus({ loading: false, error: null });
+  };
+
+  const confirmDeleteClass = async () => {
+    if (!classToDelete) return;
+
+    setDeleteClassStatus({ loading: true, error: null });
+
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`${apiBase}/api/classes/${c.id}`, {
+      const res = await fetch(`${apiBase}/api/classes/${classToDelete.id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Failed to delete class');
+      const contentType = res.headers.get('content-type') || '';
+      const text = await res.text();
+      let data = {};
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {
+        data = {};
       }
+
+      if (!res.ok) {
+        throw new Error(data.error || data.msg || (text || 'Failed to delete class'));
+      }
+
       fetchClasses();
-      if (activeClassId === c.id) setActiveClassId('all');
+      if (activeClassId === classToDelete.id) setActiveClassId('all');
+      setClassToDelete(null);
+      setDeleteClassStatus({ loading: false, error: null });
     } catch (err) {
-      alert(err.message);
+      setDeleteClassStatus({ loading: false, error: err.message || 'Failed to delete class' });
     }
   };
 
@@ -382,6 +445,55 @@ export default function TeacherDashboard({ user, onLogout }) {
     fetchAssignments();
     fetchRecentActivity();
     fetchClasses();
+  };
+
+  const openGrammarAssignModal = (student) => {
+    setGrammarAssignTarget(student);
+    setSelectedGrammarTopic(null);
+    setGrammarAssignStatus({ loading: false, error: null, success: false });
+    setIsGrammarAssignModalOpen(true);
+  };
+
+  const toggleGrammarSection = (sectionId) => {
+    setExpandedGrammarSections((prev) => (
+      prev.includes(sectionId)
+        ? prev.filter((id) => id !== sectionId)
+        : [...prev, sectionId]
+    ));
+  };
+
+  const handleAssignGrammarPractice = async () => {
+    if (!grammarAssignTarget || !selectedGrammarTopic) return;
+
+    setGrammarAssignStatus({ loading: true, error: null, success: false });
+    try {
+      const token = localStorage.getItem('token');
+      const payload = {
+        student_id: grammarAssignTarget.id,
+        assignment_type: 'grammar-practice',
+        grammar_topic_id: selectedGrammarTopic.topicId,
+        instructions: `Grammar Practice: ${selectedGrammarTopic.label}`,
+      };
+
+      const res = await fetch(`${apiBase}/api/assignments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to assign grammar practice');
+
+      setGrammarAssignStatus({ loading: false, error: null, success: true });
+      fetchAssignments();
+      setTimeout(() => {
+        setIsGrammarAssignModalOpen(false);
+        setGrammarAssignTarget(null);
+        setSelectedGrammarTopic(null);
+        setGrammarAssignStatus({ loading: false, error: null, success: false });
+      }, 900);
+    } catch (err) {
+      setGrammarAssignStatus({ loading: false, error: err.message || 'Failed to assign grammar practice', success: false });
+    }
   };
 
   const handleRegister = async (e) => {
@@ -458,6 +570,33 @@ export default function TeacherDashboard({ user, onLogout }) {
   const filteredStudents = students.filter(s =>
     activeClassId === 'all' ? true : activeClassId === 'none' ? !s.class_id : s.class_id === activeClassId
   );
+  const classNameById = new Map(classes.map((c) => [c.id, c.class_name]));
+  const getClassName = (student) => {
+    if (!student.class_id) return 'Unassigned';
+    return classNameById.get(student.class_id) || 'Unknown Class';
+  };
+  const sortedStudents = [...filteredStudents].sort((a, b) => {
+    if (rosterSort.key === 'class') {
+      const classA = getClassName(a);
+      const classB = getClassName(b);
+      const classCompare = classA.localeCompare(classB);
+      if (classCompare !== 0) return rosterSort.direction === 'asc' ? classCompare : -classCompare;
+    }
+
+    const nameA = `${a.first_name || ''} ${a.last_name || ''}`.trim();
+    const nameB = `${b.first_name || ''} ${b.last_name || ''}`.trim();
+    const fallbackCompare = nameA.localeCompare(nameB);
+    return rosterSort.direction === 'asc' ? fallbackCompare : -fallbackCompare;
+  });
+
+  const handleRosterSort = (key) => {
+    setRosterSort((prev) => {
+      if (prev.key === key) {
+        return { key, direction: prev.direction === 'asc' ? 'desc' : 'asc' };
+      }
+      return { key, direction: 'asc' };
+    });
+  };
 
   const today = new Date().toISOString().slice(0, 10);
   const activeClasses = classes.filter(c => !c.end_date || c.end_date >= today);
@@ -465,7 +604,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const unassignedStudents = students.filter(s => !s.class_id);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
+    <div className="min-h-screen bg-white font-sans">
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
@@ -491,33 +630,27 @@ export default function TeacherDashboard({ user, onLogout }) {
           </button>
           
           {isDropdownOpen && (
-            <div className="absolute top-12 right-0 w-56 bg-white dark:bg-brand-darkBg border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
-               <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
-                  <p className="font-bold text-slate-900 dark:text-white text-sm">{user.first_name} {user.last_name}</p>
-                  <p className="text-xs text-slate-500 truncate">{user.email}</p>
-               </div>
-               <div className="p-2 space-y-1">
-                 <button onClick={toggleTheme} className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
-                   <div className="flex items-center gap-3">
-                     {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />} 
-                     Theme
-                   </div>
-                   <span className="text-[10px] font-black uppercase text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{theme}</span>
-                 </button>
-                 <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
-                   <Settings size={16} /> My Account
-                 </button>
-                 <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
-                   <HelpCircle size={16} /> Help & Support
-                 </a>
-               </div>
-               <div className="p-2 border-t border-slate-100 dark:border-slate-800">
-                 <button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-left">
-                   <LogOut size={16} /> Logout
-                 </button>
-               </div>
+            <div className="absolute top-12 right-0 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
+              <div className="p-4 border-b border-slate-100 bg-slate-50/50">
+                <p className="font-bold text-slate-900 text-sm">{user.first_name} {user.last_name}</p>
+                <p className="text-xs text-slate-500 truncate">{user.email}</p>
+              </div>
+              <div className="p-2 space-y-1">
+                <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition-colors text-left">
+                  <Settings size={16} /> My Account
+                </button>
+                <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition-colors text-left">
+                  <HelpCircle size={16} /> Help & Support
+                </a>
+              </div>
+              <div className="p-2 border-t border-slate-100">
+                <button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl transition-colors text-left">
+                  <LogOut size={16} /> Logout
+                </button>
+              </div>
             </div>
           )}
+
         </div>
       </header>
 
@@ -726,7 +859,16 @@ export default function TeacherDashboard({ user, onLogout }) {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
-                  <th className="px-8 py-4">Student</th>
+                  <th className="px-8 py-4">
+                    <button onClick={() => handleRosterSort('student')} className="inline-flex items-center gap-1 hover:text-slate-600 transition-colors">
+                      Student <ArrowUpDown size={12} />
+                    </button>
+                  </th>
+                  <th className="px-8 py-4">
+                    <button onClick={() => handleRosterSort('class')} className="inline-flex items-center gap-1 hover:text-slate-600 transition-colors">
+                      Class Name <ArrowUpDown size={12} />
+                    </button>
+                  </th>
                   <th className="px-8 py-4 text-center">Tasks Completed</th>
                   <th className="px-8 py-4 text-center">Average Score</th>
                   <th className="px-8 py-4">Last Active</th>
@@ -736,20 +878,26 @@ export default function TeacherDashboard({ user, onLogout }) {
               </thead>
               <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
                 {isLoading ? (
-                  <tr><td colSpan="6" className="px-8 py-12 text-center text-slate-400">Loading class data...</td></tr>
+                  <tr><td colSpan="7" className="px-8 py-12 text-center text-slate-400">Loading class data...</td></tr>
                 ) : filteredStudents.length === 0 ? (
-                  <tr><td colSpan="6" className="px-8 py-12 text-center text-slate-400">No students found in this view.</td></tr>
+                  <tr><td colSpan="7" className="px-8 py-12 text-center text-slate-400">No students found in this view.</td></tr>
                 ) : (
-                  filteredStudents.map((student) => (
+                  sortedStudents.map((student) => (
                     <tr 
                       key={student.id} 
-                      onClick={() => window.location.href = `/student/${student.id}`}
-                      className="hover:bg-slate-50 transition-colors cursor-pointer group"
+                      className="hover:bg-slate-50 transition-colors group"
                     >
                       <td className="px-8 py-6">
-                        <div className="font-bold text-slate-900 group-hover:text-amber-700 transition-colors">{student.first_name} {student.last_name}</div>
+                        <button
+                          type="button"
+                          onClick={() => navigate(`/student/${student.id}`)}
+                          className="font-bold text-slate-900 group-hover:text-amber-700 transition-colors hover:underline"
+                        >
+                          {student.first_name} {student.last_name}
+                        </button>
                         <div className="text-xs text-slate-500 mt-0.5">{student.email}</div>
                       </td>
+                      <td className="px-8 py-6 text-slate-600 text-sm font-semibold">{getClassName(student)}</td>
                       <td className="px-8 py-6 text-center text-lg font-bold text-slate-900">{student.assignments_completed}</td>
                       <td className="px-8 py-6 text-center">
                         <span className="font-black text-amber-700 bg-amber-50 px-3 py-1 rounded-lg border border-amber-100">
@@ -771,19 +919,30 @@ export default function TeacherDashboard({ user, onLogout }) {
                         )}
                       </td>
                       <td className="px-8 py-6 text-right">
-                        {student.class_id ? (
+                        <div className="inline-flex flex-col items-end gap-2">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              handleRemoveStudentFromClass(student);
+                              openGrammarAssignModal(student);
                             }}
-                            className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                            className="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-900 hover:text-white px-3 py-1.5 rounded-lg border border-slate-200 transition-colors"
                           >
-                            Remove from Class
+                            Assign Grammar Practice
                           </button>
-                        ) : (
-                          <span className="text-xs text-slate-400">Unassigned</span>
-                        )}
+                          {student.class_id ? (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleRemoveStudentFromClass(student);
+                              }}
+                              className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                            >
+                              Remove from Class
+                            </button>
+                          ) : (
+                            <span className="text-xs text-slate-400">Unassigned</span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -802,44 +961,24 @@ export default function TeacherDashboard({ user, onLogout }) {
               <FileText className="text-slate-400" /> Recent Learning Activity
             </h3>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
-                  <th className="px-8 py-4">Student</th>
-                  <th className="px-8 py-4">Submission Date</th>
-                  <th className="px-8 py-4">Module Type</th>
-                  <th className="px-8 py-4 text-center">Score</th>
-                </tr>
-              </thead>
-              <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
-                {isLoading ? (
-                  <tr><td colSpan="4" className="px-8 py-12 text-center text-slate-400">Loading recent activity...</td></tr>
-                ) : recentActivity.length === 0 ? (
-                  <tr><td colSpan="4" className="px-8 py-12 text-center text-slate-400">No recent activity found.</td></tr>
-                ) : (
-                  recentActivity.map((activity) => (
-                    <tr key={activity.id} className="hover:bg-slate-50 transition-colors">
-                      <td className="px-8 py-6 font-bold text-slate-900">
-                        {activity.student_first_name} {activity.student_last_name}
-                      </td>
-                      <td className="px-8 py-6 text-slate-500">
-                        {new Date(activity.completed_at).toLocaleString()}
-                      </td>
-                      <td className="px-8 py-6">
-                        <div className="font-bold text-slate-900">{activity.module_name}</div>
-                        <div className="text-xs text-slate-500 uppercase tracking-widest mt-1">{activity.module_type}</div>
-                      </td>
-                      <td className="px-8 py-6 text-center">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 font-black rounded-lg border border-green-200">
-                          <CheckCircle2 size={14} /> {Number(activity.overall_score).toFixed(1)}
-                        </span>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+          <div className="max-h-64 overflow-y-auto divide-y divide-slate-100">
+            {isLoading ? (
+              <div className="px-8 py-8 text-center text-slate-400 text-sm">Loading recent activity...</div>
+            ) : recentActivity.length === 0 ? (
+              <div className="px-8 py-8 text-center text-slate-400 text-sm">No recent activity found.</div>
+            ) : (
+              recentActivity.map((activity) => (
+                <div key={activity.id} className="px-8 py-3 flex items-center justify-between gap-4 hover:bg-slate-50 transition-colors">
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-slate-900 truncate">{activity.student_first_name} {activity.student_last_name}</p>
+                    <p className="text-xs text-slate-500 truncate">{activity.module_name} · {new Date(activity.completed_at).toLocaleString()}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-black rounded-lg border border-green-200 shrink-0">
+                    <CheckCircle2 size={12} /> {Number(activity.overall_score).toFixed(1)}
+                  </span>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
@@ -1003,6 +1142,155 @@ export default function TeacherDashboard({ user, onLogout }) {
           </div>
         )}
       </main>
+
+      {isGrammarAssignModalOpen && grammarAssignTarget && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 bg-slate-50/70 flex items-start justify-between gap-4">
+              <div>
+                <h3 className="font-black text-2xl text-slate-900 tracking-tight">Assign Grammar Practice</h3>
+                <p className="text-sm text-slate-500 mt-1 font-medium">
+                  {grammarAssignTarget.first_name} {grammarAssignTarget.last_name} · Choose a focused Grammar Lab topic.
+                </p>
+              </div>
+              <button
+                onClick={() => setIsGrammarAssignModalOpen(false)}
+                className="text-slate-400 hover:text-slate-700 transition-colors"
+                disabled={grammarAssignStatus.loading}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="p-8 space-y-4 max-h-[70vh] overflow-y-auto">
+              {grammarAssignStatus.error && (
+                <div className="p-3 bg-red-50 text-red-700 text-xs font-bold rounded-lg border border-red-200">
+                  {grammarAssignStatus.error}
+                </div>
+              )}
+              {grammarAssignStatus.success && (
+                <div className="p-3 bg-green-50 text-green-700 text-xs font-bold rounded-lg border border-green-200">
+                  Grammar practice assigned.
+                </div>
+              )}
+
+              {GRAMMAR_PRACTICE_SECTIONS.map((section) => {
+                const isExpanded = expandedGrammarSections.includes(section.id);
+                return (
+                  <div key={section.id} className="border border-slate-200 rounded-2xl overflow-hidden">
+                    <button
+                      type="button"
+                      onClick={() => toggleGrammarSection(section.id)}
+                      className="w-full px-5 py-4 bg-slate-50 text-left flex items-center justify-between"
+                    >
+                      <span className="font-black text-sm uppercase tracking-wide text-slate-700">{section.title}</span>
+                      <ChevronDown size={16} className={`text-slate-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isExpanded && (
+                      <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3 bg-white">
+                        {section.topics.map((topic) => {
+                          const isSelected = selectedGrammarTopic?.topicId === topic.topicId;
+                          return (
+                            <button
+                              key={topic.topicId}
+                              type="button"
+                              onClick={() => setSelectedGrammarTopic(topic)}
+                              className={`text-left px-4 py-3 rounded-xl border transition-colors ${
+                                isSelected
+                                  ? 'border-slate-900 bg-slate-900 text-white'
+                                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                              }`}
+                            >
+                              <p className="font-bold text-sm leading-tight">{topic.label}</p>
+                              <p className={`text-[10px] uppercase tracking-widest mt-1 ${isSelected ? 'text-slate-300' : 'text-slate-400'}`}>
+                                topicId: {topic.topicId}
+                              </p>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="px-8 py-6 border-t border-slate-100 bg-white flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+              <div className="text-xs text-slate-500 font-medium">
+                {selectedGrammarTopic ? (
+                  <span>Selected: <span className="font-bold text-slate-700">{selectedGrammarTopic.label}</span></span>
+                ) : (
+                  'Select one grammar topic to continue.'
+                )}
+              </div>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsGrammarAssignModalOpen(false)}
+                  className="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-700 text-sm font-bold hover:bg-slate-50"
+                  disabled={grammarAssignStatus.loading}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAssignGrammarPractice}
+                  disabled={!selectedGrammarTopic || grammarAssignStatus.loading}
+                  className="px-5 py-2.5 rounded-xl bg-slate-900 text-white text-sm font-bold hover:bg-slate-950 disabled:opacity-50"
+                >
+                  {grammarAssignStatus.loading ? 'Assigning…' : 'Assign'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Class Confirmation Modal */}
+      {classToDelete && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-brand-darkBg dark:border dark:border-slate-700 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50">
+              <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight">Delete Class?</h3>
+              <p className="text-sm text-slate-500 mt-2">
+                Are you sure you want to delete <span className="font-bold text-slate-700 dark:text-slate-200">{classToDelete.class_name}</span>?
+              </p>
+              <p className="text-xs text-slate-500 mt-1">Students will be unassigned from this class.</p>
+            </div>
+
+            <div className="p-8 space-y-4">
+              {deleteClassStatus.error && (
+                <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 text-xs font-bold rounded-lg border border-red-100 dark:border-red-800">
+                  {deleteClassStatus.error}
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (deleteClassStatus.loading) return;
+                    setClassToDelete(null);
+                    setDeleteClassStatus({ loading: false, error: null });
+                  }}
+                  className="flex-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={confirmDeleteClass}
+                  disabled={deleteClassStatus.loading}
+                  className="flex-1 bg-red-600 text-white font-bold py-3 rounded-xl hover:bg-red-700 transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
+                >
+                  {deleteClassStatus.loading && <Loader2 size={16} className="animate-spin" />}
+                  Delete Class
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Edit Assignment Modal overlay */}
       {isEditModalOpen && editGroupData && (

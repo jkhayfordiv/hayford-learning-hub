@@ -1,17 +1,31 @@
 const { Pool } = require('pg');
+const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
 let poolInstance = null;
 
 function initDb() {
   if (!poolInstance) {
+    if (!process.env.DATABASE_URL) {
+      throw new Error('DATABASE_URL is required to connect to PostgreSQL.');
+    }
+
     poolInstance = new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: { rejectUnauthorized: false }
+      ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false }
     });
     console.log('📦 Postgres database (Neon) initialized');
   }
   return poolInstance;
+}
+
+async function bootstrapDatabase() {
+  const pgPool = initDb();
+  const schemaPath = path.resolve(__dirname, '../../packages/database-client/schema.sql');
+  const schemaSql = fs.readFileSync(schemaPath, 'utf8');
+  await pgPool.query(schemaSql);
+  console.log('✅ Database schema ensured from packages/database-client/schema.sql');
 }
 
 const pool = {
@@ -20,19 +34,10 @@ const pool = {
     const client = await pgPool.connect();
     return {
       query: async (sql, params = []) => {
-        let pgSql = sql;
-        
-        let paramIndex = 1;
-        pgSql = pgSql.replace(/\?/g, () => `$${paramIndex++}`);
-
-        const queryUpper = pgSql.trim().toUpperCase();
+        const queryUpper = sql.trim().toUpperCase();
         const isInsert = queryUpper.startsWith('INSERT');
-        
-        if (isInsert && !queryUpper.includes('RETURNING ID')) {
-          pgSql += ' RETURNING id';
-        }
 
-        const result = await client.query(pgSql, params);
+        const result = await client.query(sql, params);
         
         if (queryUpper.startsWith('SELECT') || queryUpper.startsWith('PRAGMA')) {
            return [result.rows];
@@ -48,4 +53,4 @@ const pool = {
   }
 };
 
-module.exports = { pool, initDb };
+module.exports = { pool, initDb, bootstrapDatabase };

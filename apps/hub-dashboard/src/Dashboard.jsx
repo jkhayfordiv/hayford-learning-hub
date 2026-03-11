@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw } from 'lucide-react';
+import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3 } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 import logo from './assets/logo.png';
 
@@ -299,6 +299,9 @@ export default function Dashboard() {
                      <Users size={16} /> Join a Class
                    </button>
                  )}
+                 <button onClick={() => navigate('/my-stats')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
+                   <BarChart3 size={16} /> My Stats
+                 </button>
                  <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                    <Settings size={16} /> My Account
                  </button>
@@ -333,14 +336,22 @@ export default function Dashboard() {
               Here's an overview of your recent learning progress and completed modules.
             </p>
           </div>
-          {!user.class_id && (
-            <button 
-              onClick={() => setIsJoinModalOpen(true)}
-              className="bg-brand-navy dark:bg-brand-copper text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-colors shadow-sm"
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => navigate('/my-stats')}
+              className="bg-white border border-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-colors shadow-sm"
             >
-              <Users size={18} /> Join a Class
+              <BarChart3 size={18} /> My Stats
             </button>
-          )}
+            {!user.class_id && (
+              <button 
+                onClick={() => setIsJoinModalOpen(true)}
+                className="bg-brand-navy dark:bg-brand-copper text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-colors shadow-sm"
+              >
+                <Users size={18} /> Join a Class
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="flex gap-4 border-b border-slate-200 mb-8 pb-4">
@@ -398,6 +409,11 @@ export default function Dashboard() {
                   </div>
                   <button 
                     onClick={() => {
+                      if (task.assignment_type === 'grammar-practice') {
+                        const grammarUrl = `/grammar-lab/?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(task.grammar_topic_id || '01_article_usage')}`;
+                        window.location.href = grammarUrl;
+                        return;
+                      }
                       const instructionsObj = { assignment_id: task.id, instructions: task.instructions };
                       const appPath = task.assignment_type === 'vocabulary' ? '/vocab-tool/' : '/ielts-writing/';
                       window.location.href = `${appPath}?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
@@ -405,10 +421,12 @@ export default function Dashboard() {
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors mt-auto ${
                       task.assignment_type === 'vocabulary' 
                         ? 'bg-amber-50 text-amber-700 hover:bg-amber-600 hover:text-white' 
-                        : 'bg-slate-900 text-white hover:bg-slate-950'
+                        : task.assignment_type === 'grammar-practice'
+                          ? 'bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white'
+                          : 'bg-slate-900 text-white hover:bg-slate-950'
                     }`}
                   >
-                    <PenTool size={18} /> Start Assignment
+                    <PenTool size={18} /> {task.assignment_type === 'grammar-practice' ? 'Start Practice' : 'Start Assignment'}
                   </button>
                 </div>
               ))

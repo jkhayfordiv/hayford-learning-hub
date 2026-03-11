@@ -141,7 +141,9 @@ export default function App() {
     const fullText = sessionResults.map(r => `Word: ${r.word}\nSentence: ${r.sentence}`).join('\n\n');
 
     try {
-      const res = await fetch('https://hayford-learning-hub.onrender.com/api/scores', {
+      const taskIdNum = taskId != null ? parseInt(taskId, 10) : null;
+      const apiBase = import.meta.env.VITE_API_URL || 'https://hayford-learning-hub.onrender.com';
+      const res = await fetch(`${apiBase}/api/scores`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -149,7 +151,7 @@ export default function App() {
         },
         body: JSON.stringify({
           module_type: 'vocabulary',
-          taskId: taskId,
+          taskId: Number.isInteger(taskIdNum) ? taskIdNum : undefined,
           submitted_text: fullText,
           word_count: fullText.split(/\s+/).length,
           overall_score: score,
@@ -157,8 +159,13 @@ export default function App() {
         })
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to sync');
+      const text = await res.text();
+      const contentType = res.headers.get('content-type') || '';
+      let data = {};
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {}
+      if (!res.ok) throw new Error(data.error || data.details || 'Failed to save to dashboard.');
       
       setSaveStatus({ loading: false, success: true, error: null });
     } catch (error) {

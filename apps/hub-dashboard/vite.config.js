@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    strictPort: true
-  }
+    strictPort: true,
+    proxy: {
+      // So "Start Assignment" and learning tools work when all apps run together (pnpm dev)
+      '/ielts-writing': { target: 'http://localhost:5174', changeOrigin: true },
+      '/vocab-tool': { target: 'http://localhost:5175', changeOrigin: true },
+    },
+  },
 })

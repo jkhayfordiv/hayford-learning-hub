@@ -41,28 +41,40 @@ router.post('/', auth, async (req, res) => {
     const [result] = await connection.query(
       `INSERT INTO student_scores 
        (student_id, module_id, submitted_text, word_count, overall_score, ai_feedback, diagnostic_data) 
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || [])]
     );
 
-    // If a taskId was provided, mark the assignment as completed
-    if (taskId) {
-       await connection.query(
-         `UPDATE assigned_tasks SET status = 'completed' WHERE id = ? AND student_id = ?`,
-         [taskId, student_id]
-       );
+    // If a taskId was provided, mark the assignment as completed (parse to int for DB)
+    const taskIdNum = taskId != null ? parseInt(taskId, 10) : null;
+    if (taskIdNum && Number.isInteger(taskIdNum)) {
+      try {
+        const [updateResult] = await connection.query(
+          `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1 AND student_id = $2`,
+          [taskIdNum, student_id]
+        );
+        const updated = updateResult?.affectedRows ?? updateResult?.rowCount ?? 0;
+        if (updated === 0) {
+          console.warn('Score save: no assigned_tasks row updated for taskId=', taskIdNum, 'student_id=', student_id);
+        }
+      } catch (updateErr) {
+        console.error('Score save: failed to mark assignment completed', { taskId: taskIdNum, student_id, err: updateErr.message });
+        // Score was already saved; still return success
+      }
+    } else if (taskId != null) {
+      console.warn('Score save: invalid taskId (not an integer)', taskId);
     }
 
     connection.release();
-    res.status(201).json({ 
-      success: true, 
+    res.status(201).json({
+      success: true,
       message: 'Score saved successfully!',
-      score_id: result.insertId 
+      score_id: result.insertId
     });
 
   } catch (error) {
     console.error('Save score error:', error);
-    res.status(500).json({ error: 'Server Error writing to database' });
+    res.status(500).json({ error: 'Server Error writing to database', details: error.message });
   }
 });
 
@@ -79,7 +91,7 @@ router.get('/my-scores', auth, async (req, res) => {
               s.completed_at, s.diagnostic_data, m.module_name, m.module_type 
        FROM student_scores s 
        JOIN learning_modules m ON s.module_id = m.id 
-       WHERE s.student_id = ? 
+       WHERE s.student_id = $1 
        ORDER BY s.completed_at DESC`,
       [student_id]
     );
@@ -102,13 +114,14 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
-    // Query aggregates data per student
+    // Query aggregates data per student (include class_id so teacher can filter by class)
     const [overview] = await connection.query(`
       SELECT 
         u.id, 
         u.first_name, 
         u.last_name, 
         u.email,
+        u.class_id,
         COUNT(s.id) as assignments_completed,
         MAX(s.completed_at) as last_active_date,
         AVG(s.overall_score) as average_band_score,
@@ -116,7 +129,7 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
       FROM users u
       LEFT JOIN student_scores s ON u.id = s.student_id
       WHERE u.role = 'student'
-      GROUP BY u.id
+      GROUP BY u.id, u.class_id
       ORDER BY last_active_date DESC
     `);
     
@@ -170,7 +183,7 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
     const connection = await pool.getConnection();
     
     // First, verify the user is a student to prevent looking up other teachers
-    const [userCheck] = await connection.query('SELECT id, first_name, last_name, email, role FROM users WHERE id = ?', [student_id]);
+    const [userCheck] = await connection.query('SELECT id, first_name, last_name, email, role FROM users WHERE id = $1', [student_id]);
     
     if (userCheck.length === 0 || userCheck[0].role !== 'student') {
       connection.release();
@@ -192,7 +205,7 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
         m.module_type
       FROM student_scores s
       JOIN learning_modules m ON s.module_id = m.id
-      WHERE s.student_id = ?
+      WHERE s.student_id = $1
       ORDER BY s.completed_at DESC
     `, [student_id]);
 

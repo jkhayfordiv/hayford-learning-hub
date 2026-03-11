@@ -1,52 +1,64 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { Client } = require('pg');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
-const dbPath = path.join(__dirname, 'database.sqlite');
-const db = new sqlite3.Database(dbPath);
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false }
+});
 
 async function seed() {
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL is required to run this seed script.');
+  }
+
   const teacherHash = await bcrypt.hash('password123', 10);
   const studentHash = await bcrypt.hash('password123', 10);
 
-  db.serialize(() => {
-    // 1. Create Teacher
-    db.run(
-      `INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES (?, ?, ?, ?, ?)`,
-      ['Test', 'Teacher', 'teacher@test.com', teacherHash, 'teacher'],
-      function(err) {
-        if (err) return console.error(err);
-        const teacherId = this.lastID;
-        console.log('Teacher created with ID', teacherId);
+  await client.connect();
 
-        // 2. Create Class
-        db.run(
-          `INSERT INTO classes (class_name, teacher_id) VALUES (?, ?)`,
-          ['Test Class 101', teacherId],
-          function(err) {
-            if (err) return console.error(err);
-            const classId = this.lastID;
-            console.log('Class created with ID', classId);
-
-            // 3. Create Student in that class
-            db.run(
-              `INSERT INTO users (first_name, last_name, email, password_hash, role, class_id) VALUES (?, ?, ?, ?, ?, ?)`,
-              ['Test', 'Student', 'student@test.com', studentHash, 'student', classId],
-              function(err) {
-                if (err) return console.error(err);
-                console.log('Student created with ID', this.lastID);
-
-                // 4. Also insert a learning module if not exists
-                db.run(`INSERT OR IGNORE INTO learning_modules (id, module_name, module_type, description) VALUES (1, 'Writing Practice 1', 'writing', 'General writing module')`);
-
-                console.log('Seed completed successfully.');
-              }
-            );
-          }
-        );
-      }
+  try {
+    const teacherInsert = await client.query(
+      `INSERT INTO users (first_name, last_name, email, password_hash, role)
+       VALUES ($1, $2, $3, $4, $5)
+       ON CONFLICT (email, role) DO UPDATE SET first_name = EXCLUDED.first_name
+       RETURNING id`,
+      ['Test', 'Teacher', 'teacher@test.com', teacherHash, 'teacher']
     );
-  });
+    const teacherId = teacherInsert.rows[0].id;
+
+    const classInsert = await client.query(
+      `INSERT INTO classes (class_name, teacher_id)
+       VALUES ($1, $2)
+       RETURNING id`,
+      ['Test Class 101', teacherId]
+    );
+    const classId = classInsert.rows[0].id;
+
+    const studentInsert = await client.query(
+      `INSERT INTO users (first_name, last_name, email, password_hash, role, class_id)
+       VALUES ($1, $2, $3, $4, $5, $6)
+       ON CONFLICT (email, role) DO UPDATE SET class_id = EXCLUDED.class_id
+       RETURNING id`,
+      ['Test', 'Student', 'student@test.com', studentHash, 'student', classId]
+    );
+
+    await client.query(
+      `INSERT INTO learning_modules (id, module_name, module_type, description)
+       VALUES (1, 'Writing Practice 1', 'writing', 'General writing module')
+       ON CONFLICT (id) DO NOTHING`
+    );
+
+    console.log('Teacher ID:', teacherId);
+    console.log('Class ID:', classId);
+    console.log('Student ID:', studentInsert.rows[0].id);
+    console.log('Seed completed successfully.');
+  } finally {
+    await client.end();
+  }
 }
 
-seed();
+seed().catch((error) => {
+  console.error('Seed failed:', error);
+  process.exit(1);
+});

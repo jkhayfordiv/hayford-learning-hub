@@ -1,15 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { initDb, pool } = require('./db');
+const { bootstrapDatabase, pool } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-async function ensureRuntimeMigrations() {
-  const pgPool = initDb();
-  await pgPool.query("ALTER TABLE student_scores ADD COLUMN IF NOT EXISTS diagnostic_data JSONB DEFAULT '[]'::jsonb");
-}
 
 // Middleware
 app.use(cors());
@@ -58,6 +53,10 @@ app.use('/api/assignments', assignmentsRoutes);
 const usersRoutes = require('./routes/users');
 app.use('/api/users', usersRoutes);
 
+// Grammar progress routes
+const grammarProgressRoutes = require('./routes/grammarProgress');
+app.use('/api/grammar-progress', grammarProgressRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });
@@ -70,7 +69,16 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-app.listen(PORT, async () => {
-  await ensureRuntimeMigrations();
-  console.log(`🚀 Hub Backend API is running on http://localhost:${PORT}`);
-});
+async function startServer() {
+  try {
+    await bootstrapDatabase();
+    app.listen(PORT, () => {
+      console.log(`🚀 Hub Backend API is running on http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error('Failed to bootstrap database schema:', error);
+    process.exit(1);
+  }
+}
+
+startServer();

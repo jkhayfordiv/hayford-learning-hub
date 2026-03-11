@@ -72,7 +72,7 @@ export default function Profile({ user, onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans pb-20">
+    <div className="min-h-screen bg-white font-sans pb-20">
       
       {/* Top Navbar */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">

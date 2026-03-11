@@ -1,37 +1,28 @@
-const sqlite3 = require('sqlite3').verbose();
+const { Client } = require('pg');
 const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../apps/hub-backend/.env') });
 
-// Path to the SQLite database file
-const dbPath = path.resolve(__dirname, '../../apps/hub-backend/database.sqlite');
-
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Error opening database:', err.message);
-    process.exit(1);
-  }
-  console.log('Connected to the SQLite database.');
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false }
 });
 
-db.serialize(() => {
-  console.log('Running migration: Adding diagnostic_data column to student_scores...');
-  
-  db.run(`ALTER TABLE student_scores ADD COLUMN diagnostic_data TEXT;`, (err) => {
-    if (err) {
-      if (err.message.includes('duplicate column name')) {
-        console.log('Column diagnostic_data already exists. Migration skipped.');
-      } else {
-        console.error('Migration failed:', err.message);
-      }
-    } else {
-      console.log('Migration successful: diagnostic_data column added.');
-    }
-  });
-});
-
-db.close((err) => {
-  if (err) {
-    console.error('Error closing database:', err.message);
-  } else {
-    console.log('Database connection closed.');
+async function migrate() {
+  if (!process.env.DATABASE_URL) {
+    throw new Error('DATABASE_URL is required to run this migration.');
   }
+
+  await client.connect();
+  try {
+    console.log('Running migration: ensuring diagnostic_data column on student_scores...');
+    await client.query("ALTER TABLE student_scores ADD COLUMN IF NOT EXISTS diagnostic_data JSONB DEFAULT '[]'::jsonb");
+    console.log('Migration successful: diagnostic_data column ensured.');
+  } finally {
+    await client.end();
+  }
+}
+
+migrate().catch((error) => {
+  console.error('Migration failed:', error);
+  process.exit(1);
 });
