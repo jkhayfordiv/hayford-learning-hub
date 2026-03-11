@@ -56,26 +56,41 @@ router.post('/', requireTeacher, async (req, res) => {
       connection.release();
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
     } else if (class_id) {
-      // Assign to an entire class
+      // Assign to an entire class: create template assignment with class_id
+      const [result] = await connection.query(
+        `INSERT INTO assigned_tasks (teacher_id, class_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
+         VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+        [teacher_id, class_id, resolvedModuleId, aType, grammar_topic_id || null, instructions || null, due_date || null]
+      );
+      
+      // Also assign to existing students in the class
       const [students] = await connection.query(`SELECT id FROM users WHERE role = 'student' AND class_id = $1`, [class_id]);
       
-      if (students.length === 0) {
-        connection.release();
-        return res.status(400).json({ error: 'No students found in that class.' });
-      }
-
       let count = 0;
       for (const student of students) {
-        await connection.query(
-          `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-          [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, instructions || null, due_date || null]
-        );
-        count++;
+        try {
+          await connection.query(
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
+             ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
+            [
+              teacher_id,
+              student.id,
+              resolvedModuleId,
+              aType,
+              grammar_topic_id || null,
+              instructions || null,
+              due_date || null
+            ]
+          );
+          count++;
+        } catch (dupError) {
+          console.warn('Duplicate assignment skipped for student', student.id, dupError.message);
+        }
       }
       
       connection.release();
-      return res.status(201).json({ success: true, message: `Assignment created for ${count} students in class.` });
+      return res.status(201).json({ success: true, message: `Assignment created for ${count} existing students in class (template stored for late joiners).`, id: result.insertId });
     } else {
       // Assign to all students
       const [students] = await connection.query(`SELECT id FROM users WHERE role = 'student'`);

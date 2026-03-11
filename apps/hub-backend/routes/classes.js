@@ -71,7 +71,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // @route   POST api/classes/join
-// @desc    Join a class using a code
+// @desc    Join a class using a code and retroactively assign existing class assignments
 // @access  Private (Student only)
 router.post('/join', auth, async (req, res) => {
   const { class_code } = req.body;
@@ -96,9 +96,42 @@ router.post('/join', auth, async (req, res) => {
 
     const class_id = classes[0].id;
     await connection.query('UPDATE users SET class_id = $1 WHERE id = $2', [class_id, user_id]);
+
+    // Retroactively assign existing class assignments to the new student
+    const [existingAssignments] = await connection.query(
+      `SELECT teacher_id, module_id, assignment_type, grammar_topic_id, instructions, due_date
+       FROM assigned_tasks
+       WHERE student_id IS NULL AND class_id = $1`,
+      [class_id]
+    );
+
+    if (existingAssignments.length > 0) {
+      // Insert assignments for this student, avoiding duplicates
+      for (const assignment of existingAssignments) {
+        try {
+          await connection.query(
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7)
+             ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
+            [
+              assignment.teacher_id,
+              user_id,
+              assignment.module_id,
+              assignment.assignment_type,
+              assignment.grammar_topic_id,
+              assignment.instructions,
+              assignment.due_date
+            ]
+          );
+        } catch (dupError) {
+          // Ignore duplicate constraint violations; continue with next assignment
+          console.warn('Duplicate assignment skipped for student', user_id, dupError.message);
+        }
+      }
+    }
     
     connection.release();
-    res.json({ success: true, message: 'Successfully joined class', class_id });
+    res.json({ success: true, message: 'Successfully joined class', class_id, retroactiveAssignments: existingAssignments.length });
   } catch (error) {
     console.error('Join class error:', error);
     res.status(500).json({ error: 'Server error joining class' });
@@ -171,6 +204,52 @@ router.delete('/:id', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Delete class error:', error);
     res.status(500).json({ error: 'Server error deleting class' });
+  }
+});
+
+// @route   DELETE api/classes/leave
+// @desc    Hard remove a student from a class and clean incomplete assignments
+// @access  Private (Student only)
+router.delete('/leave', auth, async (req, res) => {
+  const user_id = req.user.id;
+
+  try {
+    const connection = await pool.getConnection();
+
+    // Get current class_id before removal
+    const [userRows] = await connection.query('SELECT class_id FROM users WHERE id = $1', [user_id]);
+    if (userRows.length === 0 || !userRows[0].class_id) {
+      connection.release();
+      return res.status(400).json({ error: 'You are not enrolled in any class' });
+    }
+    const class_id = userRows[0].class_id;
+
+    // Hard delete from class enrollment
+    await connection.query('UPDATE users SET class_id = NULL WHERE id = $1', [user_id]);
+
+    // Clean up incomplete assigned_tasks from this class
+    // Note: We identify class-originated tasks by joining through assignments that were assigned to the class (student_id IS NULL)
+    const [result] = await connection.query(
+      `DELETE FROM assigned_tasks
+       WHERE student_id = $1
+         AND status = 'pending'
+         AND (teacher_id, module_id, assignment_type, grammar_topic_id) IN (
+           SELECT teacher_id, module_id, assignment_type, grammar_topic_id
+           FROM assigned_tasks
+           WHERE student_id IS NULL AND class_id = $2
+         )`,
+      [user_id, class_id]
+    );
+
+    connection.release();
+    res.json({
+      success: true,
+      message: 'Successfully left class and cleaned incomplete assignments',
+      cleanedAssignments: result.rowCount
+    });
+  } catch (error) {
+    console.error('Leave class error:', error);
+    res.status(500).json({ error: 'Server error leaving class' });
   }
 });
 

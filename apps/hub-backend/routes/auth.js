@@ -52,9 +52,9 @@ router.post('/login', async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [users] = await connection.query('SELECT * FROM users WHERE email = $1 AND role = $2', [email, role]);
-    connection.release();
-
+    
     if (users.length === 0) {
+      connection.release();
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
@@ -62,8 +62,20 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!isMatch) {
+      connection.release();
       return res.status(401).json({ error: 'Invalid credentials' });
     }
+
+    // Fetch class name if student is enrolled
+    let class_name = null;
+    if (user.role === 'student' && user.class_id) {
+      const [classRows] = await connection.query('SELECT class_name FROM classes WHERE id = $1', [user.class_id]);
+      if (classRows.length > 0) {
+        class_name = classRows[0].class_name;
+      }
+    }
+
+    connection.release();
 
     // Generate JWT
     const payload = {
@@ -71,7 +83,8 @@ router.post('/login', async (req, res) => {
         id: user.id,
         role: user.role,
         first_name: user.first_name,
-        last_name: user.last_name
+        last_name: user.last_name,
+        class_name
       }
     };
 

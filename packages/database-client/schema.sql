@@ -54,7 +54,8 @@ ADD COLUMN IF NOT EXISTS diagnostic_data JSONB DEFAULT '[]'::jsonb;
 CREATE TABLE IF NOT EXISTS assigned_tasks (
     id SERIAL PRIMARY KEY,
     teacher_id INTEGER NOT NULL,
-    student_id INTEGER NOT NULL,
+    student_id INTEGER DEFAULT NULL,
+    class_id INTEGER DEFAULT NULL,
     module_id INTEGER NOT NULL,
     assignment_type VARCHAR(50) DEFAULT 'writing' CHECK(assignment_type IN ('writing', 'vocabulary', 'grammar-practice')),
     grammar_topic_id VARCHAR(100),
@@ -64,8 +65,13 @@ CREATE TABLE IF NOT EXISTS assigned_tasks (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (teacher_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (module_id) REFERENCES learning_modules(id) ON DELETE CASCADE
+    FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE,
+    FOREIGN KEY (module_id) REFERENCES learning_modules(id) ON DELETE CASCADE,
+    CONSTRAINT chk_student_or_class CHECK ((student_id IS NOT NULL) XOR (class_id IS NOT NULL))
 );
+
+ALTER TABLE assigned_tasks
+ADD COLUMN IF NOT EXISTS class_id INTEGER DEFAULT NULL REFERENCES classes(id) ON DELETE CASCADE;
 
 CREATE TABLE IF NOT EXISTS grammar_progress (
     id SERIAL PRIMARY KEY,
@@ -121,6 +127,30 @@ BEGIN
         ALTER TABLE users
         ADD CONSTRAINT fk_users_class
         FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE SET NULL;
+    END IF;
+END
+$$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'fk_assigned_tasks_class'
+    ) THEN
+        ALTER TABLE assigned_tasks
+        ADD CONSTRAINT fk_assigned_tasks_class
+        FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE;
+    END IF;
+END
+$$;
+
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'chk_student_or_class'
+    ) THEN
+        ALTER TABLE assigned_tasks
+        ADD CONSTRAINT chk_student_or_class
+        CHECK ((student_id IS NOT NULL) XOR (class_id IS NOT NULL));
     END IF;
 END
 $$;

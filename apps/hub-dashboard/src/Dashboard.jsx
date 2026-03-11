@@ -63,6 +63,7 @@ export default function Dashboard() {
   const [joinCode, setJoinCode] = useState('');
   const [joinError, setJoinError] = useState('');
   const [isJoining, setIsJoining] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
     if (theme === 'dark') document.documentElement.classList.add('dark');
@@ -95,6 +96,27 @@ export default function Dashboard() {
       setJoinError(err.message);
     } finally {
       setIsJoining(false);
+    }
+  };
+
+  const handleLeaveClass = async () => {
+    if (!confirm('Are you sure you want to leave this class? Your incomplete assignments from this class will be removed.')) return;
+    setIsLeaving(true);
+    try {
+      const res = await fetch(`${apiBase}/api/classes/leave`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to leave class');
+      
+      const updatedUser = { ...user, class_id: null, class_name: null };
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+      window.location.reload();
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setIsLeaving(false);
     }
   };
 
@@ -294,11 +316,6 @@ export default function Dashboard() {
                    </div>
                    <span className="text-[10px] font-black uppercase text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{theme}</span>
                  </button>
-                 {!user.class_id && (
-                   <button onClick={() => { setIsDropdownOpen(false); setIsJoinModalOpen(true); }} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-brand-copper hover:bg-amber-50 dark:hover:bg-brand-navy rounded-xl transition-colors text-left">
-                     <Users size={16} /> Join a Class
-                   </button>
-                 )}
                  <button onClick={() => navigate('/my-stats')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                    <BarChart3 size={16} /> My Stats
                  </button>
@@ -332,9 +349,16 @@ export default function Dashboard() {
                  Welcome back, {user.first_name || 'Student'}! 👋
                </h2>
             )}
-            <p className="text-slate-500 dark:text-slate-400 font-medium">
-              Here's an overview of your recent learning progress and completed modules.
-            </p>
+            <div className="flex items-center gap-4 flex-wrap">
+              <p className="text-slate-500 dark:text-slate-400 font-medium">
+                Here's an overview of your recent learning progress and completed modules.
+              </p>
+              {user.class_name && (
+                <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-amber-200">
+                  <Users size={14} /> Class: {user.class_name}
+                </div>
+              )}
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -343,12 +367,20 @@ export default function Dashboard() {
             >
               <BarChart3 size={18} /> My Stats
             </button>
-            {!user.class_id && (
+            {!user.class_id ? (
               <button 
                 onClick={() => setIsJoinModalOpen(true)}
                 className="bg-brand-navy dark:bg-brand-copper text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-colors shadow-sm"
               >
                 <Users size={18} /> Join a Class
+              </button>
+            ) : (
+              <button 
+                onClick={handleLeaveClass}
+                disabled={isLeaving}
+                className="bg-white border border-red-200 text-red-600 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-red-50 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Users size={18} /> {isLeaving ? 'Leaving...' : 'Leave Class'}
               </button>
             )}
           </div>
