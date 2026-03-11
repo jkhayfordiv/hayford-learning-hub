@@ -7,7 +7,7 @@ const router = express.Router();
 // POST /api/ai/mark - Secure AI marking proxy
 router.post('/mark', async (req, res) => {
   try {
-    const { prompt, responseSchema } = req.body;
+    const { prompt, responseSchema, systemInstruction } = req.body;
     
     // Get API key from environment variables (secure on Render)
     const apiKey = process.env.GOOGLE_API_KEY;
@@ -25,7 +25,10 @@ router.post('/mark', async (req, res) => {
       generationConfig: {
         responseSchema: responseSchema,
         responseMimeType: 'application/json',
-      }
+      },
+      systemInstruction: systemInstruction ? {
+        parts: [{ text: systemInstruction }]
+      } : undefined
     });
     
     // Generate content
