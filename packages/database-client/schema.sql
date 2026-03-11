@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS assigned_tasks (
     FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE,
     FOREIGN KEY (module_id) REFERENCES learning_modules(id) ON DELETE CASCADE,
-    CONSTRAINT chk_student_or_class CHECK ((student_id IS NOT NULL) XOR (class_id IS NOT NULL))
+    CONSTRAINT chk_student_or_class CHECK ((student_id IS NOT NULL AND class_id IS NULL) OR (student_id IS NULL AND class_id IS NOT NULL))
 );
 
 ALTER TABLE assigned_tasks
@@ -150,7 +150,7 @@ BEGIN
     ) THEN
         ALTER TABLE assigned_tasks
         ADD CONSTRAINT chk_student_or_class
-        CHECK ((student_id IS NOT NULL) XOR (class_id IS NOT NULL));
+        CHECK ((student_id IS NOT NULL AND class_id IS NULL) OR (student_id IS NULL AND class_id IS NOT NULL));
     END IF;
 END
 $$;
