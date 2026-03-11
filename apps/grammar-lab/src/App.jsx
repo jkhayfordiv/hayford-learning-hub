@@ -112,6 +112,7 @@ export default function App() {
     if (!isLevelUnlocked(level)) return
     setActiveLevel(level)
     setAnswersById({})
+    setHasSubmitted(false)
     setQuizSeed((prev) => prev + 1)
   }
 
@@ -119,9 +120,10 @@ export default function App() {
     setAnswersById((prev) => ({ ...prev, [questionId]: optionValue }))
   }
 
+  const [hasSubmitted, setHasSubmitted] = useState(false)
   const answeredCount = quizQuestions.filter((question) => typeof answersById[question.id] === 'string').length
   const totalQuestions = quizQuestions.length
-  const isQuizComplete = totalQuestions > 0 && answeredCount === totalQuestions
+  const isQuizComplete = totalQuestions > 0 && answeredCount === totalQuestions && hasSubmitted
   const correctCount = quizQuestions.reduce((count, question) => {
     return count + (answersById[question.id] === question.correctAnswer ? 1 : 0)
   }, 0)
@@ -129,6 +131,16 @@ export default function App() {
   const hasPassedLevel = isQuizComplete && scorePercent >= PASS_THRESHOLD
   const nextLevel = Number(activeLevel) + 1
   const hasNextLevel = levelOptions.some((entry) => Number(entry.level) === nextLevel)
+
+  const handleSubmitQuiz = () => {
+    setHasSubmitted(true)
+  }
+
+  const handleRetakeQuiz = () => {
+    setAnswersById({})
+    setHasSubmitted(false)
+    setQuizSeed((prev) => prev + 1)
+  }
 
   const savePassedLevel = async (levelNumber) => {
     const token = localStorage.getItem('token')
@@ -194,6 +206,15 @@ export default function App() {
   return (
     <main className="min-h-screen bg-slate-100 text-slate-900 px-4 py-8 md:px-6 md:py-10">
       <div className="max-w-5xl mx-auto space-y-6">
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => { window.location.href = '/dashboard' }}
+            className="flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-slate-900 bg-white px-4 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 transition-colors"
+          >
+            ← Back to Dashboard
+          </button>
+        </div>
+
         <section className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
           <p className="text-[11px] uppercase tracking-[0.18em] font-black text-slate-500 mb-2">Grammar Player</p>
           <h1 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900">{topic.topicName}</h1>
@@ -239,10 +260,7 @@ export default function App() {
                 <h2 className="text-xl font-black text-slate-900">Level {selectedLevelData.level}: {selectedLevelData.title}</h2>
                 <button
                   type="button"
-                  onClick={() => {
-                    setAnswersById({})
-                    setQuizSeed((prev) => prev + 1)
-                  }}
+                  onClick={handleRetakeQuiz}
                   className="px-3 py-2 text-xs font-black uppercase tracking-wide rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200"
                 >
                   New 10 Questions
@@ -270,10 +288,7 @@ export default function App() {
                   <div className="flex flex-col sm:flex-row gap-3 mt-6">
                     <button
                       type="button"
-                      onClick={() => {
-                        setAnswersById({})
-                        setQuizSeed((prev) => prev + 1)
-                      }}
+                      onClick={handleRetakeQuiz}
                       className="px-4 py-2.5 rounded-xl text-sm font-bold border border-slate-300 bg-white hover:bg-slate-100 text-slate-800"
                     >
                       Try Again
@@ -330,7 +345,7 @@ export default function App() {
                           })}
                         </fieldset>
 
-                        {isAnswered && (
+                        {hasSubmitted && isAnswered && (
                           <div className={`mt-4 rounded-xl border p-3 ${isCorrect ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'}`}>
                             <p className={`text-sm font-black ${isCorrect ? 'text-green-700' : 'text-red-700'}`}>
                               {isCorrect ? 'Correct' : `Incorrect (Correct answer: ${correctAnswer})`}
@@ -341,6 +356,17 @@ export default function App() {
                       </article>
                     )
                   })}
+                {!hasSubmitted && answeredCount === totalQuestions && (
+                  <div className="mt-6 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={handleSubmitQuiz}
+                      className="px-6 py-3 bg-slate-900 hover:bg-slate-950 text-white font-bold rounded-xl transition-colors shadow-lg"
+                    >
+                      Submit Answers
+                    </button>
+                  </div>
+                )}
                 </div>
               )}
             </section>

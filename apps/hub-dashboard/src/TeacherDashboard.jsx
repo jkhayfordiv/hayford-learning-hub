@@ -90,6 +90,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [assignClassForm, setAssignClassForm] = useState({ email: '', class_id: '' });
   const [assignClassStatus, setAssignClassStatus] = useState({ loading: false, error: null, success: false });
   const [rosterSort, setRosterSort] = useState({ key: 'student', direction: 'asc' });
+  const [studentSearch, setStudentSearch] = useState('');
 
   const [activeTab, setActiveTab] = useState('overview');
   const [assignments, setAssignments] = useState([]);
@@ -597,9 +598,14 @@ export default function TeacherDashboard({ user, onLogout }) {
   };
 
   const currentDiagnostics = getAggregatedDiagnostics();
-  const filteredStudents = students.filter(s =>
-    activeClassId === 'all' ? true : activeClassId === 'none' ? !s.class_id : s.class_id === activeClassId
-  );
+  const filteredStudents = students.filter(s => {
+    const matchesClass = activeClassId === 'all' ? true : activeClassId === 'none' ? !s.class_id : s.class_id === activeClassId;
+    const searchLower = studentSearch.toLowerCase();
+    const matchesSearch = !studentSearch || 
+      `${s.first_name || ''} ${s.last_name || ''}`.toLowerCase().includes(searchLower) ||
+      (s.email || '').toLowerCase().includes(searchLower);
+    return matchesClass && matchesSearch;
+  });
   const classNameById = new Map(classes.map((c) => [c.id, c.class_name]));
   const getClassName = (student) => {
     if (!student.class_id) return 'Unassigned';
@@ -884,6 +890,15 @@ export default function TeacherDashboard({ user, onLogout }) {
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
           <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
             <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2"><Users className="text-slate-400" /> Student Roster</h3>
+            <div className="flex items-center gap-3">
+              <input
+                type="text"
+                placeholder="Search students..."
+                value={studentSearch}
+                onChange={(e) => setStudentSearch(e.target.value)}
+                className="px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-400 bg-white"
+              />
+            </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">

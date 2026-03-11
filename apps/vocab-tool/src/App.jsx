@@ -242,10 +242,10 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans flex flex-col">
        <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.location.href = '/dashboard'}>
           <img src="/logo.png" alt="Hayford Logo" className="w-10 h-10 object-contain mx-auto" />
           <div>
-            <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg">Vocabulary Builder</h1>
+            <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">Vocabulary Builder</h1>
             <span className="text-[10px] uppercase font-black tracking-widest text-slate-500">Adaptive Practice</span>
           </div>
         </div>

@@ -900,9 +900,9 @@ export default function App() {
             <ArrowLeft size={16} /> Return to Learning Hub
           </button>
           <div className="h-6 w-px bg-slate-200 hidden md:block"></div>
-          <div className="flex items-center gap-3 cursor-pointer" onClick={() => setView('bank')}>
+          <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.location.href = '/dashboard'}>
             <img src="/logo.png" alt="Hayford Logo" className="w-10 h-10 object-contain mx-auto" />
-            <div><h1 className="font-bold text-lg leading-none text-slate-900">IELTS Master</h1><p className="text-[10px] text-slate-500 uppercase tracking-widest font-black">Marking Suite</p></div>
+            <div><h1 className="font-bold text-lg leading-none text-slate-900 group-hover:text-slate-700 transition-colors">IELTS Master</h1><p className="text-[10px] text-slate-500 uppercase tracking-widest font-black">Marking Suite</p></div>
           </div>
         </div>
         <div className="flex items-center gap-6 w-full md:w-auto justify-between md:justify-end">
