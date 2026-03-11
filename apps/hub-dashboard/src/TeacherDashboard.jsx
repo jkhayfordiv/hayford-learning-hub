@@ -50,6 +50,23 @@ const GRAMMAR_PRACTICE_SECTIONS = [
   },
 ];
 
+const DEFAULT_ASSIGNMENT_FORM = {
+  module_id: 1,
+  student_id: 'all',
+  class_id: '',
+  assignment_type: 'writing',
+  grammar_topic_id: '',
+  instructions: '',
+  due_date: ''
+};
+
+const GRAMMAR_TOPIC_LOOKUP = GRAMMAR_PRACTICE_SECTIONS.reduce((acc, section) => {
+  for (const topic of section.topics) {
+    acc[topic.topicId] = topic.label;
+  }
+  return acc;
+}, {});
+
 export default function TeacherDashboard({ user, onLogout }) {
   const navigate = useNavigate();
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
@@ -76,7 +93,7 @@ export default function TeacherDashboard({ user, onLogout }) {
 
   const [activeTab, setActiveTab] = useState('overview');
   const [assignments, setAssignments] = useState([]);
-  const [assignmentForm, setAssignmentForm] = useState({ module_id: 1, student_id: 'all', class_id: '', assignment_type: 'writing', instructions: '', due_date: '' });
+  const [assignmentForm, setAssignmentForm] = useState(DEFAULT_ASSIGNMENT_FORM);
   const [assignmentStatus, setAssignmentStatus] = useState({ loading: false, error: null, success: false });
   const [expandedAssignmentId, setExpandedAssignmentId] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -231,6 +248,19 @@ export default function TeacherDashboard({ user, onLogout }) {
     try {
       const token = localStorage.getItem('token');
       const payload = { ...assignmentForm };
+
+      if (payload.assignment_type === 'grammar-practice' && !payload.grammar_topic_id) {
+        throw new Error('Please choose a grammar topic for Grammar Practice assignments.');
+      }
+
+      if (payload.assignment_type === 'grammar-practice' && !payload.instructions?.trim()) {
+        const topicLabel = GRAMMAR_TOPIC_LOOKUP[payload.grammar_topic_id] || payload.grammar_topic_id;
+        payload.instructions = `Grammar Practice: ${topicLabel}`;
+      }
+
+      if (payload.assignment_type !== 'grammar-practice') {
+        payload.grammar_topic_id = null;
+      }
       
       // Clear out the mutually exclusive fields before sending to API 
       if (payload.student_id && payload.student_id !== 'all' && !payload.student_id.startsWith('class_')) {
@@ -251,7 +281,7 @@ export default function TeacherDashboard({ user, onLogout }) {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Failed to create assignment');
       setAssignmentStatus({ loading: false, error: null, success: true });
-      setAssignmentForm({ module_id: 1, student_id: 'all', class_id: '', assignment_type: 'writing', instructions: '', due_date: '' });
+      setAssignmentForm(DEFAULT_ASSIGNMENT_FORM);
       fetchAssignments();
       setTimeout(() => setAssignmentStatus(prev => ({...prev, success: false})), 3000);
     } catch (err) {
@@ -1004,11 +1034,43 @@ export default function TeacherDashboard({ user, onLogout }) {
                     
                     <div className="space-y-1">
                       <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assignment Type</label>
-                      <select value={assignmentForm.assignment_type} onChange={e => setAssignmentForm({...assignmentForm, assignment_type: e.target.value})} className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none">
+                      <select
+                        value={assignmentForm.assignment_type}
+                        onChange={e => setAssignmentForm({
+                          ...assignmentForm,
+                          assignment_type: e.target.value,
+                          grammar_topic_id: e.target.value === 'grammar-practice' ? assignmentForm.grammar_topic_id : ''
+                        })}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                      >
                         <option value="writing">IELTS Task 1 Academic</option>
                         <option value="vocabulary">Vocabulary Builder</option>
+                        <option value="grammar-practice">Grammar Practice</option>
                       </select>
                     </div>
+
+                    {assignmentForm.assignment_type === 'grammar-practice' && (
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Grammar Topic</label>
+                        <select
+                          required
+                          value={assignmentForm.grammar_topic_id}
+                          onChange={e => setAssignmentForm({ ...assignmentForm, grammar_topic_id: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                        >
+                          <option value="">Select a grammar topic</option>
+                          {GRAMMAR_PRACTICE_SECTIONS.map((section) => (
+                            <optgroup key={section.id} label={section.title}>
+                              {section.topics.map((topic) => (
+                                <option key={topic.topicId} value={topic.topicId}>
+                                  {topic.label}
+                                </option>
+                              ))}
+                            </optgroup>
+                          ))}
+                        </select>
+                      </div>
+                    )}
 
                     <div className="space-y-1">
                       <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assign To</label>
