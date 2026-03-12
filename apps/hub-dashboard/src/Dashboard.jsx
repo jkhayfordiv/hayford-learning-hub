@@ -471,38 +471,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Interactive Learning Tools Section */}
-        <div className="mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
-           <h3 className="font-black text-xl text-slate-900 tracking-tight mb-4 flex items-center gap-2">Interactive Learning Tools</h3>
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div 
-                 onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}`}
-                 className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-400 transition-all cursor-pointer group flex items-start gap-6"
-              >
-                 <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-slate-900 transition-colors border border-amber-100 group-hover:border-slate-900">
-                    <PenTool className="text-amber-700 group-hover:text-amber-500 w-8 h-8 transition-colors" />
-                 </div>
-                 <div>
-                    <h4 className="text-xl font-black text-slate-900 mb-2">IELTS Writing Master</h4>
-                    <p className="text-slate-500 font-medium">Practice Academic Task 1 with real-time AI feedback and band score estimations.</p>
-                 </div>
-              </div>
-              
-              <div 
-                 onClick={() => window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}`}
-                 className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-lg hover:border-amber-300 transition-all cursor-pointer group flex items-start gap-6"
-              >
-                 <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center shrink-0 group-hover:bg-amber-600 transition-colors border border-amber-100 group-hover:border-amber-600">
-                    <BookOpen className="text-amber-700 group-hover:text-white w-8 h-8 transition-colors" />
-                 </div>
-                 <div>
-                    <h4 className="text-xl font-black text-slate-900 mb-2">Vocabulary Builder</h4>
-                    <p className="text-slate-500 font-medium">Sharpen your vocabulary skills by writing context-aware sentences graded by AI.</p>
-                 </div>
-              </div>
-           </div>
-        </div>
-
         {/* Metrics Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
