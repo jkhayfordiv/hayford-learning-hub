@@ -1067,7 +1067,7 @@ function FeedbackView({ feedback, writingTask, originalText, saveMessage, onRese
                         <span className="text-xs font-bold text-indigo-900">{tag}</span>
                         {mappedTopicId && (
                           <a
-                            href={`../grammar-tool/index.html?topicId=${mappedTopicId}`}
+                            href={`../grammar-lab/index.html?topicId=${mappedTopicId}`}
                             className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wide text-white bg-indigo-600 hover:bg-indigo-700 px-2 py-1 rounded-lg transition-colors"
                           >
                             More Practice
