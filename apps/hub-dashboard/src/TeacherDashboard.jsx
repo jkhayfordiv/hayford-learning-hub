@@ -134,6 +134,13 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [institutionsSearch, setInstitutionsSearch] = useState('');
   const [institutionsPage, setInstitutionsPage] = useState(1);
   const INSTITUTIONS_PER_PAGE = 5;
+  
+  // Classes Directory state
+  const [allClasses, setAllClasses] = useState([]);
+  const [classesSearch, setClassesSearch] = useState('');
+  const [classesPage, setClassesPage] = useState(1);
+  const CLASSES_PER_PAGE = 10;
+  const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -339,6 +346,25 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
+  const fetchAllClasses = async () => {
+    if (user.role !== 'super_admin' && user.role !== 'admin') return;
+    setPlatformLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/classes/all`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAllClasses(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch all classes', err);
+    } finally {
+      setPlatformLoading(false);
+    }
+  };
+
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     if (!selectedUser) return;
@@ -386,7 +412,7 @@ export default function TeacherDashboard({ user, onLogout }) {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`${apiBase}/api/users/all/${userId}`, {
+      const res = await fetch(`${apiBase}/api/users/${userId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -960,6 +986,56 @@ export default function TeacherDashboard({ user, onLogout }) {
         </div>
       </header>
 
+      {/* Admin/SuperAdmin Navigation Bar */}
+      {(user.role === 'admin' || user.role === 'super_admin') && (
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 border-b border-purple-700 px-8 py-3 flex gap-6 sticky top-[73px] z-30">
+          <button
+            onClick={() => setNavigationView('dashboard')}
+            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+              navigationView === 'dashboard'
+                ? 'bg-white text-purple-700 shadow-lg'
+                : 'text-white hover:bg-white/20'
+            }`}
+          >
+            Dashboard
+          </button>
+          {user.role === 'super_admin' && (
+            <button
+              onClick={() => { setNavigationView('institutions'); fetchInstitutions(); }}
+              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                navigationView === 'institutions'
+                  ? 'bg-white text-purple-700 shadow-lg'
+                  : 'text-white hover:bg-white/20'
+              }`}
+            >
+              Institutions
+            </button>
+          )}
+          {user.role === 'super_admin' && (
+            <button
+              onClick={() => { setNavigationView('users'); fetchGlobalUsers(); }}
+              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                navigationView === 'users'
+                  ? 'bg-white text-purple-700 shadow-lg'
+                  : 'text-white hover:bg-white/20'
+              }`}
+            >
+              Global Users
+            </button>
+          )}
+          <button
+            onClick={() => { setNavigationView('classes'); fetchAllClasses(); }}
+            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+              navigationView === 'classes'
+                ? 'bg-white text-purple-700 shadow-lg'
+                : 'text-white hover:bg-white/20'
+            }`}
+          >
+            Classes Directory
+          </button>
+        </div>
+      )}
+
       {/* Tabs */}
       <div className="bg-white border-b border-slate-200 px-8 flex gap-8 sticky top-[73px] z-30">
         <button 
@@ -994,7 +1070,190 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-8 py-12">
-        {activeTab === 'overview' ? (
+        {/* Navigation Views for Admin/SuperAdmin */}
+        {(user.role === 'admin' || user.role === 'super_admin') && navigationView !== 'dashboard' ? (
+          <>
+            {/* Classes Directory View */}
+            {navigationView === 'classes' && (
+              <div className="space-y-6">
+                <div className="flex justify-between items-end mb-8">
+                  <div>
+                    <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Classes Directory</h2>
+                    <p className="text-slate-500 font-medium">
+                      {user.role === 'super_admin' ? 'View and manage all classes across all institutions' : 'View and manage classes in your institution'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                  <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+                    <input
+                      type="text"
+                      placeholder="Search classes by name, teacher, or institution..."
+                      value={classesSearch}
+                      onChange={e => {
+                        setClassesSearch(e.target.value);
+                        setClassesPage(1);
+                      }}
+                      className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                    />
+                  </div>
+                  <div className="p-8">
+                    {platformLoading ? (
+                      <div className="text-center py-12 text-slate-400">Loading classes...</div>
+                    ) : allClasses.length === 0 ? (
+                      <div className="text-center py-12 text-slate-400">No classes found.</div>
+                    ) : (
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                              <th className="px-6 py-4">Class Name</th>
+                              <th className="px-6 py-4">Teacher</th>
+                              {user.role === 'super_admin' && <th className="px-6 py-4">Institution</th>}
+                              <th className="px-6 py-4">Students</th>
+                              <th className="px-6 py-4">Start Date</th>
+                              <th className="px-6 py-4">End Date</th>
+                              <th className="px-6 py-4">Class Code</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                            {(() => {
+                              const filtered = allClasses.filter(cls => {
+                                const searchLower = classesSearch.toLowerCase();
+                                return !classesSearch || 
+                                  cls.class_name.toLowerCase().includes(searchLower) ||
+                                  `${cls.teacher_first_name} ${cls.teacher_last_name}`.toLowerCase().includes(searchLower) ||
+                                  (cls.institution_name && cls.institution_name.toLowerCase().includes(searchLower));
+                              });
+                              
+                              const startIdx = (classesPage - 1) * CLASSES_PER_PAGE;
+                              const endIdx = startIdx + CLASSES_PER_PAGE;
+                              const paginated = filtered.slice(startIdx, endIdx);
+                              
+                              return paginated.map((cls) => (
+                                <tr key={cls.id} className="hover:bg-slate-50 transition-colors">
+                                  <td className="px-6 py-4 font-bold text-slate-900">{cls.class_name}</td>
+                                  <td className="px-6 py-4 text-slate-600">
+                                    {cls.teacher_first_name} {cls.teacher_last_name}
+                                  </td>
+                                  {user.role === 'super_admin' && (
+                                    <td className="px-6 py-4 text-slate-600">{cls.institution_name || 'N/A'}</td>
+                                  )}
+                                  <td className="px-6 py-4 text-center">
+                                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold">
+                                      {cls.student_count || 0}
+                                    </span>
+                                  </td>
+                                  <td className="px-6 py-4 text-slate-500">
+                                    {cls.start_date ? new Date(cls.start_date).toLocaleDateString() : 'N/A'}
+                                  </td>
+                                  <td className="px-6 py-4 text-slate-500">
+                                    {cls.end_date ? new Date(cls.end_date).toLocaleDateString() : 'Ongoing'}
+                                  </td>
+                                  <td className="px-6 py-4">
+                                    <code className="bg-purple-100 text-purple-700 px-3 py-1 rounded font-mono text-xs font-bold">
+                                      {cls.class_code}
+                                    </code>
+                                  </td>
+                                </tr>
+                              ));
+                            })()}
+                          </tbody>
+                        </table>
+                        
+                        {/* Pagination */}
+                        {(() => {
+                          const filtered = allClasses.filter(cls => {
+                            const searchLower = classesSearch.toLowerCase();
+                            return !classesSearch || 
+                              cls.class_name.toLowerCase().includes(searchLower) ||
+                              `${cls.teacher_first_name} ${cls.teacher_last_name}`.toLowerCase().includes(searchLower) ||
+                              (cls.institution_name && cls.institution_name.toLowerCase().includes(searchLower));
+                          });
+                          const totalPages = Math.ceil(filtered.length / CLASSES_PER_PAGE);
+                          
+                          if (totalPages <= 1) return null;
+                          
+                          return (
+                            <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-200">
+                              <div className="text-sm text-slate-600">
+                                Showing {((classesPage - 1) * CLASSES_PER_PAGE) + 1} - {Math.min(classesPage * CLASSES_PER_PAGE, filtered.length)} of {filtered.length} classes
+                              </div>
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => setClassesPage(prev => Math.max(1, prev - 1))}
+                                  disabled={classesPage === 1}
+                                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                                >
+                                  Previous
+                                </button>
+                                <div className="flex items-center gap-1">
+                                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                    <button
+                                      key={page}
+                                      onClick={() => setClassesPage(page)}
+                                      className={`px-3 py-2 font-bold rounded-lg transition-colors ${
+                                        page === classesPage
+                                          ? 'bg-purple-600 text-white'
+                                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                                      }`}
+                                    >
+                                      {page}
+                                    </button>
+                                  ))}
+                                </div>
+                                <button
+                                  onClick={() => setClassesPage(prev => Math.min(totalPages, prev + 1))}
+                                  disabled={classesPage === totalPages}
+                                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Institutions View - moved from Platform Management tab */}
+            {navigationView === 'institutions' && user.role === 'super_admin' && (
+              <div className="space-y-6">
+                <div className="flex justify-between items-end mb-8">
+                  <div>
+                    <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Institutions Directory</h2>
+                    <p className="text-slate-500 font-medium">Manage all institutions in the platform</p>
+                  </div>
+                  <button
+                    onClick={() => setIsCreateInstitutionModalOpen(true)}
+                    className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-bold text-sm transition-colors shadow-lg"
+                  >
+                    <PlusCircle size={16} /> Create New Institution
+                  </button>
+                </div>
+                {/* Institutions table content will be rendered here - reuse existing code */}
+              </div>
+            )}
+
+            {/* Global Users View - moved from Platform Management tab */}
+            {navigationView === 'users' && user.role === 'super_admin' && (
+              <div className="space-y-6">
+                <div className="flex justify-between items-end mb-8">
+                  <div>
+                    <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Global Users Directory</h2>
+                    <p className="text-slate-500 font-medium">Manage all users across all institutions</p>
+                  </div>
+                </div>
+                {/* Global users table content will be rendered here - reuse existing code */}
+              </div>
+            )}
+          </>
+        ) : activeTab === 'overview' ? (
           <>
         <div className="flex justify-between items-end mb-8">
           <div>

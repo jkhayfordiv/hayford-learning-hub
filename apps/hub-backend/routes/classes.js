@@ -37,6 +37,61 @@ router.post('/', requireTeacher, async (req, res) => {
   }
 });
 
+// @route   GET api/classes/all
+// @desc    Get all classes for Classes Directory (SuperAdmin: all, Admin: institution only)
+// @access  Private (Admin/SuperAdmin only)
+router.get('/all', requireTeacher, async (req, res) => {
+  const role = req.user.role;
+  const institution_id = req.user.institution_id;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    let query, params;
+    
+    if (role === 'super_admin') {
+      // SuperAdmin sees all classes across all institutions
+      query = `
+        SELECT c.*, i.name as institution_name, 
+               u.first_name as teacher_first_name, u.last_name as teacher_last_name,
+               COUNT(DISTINCT students.id) as student_count
+        FROM classes c
+        LEFT JOIN institutions i ON c.institution_id = i.id
+        LEFT JOIN users u ON c.teacher_id = u.id
+        LEFT JOIN users students ON students.class_id = c.id AND students.role = 'student'
+        GROUP BY c.id, i.name, u.first_name, u.last_name
+        ORDER BY c.created_at DESC
+      `;
+      params = [];
+    } else if (role === 'admin' && institution_id) {
+      // Admin sees only classes in their institution
+      query = `
+        SELECT c.*, i.name as institution_name,
+               u.first_name as teacher_first_name, u.last_name as teacher_last_name,
+               COUNT(DISTINCT students.id) as student_count
+        FROM classes c
+        LEFT JOIN institutions i ON c.institution_id = i.id
+        LEFT JOIN users u ON c.teacher_id = u.id
+        LEFT JOIN users students ON students.class_id = c.id AND students.role = 'student'
+        WHERE c.institution_id = $1
+        GROUP BY c.id, i.name, u.first_name, u.last_name
+        ORDER BY c.created_at DESC
+      `;
+      params = [institution_id];
+    } else {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied' });
+    }
+
+    const [classes] = await connection.query(query, params);
+    connection.release();
+    res.json(classes);
+  } catch (error) {
+    console.error('Fetch all classes error:', error);
+    res.status(500).json({ error: 'Server error fetching classes' });
+  }
+});
+
 // @route   GET api/classes
 // @desc    Get classes (for teacher: their created classes, for student: their enrolled class)
 // @access  Private
