@@ -59,7 +59,18 @@ router.post('/login', async (req, res) => {
 
   try {
     const connection = await pool.getConnection();
-    const [users] = await connection.query('SELECT * FROM users WHERE email = $1 AND role = $2', [email, role]);
+    
+    // Allow teacher/admin/super_admin to login with 'teacher' role selection
+    let query, params;
+    if (role === 'teacher') {
+      query = 'SELECT * FROM users WHERE email = $1 AND role IN ($2, $3, $4)';
+      params = [email, 'teacher', 'admin', 'super_admin'];
+    } else {
+      query = 'SELECT * FROM users WHERE email = $1 AND role = $2';
+      params = [email, role];
+    }
+    
+    const [users] = await connection.query(query, params);
     
     if (users.length === 0) {
       connection.release();
