@@ -10,7 +10,7 @@ router.post('/mark', async (req, res) => {
     const { prompt, responseSchema, systemInstruction } = req.body;
     
     // Get API key from environment variables (secure on Render)
-    const apiKey = process.env.GOOGLE_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     
     if (!apiKey) {
       return res.status(500).json({ 
