@@ -21,7 +21,10 @@ export default function Profile({ user, onLogout }) {
   };
 
   const handleDeleteAccount = async () => {
-    if (user?.role !== 'student') return;
+    if (user?.role !== 'student') {
+      alert('Only student accounts can be deleted.');
+      return;
+    }
     const confirmed = window.confirm('Delete your account permanently? This will remove your submissions and cannot be undone.');
     if (!confirmed) return;
 
@@ -29,6 +32,10 @@ export default function Profile({ user, onLogout }) {
     setIsDeletingAccount(true);
     try {
       const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No authentication token found. Please log in again.');
+      }
+
       const res = await fetch(`${apiBase}/api/users/me`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
@@ -44,11 +51,15 @@ export default function Profile({ user, onLogout }) {
       }
 
       if (!res.ok) {
-        throw new Error(data.error || data.msg || (text || 'Failed to delete account'));
+        console.error('Delete account failed:', { status: res.status, data, text });
+        throw new Error(data.error || data.msg || text || 'Failed to delete account');
       }
 
+      // Successfully deleted
+      alert('Your account has been deleted successfully.');
       onLogout();
     } catch (err) {
+      console.error('Delete account error:', err);
       setDeleteError(err.message || 'Failed to delete account');
       setIsDeletingAccount(false);
     }
