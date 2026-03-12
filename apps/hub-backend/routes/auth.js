@@ -6,15 +6,77 @@ const { pool } = require('../db');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_hayford_key_2026';
 
-// Register User - STUDENTS ONLY (Multi-Tenant SaaS)
+// Register User - STUDENTS ONLY (Multi-Tenant SaaS) OR Teacher/Admin creation by authorized users
 router.post('/register', async (req, res) => {
-  const { email, password, first_name, last_name, role } = req.body;
+  const { email, password, first_name, last_name, role, institution_id } = req.body;
   
   if (!email || !password || !first_name || !last_name) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
-  // PHASE 2.1: Only allow student self-registration
+  // Check if this is a teacher/admin creation request
+  const isCreatingTeacherOrAdmin = role && (role === 'teacher' || role === 'admin');
+  
+  if (isCreatingTeacherOrAdmin) {
+    // Verify the requester is authorized (admin or super_admin)
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ error: 'Authentication required to create teacher/admin accounts' });
+    }
+
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      const requesterRole = decoded.user.role;
+      
+      if (requesterRole !== 'admin' && requesterRole !== 'super_admin') {
+        return res.status(403).json({ 
+          error: 'Only admins can create teacher accounts' 
+        });
+      }
+
+      // Determine institution_id: super_admin can specify, admin uses their own
+      let targetInstitutionId;
+      if (requesterRole === 'super_admin') {
+        // Super admin must provide institution_id
+        if (!institution_id) {
+          return res.status(400).json({ error: 'Super admin must specify institution_id' });
+        }
+        targetInstitutionId = institution_id;
+      } else {
+        // Regular admin uses their own institution_id
+        targetInstitutionId = decoded.user.institution_id;
+      }
+
+      // Create teacher/admin account
+      const connection = await pool.getConnection();
+      
+      const [existing] = await connection.query('SELECT id FROM users WHERE email = $1', [email]);
+      if (existing.length > 0) {
+        connection.release();
+        return res.status(409).json({ error: 'Email already registered' });
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      const password_hash = await bcrypt.hash(password, salt);
+      
+      const [result] = await connection.query(
+        'INSERT INTO users (first_name, last_name, email, password_hash, role, institution_id, class_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
+        [first_name, last_name, email, password_hash, role, targetInstitutionId, null]
+      );
+      
+      connection.release();
+      return res.status(201).json({ message: `${role} account created successfully`, userId: result.insertId });
+      
+    } catch (err) {
+      if (err.name === 'JsonWebTokenError') {
+        return res.status(401).json({ error: 'Invalid token' });
+      }
+      console.error(err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+  }
+
+  // Student self-registration
   if (role && role !== 'student') {
     return res.status(403).json({ 
       error: 'Teacher and Admin accounts must be created by your Institution Administrator. Please contact your admin or support@hayfordglobal.com.' 
@@ -24,18 +86,15 @@ router.post('/register', async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
-    // Check if user already exists (email is now unique across all roles)
     const [existing] = await connection.query('SELECT id FROM users WHERE email = $1', [email]);
     if (existing.length > 0) {
       connection.release();
       return res.status(409).json({ error: 'Email already registered' });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt);
     
-    // Insert new student (institution_id and class_id are NULL until they join a class)
     const [result] = await connection.query(
       'INSERT INTO users (first_name, last_name, email, password_hash, role, institution_id, class_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
       [first_name, last_name, email, password_hash, 'student', null, null]

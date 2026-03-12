@@ -94,7 +94,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [studentSearch, setStudentSearch] = useState('');
 
   const [activeTab, setActiveTab] = useState('overview');
-  const [newTeacherForm, setNewTeacherForm] = useState({ first_name: '', last_name: '', email: '', password: '' });
+  const [newTeacherForm, setNewTeacherForm] = useState({ first_name: '', last_name: '', email: '', password: '', institution_id: '' });
   const [createTeacherStatus, setCreateTeacherStatus] = useState({ loading: false, error: null, success: false });
   const [assignments, setAssignments] = useState([]);
   const [assignmentForm, setAssignmentForm] = useState(DEFAULT_ASSIGNMENT_FORM);
@@ -320,7 +320,10 @@ export default function TeacherDashboard({ user, onLogout }) {
       });
       if (res.ok) {
         const data = await res.json();
+        console.log('Global Users fetched:', data);
         setGlobalUsers(data);
+      } else {
+        console.error('Failed to fetch global users - HTTP', res.status);
       }
     } catch (err) {
       console.error('Failed to fetch global users', err);
@@ -754,7 +757,7 @@ export default function TeacherDashboard({ user, onLogout }) {
       if (!res.ok) throw new Error(data.error || 'Failed to create teacher account');
 
       setCreateTeacherStatus({ loading: false, error: null, success: true });
-      setNewTeacherForm({ first_name: '', last_name: '', email: '', password: '' });
+      setNewTeacherForm({ first_name: '', last_name: '', email: '', password: '', institution_id: '' });
 
       setTimeout(() => {
         setCreateTeacherStatus(prev => ({ ...prev, success: false }));
@@ -1607,6 +1610,23 @@ export default function TeacherDashboard({ user, onLogout }) {
                         placeholder="teacher@school.edu"
                       />
                     </div>
+
+                    {user.role === 'super_admin' && (
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution</label>
+                        <select
+                          required
+                          value={newTeacherForm.institution_id}
+                          onChange={e => setNewTeacherForm({...newTeacherForm, institution_id: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
+                        >
+                          <option value="">Select Institution</option>
+                          {institutions.map(inst => (
+                            <option key={inst.id} value={inst.id}>{inst.name}</option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
 
                     <div className="space-y-1">
                       <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Temporary Password</label>
