@@ -63,6 +63,10 @@ app.use('/api/grammar-progress', grammarProgressRoutes);
 const aiRoutes = require('./routes/ai');
 app.use('/api/ai', aiRoutes);
 
+// Bulk action routes (Multi-Tenant SaaS)
+const bulkRoutes = require('./routes/bulk');
+app.use('/api/bulk', bulkRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });

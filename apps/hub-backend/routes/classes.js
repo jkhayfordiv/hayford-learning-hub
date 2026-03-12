@@ -10,9 +10,14 @@ const { pool } = require('../db');
 router.post('/', requireTeacher, async (req, res) => {
   const { class_name, start_date, end_date } = req.body;
   const teacher_id = req.user.id;
+  const institution_id = req.user.institution_id;
   
   if (!class_name) {
     return res.status(400).json({ error: 'Class name is required' });
+  }
+
+  if (!institution_id) {
+    return res.status(403).json({ error: 'You must be assigned to an institution to create classes. Contact your administrator.' });
   }
 
   try {
@@ -20,8 +25,8 @@ router.post('/', requireTeacher, async (req, res) => {
 
     const connection = await pool.getConnection();
     const [result] = await connection.query(
-      'INSERT INTO classes (class_name, class_code, teacher_id, start_date, end_date) VALUES ($1, $2, $3, $4, $5) RETURNING id',
-      [class_name, class_code, teacher_id, start_date || null, end_date || null]
+      'INSERT INTO classes (class_name, class_code, teacher_id, institution_id, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+      [class_name, class_code, teacher_id, institution_id, start_date || null, end_date || null]
     );
     
     connection.release();
@@ -38,6 +43,7 @@ router.post('/', requireTeacher, async (req, res) => {
 router.get('/', auth, async (req, res) => {
   const user_id = req.user.id;
   const role = req.user.role;
+  const institution_id = req.user.institution_id;
 
   try {
     const connection = await pool.getConnection();
@@ -45,12 +51,28 @@ router.get('/', auth, async (req, res) => {
     if (role === 'teacher' || role === 'admin') {
       const includeArchived = String(req.query.include_archived || '').toLowerCase() === 'true';
 
-      const [classes] = await connection.query(
-        includeArchived
+      // PHASE 2.2: Tenant isolation - admin sees all classes in their institution
+      let query, params;
+      if (role === 'admin' && institution_id) {
+        query = includeArchived
+          ? 'SELECT * FROM classes WHERE institution_id = $1 ORDER BY created_at DESC'
+          : 'SELECT * FROM classes WHERE institution_id = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
+        params = [institution_id];
+      } else if (role === 'super_admin') {
+        // Super admin sees everything
+        query = includeArchived
+          ? 'SELECT * FROM classes ORDER BY created_at DESC'
+          : 'SELECT * FROM classes WHERE (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
+        params = [];
+      } else {
+        // Teacher sees only their own classes
+        query = includeArchived
           ? 'SELECT * FROM classes WHERE teacher_id = $1 ORDER BY created_at DESC'
-          : "SELECT * FROM classes WHERE teacher_id = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC",
-        [user_id]
-      );
+          : 'SELECT * FROM classes WHERE teacher_id = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
+        params = [user_id];
+      }
+
+      const [classes] = await connection.query(query, params);
       connection.release();
       return res.json(classes);
     } else {
@@ -84,8 +106,9 @@ router.post('/join', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     // Codes are generated as uppercase hex
+    // PHASE 2.4: Fetch institution_id along with class_id
     const [classes] = await connection.query(
-      'SELECT id FROM classes WHERE class_code = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE)',
+      'SELECT id, institution_id FROM classes WHERE class_code = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE)',
       [class_code.toUpperCase()]
     );
     
@@ -95,7 +118,10 @@ router.post('/join', auth, async (req, res) => {
     }
 
     const class_id = classes[0].id;
-    await connection.query('UPDATE users SET class_id = $1 WHERE id = $2', [class_id, user_id]);
+    const institution_id = classes[0].institution_id;
+    
+    // PHASE 2.4: Update both class_id AND institution_id when student joins
+    await connection.query('UPDATE users SET class_id = $1, institution_id = $2 WHERE id = $3', [class_id, institution_id, user_id]);
 
     // Retroactively assign existing class assignments to the new student
     const [existingAssignments] = await connection.query(

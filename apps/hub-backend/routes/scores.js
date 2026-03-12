@@ -154,28 +154,65 @@ const requireTeacher = require('../middleware/requireTeacher');
 // @desc    Get class overview for teachers (all students and their aggregates)
 // @access  Private (Teacher/Admin only)
 router.get('/class-overview', requireTeacher, async (req, res) => {
+  const actor_role = req.user.role;
+  const actor_id = req.user.id;
+  const actor_institution_id = req.user.institution_id;
+
   try {
     const connection = await pool.getConnection();
     
-    // Query aggregates data per student (include class_id so teacher can filter by class)
-    const [overview] = await connection.query(`
-      SELECT 
-        u.id, 
-        u.first_name, 
-        u.last_name, 
-        u.email,
-        u.class_id,
-        COUNT(s.id) as assignments_completed,
-        MAX(s.completed_at) as last_active_date,
-        AVG(s.overall_score) as average_band_score,
-        STRING_AGG(CAST(s.diagnostic_data AS TEXT), '||') as all_diagnostic_data
-      FROM users u
-      LEFT JOIN student_scores s ON u.id = s.student_id
-      WHERE u.role = 'student'
-      GROUP BY u.id, u.class_id
-      ORDER BY last_active_date DESC
-    `);
+    // PHASE 2.2: Tenant isolation based on role
+    let query, params;
     
+    if (actor_role === 'super_admin') {
+      // Super admin sees all students
+      query = `
+        SELECT 
+          u.id, u.first_name, u.last_name, u.email, u.class_id, u.institution_id,
+          COUNT(s.id) as assignments_completed,
+          MAX(s.completed_at) as last_active_date,
+          AVG(s.overall_score) as average_band_score,
+          STRING_AGG(CAST(s.diagnostic_data AS TEXT), '||') as all_diagnostic_data
+        FROM users u
+        LEFT JOIN student_scores s ON u.id = s.student_id
+        WHERE u.role = 'student'
+        GROUP BY u.id, u.class_id, u.institution_id
+        ORDER BY last_active_date DESC`;
+      params = [];
+    } else if (actor_role === 'admin' && actor_institution_id) {
+      // Admin sees all students in their institution
+      query = `
+        SELECT 
+          u.id, u.first_name, u.last_name, u.email, u.class_id, u.institution_id,
+          COUNT(s.id) as assignments_completed,
+          MAX(s.completed_at) as last_active_date,
+          AVG(s.overall_score) as average_band_score,
+          STRING_AGG(CAST(s.diagnostic_data AS TEXT), '||') as all_diagnostic_data
+        FROM users u
+        LEFT JOIN student_scores s ON u.id = s.student_id
+        WHERE u.role = 'student' AND u.institution_id = $1
+        GROUP BY u.id, u.class_id, u.institution_id
+        ORDER BY last_active_date DESC`;
+      params = [actor_institution_id];
+    } else {
+      // Teacher sees only students in classes they created
+      query = `
+        SELECT 
+          u.id, u.first_name, u.last_name, u.email, u.class_id, u.institution_id,
+          COUNT(s.id) as assignments_completed,
+          MAX(s.completed_at) as last_active_date,
+          AVG(s.overall_score) as average_band_score,
+          STRING_AGG(CAST(s.diagnostic_data AS TEXT), '||') as all_diagnostic_data
+        FROM users u
+        LEFT JOIN student_scores s ON u.id = s.student_id
+        JOIN classes c ON u.class_id = c.id
+        WHERE u.role = 'student' AND c.teacher_id = $1
+        GROUP BY u.id, u.class_id, u.institution_id
+        ORDER BY last_active_date DESC`;
+      params = [actor_id];
+    }
+    
+    const [overview] = await connection.query(query, params);
     connection.release();
     res.json(overview);
     
@@ -189,25 +226,53 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
 // @desc    Get the most recent submissions across all students
 // @access  Private (Teacher/Admin only)
 router.get('/recent', requireTeacher, async (req, res) => {
+  const actor_role = req.user.role;
+  const actor_id = req.user.id;
+  const actor_institution_id = req.user.institution_id;
+
   try {
     const connection = await pool.getConnection();
-    const [recent] = await connection.query(`
-      SELECT 
-        s.id, 
-        s.completed_at, 
-        s.overall_score,
-        s.module_id,
-        m.module_name,
-        m.module_type,
-        u.first_name as student_first_name, 
-        u.last_name as student_last_name
-      FROM student_scores s
-      JOIN users u ON s.student_id = u.id
-      JOIN learning_modules m ON s.module_id = m.id
-      ORDER BY s.completed_at DESC
-      LIMIT 10
-    `);
     
+    // PHASE 2.2: Tenant isolation
+    let query, params;
+    
+    if (actor_role === 'super_admin') {
+      query = `
+        SELECT s.id, s.completed_at, s.overall_score, s.module_id,
+               m.module_name, m.module_type,
+               u.first_name as student_first_name, u.last_name as student_last_name
+        FROM student_scores s
+        JOIN users u ON s.student_id = u.id
+        JOIN learning_modules m ON s.module_id = m.id
+        ORDER BY s.completed_at DESC LIMIT 10`;
+      params = [];
+    } else if (actor_role === 'admin' && actor_institution_id) {
+      query = `
+        SELECT s.id, s.completed_at, s.overall_score, s.module_id,
+               m.module_name, m.module_type,
+               u.first_name as student_first_name, u.last_name as student_last_name
+        FROM student_scores s
+        JOIN users u ON s.student_id = u.id
+        JOIN learning_modules m ON s.module_id = m.id
+        WHERE u.institution_id = $1
+        ORDER BY s.completed_at DESC LIMIT 10`;
+      params = [actor_institution_id];
+    } else {
+      // Teacher sees only their class students
+      query = `
+        SELECT s.id, s.completed_at, s.overall_score, s.module_id,
+               m.module_name, m.module_type,
+               u.first_name as student_first_name, u.last_name as student_last_name
+        FROM student_scores s
+        JOIN users u ON s.student_id = u.id
+        JOIN learning_modules m ON s.module_id = m.id
+        JOIN classes c ON u.class_id = c.id
+        WHERE c.teacher_id = $1
+        ORDER BY s.completed_at DESC LIMIT 10`;
+      params = [actor_id];
+    }
+    
+    const [recent] = await connection.query(query, params);
     connection.release();
     res.json(recent);
     
@@ -221,12 +286,19 @@ router.get('/recent', requireTeacher, async (req, res) => {
 // @desc    Get all detailed submissions for a specific student id
 // @access  Private (Teacher/Admin only)
 router.get('/student/:id', requireTeacher, async (req, res) => {
+  const actor_role = req.user.role;
+  const actor_id = req.user.id;
+  const actor_institution_id = req.user.institution_id;
+
   try {
     const student_id = req.params.id;
     const connection = await pool.getConnection();
     
-    // First, verify the user is a student to prevent looking up other teachers
-    const [userCheck] = await connection.query('SELECT id, first_name, last_name, email, role FROM users WHERE id = $1', [student_id]);
+    // PHASE 2.2: Verify the user is a student AND belongs to actor's scope
+    const [userCheck] = await connection.query(
+      'SELECT id, first_name, last_name, email, role, institution_id, class_id FROM users WHERE id = $1',
+      [student_id]
+    );
     
     if (userCheck.length === 0 || userCheck[0].role !== 'student') {
       connection.release();
@@ -234,6 +306,24 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
     }
 
     const studentData = userCheck[0];
+    
+    // Tenant isolation check
+    if (actor_role === 'admin' && studentData.institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: student belongs to different institution' });
+    }
+    
+    if (actor_role === 'teacher') {
+      // Verify student is in a class taught by this teacher
+      const [classCheck] = await connection.query(
+        'SELECT id FROM classes WHERE id = $1 AND teacher_id = $2',
+        [studentData.class_id, actor_id]
+      );
+      if (classCheck.length === 0) {
+        connection.release();
+        return res.status(403).json({ error: 'Access denied: student not in your class' });
+      }
+    }
 
     const [scores] = await connection.query(`
       SELECT 

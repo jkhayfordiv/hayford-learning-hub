@@ -6,18 +6,26 @@ const { pool } = require('../db');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_hayford_key_2026';
 
-// Register User
+// Register User - STUDENTS ONLY (Multi-Tenant SaaS)
 router.post('/register', async (req, res) => {
-  const { email, password, first_name, last_name, role, class_id } = req.body;
+  const { email, password, first_name, last_name, role } = req.body;
+  
   if (!email || !password || !first_name || !last_name) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // PHASE 2.1: Only allow student self-registration
+  if (role && role !== 'student') {
+    return res.status(403).json({ 
+      error: 'Teacher and Admin accounts must be created by your Institution Administrator. Please contact your admin or support@hayfordglobal.com.' 
+    });
   }
 
   try {
     const connection = await pool.getConnection();
     
-    // Check if user already exists
-    const [existing] = await connection.query('SELECT id FROM users WHERE email = $1 AND role = $2', [email, role || 'student']);
+    // Check if user already exists (email is now unique across all roles)
+    const [existing] = await connection.query('SELECT id FROM users WHERE email = $1', [email]);
     if (existing.length > 0) {
       connection.release();
       return res.status(409).json({ error: 'Email already registered' });
@@ -27,14 +35,14 @@ router.post('/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const password_hash = await bcrypt.hash(password, salt);
     
-    // Insert new user
+    // Insert new student (institution_id and class_id are NULL until they join a class)
     const [result] = await connection.query(
-      'INSERT INTO users (first_name, last_name, email, password_hash, role, class_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
-      [first_name, last_name, email, password_hash, role || 'student', class_id || null]
+      'INSERT INTO users (first_name, last_name, email, password_hash, role, institution_id, class_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
+      [first_name, last_name, email, password_hash, 'student', null, null]
     );
     
     connection.release();
-    res.status(201).json({ message: 'User registered successfully', userId: result.insertId });
+    res.status(201).json({ message: 'Student account created successfully', userId: result.insertId });
     
   } catch (err) {
     console.error(err);
@@ -42,7 +50,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login User
+// Login User - Multi-Tenant with Institution Context
 router.post('/login', async (req, res) => {
   const { email, password, role } = req.body;
   if (!email || !password || !role) {
@@ -77,13 +85,16 @@ router.post('/login', async (req, res) => {
 
     connection.release();
 
-    // Generate JWT
+    // Generate JWT with institution_id for tenant isolation
     const payload = {
       user: {
         id: user.id,
         role: user.role,
+        institution_id: user.institution_id,
         first_name: user.first_name,
         last_name: user.last_name,
+        email: user.email,
+        class_id: user.class_id,
         class_name
       }
     };
