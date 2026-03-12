@@ -278,7 +278,7 @@ export default function Dashboard() {
     displayTag: DIAGNOSTIC_DICTIONARY[area.tag] || area.tag
   }));
 
-  if (user.role === 'teacher' || user.role === 'admin') {
+  if (user.role === 'teacher' || user.role === 'admin' || user.role === 'super_admin') {
     return <TeacherDashboard user={user} onLogout={handleLogout} />;
   }
 

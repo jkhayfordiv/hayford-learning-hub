@@ -154,63 +154,103 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div className="grid grid-cols-2 gap-4">
+          {/* BUG 3 FIX: Show form only for login OR student registration */}
+          {(isLogin || !isTeacherMode) && (
+            <>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {!isLogin && (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">First Name</label>
+                      <input required name="first_name" type="text" value={formData.first_name} placeholder="Jane" onChange={handleInputChange} className="w-full bg-slate-50 text-slate-900 border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all font-medium text-sm placeholder:text-slate-300" />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">Last Name</label>
+                      <input required name="last_name" type="text" value={formData.last_name} placeholder="Smith" onChange={handleInputChange} className="w-full bg-slate-50 text-slate-900 border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all font-medium text-sm placeholder:text-slate-300" />
+                    </div>
+                  </div>
+                )}
+                
                 <div className="space-y-1">
-                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">First Name</label>
-                  <input required name="first_name" type="text" value={formData.first_name} placeholder="Jane" onChange={handleInputChange} className="w-full bg-slate-50 text-slate-900 border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all font-medium text-sm placeholder:text-slate-300" />
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">Email Address</label>
+                  <input required name="email" type="email" value={formData.email} placeholder="student@example.com" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
                 </div>
+
                 <div className="space-y-1">
-                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">Last Name</label>
-                  <input required name="last_name" type="text" value={formData.last_name} placeholder="Smith" onChange={handleInputChange} className="w-full bg-slate-50 text-slate-900 border border-slate-200 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all font-medium text-sm placeholder:text-slate-300" />
+                  <div className="flex justify-between items-center ml-1">
+                     <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Password</label>
+                     {isLogin && <a href="#" className="text-[10px] font-black text-brand-copper hover:text-brand-navy transition-colors">Forgot password?</a>}
+                  </div>
+                  <input required name="password" type="password" value={formData.password} placeholder="••••••••" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
                 </div>
+
+                <button disabled={isLoading} type="submit" className={`w-full text-white font-black py-4 rounded-xl mt-4 shadow-soft transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide ${isTeacherMode ? 'bg-brand-navy hover:bg-slate-800 disabled:bg-slate-300 shadow-xl' : 'bg-brand-copper hover:bg-[#a6682f] hover:shadow-glow disabled:bg-orange-300'}`}>
+                  {isLoading ? <Loader2 size={18} className="animate-spin" /> : isLogin ? 'Sign In' : 'Create Account'}
+                  {!isLoading && <ArrowRight size={16} />}
+                </button>
+              </form>
+
+              <div className="mt-8 text-center text-sm font-medium text-slate-500">
+                {isLogin ? "Don't have an account? " : "Already have an account? "}
+                <button onClick={handleToggle} className="font-bold transition-colors text-brand-copper hover:text-brand-navy">
+                  {isLogin ? 'Sign up' : 'Log in instead'}
+                </button>
               </div>
-            )}
-            
-            <div className="space-y-1">
-              <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 ml-1">Email Address</label>
-              <input required name="email" type="email" value={formData.email} placeholder="student@example.com" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
-            </div>
 
-            <div className="space-y-1">
-              <div className="flex justify-between items-center ml-1">
-                 <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Password</label>
-                 {isLogin && <a href="#" className="text-[10px] font-black text-brand-copper hover:text-brand-navy transition-colors">Forgot password?</a>}
-              </div>
-              <input required name="password" type="password" value={formData.password} placeholder="••••••••" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
-            </div>
+              {/* Teacher Account Request Message - Only show for student registration */}
+              {!isLogin && (
+                <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl">
+                  <div className="flex items-start gap-3">
+                    <BookOpen size={20} className="text-brand-navy dark:text-brand-copper shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                        Need a Teacher or Admin account?
+                      </p>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Teacher and Admin accounts must be created by your Institution Administrator. Please contact your admin or email{' '}
+                        <a href="mailto:support@hayfordglobal.com" className="text-brand-copper hover:text-brand-navy font-bold underline">
+                          support@hayfordglobal.com
+                        </a>
+                        {' '}to request access.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
 
-            <button disabled={isLoading} type="submit" className={`w-full text-white font-black py-4 rounded-xl mt-4 shadow-soft transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide ${isTeacherMode ? 'bg-brand-navy hover:bg-slate-800 disabled:bg-slate-300 shadow-xl' : 'bg-brand-copper hover:bg-[#a6682f] hover:shadow-glow disabled:bg-orange-300'}`}>
-              {isLoading ? <Loader2 size={18} className="animate-spin" /> : isLogin ? 'Sign In' : 'Create Account'}
-              {!isLoading && <ArrowRight size={16} />}
-            </button>
-          </form>
-
-          <div className="mt-8 text-center text-sm font-medium text-slate-500">
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button onClick={handleToggle} className="font-bold transition-colors text-brand-copper hover:text-brand-navy">
-              {isLogin ? 'Sign up' : 'Log in instead'}
-            </button>
-          </div>
-
-          {/* Teacher Account Request Message */}
-          {!isLogin && (
-            <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl">
-              <div className="flex items-start gap-3">
-                <BookOpen size={20} className="text-brand-navy dark:text-brand-copper shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
-                    Need a Teacher or Admin account?
+          {/* BUG 3 FIX: Teacher Registration - Show ONLY the message, no form */}
+          {!isLogin && isTeacherMode && (
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border-2 border-slate-300 dark:border-slate-700 rounded-2xl p-8 text-center">
+                <div className="w-16 h-16 bg-brand-navy dark:bg-brand-copper rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen size={32} className="text-white" />
+                </div>
+                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-3">
+                  Teacher Account Required
+                </h3>
+                <p className="text-slate-700 dark:text-slate-300 font-medium leading-relaxed mb-6">
+                  Teacher and Admin accounts must be created by your Institution Administrator.
+                </p>
+                <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                    <strong className="text-slate-900 dark:text-white">To request access:</strong>
                   </p>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    Teacher and Admin accounts must be created by your Institution Administrator. Please contact your admin or email{' '}
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Contact your admin or email{' '}
                     <a href="mailto:support@hayfordglobal.com" className="text-brand-copper hover:text-brand-navy font-bold underline">
                       support@hayfordglobal.com
                     </a>
-                    {' '}to request access.
                   </p>
                 </div>
+              </div>
+
+              <div className="text-center text-sm font-medium text-slate-500">
+                Already have an account?{' '}
+                <button onClick={handleToggle} className="font-bold transition-colors text-brand-copper hover:text-brand-navy">
+                  Log in instead
+                </button>
               </div>
             </div>
           )}
