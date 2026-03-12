@@ -67,6 +67,14 @@ app.use('/api/ai', aiRoutes);
 const bulkRoutes = require('./routes/bulk');
 app.use('/api/bulk', bulkRoutes);
 
+// Institutions routes (Super Admin)
+const institutionsRoutes = require('./routes/institutions');
+app.use('/api/institutions', institutionsRoutes);
+
+// Platform management routes (Super Admin)
+const platformRoutes = require('./routes/platform');
+app.use('/api', platformRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });

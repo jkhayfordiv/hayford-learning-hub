@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown } from 'lucide-react';
+import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown, Shield, Building2, UserCog } from 'lucide-react';
 import logo from './assets/logo.png';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
@@ -117,6 +117,16 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [selectedAssignments, setSelectedAssignments] = useState([]);
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
+  
+  // Platform Management state
+  const [institutions, setInstitutions] = useState([]);
+  const [globalUsers, setGlobalUsers] = useState([]);
+  const [platformLoading, setPlatformLoading] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isUserEditModalOpen, setIsUserEditModalOpen] = useState(false);
+  const [userEditForm, setUserEditForm] = useState({ role: '', institution_id: '', class_id: '' });
+  const [isCreateInstitutionModalOpen, setIsCreateInstitutionModalOpen] = useState(false);
+  const [newInstitutionForm, setNewInstitutionForm] = useState({ name: '', address: '', contact_email: '' });
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -280,11 +290,97 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
+  // Platform Management fetch functions
+  const fetchInstitutions = async () => {
+    if (user.role !== 'super_admin') return;
+    setPlatformLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/institutions`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setInstitutions(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch institutions', err);
+    } finally {
+      setPlatformLoading(false);
+    }
+  };
+
+  const fetchGlobalUsers = async () => {
+    if (user.role !== 'super_admin') return;
+    setPlatformLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/all`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setGlobalUsers(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch global users', err);
+    } finally {
+      setPlatformLoading(false);
+    }
+  };
+
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
+    if (!selectedUser) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/${selectedUser.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(userEditForm)
+      });
+
+      if (!res.ok) throw new Error('Failed to update user');
+
+      await fetchGlobalUsers();
+      setIsUserEditModalOpen(false);
+      setSelectedUser(null);
+    } catch (err) {
+      alert(err.message || 'Failed to update user');
+    }
+  };
+
+  const handleCreateInstitution = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/institutions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(newInstitutionForm)
+      });
+
+      if (!res.ok) throw new Error('Failed to create institution');
+
+      await fetchInstitutions();
+      setIsCreateInstitutionModalOpen(false);
+      setNewInstitutionForm({ name: '', address: '', contact_email: '' });
+    } catch (err) {
+      alert(err.message || 'Failed to create institution');
+    }
+  };
+
   useEffect(() => {
     fetchClasses();
     fetchClassData();
     fetchAssignments();
     fetchRecentActivity();
+    
+    if (user.role === 'super_admin') {
+      fetchInstitutions();
+      fetchGlobalUsers();
+    }
     
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -783,6 +879,17 @@ export default function TeacherDashboard({ user, onLogout }) {
               <div className="p-4 border-b border-slate-100 bg-slate-50/50">
                 <p className="font-bold text-slate-900 text-sm">{user.first_name} {user.last_name}</p>
                 <p className="text-xs text-slate-500 truncate">{user.email}</p>
+                <span className={`inline-block mt-2 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider rounded ${
+                  user.role === 'super_admin' ? 'bg-purple-100 text-purple-700' :
+                  user.role === 'admin' ? 'bg-blue-100 text-blue-700' :
+                  user.role === 'teacher' ? 'bg-green-100 text-green-700' :
+                  'bg-slate-100 text-slate-700'
+                }`}>
+                  {user.role === 'super_admin' ? 'Super Admin' : 
+                   user.role === 'admin' ? 'Admin' : 
+                   user.role === 'teacher' ? 'Teacher' : 
+                   'Student'}
+                </span>
               </div>
               <div className="p-2 space-y-1">
                 <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition-colors text-left">
@@ -823,6 +930,14 @@ export default function TeacherDashboard({ user, onLogout }) {
             className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'institution' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
             Institution Settings
+          </button>
+        )}
+        {user.role === 'super_admin' && (
+          <button 
+            onClick={() => setActiveTab('platform')}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'platform' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+          >
+            Platform Management
           </button>
         )}
       </div>
@@ -1548,7 +1663,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                     </div>
                     <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
                       <span className="text-sm font-bold text-slate-700">Active Classes</span>
-                      <span className="text-lg font-black text-slate-900">{activeClasses.length}</span>
+                      <span className="text-lg font-black text-slate-900">{classes?.length || 0}</span>
                     </div>
                   </div>
 
@@ -1562,8 +1677,269 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
             </div>
           </>
+        ) : activeTab === 'platform' ? (
+          <>
+            {/* Platform Management Tab - Super Admin Only */}
+            <div className="flex justify-between items-end mb-8">
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Platform Management</h2>
+                <p className="text-slate-500 font-medium">Manage all institutions and users across the platform.</p>
+              </div>
+            </div>
+
+            {/* Institutions Directory */}
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+              <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-purple-50 to-blue-50">
+                <h3 className="font-black text-xl text-slate-900 tracking-tight flex items-center gap-2">
+                  <Building2 className="text-purple-600" /> Institutions Directory
+                </h3>
+                <button
+                  onClick={() => setIsCreateInstitutionModalOpen(true)}
+                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-bold text-sm transition-colors shadow-lg"
+                >
+                  <PlusCircle size={16} /> Create New Institution
+                </button>
+              </div>
+              <div className="p-8">
+                {platformLoading ? (
+                  <div className="text-center py-12 text-slate-400">Loading institutions...</div>
+                ) : institutions.length === 0 ? (
+                  <div className="text-center py-12 text-slate-400">No institutions found.</div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                          <th className="px-6 py-4">ID</th>
+                          <th className="px-6 py-4">Institution Name</th>
+                          <th className="px-6 py-4">Contact Email</th>
+                          <th className="px-6 py-4">Total Users</th>
+                          <th className="px-6 py-4">Created</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                        {institutions.map((inst) => (
+                          <tr key={inst.id} className="hover:bg-slate-50 transition-colors">
+                            <td className="px-6 py-4 font-bold text-purple-600">{inst.id}</td>
+                            <td className="px-6 py-4 font-bold text-slate-900">{inst.name}</td>
+                            <td className="px-6 py-4 text-slate-600">{inst.contact_email || 'N/A'}</td>
+                            <td className="px-6 py-4 text-center">
+                              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold">
+                                {inst.user_count || 0}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-slate-500">
+                              {inst.created_at ? new Date(inst.created_at).toLocaleDateString() : 'N/A'}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Global Users Directory */}
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+              <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-blue-50 to-indigo-50">
+                <h3 className="font-black text-xl text-slate-900 tracking-tight flex items-center gap-2">
+                  <UserCog className="text-blue-600" /> Global Users Directory
+                </h3>
+                <p className="text-xs text-slate-600 mt-1">Master list of all users across all institutions</p>
+              </div>
+              <div className="p-8">
+                {platformLoading ? (
+                  <div className="text-center py-12 text-slate-400">Loading users...</div>
+                ) : globalUsers.length === 0 ? (
+                  <div className="text-center py-12 text-slate-400">No users found.</div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                      <thead>
+                        <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                          <th className="px-6 py-4">ID</th>
+                          <th className="px-6 py-4">Name</th>
+                          <th className="px-6 py-4">Email</th>
+                          <th className="px-6 py-4">Role</th>
+                          <th className="px-6 py-4">Institution</th>
+                          <th className="px-6 py-4">Class ID</th>
+                          <th className="px-6 py-4 text-right">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                        {globalUsers.map((u) => (
+                          <tr key={u.id} className="hover:bg-slate-50 transition-colors">
+                            <td className="px-6 py-4 font-bold text-blue-600">{u.id}</td>
+                            <td className="px-6 py-4">
+                              <div className="font-bold text-slate-900">{u.first_name} {u.last_name}</div>
+                            </td>
+                            <td className="px-6 py-4 text-slate-600">{u.email}</td>
+                            <td className="px-6 py-4">
+                              <span className={`inline-block px-2 py-1 text-[10px] font-black uppercase tracking-wider rounded ${
+                                u.role === 'super_admin' ? 'bg-purple-100 text-purple-700' :
+                                u.role === 'admin' ? 'bg-blue-100 text-blue-700' :
+                                u.role === 'teacher' ? 'bg-green-100 text-green-700' :
+                                'bg-slate-100 text-slate-700'
+                              }`}>
+                                {u.role}
+                              </span>
+                            </td>
+                            <td className="px-6 py-4 text-slate-600">{u.institution_id || 'None'}</td>
+                            <td className="px-6 py-4 text-slate-600">{u.class_id || 'None'}</td>
+                            <td className="px-6 py-4 text-right">
+                              <button
+                                onClick={() => {
+                                  setSelectedUser(u);
+                                  setUserEditForm({ 
+                                    role: u.role, 
+                                    institution_id: u.institution_id || '', 
+                                    class_id: u.class_id || '' 
+                                  });
+                                  setIsUserEditModalOpen(true);
+                                }}
+                                className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+                              >
+                                Edit User
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
         ) : null}
       </main>
+
+      {/* Create Institution Modal */}
+      {isCreateInstitutionModalOpen && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-purple-600 to-blue-600">
+              <h3 className="font-black text-2xl text-white tracking-tight">Create New Institution</h3>
+            </div>
+            <form onSubmit={handleCreateInstitution} className="p-8 space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution Name</label>
+                <input
+                  required
+                  type="text"
+                  value={newInstitutionForm.name}
+                  onChange={e => setNewInstitutionForm({...newInstitutionForm, name: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  placeholder="e.g., Springfield High School"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Address (Optional)</label>
+                <input
+                  type="text"
+                  value={newInstitutionForm.address}
+                  onChange={e => setNewInstitutionForm({...newInstitutionForm, address: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  placeholder="123 Main St, City, State"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Contact Email</label>
+                <input
+                  required
+                  type="email"
+                  value={newInstitutionForm.contact_email}
+                  onChange={e => setNewInstitutionForm({...newInstitutionForm, contact_email: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  placeholder="admin@school.edu"
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsCreateInstitutionModalOpen(false)}
+                  className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg"
+                >
+                  Create Institution
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit User Modal */}
+      {isUserEditModalOpen && selectedUser && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h3 className="font-black text-2xl text-white tracking-tight">Edit User</h3>
+              <p className="text-sm text-blue-100 mt-1">{selectedUser.first_name} {selectedUser.last_name} ({selectedUser.email})</p>
+            </div>
+            <form onSubmit={handleUpdateUser} className="p-8 space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Role</label>
+                <select
+                  required
+                  value={userEditForm.role}
+                  onChange={e => setUserEditForm({...userEditForm, role: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                >
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="admin">Admin</option>
+                  <option value="super_admin">Super Admin</option>
+                </select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution ID</label>
+                <input
+                  type="number"
+                  value={userEditForm.institution_id}
+                  onChange={e => setUserEditForm({...userEditForm, institution_id: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Leave empty for none"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class ID</label>
+                <input
+                  type="number"
+                  value={userEditForm.class_id}
+                  onChange={e => setUserEditForm({...userEditForm, class_id: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Leave empty for none"
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsUserEditModalOpen(false);
+                    setSelectedUser(null);
+                  }}
+                  className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg"
+                >
+                  Update User
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {isGrammarAssignModalOpen && grammarAssignTarget && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
