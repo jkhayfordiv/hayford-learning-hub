@@ -41,9 +41,10 @@ router.post('/', requireTeacher, async (req, res) => {
       return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
     }
 
+    // FIX: Don't default to module_id=1, use what frontend sends (Task 2 = module_id 2)
     const resolvedModuleId = aType === 'grammar-practice'
       ? resolvedGrammarModule?.[0]?.id
-      : (module_id || 1);
+      : module_id;
 
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
@@ -93,8 +94,32 @@ router.post('/', requireTeacher, async (req, res) => {
       connection.release();
       return res.status(201).json({ success: true, message: `Assignment created for ${count} existing students in class (template stored for late joiners).`, id: result.insertId });
     } else {
-      // Assign to all students
-      const [students] = await connection.query(`SELECT id FROM users WHERE role = 'student'`);
+      // FIX #3: Assign to "all students" with multi-tenancy privacy walls
+      const actor_role = req.user.role;
+      const actor_institution_id = req.user.institution_id;
+      
+      let studentsQuery, studentsParams;
+      
+      if (actor_role === 'super_admin') {
+        // SuperAdmin: truly all students across all institutions
+        studentsQuery = `SELECT id FROM users WHERE role = 'student'`;
+        studentsParams = [];
+      } else if (actor_role === 'admin' && actor_institution_id) {
+        // Admin: only students within their institution
+        studentsQuery = `SELECT id FROM users WHERE role = 'student' AND institution_id = $1`;
+        studentsParams = [actor_institution_id];
+      } else {
+        // Teacher: only students in classes they created
+        studentsQuery = `
+          SELECT DISTINCT u.id 
+          FROM users u
+          INNER JOIN classes c ON u.class_id = c.id
+          WHERE u.role = 'student' AND c.teacher_id = $1
+        `;
+        studentsParams = [teacher_id];
+      }
+      
+      const [students] = await connection.query(studentsQuery, studentsParams);
       
       if (students.length === 0) {
         connection.release();

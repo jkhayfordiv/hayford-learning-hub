@@ -18,9 +18,9 @@ module.exports = function(req, res, next) {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded.user;
     
-    // Check role
-    if (req.user.role !== 'teacher' && req.user.role !== 'admin') {
-      return res.status(403).json({ msg: 'Access denied: Requires teacher or admin role' });
+    // Check role - SuperAdmin has god-mode (inherits all permissions)
+    if (req.user.role !== 'teacher' && req.user.role !== 'admin' && req.user.role !== 'super_admin') {
+      return res.status(403).json({ msg: 'Access denied: Requires teacher, admin, or super_admin role' });
     }
     
     next();
