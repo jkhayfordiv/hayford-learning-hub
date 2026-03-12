@@ -9,6 +9,7 @@ export default function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '', first_name: '', last_name: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showTeacherInfo, setShowTeacherInfo] = useState(false);
   const navigate = useNavigate();
 
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
@@ -30,7 +31,7 @@ export default function LoginPage() {
     const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
     const payload = isLogin 
       ? { email: formData.email, password: formData.password, role: isTeacherMode ? 'teacher' : 'student' }
-      : { ...formData, role: isTeacherMode ? 'teacher' : 'student' };
+      : { ...formData, role: 'student' }; // Registration is always student
 
     try {
       const response = await fetch(`${apiBase}${endpoint}`, {
@@ -92,15 +93,17 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 font-sans overflow-hidden relative">
       
-      {/* Absolute Teacher Toggle Button Top Right */}
-      <div className="absolute top-8 right-8 z-50">
-         <button 
-           onClick={() => setIsTeacherMode(!isTeacherMode)}
-           className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all ${isTeacherMode ? 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-brand-navy' : 'border-brand-copper text-brand-copper hover:bg-brand-copper hover:text-white'}`}
-         >
-           {isTeacherMode ? 'Student Access →' : 'Teacher Access →'}
-         </button>
-      </div>
+      {/* Teacher/Admin Access Button - Login Only */}
+      {isLogin && (
+        <div className="absolute top-8 right-8 z-50">
+          <button 
+            onClick={() => setIsTeacherMode(!isTeacherMode)}
+            className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all ${isTeacherMode ? 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-brand-navy' : 'border-brand-copper text-brand-copper hover:bg-brand-copper hover:text-white'}`}
+          >
+            {isTeacherMode ? 'Student Login →' : 'Teacher Login →'}
+          </button>
+        </div>
+      )}
 
       {/* Left Side: Branding Panel */}
       <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-navy via-[#0A1930] to-slate-900'}`}>
@@ -137,7 +140,7 @@ export default function LoginPage() {
 
           <div className="text-center mb-10">
             <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-2">
-              {isLogin ? 'Welcome back' : 'Create an account'}
+              {isLogin ? 'Welcome back' : 'Create Student Account'}
             </h2>
             <p className="text-slate-500 font-medium text-sm">
               {isLogin ? 'Enter your details to access your dashboard.' : 'Join the hub to start your learning journey.'}
@@ -186,10 +189,31 @@ export default function LoginPage() {
 
           <div className="mt-8 text-center text-sm font-medium text-slate-500">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button onClick={handleToggle} className={`font-bold transition-colors ${isTeacherMode ? 'text-slate-800 dark:text-slate-300 hover:text-slate-600' : 'text-brand-copper hover:text-brand-navy'}`}>
+            <button onClick={handleToggle} className="font-bold transition-colors text-brand-copper hover:text-brand-navy">
               {isLogin ? 'Sign up' : 'Log in instead'}
             </button>
           </div>
+
+          {/* Teacher Account Request Message */}
+          {!isLogin && (
+            <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl">
+              <div className="flex items-start gap-3">
+                <BookOpen size={20} className="text-brand-navy dark:text-brand-copper shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+                    Need a Teacher or Admin account?
+                  </p>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Teacher and Admin accounts must be created by your Institution Administrator. Please contact your admin or email{' '}
+                    <a href="mailto:support@hayfordglobal.com" className="text-brand-copper hover:text-brand-navy font-bold underline">
+                      support@hayfordglobal.com
+                    </a>
+                    {' '}to request access.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       

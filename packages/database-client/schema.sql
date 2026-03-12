@@ -38,6 +38,24 @@ ADD COLUMN IF NOT EXISTS institution_id INTEGER;
 ALTER TABLE users
 DROP CONSTRAINT IF EXISTS users_email_role_key;
 
+-- Drop old role check constraint and recreate with new roles
+ALTER TABLE users
+DROP CONSTRAINT IF EXISTS users_role_check;
+
+ALTER TABLE users
+ADD CONSTRAINT users_role_check CHECK(role IN ('super_admin', 'admin', 'teacher', 'student'));
+
+-- Remove duplicate emails (keep the one with lowest id for each email)
+DO $$
+BEGIN
+    DELETE FROM users a USING users b
+    WHERE a.id > b.id AND a.email = b.email;
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL;
+END
+$$;
+
 -- Ensure email is unique across all users
 DO $$
 BEGIN

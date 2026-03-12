@@ -64,6 +64,19 @@ export default function Dashboard() {
   const [joinError, setJoinError] = useState('');
   const [isJoining, setIsJoining] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
+  
+  // PHASE 4.2: Student Limbo Modal (shows when class_id is null)
+  const [showLimboModal, setShowLimboModal] = useState(false);
+  const [limboModalDismissed, setLimboModalDismissed] = useState(
+    localStorage.getItem('limboModalDismissed') === 'true'
+  );
+
+  useEffect(() => {
+    // Show limbo modal if student has no class and hasn't dismissed it this session
+    if (user.role === 'student' && !user.class_id && !limboModalDismissed) {
+      setShowLimboModal(true);
+    }
+  }, [user.class_id, user.role, limboModalDismissed]);
 
   useEffect(() => {
     if (theme === 'dark') document.documentElement.classList.add('dark');
@@ -737,6 +750,68 @@ export default function Dashboard() {
                >
                  {isJoining ? 'Verifying...' : 'Join Roster'}
                </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* PHASE 4.2: Student Limbo Modal - Appears when student has no class */}
+      {showLimboModal && user.role === 'student' && !user.class_id && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-brand-darkBg border dark:border-slate-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 bg-gradient-to-r from-brand-copper to-amber-600">
+              <h3 className="font-black text-2xl text-white tracking-tight flex items-center gap-2">
+                <Users className="text-white" size={28} /> Connect with Your Teacher
+              </h3>
+            </div>
+            <div className="p-8 text-center space-y-4">
+              <div className="w-20 h-20 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-amber-100">
+                <BookOpen size={40} />
+              </div>
+              <h4 className="text-xl font-black text-slate-900 dark:text-white">
+                Enter Your Class Code
+              </h4>
+              <p className="text-slate-600 dark:text-slate-400 font-medium leading-relaxed">
+                To access assignments and connect with your teacher, enter the 6-character class code provided by your instructor.
+              </p>
+              
+              {joinError && (
+                <div className="text-xs font-bold text-red-600 bg-red-50 dark:bg-red-900/20 p-3 rounded-xl">{joinError}</div>
+              )}
+              
+              <input 
+                autoFocus
+                type="text" 
+                value={joinCode} 
+                onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
+                placeholder="A1B2C3" 
+                maxLength={6}
+                className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border-2 border-slate-200 dark:border-slate-700 px-4 py-4 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:border-brand-copper transition-all font-black text-center tracking-[0.3em] text-2xl placeholder:text-slate-300 placeholder:font-normal placeholder:tracking-normal uppercase"
+              />
+              
+              <div className="flex gap-3 pt-2">
+                <button 
+                  onClick={() => {
+                    setShowLimboModal(false);
+                    setLimboModalDismissed(true);
+                    localStorage.setItem('limboModalDismissed', 'true');
+                  }}
+                  className="flex-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold py-3 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+                >
+                  Practice Solo
+                </button>
+                <button 
+                  disabled={isJoining || joinCode.length < 6}
+                  onClick={handleJoinClass} 
+                  className="flex-1 bg-brand-copper text-white font-black py-3 rounded-xl hover:bg-[#a6682f] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                >
+                  {isJoining ? 'Joining...' : 'Join Class'}
+                </button>
+              </div>
+              
+              <p className="text-xs text-slate-500 dark:text-slate-600 pt-2">
+                Don't have a code? You can still practice independently!
+              </p>
             </div>
           </div>
         </div>
