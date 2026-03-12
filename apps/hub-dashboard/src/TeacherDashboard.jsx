@@ -94,6 +94,8 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [studentSearch, setStudentSearch] = useState('');
 
   const [activeTab, setActiveTab] = useState('overview');
+  const [newTeacherForm, setNewTeacherForm] = useState({ first_name: '', last_name: '', email: '', password: '' });
+  const [createTeacherStatus, setCreateTeacherStatus] = useState({ loading: false, error: null, success: false });
   const [assignments, setAssignments] = useState([]);
   const [assignmentForm, setAssignmentForm] = useState(DEFAULT_ASSIGNMENT_FORM);
   const [assignmentStatus, setAssignmentStatus] = useState({ loading: false, error: null, success: false });
@@ -639,6 +641,34 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
+  // PHASE 4.4: Create Teacher Account Handler
+  const handleCreateTeacher = async (e) => {
+    e.preventDefault();
+    setCreateTeacherStatus({ loading: true, error: null, success: false });
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ ...newTeacherForm, role: 'teacher' })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to create teacher account');
+
+      setCreateTeacherStatus({ loading: false, error: null, success: true });
+      setNewTeacherForm({ first_name: '', last_name: '', email: '', password: '' });
+
+      setTimeout(() => {
+        setCreateTeacherStatus(prev => ({ ...prev, success: false }));
+      }, 3000);
+
+    } catch (err) {
+      setCreateTeacherStatus({ loading: false, error: err.message, success: false });
+    }
+  };
+
   const isInactive = (dateString) => {
     if (!dateString) return true;
     const lastActive = new Date(dateString);
@@ -787,6 +817,14 @@ export default function TeacherDashboard({ user, onLogout }) {
         >
           Assignments & Tasks
         </button>
+        {(user.role === 'admin' || user.role === 'super_admin') && (
+          <button 
+            onClick={() => setActiveTab('institution')}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'institution' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+          >
+            Institution Settings
+          </button>
+        )}
       </div>
 
       {/* Main Content Area */}
@@ -974,6 +1012,24 @@ export default function TeacherDashboard({ user, onLogout }) {
           <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
             <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2"><Users className="text-slate-400" /> Student Roster</h3>
             <div className="flex items-center gap-3">
+              {selectedStudents.length > 0 && (
+                <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 px-4 py-2 rounded-lg">
+                  <span className="text-xs font-bold text-amber-700">{selectedStudents.length} selected</span>
+                  <button
+                    onClick={handleBulkDeleteStudents}
+                    disabled={bulkActionLoading}
+                    className="text-xs font-bold text-red-600 hover:text-red-700 bg-white px-3 py-1 rounded border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-50"
+                  >
+                    {bulkActionLoading ? 'Deleting...' : 'Delete Selected'}
+                  </button>
+                  <button
+                    onClick={() => setSelectedStudents([])}
+                    className="text-xs font-bold text-slate-600 hover:text-slate-700"
+                  >
+                    Clear
+                  </button>
+                </div>
+              )}
               <input
                 type="text"
                 placeholder="Search students..."
@@ -987,6 +1043,14 @@ export default function TeacherDashboard({ user, onLogout }) {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                  <th className="px-4 py-4 w-12">
+                    <input
+                      type="checkbox"
+                      checked={selectedStudents.length === filteredStudents.length && filteredStudents.length > 0}
+                      onChange={toggleSelectAllStudents}
+                      className="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500"
+                    />
+                  </th>
                   <th className="px-8 py-4">
                     <button onClick={() => handleRosterSort('student')} className="inline-flex items-center gap-1 hover:text-slate-600 transition-colors">
                       Student <ArrowUpDown size={12} />
@@ -1015,6 +1079,15 @@ export default function TeacherDashboard({ user, onLogout }) {
                       key={student.id} 
                       className="hover:bg-slate-50 transition-colors group"
                     >
+                      <td className="px-4 py-6">
+                        <input
+                          type="checkbox"
+                          checked={selectedStudents.includes(student.id)}
+                          onChange={() => toggleStudentSelection(student.id)}
+                          className="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </td>
                       <td className="px-8 py-6">
                         <button
                           type="button"
@@ -1111,7 +1184,7 @@ export default function TeacherDashboard({ user, onLogout }) {
         </div>
 
         </>
-        ) : (
+        ) : activeTab === 'assignments' ? (
           <div className="space-y-8 animate-in fade-in duration-300">
             <div className="flex justify-between items-end mb-8">
               <div>
@@ -1235,6 +1308,24 @@ export default function TeacherDashboard({ user, onLogout }) {
                 <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden h-full">
                   <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
                     <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2"><FileText className="text-slate-400" /> Active & Past Assignments</h3>
+                    {selectedAssignments.length > 0 && (
+                      <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 px-4 py-2 rounded-lg">
+                        <span className="text-xs font-bold text-amber-700">{selectedAssignments.length} selected</span>
+                        <button
+                          onClick={handleBulkDeleteAssignments}
+                          disabled={bulkActionLoading}
+                          className="text-xs font-bold text-red-600 hover:text-red-700 bg-white px-3 py-1 rounded border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-50"
+                        >
+                          {bulkActionLoading ? 'Deleting...' : 'Delete Selected'}
+                        </button>
+                        <button
+                          onClick={() => setSelectedAssignments([])}
+                          className="text-xs font-bold text-slate-600 hover:text-slate-700"
+                        >
+                          Clear
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6 space-y-4">
                     {(() => {
@@ -1250,12 +1341,32 @@ export default function TeacherDashboard({ user, onLogout }) {
                         return acc;
                       }, {});
 
-                      return Object.values(grouped).map((group, idx) => (
+                      return Object.values(grouped).map((group, idx) => {
+                        const groupAssignmentIds = group.students.map(s => s.id);
+                        const allSelected = groupAssignmentIds.every(id => selectedAssignments.includes(id));
+                        const someSelected = groupAssignmentIds.some(id => selectedAssignments.includes(id));
+
+                        return (
                         <div key={idx} className="border border-slate-200 rounded-2xl overflow-hidden hover:border-slate-400 transition-colors">
                           <div 
-                            className="bg-white p-5 flex items-center justify-between cursor-pointer hover:bg-slate-50"
+                            className="bg-white p-5 flex items-center gap-4 cursor-pointer hover:bg-slate-50"
                             onClick={() => setExpandedAssignmentId(expandedAssignmentId === idx ? null : idx)}
                           >
+                            <input
+                              type="checkbox"
+                              checked={allSelected}
+                              ref={el => el && (el.indeterminate = someSelected && !allSelected)}
+                              onChange={(e) => {
+                                e.stopPropagation();
+                                if (allSelected) {
+                                  setSelectedAssignments(prev => prev.filter(id => !groupAssignmentIds.includes(id)));
+                                } else {
+                                  setSelectedAssignments(prev => [...new Set([...prev, ...groupAssignmentIds])]);
+                                }
+                              }}
+                              onClick={(e) => e.stopPropagation()}
+                              className="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500 shrink-0"
+                            />
                             <div className="flex-1">
                               <h4 className="font-bold text-slate-900">
                                 {group.assignment_type === 'vocabulary' ? 'Vocabulary Builder' : group.module_name}
@@ -1305,17 +1416,153 @@ export default function TeacherDashboard({ user, onLogout }) {
                                </div>
                             </div>
                           )}
-
-
-    </div>
-                      ));
+                        </div>
+                      );
+                      });
                     })()}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        ) : activeTab === 'institution' ? (
+          <>
+            {/* PHASE 4.4: Institution Settings Tab */}
+            <div className="flex justify-between items-end mb-8">
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Institution Settings</h2>
+                <p className="text-slate-500 font-medium">Manage your institution and create teacher accounts.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Create Teacher Account Form */}
+              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-brand-navy to-slate-800">
+                  <h3 className="font-black text-xl text-white tracking-tight flex items-center gap-2">
+                    <UserPlus className="text-white" /> Create Teacher Account
+                  </h3>
+                </div>
+                <div className="p-8">
+                  <form onSubmit={handleCreateTeacher} className="space-y-4">
+                    {createTeacherStatus.error && (
+                      <div className="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100">
+                        {createTeacherStatus.error}
+                      </div>
+                    )}
+                    {createTeacherStatus.success && (
+                      <div className="p-4 bg-green-50 text-green-700 text-xs font-bold rounded-xl border border-green-100">
+                        ✓ Teacher account created successfully!
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">First Name</label>
+                        <input
+                          required
+                          type="text"
+                          value={newTeacherForm.first_name}
+                          onChange={e => setNewTeacherForm({...newTeacherForm, first_name: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
+                          placeholder="John"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Last Name</label>
+                        <input
+                          required
+                          type="text"
+                          value={newTeacherForm.last_name}
+                          onChange={e => setNewTeacherForm({...newTeacherForm, last_name: e.target.value})}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
+                          placeholder="Smith"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Email Address</label>
+                      <input
+                        required
+                        type="email"
+                        value={newTeacherForm.email}
+                        onChange={e => setNewTeacherForm({...newTeacherForm, email: e.target.value})}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
+                        placeholder="teacher@school.edu"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Temporary Password</label>
+                      <input
+                        required
+                        type="password"
+                        value={newTeacherForm.password}
+                        onChange={e => setNewTeacherForm({...newTeacherForm, password: e.target.value})}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
+                        placeholder="••••••••"
+                      />
+                      <p className="text-xs text-slate-500 mt-1">The teacher should change this password after first login.</p>
+                    </div>
+
+                    <button
+                      disabled={createTeacherStatus.loading}
+                      type="submit"
+                      className="w-full bg-brand-navy text-white font-black py-3 rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 mt-4 shadow-lg"
+                    >
+                      {createTeacherStatus.loading ? 'Creating Account...' : 'Create Teacher Account'}
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              {/* Institution Info */}
+              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                <div className="px-8 py-6 border-b border-slate-100 bg-slate-50/50">
+                  <h3 className="font-black text-xl text-slate-900 tracking-tight flex items-center gap-2">
+                    <Shield className="text-slate-400" /> Institution Information
+                  </h3>
+                </div>
+                <div className="p-8 space-y-6">
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
+                        <BookOpen className="text-amber-600" size={24} />
+                      </div>
+                      <div>
+                        <h4 className="font-black text-lg text-slate-900 mb-1">Hayford Global Academy</h4>
+                        <p className="text-sm text-slate-600 font-medium">Your institution ID: 1</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <span className="text-sm font-bold text-slate-700">Total Teachers</span>
+                      <span className="text-lg font-black text-slate-900">{students.filter(s => s.role === 'teacher').length || 'N/A'}</span>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <span className="text-sm font-bold text-slate-700">Total Students</span>
+                      <span className="text-lg font-black text-slate-900">{students.length}</span>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <span className="text-sm font-bold text-slate-700">Active Classes</span>
+                      <span className="text-lg font-black text-slate-900">{activeClasses.length}</span>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+                    <p className="text-xs font-bold text-blue-900 mb-2">💡 Admin Tip</p>
+                    <p className="text-xs text-blue-700 leading-relaxed">
+                      Teacher accounts created here will automatically be assigned to your institution. They can create classes and manage students within your organization.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : null}
       </main>
 
       {isGrammarAssignModalOpen && grammarAssignTarget && (
