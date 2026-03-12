@@ -111,6 +111,84 @@ export default function TeacherDashboard({ user, onLogout }) {
   );
   const [grammarAssignStatus, setGrammarAssignStatus] = useState({ loading: false, error: null, success: false });
 
+  // PHASE 4.3: Bulk Actions State
+  const [selectedStudents, setSelectedStudents] = useState([]);
+  const [selectedAssignments, setSelectedAssignments] = useState([]);
+  const [bulkActionLoading, setBulkActionLoading] = useState(false);
+
+  // PHASE 4.3: Bulk Action Handlers
+  const handleBulkDeleteStudents = async () => {
+    if (selectedStudents.length === 0) return;
+    if (!window.confirm(`Delete ${selectedStudents.length} student(s)? This will remove all their data permanently.`)) return;
+
+    setBulkActionLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/bulk/users`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ user_ids: selectedStudents })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete students');
+
+      alert(`Successfully deleted ${data.deleted_count} student(s)`);
+      setSelectedStudents([]);
+      fetchClassData();
+    } catch (err) {
+      alert(err.message || 'Failed to delete students');
+    } finally {
+      setBulkActionLoading(false);
+    }
+  };
+
+  const handleBulkDeleteAssignments = async () => {
+    if (selectedAssignments.length === 0) return;
+    if (!window.confirm(`Delete ${selectedAssignments.length} assignment(s)? This cannot be undone.`)) return;
+
+    setBulkActionLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/bulk/assignments`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ assignment_ids: selectedAssignments })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete assignments');
+
+      alert(`Successfully deleted ${data.deleted_count} assignment(s)`);
+      setSelectedAssignments([]);
+      fetchAssignments();
+    } catch (err) {
+      alert(err.message || 'Failed to delete assignments');
+    } finally {
+      setBulkActionLoading(false);
+    }
+  };
+
+  const toggleStudentSelection = (studentId) => {
+    setSelectedStudents(prev => 
+      prev.includes(studentId) ? prev.filter(id => id !== studentId) : [...prev, studentId]
+    );
+  };
+
+  const toggleAssignmentSelection = (assignmentId) => {
+    setSelectedAssignments(prev => 
+      prev.includes(assignmentId) ? prev.filter(id => id !== assignmentId) : [...prev, assignmentId]
+    );
+  };
+
+  const toggleSelectAllStudents = () => {
+    if (selectedStudents.length === filteredStudents.length) {
+      setSelectedStudents([]);
+    } else {
+      setSelectedStudents(filteredStudents.map(s => s.id));
+    }
+  };
+
   const handleRemoveStudentFromClass = async (student) => {
     if (!student?.class_id) return;
     if (!window.confirm(`Remove ${student.first_name} ${student.last_name} from their class?`)) return;
