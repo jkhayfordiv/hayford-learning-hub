@@ -35,8 +35,7 @@ router.get('/users/all', verifySuperAdmin, async (req, res) => {
         role, 
         institution_id, 
         class_id,
-        created_at,
-        last_active_date
+        created_at
       FROM users
       ORDER BY id ASC
     `);
