@@ -28,16 +28,20 @@ router.get('/users/all', verifySuperAdmin, async (req, res) => {
     const connection = await pool.getConnection();
     const [users] = await connection.query(`
       SELECT 
-        id, 
-        first_name, 
-        last_name, 
-        email, 
-        role, 
-        institution_id, 
-        class_id,
-        created_at
-      FROM users
-      ORDER BY id ASC
+        u.id, 
+        u.first_name, 
+        u.last_name, 
+        u.email, 
+        u.role, 
+        u.institution_id,
+        i.name as institution_name,
+        u.class_id,
+        c.class_name,
+        u.created_at
+      FROM users u
+      LEFT JOIN institutions i ON u.institution_id = i.id
+      LEFT JOIN classes c ON u.class_id = c.id
+      ORDER BY u.id ASC
     `);
     connection.release();
     res.json(users);

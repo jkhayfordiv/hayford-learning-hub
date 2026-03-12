@@ -127,6 +127,10 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [userEditForm, setUserEditForm] = useState({ role: '', institution_id: '', class_id: '' });
   const [isCreateInstitutionModalOpen, setIsCreateInstitutionModalOpen] = useState(false);
   const [newInstitutionForm, setNewInstitutionForm] = useState({ name: '', address: '', contact_email: '' });
+  const [globalUsersSearch, setGlobalUsersSearch] = useState('');
+  const [globalUsersPage, setGlobalUsersPage] = useState(1);
+  const [globalUsersSort, setGlobalUsersSort] = useState({ key: 'id', direction: 'asc' });
+  const USERS_PER_PAGE = 15;
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -1768,6 +1772,18 @@ export default function TeacherDashboard({ user, onLogout }) {
                 </h3>
                 <p className="text-xs text-slate-600 mt-1">Master list of all users across all institutions</p>
               </div>
+              <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+                <input
+                  type="text"
+                  placeholder="Search by name or email..."
+                  value={globalUsersSearch}
+                  onChange={e => {
+                    setGlobalUsersSearch(e.target.value);
+                    setGlobalUsersPage(1);
+                  }}
+                  className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
               <div className="p-8">
                 {platformLoading ? (
                   <div className="text-center py-12 text-slate-400">Loading users...</div>
@@ -1778,17 +1794,92 @@ export default function TeacherDashboard({ user, onLogout }) {
                     <table className="w-full text-left border-collapse">
                       <thead>
                         <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
-                          <th className="px-6 py-4">ID</th>
-                          <th className="px-6 py-4">Name</th>
-                          <th className="px-6 py-4">Email</th>
-                          <th className="px-6 py-4">Role</th>
-                          <th className="px-6 py-4">Institution</th>
-                          <th className="px-6 py-4">Class ID</th>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                            setGlobalUsersSort(prev => ({
+                              key: 'id',
+                              direction: prev.key === 'id' && prev.direction === 'asc' ? 'desc' : 'asc'
+                            }));
+                          }}>
+                            ID {globalUsersSort.key === 'id' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                          </th>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                            setGlobalUsersSort(prev => ({
+                              key: 'name',
+                              direction: prev.key === 'name' && prev.direction === 'asc' ? 'desc' : 'asc'
+                            }));
+                          }}>
+                            Name {globalUsersSort.key === 'name' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                          </th>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                            setGlobalUsersSort(prev => ({
+                              key: 'email',
+                              direction: prev.key === 'email' && prev.direction === 'asc' ? 'desc' : 'asc'
+                            }));
+                          }}>
+                            Email {globalUsersSort.key === 'email' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                          </th>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                            setGlobalUsersSort(prev => ({
+                              key: 'role',
+                              direction: prev.key === 'role' && prev.direction === 'asc' ? 'desc' : 'asc'
+                            }));
+                          }}>
+                            Role {globalUsersSort.key === 'role' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                          </th>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                            setGlobalUsersSort(prev => ({
+                              key: 'institution',
+                              direction: prev.key === 'institution' && prev.direction === 'asc' ? 'desc' : 'asc'
+                            }));
+                          }}>
+                            Institution {globalUsersSort.key === 'institution' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                          </th>
+                          <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                            setGlobalUsersSort(prev => ({
+                              key: 'class',
+                              direction: prev.key === 'class' && prev.direction === 'asc' ? 'desc' : 'asc'
+                            }));
+                          }}>
+                            Class {globalUsersSort.key === 'class' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                          </th>
                           <th className="px-6 py-4 text-right">Actions</th>
                         </tr>
                       </thead>
                       <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
-                        {globalUsers.map((u) => (
+                        {(() => {
+                          const filtered = globalUsers.filter(u => {
+                            const searchLower = globalUsersSearch.toLowerCase();
+                            return !globalUsersSearch || 
+                              `${u.first_name} ${u.last_name}`.toLowerCase().includes(searchLower) ||
+                              u.email.toLowerCase().includes(searchLower);
+                          });
+                          
+                          const sorted = [...filtered].sort((a, b) => {
+                            let aVal, bVal;
+                            if (globalUsersSort.key === 'name') {
+                              aVal = `${a.first_name} ${a.last_name}`.toLowerCase();
+                              bVal = `${b.first_name} ${b.last_name}`.toLowerCase();
+                            } else if (globalUsersSort.key === 'institution') {
+                              aVal = (a.institution_name || '').toLowerCase();
+                              bVal = (b.institution_name || '').toLowerCase();
+                            } else if (globalUsersSort.key === 'class') {
+                              aVal = (a.class_name || '').toLowerCase();
+                              bVal = (b.class_name || '').toLowerCase();
+                            } else {
+                              aVal = a[globalUsersSort.key];
+                              bVal = b[globalUsersSort.key];
+                            }
+                            
+                            if (aVal < bVal) return globalUsersSort.direction === 'asc' ? -1 : 1;
+                            if (aVal > bVal) return globalUsersSort.direction === 'asc' ? 1 : -1;
+                            return 0;
+                          });
+                          
+                          const startIdx = (globalUsersPage - 1) * USERS_PER_PAGE;
+                          const endIdx = startIdx + USERS_PER_PAGE;
+                          const paginated = sorted.slice(startIdx, endIdx);
+                          
+                          return paginated.map((u) => (
                           <tr key={u.id} className="hover:bg-slate-50 transition-colors">
                             <td className="px-6 py-4 font-bold text-blue-600">{u.id}</td>
                             <td className="px-6 py-4">
@@ -1805,8 +1896,8 @@ export default function TeacherDashboard({ user, onLogout }) {
                                 {u.role}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-600">{u.institution_id || 'None'}</td>
-                            <td className="px-6 py-4 text-slate-600">{u.class_id || 'None'}</td>
+                            <td className="px-6 py-4 text-slate-600">{u.institution_name || 'None'}</td>
+                            <td className="px-6 py-4 text-slate-600">{u.class_name || 'None'}</td>
                             <td className="px-6 py-4 text-right">
                               <button
                                 onClick={() => {
@@ -1824,9 +1915,62 @@ export default function TeacherDashboard({ user, onLogout }) {
                               </button>
                             </td>
                           </tr>
-                        ))}
+                          ));
+                        })()}
                       </tbody>
                     </table>
+                    
+                    {/* Pagination */}
+                    {(() => {
+                      const filtered = globalUsers.filter(u => {
+                        const searchLower = globalUsersSearch.toLowerCase();
+                        return !globalUsersSearch || 
+                          `${u.first_name} ${u.last_name}`.toLowerCase().includes(searchLower) ||
+                          u.email.toLowerCase().includes(searchLower);
+                      });
+                      const totalPages = Math.ceil(filtered.length / USERS_PER_PAGE);
+                      
+                      if (totalPages <= 1) return null;
+                      
+                      return (
+                        <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-200">
+                          <div className="text-sm text-slate-600">
+                            Showing {((globalUsersPage - 1) * USERS_PER_PAGE) + 1} - {Math.min(globalUsersPage * USERS_PER_PAGE, filtered.length)} of {filtered.length} users
+                          </div>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => setGlobalUsersPage(prev => Math.max(1, prev - 1))}
+                              disabled={globalUsersPage === 1}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                            >
+                              Previous
+                            </button>
+                            <div className="flex items-center gap-1">
+                              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                <button
+                                  key={page}
+                                  onClick={() => setGlobalUsersPage(page)}
+                                  className={`px-3 py-2 font-bold rounded-lg transition-colors ${
+                                    page === globalUsersPage
+                                      ? 'bg-blue-600 text-white'
+                                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                                  }`}
+                                >
+                                  {page}
+                                </button>
+                              ))}
+                            </div>
+                            <button
+                              onClick={() => setGlobalUsersPage(prev => Math.min(totalPages, prev + 1))}
+                              disabled={globalUsersPage === totalPages}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                 )}
               </div>
@@ -1919,24 +2063,34 @@ export default function TeacherDashboard({ user, onLogout }) {
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution ID</label>
-                <input
-                  type="number"
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution</label>
+                <select
                   value={userEditForm.institution_id}
-                  onChange={e => setUserEditForm({...userEditForm, institution_id: e.target.value})}
+                  onChange={e => setUserEditForm({...userEditForm, institution_id: e.target.value, class_id: ''})}
                   className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  placeholder="Leave empty for none"
-                />
+                >
+                  <option value="">None</option>
+                  {institutions.map(inst => (
+                    <option key={inst.id} value={inst.id}>{inst.name}</option>
+                  ))}
+                </select>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class ID</label>
-                <input
-                  type="number"
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class</label>
+                <select
                   value={userEditForm.class_id}
                   onChange={e => setUserEditForm({...userEditForm, class_id: e.target.value})}
                   className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  placeholder="Leave empty for none"
-                />
+                  disabled={!userEditForm.institution_id}
+                >
+                  <option value="">None</option>
+                  {classes.filter(c => c.institution_id == userEditForm.institution_id).map(cls => (
+                    <option key={cls.id} value={cls.id}>{cls.class_name}</option>
+                  ))}
+                </select>
+                {!userEditForm.institution_id && (
+                  <p className="text-xs text-slate-500 mt-1">Select an institution first to assign a class</p>
+                )}
               </div>
               <div className="flex gap-3 pt-4">
                 <button
