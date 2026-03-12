@@ -447,8 +447,13 @@ export default function Dashboard() {
                         return;
                       }
                       const instructionsObj = { assignment_id: task.id, instructions: task.instructions };
-                      const appPath = task.assignment_type === 'vocabulary' ? '/vocab-tool/' : '/ielts-writing/';
-                      window.location.href = `${appPath}?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
+                      if (task.assignment_type === 'vocabulary') {
+                        window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
+                      } else {
+                        // IELTS Writing - pass writing_task_type
+                        const taskType = task.writing_task_type || '1';
+                        window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}&writingTask=task${taskType}`;
+                      }
                     }}
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors mt-auto ${
                       task.assignment_type === 'vocabulary' 

@@ -55,6 +55,7 @@ const DEFAULT_ASSIGNMENT_FORM = {
   student_id: 'all',
   class_id: '',
   assignment_type: 'writing',
+  writing_task_type: '1',
   grammar_topic_id: '',
   instructions: '',
   due_date: ''
@@ -261,6 +262,10 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       if (payload.assignment_type !== 'grammar-practice') {
         payload.grammar_topic_id = null;
+      }
+
+      if (payload.assignment_type !== 'writing') {
+        payload.writing_task_type = null;
       }
       
       // Clear out the mutually exclusive fields before sending to API 
@@ -1058,11 +1063,26 @@ export default function TeacherDashboard({ user, onLogout }) {
                         })}
                         className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
                       >
-                        <option value="writing">IELTS Task 1 Academic</option>
+                        <option value="writing">IELTS Writing</option>
                         <option value="vocabulary">Vocabulary Builder</option>
                         <option value="grammar-practice">Grammar Practice</option>
                       </select>
                     </div>
+
+                    {assignmentForm.assignment_type === 'writing' && (
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">IELTS Task Type</label>
+                        <select
+                          value={assignmentForm.writing_task_type}
+                          onChange={e => setAssignmentForm({ ...assignmentForm, writing_task_type: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                        >
+                          <option value="1">Task 1 - Academic Report</option>
+                          <option value="2">Task 2 - Essay</option>
+                          <option value="both">Both Tasks (Task 1 + Task 2)</option>
+                        </select>
+                      </div>
+                    )}
 
                     {assignmentForm.assignment_type === 'grammar-practice' && (
                       <div className="space-y-1">

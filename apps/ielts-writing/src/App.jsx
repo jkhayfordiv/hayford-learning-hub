@@ -26,9 +26,6 @@ if (tokenFromUrl || taskMetaFromUrl) {
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
-// Using environment variable for API Key so it's not hardcoded in the file
-const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
-
 const TASK_1_PROMPTS = [
   {
     id: 1,
@@ -57,7 +54,7 @@ const TASK_1_PROMPTS = [
       { year: '2015', v1: 45, v2: 42, v3: 15 },
       { year: '2020', v1: 30, v2: 50, v3: 15 }
     ],
-    labels: { l1: "Heating", l2: "Cooling", l3: "Lighting" },
+    labels: { l1: "Heating", l2: "Cooling", l3: "Lighting", yUnit: "Energy (kWh)" },
     graphic: "line"
   },
   {
@@ -124,22 +121,22 @@ const TASK_1_PROMPTS = [
       { year: '2000', v1: 0.4, v2: 0.35, v3: 0.38 },
       { year: '2020', v1: 0.9, v2: 0.85, v3: 0.88 }
     ],
-    labels: { l1: "Land", l2: "Ocean", l3: "Average" },
+    labels: { l1: "Land", l2: "Ocean", l3: "Average", yUnit: "Temperature (°C)" },
     graphic: "line"
   },
   { id: 8, type: "Pie Chart", title: "Global Energy Consumption", instruction: "The chart below shows the world's energy consumption by fuel type in 2018.", data: [{ label: 'Oil', value: 33, color: '#3366cc' }, { label: 'Coal', value: 27, color: '#dc3912' }, { label: 'Gas', value: 24, color: '#ff9900' }, { label: 'Nuclear', value: 4, color: '#109618' }, { label: 'Renewables', value: 12, color: '#990099' }], graphic: "pie" },
   { id: 9, type: "Table", title: "Mobile Phone Ownership", instruction: "The table shows the percentage of people owning a mobile phone in seven different countries in 2010 and 2015.", data: [{ country: 'USA', y1: 85, y2: 92 }, { country: 'UK', y1: 82, y2: 90 }, { country: 'China', y1: 65, y2: 88 }, { country: 'India', y1: 40, y2: 72 }, { country: 'Brazil', y1: 55, y2: 80 }], headers: ["Country", "2010 (%)", "2015 (%)"], graphic: "table" },
-  { id: 10, type: "Line Graph", title: "Unemployment Rates", instruction: "The graph shows unemployment rates in the US and Japan between 2000 and 2010.", data: [{ year: '2000', v1: 4.0, v2: 4.8 }, { year: '2002', v1: 5.8, v2: 5.4 }, { year: '2004', v1: 5.5, v2: 4.7 }, { year: '2006', v1: 4.6, v2: 4.1 }, { year: '2008', v1: 5.8, v2: 4.0 }, { year: '2010', v1: 9.6, v2: 5.1 }], labels: { l1: "USA", l2: "Japan", l3: "" }, graphic: "line" },
+  { id: 10, type: "Line Graph", title: "Unemployment Rates", instruction: "The graph shows unemployment rates in the US and Japan between 2000 and 2010.", data: [{ year: '2000', v1: 4.0, v2: 4.8 }, { year: '2002', v1: 5.8, v2: 5.4 }, { year: '2004', v1: 5.5, v2: 4.7 }, { year: '2006', v1: 4.6, v2: 4.1 }, { year: '2008', v1: 5.8, v2: 4.0 }, { year: '2010', v1: 9.6, v2: 5.1 }], labels: { l1: "USA", l2: "Japan", l3: "", yUnit: "Unemployment Rate (%)" }, graphic: "line" },
   { id: 11, type: "Process", title: "Electricity Production", instruction: "The diagram shows how electricity is produced in a coal-fired power station.", data: ["Coal Mining", "Furnace Burning", "Steam Production", "Turbine Rotation", "Generator", "Grid Distribution"], graphic: "process" },
   { id: 12, type: "Bar Chart", title: "Cinema Attendance", instruction: "The chart shows the frequency of cinema attendance by age group in a specific country in 2017.", data: [{ label: '14-24', v1: 45, v2: 50 }, { label: '25-34', v1: 30, v2: 35 }, { label: '35-44', v1: 15, v2: 20 }, { label: '45-54', v1: 10, v2: 12 }, { label: '55+', v1: 5, v2: 8 }], labels: { legend1: "Once/Month", legend2: "Weekly", yUnit: "%" }, graphic: "bar" },
   { id: 13, type: "Table", title: "International Student Numbers", instruction: "The table shows the number of international students in four countries over three decades.", data: [{ country: 'USA', y1: 300, y2: 600 }, { country: 'UK', y1: 150, y2: 400 }, { country: 'Australia', y1: 50, y2: 250 }, { country: 'Canada', y1: 40, y2: 200 }], headers: ["Country", "1990 (000s)", "2010 (000s)"], graphic: "table" },
   { id: 14, type: "Pie Chart", title: "Water Consumption by Sector", instruction: "The pie chart shows how total water consumption was distributed across five sectors in a developed country in 2022.", data: [{ label: 'Agriculture', value: 42, color: '#22c55e' }, { label: 'Industry', value: 23, color: '#3b82f6' }, { label: 'Domestic', value: 18, color: '#ef4444' }, { label: 'Energy', value: 9, color: '#f59e0b' }, { label: 'Public Services', value: 8, color: '#8b5cf6' }], graphic: "pie" },
-  { id: 15, type: "Line Graph", title: "Metals Prices in Global Markets", instruction: "The line graph compares average monthly prices of gold, silver and copper between 2020 and 2024.", data: [{ year: '2020', v1: 2300, v2: 16, v3: 3.1 }, { year: '2021', v1: 2050, v2: 24, v3: 4.6 }, { year: '2022', v1: 1680, v2: 41, v3: 2.9 }, { year: '2023', v1: 1210, v2: 19, v3: 5.4 }, { year: '2024', v1: 980, v2: 47, v3: 3.3 }], labels: { l1: "Gold (USD/oz)", l2: "Silver (USD/oz)", l3: "Copper (USD/lb)" }, graphic: "line" },
+  { id: 15, type: "Line Graph", title: "Metals Prices in Global Markets", instruction: "The line graph compares average monthly prices of gold, silver and copper between 2020 and 2024.", data: [{ year: '2020', v1: 2300, v2: 16, v3: 3.1 }, { year: '2021', v1: 2050, v2: 24, v3: 4.6 }, { year: '2022', v1: 1680, v2: 41, v3: 2.9 }, { year: '2023', v1: 1210, v2: 19, v3: 5.4 }, { year: '2024', v1: 980, v2: 47, v3: 3.3 }], labels: { l1: "Gold (USD/oz)", l2: "Silver (USD/oz)", l3: "Copper (USD/lb)", yUnit: "Price (USD)" }, graphic: "line" },
   { id: 16, type: "Process", title: "Paper Recycling", instruction: "The diagram shows the process of recycling paper.", data: ["Waste Collection", "De-inking", "Pulping", "Rolling", "Drying", "New Paper"], graphic: "process" },
   { id: 17, type: "Bar Chart", title: "Fruit Consumption", instruction: "The chart shows the average daily fruit consumption of adults in five different cities.", data: [{ label: 'City A', v1: 1.2, v2: 1.5 }, { label: 'City B', v1: 0.8, v2: 1.1 }, { label: 'City C', v1: 2.1, v2: 2.3 }, { label: 'City D', v1: 1.5, v2: 1.8 }, { label: 'City E', v1: 1.0, v2: 1.2 }], labels: { legend1: "Male", legend2: "Female", yUnit: "Portions" }, graphic: "bar" },
   { id: 18, type: "Table", title: "Urbanization Rates", instruction: "The table shows the percentage of the population living in urban areas in four regions.", data: [{ country: 'Africa', y1: 30, y2: 45 }, { country: 'Asia', y1: 40, y2: 55 }, { country: 'Europe', y1: 70, y2: 78 }, { country: 'N. America', y1: 75, y2: 82 }], headers: ["Region", "2000 (%)", "2020 (%)"], graphic: "table" },
   { id: 19, type: "Pie Chart", title: "Student Accommodation", instruction: "The pie chart illustrates the preferred housing options of international students in a UK city in 2023.", data: [{ label: 'University Halls', value: 34, color: '#6366f1' }, { label: 'Private Rental', value: 29, color: '#ec4899' }, { label: 'Shared Flat', value: 19, color: '#06b6d4' }, { label: 'Homestay', value: 12, color: '#f59e0b' }, { label: 'Other', value: 6, color: '#94a3b8' }], graphic: "pie" },
-  { id: 20, type: "Line Graph", title: "Software Subscriptions", instruction: "The graph shows the growth of subscribers for three software services.", data: [{ year: '2019', v1: 10, v2: 5, v3: 2 }, { year: '2020', v1: 15, v2: 8, v3: 5 }, { year: '2021', v1: 22, v2: 14, v3: 12 }, { year: '2022', v1: 30, v2: 25, v3: 20 }, { year: '2023', v1: 45, v2: 40, v3: 35 }], labels: { l1: "Cloud", l2: "Design", l3: "CRM" }, graphic: "line" },
+  { id: 20, type: "Line Graph", title: "Software Subscriptions", instruction: "The graph shows the growth of subscribers for three software services.", data: [{ year: '2019', v1: 10, v2: 5, v3: 2 }, { year: '2020', v1: 15, v2: 8, v3: 5 }, { year: '2021', v1: 22, v2: 14, v3: 12 }, { year: '2022', v1: 30, v2: 25, v3: 20 }, { year: '2023', v1: 45, v2: 40, v3: 35 }], labels: { l1: "Cloud", l2: "Design", l3: "CRM", yUnit: "Subscribers (millions)" }, graphic: "line" },
   {
     id: 21,
     type: "Mixed Charts",
@@ -295,142 +292,91 @@ const GRAMMAR_LAB_MAP = {
 
 const VisualRenderer = ({ prompt }) => {
   if (prompt.graphic === 'bar') {
-    const maxVal = Math.max(...prompt.data.flatMap(d => [d.v1, d.v2])) * 1.1;
+    const maxVal = Math.max(...prompt.data.flatMap(d => [d.v1, d.v2]), 1) * 1.1;
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center p-4">
-        <div className="flex gap-4 mb-4 text-[10px] font-bold">
-          <div className="flex items-center gap-1"><div className="w-3 h-3 bg-blue-500"></div> {prompt.labels.legend1}</div>
-          <div className="flex items-center gap-1"><div className="w-3 h-3 bg-red-400"></div> {prompt.labels.legend2}</div>
-        </div>
-        <svg viewBox="0 0 400 200" className="w-full h-full max-h-[300px]">
-          <line x1="40" y1="20" x2="40" y2="170" stroke="#94a3b8" strokeWidth="1" />
-          <line x1="40" y1="170" x2="380" y2="170" stroke="#94a3b8" strokeWidth="1" />
-          {prompt.data.map((d, i) => {
-            const xBase = 60 + i * (300 / prompt.data.length);
-            const h1 = (d.v1 / maxVal) * 150;
-            const h2 = (d.v2 / maxVal) * 150;
+      <div className="w-full h-full p-6">
+        <svg viewBox="0 0 340 220" className="w-full h-full">
+          {/* Y-axis */}
+          <line x1="40" y1="10" x2="40" y2="160" stroke="#64748b" strokeWidth="2" />
+          {/* X-axis */}
+          <line x1="40" y1="160" x2="320" y2="160" stroke="#64748b" strokeWidth="2" />
+          
+          {/* Y-axis label */}
+          <text x="15" y="85" fontSize="11" fill="#1e293b" fontWeight="bold" transform="rotate(-90 15 85)" textAnchor="middle">{prompt.labels?.yUnit || "Value"}</text>
+          
+          {/* Y-axis scale markers */}
+          <text x="35" y="15" fontSize="9" textAnchor="end" fill="#64748b">{Math.round(maxVal)}</text>
+          <text x="35" y="88" fontSize="9" textAnchor="end" fill="#64748b">{Math.round(maxVal/2)}</text>
+          <text x="35" y="163" fontSize="9" textAnchor="end" fill="#64748b">0</text>
+          
+          {prompt.data.map((d, s) => {
+            const barX = 60 + s * (240 / prompt.data.length);
+            const h1 = (d.v1 / maxVal) * 140;
+            const h2 = (d.v2 / maxVal) * 140;
             return (
-              <g key={i}>
-                <rect x={xBase} y={170 - h1} width="12" height={h1} fill="#3b82f6" rx="1" />
-                <rect x={xBase + 14} y={170 - h2} width="12" height={h2} fill="#f87171" rx="1" />
-                <text x={xBase + 13} y="185" fontSize="8" textAnchor="middle" fill="#64748b" fontWeight="bold">{d.label}</text>
+              <g key={s}>
+                <rect x={barX} y={160 - h1} width="14" height={h1} fill="#3b82f6" rx="1" />
+                <rect x={barX + 16} y={160 - h2} width="14" height={h2} fill="#f87171" rx="1" />
+                <text x={barX + 15} y="175" fontSize="9" textAnchor="middle" fill="#1e293b" fontWeight="bold">{d.label}</text>
               </g>
             );
           })}
+          
+          {/* Legend */}
+          <rect x="240" y="190" width="12" height="8" fill="#3b82f6" />
+          <text x="255" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend1 || "Series 1"}</text>
+          <rect x="310" y="190" width="12" height="8" fill="#f87171" />
+          <text x="325" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend2 || "Series 2"}</text>
         </svg>
       </div>
     );
   }
 
-  if (prompt.graphic === 'mixed') {
-    return (
-      <div className="w-full h-full p-2 md:p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
-          {(prompt.panels || []).map((panel, index) => {
-            if (panel.graphic === 'pie') {
-              let angle = 0;
-              return (
-                <div key={index} className="border border-slate-200 rounded-xl p-3 bg-white">
-                  <h4 className="text-xs font-black text-slate-700 uppercase tracking-wider mb-2">{panel.title}</h4>
-                  <div className="flex items-center gap-4">
-                    <svg viewBox="0 0 100 100" className="w-28 h-28 shrink-0">
-                      {panel.data.map((slice, i) => {
-                        const start = angle;
-                        const sweep = (slice.value / 100) * 360;
-                        angle += sweep;
-                        const x1 = 50 + 40 * Math.cos((Math.PI * (start - 90)) / 180);
-                        const y1 = 50 + 40 * Math.sin((Math.PI * (start - 90)) / 180);
-                        const x2 = 50 + 40 * Math.cos((Math.PI * (angle - 90)) / 180);
-                        const y2 = 50 + 40 * Math.sin((Math.PI * (angle - 90)) / 180);
-                        const largeArc = sweep > 180 ? 1 : 0;
-                        return <path key={i} d={`M 50 50 L ${x1} ${y1} A 40 40 0 ${largeArc} 1 ${x2} ${y2} Z`} fill={slice.color} stroke="white" strokeWidth="0.6" />;
-                      })}
-                    </svg>
-                    <div className="space-y-1">
-                      {panel.data.map((slice, i) => (
-                        <div key={i} className="flex items-center gap-2 text-[10px] font-bold text-slate-700">
-                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: slice.color }} />
-                          <span>{slice.label} ({slice.value}%)</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-
-            if (panel.graphic === 'bar') {
-              const maxVal = Math.max(...panel.data.flatMap((d) => [d.v1, d.v2]), 1) * 1.1;
-              return (
-                <div key={index} className="border border-slate-200 rounded-xl p-3 bg-white">
-                  <h4 className="text-xs font-black text-slate-700 uppercase tracking-wider mb-2">{panel.title}</h4>
-                  <div className="text-[10px] font-bold text-slate-600 flex gap-3 mb-2">
-                    <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 bg-blue-500" /> {panel.labels?.legend1 || 'Series 1'}</span>
-                    <span className="inline-flex items-center gap-1"><span className="w-2.5 h-2.5 bg-red-400" /> {panel.labels?.legend2 || 'Series 2'}</span>
-                  </div>
-                  <svg viewBox="0 0 320 180" className="w-full h-44">
-                    <line x1="30" y1="10" x2="30" y2="150" stroke="#cbd5e1" strokeWidth="1" />
-                    <line x1="30" y1="150" x2="300" y2="150" stroke="#cbd5e1" strokeWidth="1" />
-                    {panel.data.map((d, i) => {
-                      const xBase = 45 + i * (230 / panel.data.length);
-                      const h1 = (d.v1 / maxVal) * 130;
-                      const h2 = (d.v2 / maxVal) * 130;
-                      return (
-                        <g key={i}>
-                          <rect x={xBase} y={150 - h1} width="10" height={h1} fill="#3b82f6" rx="1" />
-                          <rect x={xBase + 12} y={150 - h2} width="10" height={h2} fill="#f87171" rx="1" />
-                          <text x={xBase + 11} y="165" fontSize="8" textAnchor="middle" fill="#64748b">{d.label}</text>
-                        </g>
-                      );
-                    })}
-                  </svg>
-                </div>
-              );
-            }
-
-            return null;
-          })}
-        </div>
-      </div>
-    );
-  }
-
   if (prompt.graphic === 'line') {
-    const values = prompt.data.flatMap(d => [d.v1 || 0, d.v2 || 0, d.v3 || 0]);
-    const maxVal = Math.max(...values, 1);
-    const minVal = Math.min(...values, 0);
-    const range = Math.max(maxVal - minVal, 1);
-    const padding = range * 0.15;
-    const drawMax = maxVal + padding;
-    const drawMin = minVal - padding;
-    const drawRange = Math.max(drawMax - drawMin, 0.1);
-
-    const getY = (val) => 170 - ((val - drawMin) / drawRange) * 150;
-    const getPoints = (key) => prompt.data.map((d, i) => `${40 + i * (340 / (prompt.data.length - 1))},${getY(d[key] || 0)}`).join(' ');
-
-    const zeroY = getY(0);
-
+    const allVals = prompt.data.flatMap(d => [d.v1 || 0, d.v2 || 0, d.v3 || 0]);
+    const maxVal = Math.max(...allVals, 1);
+    const minVal = Math.min(...allVals, 0);
+    const padding = Math.max(maxVal - minVal, 1) * 0.15;
+    const topBound = maxVal + padding;
+    const bottomBound = minVal - padding;
+    const range = Math.max(topBound - bottomBound, 0.1);
+    const scaleY = (val) => 180 - ((val - bottomBound) / range) * 150;
+    const pathData = (key) => prompt.data.map((d, idx) => `${60 + idx * (320 / (prompt.data.length - 1))},${scaleY(d[key] || 0)}`).join(" ");
+    const zeroY = scaleY(0);
     return (
       <div className="w-full h-full flex flex-col items-center justify-center p-4">
-        <div className="flex gap-4 mb-4 text-[10px] font-bold">
-          {prompt.labels.l1 && <div className="flex items-center gap-1"><div className="w-3 h-0.5 bg-blue-500"></div> {prompt.labels.l1}</div>}
-          {prompt.labels.l2 && <div className="flex items-center gap-1"><div className="w-3 h-0.5 bg-green-500"></div> {prompt.labels.l2}</div>}
-          {prompt.labels.l3 && <div className="flex items-center gap-1"><div className="w-3 h-0.5 bg-slate-400"></div> {prompt.labels.l3}</div>}
+        <div className="flex gap-4 mb-3 text-[11px] font-bold">
+          {prompt.labels.l1 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-blue-500"></div> {prompt.labels.l1}</div>}
+          {prompt.labels.l2 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-green-500"></div> {prompt.labels.l2}</div>}
+          {prompt.labels.l3 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-slate-400"></div> {prompt.labels.l3}</div>}
         </div>
-        <svg viewBox="0 0 400 200" className="w-full h-full max-h-[300px]">
-          {drawMin < 0 && drawMax > 0 && <line x1="40" y1={zeroY} x2="380" y2={zeroY} stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2" />}
+        <svg viewBox="0 0 420 220" className="w-full h-full max-h-[320px]">
+          {/* Grid lines */}
+          {bottomBound < 0 && topBound > 0 && <line x1="60" y1={zeroY} x2="380" y2={zeroY} stroke="#e2e8f0" strokeWidth="1" strokeDasharray="3" />}
           
-          <path d={`M ${getPoints('v1')}`} fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" />
-          {prompt.labels.l2 && <path d={`M ${getPoints('v2')}`} fill="none" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" />}
-          {prompt.labels.l3 && <path d={`M ${getPoints('v3')}`} fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="4" />}
+          {/* Y-axis */}
+          <line x1="60" y1="30" x2="60" y2="180" stroke="#64748b" strokeWidth="2" />
+          {/* X-axis */}
+          <line x1="60" y1="180" x2="380" y2="180" stroke="#64748b" strokeWidth="2" />
           
-          <line x1="40" y1="20" x2="40" y2="170" stroke="#cbd5e1" strokeWidth="1" />
-          <line x1="40" y1="170" x2="380" y2="170" stroke="#cbd5e1" strokeWidth="1" />
+          {/* Y-axis label */}
+          <text x="20" y="105" fontSize="11" fill="#1e293b" fontWeight="bold" transform="rotate(-90 20 105)" textAnchor="middle">{prompt.labels?.yUnit || "Value"}</text>
           
-          {prompt.data.map((d, i) => <text key={i} x={40 + i * (340 / (prompt.data.length - 1))} y="185" fontSize="8" textAnchor="middle" fill="#64748b">{d.year}</text>)}
+          {/* Data lines */}
+          <path d={`M ${pathData("v1")}`} fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" />
+          {prompt.labels.l2 && <path d={`M ${pathData("v2")}`} fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" />}
+          {prompt.labels.l3 && <path d={`M ${pathData("v3")}`} fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="5" />}
           
-          <text x="35" y={getY(maxVal)} fontSize="8" textAnchor="end" fill="#94a3b8">{maxVal.toFixed(1)}</text>
-          <text x="35" y={getY(minVal)} fontSize="8" textAnchor="end" fill="#94a3b8">{minVal.toFixed(1)}</text>
+          {/* X-axis labels */}
+          {prompt.data.map((d, idx) => <text key={idx} x={60 + idx * (320 / (prompt.data.length - 1))} y="195" fontSize="10" textAnchor="middle" fill="#1e293b" fontWeight="bold">{d.year}</text>)}
+          
+          {/* Y-axis scale */}
+          <text x="55" y={scaleY(maxVal)} fontSize="9" textAnchor="end" fill="#64748b" fontWeight="bold">{maxVal.toFixed(1)}</text>
+          <text x="55" y={scaleY((maxVal + minVal) / 2)} fontSize="9" textAnchor="end" fill="#64748b">{((maxVal + minVal) / 2).toFixed(1)}</text>
+          <text x="55" y={scaleY(minVal)} fontSize="9" textAnchor="end" fill="#64748b" fontWeight="bold">{minVal.toFixed(1)}</text>
+          
+          {/* X-axis title */}
+          <text x="220" y="212" fontSize="11" fill="#1e293b" fontWeight="bold" textAnchor="middle">Year</text>
         </svg>
       </div>
     );
@@ -662,8 +608,7 @@ const renderHighlightedSubmission = (text, majorErrors = []) => {
 // Moving API call logic outside component for clarity and to avoid closure issues
 const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
   const delays = [1000, 2000, 4000, 8000, 16000];
-  const modelName = "gemini-2.5-flash";
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
+  const url = "https://hayford-learning-hub.onrender.com/api/ai/mark";
   
   for (let i = 0; i < retries; i++) {
     try {
@@ -671,62 +616,59 @@ const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: payload }] }],
-          systemInstruction: { parts: [{ text: systemPrompt }] },
-          generationConfig: { 
-            responseMimeType: "application/json",
-            responseSchema: {
-              type: "OBJECT",
-              properties: {
-                bandScore: { type: "NUMBER" },
-                taskAchievement: { type: "STRING" },
-                coherenceCohesion: { type: "STRING" },
-                lexicalResource: { type: "STRING" },
-                grammarAccuracy: { type: "STRING" },
-                improvementTips: { type: "ARRAY", items: { type: "STRING" } },
-                modelHighlights: { type: "STRING" },
-                diagnostic_tags: { type: "ARRAY", items: { type: "STRING" } },
-                grammar_error_counts: { 
-                  type: "OBJECT",
-                  properties: {
-                    "01_article_usage": { type: "NUMBER" },
-                    "02_countability_and_plurals": { type: "NUMBER" },
-                    "03_pronoun_reference": { type: "NUMBER" },
-                    "04_prepositional_accuracy": { type: "NUMBER" },
-                    "05_word_forms": { type: "NUMBER" },
-                    "06_subject_verb_agreement": { type: "NUMBER" },
-                    "07_tense_consistency": { type: "NUMBER" },
-                    "08_present_perfect_vs_past_simple": { type: "NUMBER" },
-                    "09_gerunds_vs_infinitives": { type: "NUMBER" },
-                    "10_passive_voice_construction": { type: "NUMBER" },
-                    "11_sentence_boundaries": { type: "NUMBER" },
-                    "12_relative_clauses": { type: "NUMBER" },
-                    "13_subordination": { type: "NUMBER" },
-                    "14_word_order": { type: "NUMBER" },
-                    "15_parallel_structure": { type: "NUMBER" },
-                    "16_transitional_devices": { type: "NUMBER" },
-                    "17_collocations": { type: "NUMBER" },
-                    "18_academic_register": { type: "NUMBER" },
-                    "19_nominalization": { type: "NUMBER" },
-                    "20_hedging": { type: "NUMBER" }
-                  }
-                },
-                major_errors: {
-                  type: "ARRAY",
-                  maxItems: 5,
-                  items: {
-                    type: "OBJECT",
-                    properties: {
-                      original_snippet: { type: "STRING" },
-                      correction: { type: "STRING" },
-                      explanation: { type: "STRING" }
-                    },
-                    required: ["original_snippet", "correction", "explanation"]
-                  }
+          prompt: payload,
+          systemInstruction: systemPrompt,
+          responseSchema: {
+            type: "OBJECT",
+            properties: {
+              bandScore: { type: "NUMBER" },
+              taskAchievement: { type: "STRING" },
+              coherenceCohesion: { type: "STRING" },
+              lexicalResource: { type: "STRING" },
+              grammarAccuracy: { type: "STRING" },
+              improvementTips: { type: "ARRAY", items: { type: "STRING" } },
+              modelHighlights: { type: "STRING" },
+              diagnostic_tags: { type: "ARRAY", items: { type: "STRING" } },
+              grammar_error_counts: { 
+                type: "OBJECT",
+                properties: {
+                  "01_article_usage": { type: "NUMBER" },
+                  "02_countability_and_plurals": { type: "NUMBER" },
+                  "03_pronoun_reference": { type: "NUMBER" },
+                  "04_prepositional_accuracy": { type: "NUMBER" },
+                  "05_word_forms": { type: "NUMBER" },
+                  "06_subject_verb_agreement": { type: "NUMBER" },
+                  "07_tense_consistency": { type: "NUMBER" },
+                  "08_present_perfect_vs_past_simple": { type: "NUMBER" },
+                  "09_gerunds_vs_infinitives": { type: "NUMBER" },
+                  "10_passive_voice_construction": { type: "NUMBER" },
+                  "11_sentence_boundaries": { type: "NUMBER" },
+                  "12_relative_clauses": { type: "NUMBER" },
+                  "13_subordination": { type: "NUMBER" },
+                  "14_word_order": { type: "NUMBER" },
+                  "15_parallel_structure": { type: "NUMBER" },
+                  "16_transitional_devices": { type: "NUMBER" },
+                  "17_collocations": { type: "NUMBER" },
+                  "18_academic_register": { type: "NUMBER" },
+                  "19_nominalization": { type: "NUMBER" },
+                  "20_hedging": { type: "NUMBER" }
                 }
               },
-              required: ["bandScore", "taskAchievement", "coherenceCohesion", "lexicalResource", "grammarAccuracy", "improvementTips", "modelHighlights", "diagnostic_tags", "grammar_error_counts", "major_errors"]
-            }
+              major_errors: {
+                type: "ARRAY",
+                maxItems: 5,
+                items: {
+                  type: "OBJECT",
+                  properties: {
+                    original_snippet: { type: "STRING" },
+                    correction: { type: "STRING" },
+                    explanation: { type: "STRING" }
+                  },
+                  required: ["original_snippet", "correction", "explanation"]
+                }
+              }
+            },
+            required: ["bandScore", "taskAchievement", "coherenceCohesion", "lexicalResource", "grammarAccuracy", "improvementTips", "modelHighlights", "diagnostic_tags", "grammar_error_counts", "major_errors"]
           }
         })
       });
@@ -737,9 +679,7 @@ const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
       }
       
       const data = await response.json();
-      const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!content) throw new Error("No content in AI response");
-      return JSON.parse(content);
+      return data;
     } catch (error) {
       if (i === retries - 1) throw error;
       await new Promise(res => setTimeout(res, delays[i]));
@@ -748,6 +688,7 @@ const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
 };
 
 export default function App() {
+  const apiKey = true;
   const [writingTask, setWritingTask] = useState(forcedWritingTask || 'task1');
   const [currentPrompt, setCurrentPrompt] = useState(() => {
     const initialTask = forcedWritingTask || 'task1';
@@ -775,10 +716,11 @@ export default function App() {
   const switchWritingTask = (taskType) => {
     if (forcedWritingTask) return;
     setWritingTask(taskType);
-    setCurrentPrompt(getRandomPrompt(taskType));
+    const newPrompt = getRandomPrompt(taskType);
+    setCurrentPrompt(newPrompt);
     setText('');
     setFeedback(null);
-    setView('bank');
+    setView('practice');
     setTimeLeft(1200);
     setHasStarted(false);
     setIsTimerRunning(false);
@@ -919,7 +861,29 @@ export default function App() {
 
     } catch (e) {
       console.error("AI Marking Error:", e);
-      setErrorMessage(`Connection Busy: The AI service is currently overloaded. Please try submitting again.`);
+      let errorMsg = "Connection Busy: The AI service is currently overloaded. Please try submitting again.";
+      
+      // Try to extract actual error message from backend
+      if (e.message) {
+        try {
+          const match = e.message.match(/HTTP \d+: (.+)/);
+          if (match) {
+            const errorData = JSON.parse(match[1]);
+            errorMsg = errorData.error || errorMsg;
+          }
+        } catch (_) {
+          // If parsing fails, check if message contains useful info
+          if (e.message.includes('API key')) {
+            errorMsg = "API key issue on server. Please contact administrator.";
+          } else if (e.message.includes('quota')) {
+            errorMsg = "API quota exceeded. Please try again later.";
+          } else if (e.message.includes('timeout')) {
+            errorMsg = "Request timed out. Please try again.";
+          }
+        }
+      }
+      
+      setErrorMessage(errorMsg);
     } finally {
       setIsLoading(false);
     }
@@ -947,45 +911,25 @@ export default function App() {
           <div className={`flex items-center gap-2 px-4 py-1.5 rounded-full border transition-all ${timeLeft < 300 && hasStarted ? 'bg-red-50 border-red-200 text-red-600 animate-pulse' : 'bg-slate-100 border-slate-200 text-slate-600'}`}>
             <Clock size={16} /><span className="font-mono font-bold text-lg">{Math.floor(timeLeft/60)}:{String(timeLeft%60).padStart(2,'0')}</span>
           </div>
-          <button onClick={() => setView("bank")} className="text-sm font-bold text-slate-500 hover:text-amber-600 flex items-center gap-2 bg-white px-3 py-1.5 border rounded-lg transition-colors"><BookOpen size={16} /> Bank</button>
+          {view === "practice" && <button onClick={() => startPractice(getRandomPrompt(writingTask))} className="text-sm font-bold text-slate-500 hover:text-amber-600 flex items-center gap-2 bg-white px-3 py-1.5 border rounded-lg transition-colors"><RefreshCw size={16} /> New Topic</button>}
           <button onClick={handleLogout} className="text-sm font-bold text-red-500 hover:text-red-600 flex items-center gap-2 transition-colors"><LogOut size={16} /> Logout</button>
         </div>
       </header>
 
       <div className="px-6 pt-4 bg-slate-50 border-b border-slate-200">
-        {!forcedWritingTask && (
-          <div className="max-w-md mx-auto bg-white p-1 rounded-xl border border-slate-200 flex gap-1">
-            <button
-              onClick={() => switchWritingTask('task1')}
-              className={`flex-1 py-2 px-3 rounded-lg text-xs font-black uppercase tracking-wider transition-colors ${writingTask === 'task1' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
-            >
-              Task 1: Academic Report
-            </button>
-            <button
-              onClick={() => switchWritingTask('task2')}
-              className={`flex-1 py-2 px-3 rounded-lg text-xs font-black uppercase tracking-wider transition-colors ${writingTask === 'task2' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
-            >
-              Task 2: Essay
-            </button>
-          </div>
-        )}
-        {forcedWritingTask && (
-          <div className="max-w-md mx-auto bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-indigo-700 text-center">
-            Assigned Mode: {forcedWritingTask === 'task2' ? 'Task 2 Essay' : 'Task 1 Academic Report'}
-          </div>
-        )}
+        <div className="max-w-md mx-auto bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-indigo-700 text-center">
+          Assignment: {writingTask === 'task2' ? 'IELTS Task 2 Essay' : 'IELTS Task 1 Academic Report'}
+        </div>
       </div>
       
       <main className="flex-1 overflow-hidden">
-        {view === "bank" ? (
-          <PromptList onSelect={startPractice} prompts={getPromptPool(writingTask)} writingTask={writingTask} />
-        ) : view === "feedback" ? (
+        {view === "feedback" ? (
           <FeedbackView 
             feedback={feedback} 
             writingTask={writingTask}
             originalText={text} 
             saveMessage={saveMessage}
-            onReset={() => setView("bank")} 
+            onReset={() => startPractice(getRandomPrompt(writingTask))} 
             onNextRandom={() => startPractice(getRandomPrompt(writingTask))}
           />
         ) : (
@@ -1006,12 +950,17 @@ export default function App() {
                     </div>
                   </div>
                 ) : (
-                  <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-5 mb-8 text-sm text-indigo-900 leading-relaxed">
-                    <p className="font-bold mb-1">Task 2 Essay Focus</p>
-                    <p>Present a clear position, organize ideas into logical body paragraphs, and support points with relevant reasoning or examples.</p>
+                  <div className="mb-8">
+                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-2xl p-8 mb-4 text-center">
+                      <div className="inline-block px-3 py-1 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Task 2 Essay Question</div>
+                      <p className="text-lg font-bold text-slate-800 leading-relaxed">{currentPrompt.instruction}</p>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-900">
+                      <p className="font-bold mb-1">Instructions:</p>
+                      <p>{TASK_INSTRUCTIONS[writingTask]}</p>
+                    </div>
                   </div>
                 )}
-                <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 text-xs text-amber-900 flex gap-3"><AlertTriangle size={18} className="shrink-0 text-amber-500" /><p><b>Note:</b> {TASK_INSTRUCTIONS[writingTask]}</p></div>
               </div>
             </div>
 
@@ -1019,9 +968,11 @@ export default function App() {
             <div className="w-full lg:w-1/2 flex flex-col bg-slate-50">
               <div className="flex-1 p-6 flex flex-col">
                 <div className="flex justify-between items-center mb-2 px-2"><span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Your Response</span><span className={`text-[10px] font-black uppercase ${getWordCount(text) < minWordTarget ? 'text-amber-500' : 'text-green-500'}`}>{getWordCount(text)} words</span></div>
-                <div className="mb-3 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900 leading-relaxed">
-                  <span className="font-bold">IELTS {writingTask === 'task1' ? 'Task 1' : 'Task 2'} Instruction:</span> {TASK_INSTRUCTIONS[writingTask]}
-                </div>
+                {writingTask === 'task1' && (
+                  <div className="mb-3 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900 leading-relaxed">
+                    <span className="font-bold">Instructions:</span> {TASK_INSTRUCTIONS[writingTask]}
+                  </div>
+                )}
                 <textarea className="flex-1 w-full p-8 rounded-2xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-slate-200 outline-none text-lg leading-relaxed resize-none font-serif placeholder:text-slate-300 transition-all" placeholder={writingTask === 'task1' ? 'The chart illustrates...' : 'It is often argued that...'} value={text} onChange={handleTextChange} disabled={isLoading} />
               </div>
               {errorMessage && <div className="mx-6 mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2 font-bold animate-pulse"><XCircle size={16} /> {errorMessage}</div>}
@@ -1116,7 +1067,7 @@ function FeedbackView({ feedback, writingTask, originalText, saveMessage, onRese
                         <span className="text-xs font-bold text-indigo-900">{tag}</span>
                         {mappedTopicId && (
                           <a
-                            href={`/grammar-lab/?topicId=${mappedTopicId}`}
+                            href={`../grammar-tool/index.html?topicId=${mappedTopicId}`}
                             className="inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wide text-white bg-indigo-600 hover:bg-indigo-700 px-2 py-1 rounded-lg transition-colors"
                           >
                             More Practice
@@ -1140,9 +1091,8 @@ function FeedbackView({ feedback, writingTask, originalText, saveMessage, onRese
               </p>
             )}
           </div>
-          <div className="flex flex-col sm:flex-row gap-4">
-             <button onClick={onReset} className="flex-1 bg-white border-2 border-slate-900 text-slate-900 py-5 rounded-2xl font-black hover:bg-slate-50 transition-all shadow-sm tracking-widest uppercase text-xs">Back to Question Bank</button>
-             <button onClick={onNextRandom} className="flex-1 bg-slate-900 text-white py-5 rounded-2xl font-black hover:bg-black transition-all shadow-xl tracking-widest uppercase text-xs">Next Random Topic</button>
+          <div className="flex justify-center">
+             <button onClick={() => window.location.href = '../index.html#/dashboard'} className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-black hover:bg-black transition-all shadow-xl tracking-widest uppercase text-xs">Return to Dashboard</button>
           </div>
         </div>
       </div>
