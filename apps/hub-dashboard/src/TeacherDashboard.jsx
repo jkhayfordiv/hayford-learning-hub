@@ -131,6 +131,9 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [globalUsersPage, setGlobalUsersPage] = useState(1);
   const [globalUsersSort, setGlobalUsersSort] = useState({ key: 'id', direction: 'asc' });
   const USERS_PER_PAGE = 15;
+  const [institutionsSearch, setInstitutionsSearch] = useState('');
+  const [institutionsPage, setInstitutionsPage] = useState(1);
+  const INSTITUTIONS_PER_PAGE = 5;
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -375,6 +378,46 @@ export default function TeacherDashboard({ user, onLogout }) {
       setNewInstitutionForm({ name: '', address: '', contact_email: '' });
     } catch (err) {
       alert(err.message || 'Failed to create institution');
+    }
+  };
+
+  const handleDeleteUser = async (userId, userName) => {
+    if (!window.confirm(`Permanently delete ${userName}? This will remove all their data including scores, assignments, and progress. This cannot be undone.`)) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/all/${userId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete user');
+
+      alert('User deleted successfully');
+      await fetchGlobalUsers();
+    } catch (err) {
+      alert(err.message || 'Failed to delete user');
+    }
+  };
+
+  const handleDeleteInstitution = async (institutionId, institutionName) => {
+    if (!window.confirm(`Permanently delete "${institutionName}"? This cannot be undone.`)) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/institutions/${institutionId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete institution');
+
+      alert('Institution deleted successfully');
+      await fetchInstitutions();
+    } catch (err) {
+      alert(err.message || 'Failed to delete institution');
     }
   };
 
@@ -1724,6 +1767,18 @@ export default function TeacherDashboard({ user, onLogout }) {
                   <PlusCircle size={16} /> Create New Institution
                 </button>
               </div>
+              <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+                <input
+                  type="text"
+                  placeholder="Search institutions by name..."
+                  value={institutionsSearch}
+                  onChange={e => {
+                    setInstitutionsSearch(e.target.value);
+                    setInstitutionsPage(1);
+                  }}
+                  className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                />
+              </div>
               <div className="p-8">
                 {platformLoading ? (
                   <div className="text-center py-12 text-slate-400">Loading institutions...</div>
@@ -1739,10 +1794,21 @@ export default function TeacherDashboard({ user, onLogout }) {
                           <th className="px-6 py-4">Contact Email</th>
                           <th className="px-6 py-4">Total Users</th>
                           <th className="px-6 py-4">Created</th>
+                          <th className="px-6 py-4 text-right">Actions</th>
                         </tr>
                       </thead>
                       <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
-                        {institutions.map((inst) => (
+                        {(() => {
+                          const filtered = institutions.filter(inst => {
+                            const searchLower = institutionsSearch.toLowerCase();
+                            return !institutionsSearch || inst.name.toLowerCase().includes(searchLower);
+                          });
+                          
+                          const startIdx = (institutionsPage - 1) * INSTITUTIONS_PER_PAGE;
+                          const endIdx = startIdx + INSTITUTIONS_PER_PAGE;
+                          const paginated = filtered.slice(startIdx, endIdx);
+                          
+                          return paginated.map((inst) => (
                           <tr key={inst.id} className="hover:bg-slate-50 transition-colors">
                             <td className="px-6 py-4 font-bold text-purple-600">{inst.id}</td>
                             <td className="px-6 py-4 font-bold text-slate-900">{inst.name}</td>
@@ -1755,10 +1821,69 @@ export default function TeacherDashboard({ user, onLogout }) {
                             <td className="px-6 py-4 text-slate-500">
                               {inst.created_at ? new Date(inst.created_at).toLocaleDateString() : 'N/A'}
                             </td>
+                            <td className="px-6 py-4 text-right">
+                              <button
+                                onClick={() => handleDeleteInstitution(inst.id, inst.name)}
+                                className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                              >
+                                Delete
+                              </button>
+                            </td>
                           </tr>
-                        ))}
+                          ));
+                        })()}
                       </tbody>
                     </table>
+                    
+                    {/* Pagination */}
+                    {(() => {
+                      const filtered = institutions.filter(inst => {
+                        const searchLower = institutionsSearch.toLowerCase();
+                        return !institutionsSearch || inst.name.toLowerCase().includes(searchLower);
+                      });
+                      const totalPages = Math.ceil(filtered.length / INSTITUTIONS_PER_PAGE);
+                      
+                      if (totalPages <= 1) return null;
+                      
+                      return (
+                        <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-200">
+                          <div className="text-sm text-slate-600">
+                            Showing {((institutionsPage - 1) * INSTITUTIONS_PER_PAGE) + 1} - {Math.min(institutionsPage * INSTITUTIONS_PER_PAGE, filtered.length)} of {filtered.length} institutions
+                          </div>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => setInstitutionsPage(prev => Math.max(1, prev - 1))}
+                              disabled={institutionsPage === 1}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                            >
+                              Previous
+                            </button>
+                            <div className="flex items-center gap-1">
+                              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                <button
+                                  key={page}
+                                  onClick={() => setInstitutionsPage(page)}
+                                  className={`px-3 py-2 font-bold rounded-lg transition-colors ${
+                                    page === institutionsPage
+                                      ? 'bg-purple-600 text-white'
+                                      : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                                  }`}
+                                >
+                                  {page}
+                                </button>
+                              ))}
+                            </div>
+                            <button
+                              onClick={() => setInstitutionsPage(prev => Math.min(totalPages, prev + 1))}
+                              disabled={institutionsPage === totalPages}
+                              className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                            >
+                              Next
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                 )}
               </div>
@@ -1899,20 +2024,28 @@ export default function TeacherDashboard({ user, onLogout }) {
                             <td className="px-6 py-4 text-slate-600">{u.institution_name || 'None'}</td>
                             <td className="px-6 py-4 text-slate-600">{u.class_name || 'None'}</td>
                             <td className="px-6 py-4 text-right">
-                              <button
-                                onClick={() => {
-                                  setSelectedUser(u);
-                                  setUserEditForm({ 
-                                    role: u.role, 
-                                    institution_id: u.institution_id || '', 
-                                    class_id: u.class_id || '' 
-                                  });
-                                  setIsUserEditModalOpen(true);
-                                }}
-                                className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
-                              >
-                                Edit User
-                              </button>
+                              <div className="flex items-center justify-end gap-2">
+                                <button
+                                  onClick={() => {
+                                    setSelectedUser(u);
+                                    setUserEditForm({ 
+                                      role: u.role, 
+                                      institution_id: u.institution_id || '', 
+                                      class_id: u.class_id || '' 
+                                    });
+                                    setIsUserEditModalOpen(true);
+                                  }}
+                                  className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteUser(u.id, `${u.first_name} ${u.last_name}`)}
+                                  className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                                >
+                                  Delete
+                                </button>
+                              </div>
                             </td>
                           </tr>
                           ));

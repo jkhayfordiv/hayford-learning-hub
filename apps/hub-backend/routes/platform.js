@@ -95,4 +95,27 @@ router.patch('/users/:id', verifySuperAdmin, async (req, res) => {
   }
 });
 
+// DELETE user permanently
+router.delete('/users/:id', verifySuperAdmin, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // Delete user's scores, assignments, and grammar progress first (foreign key constraints)
+    await connection.query('DELETE FROM student_scores WHERE user_id = $1', [id]);
+    await connection.query('DELETE FROM assigned_tasks WHERE user_id = $1', [id]);
+    await connection.query('DELETE FROM grammar_progress WHERE user_id = $1', [id]);
+    
+    // Delete the user
+    const [result] = await connection.query('DELETE FROM users WHERE id = $1', [id]);
+    connection.release();
+    
+    res.json({ message: 'User deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete user' });
+  }
+});
+
 module.exports = router;

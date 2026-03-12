@@ -69,4 +69,36 @@ router.post('/', verifySuperAdmin, async (req, res) => {
   }
 });
 
+// DELETE institution permanently
+router.delete('/:id', verifySuperAdmin, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // Check if institution has users
+    const [users] = await connection.query('SELECT COUNT(*) as count FROM users WHERE institution_id = $1', [id]);
+    if (users[0].count > 0) {
+      connection.release();
+      return res.status(400).json({ error: `Cannot delete institution with ${users[0].count} user(s). Please reassign or delete users first.` });
+    }
+    
+    // Check if institution has classes
+    const [classes] = await connection.query('SELECT COUNT(*) as count FROM classes WHERE institution_id = $1', [id]);
+    if (classes[0].count > 0) {
+      connection.release();
+      return res.status(400).json({ error: `Cannot delete institution with ${classes[0].count} class(es). Please delete classes first.` });
+    }
+    
+    // Delete the institution
+    await connection.query('DELETE FROM institutions WHERE id = $1', [id]);
+    connection.release();
+    
+    res.json({ message: 'Institution deleted successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to delete institution' });
+  }
+});
+
 module.exports = router;
