@@ -76,8 +76,8 @@ app.use((err, req, res, next) => {
 async function startServer() {
   try {
     await bootstrapDatabase();
-    app.listen(PORT, () => {
-      console.log(`🚀 Hub Backend API is running on http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 Hub Backend API is running on port ${PORT}`);
     });
   } catch (error) {
     console.error('Failed to bootstrap database schema:', error);
