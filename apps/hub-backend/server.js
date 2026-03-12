@@ -19,6 +19,7 @@ app.get('/api/health', async (req, res) => {
     
     res.status(200).json({ 
       status: 'ok', 
+      uptime: process.uptime(),
       message: 'Server is running', 
       database: 'connected',
       timestamp: new Date().toISOString()
@@ -27,6 +28,7 @@ app.get('/api/health', async (req, res) => {
     console.error('Database connection failed:', error);
     res.status(503).json({ 
       status: 'error', 
+      uptime: process.uptime(),
       message: 'Server is running, but database connection failed',
       error: error.message
     });
