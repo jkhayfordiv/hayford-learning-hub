@@ -11,8 +11,17 @@
 CREATE TABLE IF NOT EXISTS institutions (
     id SERIAL PRIMARY KEY,
     name VARCHAR(200) NOT NULL UNIQUE,
+    address TEXT,
+    contact_email VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Add address and contact_email columns if they don't exist
+ALTER TABLE institutions
+ADD COLUMN IF NOT EXISTS address TEXT;
+
+ALTER TABLE institutions
+ADD COLUMN IF NOT EXISTS contact_email VARCHAR(100);
 
 -- ============================================================================
 -- USERS TABLE - Multi-Tenant with Institution Hierarchy

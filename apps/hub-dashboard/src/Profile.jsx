@@ -118,7 +118,12 @@ export default function Profile({ user, onLogout }) {
                <div className="relative z-10 text-white mb-2">
                   <h2 className="text-2xl font-black tracking-tight">{formData.first_name} {formData.last_name}</h2>
                   <p className="text-indigo-200 text-sm font-medium flex items-center gap-2 mt-1">
-                    <Shield size={14} /> {user?.role === 'teacher' ? 'Instructor Account' : 'Student Account'}
+                    <Shield size={14} /> {
+                      user?.role === 'super_admin' ? 'Super Admin Account' :
+                      user?.role === 'admin' ? 'Admin Account' :
+                      user?.role === 'teacher' ? 'Instructor Account' :
+                      'Student Account'
+                    }
                   </p>
                </div>
             </div>
