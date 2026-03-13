@@ -134,6 +134,8 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [institutionsSearch, setInstitutionsSearch] = useState('');
   const [institutionsPage, setInstitutionsPage] = useState(1);
   const INSTITUTIONS_PER_PAGE = 5;
+  const [selectedInstitution, setSelectedInstitution] = useState(null);
+  const [isEditInstitutionModalOpen, setIsEditInstitutionModalOpen] = useState(false);
   
   // Classes Directory state
   const [allClasses, setAllClasses] = useState([]);
@@ -988,7 +990,7 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Admin/SuperAdmin Navigation Bar */}
       {(user.role === 'admin' || user.role === 'super_admin') && (
-        <div className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700 px-8 py-3 flex gap-6 sticky top-[73px] z-30">
+        <div className="bg-gradient-to-r from-[#800000] to-[#600000] border-b border-[#700000] px-8 py-3 flex gap-6 sticky top-[73px] z-30">
           <button
             onClick={() => setNavigationView('dashboard')}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
@@ -1223,25 +1225,384 @@ export default function TeacherDashboard({ user, onLogout }) {
                   </div>
                   <button
                     onClick={() => setIsCreateInstitutionModalOpen(true)}
-                    className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-bold text-sm transition-colors shadow-lg"
+                    className="flex items-center gap-2 bg-[#800000] hover:bg-[#600000] text-white px-4 py-2 rounded-xl font-bold text-sm transition-colors shadow-lg"
                   >
                     <PlusCircle size={16} /> Create New Institution
                   </button>
                 </div>
-                {/* Institutions table content will be rendered here - reuse existing code */}
+                
+                <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                  <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+                    <input
+                      type="text"
+                      placeholder="Search institutions..."
+                      value={institutionsSearch}
+                      onChange={e => {
+                        setInstitutionsSearch(e.target.value);
+                        setInstitutionsPage(1);
+                      }}
+                      className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none"
+                    />
+                  </div>
+                  <div className="p-8">
+                    {platformLoading ? (
+                      <div className="text-center py-12 text-slate-400">Loading institutions...</div>
+                    ) : institutions.length === 0 ? (
+                      <div className="text-center py-12 text-slate-400">No institutions found.</div>
+                    ) : (
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                              <th className="px-6 py-4">ID</th>
+                              <th className="px-6 py-4">Name</th>
+                              <th className="px-6 py-4">Contact Email</th>
+                              <th className="px-6 py-4 text-center">Users</th>
+                              <th className="px-6 py-4">Created</th>
+                              <th className="px-6 py-4 text-right">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                            {(() => {
+                              const filtered = institutions.filter(inst => {
+                                const searchLower = institutionsSearch.toLowerCase();
+                                return !institutionsSearch || inst.name.toLowerCase().includes(searchLower);
+                              });
+                              
+                              const startIdx = (institutionsPage - 1) * INSTITUTIONS_PER_PAGE;
+                              const endIdx = startIdx + INSTITUTIONS_PER_PAGE;
+                              const paginated = filtered.slice(startIdx, endIdx);
+                              
+                              return paginated.map((inst) => (
+                                <tr key={inst.id} className="hover:bg-slate-50 transition-colors">
+                                  <td className="px-6 py-4 font-bold text-[#800000]">{inst.id}</td>
+                                  <td className="px-6 py-4 font-bold text-slate-900">{inst.name}</td>
+                                  <td className="px-6 py-4 text-slate-600">{inst.contact_email || 'N/A'}</td>
+                                  <td className="px-6 py-4 text-center">
+                                    <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold">
+                                      {inst.user_count || 0}
+                                    </span>
+                                  </td>
+                                  <td className="px-6 py-4 text-slate-500">
+                                    {inst.created_at ? new Date(inst.created_at).toLocaleDateString() : 'N/A'}
+                                  </td>
+                                  <td className="px-6 py-4 text-right">
+                                    <div className="flex gap-2 justify-end">
+                                      <button
+                                        onClick={() => {
+                                          setSelectedInstitution(inst);
+                                          setIsEditInstitutionModalOpen(true);
+                                        }}
+                                        className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+                                      >
+                                        Edit
+                                      </button>
+                                      <button
+                                        onClick={() => handleDeleteInstitution(inst.id, inst.name)}
+                                        className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                                      >
+                                        Delete
+                                      </button>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ));
+                            })()}
+                          </tbody>
+                        </table>
+                        
+                        {/* Pagination */}
+                        {(() => {
+                          const filtered = institutions.filter(inst => {
+                            const searchLower = institutionsSearch.toLowerCase();
+                            return !institutionsSearch || inst.name.toLowerCase().includes(searchLower);
+                          });
+                          const totalPages = Math.ceil(filtered.length / INSTITUTIONS_PER_PAGE);
+                          
+                          if (totalPages <= 1) return null;
+                          
+                          return (
+                            <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-200">
+                              <div className="text-sm text-slate-600">
+                                Showing {((institutionsPage - 1) * INSTITUTIONS_PER_PAGE) + 1} - {Math.min(institutionsPage * INSTITUTIONS_PER_PAGE, filtered.length)} of {filtered.length} institutions
+                              </div>
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => setInstitutionsPage(prev => Math.max(1, prev - 1))}
+                                  disabled={institutionsPage === 1}
+                                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                                >
+                                  Previous
+                                </button>
+                                <div className="flex items-center gap-1">
+                                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                    <button
+                                      key={page}
+                                      onClick={() => setInstitutionsPage(page)}
+                                      className={`px-3 py-2 font-bold rounded-lg transition-colors ${
+                                        page === institutionsPage
+                                          ? 'bg-[#800000] text-white'
+                                          : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                                      }`}
+                                    >
+                                      {page}
+                                    </button>
+                                  ))}
+                                </div>
+                                <button
+                                  onClick={() => setInstitutionsPage(prev => Math.min(totalPages, prev + 1))}
+                                  disabled={institutionsPage === totalPages}
+                                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             )}
 
             {/* Global Users View - moved from Platform Management tab */}
-            {navigationView === 'users' && user.role === 'super_admin' && (
+            {navigationView === 'users' && (user.role === 'super_admin' || user.role === 'admin') && (
               <div className="space-y-6">
                 <div className="flex justify-between items-end mb-8">
                   <div>
-                    <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Global Users Directory</h2>
-                    <p className="text-slate-500 font-medium">Manage all users across all institutions</p>
+                    <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">
+                      {user.role === 'super_admin' ? 'Global Users Directory' : 'Users Directory'}
+                    </h2>
+                    <p className="text-slate-500 font-medium">
+                      {user.role === 'super_admin' ? 'Manage all users across all institutions' : 'Manage users in your institution'}
+                    </p>
                   </div>
                 </div>
-                {/* Global users table content will be rendered here - reuse existing code */}
+                
+                <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+                  <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+                    <input
+                      type="text"
+                      placeholder="Search by name or email..."
+                      value={globalUsersSearch}
+                      onChange={e => {
+                        setGlobalUsersSearch(e.target.value);
+                        setGlobalUsersPage(1);
+                      }}
+                      className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none"
+                    />
+                  </div>
+                  <div className="p-8">
+                    {platformLoading ? (
+                      <div className="text-center py-12 text-slate-400">Loading users...</div>
+                    ) : globalUsers.length === 0 ? (
+                      <div className="text-center py-12 text-slate-400">No users found.</div>
+                    ) : (
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                              <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                                setGlobalUsersSort(prev => ({
+                                  key: 'id',
+                                  direction: prev.key === 'id' && prev.direction === 'asc' ? 'desc' : 'asc'
+                                }));
+                              }}>
+                                ID {globalUsersSort.key === 'id' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                              </th>
+                              <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                                setGlobalUsersSort(prev => ({
+                                  key: 'name',
+                                  direction: prev.key === 'name' && prev.direction === 'asc' ? 'desc' : 'asc'
+                                }));
+                              }}>
+                                Name {globalUsersSort.key === 'name' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                              </th>
+                              <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                                setGlobalUsersSort(prev => ({
+                                  key: 'email',
+                                  direction: prev.key === 'email' && prev.direction === 'asc' ? 'desc' : 'asc'
+                                }));
+                              }}>
+                                Email {globalUsersSort.key === 'email' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                              </th>
+                              <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                                setGlobalUsersSort(prev => ({
+                                  key: 'role',
+                                  direction: prev.key === 'role' && prev.direction === 'asc' ? 'desc' : 'asc'
+                                }));
+                              }}>
+                                Role {globalUsersSort.key === 'role' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                              </th>
+                              <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                                setGlobalUsersSort(prev => ({
+                                  key: 'institution',
+                                  direction: prev.key === 'institution' && prev.direction === 'asc' ? 'desc' : 'asc'
+                                }));
+                              }}>
+                                Institution {globalUsersSort.key === 'institution' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                              </th>
+                              <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                                setGlobalUsersSort(prev => ({
+                                  key: 'class',
+                                  direction: prev.key === 'class' && prev.direction === 'asc' ? 'desc' : 'asc'
+                                }));
+                              }}>
+                                Class {globalUsersSort.key === 'class' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
+                              </th>
+                              <th className="px-6 py-4 text-right">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                            {(() => {
+                              const filtered = globalUsers.filter(u => {
+                                const searchLower = globalUsersSearch.toLowerCase();
+                                return !globalUsersSearch || 
+                                  `${u.first_name} ${u.last_name}`.toLowerCase().includes(searchLower) ||
+                                  u.email.toLowerCase().includes(searchLower);
+                              });
+                              
+                              const sorted = [...filtered].sort((a, b) => {
+                                let aVal, bVal;
+                                if (globalUsersSort.key === 'name') {
+                                  aVal = `${a.first_name} ${a.last_name}`.toLowerCase();
+                                  bVal = `${b.first_name} ${b.last_name}`.toLowerCase();
+                                } else if (globalUsersSort.key === 'institution') {
+                                  aVal = (a.institution_name || '').toLowerCase();
+                                  bVal = (b.institution_name || '').toLowerCase();
+                                } else if (globalUsersSort.key === 'class') {
+                                  aVal = (a.class_name || '').toLowerCase();
+                                  bVal = (b.class_name || '').toLowerCase();
+                                } else {
+                                  aVal = a[globalUsersSort.key];
+                                  bVal = b[globalUsersSort.key];
+                                }
+                                
+                                if (aVal < bVal) return globalUsersSort.direction === 'asc' ? -1 : 1;
+                                if (aVal > bVal) return globalUsersSort.direction === 'asc' ? 1 : -1;
+                                return 0;
+                              });
+                              
+                              const startIdx = (globalUsersPage - 1) * USERS_PER_PAGE;
+                              const endIdx = startIdx + USERS_PER_PAGE;
+                              const paginated = sorted.slice(startIdx, endIdx);
+                              
+                              return paginated.map((u) => (
+                                <tr key={u.id} className="hover:bg-slate-50 transition-colors">
+                                  <td className="px-6 py-4 font-bold text-[#800000]">{u.id}</td>
+                                  <td className="px-6 py-4 font-bold text-slate-900">{u.first_name} {u.last_name}</td>
+                                  <td className="px-6 py-4 text-slate-600">{u.email}</td>
+                                  <td className="px-6 py-4">
+                                    <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
+                                      u.role === 'super_admin' ? 'bg-purple-100 text-purple-700' :
+                                      u.role === 'admin' ? 'bg-blue-100 text-blue-700' :
+                                      u.role === 'teacher' ? 'bg-green-100 text-green-700' :
+                                      'bg-slate-100 text-slate-700'
+                                    }`}>
+                                      {u.role}
+                                    </span>
+                                  </td>
+                                  <td className="px-6 py-4 text-slate-600">{u.institution_name || 'None'}</td>
+                                  <td className="px-6 py-4 text-slate-600">{u.class_name || 'None'}</td>
+                                  <td className="px-6 py-4 text-right">
+                                    <div className="flex gap-2 justify-end">
+                                      <button
+                                        onClick={() => {
+                                          setSelectedUser(u);
+                                          setUserEditForm({
+                                            role: u.role,
+                                            institution_id: u.institution_id || '',
+                                            class_id: u.class_id || ''
+                                          });
+                                          setIsUserEditModalOpen(true);
+                                        }}
+                                        className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+                                      >
+                                        Edit
+                                      </button>
+                                      <button
+                                        onClick={() => handleDeleteUser(u.id, `${u.first_name} ${u.last_name}`)}
+                                        className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                                      >
+                                        Delete
+                                      </button>
+                                    </div>
+                                  </td>
+                                </tr>
+                              ));
+                            })()}
+                          </tbody>
+                        </table>
+                        
+                        {/* Pagination */}
+                        {(() => {
+                          const filtered = globalUsers.filter(u => {
+                            const searchLower = globalUsersSearch.toLowerCase();
+                            return !globalUsersSearch || 
+                              `${u.first_name} ${u.last_name}`.toLowerCase().includes(searchLower) ||
+                              u.email.toLowerCase().includes(searchLower);
+                          });
+                          const totalPages = Math.ceil(filtered.length / USERS_PER_PAGE);
+                          
+                          if (totalPages <= 1) return null;
+                          
+                          return (
+                            <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-200">
+                              <div className="text-sm text-slate-600">
+                                Showing {((globalUsersPage - 1) * USERS_PER_PAGE) + 1} - {Math.min(globalUsersPage * USERS_PER_PAGE, filtered.length)} of {filtered.length} users
+                              </div>
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => setGlobalUsersPage(prev => Math.max(1, prev - 1))}
+                                  disabled={globalUsersPage === 1}
+                                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                                >
+                                  Previous
+                                </button>
+                                <div className="flex items-center gap-1">
+                                  {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                                    let page;
+                                    if (totalPages <= 5) {
+                                      page = i + 1;
+                                    } else if (globalUsersPage <= 3) {
+                                      page = i + 1;
+                                    } else if (globalUsersPage >= totalPages - 2) {
+                                      page = totalPages - 4 + i;
+                                    } else {
+                                      page = globalUsersPage - 2 + i;
+                                    }
+                                    return (
+                                      <button
+                                        key={page}
+                                        onClick={() => setGlobalUsersPage(page)}
+                                        className={`px-3 py-2 font-bold rounded-lg transition-colors ${
+                                          page === globalUsersPage
+                                            ? 'bg-[#800000] text-white'
+                                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700'
+                                        }`}
+                                      >
+                                        {page}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                                <button
+                                  onClick={() => setGlobalUsersPage(prev => Math.min(totalPages, prev + 1))}
+                                  disabled={globalUsersPage === totalPages}
+                                  className="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 font-bold rounded-lg transition-colors"
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })()}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             )}
           </>
