@@ -325,7 +325,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   };
 
   const fetchGlobalUsers = async () => {
-    if (user.role !== 'super_admin') return;
+    if (user.role !== 'super_admin' && user.role !== 'admin') return;
     setPlatformLoading(true);
     try {
       const token = localStorage.getItem('token');
@@ -334,13 +334,13 @@ export default function TeacherDashboard({ user, onLogout }) {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log('Global Users fetched:', data);
+        console.log('Users fetched:', data);
         setGlobalUsers(data);
       } else {
-        console.error('Failed to fetch global users - HTTP', res.status);
+        console.error('Failed to fetch users - HTTP', res.status);
       }
     } catch (err) {
-      console.error('Failed to fetch global users', err);
+      console.error('Failed to fetch users', err);
     } finally {
       setPlatformLoading(false);
     }
@@ -988,12 +988,12 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Admin/SuperAdmin Navigation Bar */}
       {(user.role === 'admin' || user.role === 'super_admin') && (
-        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 border-b border-purple-700 px-8 py-3 flex gap-6 sticky top-[73px] z-30">
+        <div className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700 px-8 py-3 flex gap-6 sticky top-[73px] z-30">
           <button
             onClick={() => setNavigationView('dashboard')}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               navigationView === 'dashboard'
-                ? 'bg-white text-purple-700 shadow-lg'
+                ? 'bg-white text-slate-900 shadow-lg'
                 : 'text-white hover:bg-white/20'
             }`}
           >
@@ -1004,69 +1004,61 @@ export default function TeacherDashboard({ user, onLogout }) {
               onClick={() => { setNavigationView('institutions'); fetchInstitutions(); }}
               className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
                 navigationView === 'institutions'
-                  ? 'bg-white text-purple-700 shadow-lg'
+                  ? 'bg-white text-slate-900 shadow-lg'
                   : 'text-white hover:bg-white/20'
               }`}
             >
               Institutions
             </button>
           )}
-          {user.role === 'super_admin' && (
-            <button
-              onClick={() => { setNavigationView('users'); fetchGlobalUsers(); }}
-              className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-                navigationView === 'users'
-                  ? 'bg-white text-purple-700 shadow-lg'
-                  : 'text-white hover:bg-white/20'
-              }`}
-            >
-              Global Users
-            </button>
-          )}
+          <button
+            onClick={() => { setNavigationView('users'); user.role === 'super_admin' ? fetchGlobalUsers() : fetchGlobalUsers(); }}
+            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+              navigationView === 'users'
+                ? 'bg-white text-slate-900 shadow-lg'
+                : 'text-white hover:bg-white/20'
+            }`}
+          >
+            {user.role === 'super_admin' ? 'All Users' : 'Users'}
+          </button>
           <button
             onClick={() => { setNavigationView('classes'); fetchAllClasses(); }}
             className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
               navigationView === 'classes'
-                ? 'bg-white text-purple-700 shadow-lg'
+                ? 'bg-white text-slate-900 shadow-lg'
                 : 'text-white hover:bg-white/20'
             }`}
           >
-            Classes Directory
+            Classes
           </button>
         </div>
       )}
 
-      {/* Tabs */}
-      <div className="bg-white border-b border-slate-200 px-8 flex gap-8 sticky top-[73px] z-30">
-        <button 
-          onClick={() => setActiveTab('overview')}
-          className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'overview' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-        >
-          Class Overview
-        </button>
-        <button 
-          onClick={() => setActiveTab('assignments')}
-          className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'assignments' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-        >
-          Assignments & Tasks
-        </button>
-        {(user.role === 'admin' || user.role === 'super_admin') && (
+      {/* Tabs - Only show when in dashboard view */}
+      {navigationView === 'dashboard' && (
+        <div className="bg-white border-b border-slate-200 px-8 flex gap-8 sticky top-[73px] z-30">
           <button 
-            onClick={() => setActiveTab('institution')}
-            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'institution' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            onClick={() => setActiveTab('overview')}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'overview' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
-            Institution Settings
+            Class Overview
           </button>
-        )}
-        {user.role === 'super_admin' && (
           <button 
-            onClick={() => setActiveTab('platform')}
-            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'platform' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            onClick={() => setActiveTab('assignments')}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'assignments' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
-            Platform Management
+            Assignments & Tasks
           </button>
-        )}
-      </div>
+          {(user.role === 'admin' || user.role === 'super_admin') && (
+            <button 
+              onClick={() => setActiveTab('institution')}
+              className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'institution' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            >
+              Institution Settings
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-8 py-12">
@@ -2704,6 +2696,23 @@ export default function TeacherDashboard({ user, onLogout }) {
             <form onSubmit={handleCreateClass} className="p-8 space-y-4">
               {classStatus.error && <div className="p-3 bg-red-50 text-red-600 text-xs font-bold rounded-lg border border-red-100">{classStatus.error}</div>}
               {classStatus.success && <div className="p-3 bg-green-50 text-green-700 text-xs font-bold rounded-lg border border-green-100">Class successfully created!</div>}
+
+              {user.role === 'super_admin' && (
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution</label>
+                  <select
+                    required
+                    value={classFormData.institution_id || ''}
+                    onChange={e => setClassFormData({...classFormData, institution_id: e.target.value})}
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                  >
+                    <option value="">Select Institution</option>
+                    {institutions.map(inst => (
+                      <option key={inst.id} value={inst.id}>{inst.name}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div className="space-y-1">
                 <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class Name</label>

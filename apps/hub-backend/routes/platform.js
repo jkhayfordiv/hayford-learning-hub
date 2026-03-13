@@ -5,7 +5,24 @@ const jwt = require('jsonwebtoken');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_hayford_key_2026';
 
-// Middleware to verify super_admin
+// Middleware to verify super_admin or admin
+const verifyAdminOrSuperAdmin = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    if (decoded.user.role !== 'super_admin' && decoded.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin or Super admin access required' });
+    }
+    req.user = decoded.user;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+// Middleware to verify super_admin only
 const verifySuperAdmin = (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.status(401).json({ error: 'No token provided' });
@@ -22,27 +39,62 @@ const verifySuperAdmin = (req, res, next) => {
   }
 };
 
-// GET all users across all institutions
-router.get('/users/all', verifySuperAdmin, async (req, res) => {
+// GET all users (SuperAdmin: all users, Admin: only their institution)
+router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
   try {
     const connection = await pool.getConnection();
-    const [users] = await connection.query(`
-      SELECT 
-        u.id, 
-        u.first_name, 
-        u.last_name, 
-        u.email, 
-        u.role, 
-        u.institution_id,
-        i.name as institution_name,
-        u.class_id,
-        c.class_name,
-        u.created_at
-      FROM users u
-      LEFT JOIN institutions i ON u.institution_id = i.id
-      LEFT JOIN classes c ON u.class_id = c.id
-      ORDER BY u.id ASC
-    `);
+    const actor_role = req.user.role;
+    const actor_institution_id = req.user.institution_id;
+    
+    let query, params;
+    
+    if (actor_role === 'super_admin') {
+      // SuperAdmin sees ALL users across ALL institutions
+      query = `
+        SELECT 
+          u.id, 
+          u.first_name, 
+          u.last_name, 
+          u.email, 
+          u.role, 
+          u.institution_id,
+          i.name as institution_name,
+          u.class_id,
+          c.class_name,
+          u.created_at
+        FROM users u
+        LEFT JOIN institutions i ON u.institution_id = i.id
+        LEFT JOIN classes c ON u.class_id = c.id
+        ORDER BY u.id ASC
+      `;
+      params = [];
+    } else if (actor_role === 'admin' && actor_institution_id) {
+      // Admin sees only users in THEIR institution
+      query = `
+        SELECT 
+          u.id, 
+          u.first_name, 
+          u.last_name, 
+          u.email, 
+          u.role, 
+          u.institution_id,
+          i.name as institution_name,
+          u.class_id,
+          c.class_name,
+          u.created_at
+        FROM users u
+        LEFT JOIN institutions i ON u.institution_id = i.id
+        LEFT JOIN classes c ON u.class_id = c.id
+        WHERE u.institution_id = $1
+        ORDER BY u.id ASC
+      `;
+      params = [actor_institution_id];
+    } else {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied' });
+    }
+    
+    const [users] = await connection.query(query, params);
     connection.release();
     res.json(users);
   } catch (err) {
@@ -51,8 +103,8 @@ router.get('/users/all', verifySuperAdmin, async (req, res) => {
   }
 });
 
-// PATCH update user (role, institution_id, class_id)
-router.patch('/users/:id', verifySuperAdmin, async (req, res) => {
+// PATCH update user (role, institution_id, class_id) - Admin and SuperAdmin
+router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   const { id } = req.params;
   const { role, institution_id, class_id } = req.body;
 
@@ -95,8 +147,8 @@ router.patch('/users/:id', verifySuperAdmin, async (req, res) => {
   }
 });
 
-// DELETE user permanently
-router.delete('/users/:id', verifySuperAdmin, async (req, res) => {
+// DELETE user permanently - Admin and SuperAdmin
+router.delete('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   const { id } = req.params;
 
   try {

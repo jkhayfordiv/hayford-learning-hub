@@ -6,11 +6,14 @@ const { pool } = require('../db');
 
 // @route   POST api/classes
 // @desc    Create a new class
-// @access  Private (Teacher only)
+// @access  Private (Teacher/Admin/SuperAdmin)
 router.post('/', requireTeacher, async (req, res) => {
-  const { class_name, start_date, end_date } = req.body;
+  const { class_name, start_date, end_date, institution_id: req_institution_id } = req.body;
   const teacher_id = req.user.id;
-  const institution_id = req.user.institution_id;
+  const actor_role = req.user.role;
+  
+  // SuperAdmin can specify institution_id in request, others use their own
+  const institution_id = actor_role === 'super_admin' ? req_institution_id : req.user.institution_id;
   
   if (!class_name) {
     return res.status(400).json({ error: 'Class name is required' });
