@@ -11,8 +11,7 @@ const allowedOrigins = [
   'http://localhost:5173', // Local Vite development
   'http://localhost:3001', // Local backend (for some tools)
   'https://hayford-learning-hub.onrender.com', // Current deployment fallback
-  // ADD YOUR HOSTINGER DOMAIN HERE
-  // 'https://your-hostinger-domain.com'
+  'https://hub.hayfordacademy.com', // Production frontend (Hostinger)
 ];
 
 app.use(cors({
@@ -25,6 +24,8 @@ app.use(cors({
     }
     return callback(null, true);
   },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 app.use(express.json());
