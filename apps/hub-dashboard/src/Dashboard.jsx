@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3 } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
+import WordBank from './components/WordBank';
 import logo from './assets/logo.png';
 
 const DIAGNOSTIC_DICTIONARY = {
@@ -439,6 +440,13 @@ export default function Dashboard() {
           >
             My Progress
           </button>
+          <button 
+            onClick={() => setActiveTab('wordbank')}
+            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'wordbank' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            style={{ marginBottom: '-17px' }}
+          >
+            My Word Bank
+          </button>
         </div>
 
         {activeTab === 'overview' ? (
@@ -713,7 +721,9 @@ export default function Dashboard() {
               )}
             </div>
           </div>
-        )}
+        ) : activeTab === 'wordbank' ? (
+          <WordBank user={user} />
+        ) : null}
 
       </main>
 
