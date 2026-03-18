@@ -13,6 +13,9 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [selectedUser, setSelectedUser] = useState(null);
   const [isUserEditModalOpen, setIsUserEditModalOpen] = useState(false);
   const [userEditForm, setUserEditForm] = useState({ role: '', institution_id: '', class_id: '' });
+  const [resetPassword, setResetPassword] = useState('');
+  const [selectedClassIds, setSelectedClassIds] = useState([]);
+  const [originalClassIds, setOriginalClassIds] = useState([]);
   const [isCreateInstitutionModalOpen, setIsCreateInstitutionModalOpen] = useState(false);
   const [isCreateUserModalOpen, setIsCreateUserModalOpen] = useState(false);
   const [isCreateClassModalOpen, setIsCreateClassModalOpen] = useState(false);
@@ -104,6 +107,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
     try {
       const token = localStorage.getItem('token');
+      
+      // 1. Update user role and institution
       const res = await fetch(`${apiBase}/api/users/${selectedUser.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
@@ -112,9 +117,59 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
       if (!res.ok) throw new Error('Failed to update user');
 
+      // 2. Reset password if provided
+      if (resetPassword && resetPassword.length >= 6) {
+        const pwRes = await fetch(`${apiBase}/api/users/${selectedUser.id}/reset-password`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ new_password: resetPassword })
+        });
+        
+        if (!pwRes.ok) {
+          const pwData = await pwRes.json();
+          throw new Error(pwData.error || 'Failed to reset password');
+        }
+      }
+
+      // 3. Handle class enrollment changes (multi-class support)
+      const classesToAdd = selectedClassIds.filter(id => !originalClassIds.includes(id));
+      const classesToRemove = originalClassIds.filter(id => !selectedClassIds.includes(id));
+
+      // Enroll in new classes
+      for (const classId of classesToAdd) {
+        const enrollRes = await fetch(`${apiBase}/api/users/enroll-class`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ email: selectedUser.email, class_id: classId })
+        });
+        
+        if (!enrollRes.ok) {
+          const enrollData = await enrollRes.json();
+          console.error('Failed to enroll in class:', enrollData.error);
+        }
+      }
+
+      // Unenroll from removed classes
+      for (const classId of classesToRemove) {
+        const unenrollRes = await fetch(`${apiBase}/api/users/unenroll-class`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          body: JSON.stringify({ user_id: selectedUser.id, class_id: classId })
+        });
+        
+        if (!unenrollRes.ok) {
+          const unenrollData = await unenrollRes.json();
+          console.error('Failed to unenroll from class:', unenrollData.error);
+        }
+      }
+
       await fetchGlobalUsers();
       setIsUserEditModalOpen(false);
       setSelectedUser(null);
+      setResetPassword('');
+      setSelectedClassIds([]);
+      setOriginalClassIds([]);
+      alert('User updated successfully');
     } catch (err) {
       alert(err.message || 'Failed to update user');
     }
@@ -696,6 +751,12 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                       institution_id: instId,
                                       class_id: u.class_id || ''
                                     });
+                                    // Initialize multi-class selection
+                                    const userClasses = u.classes || [];
+                                    const classIds = userClasses.map(c => c.class_id || c.id);
+                                    setSelectedClassIds(classIds);
+                                    setOriginalClassIds(classIds);
+                                    setResetPassword('');
                                     setIsUserEditModalOpen(true);
                                   }}
                                   className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
@@ -887,23 +948,50 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                 </select>
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class</label>
-                <select
-                  value={userEditForm.class_id}
-                  onChange={e => setUserEditForm({...userEditForm, class_id: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                  disabled={!selectedInstitutionId}
-                >
-                  <option value="">None</option>
-                  {(() => {
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Classes (Multi-Select)</label>
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 max-h-48 overflow-y-auto">
+                  {!selectedInstitutionId ? (
+                    <p className="text-xs text-slate-500">Select an institution first to assign classes</p>
+                  ) : (() => {
                     const filteredClasses = allClasses.filter(c => String(c.institution_id) === String(selectedInstitutionId));
+                    if (filteredClasses.length === 0) {
+                      return <p className="text-xs text-slate-500">No classes available for this institution</p>;
+                    }
                     return filteredClasses.map(cls => (
-                      <option key={cls.id} value={cls.id}>{cls.class_name}</option>
+                      <label key={cls.id} className="flex items-center gap-2 py-2 hover:bg-slate-100 rounded px-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={selectedClassIds.includes(cls.id)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedClassIds([...selectedClassIds, cls.id]);
+                            } else {
+                              setSelectedClassIds(selectedClassIds.filter(id => id !== cls.id));
+                            }
+                          }}
+                          className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className="text-sm font-medium text-slate-700">{cls.class_name}</span>
+                      </label>
                     ));
                   })()}
-                </select>
-                {!userEditForm.institution_id && (
-                  <p className="text-xs text-slate-500 mt-1">Select an institution first to assign a class</p>
+                </div>
+                {selectedClassIds.length > 0 && (
+                  <p className="text-xs text-slate-600 mt-1">{selectedClassIds.length} class(es) selected</p>
+                )}
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Reset Password (Optional)</label>
+                <input
+                  type="password"
+                  value={resetPassword}
+                  onChange={e => setResetPassword(e.target.value)}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Leave blank to keep current password"
+                  minLength={6}
+                />
+                {resetPassword && resetPassword.length < 6 && (
+                  <p className="text-xs text-red-500 mt-1">Password must be at least 6 characters</p>
                 )}
               </div>
               <div className="flex gap-3 pt-4">

@@ -207,6 +207,71 @@ router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   }
 });
 
+// PATCH reset user password - Admin and SuperAdmin with Tenant Isolation
+router.patch('/users/:id/reset-password', verifyAdminOrSuperAdmin, async (req, res) => {
+  const { id } = req.params;
+  const { new_password } = req.body;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
+
+  if (!new_password || new_password.length < 6) {
+    return res.status(400).json({ error: 'New password must be at least 6 characters' });
+  }
+
+  try {
+    const bcrypt = require('bcryptjs');
+    const connection = await pool.getConnection();
+    
+    // TENANT ISOLATION: Verify user exists and belongs to admin's institution
+    const [userCheck] = await connection.query(
+      'SELECT id, institution_id, email FROM users WHERE id = $1',
+      [id]
+    );
+    
+    if (userCheck.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    // Admin can only reset passwords for users in their institution
+    if (actor_role === 'admin' && userCheck[0].institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: User belongs to a different institution' });
+    }
+    
+    // Hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const password_hash = await bcrypt.hash(new_password, salt);
+    
+    // Update password with tenant isolation
+    let updateQuery, updateParams;
+    if (actor_role === 'super_admin') {
+      updateQuery = 'UPDATE users SET password_hash = $1 WHERE id = $2';
+      updateParams = [password_hash, id];
+    } else {
+      // Admin: add institution_id constraint
+      updateQuery = 'UPDATE users SET password_hash = $1 WHERE id = $2 AND institution_id = $3';
+      updateParams = [password_hash, id, actor_institution_id];
+    }
+    
+    const [result] = await connection.query(updateQuery, updateParams);
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
+    
+    connection.release();
+    
+    if (updated === 0) {
+      return res.status(404).json({ error: 'User not found or access denied' });
+    }
+    
+    res.json({ message: 'Password reset successfully' });
+  } catch (err) {
+    console.error('DB Error in PATCH /api/users/:id/reset-password:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
+    res.status(500).json({ error: 'Failed to reset password' });
+  }
+});
+
 // DELETE user permanently - Admin and SuperAdmin
 router.delete('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   const { id } = req.params;

@@ -34,16 +34,25 @@ router.get('/', verifySuperAdmin, async (req, res) => {
         i.address,
         i.contact_email,
         i.created_at,
-        COUNT(u.id) as user_count
+        CAST(COUNT(u.id) AS INTEGER) as user_count
       FROM institutions i
       LEFT JOIN users u ON u.institution_id = i.id
       GROUP BY i.id, i.name, i.address, i.contact_email, i.created_at
       ORDER BY i.id ASC
     `);
+    
+    // Ensure user_count is a number
+    const institutionsWithCount = institutions.map(inst => ({
+      ...inst,
+      user_count: parseInt(inst.user_count) || 0
+    }));
+    
     connection.release();
-    res.json(institutions);
+    res.json(institutionsWithCount);
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in GET /api/institutions:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to fetch institutions' });
   }
 });
@@ -65,7 +74,9 @@ router.post('/', verifySuperAdmin, async (req, res) => {
     connection.release();
     res.status(201).json({ message: 'Institution created', id: result.insertId });
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in POST /api/institutions:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to create institution' });
   }
 });
@@ -97,7 +108,9 @@ router.delete('/:id', verifySuperAdmin, async (req, res) => {
     
     res.json({ message: 'Institution deleted successfully' });
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in DELETE /api/institutions/:id:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to delete institution' });
   }
 });
