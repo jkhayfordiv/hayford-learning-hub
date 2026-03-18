@@ -95,6 +95,10 @@ app.use('/api', platformRoutes);
 const institutionsRoutes = require('./routes/institutions');
 app.use('/api/institutions', institutionsRoutes);
 
+// Word Bank routes (Student vocabulary management)
+const wordbankRoutes = require('./routes/wordbank');
+app.use('/api/wordbank', wordbankRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });
