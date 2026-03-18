@@ -62,18 +62,26 @@ export default function App() {
         throw new Error(data?.error || 'AI service request failed.');
       }
       
-      const isPerfect = data.used_word && data.grammar_ok && data.context_ok;
+      // New two-axis evaluation:
+      // - target_word_correct: Did they use the vocab word correctly?
+      // - secondary_grammar_correct: Is the rest grammatically correct?
+      const isPerfect = data.target_word_correct && data.secondary_grammar_correct;
+      const isPartialCredit = data.target_word_correct && !data.secondary_grammar_correct;
       
       setFeedback({
         ...data,
-        isPerfect
+        isPerfect,
+        isPartialCredit
       });
 
     } catch (error) {
       console.error(error);
       setFeedback({
-         used_word: false, grammar_ok: false, context_ok: false, isPerfect: false,
-         explanation: "Connection Busy: The AI service is currently overloaded or there is a network issue. Please try submitting again."
+         target_word_correct: false, 
+         secondary_grammar_correct: false, 
+         isPerfect: false,
+         isPartialCredit: false,
+         feedback: "Connection Busy: The AI service is currently overloaded or there is a network issue. Please try submitting again."
       });
     } finally {
       setIsChecking(false);
@@ -108,8 +116,9 @@ export default function App() {
 
     setSaveStatus({ loading: true, success: false, error: null });
 
-    // Calculate score based on how many sentences were 'perfect'
-    const correctCount = sessionResults.filter(r => r.feedback?.isPerfect).length;
+    // Calculate score based on target_word_correct (not isPerfect)
+    // Students pass if they used the vocabulary word correctly, even with minor grammar issues
+    const correctCount = sessionResults.filter(r => r.feedback?.target_word_correct).length;
     const score = (correctCount / targetWords.length) * 100;
     
     // Create submitted text overview
@@ -187,16 +196,18 @@ export default function App() {
                 <div className="flex items-center justify-between">
                    <div className="font-black uppercase tracking-widest text-[10px] text-slate-400">Target Word</div>
                    {res.feedback?.isPerfect ? (
-                      <span className="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-md">Mastered</span>
+                      <span className="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-md">✓ Mastered</span>
+                   ) : res.feedback?.isPartialCredit ? (
+                      <span className="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">~ Partial Credit</span>
                    ) : (
-                      <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Needs Review</span>
+                      <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">✗ Needs Review</span>
                    )}
                 </div>
                  <div className="text-lg font-bold text-slate-900">{res.word}</div>
                 <div className="text-slate-700 mt-2 font-medium italic">"{res.sentence}"</div>
-                {res.feedback?.explanation && (
+                {res.feedback?.feedback && (
                   <div className="text-sm text-slate-500 mt-2 pt-2 border-t border-slate-200">
-                    💡 {res.feedback.explanation}
+                    💡 {res.feedback.feedback}
                   </div>
                 )}
               </div>
@@ -304,40 +315,54 @@ export default function App() {
                </button>
              </div>
            ) : (
-             <div className={`mt-8 p-6 rounded-2xl border ${feedback.isPerfect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} text-left animate-in slide-in-from-bottom-2`}>
+             <div className={`mt-8 p-6 rounded-2xl border ${
+               feedback.isPerfect ? 'bg-green-50 border-green-200' : 
+               feedback.isPartialCredit ? 'bg-blue-50 border-blue-200' : 
+               'bg-red-50 border-red-200'
+             } text-left animate-in slide-in-from-bottom-2`}>
                 <div className="flex items-start gap-4">
                   {feedback.isPerfect ? (
                     <div className="bg-green-100 p-2 rounded-xl"><CheckCircle className="text-green-600 w-6 h-6" /></div>
+                  ) : feedback.isPartialCredit ? (
+                    <div className="bg-blue-100 p-2 rounded-xl"><CheckCircle className="text-blue-600 w-6 h-6" /></div>
                   ) : (
                     <div className="bg-red-100 p-2 rounded-xl"><XCircle className="text-red-600 w-6 h-6" /></div>
                   )}
                   <div className="flex-1">
-                    <h3 className={`text-lg font-black ${feedback.isPerfect ? 'text-green-800' : 'text-red-800'}`}>
-                      {feedback.isPerfect ? 'Excellent!' : 'Needs Polish'}
+                    <h3 className={`text-lg font-black ${
+                      feedback.isPerfect ? 'text-green-800' : 
+                      feedback.isPartialCredit ? 'text-blue-800' : 
+                      'text-red-800'
+                    }`}>
+                      {feedback.isPerfect ? 'Excellent!' : feedback.isPartialCredit ? 'Almost Perfect!' : 'Needs Work'}
                     </h3>
-                    <p className={`mt-1 font-medium ${feedback.isPerfect ? 'text-green-700' : 'text-red-700'}`}>
-                      {feedback.explanation}
+                    <p className={`mt-1 font-medium ${
+                      feedback.isPerfect ? 'text-green-700' : 
+                      feedback.isPartialCredit ? 'text-blue-700' : 
+                      'text-red-700'
+                    }`}>
+                      {feedback.feedback}
                     </p>
                     
-                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                    <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2">
                       <div className="bg-white/60 p-2 border border-black/5 rounded-lg flex justify-between items-center text-sm font-semibold text-slate-700">
-                        <span>Used Word</span>
-                        {feedback.used_word ? <CheckCircle size={16} className="text-green-600"/> : <XCircle size={16} className="text-red-600"/>}
+                        <span>Target Word Correct</span>
+                        {feedback.target_word_correct ? <CheckCircle size={16} className="text-green-600"/> : <XCircle size={16} className="text-red-600"/>}
                       </div>
                       <div className="bg-white/60 p-2 border border-black/5 rounded-lg flex justify-between items-center text-sm font-semibold text-slate-700">
-                        <span>Grammar Okay</span>
-                        {feedback.grammar_ok ? <CheckCircle size={16} className="text-green-600"/> : <XCircle size={16} className="text-red-600"/>}
-                      </div>
-                      <div className="bg-white/60 p-2 border border-black/5 rounded-lg flex justify-between items-center text-sm font-semibold text-slate-700">
-                        <span>Context Okay</span>
-                        {feedback.context_ok ? <CheckCircle size={16} className="text-green-600"/> : <XCircle size={16} className="text-red-600"/>}
+                        <span>Grammar & Mechanics</span>
+                        {feedback.secondary_grammar_correct ? <CheckCircle size={16} className="text-green-600"/> : <XCircle size={16} className="text-red-600"/>}
                       </div>
                     </div>
 
                     <div className="mt-6 flex justify-end">
                       <button
                         onClick={handleNextWord}
-                        className={`font-bold px-6 py-3 rounded-xl transition-all flex items-center gap-2 shadow-sm ${feedback.isPerfect ? 'bg-green-600 hover:bg-green-700 text-white' : 'bg-red-600 hover:bg-red-700 text-white'}`}
+                        className={`font-bold px-6 py-3 rounded-xl transition-all flex items-center gap-2 shadow-sm ${
+                          feedback.isPerfect ? 'bg-green-600 hover:bg-green-700 text-white' : 
+                          feedback.isPartialCredit ? 'bg-blue-600 hover:bg-blue-700 text-white' : 
+                          'bg-red-600 hover:bg-red-700 text-white'
+                        }`}
                       >
                          Continue <ArrowRight size={18} />
                       </button>

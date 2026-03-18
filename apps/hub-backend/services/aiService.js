@@ -147,14 +147,28 @@ The student was instructed to write exactly ONE sentence using the target word.
 Target Word: "${targetWord}"
 Student Sentence: "${sentence}"
 
-Evaluate the sentence based on:
-1. used_word: Did they use the target word (or a valid inflection/form of it)? true/false
-2. grammar_ok: Is the sentence grammatically sound? true/false
-3. context_ok: Does the context demonstrate they understand what the word means? true/false
-4. explanation: A concise string explaining the grading, providing corrections if there are grammar errors, and confirming if the context was good.
+CRITICAL: Evaluate the sentence on TWO DISTINCT AXES:
 
-Return ONLY a raw JSON object with those four keys. No markdown wrapping.
-Example: {"used_word": true, "grammar_ok": false, "context_ok": true, "explanation": "Good context, but 'he run' should be 'he runs'."}
+AXIS 1 - TARGET WORD USAGE (Primary):
+- Did they use the specific vocabulary word correctly in meaning and form?
+- Consider: word usage, correct inflection/form, and contextual understanding
+- This determines if they "passed" the vocabulary drill
+
+AXIS 2 - SECONDARY GRAMMAR (Secondary):
+- Is the REST of the sentence grammatically correct?
+- Consider: punctuation, capitalization, spelling of OTHER words (not the target word)
+- This is helpful feedback but does NOT fail the vocabulary word itself
+
+Return ONLY a raw JSON object with these THREE keys:
+1. target_word_correct (boolean): Did they use the target word correctly in meaning and form?
+2. secondary_grammar_correct (boolean): Is the rest of the sentence grammatically correct (punctuation, capitalization, other spelling)?
+3. feedback (string): Helpful explanation of their errors, or praise if perfect. If target_word_correct is true but secondary_grammar_correct is false, acknowledge they used the word correctly but point out the grammar issues.
+
+Example 1: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly to mean temporary! However, you're missing a period at the end of the sentence."}
+Example 2: {"target_word_correct": false, "secondary_grammar_correct": true, "feedback": "Your sentence is grammatically perfect, but 'ephemeral' means temporary, not eternal. Try using it to describe something brief."}
+Example 3: {"target_word_correct": true, "secondary_grammar_correct": true, "feedback": "Perfect! You used 'ephemeral' correctly and your sentence is grammatically sound."}
+
+No markdown wrapping. Return only the JSON object.
 `;
 
   return limiter.schedule(() => executeWithRetry(prompt, requestId));
