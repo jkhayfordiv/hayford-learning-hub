@@ -28,6 +28,24 @@ export default function App() {
       setToken(localStorage.getItem('token'));
     }
 
+    // Check for custom practice words from Word Bank
+    const customWordsJson = sessionStorage.getItem('custom_practice_words');
+    if (customWordsJson) {
+      try {
+        const customWords = JSON.parse(customWordsJson);
+        if (customWords && customWords.length > 0) {
+          setTargetWords(customWords);
+          // CRITICAL: Remove immediately to prevent infinite loop
+          sessionStorage.removeItem('custom_practice_words');
+          return; // Skip normal assignment parsing
+        }
+      } catch (e) {
+        console.error('Error parsing custom practice words', e);
+        sessionStorage.removeItem('custom_practice_words');
+      }
+    }
+
+    // Normal assignment parsing (only if no custom words)
     if (metaString) {
       try {
         const meta = JSON.parse(decodeURIComponent(metaString));
@@ -150,6 +168,32 @@ export default function App() {
         data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
       } catch (_) {}
       if (!res.ok) throw new Error(data.error || data.details || 'Failed to save to dashboard.');
+      
+      // AUTO-SAVE MISSED WORDS TO WORD BANK
+      // Iterate through results and save words where target_word_correct is false
+      const missedWords = sessionResults.filter(r => r.feedback?.target_word_correct === false);
+      if (missedWords.length > 0) {
+        // Fire async requests to save missed words (fail silently if network issues)
+        missedWords.forEach(async (result) => {
+          try {
+            await fetch(`${apiBase}/api/wordbank`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                word: result.word,
+                source: 'vocab_tool'
+              })
+            });
+            // Silently succeed - don't show UI feedback for auto-saves
+          } catch (err) {
+            // Fail silently - log but don't break the completion screen
+            console.error(`Failed to auto-save word "${result.word}" to word bank:`, err);
+          }
+        });
+      }
       
       setSaveStatus({ loading: false, success: true, error: null });
     } catch (error) {

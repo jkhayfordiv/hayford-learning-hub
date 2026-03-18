@@ -98,9 +98,17 @@ export default function WordBank({ user }) {
   };
 
   const handlePracticeWords = () => {
-    console.log('Practice My Words clicked!');
-    console.log('Words to practice:', words.map(w => w.word));
-    showMessage('info', 'Practice feature coming soon! Check the console for your word list.');
+    if (words.length === 0) return;
+
+    // Extract just the word strings from the word objects
+    const wordStrings = words.map(w => w.word);
+    
+    // Save to sessionStorage for the Vocab Tool to read
+    sessionStorage.setItem('custom_practice_words', JSON.stringify(wordStrings));
+    
+    // Launch the Vocab Tool (same pattern as Dashboard uses)
+    const token = localStorage.getItem('token');
+    window.location.href = `/vocab-tool/?token=${token}&mode=practice`;
   };
 
   const showMessage = (type, text) => {
