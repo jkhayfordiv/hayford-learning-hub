@@ -1,0 +1,1067 @@
+{
+  "topicId": "02_countability_plurals",
+  "topicName": "Countability & Plurals",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: Can you count it?</h3><p>Nouns are either <b>Countable</b> (you can have 1, 2, or 3) or <b>Uncountable</b> (it is a mass or abstract idea). This choice determines which words you use around it.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Type</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Rules</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Examples</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Countable</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Use <i>a/an</i> or <i>many/few</i>. Can be plural (s).</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">A book, many cars.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Uncountable</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Use <i>much/little</i>. No 's' ending.</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Much water, little time.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which of these is a countable noun?",
+          "options": [
+            "Water",
+            "Information",
+            "Laptop",
+            "Advice"
+          ],
+          "correctAnswer": "Laptop",
+          "explanation": "You can have 'one laptop' or 'two laptops'. The others are uncountable masses or abstract ideas."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Which word correctly completes the phrase: 'I have too ___ homework.'",
+          "options": [
+            "many",
+            "much",
+            "few",
+            "a few"
+          ],
+          "correctAnswer": "much",
+          "explanation": "'Homework' is uncountable in English, so we use 'much'."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Choose the correct plural form of 'Child':",
+          "options": [
+            "Childs",
+            "Children",
+            "Childrens",
+            "Childes"
+          ],
+          "correctAnswer": "Children",
+          "explanation": "'Child' is an irregular noun; the plural is 'children'."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Which of these is an UNCOUNTABLE noun?",
+          "options": [
+            "Bottle",
+            "Idea",
+            "Knowledge",
+            "Fact"
+          ],
+          "correctAnswer": "Knowledge",
+          "explanation": "'Knowledge' is an abstract concept that cannot be counted individually."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'There are very ___ people in the park today.'",
+          "options": [
+            "little",
+            "much",
+            "few",
+            "any"
+          ],
+          "correctAnswer": "few",
+          "explanation": "'People' is the plural of 'person' (countable), so we use 'few'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I need some advices for my project.'",
+          "options": [
+            "I",
+            "some",
+            "advices",
+            "project"
+          ],
+          "correctAnswer": "advices",
+          "explanation": "'Advice' is uncountable and never takes an 's'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Which quantifier goes with 'Sugar'?",
+          "options": [
+            "A few",
+            "Many",
+            "A little",
+            "A"
+          ],
+          "correctAnswer": "A little",
+          "explanation": "Sugar is a mass (uncountable), so we use 'a little'."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "What is the plural of 'Analysis'?",
+          "options": [
+            "Analysises",
+            "Analysis",
+            "Analyses",
+            "Analysiz"
+          ],
+          "correctAnswer": "Analyses",
+          "explanation": "Nouns ending in -is often change to -es in the plural (Crisis -> Crises)."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "We have many furniture in our house.",
+            "We have much furnitures in our house.",
+            "We have a lot of furniture in our house.",
+            "We have few furniture in our house."
+          ],
+          "correctAnswer": "We have a lot of furniture in our house.",
+          "explanation": "'Furniture' is uncountable. 'A lot of' works for both countable and uncountable."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which of these takes 'Many'?",
+          "options": [
+            "Traffic",
+            "Research",
+            "Equipment",
+            "Suggestions"
+          ],
+          "correctAnswer": "Suggestions",
+          "explanation": "'Suggestions' is a countable plural noun."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'How ___ money do you have?'",
+          "options": [
+            "many",
+            "much",
+            "few",
+            "long"
+          ],
+          "correctAnswer": "much",
+          "explanation": "Though coins/dollars are countable, the word 'money' itself is uncountable."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Which is the correct plural of 'Mouse' (the animal)?",
+          "options": [
+            "Mouses",
+            "Mices",
+            "Mice",
+            "Mouse"
+          ],
+          "correctAnswer": "Mice",
+          "explanation": "This is an irregular plural form."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the countable noun:",
+          "options": [
+            "Rice",
+            "Salt",
+            "Grain",
+            "Sand"
+          ],
+          "correctAnswer": "Grain",
+          "explanation": "You can count 'one grain' of rice/sand, even if it's very small. Rice/Sand are mass nouns."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Complete: 'Could you give me ___ water?'",
+          "options": [
+            "a",
+            "many",
+            "some",
+            "a few"
+          ],
+          "correctAnswer": "some",
+          "explanation": "'Some' is used for uncountable nouns in requests or positive statements."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Which is the plural of 'Criteria'?",
+          "options": [
+            "Criteria",
+            "Criterias",
+            "Criterion",
+            "Criterions"
+          ],
+          "correctAnswer": "Criteria",
+          "explanation": "Actually, 'Criteria' is the plural; the singular is 'Criterion'."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Which adjective goes with 'Salt'?",
+          "options": [
+            "Several",
+            "Many",
+            "Too much",
+            "A few"
+          ],
+          "correctAnswer": "Too much",
+          "explanation": "Salt is uncountable."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Identify the uncountable noun:",
+          "options": [
+            "Job",
+            "Work",
+            "Task",
+            "Assignment"
+          ],
+          "correctAnswer": "Work",
+          "explanation": "Jobs and tasks can be counted, but 'work' is a general mass noun."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Plural of 'Thesis'?",
+          "options": [
+            "Thesises",
+            "Theses",
+            "Thesis",
+            "Thesis's"
+          ],
+          "correctAnswer": "Theses",
+          "explanation": "Follows the Latin/Greek -is to -es plural rule."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct quantifier: 'There isn't ___ traffic tonight.'",
+          "options": [
+            "many",
+            "few",
+            "much",
+            "a"
+          ],
+          "correctAnswer": "much",
+          "explanation": "Traffic is an uncountable mass."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'Pair Noun' (always plural)?",
+          "options": [
+            "Shirt",
+            "Glove",
+            "Trousers",
+            "Sock"
+          ],
+          "correctAnswer": "Trousers",
+          "explanation": "Nouns like trousers, scissors, and glasses are always treated as plural."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'We need ___ new equipment for the lab.'",
+          "options": [
+            "some",
+            "a",
+            "many",
+            "a few"
+          ],
+          "correctAnswer": "some",
+          "explanation": "'Equipment' is uncountable in English."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "What is the plural of 'Woman'?",
+          "options": [
+            "Womans",
+            "Womens",
+            "Women",
+            "Wimen"
+          ],
+          "correctAnswer": "Women",
+          "explanation": "Irregular vowel-change plural."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'There were a few informations in the file.'",
+          "options": [
+            "were",
+            "a few",
+            "informations",
+            "file"
+          ],
+          "correctAnswer": "informations",
+          "explanation": "Information is uncountable. Use 'some information' or 'a few pieces of information'."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which takes 'Less'?",
+          "options": [
+            "Apples",
+            "Time",
+            "People",
+            "Cities"
+          ],
+          "correctAnswer": "Time",
+          "explanation": "'Less' is for uncountable; 'Fewer' is for countable plural."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Plural of 'Leaf'?",
+          "options": [
+            "Leafs",
+            "Leaves",
+            "Leafes",
+            "Leavs"
+          ],
+          "correctAnswer": "Leaves",
+          "explanation": "Nouns ending in -f or -fe often change to -ves."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Which is correct: 'How ___ luggage do you have?'",
+          "options": [
+            "many",
+            "much",
+            "few",
+            "any"
+          ],
+          "correctAnswer": "much",
+          "explanation": "Luggage is uncountable."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Identify the countable noun:",
+          "options": [
+            "Advice",
+            "Luck",
+            "Happiness",
+            "Suggestion"
+          ],
+          "correctAnswer": "Suggestion",
+          "explanation": "You can have one suggestion, two suggestions."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "What is the plural of 'Foot'?",
+          "options": [
+            "Foots",
+            "Feets",
+            "Feet",
+            "Footes"
+          ],
+          "correctAnswer": "Feet",
+          "explanation": "Irregular plural."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Complete: 'There are ___ students in the hall.'",
+          "options": [
+            "several",
+            "much",
+            "a little",
+            "any"
+          ],
+          "correctAnswer": "several",
+          "explanation": "'Several' is used with countable plural nouns."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Which is an uncountable 'Abstract' noun?",
+          "options": [
+            "Song",
+            "Poem",
+            "Music",
+            "Note"
+          ],
+          "correctAnswer": "Music",
+          "explanation": "Music is the general mass/concept; songs and notes are countable parts."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "Intermediate Accuracy",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 2: Precision in Usage</h3><p>At this level, we focus on trickier nouns (like 'data', 'media', 'equipment') and ensuring your quantifiers match the noun type perfectly.</p></div>",
+      "questionBank": [
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Which of the following is correct when discussing scientific findings?",
+          "options": [
+            "The data provide much evidences.",
+            "The data provides some evidence.",
+            "The data provide many evidence.",
+            "The data provides an evidence."
+          ],
+          "correctAnswer": "The data provides some evidence.",
+          "explanation": "'Evidence' cannot be pluralized or used with 'an' or 'many'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct academic phrasing for tools used in a study:",
+          "options": [
+            "The researchers used various equipments.",
+            "The researchers used various equipment.",
+            "The researchers used a various equipment.",
+            "The researchers used many equipments."
+          ],
+          "correctAnswer": "The researchers used various equipment.",
+          "explanation": "'Equipment' is uncountable. 'Various' can modify it, but never with an 's'."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report contains too many informations about the new policy.'",
+          "options": [
+            "contains",
+            "too many",
+            "informations",
+            "about"
+          ],
+          "correctAnswer": "informations",
+          "explanation": "Information is strictly uncountable. Use 'too much information'."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which is the most formal way to describe a student's tasks?",
+          "options": [
+            "She has many works to do.",
+            "She has much work to do.",
+            "She has a lot of works to do.",
+            "She has many homeworks."
+          ],
+          "correctAnswer": "She has much work to do.",
+          "explanation": "'Work' (as in labor/tasks) is uncountable. 'Works' usually refers to artistic creations like 'works of art'."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'He provided a few advices on how to pass the test.'",
+          "options": [
+            "He provided a few pieces of advice.",
+            "He provided a few advices.",
+            "He provided much advices.",
+            "He provided a advice."
+          ],
+          "correctAnswer": "He provided a few pieces of advice.",
+          "explanation": "To count 'advice,' you must use the 'piece of' counter."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which quantifier is used correctly with 'Staff'?",
+          "options": [
+            "We have much staff.",
+            "We have many staff members.",
+            "We have a staff.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "'Staff' is a collective noun. You can count 'members' or refer to the whole 'staff' as a singular group."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Correct the phrasing: 'There are many luggages at the airport.'",
+          "options": [
+            "There is much luggage.",
+            "There are many pieces of luggage.",
+            "There are much luggage.",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "Luggage is uncountable. You count it with 'pieces of' or treat it as a mass with 'is much'."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Choose the best academic choice: 'The study produced ___.'",
+          "options": [
+            "significant findings",
+            "significant find",
+            "significant findes",
+            "a significant finding"
+          ],
+          "correctAnswer": "significant findings",
+          "explanation": "'Finding' is actually countable, making it a safer academic alternative to 'research' when you need a plural."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The software includes several useful hardwares.'",
+          "options": [
+            "includes",
+            "several",
+            "useful",
+            "hardwares"
+          ],
+          "correctAnswer": "hardwares",
+          "explanation": "Hardware and software are mass nouns and never take an 's'."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "How should you describe money in an essay?",
+          "options": [
+            "The government spent many moneys.",
+            "The government spent much money.",
+            "The government spent a lot of money.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "'Money' is uncountable."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Which of these is incorrect? 'She gave me ___.'",
+          "options": [
+            "an information",
+            "some information",
+            "two pieces of information",
+            "much information"
+          ],
+          "correctAnswer": "an information",
+          "explanation": "You can never use the indefinite article 'a/an' with uncountable nouns."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The university provides ___ for its students.'",
+          "options": [
+            "many help",
+            "much help",
+            "a few helps",
+            "helps"
+          ],
+          "correctAnswer": "much help",
+          "explanation": "'Help' (as assistance) is uncountable."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the L1 trap: 'I need to buy some stationarys.'",
+          "options": [
+            "need",
+            "buy",
+            "some",
+            "stationarys"
+          ],
+          "correctAnswer": "stationarys",
+          "explanation": "'Stationery' (paper/pens) is uncountable and spelled with an 'e'. It never takes an 's'."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The weather ___ nice today.'",
+          "options": [
+            "are",
+            "is",
+            "be",
+            "were"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Weather' is uncountable and takes a singular verb."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'He has a lot of knowledges about history.'",
+          "options": [
+            "a lot of knowledge",
+            "many knowledges",
+            "some knowledges",
+            "an knowledge"
+          ],
+          "correctAnswer": "a lot of knowledge",
+          "explanation": "Knowledge is uncountable."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Choose the best quantifier: '___ progress has been made.'",
+          "options": [
+            "Many",
+            "A few",
+            "Much",
+            "Several"
+          ],
+          "correctAnswer": "Much",
+          "explanation": "'Progress' is an uncountable abstract noun."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The kitchen has many new machineries.'",
+          "options": [
+            "kitchen",
+            "has",
+            "many",
+            "machineries"
+          ],
+          "correctAnswer": "machineries",
+          "explanation": "'Machinery' is the uncountable collective form. Use 'machines' (countable) or 'machinery' (uncountable)."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'He has ___ experience in teaching.'",
+          "options": [
+            "many",
+            "a lot of",
+            "several",
+            "a"
+          ],
+          "correctAnswer": "a lot of",
+          "explanation": "'Experience' (as skill/knowledge) is uncountable."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Complete: 'There is ___ space in the room.'",
+          "options": [
+            "many",
+            "much",
+            "few",
+            "a few"
+          ],
+          "correctAnswer": "much",
+          "explanation": "'Space' (as room to move) is uncountable."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Identify the correct plural form for a scientific context:",
+          "options": [
+            "Phenomenons",
+            "Phenomena",
+            "Phenomenas",
+            "Phenomenae"
+          ],
+          "correctAnswer": "Phenomena",
+          "explanation": "This is the irregular Latin plural of 'phenomenon'."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Data Precision Rule</h3><p>In Task 1 and Task 2, countability determines your choice of <b>quantifiers</b> and <b>trend markers</b>. Using the wrong one is a major hit to your accuracy score.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <b>Countable (Units):</b> Use <i>The number of...</i> | <i>Fewer...</i> | <i>Many...</i> (e.g., The number of cars).</li><li>💧 <b>Uncountable (Mass):</b> Use <i>The amount of...</i> | <i>Less...</i> | <i>Much...</i> (e.g., The amount of CO2).</li><li>🛑 <b>Category Trap:</b> Nouns like 'unemployment' or 'poverty' are abstract masses. Do not use 'numbers' for them.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which Task 1 overview is correct?",
+          "options": [
+            "The amount of people visiting the museum rose in 2010.",
+            "The number of people visiting the museum rose in 2010.",
+            "The numbers of people visiting the museum rose in 2010.",
+            "The many people visiting the museum rose in 2010."
+          ],
+          "correctAnswer": "The number of people visiting the museum rose in 2010.",
+          "explanation": "'People' is countable plural, so we must use 'the number of'."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the error in this data description: 'There was significantly less students enrolled in the science course.'",
+          "options": [
+            "significantly",
+            "less",
+            "enrolled",
+            "science course"
+          ],
+          "correctAnswer": "less",
+          "explanation": "'Students' is countable. The correct quantifier is 'fewer'."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which sentence is appropriate for describing a process diagram?",
+          "options": [
+            "The machinerys are then moved to the next station.",
+            "The machinery is then moved to the next station.",
+            "The machines is then moved to the next station.",
+            "The many machinery is moved to the next station."
+          ],
+          "correctAnswer": "The machinery is then moved to the next station.",
+          "explanation": "'Machinery' is an uncountable collective noun and takes a singular verb."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Choose the best academic phrase for a Task 2 thesis:",
+          "options": [
+            "The government should provide more financial aids to students.",
+            "The government should provide more financial aid to students.",
+            "The government should provide many financial aids to students.",
+            "The government should provide a financial aid to students."
+          ],
+          "correctAnswer": "The government should provide more financial aid to students.",
+          "explanation": "'Aid' (financial assistance) is uncountable and should not be pluralized."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the correctly structured category comparison:",
+          "options": [
+            "The amount of sugar consumed was higher than the amount of salt.",
+            "The number of sugar consumed was higher than the number of salt.",
+            "The sugar consumed was higher than salt.",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "The amount of sugar consumed was higher than the amount of salt.",
+          "explanation": "Sugar and salt are uncountable masses; 'amount' is the precise term."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which quantifier fits 'unemployment'?",
+          "options": [
+            "The number of unemployment is rising.",
+            "The levels of unemployment are rising.",
+            "The unemployment is rising.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'Unemployment' is a status/condition (uncountable). Use 'levels' or treat it as a mass."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The bar chart shows the different types of equipments used in factories.'",
+          "options": [
+            "bar chart",
+            "shows",
+            "different types",
+            "equipments"
+          ],
+          "correctAnswer": "equipments",
+          "explanation": "'Equipment' is uncountable. Use 'types of equipment' (no 's')."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Which is correct for describing a trend in population?",
+          "options": [
+            "The population of the two city decreased.",
+            "The population of the two cities decreased.",
+            "The populations of the two cities decreased.",
+            "Both B and C are possible, but B is more common."
+          ],
+          "correctAnswer": "Both B and C are possible, but B is more common.",
+          "explanation": "You can refer to the collective population of 'the cities' or the individual 'populations' of each."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Complete the Task 1 sentence: 'There was ___ information available for the year 1990.'",
+          "options": [
+            "little",
+            "few",
+            "a few",
+            "any"
+          ],
+          "correctAnswer": "little",
+          "explanation": "Information is uncountable. 'Little' shows a small amount/lack."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The number of research into renewable energy has increased.'",
+          "options": [
+            "number",
+            "research",
+            "renewable energy",
+            "increased"
+          ],
+          "correctAnswer": "number",
+          "explanation": "'Research' is uncountable. You should use 'The amount of research' or 'The volume of research'."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which version is best for academic register?",
+          "options": [
+            "Many people believe that it's wrong.",
+            "A large number of individuals believe that it is incorrect.",
+            "Much people believe that it is wrong.",
+            "The amount of people who believe it is incorrect is large."
+          ],
+          "correctAnswer": "A large number of individuals believe that it is incorrect.",
+          "explanation": "'A large number of' is more formal than 'Many'. 'Individuals' is countable."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct quantifier for 'evidence' in a conclusion:",
+          "options": [
+            "There is many evidence to support this view.",
+            "There are many evidences to support this view.",
+            "There is significant evidence to support this view.",
+            "There are a few evidence to support this view."
+          ],
+          "correctAnswer": "There is significant evidence to support this view.",
+          "explanation": "Evidence is uncountable. 'Significant' acts as a strong, formal quantifier."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Fix the Task 1 error: 'The graph illustrates the amount of cars on the road.'",
+          "options": [
+            "Change 'amount' to 'number'.",
+            "Change 'cars' to 'car'.",
+            "Change 'on the road' to 'in the road'.",
+            "No error."
+          ],
+          "correctAnswer": "Change 'amount' to 'number'.",
+          "explanation": "Cars are countable units; 'number' is the correct term."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Which noun is an irregular plural used in biology topics?",
+          "options": [
+            "Bacteria",
+            "Bacterias",
+            "Bacterium",
+            "Bacteriums"
+          ],
+          "correctAnswer": "Bacteria",
+          "explanation": "'Bacteria' is the plural; 'Bacterium' is the singular."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the correct way to count 'Advice' in an essay:",
+          "options": [
+            "He offered two useful advices.",
+            "He offered two pieces of advice.",
+            "He offered much advices.",
+            "He offered two useful advice."
+          ],
+          "correctAnswer": "He offered two pieces of advice.",
+          "explanation": "Advice must be counted using 'pieces of'."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which quantifier describes a small countable group?",
+          "options": [
+            "A little",
+            "A few",
+            "Little",
+            "Few"
+          ],
+          "correctAnswer": "A few",
+          "explanation": "'A few' is for countable plural nouns (e.g., a few people)."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The government needs to provide more accommodations for the homeless.'",
+          "options": [
+            "needs",
+            "provide",
+            "accommodations",
+            "homeless"
+          ],
+          "correctAnswer": "accommodations",
+          "explanation": "In academic/UK English, 'accommodation' is uncountable. Use 'accommodation' (singular)."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Complete the 'Physics' sentence: 'Physics ___ an essential subject for engineers.'",
+          "options": [
+            "are",
+            "is",
+            "be",
+            "been"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Subjects ending in -s are uncountable and take a singular verb."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Which trend description is parallel and correct?",
+          "options": [
+            "There was an increase in the number of books and in the amount of paper used.",
+            "There was an increase in the number of books and paper used.",
+            "The number of books and paper used increased.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "There was an increase in the number of books and in the amount of paper used.",
+          "explanation": "Since books are countable and paper is uncountable, they each need their own quantifier to be accurate."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'There are many luggages left at the station.'",
+          "options": [
+            "are",
+            "many",
+            "luggages",
+            "left"
+          ],
+          "correctAnswer": "luggages",
+          "explanation": "Luggage is uncountable. Use 'much luggage' or 'many pieces of luggage'."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly edited? 'Knowledge are essential for growth.'",
+          "options": [
+            "Knowledge is",
+            "Knowledges are",
+            "Knowledge be",
+            "The knowledges is"
+          ],
+          "correctAnswer": "Knowledge is",
+          "explanation": "Knowledge is uncountable and singular."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The statistics shows that the economy is recovering.'",
+          "options": [
+            "statistics",
+            "shows",
+            "economy",
+            "recovering"
+          ],
+          "correctAnswer": "shows",
+          "explanation": "When referring to 'data,' statistics is plural ('show'). When referring to the 'field of study,' it is singular."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Choose the best quantifier: 'I have ___ homework to do tonight.'",
+          "options": [
+            "many",
+            "a few",
+            "much",
+            "several"
+          ],
+          "correctAnswer": "much",
+          "explanation": "Homework is uncountable."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which phrase correctly describes data categories?",
+          "options": [
+            "The numbers of categories was three.",
+            "The number of categories was three.",
+            "The categories was three.",
+            "The number of category was three."
+          ],
+          "correctAnswer": "The number of categories was three.",
+          "explanation": "'The number of' + [plural noun] + [singular verb]."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The professor provided useful informations about the exam.'",
+          "options": [
+            "professor",
+            "useful",
+            "informations",
+            "about"
+          ],
+          "correctAnswer": "informations",
+          "explanation": "Information is uncountable."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct for a conclusion? 'In summary, ___ work remains to be done.'",
+          "options": [
+            "many",
+            "few",
+            "much",
+            "several"
+          ],
+          "correctAnswer": "much",
+          "explanation": "Work is uncountable."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He has several experiences in marketing.'",
+          "options": [
+            "has",
+            "several",
+            "experiences",
+            "marketing"
+          ],
+          "correctAnswer": "experiences",
+          "explanation": "In the sense of 'knowledge/skill,' experience is uncountable. 'Experiences' refers to individual events (e.g., travel experiences)."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the best academic choice: 'The criteria ___ strict.'",
+          "options": [
+            "was",
+            "were",
+            "is",
+            "be"
+          ],
+          "correctAnswer": "were",
+          "explanation": "Criteria is plural."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Fix the Task 1 phrase: 'The amount of computers in schools has risen.'",
+          "options": [
+            "The number of computers...",
+            "The many computers...",
+            "The amounts of computers...",
+            "No change."
+          ],
+          "correctAnswer": "The number of computers...",
+          "explanation": "Computers are countable."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Why is countability precision vital for Task 1?",
+          "options": [
+            "It affects your 'Grammatical Range and Accuracy' score.",
+            "It determines whether you use 'amount' or 'number'.",
+            "It ensures your trend markers match your data type.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Countability control is fundamental to high-level academic writing and data description."
+        }
+      ]
+    }
+  ]
+}

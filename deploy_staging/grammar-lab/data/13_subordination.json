@@ -1,0 +1,1594 @@
+{
+  "topicId": "13_subordination",
+  "topicName": "Subordination",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Dependent Clause</h3><p>Subordination uses <b>Subordinating Conjunctions</b> to join a dependent clause to an independent one. The most important rule is the <b>Comma Rule</b>:</p><ul style=\"line-height: 1.8;\"><li>➡️ <b>Signal at the Start:</b> [Subordinator] + [Clause], + [Main Clause].<br><i><b>Because</b> it rained<b>,</b> we stayed home.</i></li><li>➡️ <b>Signal in the Middle:</b> [Main Clause] + [Subordinator] + [Clause].<br><i>We stayed home <b>because</b> it rained.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which word is a subordinating conjunction used to show a reason?",
+          "options": [
+            "And",
+            "But",
+            "Because",
+            "So"
+          ],
+          "correctAnswer": "Because",
+          "explanation": "'Because' introduces a dependent clause that explains the reason for the main clause."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Choose the correctly punctuated sentence:",
+          "options": [
+            "Although it was cold we went for a walk.",
+            "Although it was cold, we went for a walk.",
+            "We went for a walk, although it was cold.",
+            "Both B and C are correct, but B is the standard 'start-sentence' rule."
+          ],
+          "correctAnswer": "Both B and C are correct, but B is the standard 'start-sentence' rule.",
+          "explanation": "When 'Although' starts a sentence, a comma is required after the dependent clause."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which subordinator shows that one thing happened at the same time as another?",
+          "options": [
+            "Unless",
+            "While",
+            "Since",
+            "If"
+          ],
+          "correctAnswer": "While",
+          "explanation": "'While' is used to show two actions happening simultaneously."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: '___ you study hard, you will pass the exam.'",
+          "options": [
+            "Unless",
+            "If",
+            "Though",
+            "Until"
+          ],
+          "correctAnswer": "If",
+          "explanation": "'If' introduces a condition necessary for the result in the main clause."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "What is the function of 'Unless'?",
+          "options": [
+            "To show a reason",
+            "To show a negative condition (if not)",
+            "To show a time",
+            "To show a contrast"
+          ],
+          "correctAnswer": "To show a negative condition (if not)",
+          "explanation": "'Unless' means 'if... not'. Example: 'Unless it rains (if it doesn't rain), we will go.'"
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the subordinator in: 'Since the technology is new, it has some bugs.'",
+          "options": [
+            "Since",
+            "technology",
+            "new",
+            "bugs"
+          ],
+          "correctAnswer": "Since",
+          "explanation": "'Since' here acts as a subordinator meaning 'because'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Which sentence uses 'Until' correctly?",
+          "options": [
+            "I will wait until you arrive.",
+            "Until you arrive, I will wait.",
+            "Both are correct.",
+            "I will wait, until you arrive."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "'Until' indicates time up to a specific point and follows standard comma rules."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Choose the subordinator that shows a surprise or contrast:",
+          "options": [
+            "Because",
+            "Even though",
+            "Since",
+            "When"
+          ],
+          "correctAnswer": "Even though",
+          "explanation": "'Even though' (and 'Although') introduces a fact that makes the main clause surprising."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Because, I was tired, I went to bed early.'",
+          "options": [
+            "The comma after 'Because' is wrong.",
+            "The comma after 'tired' is wrong.",
+            "The 'Because' should be 'So'.",
+            "No error."
+          ],
+          "correctAnswer": "The comma after 'Because' is wrong.",
+          "explanation": "You should never put a comma immediately after a subordinating conjunction."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which word can replace 'Because' at the start of a sentence?",
+          "options": [
+            "As",
+            "Since",
+            "Due to the fact that",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These are all formal subordinators used to introduce a cause."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Complete the 'Condition' sentence: 'I won't go ___ you come with me.'",
+          "options": [
+            "if",
+            "unless",
+            "although",
+            "while"
+          ],
+          "correctAnswer": "unless",
+          "explanation": "This means 'I won't go if you don't come with me'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Where is the dependent clause? 'Whenever it rains, the roof leaks.'",
+          "options": [
+            "Whenever it rains",
+            "the roof leaks",
+            "it rains, the roof",
+            "None of these"
+          ],
+          "correctAnswer": "Whenever it rains",
+          "explanation": "The dependent clause is the one that contains the subordinating conjunction."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly punctuated in the 'middle position'?",
+          "options": [
+            "He failed the test, because he didn't study.",
+            "He failed the test because he didn't study.",
+            "He failed, the test because he didn't study.",
+            "Because he didn't study he failed the test."
+          ],
+          "correctAnswer": "He failed the test because he didn't study.",
+          "explanation": "Standard 'because' in the middle does not require a comma."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "What does 'Whereas' show?",
+          "options": [
+            "Reason",
+            "Direct Contrast",
+            "Time",
+            "Condition"
+          ],
+          "correctAnswer": "Direct Contrast",
+          "explanation": "'Whereas' is used to compare two things that are different (e.g., 'Apples are red, whereas lemons are yellow')."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Choose the best subordinator: '___ I finish my work, I will call you.'",
+          "options": [
+            "As soon as",
+            "Unless",
+            "Although",
+            "Whereas"
+          ],
+          "correctAnswer": "As soon as",
+          "explanation": "'As soon as' shows an immediate time relationship."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Is this a complete sentence? 'Because the weather was bad.'",
+          "options": [
+            "Yes",
+            "No, it's a fragment.",
+            "Yes, if it has a period.",
+            "No, it needs a comma."
+          ],
+          "correctAnswer": "No, it's a fragment.",
+          "explanation": "A dependent clause cannot stand alone. It needs an independent clause to complete the thought."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which of these shows a 'purpose'?",
+          "options": [
+            "So that",
+            "In order that",
+            "Because",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'So that' and 'In order that' explain the goal or purpose of an action."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Identify the contrast subordinator: 'She is very kind, ___ her brother is quite rude.'",
+          "options": [
+            "because",
+            "while",
+            "since",
+            "so"
+          ],
+          "correctAnswer": "while",
+          "explanation": "'While' can be used to show contrast between two people or things."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Complete the 'Time' clause: '___ the movie ended, we went home.'",
+          "options": [
+            "After",
+            "Before",
+            "Unless",
+            "If"
+          ],
+          "correctAnswer": "After",
+          "explanation": "'After' shows the chronological sequence."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Which sentence uses 'Even if' correctly?",
+          "options": [
+            "Even if it rains, the game will continue.",
+            "The game will continue, even if it rains.",
+            "Both are correct.",
+            "Even if, it rains the game will continue."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "'Even if' follows the standard subordination comma rules."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "What is the formal version of 'If'?",
+          "options": [
+            "Provided that",
+            "Unless",
+            "Because",
+            "Since"
+          ],
+          "correctAnswer": "Provided that",
+          "explanation": "'Provided that' or 'Providing that' are formal subordinators for conditions."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Identify the subordinator: 'Now that the project is finished, we can relax.'",
+          "options": [
+            "Now that",
+            "project",
+            "finished",
+            "relax"
+          ],
+          "correctAnswer": "Now that",
+          "explanation": "'Now that' is a subordinator showing a new situation that causes a result."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Choose the best subordinator for a Task 1 comparison: 'The price rose in 2010 ___ it fell in 2015.'",
+          "options": [
+            "whereas",
+            "because",
+            "unless",
+            "until"
+          ],
+          "correctAnswer": "whereas",
+          "explanation": "'Whereas' is the elite-level choice for comparing different data points."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which word is NOT a subordinating conjunction?",
+          "options": [
+            "Although",
+            "However",
+            "Because",
+            "Whether"
+          ],
+          "correctAnswer": "However",
+          "explanation": "'However' is a transitional adverb (Topic 16). It usually starts a new sentence with a comma."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Complete: '___ you have any questions, please let me know.'",
+          "options": [
+            "If",
+            "Unless",
+            "Until",
+            "Whether"
+          ],
+          "correctAnswer": "If",
+          "explanation": "Introduces a condition."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Where should the comma go? 'Since you are here we should start.'",
+          "options": [
+            "After 'Since'",
+            "After 'here'",
+            "After 'should'",
+            "No comma needed"
+          ],
+          "correctAnswer": "After 'here'",
+          "explanation": "Comma separates the dependent clause from the independent clause."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Which of these shows a 'concession'?",
+          "options": [
+            "Although",
+            "Because",
+            "When",
+            "So"
+          ],
+          "correctAnswer": "Although",
+          "explanation": "A concession admits a fact that contrasts with the main idea."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Find the error: 'I won't leave, until I see him.'",
+          "options": [
+            "The comma is unnecessary.",
+            "Until should be unless.",
+            "Leave should be leaving.",
+            "No error."
+          ],
+          "correctAnswer": "The comma is unnecessary.",
+          "explanation": "When the subordinator is in the middle, we usually don't use a comma."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "What does 'As long as' mean?",
+          "options": [
+            "Because",
+            "If/On the condition that",
+            "After",
+            "Although"
+          ],
+          "correctAnswer": "If/On the condition that",
+          "explanation": "'As long as' shows a condition that must remain true for the result to happen."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Choose the best formal combination: '___ the costs are high, the benefits are greater.'",
+          "options": [
+            "But",
+            "While",
+            "Although",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'While' and 'Although' are excellent for contrasting two complex ideas in one sentence."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps (The Double-Signal Error)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The One-Driver Rule</h3><p>In English, you must choose <b>either</b> Subordination (Because/Although) <b>or</b> Coordination (So/But). You can never use both in the same sentence.</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em><b>Because</b> it was raining, <b>so</b> we stayed home.</em></li><li>✅ <em><b>Because</b> it was raining, we stayed home.</em></li><li>✅ <em>It was raining, <b>so</b> we stayed home.</em></li><li style=\"margin-top: 15px; margin-bottom: 8px;\">❌ <em><b>Although</b> he is rich, <b>but</b> he is unhappy.</em></li><li>✅ <em><b>Although</b> he is rich, he is unhappy.</em></li><li>✅ <em>He is rich, <b>but</b> he is unhappy.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is grammatically correct?",
+          "options": [
+            "Because I was late, so I missed the bus.",
+            "Because I was late, I missed the bus.",
+            "I was late, because I missed the bus.",
+            "So I missed the bus because I was late."
+          ],
+          "correctAnswer": "Because I was late, I missed the bus.",
+          "explanation": "You cannot use 'Because' and 'so' together. You must choose one."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Although she is smart, but she makes many mistakes.'",
+          "options": [
+            "Although",
+            "she is",
+            "but",
+            "many mistakes"
+          ],
+          "correctAnswer": "but",
+          "explanation": "Starting with 'Although' already shows contrast. Adding 'but' is redundant and a grammar error."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'Because the internet was down, so I couldn't send the email.'",
+          "options": [
+            "The internet was down, so I couldn't send the email.",
+            "Because the internet was down I couldn't send the email.",
+            "The internet was down because I couldn't send the email.",
+            "Both A and B are correct fixes."
+          ],
+          "correctAnswer": "Both A and B are correct fixes.",
+          "explanation": "A uses coordination (so); B uses subordination (Because). Both are correct English structures."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Which of these is a common 'Japanese logic' error?",
+          "options": [
+            "If it rains, I will stay home.",
+            "Though it is hard, but I will try.",
+            "I will try though it is hard.",
+            "It is hard, but I will try."
+          ],
+          "correctAnswer": "Though it is hard, but I will try.",
+          "explanation": "Japanese speakers often mirror the 'Non-temo... demo' structure by using 'Though' and 'but' together."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Choose the correct contrast sentence:",
+          "options": [
+            "While I like tea, but I don't like coffee.",
+            "While I like tea, I don't like coffee.",
+            "I like tea, while I don't like coffee.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "'While' replaces 'but' as the signal word. You don't need both."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Since the price is high, so few people buy it.'",
+          "options": [
+            "Since",
+            "is high",
+            "so",
+            "buy it"
+          ],
+          "correctAnswer": "so",
+          "explanation": "'Since' functions like 'Because'. Using 'so' in the second clause is a double-signal error."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the 'One-Driver' rule?",
+          "options": [
+            "Even though I'm tired, but I have to work.",
+            "I'm tired, but I have to work.",
+            "Even though I'm tired, I have to work.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "You can use either 'Even though' or 'but', but never both at once."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the redundant word: 'Because the car was old, so it broke down often.'",
+          "options": [
+            "Because",
+            "old",
+            "so",
+            "often"
+          ],
+          "correctAnswer": "so",
+          "explanation": "Removing 'so' fixes the sentence structure."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "How would you correctly rewrite: 'Although it's far, but I want to go.'?",
+          "options": [
+            "Although it's far, I want to go.",
+            "It's far, but I want to go.",
+            "Because it's far, I want to go.",
+            "Both A and B are correct fixes."
+          ],
+          "correctAnswer": "Both A and B are correct fixes.",
+          "explanation": "These remove the double contrast signal."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Which subordinator is often incorrectly paired with 'so' by ESL learners?",
+          "options": [
+            "As",
+            "Since",
+            "Because",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "All three show cause and are frequently (but wrongly) paired with the result marker 'so'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Is this correct? 'Unless you hurry, so you will be late.'",
+          "options": [
+            "Yes",
+            "No, remove 'so'.",
+            "No, remove 'Unless'.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'Unless' is a subordinator. Adding 'so' creates a double-signal error."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Choose the best academic result sentence:",
+          "options": [
+            "Because taxes rose, so spending dropped.",
+            "Because taxes rose, spending dropped.",
+            "Taxes rose, so spending dropped.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "B is more formal (subordination); C is standard (coordination)."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Find the error: 'While he is rich, but he lives simply.'",
+          "options": [
+            "While",
+            "is rich",
+            "but",
+            "lives simply"
+          ],
+          "correctAnswer": "but",
+          "explanation": "'While' provides the contrast; 'but' is not needed."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Correct this: 'As it was a holiday, so the banks were closed.'",
+          "options": [
+            "As it was a holiday, the banks were closed.",
+            "It was a holiday, so the banks were closed.",
+            "Because it was a holiday, so the banks were closed.",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "Removing one of the signals makes the sentence grammatical."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "What is the logic error in: 'Though he studied, but he failed.'?",
+          "options": [
+            "Double contrast",
+            "Wrong tense",
+            "Missing comma",
+            "No error"
+          ],
+          "correctAnswer": "Double contrast",
+          "explanation": "Using two contrast markers ('Though' and 'but') is a logical redundancy in English."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which sentence avoids the L1 trap?",
+          "options": [
+            "Because it's expensive, so I won't buy it.",
+            "Since it's expensive, but I will buy it.",
+            "Though it's expensive, I will buy it.",
+            "Although it's expensive, but I'll buy it."
+          ],
+          "correctAnswer": "Though it's expensive, I will buy it.",
+          "explanation": "It uses a single subordinator ('Though') without a coordinating conjunction ('but')."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the redundant signal: 'If you are tired, then so you should rest.'",
+          "options": [
+            "If",
+            "then",
+            "so",
+            "should"
+          ],
+          "correctAnswer": "so",
+          "explanation": "In an 'If... then' structure, adding 'so' is unnecessary and clunky."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Fix: 'Even though she's young, but she is very wise.'",
+          "options": [
+            "Even though she's young, she is very wise.",
+            "She's young, but she is very wise.",
+            "While she's young, but she is very wise.",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "Single-signal structures are the only correct way."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Which word should be deleted? 'Because the box was heavy, so he needed help.'",
+          "options": [
+            "Because",
+            "so",
+            "needed",
+            "Both A and B are options for fixing it."
+          ],
+          "correctAnswer": "Both A and B are options for fixing it.",
+          "explanation": "You can delete 'Because' OR delete 'so', but not both."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Identify the grammar error: 'Whereas Japan is mountainous, but the Netherlands is flat.'",
+          "options": [
+            "Whereas",
+            "mountainous",
+            "but",
+            "is flat"
+          ],
+          "correctAnswer": "but",
+          "explanation": "'Whereas' is a contrast subordinator. 'But' is a contrast coordinator. Only one is allowed."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Which version is correct for a TOEFL essay?",
+          "options": [
+            "Since pollution is rising, so we need stricter laws.",
+            "Since pollution is rising, we need stricter laws.",
+            "Pollution is rising, so we need stricter laws.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "B is formal; C is neutral. Both are correct."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Because he didn't check the map, and so he got lost.'",
+          "options": [
+            "Because",
+            "didn't",
+            "and so",
+            "got lost"
+          ],
+          "correctAnswer": "and so",
+          "explanation": "Adding 'and so' after 'Because' is a triple-redundancy error!"
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Why is 'Although he is poor, yet he is happy' acceptable in some literature but risky for students?",
+          "options": [
+            "It is old-fashioned.",
+            "It is a 'double contrast' and often marked wrong on exams.",
+            "It is perfectly modern.",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "It is an archaic structure. For IELTS/TOEFL, stick to the 'One-Driver' rule."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Fix: 'Since you're here, so let's start.'",
+          "options": [
+            "Since you're here, let's start.",
+            "You're here, so let's start.",
+            "Because you're here, so let's start.",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "Simple, single-signal fixes are best."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the incorrect contrast:",
+          "options": [
+            "While I agree, I still have concerns.",
+            "I agree, but I still have concerns.",
+            "While I agree, but I still have concerns.",
+            "Although I agree, I still have concerns."
+          ],
+          "correctAnswer": "While I agree, but I still have concerns.",
+          "explanation": "Double-contrast error."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "What happens to the comma if you delete 'Because' in 'Because it's hot, I'm swimming'?",
+          "options": [
+            "It stays.",
+            "It becomes a semicolon.",
+            "It is removed if you add 'so'.",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "If you start with 'It's hot, so...', the comma is required before 'so'. If you just say 'It's hot. I'm swimming', the comma goes away."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Choose the correct logic: '___ the movie was long, I enjoyed it.'",
+          "options": [
+            "Because",
+            "Although",
+            "Since",
+            "While"
+          ],
+          "correctAnswer": "Although",
+          "explanation": "The relationship is contrast (long movie vs. enjoyment), so 'Although' or 'While' is needed."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'As soon as he arrived, but the meeting started.'",
+          "options": [
+            "As soon as",
+            "arrived",
+            "but",
+            "meeting started"
+          ],
+          "correctAnswer": "but",
+          "explanation": "'As soon as' is the time signal. 'But' makes no sense here and breaks the grammar."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Correct this sentence: 'Because the deadline is near, so we must work faster.'",
+          "options": [
+            "The deadline is near, so we must work faster.",
+            "Because the deadline is near, we must work faster.",
+            "As the deadline is near, we must work faster.",
+            "All of the above are correct."
+          ],
+          "correctAnswer": "All of the above are correct.",
+          "explanation": "All three eliminate the double-signal error."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Rule Check: Can you ever use 'Because' and 'So' in the same sentence?",
+          "options": [
+            "Yes, always.",
+            "No, never in standard English.",
+            "Yes, if they are in different clauses.",
+            "Only in poetry."
+          ],
+          "correctAnswer": "No, never in standard English.",
+          "explanation": "In academic writing and standard exams, this is a major grammatical error."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Relative Clauses",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Embedded Detail</h3><p>Relative clauses allow you to add detail without starting a new sentence. There are two types:</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>Defining (No Commas):</b> Essential info. <br><i>The students <b>who study hard</b> pass.</i> (Only the ones who study).</li><li>💡 <b>Non-Defining (Commas):</b> Extra info. <br><i>My brother<b>, who lives in Tokyo,</b> is a doctor.</i> (You only have one brother; the location is just extra).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses a relative clause to combine: 'I have a friend. He lives in Osaka.'",
+          "options": [
+            "I have a friend who he lives in Osaka.",
+            "I have a friend who lives in Osaka.",
+            "I have a friend lives in Osaka.",
+            "I have a friend, lives in Osaka."
+          ],
+          "correctAnswer": "I have a friend who lives in Osaka.",
+          "explanation": "The relative pronoun 'who' replaces the subject 'He'. You cannot use both in the same clause."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Choose the correctly punctuated 'non-defining' clause:",
+          "options": [
+            "The Amazon River which is in South America is very long.",
+            "The Amazon River, which is in South America, is very long.",
+            "The Amazon River, which is in South America is very long.",
+            "The Amazon River which is in South America, is very long."
+          ],
+          "correctAnswer": "The Amazon River, which is in South America, is very long.",
+          "explanation": "Since there is only one Amazon River, the location is extra info and needs commas on both sides."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "What is the error in: 'The book that I bought it yesterday is interesting.'",
+          "options": [
+            "The word 'that' should be 'which'.",
+            "The word 'it' should be removed.",
+            "There should be a comma after 'book'.",
+            "The word 'bought' should be 'buy'."
+          ],
+          "correctAnswer": "The word 'it' should be removed.",
+          "explanation": "The relative pronoun 'that' already represents the 'book'. Adding 'it' creates a double-object error."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Which relative pronoun is used for a place?",
+          "options": [
+            "Which",
+            "That",
+            "Where",
+            "When"
+          ],
+          "correctAnswer": "Where",
+          "explanation": "'Where' is used to define or provide extra info about a location."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the defining relative clause: 'Students who skip classes usually fail.'",
+          "options": [
+            "Students who skip classes",
+            "usually fail",
+            "who skip classes",
+            "Students fail"
+          ],
+          "correctAnswer": "who skip classes",
+          "explanation": "This clause defines which specific students we are talking about. No commas are used."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Combine: 'The laptop is broken. I bought it last week.'",
+          "options": [
+            "The laptop I bought last week is broken.",
+            "The laptop which I bought it last week is broken.",
+            "The laptop, that I bought last week, is broken.",
+            "The laptop what I bought last week is broken."
+          ],
+          "correctAnswer": "The laptop I bought last week is broken.",
+          "explanation": "In English, you can often drop the relative pronoun (that/which) if it is the object of the clause."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Which is correct for a person's possession? 'The man ___ car was stolen called the police.'",
+          "options": [
+            "who",
+            "which",
+            "whose",
+            "that"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "'Whose' is the possessive relative pronoun for both people and things."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Find the punctuation error: 'My mother who is a teacher, likes to read.'",
+          "options": [
+            "Need a comma after 'mother'.",
+            "Remove the comma after 'teacher'.",
+            "Change 'who' to 'which'.",
+            "No error."
+          ],
+          "correctAnswer": "Need a comma after 'mother'.",
+          "explanation": "Non-defining clauses (extra info about a specific person) must be enclosed in commas: ', who is a teacher,'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Which relative pronoun can NEVER follow a comma?",
+          "options": [
+            "Who",
+            "Which",
+            "That",
+            "Whom"
+          ],
+          "correctAnswer": "That",
+          "explanation": "In academic English, 'that' is only for defining clauses (no commas). For non-defining, use 'which' or 'who'."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Choose the best academic combination: 'The study was published in 2020. It explored the effects of caffeine.'",
+          "options": [
+            "The study, which was published in 2020, explored the effects of caffeine.",
+            "The study published in 2020, explored the effects of caffeine.",
+            "The study which was published in 2020 explored the effects of caffeine.",
+            "Both A and B (B is a reduced relative clause)."
+          ],
+          "correctAnswer": "Both A and B (B is a reduced relative clause).",
+          "explanation": "A uses a full non-defining clause; B reduces it by removing 'which was'. Both are high-level academic structures."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "What does 'Whom' refer to?",
+          "options": [
+            "A subject person",
+            "An object person",
+            "A place",
+            "A thing"
+          ],
+          "correctAnswer": "An object person",
+          "explanation": "In formal English, 'whom' is used when the person is the object of the verb or preposition (e.g., 'To whom it may concern')."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'The reason why he left is a secret.'",
+          "options": [
+            "Should be 'The reason that'.",
+            "Should be 'The reason which'.",
+            "Both 'why' and 'that' are acceptable.",
+            "Should be 'The reason because'."
+          ],
+          "correctAnswer": "Both 'why' and 'that' are acceptable.",
+          "explanation": "We can use 'why' or 'that' to introduce a relative clause describing a reason."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly combined? 'Tokyo is a city. Millions of people live there.'",
+          "options": [
+            "Tokyo is a city where millions of people live there.",
+            "Tokyo is a city where millions of people live.",
+            "Tokyo is a city which millions of people live.",
+            "Tokyo is a city millions of people live."
+          ],
+          "correctAnswer": "Tokyo is a city where millions of people live.",
+          "explanation": "When using 'where', you must remove the original place adverb 'there'."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The company, that produces these cars, is located in Nagoya.'",
+          "options": [
+            "Change 'that' to 'which'.",
+            "Remove the commas.",
+            "Change 'is located' to 'locates'.",
+            "Both A and B are possible fixes."
+          ],
+          "correctAnswer": "Both A and B are possible fixes.",
+          "explanation": "You can't use 'that' with commas. Either change it to 'which' OR remove the commas to make it a defining clause."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Which is more formal? 'The person I talked to' or 'The person to whom I spoke'?",
+          "options": [
+            "First",
+            "Second",
+            "They are the same.",
+            "The first is wrong."
+          ],
+          "correctAnswer": "Second",
+          "explanation": "Moving the preposition ('to') before 'whom' is the gold standard for academic formal register."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Identify the 'Reduced' relative clause: 'The man sitting by the window is my uncle.'",
+          "options": [
+            "The man",
+            "sitting by the window",
+            "is my uncle",
+            "None of these"
+          ],
+          "correctAnswer": "sitting by the window",
+          "explanation": "This is a reduction of 'who is sitting by the window'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly defines a time? 'Summer is the season ___.'",
+          "options": [
+            "where it is hot",
+            "when it is hot",
+            "which it is hot",
+            "that is hot"
+          ],
+          "correctAnswer": "when it is hot",
+          "explanation": "'When' is the relative adverb for time."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Is the comma necessary here? 'The car, that was stolen, was found.'",
+          "options": [
+            "Yes",
+            "No, 'that' never takes a comma.",
+            "Yes, for emphasis.",
+            "No, it's a defining clause."
+          ],
+          "correctAnswer": "No, 'that' never takes a comma.",
+          "explanation": "'That' is strictly for defining clauses without commas."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Complete with 'Whose': 'I saw a house ___ roof was red.'",
+          "options": [
+            "who",
+            "which",
+            "whose",
+            "its"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "Used for possession by an inanimate object (the house's roof)."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Identify the non-defining clause: 'My only sister, who lives in Paris, is visiting.'",
+          "options": [
+            "My only sister",
+            "who lives in Paris",
+            "is visiting",
+            "None of these"
+          ],
+          "correctAnswer": "who lives in Paris",
+          "explanation": "Since there is only one sister, the information about Paris is non-essential (extra)."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Which sentence has a 'Double Subject' error?",
+          "options": [
+            "The movie which I saw it was great.",
+            "The movie I saw was great.",
+            "The movie which I saw was great.",
+            "The movie, which I saw, was great."
+          ],
+          "correctAnswer": "The movie which I saw it was great.",
+          "explanation": "'Which' and 'it' both refer to the movie. Remove 'it'."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Choose the formal relative pronoun: 'The policy, ___ was debated for months, failed.'",
+          "options": [
+            "that",
+            "which",
+            "what",
+            "who"
+          ],
+          "correctAnswer": "which",
+          "explanation": "With commas, you must use 'which' for things."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'He is the man whom lives next door.'",
+          "options": [
+            "Change 'whom' to 'who'.",
+            "Add a comma.",
+            "Remove 'the man'.",
+            "No error."
+          ],
+          "correctAnswer": "Change 'whom' to 'who'.",
+          "explanation": "'Who' is the subject of the clause ('lives next door'). 'Whom' is only for objects."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Identify the relative adverb: 'The village where I grew up is small.'",
+          "options": [
+            "village",
+            "where",
+            "grew",
+            "small"
+          ],
+          "correctAnswer": "where",
+          "explanation": "'Where' describes the village."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly reduced? 'The books which were written by him are good.'",
+          "options": [
+            "The books written by him are good.",
+            "The books writing by him are good.",
+            "The books were written by him are good.",
+            "The books by him are good."
+          ],
+          "correctAnswer": "The books written by him are good.",
+          "explanation": "You can reduce a passive relative clause by removing 'which were'."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Where does the comma go? 'Mr. Smith who is my boss called me.'",
+          "options": [
+            "After Smith",
+            "After boss",
+            "After both",
+            "No commas needed"
+          ],
+          "correctAnswer": "After both",
+          "explanation": "A specific name followed by extra info needs a comma sandwich: 'Mr. Smith, who is my boss, called me.'"
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Choose the correct subordinator: 'The reason ___ she left remains unclear.'",
+          "options": [
+            "which",
+            "why",
+            "who",
+            "whom"
+          ],
+          "correctAnswer": "why",
+          "explanation": "'Why' is the relative adverb for reasons."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'I saw the girl whose brother is famous.'",
+          "options": [
+            "Should be 'who's brother'.",
+            "No error.",
+            "Commas are needed.",
+            "Should be 'that brother'."
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "'Whose' is the correct possessive; 'who's' means 'who is' or 'who has'."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Which sentence is a 'Comma Splice' error?",
+          "options": [
+            "The car is old, it still runs.",
+            "The car, which is old, still runs.",
+            "The car is old; it still runs.",
+            "Although the car is old, it still runs."
+          ],
+          "correctAnswer": "The car is old, it still runs.",
+          "explanation": "Joining two independent sentences with only a comma is a major error. Options B, C, and D are correct ways to fix it."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "What is the primary function of relative clauses in academic writing?",
+          "options": [
+            "To make sentences longer.",
+            "To add precision and detail to nouns without repeating information.",
+            "To avoid using 'and' or 'but'.",
+            "To sound like a native speaker."
+          ],
+          "correctAnswer": "To add precision and detail to nouns without repeating information.",
+          "explanation": "Relative clauses are essential for the 'Lexical Resource' and 'Grammatical Range' scores in IELTS/TOEFL."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Synthesis Master</h3><p>At the highest level, subordination is used for <b>synthesis</b>. You must master the 'Sentential Which' and 'Prepositional Relative Pronouns' to connect abstract ideas.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>🔗 <b>Sentential 'Which':</b> Refers to the whole previous clause. <br><i>The birth rate fell<b>, which</b> caused concern for the government.</i></li><li>🏛️ <b>Prepositional Relative:</b> For formal register. <br><i>The theory <b>to which</b> I refer is quite complex.</i></li><li>✂️ <b>Reduced Clauses:</b> For density. <br><i>Research <b>conducted</b> in 2020 (reduced from 'which was conducted') is vital.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which sentence uses 'which' to refer to the entire preceding idea?",
+          "options": [
+            "The company launched a new product which was very successful.",
+            "The company launched a new product, which was very successful.",
+            "The company launched a new product, which surprised its competitors.",
+            "The company which launched the product is very successful."
+          ],
+          "correctAnswer": "The company launched a new product, which surprised its competitors.",
+          "explanation": "In this sentence, 'which' refers to the *action* of the company launching a product, not just the 'product' itself."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Select the most formal version of this sentence: 'This is the issue I am worried about.'",
+          "options": [
+            "This is the issue which I am worried about.",
+            "This is the issue about which I am concerned.",
+            "This is the issue that I am worried about.",
+            "About which issue I am concerned is this."
+          ],
+          "correctAnswer": "This is the issue about which I am concerned.",
+          "explanation": "Moving the preposition ('about') before the relative pronoun ('which') is a hallmark of high-level academic register."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Identify the 'Reduced Relative Clause' best suited for a Task 1 overview:",
+          "options": [
+            "The figures which are showing an upward trend are clear.",
+            "The figures showing an upward trend are clear.",
+            "The figures show an upward trend, which is clear.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "B uses a reduced active clause (showing); C uses a sentential relative clause (which is clear). Both are elite structures."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "What is the error in: 'Not only the government failed to act, which led to a crisis.'",
+          "options": [
+            "Missing 'did' after 'not only'.",
+            "Missing 'but also'.",
+            "The 'which' clause is fine.",
+            "Both A and B are necessary to fix the main clause."
+          ],
+          "correctAnswer": "Both A and B are necessary to fix the main clause.",
+          "explanation": "'Not only' at the start requires inversion (did the government fail) and a matching 'but also' later."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Choose the correct prepositional relative: 'The environment ___ we live is changing.'",
+          "options": [
+            "which",
+            "where",
+            "in which",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'Where' and 'in which' are both correct, but 'in which' is preferred in formal academic writing."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Identify the sentential relative: 'Global warming is accelerating, which many scientists believe is irreversible.'",
+          "options": [
+            "which many scientists believe is irreversible",
+            "accelerating",
+            "Global warming is accelerating",
+            "many scientists believe"
+          ],
+          "correctAnswer": "which many scientists believe is irreversible",
+          "explanation": "This 'which' refers to the fact that global warming is accelerating."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Which Task 1 sentence effectively uses a relative clause for comparison?",
+          "options": [
+            "Sales in 2010 were 50%, which was double the figure for 2005.",
+            "Sales in 2010 were 50% which was double the figure for 2005.",
+            "Sales in 2010 were 50%, that was double the figure for 2005.",
+            "Sales in 2010 were 50% and this was double the figure for 2005."
+          ],
+          "correctAnswer": "Sales in 2010 were 50%, which was double the figure for 2005.",
+          "explanation": "This uses a non-defining relative clause to provide a comparative analysis of the data."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'The participants were divided into two groups, each of whom received a different treatment.'",
+          "options": [
+            "Change 'whom' to 'which'.",
+            "Change 'whom' to 'them'.",
+            "Change 'each of whom' to 'every of whom'.",
+            "No error."
+          ],
+          "correctAnswer": "Change 'whom' to 'which'.",
+          "explanation": "Since 'groups' are inanimate entities/collections, 'which' is used. 'Whom' is only for people."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which sentence shows 'Nominalization' through subordination?",
+          "options": [
+            "The fact that the population is aging presents many challenges.",
+            "Because the population is aging, it presents challenges.",
+            "The population is aging, and this presents challenges.",
+            "The aging population presents challenges."
+          ],
+          "correctAnswer": "The fact that the population is aging presents many challenges.",
+          "explanation": "Using 'The fact that...' turns a whole clause into a single noun phrase subject."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Where should the comma go in this sentential relative? 'He forgot my birthday which was very upsetting.'",
+          "options": [
+            "After 'birthday'.",
+            "After 'birthday' and 'which'.",
+            "After 'was'.",
+            "No comma needed."
+          ],
+          "correctAnswer": "After 'birthday'.",
+          "explanation": "A sentential relative clause must *always* be separated from the main clause by a comma."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which relative pronoun is used to show a 'manner' in formal writing?",
+          "options": [
+            "The way how it works...",
+            "The way which it works...",
+            "The way in which it works...",
+            "The way that it works..."
+          ],
+          "correctAnswer": "The way in which it works...",
+          "explanation": "'The way how' is ungrammatical. 'The way in which' is the formal academic standard."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the correctly reduced passive relative clause:",
+          "options": [
+            "The law passing last year is controversial.",
+            "The law passed last year is controversial.",
+            "The law which passing last year is controversial.",
+            "The law which passed last year is controversial."
+          ],
+          "correctAnswer": "The law passed last year is controversial.",
+          "explanation": "This is a reduction of 'The law *that was* passed last year'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Complete the Task 1 comparison: 'Production levels reached 100 units, ___ for the rest of the year.'",
+          "options": [
+            "after which they stabilized",
+            "then which they stabilized",
+            "which after they stabilized",
+            "where they stabilized"
+          ],
+          "correctAnswer": "after which they stabilized",
+          "explanation": "'After which' is a high-level relative phrase used to show a sequence in data trends."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'Fragment' error?",
+          "options": [
+            "Although the costs were high, the project continued.",
+            "The project continued although the costs were high.",
+            "Although the costs were high.",
+            "Even if the costs were high."
+          ],
+          "correctAnswer": "Although the costs were high.",
+          "explanation": "A dependent clause without an independent clause is a major grammar error (Sentence Fragment)."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which formal subordinator shows 'Extent'?",
+          "options": [
+            "To the extent that...",
+            "Insofar as...",
+            "As far as...",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "These are all used to qualify an argument by showing to what degree it is true."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'The city, that I grew up in, has changed a lot.'",
+          "options": [
+            "Change 'that' to 'which'.",
+            "Remove the commas.",
+            "Both A and B.",
+            "Change 'in' to 'where'."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "You cannot use 'that' with commas. If you want commas, use 'which'; if you want 'that', remove commas."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses 'whose' for an inanimate object?",
+          "options": [
+            "The company whose headquarters are in New York...",
+            "The company the headquarters of which are in New York...",
+            "Both are correct, but A is more natural.",
+            "Both are correct, but B is more formal."
+          ],
+          "correctAnswer": "Both are correct, but B is more formal.",
+          "explanation": "'The headquarters of which' is very formal; 'whose' is common and acceptable for objects."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Identify the 'Double Relative' trap: 'The reason why he left that I heard was strange.'",
+          "options": [
+            "Should be 'The reason why he left, which I heard, was strange.'",
+            "Should be 'The reason that he left was strange.'",
+            "Both are possible fixes.",
+            "No error."
+          ],
+          "correctAnswer": "Both are possible fixes.",
+          "explanation": "Nesting multiple relative clauses ('why' and 'that') without commas makes the sentence difficult to read."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct subordinator for a 'Condition' in Task 2: '___ governments invest in education, the economy will not improve.'",
+          "options": [
+            "If",
+            "Unless",
+            "Provided that",
+            "Regardless of"
+          ],
+          "correctAnswer": "Unless",
+          "explanation": "The context requires a negative condition: 'Unless (if they don't) invest, it won't improve'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which relative pronoun is used to refer back to a whole list? 'Books, pens, and paper, ___ are necessary for the exam...'",
+          "options": [
+            "all of which",
+            "which all",
+            "they all",
+            "that all"
+          ],
+          "correctAnswer": "all of which",
+          "explanation": "'All of which' (or 'some of which') is the standard way to refer to a previously mentioned set."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The report provides data regarding to which countries produced the most oil.'",
+          "options": [
+            "Remove 'to'.",
+            "Change 'which' to 'that'.",
+            "The phrase 'regarding to' is wrong.",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "It should be 'data regarding which countries...' or 'data as to which countries...'. 'Regarding' is a preposition and shouldn't have 'to'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'Relative Clause of Result'?",
+          "options": [
+            "The fire spread quickly, with the result that the building was destroyed.",
+            "The fire spread quickly, which resulted in the building being destroyed.",
+            "The fire spread quickly, so that the building was destroyed.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "These are all high-level ways to subordinate a result to a cause."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the correctly punctuated 'concession' clause:",
+          "options": [
+            "In spite of the weather we went hiking.",
+            "In spite of the weather, we went hiking.",
+            "Despite the weather, we went hiking.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "Introductory prepositional phrases of concession require a comma."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Choose the best formal subordinator for 'Instead of':",
+          "options": [
+            "Rather than...",
+            "As opposed to...",
+            "In lieu of...",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "These all elevate the register of your comparisons in an essay."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The person ___ I am talking to is my boss.'",
+          "options": [
+            "to whom",
+            "who",
+            "whom",
+            "All of the above (though 'to whom' is most formal)."
+          ],
+          "correctAnswer": "All of the above (though 'to whom' is most formal).",
+          "explanation": "In standard English all are used, but 'to whom' is the academic gold standard."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Identify the trap in: 'No matter how hard he tried, but he failed.'",
+          "options": [
+            "Remove 'but'.",
+            "Remove 'No matter'.",
+            "Change 'but' to 'yet'.",
+            "Both A and B are options."
+          ],
+          "correctAnswer": "Both A and B are options.",
+          "explanation": "This is another double-signal error. You can't use 'No matter' (subordination) and 'but' (coordination) together."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which relative pronoun is used to define an 'area' of research?",
+          "options": [
+            "The field where I work...",
+            "The field in which I work...",
+            "The field that I work...",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "Abstract 'places' like a field of study can take 'where' or 'in which'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Identify the formal way to say 'If': '___ that the weather is good, we will go.'",
+          "options": [
+            "Providing",
+            "Provided",
+            "On the condition",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'Providing that' and 'Provided that' are formal equivalents of 'If'."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "What is the function of 'Inasmuch as'?",
+          "options": [
+            "To show contrast.",
+            "To show a reason/extent (Because/To the degree that).",
+            "To show a time.",
+            "To show a place."
+          ],
+          "correctAnswer": "To show a reason/extent (Because/To the degree that).",
+          "explanation": "It is a very formal way to introduce a justifying fact."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: Why is subordination the key to a Band 7.0+ score?",
+          "options": [
+            "It eliminates short, choppy sentences.",
+            "It shows you can handle complex logic and grammar.",
+            "It allows for precise comparisons and cause-and-effect links.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Subordination is the primary driver of 'Grammatical Range' and 'Cohesion' in advanced English exams."
+        }
+      ]
+    }
+  ]
+}

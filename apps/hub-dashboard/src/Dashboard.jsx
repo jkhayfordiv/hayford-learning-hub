@@ -34,6 +34,29 @@ const DIAGNOSTIC_DICTIONARY = {
   'Hedging': 'Softening Claims (Might, Could, Often)'
 };
 
+const DIAGNOSTIC_TO_TOPIC_MAP = {
+  'Article Usage': '01_article_usage',
+  'Countability & Plurals': '02_countability_and_plurals',
+  'Pronoun Reference': '03_pronoun_reference',
+  'Prepositional Accuracy': '04_prepositional_accuracy',
+  'Word Forms': '05_word_forms',
+  'Subject-Verb Agreement': '06_subject_verb_agreement',
+  'Tense Consistency': '07_tense_consistency',
+  'Present Perfect vs. Past Simple': '08_present_perfect_past_simple',
+  'Gerunds vs. Infinitives': '09_gerunds_infinitives',
+  'Passive Voice Construction': '10_passive_voice',
+  'Sentence Boundaries': '11_sentence_boundaries',
+  'Relative Clauses': '12_relative_clauses',
+  'Subordination': '13_subordination',
+  'Word Order': '14_word_order',
+  'Parallel Structure': '15_parallel_structure',
+  'Transitional Devices': '16_transitional_devices',
+  'Collocations': '17_collocations',
+  'Academic Register': '18_academic_register',
+  'Nominalization': '19_nominalization',
+  'Hedging': '20_hedging'
+};
+
 export default function Dashboard() {
   const navigate = useNavigate();
   let user = {};
@@ -584,9 +607,12 @@ export default function Dashboard() {
                       <p className="text-xs font-medium text-slate-500 mt-2">
                         Review this area before your next submission to improve your band score.
                       </p>
-                      {area.tag === 'Article Usage' && (
+                      {DIAGNOSTIC_TO_TOPIC_MAP[area.tag] && (
                         <button 
-                          onClick={() => window.location.href = `/article-lab?token=${localStorage.getItem('token')}`}
+                          onClick={() => {
+                            const topicId = DIAGNOSTIC_TO_TOPIC_MAP[area.tag];
+                            window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                          }}
                           className="mt-4 w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 shadow-sm"
                         >
                           Practice Now ⚡

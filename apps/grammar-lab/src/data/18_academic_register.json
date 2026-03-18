@@ -1,0 +1,1594 @@
+{
+  "topicId": "18_academic_register",
+  "topicName": "Academic Register",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: Elevating the Tone</h3><p>Academic writing requires a formal, objective <b>register</b> (tone). This means avoiding conversational English, slang, idioms, and multi-word 'phrasal verbs'.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Informal (Spoken)</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Formal (Academic)</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">look into, find out, set up</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">investigate, discover, establish</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">good, bad, big, a lot of</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">beneficial, detrimental, significant, numerous</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">kids, cops, boss, stuff</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">children, law enforcement, employer, factors</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which of the following verbs is the most appropriate for an academic essay?",
+          "options": [
+            "look into",
+            "check out",
+            "investigate",
+            "go over"
+          ],
+          "correctAnswer": "investigate",
+          "explanation": "Phrasal verbs (verb + preposition) like 'look into' are too informal for academic writing. 'Investigate' is the formal equivalent."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'The scientists wanted to *find out* the cause.'",
+          "options": [
+            "figure out",
+            "determine",
+            "uncover up",
+            "sort out"
+          ],
+          "correctAnswer": "determine",
+          "explanation": "'Determine' is a precise, formal verb that replaces the conversational 'find out' or 'figure out'."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'go up':",
+          "options": [
+            "increase",
+            "shoot up",
+            "jump",
+            "climb"
+          ],
+          "correctAnswer": "increase",
+          "explanation": "While 'shoot up' and 'jump' can describe data, 'increase' is the standard, objective academic term."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Which is the academic alternative to 'set up' (e.g., a company)?",
+          "options": [
+            "put together",
+            "establish",
+            "make",
+            "start up"
+          ],
+          "correctAnswer": "establish",
+          "explanation": "'Establish' is the formal term for founding or setting up an organization or system."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Choose the formal substitute for 'give up':",
+          "options": [
+            "abandon",
+            "quit",
+            "drop out",
+            "leave behind"
+          ],
+          "correctAnswer": "abandon",
+          "explanation": "'Abandon' or 'relinquish' elevate the tone compared to the conversational 'give up' or 'quit'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "What is the best academic replacement for 'a lot of'?",
+          "options": [
+            "heaps of",
+            "a significant amount of",
+            "tons of",
+            "plenty of"
+          ],
+          "correctAnswer": "a significant amount of",
+          "explanation": "'A lot of', 'tons of', and 'heaps of' are spoken English. 'A significant amount of' or 'numerous' are academic."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Replace the informal adjective: 'The new policy is very *good* for the economy.'",
+          "options": [
+            "awesome",
+            "beneficial",
+            "great",
+            "nice"
+          ],
+          "correctAnswer": "beneficial",
+          "explanation": "'Good' is too basic. 'Beneficial', 'advantageous', or 'favorable' provide the necessary Lexical Resource."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Identify the academic equivalent of 'bad':",
+          "options": [
+            "terrible",
+            "detrimental",
+            "awful",
+            "lousy"
+          ],
+          "correctAnswer": "detrimental",
+          "explanation": "'Detrimental' means tending to cause harm, which is perfect for objective academic criticism."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Which noun is appropriate for an IELTS essay?",
+          "options": [
+            "kids",
+            "children",
+            "youngsters",
+            "teens"
+          ],
+          "correctAnswer": "children",
+          "explanation": "'Kids' and 'youngsters' are colloquial. Use 'children', 'adolescents', or 'minors' in formal writing."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Replace the informal word: 'The *boss* decided to change the schedule.'",
+          "options": [
+            "manager",
+            "chief",
+            "head honcho",
+            "leader guy"
+          ],
+          "correctAnswer": "manager",
+          "explanation": "'Boss' is conversational. 'Manager', 'employer', or 'director' are appropriate."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which of these sentences is strictly academic?",
+          "options": [
+            "We can't ignore this issue.",
+            "We cannot ignore this issue.",
+            "You can't ignore this issue.",
+            "They shouldn't ignore this issue."
+          ],
+          "correctAnswer": "We cannot ignore this issue.",
+          "explanation": "Contractions (can't, shouldn't, don't) must be completely avoided in academic writing. Write the full words out."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Choose the formal substitute for 'point out':",
+          "options": [
+            "show",
+            "highlight",
+            "bring up",
+            "talk about"
+          ],
+          "correctAnswer": "highlight",
+          "explanation": "'Highlight', 'indicate', or 'emphasize' are strong academic verbs."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "What is the academic alternative to 'talk about'?",
+          "options": [
+            "discuss",
+            "chat about",
+            "speak on",
+            "go over"
+          ],
+          "correctAnswer": "discuss",
+          "explanation": "'Discuss' is a transitive verb that instantly elevates the register of the sentence."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'The government needs to *get* more resources.'",
+          "options": [
+            "grab",
+            "acquire",
+            "pick up",
+            "catch"
+          ],
+          "correctAnswer": "acquire",
+          "explanation": "'Get' is the most overused weak verb in English. 'Acquire', 'obtain', or 'secure' are much better."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'put off':",
+          "options": [
+            "postpone",
+            "delay until later",
+            "push back",
+            "hold off"
+          ],
+          "correctAnswer": "postpone",
+          "explanation": "'Postpone' is the formal single-word equivalent of the phrasal verb 'put off'."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Which noun is too informal for a university essay?",
+          "options": [
+            "Factors",
+            "Elements",
+            "Stuff",
+            "Issues"
+          ],
+          "correctAnswer": "Stuff",
+          "explanation": "'Stuff' and 'things' are vague and conversational. Use 'factors', 'elements', 'materials', or 'aspects'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Replace the conversational transition: '*Anyways*, the results were positive.'",
+          "options": [
+            "Whatever",
+            "Nevertheless",
+            "Moving on",
+            "So yeah"
+          ],
+          "correctAnswer": "Nevertheless",
+          "explanation": "'Anyways' is spoken slang. 'Nevertheless' or 'Regardless' maintain the academic tone."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Choose the formal substitute for 'leave out':",
+          "options": [
+            "skip",
+            "omit",
+            "miss",
+            "pass on"
+          ],
+          "correctAnswer": "omit",
+          "explanation": "'Omit' is the formal verb for excluding or leaving something out."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "What is the best academic replacement for 'big'?",
+          "options": [
+            "huge",
+            "massive",
+            "substantial",
+            "gigantic"
+          ],
+          "correctAnswer": "substantial",
+          "explanation": "'Huge' and 'gigantic' are emotional. 'Substantial' or 'significant' are objective and formal."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'They decided to *look at* the data.'",
+          "options": [
+            "check out",
+            "examine",
+            "view",
+            "eyeball"
+          ],
+          "correctAnswer": "examine",
+          "explanation": "'Examine' or 'analyze' are the standard verbs for interacting with academic data."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Identify the conversational phrase that should be avoided:",
+          "options": [
+            "In a nutshell",
+            "In conclusion",
+            "To summarize",
+            "Ultimately"
+          ],
+          "correctAnswer": "In a nutshell",
+          "explanation": "'In a nutshell' is an idiom. Idioms belong in spoken English, not in formal essays."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Which is the formal equivalent of 'right away'?",
+          "options": [
+            "pronto",
+            "immediately",
+            "straight away",
+            "ASAP"
+          ],
+          "correctAnswer": "immediately",
+          "explanation": "'Immediately' or 'promptly' are the correct formal adverbs."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Choose the formal substitute for 'build up':",
+          "options": [
+            "accumulate",
+            "rack up",
+            "stack up",
+            "gather together"
+          ],
+          "correctAnswer": "accumulate",
+          "explanation": "'Accumulate' elevates the sentence from a physical, casual action to a formal process."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Replace the informal transition: '*Nowadays*, technology is everywhere.'",
+          "options": [
+            "These days",
+            "Currently",
+            "Right now",
+            "Today"
+          ],
+          "correctAnswer": "Currently",
+          "explanation": "'Nowadays' and 'These days' are slightly conversational. 'Currently', 'Presently', or 'In contemporary society' are better."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "What is the best academic replacement for 'give'?",
+          "options": [
+            "hand over",
+            "provide",
+            "pass",
+            "donate"
+          ],
+          "correctAnswer": "provide",
+          "explanation": "'Provide', 'allocate', or 'supply' are much stronger than the basic verb 'give'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Identify the unacademic word in this sentence: 'The police arrested the criminal.'",
+          "options": [
+            "police",
+            "arrested",
+            "None, it is perfectly formal",
+            "criminal"
+          ],
+          "correctAnswer": "None, it is perfectly formal",
+          "explanation": "'Police' is formal (unlike 'cops'), 'arrested' is formal (unlike 'busted'), and 'criminal' is standard."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Choose the formal substitute for 'think about':",
+          "options": [
+            "mull over",
+            "consider",
+            "ponder on",
+            "weigh up"
+          ],
+          "correctAnswer": "consider",
+          "explanation": "'Consider' or 'evaluate' replaces the conversational phrasal verb 'think about'."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Replace the informal adverb: 'The results were *totally* unexpected.'",
+          "options": [
+            "super",
+            "completely",
+            "insanely",
+            "way"
+          ],
+          "correctAnswer": "completely",
+          "explanation": "'Totally', 'super', and 'way' are conversational intensifiers. 'Completely' or 'entirely' are academic."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Which phrase is an idiom and should be avoided in Task 2?",
+          "options": [
+            "A piece of cake",
+            "A straightforward process",
+            "A simple task",
+            "An uncomplicated procedure"
+          ],
+          "correctAnswer": "A piece of cake",
+          "explanation": "Never use idioms (like 'a piece of cake', 'a double-edged sword', or 'cost an arm and a leg') in an academic essay."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "What is the formal equivalent of 'go down'?",
+          "options": [
+            "drop off",
+            "decrease",
+            "take a dive",
+            "shrink"
+          ],
+          "correctAnswer": "decrease",
+          "explanation": "'Decrease', 'decline', or 'diminish' are the objective, academic terms for a downward trend."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "Controlled Practice (Eliminating Phrasal Verbs)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Phrasal Verb Trap</h3><p>A phrasal verb is a verb combined with a preposition (e.g., <i>look into, give up, figure out</i>). These are highly conversational. To sound academic, replace them with a single, precise verb (often from Latin or French roots).</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em>Researchers are <strong>looking into</strong> the problem.</em> (Conversational)</li><li>✅ <em>Researchers are <strong>investigating</strong> the problem.</em> (Academic)</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Replace the phrasal verb: 'The government plans to *cut down on* carbon emissions.'",
+          "options": [
+            "chop down",
+            "reduce",
+            "lessen up",
+            "shrink"
+          ],
+          "correctAnswer": "reduce",
+          "explanation": "'Reduce' or 'decrease' are the formal, single-word equivalents of 'cut down on'."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "What is the academic alternative to 'throw away' in this sentence: 'We must not *throw away* recyclable materials.'?",
+          "options": [
+            "chuck out",
+            "discard",
+            "bin",
+            "toss"
+          ],
+          "correctAnswer": "discard",
+          "explanation": "'Discard' or 'dispose of' elevate the tone compared to the conversational 'throw away'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'put up with': 'Society should not *put up with* corruption.'",
+          "options": [
+            "tolerate",
+            "deal with",
+            "handle",
+            "stand for"
+          ],
+          "correctAnswer": "tolerate",
+          "explanation": "'Tolerate' is the precise academic verb for enduring or accepting something unpleasant."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'The school wants to *get rid of* the old uniform policy.'",
+          "options": [
+            "eliminate",
+            "chuck",
+            "ditch",
+            "scrap"
+          ],
+          "correctAnswer": "eliminate",
+          "explanation": "'Eliminate', 'abolish', or 'remove' are formal. 'Get rid of' is highly colloquial."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'carry out' here: 'The scientists will *carry out* the experiment tomorrow.'?",
+          "options": [
+            "do",
+            "conduct",
+            "pull off",
+            "make"
+          ],
+          "correctAnswer": "conduct",
+          "explanation": "In an academic context, we 'conduct' an experiment, a study, or a survey."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "What is the academic replacement for 'break down' (meaning to analyze)?",
+          "options": [
+            "smash up",
+            "take apart",
+            "analyze",
+            "destroy"
+          ],
+          "correctAnswer": "analyze",
+          "explanation": "When discussing data or concepts, replacing 'break down' with 'analyze' or 'deconstruct' is essential."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Replace the phrasal verb: 'The evidence *backs up* the theory.'",
+          "options": [
+            "props up",
+            "corroborates",
+            "holds up",
+            "cheers on"
+          ],
+          "correctAnswer": "corroborates",
+          "explanation": "'Corroborates' or 'supports' are the formal verbs for confirming evidence."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'come up with': 'The team must *come up with* a new strategy.'",
+          "options": [
+            "think up",
+            "dream up",
+            "devise",
+            "brainstorm"
+          ],
+          "correctAnswer": "devise",
+          "explanation": "'Devise', 'formulate', or 'develop' replace the informal 'come up with'."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'The manager *turned down* the proposal.'",
+          "options": [
+            "rejected",
+            "said no to",
+            "passed on",
+            "threw out"
+          ],
+          "correctAnswer": "rejected",
+          "explanation": "'Rejected' or 'declined' are the appropriate academic terms."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'sort out' in this sentence: 'We need to *sort out* the scheduling conflict.'?",
+          "options": [
+            "fix up",
+            "resolve",
+            "iron out",
+            "clear up"
+          ],
+          "correctAnswer": "resolve",
+          "explanation": "'Resolve' is the formal verb for finding a solution to a problem or conflict."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "What is the academic replacement for 'hand in': 'Students must *hand in* their essays by Friday.'?",
+          "options": [
+            "give over",
+            "submit",
+            "turn in",
+            "pass up"
+          ],
+          "correctAnswer": "submit",
+          "explanation": "'Submit' is the formal standard for providing academic work."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Replace the phrasal verb: 'If you don't study, you will *end up* failing the course.'",
+          "options": [
+            "wind up",
+            "finish up",
+            "ultimately",
+            "None of these (rewrite the structure)"
+          ],
+          "correctAnswer": "None of these (rewrite the structure)",
+          "explanation": "'End up' is conversational. A formal rewrite would be: 'Failure to study will ultimately result in failing the course.'"
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'look after': 'The agency is responsible to *look after* the wildlife reserve.'",
+          "options": [
+            "watch over",
+            "keep an eye on",
+            "manage",
+            "babysit"
+          ],
+          "correctAnswer": "manage",
+          "explanation": "In a professional context, 'manage', 'oversee', or 'supervise' replaces 'look after'."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'The author *points out* that poverty is increasing.'",
+          "options": [
+            "indicates",
+            "shows off",
+            "brings up",
+            "hints"
+          ],
+          "correctAnswer": "indicates",
+          "explanation": "'Indicating', 'asserting', or 'noting' are strong academic alternatives to 'pointing out'."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'make up' here: 'Women *make up* fifty percent of the workforce.'?",
+          "options": [
+            "formulate",
+            "constitute",
+            "put together",
+            "fabricate"
+          ],
+          "correctAnswer": "constitute",
+          "explanation": "'Constitute' or 'comprise' are formal verbs for parts making up a whole."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "What is the academic replacement for 'go down' in Task 1: 'The prices *went down* in 2010.'?",
+          "options": [
+            "dropped off",
+            "took a dive",
+            "decreased",
+            "slumped"
+          ],
+          "correctAnswer": "decreased",
+          "explanation": "'Decreased' or 'declined' are objective and formal."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Replace the phrasal verb: 'The committee will *bring up* the issue at the next meeting.'",
+          "options": [
+            "raise",
+            "talk about",
+            "mention",
+            "pitch"
+          ],
+          "correctAnswer": "raise",
+          "explanation": "'Raise an issue' is the standard academic collocation."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'figure out': 'Engineers are trying to *figure out* the structural flaw.'",
+          "options": [
+            "determine",
+            "work out",
+            "puzzle out",
+            "guess"
+          ],
+          "correctAnswer": "determine",
+          "explanation": "'Determine' or 'identify' sound much more professional than 'figure out'."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'We decided to *leave out* the unreliable data.'",
+          "options": [
+            "skip over",
+            "omit",
+            "drop",
+            "pass on"
+          ],
+          "correctAnswer": "omit",
+          "explanation": "'Omit' is the precise academic verb for excluding something from a list or study."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'look at': 'This essay will *look at* the effects of climate change.'?",
+          "options": [
+            "glance at",
+            "examine",
+            "check out",
+            "review"
+          ],
+          "correctAnswer": "examine",
+          "explanation": "'Examine', 'analyze', or 'explore' are the perfect verbs for introducing an essay's purpose."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "What is the academic replacement for 'put together': 'The researcher *put together* a comprehensive report.'?",
+          "options": [
+            "compiled",
+            "made up",
+            "built",
+            "gathered up"
+          ],
+          "correctAnswer": "compiled",
+          "explanation": "'Compiled' or 'assembled' are the formal verbs for gathering information into a single document."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Replace the phrasal verb: 'The project fell through because they *ran out of* money.'",
+          "options": [
+            "used up",
+            "exhausted",
+            "dried up",
+            "blew through"
+          ],
+          "correctAnswer": "exhausted",
+          "explanation": "'Exhausted their funds' or 'depleted their budget' elevate the sentence significantly."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'set up': 'The organization was *set up* in 1995.'",
+          "options": [
+            "established",
+            "started",
+            "put together",
+            "kicked off"
+          ],
+          "correctAnswer": "established",
+          "explanation": "'Established' or 'founded' are the correct terms for creating an organization."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'It is important to *point out* that this method has flaws.'",
+          "options": [
+            "emphasize",
+            "bring up",
+            "show",
+            "flag up"
+          ],
+          "correctAnswer": "emphasize",
+          "explanation": "'Emphasize' or 'highlight' are strong, academic alternatives."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'give up': 'Many students *give up* when the material becomes difficult.'?",
+          "options": [
+            "quit",
+            "abandon their studies",
+            "drop out",
+            "walk away"
+          ],
+          "correctAnswer": "abandon their studies",
+          "explanation": "'Abandon' is formal, and adding 'their studies' clarifies the object, removing the conversational tone."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "What is the academic replacement for 'look forward to': 'We *look forward to* seeing the results.'?",
+          "options": [
+            "can't wait for",
+            "anticipate",
+            "are excited about",
+            "are hoping for"
+          ],
+          "correctAnswer": "anticipate",
+          "explanation": "'Anticipate' removes the emotional, conversational tone of 'look forward to'."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Replace the phrasal verb: 'The disease can *wipe out* entire populations.'",
+          "options": [
+            "kill off",
+            "eradicate",
+            "destroy completely",
+            "finish off"
+          ],
+          "correctAnswer": "eradicate",
+          "explanation": "'Eradicate' or 'decimate' are the precise academic terms for total destruction of populations/diseases."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Identify the formal equivalent of 'show up': 'The anomaly did not *show up* in the initial tests.'",
+          "options": [
+            "appear",
+            "pop up",
+            "come out",
+            "surface"
+          ],
+          "correctAnswer": "appear",
+          "explanation": "'Appear' or 'manifest' are the objective, formal verbs."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Replace the informal phrase: 'They tried to *cover up* the environmental damage.'",
+          "options": [
+            "hide",
+            "conceal",
+            "brush off",
+            "keep quiet"
+          ],
+          "correctAnswer": "conceal",
+          "explanation": "'Conceal' or 'obscure' are the formal academic verbs for hiding information."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'catch on': 'Electric vehicles are beginning to *catch on* globally.'?",
+          "options": [
+            "become popular",
+            "get big",
+            "trend",
+            "take off"
+          ],
+          "correctAnswer": "become popular",
+          "explanation": "'Become popular' or 'gain traction' are the standard formal ways to describe this trend."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Error Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Tone Edit</h3><p>In a university essay, you must maintain a consistent <b>Academic Register</b>. One conversational word can ruin an entire paragraph. Watch out for these common traps:</p><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">🚫 <strong>Contractions:</strong> <em>don't, can't, it's</em> ➔ <em>do not, cannot, it is</em></li><li>🚫 <strong>Emotional Adjectives:</strong> <em>huge, terrible, amazing</em> ➔ <em>substantial, detrimental, significant</em></li><li>🚫 <strong>Vague Nouns:</strong> <em>stuff, things, a lot</em> ➔ <em>factors, elements, a significant amount</em></li><li>🚫 <strong>Idioms:</strong> <em>at the end of the day</em> ➔ <em>ultimately</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Find the register error in this sentence: 'The results of the study didn't support the initial hypothesis.'",
+          "options": [
+            "study",
+            "didn't",
+            "support",
+            "initial"
+          ],
+          "correctAnswer": "didn't",
+          "explanation": "Contractions (didn't) are never used in academic writing. It must be written as 'did not'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which word ruins the academic tone of this sentence? 'There are many factors that make this a huge problem for society.'",
+          "options": [
+            "factors",
+            "make",
+            "huge",
+            "society"
+          ],
+          "correctAnswer": "huge",
+          "explanation": "'Huge' is conversational and slightly emotional. 'Significant' or 'substantial' should be used instead."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Identify the conversational phrase: 'To understand the economic crisis, we must look at a bunch of different elements.'",
+          "options": [
+            "To understand",
+            "economic crisis",
+            "a bunch of",
+            "elements"
+          ],
+          "correctAnswer": "a bunch of",
+          "explanation": "'A bunch of' is spoken slang. 'Several', 'various', or 'a number of' are appropriate academic terms."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Fix the tone of this conclusion: 'At the end of the day, renewable energy is the only viable option.'",
+          "options": [
+            "Change 'At the end of the day' to 'Ultimately'",
+            "Change 'viable option' to 'good choice'",
+            "Change 'renewable energy' to 'green stuff'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'At the end of the day' to 'Ultimately'",
+          "explanation": "'At the end of the day' is an idiom. Idioms must be replaced with formal transitions like 'Ultimately' or 'In conclusion'."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Which word is too informal for an IELTS essay? 'The government needs to spend more money on kids' education.'",
+          "options": [
+            "needs",
+            "spend",
+            "kids'",
+            "education"
+          ],
+          "correctAnswer": "kids'",
+          "explanation": "'Kids' is highly conversational. The academic equivalent is 'children's'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Find the unacademic element: 'Furthermore, it's imperative that new regulations are implemented immediately.'",
+          "options": [
+            "Furthermore",
+            "it's",
+            "imperative",
+            "implemented"
+          ],
+          "correctAnswer": "it's",
+          "explanation": "Even though the vocabulary is advanced, the contraction 'it's' breaks the formal register. It must be 'it is'."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'The researchers thought the new method was really awesome.'",
+          "options": [
+            "The researchers felt the new method was super good.",
+            "The researchers considered the new method to be highly effective.",
+            "The researchers thought the new method was totally great.",
+            "The researchers knew the new method was the best."
+          ],
+          "correctAnswer": "The researchers considered the new method to be highly effective.",
+          "explanation": "'Really awesome' is subjective slang. 'Highly effective' provides objective, academic praise."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Identify the vague, informal noun: 'Climate change is causing a lot of bad stuff to happen to marine ecosystems.'",
+          "options": [
+            "Climate change",
+            "bad stuff",
+            "marine",
+            "ecosystems"
+          ],
+          "correctAnswer": "bad stuff",
+          "explanation": "'Bad stuff' is vague and conversational. It should be replaced with 'detrimental effects' or 'severe damage'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Which transition is inappropriate for a university paper?",
+          "options": [
+            "Consequently",
+            "Moreover",
+            "Anyways",
+            "Therefore"
+          ],
+          "correctAnswer": "Anyways",
+          "explanation": "'Anyways' is a spoken filler word. Use 'Nevertheless' or 'Regardless' in writing."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Fix the subjective framing in this sentence: 'To be honest, the proposed policy is fundamentally flawed.'",
+          "options": [
+            "Change 'To be honest' to 'It can be argued that'",
+            "Change 'fundamentally' to 'totally'",
+            "Change 'proposed policy' to 'new rules'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'To be honest' to 'It can be argued that'",
+          "explanation": "Phrases like 'To be honest' or 'I feel like' are too personal and conversational for objective academic writing."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the register error: 'The statistics clearly show that the company is going broke.'",
+          "options": [
+            "statistics",
+            "clearly",
+            "show",
+            "going broke"
+          ],
+          "correctAnswer": "going broke",
+          "explanation": "'Going broke' is an idiom/slang. The formal equivalent is 'facing bankruptcy' or 'experiencing financial failure'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Which of these adverbs lowers the academic tone?",
+          "options": [
+            "Significantly",
+            "Totally",
+            "Fundamentally",
+            "Substantially"
+          ],
+          "correctAnswer": "Totally",
+          "explanation": "'Totally' is a spoken intensifier. 'Completely' or 'entirely' should be used instead."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Replace the unacademic word: 'The architecture of the ancient temple is very *pretty*.'",
+          "options": [
+            "nice",
+            "cool",
+            "aesthetically pleasing",
+            "good-looking"
+          ],
+          "correctAnswer": "aesthetically pleasing",
+          "explanation": "'Pretty' is too simplistic and conversational. 'Aesthetically pleasing' or 'visually striking' fits an academic context."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Identify the informal verb: 'The committee needs to get the data before making a decision.'",
+          "options": [
+            "needs",
+            "get",
+            "making",
+            "decision"
+          ],
+          "correctAnswer": "get",
+          "explanation": "'Get' is the most common informal verb. It should be replaced with 'acquire', 'obtain', or 'gather'."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error in this Task 1 sentence: 'The price of oil went up and down like crazy between 2005 and 2010.'",
+          "options": [
+            "Change 'price of oil' to 'oil's price'",
+            "Change 'went up and down like crazy' to 'fluctuated significantly'",
+            "Change 'between' to 'from'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'went up and down like crazy' to 'fluctuated significantly'",
+          "explanation": "Using similes ('like crazy') or extreme conversational phrases destroys the objective tone required for data analysis."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Which word is too extreme for formal writing? 'The consequences of this action will be terrible.'",
+          "options": [
+            "consequences",
+            "action",
+            "will be",
+            "terrible"
+          ],
+          "correctAnswer": "terrible",
+          "explanation": "'Terrible' is an emotional adjective. Academic writing prefers objective terms like 'severe' or 'detrimental'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Fix the conversational phrase: 'Nowadays, a lot of people work from home.'",
+          "options": [
+            "Currently, a significant number of individuals work from home.",
+            "These days, a bunch of people work from home.",
+            "Today, tons of people are working from home.",
+            "Right now, many guys work from home."
+          ],
+          "correctAnswer": "Currently, a significant number of individuals work from home.",
+          "explanation": "'Nowadays' and 'a lot of people' are conversational. 'Currently' and 'a significant number of individuals' elevate the register."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Identify the register error: 'The researchers tried to figure out why the cells mutated.'",
+          "options": [
+            "researchers",
+            "tried",
+            "figure out",
+            "mutated"
+          ],
+          "correctAnswer": "figure out",
+          "explanation": "'Figure out' is a phrasal verb. The academic equivalent is 'determine' or 'discover'."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Which of these acronyms/abbreviations is generally unacceptable in a formal IELTS essay?",
+          "options": [
+            "NASA",
+            "ASAP",
+            "WHO",
+            "GDP"
+          ],
+          "correctAnswer": "ASAP",
+          "explanation": "ASAP (As Soon As Possible) is workplace slang. Official organizational acronyms (NASA, WHO) or economic terms (GDP) are acceptable."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'You should exercise because it is good for your health.'",
+          "options": [
+            "People should exercise because it is good for their health.",
+            "Regular physical activity is highly beneficial for overall health.",
+            "You need to work out because it's healthy.",
+            "Working out is awesome for your health."
+          ],
+          "correctAnswer": "Regular physical activity is highly beneficial for overall health.",
+          "explanation": "This rewrite removes the informal 'You' (second person), replaces 'good' with 'beneficial', and elevates the vocabulary."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Find the unacademic phrase: 'The project failed because the team didn't have enough money to pull it off.'",
+          "options": [
+            "project failed",
+            "didn't have",
+            "enough money",
+            "pull it off"
+          ],
+          "correctAnswer": "pull it off",
+          "explanation": "'Pull it off' is a conversational idiom meaning 'succeed'. It must be replaced with 'complete it' or 'succeed'."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which option fixes the tone? 'The new rules are a pain in the neck for small businesses.'",
+          "options": [
+            "The new rules are super annoying for small businesses.",
+            "The new rules present a significant burden for small businesses.",
+            "The new rules really hurt small businesses.",
+            "The new rules are bad for small businesses."
+          ],
+          "correctAnswer": "The new rules present a significant burden for small businesses.",
+          "explanation": "It replaces the idiom 'a pain in the neck' with the formal, objective phrasing 'present a significant burden'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Identify the conversational connector: 'Plus, the environmental damage must be considered.'",
+          "options": [
+            "Plus",
+            "environmental",
+            "damage",
+            "considered"
+          ],
+          "correctAnswer": "Plus",
+          "explanation": "'Plus' is used in speech to add information. In writing, use 'Furthermore', 'Additionally', or 'Moreover'."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "What is wrong with using 'etc.' at the end of a list in a formal essay?",
+          "options": [
+            "It is grammatically incorrect.",
+            "It sounds lazy and imprecise; it is better to say 'and other similar factors'.",
+            "It is too formal.",
+            "It must be capitalized."
+          ],
+          "correctAnswer": "It sounds lazy and imprecise; it is better to say 'and other similar factors'.",
+          "explanation": "Academic writers avoid 'etc.' because it asks the reader to guess the rest of the list. Specificity is required."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Find the register error: 'The principal kicked out the students who cheated.'",
+          "options": [
+            "principal",
+            "kicked out",
+            "students",
+            "cheated"
+          ],
+          "correctAnswer": "kicked out",
+          "explanation": "'Kicked out' is slang. The formal academic equivalent is 'expelled' or 'dismissed'."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which word breaks the academic tone? 'The infrastructure in the rural areas is pretty outdated.'",
+          "options": [
+            "infrastructure",
+            "rural",
+            "pretty",
+            "outdated"
+          ],
+          "correctAnswer": "pretty",
+          "explanation": "Using 'pretty' as an adverb meaning 'somewhat' or 'very' is informal. 'Quite' or 'highly' are better."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Replace the unacademic noun: 'The police are looking for the *guys* who committed the robbery.'",
+          "options": [
+            "dudes",
+            "men",
+            "perpetrators",
+            "people"
+          ],
+          "correctAnswer": "perpetrators",
+          "explanation": "'Guys' is conversational. 'Individuals', 'suspects', or 'perpetrators' fit the formal context of a crime report."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Fix the subjective tone: 'I think that the government should lower taxes.'",
+          "options": [
+            "I feel like the government should lower taxes.",
+            "My opinion is that taxes should be lowered.",
+            "It can be argued that the government should reduce taxation.",
+            "Taxes need to go down, in my view."
+          ],
+          "correctAnswer": "It can be argued that the government should reduce taxation.",
+          "explanation": "Replacing 'I think that' with an objective framing device like 'It can be argued that' elevates the argument."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the register error: 'The survey showed that most folks prefer working four days a week.'",
+          "options": [
+            "survey",
+            "folks",
+            "prefer",
+            "working"
+          ],
+          "correctAnswer": "folks",
+          "explanation": "'Folks' is a colloquial term. 'People', 'individuals', or 'respondents' should be used instead."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Which of these represents a 'Band 7.0+' academic sentence?",
+          "options": [
+            "The boss gave up on the project because it cost too much.",
+            "The manager abandoned the project due to excessive costs.",
+            "The director chucked the project 'cause it was too expensive.",
+            "They dropped the project because of the huge price tag."
+          ],
+          "correctAnswer": "The manager abandoned the project due to excessive costs.",
+          "explanation": "This sentence perfectly eliminates phrasal verbs ('gave up' -> 'abandoned'), slang ('chucked', 'price tag'), and contractions, utilizing precise formal vocabulary."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Objective Distance</h3><p>To achieve an elite score, you must move away from personal pronouns (I, you, we) and use <b>impersonal structures</b>. This makes your writing sound more authoritative and scientific.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>👤 <strong>Personal:</strong> <em>I think that taxes should be raised.</em></li><li>⚖️ <strong>Objective:</strong> <em>It is widely argued that an increase in taxation is necessary.</em></li><li>👤 <strong>Personal:</strong> <em>You can see that the graph goes up.</em></li><li>📊 <strong>Objective:</strong> <em>The data illustrates a clear upward trend.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which of these is the most appropriate way to state an opinion in an IELTS Task 2 essay?",
+          "options": [
+            "In my humble opinion, people should work less.",
+            "I strongly believe that a reduction in working hours is beneficial.",
+            "It is often asserted that a reduction in working hours can enhance productivity.",
+            "I think that if we work less, we will be happier."
+          ],
+          "correctAnswer": "It is often asserted that a reduction in working hours can enhance productivity.",
+          "explanation": "This uses 'It is often asserted' to frame the argument objectively, avoiding the first-person 'I'."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "How should you rewrite 'You can see that the numbers grew' for a Task 1 report?",
+          "options": [
+            "We can see that the numbers grew.",
+            "One can see that the numbers grew.",
+            "A clear increase in the figures can be observed.",
+            "I can see that the numbers grew."
+          ],
+          "correctAnswer": "A clear increase in the figures can be observed.",
+          "explanation": "This uses the passive voice ('can be observed') to remove the subject 'you' entirely, which is standard for Task 1."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Identify the unacademic personal pronoun: 'We must realize that climate change is a global threat.'",
+          "options": [
+            "We",
+            "realize",
+            "global",
+            "threat"
+          ],
+          "correctAnswer": "We",
+          "explanation": "Using 'We' or 'Us' is often considered too conversational. It is better to say 'It must be recognized that...'."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'If you study hard, you will get a good job.'",
+          "options": [
+            "Studying hard means you get a good job.",
+            "Diligent study frequently leads to improved career prospects.",
+            "If a person studies hard, they will get a nice job.",
+            "You should study hard to find good work."
+          ],
+          "correctAnswer": "Diligent study frequently leads to improved career prospects.",
+          "explanation": "This rewrite removes the second-person 'you', elevates the vocabulary, and creates an objective cause-and-effect relationship."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Which phrase provides the best 'academic distancing'?",
+          "options": [
+            "I am sure that...",
+            "It is undeniably certain that...",
+            "There is a growing body of evidence to suggest that...",
+            "Everyone knows that..."
+          ],
+          "correctAnswer": "There is a growing body of evidence to suggest that...",
+          "explanation": "This is a high-level academic chunk that attributes the claim to 'evidence' rather than personal certainty."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Find the error in tone: 'In this essay, I will talk about why cars are bad.'",
+          "options": [
+            "Change 'I will talk about' to 'this essay will examine'",
+            "Change 'cars are bad' to 'the detrimental effects of private vehicles'",
+            "Both A and B are necessary",
+            "No error"
+          ],
+          "correctAnswer": "Both A and B are necessary",
+          "explanation": "The original is too personal ('I') and conversational ('talk about', 'bad'). The rewrite is authoritative and formal."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Which of these is the most professional way to describe a problem?",
+          "options": [
+            "This is a big mess for our city.",
+            "This situation poses a significant challenge to urban infrastructure.",
+            "Our city has a lot of stuff to fix.",
+            "We have a really terrible problem here."
+          ],
+          "correctAnswer": "This situation poses a significant challenge to urban infrastructure.",
+          "explanation": "It avoids emotional language ('big mess', 'terrible') and uses specific academic nouns."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Identify the poorly registered phrase: 'If we don't act now, the situation will get way worse.'",
+          "options": [
+            "If we don't act now",
+            "will get",
+            "way worse",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "It uses a contraction ('don't'), a weak verb ('get'), and a conversational intensifier ('way')."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Rewrite 'I believe that technology makes us lazy' using a third-person structure:",
+          "options": [
+            "It is believed that technology makes people lazy.",
+            "Technology is often argued to have a negative impact on human activity levels.",
+            "People believe that technology makes them lazy.",
+            "I think technology leads to laziness."
+          ],
+          "correctAnswer": "Technology is often argued to have a negative impact on human activity levels.",
+          "explanation": "This is the most sophisticated version, using passive 'is argued to have' and precise vocabulary."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Which word should be avoided in a formal TOEFL introduction?",
+          "options": [
+            "Theoretical",
+            "Framework",
+            "Basically",
+            "Consequently"
+          ],
+          "correctAnswer": "Basically",
+          "explanation": "'Basically' is a conversational filler. Use 'Fundamentally' or 'Essentially' if necessary, or simply omit it."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which sentence is best for an IELTS Task 1 body paragraph?",
+          "options": [
+            "We can see a huge jump in the numbers here.",
+            "A substantial increase in the figures was recorded in 2015.",
+            "The numbers shot up like crazy in 2015.",
+            "You will notice that the numbers increased a lot."
+          ],
+          "correctAnswer": "A substantial increase in the figures was recorded in 2015.",
+          "explanation": "It uses nominalization ('substantial increase') and the passive voice ('was recorded') for a perfect academic tone."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Fix the subjective tone: 'It's obvious that the plan is a failure.'",
+          "options": [
+            "It is evident that the plan has been unsuccessful.",
+            "Clearly, the plan didn't work.",
+            "I can see the plan is failing.",
+            "The plan is a total disaster."
+          ],
+          "correctAnswer": "It is evident that the plan has been unsuccessful.",
+          "explanation": "It removes the contraction ('It's') and replaces the emotional 'failure' with 'unsuccessful'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Choose the most appropriate academic synonym for 'think':",
+          "options": [
+            "believe",
+            "feel",
+            "hypothesize",
+            "consider"
+          ],
+          "correctAnswer": "hypothesize",
+          "explanation": "While 'consider' is good, 'hypothesize' or 'postulate' are even more specific to academic research."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Which of these represents a 'Band 8.0' academic shift?",
+          "options": [
+            "People spend money -> Consumption levels rise",
+            "Kids learn -> Students acquire knowledge",
+            "Cops catch criminals -> Law enforcement detains offenders",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "All three examples show the shift from conversational 'Anglo-Saxon' words to formal 'Latin/French' rooted academic terms."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "What is the problem with 'The chart shows that things changed a lot'?",
+          "options": [
+            "The verb 'shows' is too weak.",
+            "The noun 'things' is too vague.",
+            "The phrase 'a lot' is too informal.",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "This sentence is Band 4.5 level. It should be: 'The chart illustrates significant fluctuations in the data.'"
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Find the error: 'If you want to be successful, you have to work hard.'",
+          "options": [
+            "Change 'you want' to 'one desires'",
+            "Change 'have to work' to 'must labor'",
+            "Success is generally achieved through persistent effort.",
+            "Change 'you' to 'we'"
+          ],
+          "correctAnswer": "Success is generally achieved through persistent effort.",
+          "explanation": "A complete rewrite into the third person is much better than trying to replace 'you' with 'one'."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Identify the unacademic transition:",
+          "options": [
+            "Furthermore",
+            "By contrast",
+            "On top of that",
+            "In addition"
+          ],
+          "correctAnswer": "On top of that",
+          "explanation": "'On top of that' is a spoken phrase. Use 'Furthermore' or 'Moreover' in writing."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Improve 'I'm going to explain the reasons for this' for an essay:",
+          "options": [
+            "I will tell you the reasons.",
+            "The following paragraphs will analyze the primary causes of this phenomenon.",
+            "I am going to show the reasons.",
+            "Reasons will be given by me."
+          ],
+          "correctAnswer": "The following paragraphs will analyze the primary causes of this phenomenon.",
+          "explanation": "This makes the 'essay/paragraphs' the subject, removing the writer ('I') and elevating the register."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Which of these is too informal for a conclusion?",
+          "options": [
+            "In conclusion...",
+            "To wrap things up...",
+            "Ultimately...",
+            "In summary..."
+          ],
+          "correctAnswer": "To wrap things up...",
+          "explanation": "'To wrap things up' is an idiom used in casual conversation or presentations, not formal essays."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Find the formal equivalent of 'bring together':",
+          "options": [
+            "link up",
+            "integrate",
+            "mix up",
+            "put together"
+          ],
+          "correctAnswer": "integrate",
+          "explanation": "'Integrate', 'synthesize', or 'consolidate' are all excellent academic verbs."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Replace the informal adjective: 'The effect of the drug was *amazing*.'",
+          "options": [
+            "cool",
+            "significant",
+            "mind-blowing",
+            "great"
+          ],
+          "correctAnswer": "significant",
+          "explanation": "Academic writing avoids hyperbole. 'Significant', 'considerable', or 'measurable' are much better."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Rewrite 'We can solve this if we try' academically:",
+          "options": [
+            "We can fix this if we work hard.",
+            "This issue may be resolved through concerted effort.",
+            "If we try, it is possible to solve this.",
+            "Solution is possible if we try."
+          ],
+          "correctAnswer": "This issue may be resolved through concerted effort.",
+          "explanation": "It uses the passive 'may be resolved' and more formal nouns/adjectives."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the register error: 'The author claims that his theory is the best thing ever.'",
+          "options": [
+            "claims",
+            "theory",
+            "best thing ever",
+            "No error"
+          ],
+          "correctAnswer": "best thing ever",
+          "explanation": "'Best thing ever' is childish/internet slang. It should be 'unparalleled' or 'superior to existing models'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which of these adverbs is most appropriate for formal writing?",
+          "options": [
+            "Totally",
+            "Completely",
+            "Basically",
+            "Kinda"
+          ],
+          "correctAnswer": "Completely",
+          "explanation": "'Completely' is a standard formal adverb. 'Totally', 'basically', and 'kinda' are all colloquial."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Improve 'The government should look at the laws' for Task 2:",
+          "options": [
+            "The government must check the laws.",
+            "It is imperative that the authorities review the existing legislation.",
+            "The government should see the laws.",
+            "Looking at the laws is what the government should do."
+          ],
+          "correctAnswer": "It is imperative that the authorities review the existing legislation.",
+          "explanation": "It uses the subjunctive 'imperative that', replaces 'government' with 'authorities', and 'laws' with 'legislation'."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The researcher got a lot of info from the internet.'",
+          "options": [
+            "Change 'got' to 'obtained'",
+            "Change 'a lot of' to 'substantial'",
+            "Change 'info' to 'information'",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "The original sentence is full of conversational shortcuts and weak verbs."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which of these is the most academic way to describe a person's behavior?",
+          "options": [
+            "He was acting weird.",
+            "The individual exhibited atypical behavior.",
+            "He was being strange.",
+            "The guy's actions were unusual."
+          ],
+          "correctAnswer": "The individual exhibited atypical behavior.",
+          "explanation": "This uses formal nouns ('individual'), verbs ('exhibited'), and adjectives ('atypical')."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Identify the poorly registered phrase: 'The outcome was *exactly* as I thought it would be.'",
+          "options": [
+            "exactly",
+            "as I thought",
+            "outcome",
+            "would be"
+          ],
+          "correctAnswer": "as I thought",
+          "explanation": "This is too personal. A formal version would be: 'The results aligned with the initial predictions.'"
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Which of these sentences uses the best 'Lexical Resource'?",
+          "options": [
+            "The policy will make people happy.",
+            "The policy is expected to enhance public well-being.",
+            "The policy is going to result in happiness.",
+            "I think the policy is good for everyone."
+          ],
+          "correctAnswer": "The policy is expected to enhance public well-being.",
+          "explanation": "It uses hedging ('is expected to') and precise academic vocabulary ('enhance', 'well-being')."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "What is the primary goal of maintaining a formal register in EAP?",
+          "options": [
+            "To sound smarter than other people.",
+            "To ensure the writing is objective, precise, and professional.",
+            "To use as many long words as possible.",
+            "To follow old-fashioned rules."
+          ],
+          "correctAnswer": "To ensure the writing is objective, precise, and professional.",
+          "explanation": "Academic register is about clarity and removing personal bias to present facts and arguments neutrally."
+        }
+      ]
+    }
+  ]
+}

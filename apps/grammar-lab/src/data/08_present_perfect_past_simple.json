@@ -1,0 +1,1594 @@
+{
+  "topicId": "08_present_perfect_vs_past_simple",
+  "topicName": "Present Perfect vs. Past Simple",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: Finished vs. Unfinished Time</h3><p>The choice between these two tenses depends entirely on the <b>Time Marker</b> you use. Think of the Past Simple as a 'closed box' and the Present Perfect as an 'open door'.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Tense</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Time Markers (The Clues)</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Meaning</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Past Simple</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">yesterday, ago, in 2010, last week</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The action is finished and the time is over.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Present Perfect</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">since, for, recently, so far, this week</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The action started in the past but touches the present.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which sentence uses the correct tense for 'yesterday'?",
+          "options": [
+            "I have gone to the gym yesterday.",
+            "I went to the gym yesterday.",
+            "I go to the gym yesterday.",
+            "I was gone to the gym yesterday."
+          ],
+          "correctAnswer": "I went to the gym yesterday.",
+          "explanation": "'Yesterday' is a finished time marker, so we must use the Past Simple."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct form for 'since': 'She ___ in London since 2015.'",
+          "options": [
+            "lived",
+            "has lived",
+            "lives",
+            "is living"
+          ],
+          "correctAnswer": "has lived",
+          "explanation": "'Since' indicates a period starting in the past and continuing to now, requiring the Present Perfect."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the correct verb: 'I ___ my keys. I can't find them anywhere!'",
+          "options": [
+            "lost",
+            "have lost",
+            "lose",
+            "am losing"
+          ],
+          "correctAnswer": "have lost",
+          "explanation": "Because the result (can't find them) is in the present, we use the Present Perfect."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'They ___ the report two days ago.'",
+          "options": [
+            "finish",
+            "have finished",
+            "finished",
+            "finishing"
+          ],
+          "correctAnswer": "finished",
+          "explanation": "'Ago' always triggers the Past Simple."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which of these uses 'ever' correctly in a question?",
+          "options": [
+            "Did you ever go to Paris?",
+            "Have you ever gone to Paris?",
+            "Were you ever going to Paris?",
+            "Do you ever go to Paris?"
+          ],
+          "correctAnswer": "Have you ever gone to Paris?",
+          "explanation": "'Ever' refers to 'at any time in your life' (up to now), requiring the Present Perfect."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I have seen that movie last night.'",
+          "options": [
+            "have seen",
+            "that",
+            "movie",
+            "last night"
+          ],
+          "correctAnswer": "have seen",
+          "explanation": "'Last night' is finished time. It should be 'I saw'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'We ___ each other for ten years.'",
+          "options": [
+            "knew",
+            "have known",
+            "know",
+            "are knowing"
+          ],
+          "correctAnswer": "have known",
+          "explanation": "'For' followed by a duration up to now requires the Present Perfect."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which is correct for a specific date in history? 'World War II ___ in 1945.'",
+          "options": [
+            "has ended",
+            "ended",
+            "ends",
+            "had end"
+          ],
+          "correctAnswer": "ended",
+          "explanation": "A specific year in the past ('1945') requires the Past Simple."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He has finished his lunch just now.'",
+          "options": [
+            "has finished",
+            "his",
+            "lunch",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "'Just' or 'Just now' are commonly used with the Present Perfect to show a very recent action."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I ___ my homework yet.'",
+          "options": [
+            "didn't finish",
+            "haven't finished",
+            "don't finish",
+            "not finished"
+          ],
+          "correctAnswer": "haven't finished",
+          "explanation": "'Yet' is used in negative Present Perfect sentences to show an expected action hasn't happened yet."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which is correct for an experience? 'I ___ sushi many times.'",
+          "options": [
+            "ate",
+            "have eaten",
+            "eat",
+            "am eating"
+          ],
+          "correctAnswer": "have eaten",
+          "explanation": "Experiences in your life without a specific time use the Present Perfect."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Complete: 'When I was a child, I ___ in the countryside.'",
+          "options": [
+            "have lived",
+            "lived",
+            "live",
+            "was living"
+          ],
+          "correctAnswer": "lived",
+          "explanation": "The time period 'when I was a child' is finished."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the correct tense for 'this week': 'I ___ three books this week.'",
+          "options": [
+            "read (past)",
+            "have read",
+            "read (present)",
+            "am reading"
+          ],
+          "correctAnswer": "have read",
+          "explanation": "'This week' is an unfinished period of time."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'Columbus ___ America in 1492.'",
+          "options": [
+            "has discovered",
+            "discovered",
+            "discovers",
+            "was discovered"
+          ],
+          "correctAnswer": "discovered",
+          "explanation": "Historical events use the Past Simple."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The train ___ already.'",
+          "options": [
+            "left",
+            "has left",
+            "leaves",
+            "is leaving"
+          ],
+          "correctAnswer": "has left",
+          "explanation": "'Already' suggests a past action with present relevance."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Did you seen the news today?'",
+          "options": [
+            "Did",
+            "seen",
+            "news",
+            "today"
+          ],
+          "correctAnswer": "seen",
+          "explanation": "After 'Did,' we use the base form: 'Did you see'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I ___ that man before.'",
+          "options": [
+            "met",
+            "have met",
+            "meet",
+            "meeting"
+          ],
+          "correctAnswer": "have met",
+          "explanation": "'Before' (meaning 'at some point in the past') usually takes the Present Perfect."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Identify the correct tense: 'The company ___ in 1990.'",
+          "options": [
+            "has started",
+            "started",
+            "starts",
+            "is starting"
+          ],
+          "correctAnswer": "started",
+          "explanation": "Specific start date in the past."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I ___ my car for five years before I sold it.'",
+          "options": [
+            "had",
+            "have had",
+            "have",
+            "am having"
+          ],
+          "correctAnswer": "had",
+          "explanation": "Because the car is now sold (finished), the possession is in the past."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Complete: '___ you finished your work?'",
+          "options": [
+            "Did",
+            "Have",
+            "Were",
+            "Are"
+          ],
+          "correctAnswer": "Have",
+          "explanation": "Asking about the completion of a task up to the present."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I worked here since 2010.'",
+          "options": [
+            "worked",
+            "since",
+            "2010",
+            "No error"
+          ],
+          "correctAnswer": "worked",
+          "explanation": "Must be 'have worked' because of 'since'."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'He ___ his leg while skiing.'",
+          "options": [
+            "has broken",
+            "broke",
+            "breaks",
+            "breaking"
+          ],
+          "correctAnswer": "broke",
+          "explanation": "The specific event 'while skiing' anchors the action in the past."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Which is correct for a recent discovery? 'Scientists ___ a new planet.'",
+          "options": [
+            "discovered",
+            "have discovered",
+            "discover",
+            "are discovering"
+          ],
+          "correctAnswer": "have discovered",
+          "explanation": "Present Perfect is used for news and recent events without a specific time."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'I ___ to the cinema last weekend.'",
+          "options": [
+            "went",
+            "have gone",
+            "go",
+            "was going"
+          ],
+          "correctAnswer": "went",
+          "explanation": "Finished time ('last weekend')."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'How long did you have your car?'",
+          "options": [
+            "did you have",
+            "your",
+            "car",
+            "No error"
+          ],
+          "correctAnswer": "did you have",
+          "explanation": "If you still have the car, it should be 'How long have you had...?'"
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'She ___ three cups of coffee today.'",
+          "options": [
+            "drank",
+            "has drunk",
+            "drinks",
+            "drinking"
+          ],
+          "correctAnswer": "has drunk",
+          "explanation": "'Today' is an unfinished time period."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I have known him when I was a student.'",
+          "options": [
+            "have known",
+            "when",
+            "was",
+            "student"
+          ],
+          "correctAnswer": "have known",
+          "explanation": "Should be 'I knew him' because the relationship is anchored to the finished time 'when I was a student'."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The team ___ the match yesterday.'",
+          "options": [
+            "won",
+            "has won",
+            "win",
+            "was winning"
+          ],
+          "correctAnswer": "won",
+          "explanation": "Finished time ('yesterday')."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Complete: '___ you ever eaten insects?'",
+          "options": [
+            "Did",
+            "Have",
+            "Were",
+            "Are"
+          ],
+          "correctAnswer": "Have",
+          "explanation": "Question about life experience."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: The Present Perfect is mostly about ___.",
+          "options": [
+            "Specific past dates.",
+            "The relationship between the past and now.",
+            "Things that will happen tomorrow.",
+            "Actions that are currently happening."
+          ],
+          "correctAnswer": "The relationship between the past and now.",
+          "explanation": "The core function is connecting a past action to the current moment."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: Since, For, and Ago",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Time Anchor' Rules</h3><p>English requires you to choose a preposition based on whether you are looking at a <b>Point in Time</b>, a <b>Duration</b>, or a <b>Finished Moment</b>.</p><ul style=\"line-height: 1.8;\"><li>📍 <b>SINCE + Point in Time:</b> (Present Perfect) <i>I've been here <b>since Monday</b>.</i></li><li>⏳ <b>FOR + Duration:</b> (Present Perfect) <i>I've been here <b>for three days</b>.</i></li><li>🔙 <b>AGO + Duration:</b> (Past Simple Only) <i>I arrived <b>three days ago</b>.</i></li><li>❌ <b>L1 Trap:</b> <i>I have lived here <b>since</b> three years.</i> (Error: 'three years' is a duration, not a point).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'I have known my best friend ___ 2010.'",
+          "options": [
+            "for",
+            "since",
+            "ago",
+            "in"
+          ],
+          "correctAnswer": "since",
+          "explanation": "'2010' is a specific starting point in time."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which is correct for a duration? 'They have been married ___ fifty years.'",
+          "options": [
+            "since",
+            "for",
+            "ago",
+            "during"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'Fifty years' is a length of time (duration)."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I have finished the report three hours ago.'",
+          "options": [
+            "have finished",
+            "the",
+            "three hours",
+            "ago"
+          ],
+          "correctAnswer": "have finished",
+          "explanation": "'Ago' requires the Past Simple. It should be 'I finished'."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'We moved to this city five years ___.'",
+          "options": [
+            "since",
+            "for",
+            "ago",
+            "before"
+          ],
+          "correctAnswer": "ago",
+          "explanation": "'Ago' is used to show how far back in the past an event happened."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Identify the L1 Trap: 'He has worked in this company since a long time.'",
+          "options": [
+            "has worked",
+            "in",
+            "since",
+            "long time"
+          ],
+          "correctAnswer": "since",
+          "explanation": "'A long time' is a duration, so it must use 'for'."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I haven't seen him ___ last Tuesday.'",
+          "options": [
+            "for",
+            "since",
+            "ago",
+            "by"
+          ],
+          "correctAnswer": "since",
+          "explanation": "'Last Tuesday' is a specific point in time."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Identify the correct tense/preposition pairing:",
+          "options": [
+            "I saw him since two days.",
+            "I have seen him for two days ago.",
+            "I saw him two days ago.",
+            "I have saw him since two days."
+          ],
+          "correctAnswer": "I saw him two days ago.",
+          "explanation": "Past Simple ('saw') pairs correctly with 'ago'."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'It hasn't rained ___ weeks.'",
+          "options": [
+            "since",
+            "for",
+            "ago",
+            "in"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'Weeks' is a duration."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I live in Tokyo for three years.'",
+          "options": [
+            "live",
+            "in",
+            "for",
+            "three years"
+          ],
+          "correctAnswer": "live",
+          "explanation": "If you are using 'for' to show a duration up to now, you must use the Present Perfect: 'I have lived'."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'She ___ that car for a very long time before it broke down.'",
+          "options": [
+            "has had",
+            "had",
+            "has",
+            "was having"
+          ],
+          "correctAnswer": "had",
+          "explanation": "Since the car is now broken (finished), we use the Past Simple for the duration."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I ___ anything since breakfast.'",
+          "options": [
+            "didn't eat",
+            "haven't eaten",
+            "don't eat",
+            "haven't ate"
+          ],
+          "correctAnswer": "haven't eaten",
+          "explanation": "'Since' signals the Present Perfect."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The bus left since ten minutes.'",
+          "options": [
+            "bus",
+            "left",
+            "since",
+            "ten minutes"
+          ],
+          "correctAnswer": "since",
+          "explanation": "Should be 'ten minutes ago'."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Complete: 'I have been studying English ___ I was ten years old.'",
+          "options": [
+            "for",
+            "since",
+            "ago",
+            "when"
+          ],
+          "correctAnswer": "since",
+          "explanation": "'I was ten years old' is a point in time (a specific age)."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'How long ___ in this country?'",
+          "options": [
+            "did you be",
+            "have you been",
+            "were you",
+            "are you"
+          ],
+          "correctAnswer": "have you been",
+          "explanation": "Asking about a duration that continues to the present."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He has arrived for two hours.'",
+          "options": [
+            "has",
+            "arrived",
+            "for",
+            "two hours"
+          ],
+          "correctAnswer": "for",
+          "explanation": "Arriving is a momentary action, not a duration. You can say 'He arrived two hours ago'."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'I've had this watch ___ my birthday.'",
+          "options": [
+            "for",
+            "since",
+            "ago",
+            "by"
+          ],
+          "correctAnswer": "since",
+          "explanation": "'My birthday' is a specific point in time."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I ___ a vacation for years.'",
+          "options": [
+            "didn't have",
+            "haven't had",
+            "don't have",
+            "haven't have"
+          ],
+          "correctAnswer": "haven't had",
+          "explanation": "Present Perfect to show a lack of action over a duration up to now."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'We have met since three years.'",
+          "options": [
+            "have met",
+            "since",
+            "three years",
+            "No error"
+          ],
+          "correctAnswer": "since",
+          "explanation": "Should be 'for three years' or 'three years ago'."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The museum was built a century ___.'",
+          "options": [
+            "since",
+            "for",
+            "ago",
+            "before"
+          ],
+          "correctAnswer": "ago",
+          "explanation": "Finished historical time."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'She ___ her homework for two hours.'",
+          "options": [
+            "did",
+            "has done",
+            "does",
+            "is doing"
+          ],
+          "correctAnswer": "has done",
+          "explanation": "Present Perfect to show a duration of an ongoing/recent task."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am a teacher for ten years.'",
+          "options": [
+            "am",
+            "teacher",
+            "for",
+            "ten years"
+          ],
+          "correctAnswer": "am",
+          "explanation": "With 'for ten years,' you must use the Present Perfect: 'I have been'."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I ___ a bike since I was a child.'",
+          "options": [
+            "didn't ride",
+            "haven't ridden",
+            "don't ride",
+            "didn't ridden"
+          ],
+          "correctAnswer": "haven't ridden",
+          "explanation": "Present Perfect with 'since'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He has gone to the store ago five minutes.'",
+          "options": [
+            "has gone",
+            "store",
+            "ago",
+            "five minutes"
+          ],
+          "correctAnswer": "ago",
+          "explanation": "You can't use 'ago' with the Present Perfect. Use 'five minutes ago' with 'went'."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Complete: 'We have been waiting ___ 9:00 AM.'",
+          "options": [
+            "for",
+            "since",
+            "ago",
+            "at"
+          ],
+          "correctAnswer": "since",
+          "explanation": "9:00 AM is a point in time."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I ___ that movie many years ago.'",
+          "options": [
+            "saw",
+            "have seen",
+            "see",
+            "seen"
+          ],
+          "correctAnswer": "saw",
+          "explanation": "Past Simple with 'ago'."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She has been sick since three days.'",
+          "options": [
+            "has been",
+            "sick",
+            "since",
+            "three days"
+          ],
+          "correctAnswer": "since",
+          "explanation": "Should be 'for three days'."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'How long ago ___?'",
+          "options": [
+            "did you arrived",
+            "did you arrive",
+            "have you arrived",
+            "were you arrive"
+          ],
+          "correctAnswer": "did you arrive",
+          "explanation": "'How long ago' requires the Past Simple."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'I haven't been to a concert ___ the pandemic began.'",
+          "options": [
+            "for",
+            "since",
+            "ago",
+            "during"
+          ],
+          "correctAnswer": "since",
+          "explanation": "'The pandemic began' is a point/event in the past."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The company has closed for two months ago.'",
+          "options": [
+            "has closed",
+            "for",
+            "two months",
+            "ago"
+          ],
+          "correctAnswer": "for",
+          "explanation": "Redundant. Use 'The company closed two months ago'."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'Ago' is only used with the ___ tense.",
+          "options": [
+            "Present",
+            "Past Simple",
+            "Present Perfect",
+            "Future"
+          ],
+          "correctAnswer": "Past Simple",
+          "explanation": "'Ago' is a finished time marker, so it never pairs with the Present Perfect."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Narrative Pivot</h3><p>Academic writing often 'pivots' between these tenses. Use the <b>Past Simple</b> for the specific details of a study, but use the <b>Present Perfect</b> to summarize the impact of that work on the field today.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The Pivot:</b> <i>In 2010, Smith <b>conducted</b> (Past) a survey. Since then, many researchers <b>have built</b> (Present Perfect) on his findings.</i></li><li>📊 <b>The Finished Frame:</b> If the sentence contains a specific past time (e.g., 'In the 19th century'), you <b>cannot</b> use the Present Perfect, even if the influence is still felt.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'The company was founded in 1920. It has grown significantly over the decades and it has reached its peak in 1995.'",
+          "options": [
+            "was founded",
+            "has grown",
+            "over the decades",
+            "has reached"
+          ],
+          "correctAnswer": "has reached",
+          "explanation": "Because the sentence specifies a finished time ('in 1995'), you must use the Past Simple: 'it reached'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly pivots between tenses? 'I ___ the report yesterday, but I ___ it to the manager yet.'",
+          "options": [
+            "finished / haven't sent",
+            "have finished / didn't send",
+            "finished / didn't send",
+            "have finished / haven't sent"
+          ],
+          "correctAnswer": "finished / haven't sent",
+          "explanation": "The first action is tied to 'yesterday' (Past Simple); the second is tied to 'yet' (Present Perfect)."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The government has introduced several new laws last year to combat climate change.'",
+          "options": [
+            "has introduced",
+            "several",
+            "last year",
+            "to combat"
+          ],
+          "correctAnswer": "has introduced",
+          "explanation": "'Last year' is a finished time marker, requiring the Past Simple: 'introduced'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the best academic phrasing: 'Since the beginning of the experiment, the temperature ___ constant.'",
+          "options": [
+            "stayed",
+            "has stayed",
+            "was staying",
+            "stays"
+          ],
+          "correctAnswer": "has stayed",
+          "explanation": "'Since' indicates a period continuing to the present, requiring the Present Perfect."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The author wrote three books. He has been a famous writer for many years before he died.'",
+          "options": [
+            "wrote",
+            "has been",
+            "for many years",
+            "before he died"
+          ],
+          "correctAnswer": "has opened",
+          "explanation": "Because the writer is deceased ('before he died'), his 'being a writer' is a finished state. It should be 'He was a famous writer'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which version maintains consistency? 'We ___ the data last week and ___ the results today.'",
+          "options": [
+            "collected / have analyzed",
+            "have collected / analyzed",
+            "collected / analyzed",
+            "have collected / have analyzed"
+          ],
+          "correctAnswer": "collected / have analyzed",
+          "explanation": "Last week (Past Simple) vs. Today (Present Perfect/Unfinished time)."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Many civilizations have flourished in this region thousands of years ago.'",
+          "options": [
+            "have flourished",
+            "region",
+            "thousands of years",
+            "ago"
+          ],
+          "correctAnswer": "have flourished",
+          "explanation": "'Ago' requires the Past Simple: 'flourished'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The researchers ___ the subjects in 2020, and the results ___ relevant since then.'",
+          "options": [
+            "interviewed / have remained",
+            "have interviewed / remained",
+            "interviewed / remained",
+            "have interviewed / have remained"
+          ],
+          "correctAnswer": "interviewed / have remained",
+          "explanation": "Specific past event ('in 2020') followed by a state that continues to now ('since then')."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I haven't seen that movie when I was in high school.'",
+          "options": [
+            "haven't seen",
+            "that",
+            "when",
+            "was"
+          ],
+          "correctAnswer": "haven't seen",
+          "explanation": "'When I was in high school' is a finished time. It should be 'I didn't see'."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The number of students ___ by 10% between 2010 and 2015.'",
+          "options": [
+            "rose",
+            "has risen",
+            "is rising",
+            "was rising"
+          ],
+          "correctAnswer": "rose",
+          "explanation": "The period 2010-2015 is finished."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'There have been three major economic crises in the 19th century.'",
+          "options": [
+            "have been",
+            "major",
+            "economic",
+            "19th century"
+          ],
+          "correctAnswer": "have been",
+          "explanation": "The 19th century is finished time. Use 'There were'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Technology ___ a lot since the 1990s.'",
+          "options": [
+            "changed",
+            "has changed",
+            "was changing",
+            "is changing"
+          ],
+          "correctAnswer": "has changed",
+          "explanation": "A process starting in the past and continuing to now ('since')."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She has traveled to France last summer.'",
+          "options": [
+            "has traveled",
+            "to",
+            "last summer",
+            "No error"
+          ],
+          "correctAnswer": "has traveled",
+          "explanation": "Finished time ('last summer') requires 'traveled'."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I ___ this book three times so far.'",
+          "options": [
+            "read (past)",
+            "have read",
+            "read (present)",
+            "reading"
+          ],
+          "correctAnswer": "have read",
+          "explanation": "'So far' signals an unfinished period of time/experience."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The team won the game, but they haven't celebrated yet yesterday.'",
+          "options": [
+            "won",
+            "haven't celebrated",
+            "yet",
+            "yesterday"
+          ],
+          "correctAnswer": "haven't celebrated",
+          "explanation": "You cannot use 'yet' with 'yesterday'. It should be 'they didn't celebrate yesterday'."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Choose the best verb for a recent trend: 'In the last five years, the price of housing ___ dramatically.'",
+          "options": [
+            "increased",
+            "has increased",
+            "increases",
+            "is increasing"
+          ],
+          "correctAnswer": "has increased",
+          "explanation": "'In the last X years' includes the present moment, requiring the Present Perfect."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The architect designed the building in 2010. It has been a landmark ever since it was built.'",
+          "options": [
+            "designed",
+            "in 2010",
+            "has been",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Both tenses are used correctly for a past event and an ongoing state."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I ___ him since we finished university.'",
+          "options": [
+            "didn't see",
+            "haven't seen",
+            "don't see",
+            "wasn't seeing"
+          ],
+          "correctAnswer": "haven't seen",
+          "explanation": "'Since' triggers the Present Perfect."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Did you ever went to the opera?'",
+          "options": [
+            "Did",
+            "ever",
+            "went",
+            "opera"
+          ],
+          "correctAnswer": "went",
+          "explanation": "Should be base form 'go' (Did you ever go?) or Present Perfect 'Have you ever gone?'."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Choose the best quantifier: 'I ___ three cups of coffee this morning.' (Assume it is now 2:00 PM).",
+          "options": [
+            "drank",
+            "have drunk",
+            "drink",
+            "was drinking"
+          ],
+          "correctAnswer": "drank",
+          "explanation": "If the morning is over, the time is finished. Use Past Simple."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The discovery was made by a team of scientists who have worked together for years before the project started.'",
+          "options": [
+            "was made",
+            "have worked",
+            "for years",
+            "started"
+          ],
+          "correctAnswer": "have worked",
+          "explanation": "Because the work happened *before* the past project, it should be Past Perfect ('had worked') or Past Simple."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The population of the city ___ by 20% over the last decade.'",
+          "options": [
+            "increased",
+            "has increased",
+            "increases",
+            "is increasing"
+          ],
+          "correctAnswer": "has increased",
+          "explanation": "Includes the present moment."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The museum has opened its new wing in 2022.'",
+          "options": [
+            "has opened",
+            "its",
+            "new wing",
+            "in 2022"
+          ],
+          "correctAnswer": "has opened",
+          "explanation": "Should be 'opened' because of the specific date."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: '___ you finished the assignment yet?'",
+          "options": [
+            "Did",
+            "Have",
+            "Were",
+            "Are"
+          ],
+          "correctAnswer": "Have",
+          "explanation": "Standard Present Perfect question."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I worked as a waiter for two years ago.'",
+          "options": [
+            "worked",
+            "as a",
+            "for",
+            "ago"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'For' and 'ago' cannot both modify the same time duration. Use 'I worked as a waiter two years ago'."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I ___ three emails so far today.'",
+          "options": [
+            "sent",
+            "have sent",
+            "send",
+            "sending"
+          ],
+          "correctAnswer": "have sent",
+          "explanation": "'So far today' indicates an unfinished period."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The phone rang three times since I got home.'",
+          "options": [
+            "rang",
+            "three times",
+            "since",
+            "got home"
+          ],
+          "correctAnswer": "rang",
+          "explanation": "Should be 'has rung' because of 'since'."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'He ___ a teacher for ten years before he switched to marketing.'",
+          "options": [
+            "has been",
+            "was",
+            "is",
+            "had been"
+          ],
+          "correctAnswer": "was",
+          "explanation": "Since the teaching is a finished state in the past, use the Past Simple (or Past Perfect)."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I have seen him yesterday morning.'",
+          "options": [
+            "have seen",
+            "him",
+            "yesterday",
+            "morning"
+          ],
+          "correctAnswer": "have seen",
+          "explanation": "Should be 'I saw him'."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'How long ___ your best friend?'",
+          "options": [
+            "did you know",
+            "have you known",
+            "do you know",
+            "are you knowing"
+          ],
+          "correctAnswer": "have you known",
+          "explanation": "Asking about an ongoing relationship."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Strategy of 'Impact'</h3><p>In high-level exams, the choice between these tenses is a <b>strategic</b> one. It tells the reader if the data is historical or if it is currently relevant to the argument.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <b>The Task 1 Overview:</b> <i>The number of users <b>increased</b> (Past) between 2000 and 2010; however, the total figure <b>has doubled</b> (Present Perfect) since the start of the century.</i></li><li>🧠 <b>The Task 2 Hook:</b> <i>While urbanization <b>began</b> (Past) centuries ago, it <b>has accelerated</b> (Present Perfect) in the last few decades.</i></li><li>🛑 <b>The 'In 2026' Trap:</b> Since it is currently 2026, any data up to this year requires the <b>Present Perfect</b>. Data before this year (e.g., in 2020) requires the <b>Past Simple</b>.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct for a Task 1 overview of data from 2000 to the current year (2026)?",
+          "options": [
+            "The number of households with internet access rose significantly since 2000.",
+            "The number of households with internet access has risen significantly since 2000.",
+            "The number of households with internet access is rising significantly since 2000.",
+            "The number of households with internet access had risen significantly since 2000."
+          ],
+          "correctAnswer": "The number of households with internet access has risen significantly since 2000.",
+          "explanation": "'Since' plus a period leading to the current year (2026) requires the Present Perfect."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the error in this data description: 'In 2020, the price of gold has reached an all-time high.'",
+          "options": [
+            "In 2020",
+            "price of gold",
+            "has reached",
+            "all-time high"
+          ],
+          "correctAnswer": "has reached",
+          "explanation": "2020 is a finished year in the past. It must be 'reached'."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Choose the best Task 2 opening: 'Over the last two decades, international travel ___ more accessible.'",
+          "options": [
+            "became",
+            "has become",
+            "becomes",
+            "is becoming"
+          ],
+          "correctAnswer": "has become",
+          "explanation": "'Over the last X years/decades' implies a period ending now, requiring the Present Perfect."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "A graph shows a dip in 2015. How should you describe it?",
+          "options": [
+            "There has been a sudden drop in 2015.",
+            "There was a sudden drop in 2015.",
+            "There is a sudden drop in 2015.",
+            "There had been a sudden drop in 2015."
+          ],
+          "correctAnswer": "There was a sudden drop in 2015.",
+          "explanation": "Specific past dates always trigger the Past Simple."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the correct 'Since' structure: '___ the introduction of the new law, crime rates ___.'",
+          "options": [
+            "Since / fell",
+            "Since / have fallen",
+            "From / have fallen",
+            "After / has fell"
+          ],
+          "correctAnswer": "Since / have fallen",
+          "explanation": "'Since' + [Past Event] pairs with the Present Perfect to show the result up to now."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which is best for a conclusion? 'The evidence ___ that the policy was effective.'",
+          "options": [
+            "showed",
+            "has shown",
+            "shows",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'Has shown' (up to now) or 'shows' (current fact) are both stronger than the Past Simple 'showed' in a conclusion."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The total number of species has decreased by 10% in the 19th century.'",
+          "options": [
+            "number of",
+            "has decreased",
+            "by 10%",
+            "19th century"
+          ],
+          "correctAnswer": "has decreased",
+          "explanation": "The 19th century is a finished historical period; use 'decreased'."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct form for an ongoing trend: 'So far this year, the company ___ ten new products.'",
+          "options": [
+            "released",
+            "has released",
+            "is releasing",
+            "releases"
+          ],
+          "correctAnswer": "has released",
+          "explanation": "'So far this year' is unfinished time (2026 is still happening)."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Scientists have made a breakthrough when they were studying the cells last month.'",
+          "options": [
+            "have made",
+            "breakthrough",
+            "when",
+            "last month"
+          ],
+          "correctAnswer": "have made",
+          "explanation": "The specific time 'last month' requires the Past Simple 'made'."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Which is correct for a Task 1 overview? 'The table illustrates how the market ___ between 2010 and 2025.'",
+          "options": [
+            "fluctuated",
+            "has fluctuated",
+            "fluctuates",
+            "is fluctuating"
+          ],
+          "correctAnswer": "fluctuated",
+          "explanation": "2025 is now a finished year (it is currently 2026). Use Past Simple."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Complete the Task 2 argument: 'Although we ___ progress, many challenges remain.'",
+          "options": [
+            "made",
+            "have made",
+            "make",
+            "will make"
+          ],
+          "correctAnswer": "have made",
+          "explanation": "Refers to progress made up to the present moment."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I lived in this city for five years before I have moved to London.'",
+          "options": [
+            "lived",
+            "for five years",
+            "before",
+            "have moved"
+          ],
+          "correctAnswer": "have moved",
+          "explanation": "Both actions are finished and sequential in the past. Use 'moved'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which is best for reporting news? 'The Prime Minister ___ that the budget will be cut.'",
+          "options": [
+            "announced",
+            "has announced",
+            "announces",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'Announced' focuses on the event; 'Has announced' focuses on the news itself (Present Perfect for recent news)."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Choose the best preposition/tense pairing: 'The figure ___ stable ___ 2020.'",
+          "options": [
+            "remained / in",
+            "has remained / since",
+            "Both are correct depending on context.",
+            "remains / for"
+          ],
+          "correctAnswer": "Both are correct depending on context.",
+          "explanation": "If the period is finished (in 2020); if the trend continues until now (since 2020)."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'There have been several changes in the curriculum two weeks ago.'",
+          "options": [
+            "have been",
+            "changes",
+            "curriculum",
+            "two weeks ago"
+          ],
+          "correctAnswer": "have been",
+          "explanation": "'Ago' requires 'There were'."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses 'already'? 'The project ___.'",
+          "options": [
+            "finished already yesterday",
+            "has finished already",
+            "already finished in 2020",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'Already' can emphasize a recent completion (Present Perfect) or a historical one (Past Simple)."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I haven't saw that movie yet.'",
+          "options": [
+            "haven't",
+            "saw",
+            "movie",
+            "yet"
+          ],
+          "correctAnswer": "saw",
+          "explanation": "Must be the past participle 'seen'."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the best form for a 'Life Experience' argument: 'Few people ___ such extreme conditions.'",
+          "options": [
+            "witnessed",
+            "have witnessed",
+            "witness",
+            "are witnessing"
+          ],
+          "correctAnswer": "have witnessed",
+          "explanation": "Referring to things people have experienced in their lives up to now."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Since I have started university, I have learned a lot.'",
+          "options": [
+            "Since",
+            "have started",
+            "learned",
+            "No error"
+          ],
+          "correctAnswer": "have started",
+          "explanation": "After 'Since', we usually use the Past Simple to mark the starting point: 'Since I started'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which is best for Task 1? 'The quantity of exports ___ from 50 to 80 tons in the last quarter.'",
+          "options": [
+            "rose",
+            "has risen",
+            "is rising",
+            "was rising"
+          ],
+          "correctAnswer": "has risen",
+          "explanation": "'In the last quarter' (of the current year 2026) is unfinished time."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Identify the 'Result' logic: 'He ___ his arm, so he can't play today.'",
+          "options": [
+            "broke",
+            "has broken",
+            "is breaking",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'Broke' (focus on the event) or 'Has broken' (focus on the present result)."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the 'Historical Frame'? 'Rome ___ not built in a day.'",
+          "options": [
+            "is",
+            "was",
+            "has been",
+            "had been"
+          ],
+          "correctAnswer": "was",
+          "explanation": "Historical event/proverb uses the Past Simple."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'We have lived in New York for three years when the war broke out.'",
+          "options": [
+            "have lived",
+            "for three years",
+            "when",
+            "broke out"
+          ],
+          "correctAnswer": "have lived",
+          "explanation": "Because the timeframe is anchored to a past event ('when the war broke out'), use 'had lived' or 'were living'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The technology ___ rapidly over the past few months.'",
+          "options": [
+            "evolved",
+            "has evolved",
+            "evolves",
+            "is evolving"
+          ],
+          "correctAnswer": "has evolved",
+          "explanation": "'Over the past few months' (of 2026) requires Present Perfect."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I never saw such a beautiful sunset before.'",
+          "options": [
+            "never",
+            "saw",
+            "such a",
+            "before"
+          ],
+          "correctAnswer": "saw",
+          "explanation": "For life experiences up to now, 'have never seen' is more natural."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The number of people who own cars ___ since 2010.'",
+          "options": [
+            "increased",
+            "has increased",
+            "is increased",
+            "were increased"
+          ],
+          "correctAnswer": "has increased",
+          "explanation": "Standard 'since' + Present Perfect."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Did you have a good time at the party last night?'",
+          "options": [
+            "Did",
+            "have",
+            "at",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Correct use of Past Simple for a finished event."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I ___ my homework. Now I can watch TV.'",
+          "options": [
+            "did",
+            "have done",
+            "do",
+            "done"
+          ],
+          "correctAnswer": "have done",
+          "explanation": "Present Perfect to show a recently completed task with a present result."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The train has left at 5:00 PM.'",
+          "options": [
+            "has left",
+            "at",
+            "5:00 PM",
+            "No error"
+          ],
+          "correctAnswer": "has left",
+          "explanation": "If a specific time is mentioned, use 'left'."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: Use the Present Perfect for trends that ___.",
+          "options": [
+            "Finished long ago.",
+            "Touch the present moment.",
+            "Will happen in the future.",
+            "Are general facts."
+          ],
+          "correctAnswer": "Touch the present moment.",
+          "explanation": "The 'Present' in 'Present Perfect' is there because the action still matters *now*."
+        }
+      ]
+    }
+  ]
+}

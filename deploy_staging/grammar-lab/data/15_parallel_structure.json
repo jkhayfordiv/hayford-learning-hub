@@ -1,0 +1,1594 @@
+{
+  "topicId": "15_parallel_structure",
+  "topicName": "Parallel Structure",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Balanced List</h3><p>Parallel structure means using the same pattern of words to show that two or more ideas have the same level of importance. This happens most often with <b>and</b>, <b>but</b>, and <b>or</b>.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Pattern</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Balanced (Parallel)</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Unbalanced (Error)</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Nouns</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Apples and <b>oranges</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Apples and <b>to eat oranges</b></td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>-ing Verbs</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Reading and <b>writing</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Reading and <b>to write</b></td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Adjectives</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Fast and <b>efficient</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Fast and <b>with efficiency</b></td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which of the following sentences is parallel?",
+          "options": [
+            "He likes swimming, hiking, and to run.",
+            "He likes swimming, hiking, and running.",
+            "He likes to swim, hiking, and run.",
+            "He likes swimming, to hike, and running."
+          ],
+          "correctAnswer": "He likes swimming, hiking, and running.",
+          "explanation": "All three items in the list are gerunds (-ing). This creates a balanced, parallel structure."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Complete the parallel list: 'The new employee is smart, hardworking, and ___.'",
+          "options": [
+            "kindly",
+            "kindness",
+            "kind",
+            "a kind person"
+          ],
+          "correctAnswer": "kind",
+          "explanation": "'Smart' and 'hardworking' are adjectives. The third item must also be a simple adjective ('kind')."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the unbalanced element: 'The professor told the students to open their books, read the text, and answering the questions.'",
+          "options": [
+            "to open",
+            "read",
+            "answering",
+            "were asked"
+          ],
+          "correctAnswer": "answering",
+          "explanation": "The list starts with base verbs (open, read). The final verb should be 'answer', not 'answering'."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly balanced?",
+          "options": [
+            "You can go by bus, by train, or take a car.",
+            "You can go by bus, take a train, or by car.",
+            "You can go by bus, by train, or by car.",
+            "You can take a bus, by train, or car."
+          ],
+          "correctAnswer": "You can go by bus, by train, or by car.",
+          "explanation": "The pattern [by + noun] is repeated consistently for all three options."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Choose the parallel ending: 'She enjoys playing guitar, writing songs, and ___.'",
+          "options": [
+            "to perform live",
+            "live performances",
+            "performing live",
+            "she performs live"
+          ],
+          "correctAnswer": "performing live",
+          "explanation": "Since the list starts with 'playing' and 'writing', it must end with 'performing'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The report was well-written, informative, and it helped us a lot.'",
+          "options": [
+            "well-written",
+            "informative",
+            "it helped us a lot",
+            "No error"
+          ],
+          "correctAnswer": "it helped us a lot",
+          "explanation": "The first two items are adjectives. The third should also be an adjective (e.g., 'helpful'), not a full clause."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Which of these pairs is parallel?",
+          "options": [
+            "Running fast and to jump high",
+            "To run fast and to jump high",
+            "Run fast and jumping high",
+            "Running fast and high jumps"
+          ],
+          "correctAnswer": "To run fast and to jump high",
+          "explanation": "Both elements are infinitive phrases, making them perfectly parallel."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The city's plan includes building parks, improving roads, and ___.'",
+          "options": [
+            "to plant trees",
+            "the planting of trees",
+            "planting trees",
+            "trees will be planted"
+          ],
+          "correctAnswer": "planting trees",
+          "explanation": "The list requires a gerund (-ing) to match 'building' and 'improving'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the unbalanced sentence:",
+          "options": [
+            "He enjoys singing, dancing, and acting.",
+            "She decided to stay home, read a book, and relax.",
+            "The process is safe, simple, and can be done easily.",
+            "They bought apples, oranges, and bananas."
+          ],
+          "correctAnswer": "The process is safe, simple, and can be done easily.",
+          "explanation": "'Safe' and 'simple' are adjectives. 'Can be done easily' is a verb phrase. It should be 'safe, simple, and easy'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which option fixes this sentence: 'His hobbies are photography, playing guitar, and to bake.'",
+          "options": [
+            "His hobbies are photography, playing guitar, and baking.",
+            "His hobbies are taking photos, playing guitar, and baking.",
+            "Both A and B are correct.",
+            "No error"
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "A uses nouns/gerunds. B uses three gerund phrases. both achieve parallel balance."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The job requires you to be punctual, to work hard, and showing respect.'",
+          "options": [
+            "to be",
+            "to work",
+            "showing",
+            "No error"
+          ],
+          "correctAnswer": "showing",
+          "explanation": "The pattern is infinitives ('to be', 'to work'). The final item must be 'to show'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Select the sentence with perfect parallel structure:",
+          "options": [
+            "We were told to pack lightly, move quickly, and stay quiet.",
+            "We were told to pack lightly, moving quickly, and stay quiet.",
+            "We were told to pack lightly, move quickly, and staying quiet.",
+            "We were told packing lightly, move quickly, and stay quiet."
+          ],
+          "correctAnswer": "We were told to pack lightly, move quickly, and stay quiet.",
+          "explanation": "All three verbs are base forms following 'to': (to) pack, (to) move, (to) stay."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Complete the parallel phrase: 'Not only did she pass, but she also ___.'",
+          "options": [
+            "winning the prize",
+            "won the prize",
+            "to win the prize",
+            "gets the prize"
+          ],
+          "correctAnswer": "won the prize",
+          "explanation": "The first verb 'did pass' (past) requires the second verb to also be past tense ('won')."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which of these is unparallel?",
+          "options": [
+            "He is intelligent, hardworking, and kind.",
+            "The task requires patience, skill, and to be creative.",
+            "She wrote clearly, concisely, and persuasively.",
+            "They traveled across deserts, over mountains, and through forests."
+          ],
+          "correctAnswer": "The task requires patience, skill, and to be creative.",
+          "explanation": "'Patience' and 'skill' are nouns. 'To be creative' is an infinitive phrase. It should be the noun 'creativity'."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The suspect was described as tall, heavily built, and ___.'",
+          "options": [
+            "wore a dark jacket",
+            "wearing a dark jacket",
+            "he wore a dark jacket",
+            "with a dark jacket"
+          ],
+          "correctAnswer": "wearing a dark jacket",
+          "explanation": "Tall, built, and wearing are all acting as descriptive participles/adjectives here."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'I would rather read than watching TV.'",
+          "options": [
+            "Change 'read' to 'reading'",
+            "Change 'watching' to 'watch'",
+            "Change 'rather' to 'prefer'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'watching' to 'watch'",
+          "explanation": "'Would rather X than Y' requires X and Y to be the same form (base verb 'read' and 'watch')."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which of the following creates a parallel list?",
+          "options": [
+            "He is famous for his plots, his characters, and writing dialogue.",
+            "He is famous for his plots, his characters, and his dialogue.",
+            "He is famous for his plots, characters, and writing dialogue.",
+            "He is famous for his plots, his characters, and he writes dialogue."
+          ],
+          "correctAnswer": "He is famous for his plots, his characters, and his dialogue.",
+          "explanation": "All three items are possessive noun phrases: [his + noun]."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She prefers painting to to draw.'",
+          "options": [
+            "prefers",
+            "painting",
+            "to",
+            "to draw"
+          ],
+          "correctAnswer": "to draw",
+          "explanation": "Parallelism with 'prefers X to Y' usually requires matching gerunds: 'painting' to 'drawing'."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Choose the balanced sentence:",
+          "options": [
+            "The focus is on training, nutrition, and to sleep.",
+            "The focus is on training, nutrition, and sleep.",
+            "The focus is on to train, nutrition, and sleep.",
+            "The focus is on training, to eat, and sleep."
+          ],
+          "correctAnswer": "The focus is on training, nutrition, and sleep.",
+          "explanation": "This uses three simple nouns: training, nutrition, sleep."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "What is the unparallel word? 'The car was praised for speed, safety, and it was cheap.'",
+          "options": [
+            "praised",
+            "speed",
+            "safety",
+            "it was cheap"
+          ],
+          "correctAnswer": "it was cheap",
+          "explanation": "'Speed' and 'safety' are nouns. 'It was cheap' is a full sentence. It should be the noun 'affordability'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Whether you stay or ___, I will support you.'",
+          "options": [
+            "moving",
+            "you move",
+            "move",
+            "to move"
+          ],
+          "correctAnswer": "move",
+          "explanation": "'Whether X or Y' requires X and Y to be the same form (base verb 'stay' and 'move')."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Find the trap: 'The policy aims to reduce waste, increase efficiency, and saving money.'",
+          "options": [
+            "to reduce",
+            "increase",
+            "and",
+            "saving"
+          ],
+          "correctAnswer": "saving",
+          "explanation": "The list follows 'to': (to) reduce, (to) increase, (to) save. 'Saving' breaks the pattern."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly balances prepositions?",
+          "options": [
+            "The cat was under the bed, behind the sofa, and the chair.",
+            "The cat was under the bed, behind the sofa, and in the chair.",
+            "The cat was under the bed, behind the sofa, and under the chair.",
+            "Both B and C are correctly parallel."
+          ],
+          "correctAnswer": "Both B and C are correctly parallel.",
+          "explanation": "Each item must have a preposition to be parallel. Both B and C achieve this."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Select the properly structured sentence:",
+          "options": [
+            "He is honest, intelligent, and has bravery.",
+            "He is honest, intelligent, and brave.",
+            "He has honesty, is intelligent, and brave.",
+            "Honesty, intelligence, and he is brave are his traits."
+          ],
+          "correctAnswer": "He is honest, intelligent, and brave.",
+          "explanation": "All three are simple adjectives: honest, intelligent, brave."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the unparallel element: 'We discussed the budget, marketing, and what to do next.'",
+          "options": [
+            "the budget",
+            "marketing",
+            "what to do next",
+            "None"
+          ],
+          "correctAnswer": "what to do next",
+          "explanation": "'The budget' and 'marketing' are noun phrases. 'What to do next' is a noun clause. It should be 'future plans'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The committee recommended expanding, hiring, and ___.'",
+          "options": [
+            "to update",
+            "updating",
+            "update",
+            "we update"
+          ],
+          "correctAnswer": "updating",
+          "explanation": "Following 'expanding' and 'hiring', we need another -ing word: 'updating'."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Which option fixes: 'Apply online, by phone, or send an email.'",
+          "options": [
+            "Apply online, by phone, or by email.",
+            "Apply online, by phone, or email.",
+            "Apply online, by phone, or via email.",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "All these fix the list into a consistent pattern of adverbs or prepositional phrases."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The storm caused power loss, flooded streets, and trees fell down.'",
+          "options": [
+            "power loss",
+            "flooded streets",
+            "trees fell down",
+            "No error"
+          ],
+          "correctAnswer": "trees fell down",
+          "explanation": "'Power loss' and 'flooded streets' are noun phrases. 'Trees fell down' is a full clause."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Which is parallel?",
+          "options": [
+            "The teacher praised her hard work and her creativity.",
+            "The teacher praised her working hard and her creativity.",
+            "The teacher praised her for hard work and being creative.",
+            "The teacher praised her hard work and being creative."
+          ],
+          "correctAnswer": "The teacher praised her hard work and her creativity.",
+          "explanation": "Two balanced noun phrases: [her + noun] and [her + noun]."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'He promised to arrive early, work hard, and ___.'",
+          "options": [
+            "staying late",
+            "to stay late",
+            "stay late",
+            "he will stay late"
+          ],
+          "correctAnswer": "stay late",
+          "explanation": "The list follows 'to': (to) arrive, (to) work, (to) stay."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps (Correlative Conjunctions)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Mirror Rule</h3><p>Correlative conjunctions act like mirrors. If you put a <b>Verb</b> after the first part, you must put a <b>Verb</b> after the second part.</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em>He is not only <b>talented</b> (Adj) but also <b>sings well</b> (Verb).</em></li><li>✅ <em>He is not only <b>talented</b> (Adj) but also <b>creative</b> (Adj).</em></li><li style=\"margin-bottom: 8px;\">❌ <em>Either <b>you must stay</b> (Clause) or <b>go</b> (Verb).</em></li><li>✅ <em>You must either <b>stay</b> (Verb) or <b>go</b> (Verb).</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly parallel?",
+          "options": [
+            "The program is not only expensive but also it is slow.",
+            "The program is not only expensive but also slow.",
+            "The program not only is expensive but also slow.",
+            "The program is not only expensive but slow also."
+          ],
+          "correctAnswer": "The program is not only expensive but also slow.",
+          "explanation": "'Expensive' and 'slow' are both adjectives. They match perfectly after 'not only' and 'but also'."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The candidate was both intelligent and ___.'",
+          "options": [
+            "had charm",
+            "charming",
+            "with charm",
+            "he was charming"
+          ],
+          "correctAnswer": "charming",
+          "explanation": "'Intelligent' is an adjective, so the second item must be the adjective 'charming'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'You can either pay by credit card or with using cash.'",
+          "options": [
+            "either",
+            "by credit card",
+            "with using cash",
+            "No error"
+          ],
+          "correctAnswer": "with using cash",
+          "explanation": "To match 'by credit card' (Prepositional Phrase), it should be 'by cash' or 'with cash'."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Which sentence follows parallel structure with 'Neither... nor'?",
+          "options": [
+            "Neither the manager nor the employees were happy.",
+            "Neither the manager nor were the employees happy.",
+            "Neither managing nor the employees were happy.",
+            "Neither the manager nor employee were happy."
+          ],
+          "correctAnswer": "Neither the manager nor the employees were happy.",
+          "explanation": "Both 'the manager' and 'the employees' are Noun Phrases. They are mirrored correctly."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'She wants not only to travel but also staying home.'",
+          "options": [
+            "She wants not only to travel but also to stay home.",
+            "She wants not only traveling but also to stay home.",
+            "She wants to not only travel but also staying home.",
+            "She wants not only to travel but staying home also."
+          ],
+          "correctAnswer": "She wants not only to travel but also to stay home.",
+          "explanation": "If the first part uses an infinitive ('to travel'), the second must also use an infinitive ('to stay')."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Complete the 'Either... or' structure: 'Either we go now, or ___.'",
+          "options": [
+            "we are staying",
+            "stay",
+            "we stay",
+            "to stay"
+          ],
+          "correctAnswer": "we stay",
+          "explanation": "'We go now' is a clause (Subject + Verb). The parallel match is 'we stay' (Subject + Verb)."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Identify the unbalanced sentence:",
+          "options": [
+            "He is both a teacher and a writer.",
+            "The movie was not only long but also it was boring.",
+            "She either studies in the library or at home.",
+            "They will neither confirm nor deny the report."
+          ],
+          "correctAnswer": "The movie was not only long but also it was boring.",
+          "explanation": "'Long' is an adjective, but 'it was boring' is a full clause. It should be 'not only long but also boring'."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Which of these is parallel?",
+          "options": [
+            "The task is neither simple nor is it easy.",
+            "The task is neither simple nor easy.",
+            "The task neither is simple nor easy.",
+            "The task is neither simple nor to be easy."
+          ],
+          "correctAnswer": "The task is neither simple nor easy.",
+          "explanation": "'Simple' and 'easy' are both adjectives. This is the cleanest parallel form."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Choose the parallel ending: 'The report was both concise and ___.'",
+          "options": [
+            "persuaded me",
+            "persuasive",
+            "persuading",
+            "persuasion"
+          ],
+          "correctAnswer": "persuasive",
+          "explanation": "'Concise' is an adjective, so we need the adjective 'persuasive'."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'Not only did he lose his keys, but also his wallet.'",
+          "options": [
+            "The first part is a clause, the second is a noun.",
+            "The 'did' is in the wrong place.",
+            "The 'but also' is too far away.",
+            "No error"
+          ],
+          "correctAnswer": "The first part is a clause, the second is a noun.",
+          "explanation": "It should be: 'He lost not only his keys but also his wallet' (Noun/Noun) OR 'Not only did he lose his keys, but he also lost his wallet' (Clause/Clause)."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'He is either in the office or he is at lunch.'",
+          "options": [
+            "He is either in the office or at lunch.",
+            "He either is in the office or at lunch.",
+            "Either he is in the office or at lunch.",
+            "He is either in the office or being at lunch."
+          ],
+          "correctAnswer": "He is either in the office or at lunch.",
+          "explanation": "Both 'in the office' and 'at lunch' are prepositional phrases. They are now parallel."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which sentence uses 'Both... and' correctly?",
+          "options": [
+            "The project was both completed on time and under budget.",
+            "The project was both on time and under budget.",
+            "The project both was on time and under budget.",
+            "Both on time and under budget was the project."
+          ],
+          "correctAnswer": "The project was both on time and under budget.",
+          "explanation": "'On time' and 'under budget' are parallel prepositional phrases."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Complete the 'Neither... nor' pair: 'She will neither cook dinner nor ___.'",
+          "options": [
+            "will she wash dishes",
+            "wash the dishes",
+            "washing the dishes",
+            "the dishes"
+          ],
+          "correctAnswer": "wash the dishes",
+          "explanation": "'Cook dinner' is a base verb phrase. 'Wash the dishes' is the matching base verb phrase."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Not only are the students tired, but also they are hungry.'",
+          "options": [
+            "Not only",
+            "are the students",
+            "but also",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "This is a parallel clause-to-clause structure. Both 'are the students tired' and 'they are hungry' function as clauses."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Which of these is unparallel?",
+          "options": [
+            "Either you pay now or you pay later.",
+            "Either pay now or later.",
+            "Either pay now or you pay later.",
+            "Pay either now or later."
+          ],
+          "correctAnswer": "Either pay now or you pay later.",
+          "explanation": "'Pay now' is a verb phrase, but 'you pay later' is a clause. They don't match."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'The team was both motivated and they worked hard.'",
+          "options": [
+            "The team was both motivated and hardworking.",
+            "The team both was motivated and worked hard.",
+            "The team was both motivated and work hard.",
+            "The team was motivated and they worked hard both."
+          ],
+          "correctAnswer": "The team was both motivated and hardworking.",
+          "explanation": "Both 'motivated' and 'hardworking' are adjectives. This is perfectly parallel."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Choose the parallel option: 'The goal is neither to win nor ___.'",
+          "options": [
+            "losing",
+            "to lose",
+            "loss",
+            "lost"
+          ],
+          "correctAnswer": "to lose",
+          "explanation": "Mirrors the infinitive 'to win'."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'Either the supervisor will sign the form or the manager.'",
+          "options": [
+            "Missing a verb in the second part.",
+            "Missing a subject.",
+            "Wrong word order.",
+            "No error"
+          ],
+          "correctAnswer": "Missing a verb in the second part.",
+          "explanation": "The first part has a full clause (Supervisor will sign). The second part is just a noun. Correct: 'Either the supervisor or the manager will sign the form'."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Which is parallel?",
+          "options": [
+            "He is not only a great athlete but also he is a scholar.",
+            "He is not only a great athlete but also a scholar.",
+            "He not only is a great athlete but also a scholar.",
+            "He is not only a great athlete but a scholar also."
+          ],
+          "correctAnswer": "He is not only a great athlete but also a scholar.",
+          "explanation": "'A great athlete' (Noun phrase) mirrors 'a scholar' (Noun phrase)."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'Neither the heat nor being humid bothered us.'",
+          "options": [
+            "Neither the heat nor the humidity bothered us.",
+            "Neither heat nor being humid bothered us.",
+            "Neither the heat nor it was humid bothered us.",
+            "Neither heat nor humidity bothered us."
+          ],
+          "correctAnswer": "Neither the heat nor the humidity bothered us.",
+          "explanation": "'The heat' and 'the humidity' are both nouns. They match."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'We can either walk to the park or ___.'",
+          "options": [
+            "taking the bus",
+            "take the bus",
+            "by bus",
+            "to take the bus"
+          ],
+          "correctAnswer": "take the bus",
+          "explanation": "Mirrors the base verb phrase 'walk to the park'."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Both the price and how it looks are important.'",
+          "options": [
+            "Both",
+            "the price",
+            "how it looks",
+            "No error"
+          ],
+          "correctAnswer": "how it looks",
+          "explanation": "'The price' is a noun. 'How it looks' is a clause. It should be 'the appearance'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Which is parallel?",
+          "options": [
+            "Not only her family but also her friends were there.",
+            "Not only her family but also there were friends.",
+            "Not only were her family there but also friends.",
+            "Her family and her friends also were not only there."
+          ],
+          "correctAnswer": "Not only her family but also her friends were there.",
+          "explanation": "Both 'her family' and 'her friends' are noun phrases."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Choose the parallel option: 'You should neither smoke nor ___.'",
+          "options": [
+            "to drink",
+            "drinking",
+            "drink",
+            "drunk"
+          ],
+          "correctAnswer": "drink",
+          "explanation": "Mirrors the base verb 'smoke'."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the unbalanced sentence:",
+          "options": [
+            "Both the speed and the accuracy were poor.",
+            "Either you finish the project or you leave the team.",
+            "The city is not only noisy but also it is crowded.",
+            "Neither rain nor snow will stop us."
+          ],
+          "correctAnswer": "The city is not only noisy but also it is crowded.",
+          "explanation": "Noisy (Adjective) vs. It is crowded (Clause). Should be 'not only noisy but also crowded'."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Fix: 'He is both a brilliant pianist and he composes music.'",
+          "options": [
+            "He is both a brilliant pianist and a composer.",
+            "He both is a brilliant pianist and composes music.",
+            "He is a brilliant pianist and composer both.",
+            "He is both a brilliant pianist and he is a composer."
+          ],
+          "correctAnswer": "He is both a brilliant pianist and a composer.",
+          "explanation": "'Pianist' and 'composer' are both nouns. Perfectly balanced."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'She is not only smart but she works very hard.'",
+          "options": [
+            "Smart (Adj) vs. Works hard (Verb phrase)",
+            "Wrong word order",
+            "Missing 'also'",
+            "No error"
+          ],
+          "correctAnswer": "Smart (Adj) vs. Works hard (Verb phrase)",
+          "explanation": "You cannot mix an adjective with a verb phrase in this structure."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Which is parallel?",
+          "options": [
+            "Either we eat now or later.",
+            "Either we eat now or we eat later.",
+            "Either eat now or we eat later.",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "A is [Adv/Adv]. B is [Clause/Clause]. Both are balanced."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Complete: 'Neither the storm nor ___ stopped the game.'",
+          "options": [
+            "the winds",
+            "blowing wind",
+            "it was windy",
+            "to be windy"
+          ],
+          "correctAnswer": "the winds",
+          "explanation": "'The storm' is a noun; 'the winds' is a noun."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final check: Which is the most academic parallel sentence?",
+          "options": [
+            "The study is not only relevant but also significant.",
+            "The study not only is relevant but also significant.",
+            "The study is not only relevant but also it is significant.",
+            "The study is relevant and significant both."
+          ],
+          "correctAnswer": "The study is not only relevant but also significant.",
+          "explanation": "Simple, clean adjective-to-adjective parallelism."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Grammatical Rhythm</h3><p>Parallelism isn't just for lists of two words. In academic writing, you must maintain balance across <b>complex phrases</b> and <b>long clauses</b>. If you start with a prepositional phrase, stay with it!</p><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">❌ <em>The report focuses <b>on the budget</b> (Prep) and <b>how we market</b> (Clause).</em></li><li>✅ <em>The report focuses <b>on the budget</b> (Prep) and <b>on the marketing</b> (Prep).</em></li><li style=\"margin-bottom: 8px;\">❌ <em>To succeed, you need <b>to work</b> (Inf) and <b>persevering</b> (Gerund).</em></li><li>✅ <em>To succeed, you need <b>to work</b> (Inf) and <b>to persevere</b> (Inf).</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Fix the parallel structure: 'The study aims at identifying the problem and to find a solution.'",
+          "options": [
+            "The study aims at identifying the problem and finding a solution.",
+            "The study aims to identify the problem and finding a solution.",
+            "The study aims at identification of the problem and to find a solution.",
+            "The study aims at identifying the problem and to be finding a solution."
+          ],
+          "correctAnswer": "The study aims at identifying the problem and finding a solution.",
+          "explanation": "Since the first verb follows 'at' as a gerund ('identifying'), the second must match ('finding')."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which sentence maintains balance in a long list?",
+          "options": [
+            "The government must invest in technology, improve education, and it should create jobs.",
+            "The government must invest in technology, improve education, and create jobs.",
+            "The government must invest in technology, improve education, and job creation.",
+            "The government must invest in technology, improving education, and create jobs."
+          ],
+          "correctAnswer": "The government must invest in technology, improve education, and create jobs.",
+          "explanation": "All three verbs are base forms following the modal 'must': (must) invest, (must) improve, (must) create."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The manager is looking for a person who is reliable, ambitious, and has a lot of energy.'",
+          "options": [
+            "reliable",
+            "ambitious",
+            "has a lot of energy",
+            "No error"
+          ],
+          "correctAnswer": "has a lot of energy",
+          "explanation": "'Reliable' and 'ambitious' are adjectives. 'Has a lot of energy' is a verb phrase. It should be 'energetic'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the correctly balanced academic claim:",
+          "options": [
+            "Success depends on your ability to plan, to execute, and your persistence.",
+            "Success depends on your ability to plan, to execute, and to persist.",
+            "Success depends on your planning, to execute, and persistence.",
+            "Success depends on your ability to plan, executing, and persisting."
+          ],
+          "correctAnswer": "Success depends on your ability to plan, to execute, and to persist.",
+          "explanation": "Matches the pattern of infinitive phrases: to plan, to execute, to persist."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Fix the 'Either... or' error: 'Either the results will confirm the theory or it will be proven wrong.'",
+          "options": [
+            "Either the results will confirm the theory or disprove it.",
+            "Either the results will confirm the theory or they will disprove it.",
+            "Either the results will confirm the theory or disproving it.",
+            "Either the results will confirm or disprove the theory."
+          ],
+          "correctAnswer": "Either the results will confirm or disprove the theory.",
+          "explanation": "This is the most concise and parallel way to show the two possibilities for the 'results'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Find the unparallel prepositional phrase: 'We traveled by car, by boat, and on a train.'",
+          "options": [
+            "by car",
+            "by boat",
+            "on a train",
+            "No error"
+          ],
+          "correctAnswer": "on a train",
+          "explanation": "To maintain a perfect rhythm, it should be 'by car, by boat, and by train'."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Which sentence avoids a shift in perspective?",
+          "options": [
+            "One should be careful of what they say and how you act.",
+            "One should be careful of what one says and how one acts.",
+            "You should be careful of what one says and how you act.",
+            "People should be careful of what you say and how they act."
+          ],
+          "correctAnswer": "One should be careful of what one says and how one acts.",
+          "explanation": "Parallel structure also applies to pronoun consistency throughout a sentence."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'She was not only a skilled programmer but also understood hardware.'",
+          "options": [
+            "Skilled programmer (Noun phrase) vs. Understood hardware (Verb phrase)",
+            "Wrong verb tense",
+            "Missing 'also'",
+            "No error"
+          ],
+          "correctAnswer": "Skilled programmer (Noun phrase) vs. Understood hardware (Verb phrase)",
+          "explanation": "You cannot mirror a noun with a verb. It should be: 'not only a skilled programmer but also a hardware expert'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Complete the parallel structure: 'The project failed because of poor timing, lack of funding, and ___.'",
+          "options": [
+            "we were disorganized",
+            "poor organization",
+            "it was disorganized",
+            "organizing poorly"
+          ],
+          "correctAnswer": "poor organization",
+          "explanation": "The list consists of noun phrases: 'poor timing', 'lack of funding', 'poor organization'."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which of these is unparallel in a comparison?",
+          "options": [
+            "Riding a bike is safer than to drive a car.",
+            "Riding a bike is safer than driving a car.",
+            "To ride a bike is safer than to drive a car.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Riding a bike is safer than to drive a car.",
+          "explanation": "In comparisons using 'than', the two items must match (Gerund vs Gerund or Infinitive vs Infinitive)."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'The course covers macroeconomics, microeconomics, and how to analyze data.'",
+          "options": [
+            "The course covers macroeconomics, microeconomics, and data analysis.",
+            "The course covers macroeconomics, microeconomics, and to analyze data.",
+            "The course covers how to do macroeconomics, microeconomics, and data analysis.",
+            "No change needed."
+          ],
+          "correctAnswer": "The course covers macroeconomics, microeconomics, and data analysis.",
+          "explanation": "Three simple nouns (or noun phrases) create a much cleaner academic list."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the 'Both... and' mirror rule?",
+          "options": [
+            "The results were both surprising in their scope and they were accurate.",
+            "The results were both surprising in their scope and accurate in their detail.",
+            "The results both were surprising and they were accurate.",
+            "Both surprising results and accurate results were found."
+          ],
+          "correctAnswer": "The results were both surprising in their scope and accurate in their detail.",
+          "explanation": "The adjectives 'surprising' and 'accurate' are perfectly balanced with their respective prepositional phrases."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The job involves answering phones, filing documents, and to manage the office.'",
+          "options": [
+            "answering",
+            "filing",
+            "to manage",
+            "No error"
+          ],
+          "correctAnswer": "to manage",
+          "explanation": "Following two gerunds ('answering', 'filing'), the third must be 'managing'."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Choose the best academic rewrite: 'Eating healthily and if you exercise daily will improve your health.'",
+          "options": [
+            "Healthy eating and daily exercise will improve your health.",
+            "Eating healthily and daily exercise will improve your health.",
+            "If you eat healthily and daily exercise will improve your health.",
+            "To eat healthily and daily exercise will improve your health."
+          ],
+          "correctAnswer": "Healthy eating and daily exercise will improve your health.",
+          "explanation": "Two clean noun phrases are used as the compound subject."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "What is unparallel here? 'The candidate is known for her integrity, her intelligence, and she is dedicated.'",
+          "options": [
+            "integrity",
+            "intelligence",
+            "she is dedicated",
+            "her"
+          ],
+          "correctAnswer": "she is dedicated",
+          "explanation": "The list follows the pattern [her + noun]. 'She is dedicated' is a clause. It should be 'her dedication'."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Fix: 'It is better to lead by example than giving orders.'",
+          "options": [
+            "It is better leading by example than giving orders.",
+            "It is better to lead by example than to give orders.",
+            "It is better lead by example than give orders.",
+            "Both A and B work."
+          ],
+          "correctAnswer": "Both A and B work.",
+          "explanation": "Either you use two infinitives or two gerunds to balance the comparison."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the parallel error: 'We must not only protect the environment but also the economy must be developed.'",
+          "options": [
+            "Protect the environment (Verb phrase) vs. Economy must be developed (Clause)",
+            "Missing 'also'",
+            "Word order of 'not only'",
+            "No error"
+          ],
+          "correctAnswer": "Protect the environment (Verb phrase) vs. Economy must be developed (Clause)",
+          "explanation": "It should be: 'We must not only protect the environment but also develop the economy' (Verb/Verb)."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which of these is correctly balanced?",
+          "options": [
+            "The law was passed quickly, efficiently, and with success.",
+            "The law was passed quickly, efficiently, and successfully.",
+            "The law was passed with quickness, efficient, and successfully.",
+            "The law was passed quickly, efficient, and successfully."
+          ],
+          "correctAnswer": "The law was passed quickly, efficiently, and successfully.",
+          "explanation": "Three adverbs: quickly, efficiently, successfully."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Complete the parallel structure: 'The policy will decrease pollution, increase health, and ___.'",
+          "options": [
+            "will save money",
+            "money will be saved",
+            "save money",
+            "to save money"
+          ],
+          "correctAnswer": "save money",
+          "explanation": "Matches the base verb pattern: decrease, increase, save."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The manager asked the team to work faster, to be more careful, and finishing on time.'",
+          "options": [
+            "to work",
+            "to be",
+            "finishing",
+            "No error"
+          ],
+          "correctAnswer": "finishing",
+          "explanation": "Requires an infinitive to match: 'to finish on time'."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Which sentence maintains parallel prepositional phrases?",
+          "options": [
+            "You can find info on the website, in the book, or at the library.",
+            "You can find info on the website, the book, or library.",
+            "You can find info on the website, in the book, or the library.",
+            "You can find info on the website, book, or library."
+          ],
+          "correctAnswer": "You can find info on the website, in the book, or at the library.",
+          "explanation": "Each location needs its appropriate preposition (on, in, at) to be grammatically parallel."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'She spent the summer traveling, relaxing, and she learned French.'",
+          "options": [
+            "She spent the summer traveling, relaxing, and learning French.",
+            "She spent the summer to travel, to relax, and to learn French.",
+            "She spent the summer traveling, relaxing, and to learn French.",
+            "She spent the summer travel, relax, and learn French."
+          ],
+          "correctAnswer": "She spent the summer traveling, relaxing, and learning French.",
+          "explanation": "Matches the gerund pattern required after the verb 'spent (time)'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'Not only the students but also the teacher was happy.'",
+          "options": [
+            "The verb should be 'were'.",
+            "The subjects are not parallel.",
+            "The 'but also' should be at the end.",
+            "No error."
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "The subjects are parallel nouns. Note: The verb agrees with the *closer* subject ('teacher'), so 'was' is actually correct!"
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Which of these is unparallel?",
+          "options": [
+            "The house is small, dark, and expensive.",
+            "The house is small, dark, and it costs too much.",
+            "The house is small, dark, and unaffordable.",
+            "All are parallel."
+          ],
+          "correctAnswer": "The house is small, dark, and it costs too much.",
+          "explanation": "Mixing adjectives (small, dark) with a clause (it costs too much) is a parallelism failure."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Fix the comparison: 'I prefer drinking coffee to to eat breakfast.'",
+          "options": [
+            "I prefer drinking coffee to eating breakfast.",
+            "I prefer to drink coffee to to eat breakfast.",
+            "I prefer to drink coffee than to eat breakfast.",
+            "I prefer drink coffee to eat breakfast."
+          ],
+          "correctAnswer": "I prefer drinking coffee to eating breakfast.",
+          "explanation": "Standard 'prefer X to Y' uses two gerunds."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Complete the 'Neither... nor' pair: 'Neither his age nor ___ prevented him from winning.'",
+          "options": [
+            "his being poor",
+            "his poverty",
+            "that he was poor",
+            "to be poor"
+          ],
+          "correctAnswer": "his poverty",
+          "explanation": "'His age' (Possessive + Noun) mirrors 'his poverty' (Possessive + Noun)."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Identify the unbalanced phrase: 'The research was thorough, systematic, and it provided new data.'",
+          "options": [
+            "thorough",
+            "systematic",
+            "it provided new data",
+            "No error"
+          ],
+          "correctAnswer": "it provided new data",
+          "explanation": "Should be an adjective like 'insightful' to match 'thorough' and 'systematic'."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Which sentence is parallel?",
+          "options": [
+            "He was told to either resign or he would be fired.",
+            "He was told either to resign or that he would be fired.",
+            "He was told to either resign or be fired.",
+            "Either he was told to resign or be fired."
+          ],
+          "correctAnswer": "He was told to either resign or be fired.",
+          "explanation": "Matches the passive infinitive pattern: (to) resign or (to) be fired."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Fix: 'The app is easy to use and it is free to download.'",
+          "options": [
+            "The app is easy to use and free to download.",
+            "The app is easy using and free to download.",
+            "The app is easy to use and freely to download.",
+            "No error."
+          ],
+          "correctAnswer": "The app is easy to use and free to download.",
+          "explanation": "Removes the redundant 'it is' to create a balanced adjective phrase."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The storm destroyed buildings, cars were flipped, and uprooted trees.'",
+          "options": [
+            "destroyed buildings",
+            "cars were flipped",
+            "uprooted trees",
+            "No error"
+          ],
+          "correctAnswer": "cars were flipped",
+          "explanation": "The list is: Noun (buildings), Clause (cars were flipped), Noun (trees). It should be 'flipped cars'."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Thesis Balancer</h3><p>In IELTS and TOEFL, parallel structure is vital for <b>Thesis Statements</b> and <b>Task 1 Overviews</b>. If you list three points, they must all be the same part of speech (usually Noun Phrases).</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <strong>Task 1:</strong> <em>The graph shows a rise in sales, a drop in profit, and that expenses stayed the same.</em> ➔ <em>...a rise in sales, a drop in profit, and <b>a plateau in expenses</b>.</em></li><li>⚖️ <strong>Task 2:</strong> <em>This essay discusses why crime rises, how it hurts people, and solving the problem.</em> ➔ <em>...the <b>causes</b> of crime, the <b>societal impacts</b>, and the <b>potential solutions</b>.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which thesis statement follows perfect parallel structure?",
+          "options": [
+            "This essay will discuss the benefits of technology, the drawbacks of social media, and how to stay safe.",
+            "This essay will discuss the benefits of technology, the drawbacks of social media, and digital safety measures.",
+            "This essay will discuss technology's benefits, why social media is bad, and safety.",
+            "This essay will discuss benefiting from technology, social media drawbacks, and staying safe."
+          ],
+          "correctAnswer": "This essay will discuss the benefits of technology, the drawbacks of social media, and digital safety measures.",
+          "explanation": "This uses three consistent noun phrases, making the roadmap of the essay clear and balanced."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the error in this Task 1 overview: 'Overall, there was a steady increase in coal use, a sharp decline in oil, and gas remained stable.'",
+          "options": [
+            "Change 'gas remained stable' to 'a plateau in gas consumption'",
+            "Change 'coal use' to 'using coal'",
+            "Change 'sharp decline' to 'declining sharply'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'gas remained stable' to 'a plateau in gas consumption'",
+          "explanation": "The first two items are noun phrases ([Adj] + [Noun]). The third must match to be parallel."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Improve this Task 2 sentence: 'The policy aimed to reduce poverty, increase literacy, and health should be improved.'",
+          "options": [
+            "reduce poverty, increase literacy, and improve health.",
+            "reduction of poverty, increasing literacy, and improving health.",
+            "reducing poverty, increasing literacy, and health improvement.",
+            "poverty reduction, literacy increase, and to improve health."
+          ],
+          "correctAnswer": "reduce poverty, increase literacy, and improve health.",
+          "explanation": "Uses three parallel base verbs following 'to': reduce, increase, improve."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which of these is the most academic way to compare two groups?",
+          "options": [
+            "Men prefer to spend money on cars, while women prefer spending on clothes.",
+            "Men prefer spending money on cars, while women prefer spending on clothes.",
+            "Men prefer spending money on cars, while women prefer to spend on clothes.",
+            "Both A and B are correctly parallel."
+          ],
+          "correctAnswer": "Both A and B are correctly parallel.",
+          "explanation": "Parallelism requires the two halves of the 'while' comparison to use the same form (both infinitives or both gerunds)."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Complete the parallel structure for a Task 1 trend: 'The figure for 2010 was higher than ___.'",
+          "options": [
+            "2015",
+            "the figure for 2015",
+            "that of 2015",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "To be parallel, you must compare a 'figure' to a 'figure', not a 'figure' to a 'year'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Identify the poorly structured Task 2 argument: 'Social media allows people to communicate, to share ideas, and they find new friends.'",
+          "options": [
+            "to communicate",
+            "to share ideas",
+            "they find new friends",
+            "No error"
+          ],
+          "correctAnswer": "they find new friends",
+          "explanation": "Should be 'to find new friends' to match the infinitive pattern."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Which conclusion is parallel?",
+          "options": [
+            "In conclusion, the problem can be solved by increasing taxes, educating the public, and to ban plastic.",
+            "In conclusion, the problem can be solved by increasing taxes, educating the public, and banning plastic.",
+            "In conclusion, the problem can be solved by taxes, the public, and plastic.",
+            "In conclusion, the problem can be solved by a tax increase, public education, and to ban plastic."
+          ],
+          "correctAnswer": "In conclusion, the problem can be solved by increasing taxes, educating the public, and banning plastic.",
+          "explanation": "Three consistent gerund phrases (-ing) following the preposition 'by'."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Fix the comparison in this Task 1 sentence: 'Working in an office is more stressful than to work from home.'",
+          "options": [
+            "Working in an office is more stressful than working from home.",
+            "To work in an office is more stressful than to work from home.",
+            "Office work is more stressful than home work.",
+            "All of the above are parallel."
+          ],
+          "correctAnswer": "All of the above are parallel.",
+          "explanation": "All three options maintain internal balance between the two things being compared."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which thesis roadmap is the most sophisticated?",
+          "options": [
+            "This essay will look at the cultural, economic, and political factors.",
+            "This essay will look at culture, the economy, and politics.",
+            "This essay will look at how culture works, the economy, and politics.",
+            "This essay will look at cultural factors, economic factors, and politics factor."
+          ],
+          "correctAnswer": "This essay will look at the cultural, economic, and political factors.",
+          "explanation": "This uses three parallel adjectives to modify a single noun, which is highly efficient and formal."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'Not only is the population growing, but also the city is becoming more crowded.'",
+          "options": [
+            "The subjects are not parallel.",
+            "The verb forms do not match.",
+            "The structure is parallel (Clause vs. Clause).",
+            "Missing a comma."
+          ],
+          "correctAnswer": "The structure is parallel (Clause vs. Clause).",
+          "explanation": "Both halves are full clauses (Subject + Verb), making the sentence balanced."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Complete the parallel data description: 'The 1990s saw a rise in population and ___.'",
+          "options": [
+            "the economy grew",
+            "an increase in wealth",
+            "to grow the economy",
+            "money was more"
+          ],
+          "correctAnswer": "an increase in wealth",
+          "explanation": "Matches the noun phrase pattern: [a/an] + [noun] + [in + noun]."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Which of these is unparallel in an essay?",
+          "options": [
+            "The results were both accurate and reliable.",
+            "The results were both accurate and in a reliable way.",
+            "The results were both accurately recorded and reliably reported.",
+            "The accuracy and reliability of the results were noted."
+          ],
+          "correctAnswer": "The results were both accurate and in a reliable way.",
+          "explanation": "Mixing an adjective (accurate) with a prepositional phrase (in a reliable way) breaks the rhythm."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Improve 'I like to play piano, singing, and the guitar' for Task 2:",
+          "options": [
+            "I enjoy playing piano, singing, and playing guitar.",
+            "I enjoy to play piano, to sing, and to play guitar.",
+            "I enjoy the piano, the singing, and the guitar.",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "Both correctly use consistent verb forms throughout the list."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Fix the comparison: 'The cost of living in London is higher than Tokyo.'",
+          "options": [
+            "The cost of living in London is higher than that in Tokyo.",
+            "The cost of living in London is higher than in Tokyo.",
+            "Living in London is more expensive than living in Tokyo.",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "These avoid the 'Faulty Comparison' of comparing 'cost' to 'a city'."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the parallel error: 'The program focuses on recruiting, training, and how to retain staff.'",
+          "options": [
+            "recruiting",
+            "training",
+            "how to retain staff",
+            "No error"
+          ],
+          "correctAnswer": "how to retain staff",
+          "explanation": "Should be 'retaining staff' to match the other gerunds."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly balances 'Either... or'?",
+          "options": [
+            "Either you must accept the terms or leave the company.",
+            "You must either accept the terms or leave the company.",
+            "Either you must accept the terms or you must leave the company.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "B balances two verbs. C balances two full clauses. Both are grammatically perfect."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which is the most formal parallel overview for Task 1?",
+          "options": [
+            "Overall, the graph shows that prices rose, fell, and then they were stable.",
+            "Overall, the graph illustrates a rise, a fall, and a period of stability in prices.",
+            "Overall, there was a rise, a fall, and stable prices.",
+            "Prices rose, fell, and stabilized overall."
+          ],
+          "correctAnswer": "Overall, the graph illustrates a rise, a fall, and a period of stability in prices.",
+          "explanation": "Uses three parallel noun phrases ([a] + [noun]) to create a dense, academic overview."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the correctly balanced Task 2 argument:",
+          "options": [
+            "Obesity is caused by a sedentary lifestyle, poor diet, and not enough exercise.",
+            "Obesity is caused by a sedentary lifestyle, a poor diet, and a lack of exercise.",
+            "Obesity is caused by sitting too much, eating badly, and no exercise.",
+            "Obesity is caused by sedentary lifestyles, poor dieting, and lacking exercise."
+          ],
+          "correctAnswer": "Obesity is caused by a sedentary lifestyle, a poor diet, and a lack of exercise.",
+          "explanation": "Three perfectly matched noun phrases: [a] + [adj] + [noun]."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error in this comparison: 'Public transport is more efficient than the usage of private cars.'",
+          "options": [
+            "Change 'usage of private cars' to 'private car use'",
+            "Change 'Public transport' to 'Using public transport'",
+            "Change 'the usage of' to 'using'",
+            "Both B and C are valid fixes for better parallelism"
+          ],
+          "correctAnswer": "Both B and C are valid fixes for better parallelism",
+          "explanation": "Comparing a Noun (Public transport) to a Gerund phrase (the usage of...) is unbalanced. It's better to compare two gerund phrases."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Fix: 'The author argues that poverty is a result of low wages, high rent, and not being educated.'",
+          "options": [
+            "low wages, high rent, and poor education.",
+            "low wages, high rent, and a lack of education.",
+            "wage levels, rent costs, and education.",
+            "All of the above are parallel."
+          ],
+          "correctAnswer": "All of the above are parallel.",
+          "explanation": "All three options replace the clause 'not being educated' with a noun phrase that matches the rest of the list."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Which of these is the most academic transition sentence?",
+          "options": [
+            "Having discussed the causes, I will now look at the effects.",
+            "Having examined the causes, the following section will analyze the effects.",
+            "This section analyzed the causes; the next section will evaluate the effects.",
+            "Both A and C (B has a dangling modifier error)."
+          ],
+          "correctAnswer": "Both A and C (B has a dangling modifier error).",
+          "explanation": "C is the most parallel (Clause vs. Clause). A is also common. B fails because 'the following section' is not the one 'having examined'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Identify the parallel error: 'He not only missed the bus but also the train.'",
+          "options": [
+            "The verb 'missed' should come after 'not only'.",
+            "The verb 'missed' should be repeated.",
+            "It should be 'not only the bus but also the train did he miss'.",
+            "No error."
+          ],
+          "correctAnswer": "The verb 'missed' should come after 'not only'.",
+          "explanation": "To be strictly parallel, if 'but also' is followed by a Noun (train), 'not only' should be followed by a Noun (bus). Move 'missed' before 'not only'."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Which is correct for a Task 1 comparison?",
+          "options": [
+            "Coffee was more popular than tea.",
+            "The popularity of coffee was greater than tea.",
+            "The popularity of coffee was greater than that of tea.",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "B is unparallel (comparing 'popularity' to 'tea'). A and C are grammatically balanced."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Choose the parallel option: 'To increase sales, the company must improve quality, reduce prices, and ___.'",
+          "options": [
+            "marketing better",
+            "better marketing",
+            "market better",
+            "to market better"
+          ],
+          "correctAnswer": "market better",
+          "explanation": "Matches the base verb + adverb/noun pattern: improve quality, reduce prices, market better."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the unbalanced phrase: 'The research was difficult, time-consuming, and cost a lot.'",
+          "options": [
+            "difficult",
+            "time-consuming",
+            "cost a lot",
+            "No error"
+          ],
+          "correctAnswer": "cost a lot",
+          "explanation": "Should be an adjective like 'expensive' to match 'difficult' and 'time-consuming'."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which sentence is parallel?",
+          "options": [
+            "The purpose is to identify risks and suggesting solutions.",
+            "The purpose is identifying risks and suggest solutions.",
+            "The purpose is to identify risks and to suggest solutions.",
+            "The purpose is identification of risks and to suggest solutions."
+          ],
+          "correctAnswer": "The purpose is to identify risks and to suggest solutions.",
+          "explanation": "Balanced infinitives."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Fix the thesis: 'This essay analyzes why people migrate and the effects on the host country.'",
+          "options": [
+            "analyzes the reasons for migration and the effects on the host country.",
+            "analyzes why people migrate and what the effects are.",
+            "analyzes migration reasons and migration effects.",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "A uses two noun phrases. B uses two noun clauses. Both are parallel."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Which is correctly balanced?",
+          "options": [
+            "He is either a liar or a fool.",
+            "He is either lying or being a fool.",
+            "Either he is lying or he is a fool.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "All three maintain internal grammatical consistency between the 'either' and 'or' parts."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the parallel error: 'The storm destroyed buildings, flipped cars, and uprooted trees.'",
+          "options": [
+            "destroyed buildings",
+            "flipped cars",
+            "uprooted trees",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Perfectly balanced: [Verb] + [Noun], [Verb] + [Noun], [Verb] + [Noun]."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "What is the primary benefit of parallel structure in an essay?",
+          "options": [
+            "It makes the writing sound longer.",
+            "It helps the reader follow the logic and rhythm of the argument effortlessly.",
+            "It is the only way to get a Band 5.0.",
+            "It allows the writer to skip punctuation."
+          ],
+          "correctAnswer": "It helps the reader follow the logic and rhythm of the argument effortlessly.",
+          "explanation": "Parallelism is key to 'Coherence and Cohesion' and 'Grammatical Range and Accuracy'."
+        }
+      ]
+    }
+  ]
+}

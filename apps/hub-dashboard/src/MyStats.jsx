@@ -28,6 +28,29 @@ function aggregateWeaknesses(scores) {
     .map(([tag, count]) => ({ tag, count }));
 }
 
+const DIAGNOSTIC_TO_TOPIC_MAP = {
+  'Article Usage': '01_article_usage',
+  'Countability & Plurals': '02_countability_and_plurals',
+  'Pronoun Reference': '03_pronoun_reference',
+  'Prepositional Accuracy': '04_prepositional_accuracy',
+  'Word Forms': '05_word_forms',
+  'Subject-Verb Agreement': '06_subject_verb_agreement',
+  'Tense Consistency': '07_tense_consistency',
+  'Present Perfect vs. Past Simple': '08_present_perfect_past_simple',
+  'Gerunds vs. Infinitives': '09_gerunds_infinitives',
+  'Passive Voice Construction': '10_passive_voice',
+  'Sentence Boundaries': '11_sentence_boundaries',
+  'Relative Clauses': '12_relative_clauses',
+  'Subordination': '13_subordination',
+  'Word Order': '14_word_order',
+  'Parallel Structure': '15_parallel_structure',
+  'Transitional Devices': '16_transitional_devices',
+  'Collocations': '17_collocations',
+  'Academic Register': '18_academic_register',
+  'Nominalization': '19_nominalization',
+  'Hedging': '20_hedging'
+};
+
 export default function MyStats() {
   const navigate = useNavigate();
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
@@ -102,9 +125,22 @@ export default function MyStats() {
                 const maxCount = topWeaknesses[0]?.count || 1;
                 const width = Math.max(15, (item.count / maxCount) * 100);
                 return (
-                  <div key={item.tag}>
+                  <div key={item.tag} className="group">
                     <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
-                      <span>{item.tag}</span>
+                      <div className="flex items-center gap-2">
+                        <span>{item.tag}</span>
+                        {DIAGNOSTIC_TO_TOPIC_MAP[item.tag] && (
+                          <button
+                            onClick={() => {
+                              const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
+                              window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                            }}
+                            className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-indigo-100"
+                          >
+                            Practice
+                          </button>
+                        )}
+                      </div>
                       <span>{item.count}</span>
                     </div>
                     <div className="h-2 rounded-full bg-slate-200 overflow-hidden">

@@ -1,0 +1,1399 @@
+{
+  "topicId": "06_subject_verb_agreement",
+  "topicName": "Subject-Verb Agreement",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Singular vs. Plural Balance</h3><p>In English, the verb must match the subject in number. The most common rule is for the <b>Third Person Singular</b> (he, she, it, or a single name), where we add an <b>-s</b> or <b>-es</b> to the verb.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Subject Type</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Verb Form</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>I / You / We / They</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Base Form</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">They <b>work</b> hard.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>He / She / It</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Verb + s/es</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">She <b>works</b> hard.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Plural Nouns</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Base Form</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The students <b>study</b>.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Singular Nouns</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Verb + s/es</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The student <b>studies</b>.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The researcher ___ the data every morning.'",
+          "options": [
+            "analyze",
+            "analyzes",
+            "analyzing",
+            "analyzed"
+          ],
+          "correctAnswer": "analyzes",
+          "explanation": "'The researcher' is a singular third-person subject, so we add '-s' to the verb."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Which sentence is grammatically correct?",
+          "options": [
+            "The students likes the new library.",
+            "The students like the new library.",
+            "The students is liking the new library.",
+            "The student like the new library."
+          ],
+          "correctAnswer": "The students like the new library.",
+          "explanation": "'Students' is plural, so the verb stays in its base form ('like')."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Technology ___ how we communicate today.'",
+          "options": [
+            "change",
+            "changes",
+            "changing",
+            "has change"
+          ],
+          "correctAnswer": "changes",
+          "explanation": "'Technology' is an uncountable singular noun, requiring the singular verb form 'changes'."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Identify the subject-verb error: 'He always go to the gym on Mondays.'",
+          "options": [
+            "He",
+            "always",
+            "go",
+            "Mondays"
+          ],
+          "correctAnswer": "go",
+          "explanation": "'He' is third-person singular; the verb must be 'goes'."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Choose the correct form of 'to be': 'The information ___ provided in the report.'",
+          "options": [
+            "is",
+            "are",
+            "am",
+            "be"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Information' is an uncountable noun and always takes a singular verb."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "Computers makes our lives easier.",
+            "A computer make our lives easier.",
+            "Computers make our lives easier.",
+            "Computer making our lives easier."
+          ],
+          "correctAnswer": "Computers make our lives easier.",
+          "explanation": "Plural subject 'Computers' matches the plural verb 'make'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'My friend ___ in Tokyo.'",
+          "options": [
+            "live",
+            "lives",
+            "living",
+            "is live"
+          ],
+          "correctAnswer": "lives",
+          "explanation": "'My friend' is singular (he or she), so we use 'lives'."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Economic growth ___ more jobs.'",
+          "options": [
+            "create",
+            "creates",
+            "creating",
+            "are creating"
+          ],
+          "correctAnswer": "creates",
+          "explanation": "'Growth' is the singular subject here."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The keys is on the kitchen table.'",
+          "options": [
+            "keys",
+            "is",
+            "on",
+            "table"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Keys' is plural, so the verb should be 'are'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Either the manager or the employees ___ the office first.'",
+          "options": [
+            "leave",
+            "leaves",
+            "leaving",
+            "is leave"
+          ],
+          "correctAnswer": "leave",
+          "explanation": "With 'either/or,' the verb agrees with the *closer* subject ('employees')."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which verb form is correct? 'Everyone ___ to be happy.'",
+          "options": [
+            "want",
+            "wants",
+            "wanting",
+            "are wanting"
+          ],
+          "correctAnswer": "wants",
+          "explanation": "Indefinite pronouns like 'everyone,' 'someone,' and 'nobody' are always singular."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The price of these items ___ too high.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "The subject is 'price' (singular), not 'items'."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The team play well every weekend.'",
+          "options": [
+            "team",
+            "play",
+            "well",
+            "weekend"
+          ],
+          "correctAnswer": "play",
+          "explanation": "In American English, 'team' is singular; in British English, it can be plural. For exams, treat collective nouns as singular: 'plays'."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "There is many reasons for this problem.",
+            "There are many reasons for this problem.",
+            "There be many reasons for this problem.",
+            "There many reasons for this problem."
+          ],
+          "correctAnswer": "There are many reasons for this problem.",
+          "explanation": "In 'there is/are' structures, the verb agrees with the noun that follows ('reasons')."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'Politics ___ a complicated subject.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Some nouns ending in -s (politics, physics, news) are actually singular."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The number of students ___ increasing.'",
+          "options": [
+            "is",
+            "are",
+            "am",
+            "be"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'The number of' is always singular. ('A number of' is plural)."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "Each of the players have a uniform.",
+            "Each of the players has a uniform.",
+            "Each of the players having a uniform.",
+            "Each of the players is have a uniform."
+          ],
+          "correctAnswer": "Each of the players has a uniform.",
+          "explanation": "'Each' is singular, even if followed by a plural noun."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Both of my parents is from Japan.'",
+          "options": [
+            "Both",
+            "of",
+            "is",
+            "Japan"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Both' is always plural, so the verb should be 'are'."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Water ___ at 100 degrees Celsius.'",
+          "options": [
+            "boil",
+            "boils",
+            "boiling",
+            "is boil"
+          ],
+          "correctAnswer": "boils",
+          "explanation": "'Water' is an uncountable singular noun."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Neither of the answers ___ correct.'",
+          "options": [
+            "is",
+            "are",
+            "am",
+            "be"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Neither' and 'Either' are singular subjects."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which verb form is correct? 'The police ___ investigating the crime.'",
+          "options": [
+            "is",
+            "are",
+            "has",
+            "was"
+          ],
+          "correctAnswer": "are",
+          "explanation": "'Police' is a unique noun that is always treated as plural."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Five miles ___ a long way to walk.'",
+          "options": [
+            "is",
+            "are",
+            "am",
+            "be"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Measurements of distance, time, and money are treated as single units (singular)."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Mathematics are my favorite subject.'",
+          "options": [
+            "Mathematics",
+            "are",
+            "favorite",
+            "subject"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Academic subjects ending in -s are singular: 'is'."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "A pair of shoes is under the bed.",
+            "A pair of shoes are under the bed.",
+            "A pair of shoes being under the bed.",
+            "A pair of shoes am under the bed."
+          ],
+          "correctAnswer": "A pair of shoes is under the bed.",
+          "explanation": "The subject is 'pair' (singular), not 'shoes'."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'Social media ___ both benefits and risks.'",
+          "options": [
+            "have",
+            "has",
+            "having",
+            "is have"
+          ],
+          "correctAnswer": "has",
+          "explanation": "'Social media' is usually treated as a singular collective noun in modern academic English."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The bread ___ fresh.'",
+          "options": [
+            "smell",
+            "smells",
+            "smelling",
+            "are smelling"
+          ],
+          "correctAnswer": "smells",
+          "explanation": "'Bread' is uncountable/singular."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Ten dollars are too much for a cup of coffee.'",
+          "options": [
+            "dollars",
+            "are",
+            "much",
+            "coffee"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Money amounts are singular: 'is'."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which verb form is correct? 'Nobody ___ the answer.'",
+          "options": [
+            "know",
+            "knows",
+            "knowing",
+            "is know"
+          ],
+          "correctAnswer": "knows",
+          "explanation": "'Nobody' is an indefinite singular pronoun."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The news ___ at 6 PM.'",
+          "options": [
+            "start",
+            "starts",
+            "starting",
+            "are starting"
+          ],
+          "correctAnswer": "starts",
+          "explanation": "'News' is singular."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "My glasses is broken.",
+            "My glasses are broken.",
+            "My glasses has broken.",
+            "My glasses being broken."
+          ],
+          "correctAnswer": "My glasses are broken.",
+          "explanation": "Nouns that come in pairs (glasses, pants, scissors) are plural."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps (The Interrupted Subject)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: Ignore the 'Noise'</h3><p>Prepositional phrases (starting with <i>of, with, in, for</i>) often come between the subject and the verb. <b>The subject is never inside a prepositional phrase.</b></p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em>The <b>discovery</b> of new planets <b>are</b> exciting.</em> ('Planets' is not the subject!)</li><li>✅ <em>The <b>discovery</b> (Singular) of new planets <b>is</b> exciting.</em></li><li>✅ <em>The <b>books</b> (Plural) on the shelf <b>are</b> old.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The quality of the items ___ checked daily.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "The subject is 'quality' (singular). 'Of the items' is just extra information."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "The keys to the car is on the table.",
+            "The keys to the car are on the table.",
+            "The key to the cars are on the table.",
+            "The key to the car be on the table."
+          ],
+          "correctAnswer": "The keys to the car are on the table.",
+          "explanation": "The subject 'keys' is plural; 'to the car' is a prepositional phrase."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The box of chocolates ___ missing.'",
+          "options": [
+            "is",
+            "are",
+            "been",
+            "be"
+          ],
+          "correctAnswer": "is",
+          "explanation": "The subject is 'box' (singular). Don't let 'chocolates' trick you!"
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The influence of social media trends are growing.'",
+          "options": [
+            "influence",
+            "of",
+            "are",
+            "growing"
+          ],
+          "correctAnswer": "are",
+          "explanation": "'Influence' is singular. The verb should be 'is'."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'A variety of different colors ___ available.'",
+          "options": [
+            "is",
+            "are",
+            "am",
+            "be"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Phrases like 'A variety of' or 'A number of' are treated as plural modifiers in English."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "The members of the committee agrees on the plan.",
+            "The members of the committee agree on the plan.",
+            "The member of the committees agree on the plan.",
+            "The members of the committee is agreeing."
+          ],
+          "correctAnswer": "The members of the committee agree on the plan.",
+          "explanation": "Subject is 'members' (plural)."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The cause of the technical problems ___ unknown.'",
+          "options": [
+            "is",
+            "are",
+            "has",
+            "be"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Subject is 'cause' (singular)."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'One of the students have lost their bag.'",
+          "options": [
+            "One",
+            "of",
+            "have",
+            "lost"
+          ],
+          "correctAnswer": "have",
+          "explanation": "The subject is 'One' (singular). The verb should be 'has'."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The water in these bottles ___ filtered.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Water' is an uncountable singular noun."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "The results of the test was surprising.",
+            "The results of the test were surprising.",
+            "The result of the tests were surprising.",
+            "The results of the tests is surprising."
+          ],
+          "correctAnswer": "The results of the test were surprising.",
+          "explanation": "Subject is 'results' (plural)."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The manager, along with his assistants, ___ attending.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "been"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Phrases like 'along with' or 'as well as' do not make the subject plural. 'Manager' is the only subject."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The list of candidates were published today.'",
+          "options": [
+            "list",
+            "of",
+            "were",
+            "today"
+          ],
+          "correctAnswer": "were",
+          "explanation": "Subject is 'list' (singular). Use 'was'."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The smell of fresh flowers ___ the room.'",
+          "options": [
+            "fill",
+            "fills",
+            "filling",
+            "are filling"
+          ],
+          "correctAnswer": "fills",
+          "explanation": "Subject is 'smell' (singular)."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "Every one of the applicants have been interviewed.",
+            "Every one of the applicants has been interviewed.",
+            "All of the applicants has been interviewed.",
+            "Every one of the applicants are interviewed."
+          ],
+          "correctAnswer": "Every one of the applicants has been interviewed.",
+          "explanation": "'Every one' is a singular subject."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The data from the recent studies ___ clear.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "In most academic contexts, 'data' is treated as a singular collective noun ('The data is...')."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The price of vegetables have risen sharply.'",
+          "options": [
+            "price",
+            "of",
+            "have",
+            "risen"
+          ],
+          "correctAnswer": "have",
+          "explanation": "Subject is 'price' (singular). Use 'has'."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The players, as well as the coach, ___ to win.'",
+          "options": [
+            "want",
+            "wants",
+            "wanting",
+            "is wanting"
+          ],
+          "correctAnswer": "want",
+          "explanation": "The subject is 'players' (plural). 'As well as the coach' is extra info."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "A group of tourists is waiting outside.",
+            "A group of tourists are waiting outside.",
+            "The group of tourist are waiting outside.",
+            "Groups of tourist is waiting outside."
+          ],
+          "correctAnswer": "A group of tourists is waiting outside.",
+          "explanation": "Subject is 'group' (singular)."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The noise from the construction workers ___ very loud.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Subject is 'noise' (singular)."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The reasons for the delay is complicated.'",
+          "options": [
+            "reasons",
+            "for",
+            "is",
+            "complicated"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Subject is 'reasons' (plural). Use 'are'."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Neither of the proposals ___ suitable.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "been"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Neither' is singular."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "The cost of new houses are increasing.",
+            "The cost of new houses is increasing.",
+            "The costs of a new house is increasing.",
+            "Costs of new houses is increasing."
+          ],
+          "correctAnswer": "The cost of new houses is increasing.",
+          "explanation": "Subject is 'cost' (singular)."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The furniture in these rooms ___ very old.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'Furniture' is uncountable/singular."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The main goal of these lessons are to improve grammar.'",
+          "options": [
+            "goal",
+            "of",
+            "are",
+            "to"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Subject is 'goal' (singular). Use 'is'."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Each of the computers ___ a password.'",
+          "options": [
+            "need",
+            "needs",
+            "needing",
+            "are needing"
+          ],
+          "correctAnswer": "needs",
+          "explanation": "Subject is 'Each' (singular)."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "The knowledge of different cultures is important.",
+            "The knowledge of different cultures are important.",
+            "Knowledge of different culture are important.",
+            "A knowledge of different cultures be important."
+          ],
+          "correctAnswer": "The knowledge of different cultures is important.",
+          "explanation": "Subject is 'knowledge' (uncountable/singular)."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The rules of the game ___ not changed.'",
+          "options": [
+            "has",
+            "have",
+            "is",
+            "was"
+          ],
+          "correctAnswer": "have",
+          "explanation": "Subject is 'rules' (plural)."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'A team of scientists are working on the project.'",
+          "options": [
+            "team",
+            "of",
+            "are",
+            "working"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Subject is 'team' (singular collective noun). Use 'is'."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The report on the global markets ___ finished.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Subject is 'report' (singular)."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "One of the books is missing.",
+            "One of the books are missing.",
+            "The books is missing.",
+            "A book of the series are missing."
+          ],
+          "correctAnswer": "One of the books is missing.",
+          "explanation": "Subject is 'One' (singular)."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Error Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The 'Front vs. Back' Comma Rule</h3><p>When you attach a dependent clause (starting with Because, Although, If) to a main sentence, the punctuation depends entirely on <b>where</b> it goes.</p><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">⬅️ <strong>Front Placement:</strong> Needs a comma. (<em><b>Because</b> it rained<b>,</b> we stayed inside.</em>)</li><li>➡️ <strong>Back Placement:</strong> NO comma. (<em>We stayed inside <b>because</b> it rained.</em>)</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Which of these sentences is punctuated correctly?",
+          "options": [
+            "Because the budget was cut we had to stop the project.",
+            "Because the budget was cut, we had to stop the project.",
+            "Because, the budget was cut we had to stop the project.",
+            "We had to stop the project, because the budget was cut."
+          ],
+          "correctAnswer": "Because the budget was cut, we had to stop the project.",
+          "explanation": "When the dependent clause is at the front of the sentence, you must put a comma after it."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Find the punctuation error: 'The team will finish the report on time, if they work through the weekend.'",
+          "options": [
+            "Change the comma to a semicolon",
+            "Remove the comma",
+            "Add a comma after 'time'",
+            "No error"
+          ],
+          "correctAnswer": "Remove the comma",
+          "explanation": "When the dependent clause ('if they work...') is at the back of the sentence, you do not use a comma."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Select the correct punctuation:",
+          "options": [
+            "Although, the results were promising more testing is needed.",
+            "Although the results were promising more testing is needed.",
+            "Although the results were promising, more testing is needed.",
+            "More testing is needed, although the results were promising."
+          ],
+          "correctAnswer": "Although the results were promising, more testing is needed.",
+          "explanation": "The dependent clause is at the front, so it requires a comma at its end. You never put a comma directly after 'Although'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Since the new software was installed the computers have been running faster.'",
+          "options": [
+            "Add a comma after 'installed'",
+            "Change 'Since' to 'Because'",
+            "Add a comma after 'Since'",
+            "No error"
+          ],
+          "correctAnswer": "Add a comma after 'installed'",
+          "explanation": "The introductory dependent clause ('Since...') must be separated from the main clause by a comma."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the correct sentence:",
+          "options": [
+            "Unless we reduce emissions, climate change will accelerate.",
+            "Unless, we reduce emissions climate change will accelerate.",
+            "Climate change will accelerate, unless we reduce emissions.",
+            "Unless we reduce emissions climate change will accelerate."
+          ],
+          "correctAnswer": "Unless we reduce emissions, climate change will accelerate.",
+          "explanation": "Front placement requires a comma."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "What is wrong with this sentence? 'Even though he prepared for months he failed the driving test.'",
+          "options": [
+            "Change 'Even though' to 'Although'",
+            "Add a comma after 'months'",
+            "Change 'prepared' to 'preparing'",
+            "No error"
+          ],
+          "correctAnswer": "Add a comma after 'months'",
+          "explanation": "The dependent clause comes first, so a comma is mandatory before the main subject ('he')."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Select the properly punctuated sentence:",
+          "options": [
+            "I will not sign the contract, until I speak with my lawyer.",
+            "I will not sign the contract until I speak with my lawyer.",
+            "Until I speak with my lawyer I will not sign the contract.",
+            "I will not sign the contract until, I speak with my lawyer."
+          ],
+          "correctAnswer": "I will not sign the contract until I speak with my lawyer.",
+          "explanation": "Back placement of the dependent clause ('until...') requires no comma."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Find the error: 'As the population ages; healthcare costs will inevitably rise.'",
+          "options": [
+            "Change 'As' to 'Because'",
+            "Change the semicolon to a comma",
+            "Remove the semicolon",
+            "No error"
+          ],
+          "correctAnswer": "Change the semicolon to a comma",
+          "explanation": "A dependent clause cannot be separated from its main clause with a semicolon. It must be a comma."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Which conjunction best completes this sentence logically: '___ the instructions were unclear, many students completed the assignment incorrectly.'",
+          "options": [
+            "Although",
+            "Unless",
+            "Because",
+            "If"
+          ],
+          "correctAnswer": "Because",
+          "explanation": "Unclear instructions are the logical cause of incorrect assignments. 'Because' or 'Since' fits best."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "People should avoid eating sugar, because it causes health problems.",
+            "Because it causes health problems people should avoid eating sugar.",
+            "People should avoid eating sugar because it causes health problems.",
+            "Because, it causes health problems, people should avoid eating sugar."
+          ],
+          "correctAnswer": "People should avoid eating sugar because it causes health problems.",
+          "explanation": "Back placement of a 'because' clause takes no comma in formal academic writing."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'While the first experiment succeeded. The second one was a complete failure.'",
+          "options": [
+            "Change 'While' to 'Because'",
+            "Change the period to a comma and lowercase 'The'",
+            "Remove 'While'",
+            "No error"
+          ],
+          "correctAnswer": "Change the period to a comma and lowercase 'The'",
+          "explanation": "The first part is a dependent clause (fragment) because of 'While'. It must be joined to the main clause with a comma."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Select the correct punctuation for this sentence:",
+          "options": [
+            "Provided that you meet the requirements you will be accepted.",
+            "You will be accepted, provided that you meet the requirements.",
+            "Provided that you meet the requirements, you will be accepted.",
+            "You will be accepted provided that, you meet the requirements."
+          ],
+          "correctAnswer": "Provided that you meet the requirements, you will be accepted.",
+          "explanation": "'Provided that' acts like 'If'. Front placement requires a comma."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Find the error: 'If the government does not act soon, the environmental damage, will be irreversible.'",
+          "options": [
+            "Remove the comma after 'soon'",
+            "Remove the comma after 'damage'",
+            "Change 'does' to 'do'",
+            "No error"
+          ],
+          "correctAnswer": "Remove the comma after 'damage'",
+          "explanation": "You do not put a comma between the subject ('damage') and the verb ('will be') of the main clause."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Choose the most logical conjunction: '___ cars are convenient, they are a major source of air pollution.'",
+          "options": [
+            "Because",
+            "Since",
+            "While",
+            "Unless"
+          ],
+          "correctAnswer": "While",
+          "explanation": "'While' (meaning 'although') perfectly introduces the concession/contrast before stating the negative fact."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Identify the correct punctuation:",
+          "options": [
+            "She decided to study abroad, even though she didn't speak the language well.",
+            "She decided to study abroad even though she didn't speak the language well.",
+            "Even though, she didn't speak the language well she decided to study abroad.",
+            "She decided to study abroad even though, she didn't speak the language well."
+          ],
+          "correctAnswer": "She decided to study abroad even though she didn't speak the language well.",
+          "explanation": "Back placement of an 'even though' clause requires no comma."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Precision Test</h3><p>At the highest level, agreement errors are usually caused by 'hidden' subjects or specific academic formulas. Master these three 'Band 8' rules:</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>🔢 <b>The Number vs. A Number:</b> <i><b>The number</b> of students <b>is</b>...</i> (Focus on the total) vs. <i><b>A number</b> of students <b>are</b>...</i> (Meaning 'Many').</li><li>🧠 <b>Gerund Subjects:</b> <i><b>Implementing</b> new policies <b>is</b> difficult.</i> (The action of implementing is the singular subject).</li><li>📊 <b>Collective Data:</b> <i>None of the data <b>is</b>...</i> (Uncountable) vs. <i>None of the participants <b>were</b>...</i> (Countable plural).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which Task 1 overview is grammatically correct?",
+          "options": [
+            "The number of people living in cities have increased significantly.",
+            "The number of people living in cities is increased significantly.",
+            "The number of people living in cities has increased significantly.",
+            "A number of people living in cities has increased significantly."
+          ],
+          "correctAnswer": "The number of people living in cities has increased significantly.",
+          "explanation": "'The number of' is a singular subject. 'Has' matches this singular subject."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a Task 2 thesis: 'Providing free education for all citizens ___ a significant financial challenge.'",
+          "options": [
+            "represent",
+            "represents",
+            "representing",
+            "are representing"
+          ],
+          "correctAnswer": "represents",
+          "explanation": "The subject is the gerund phrase 'Providing free education,' which is singular."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'A number of recent studies suggests that exercise improves mental health.'",
+          "options": [
+            "A number",
+            "studies",
+            "suggests",
+            "improves"
+          ],
+          "correctAnswer": "suggests",
+          "explanation": "'A number of' acts like 'many' and requires a plural verb ('suggest')."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which sentence is best for a conclusion? 'None of the proposed solutions ___ without its drawbacks.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "'None' is traditionally singular in formal academic writing ('Not one')."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Correct the Task 1 data description: 'Neither the percentage of smokers nor the figures for alcohol consumption ___ changed.'",
+          "options": [
+            "has",
+            "have",
+            "is",
+            "are"
+          ],
+          "correctAnswer": "have",
+          "explanation": "With 'Neither/Nor', the verb agrees with the closer subject ('figures'), which is plural."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'Each of the factors that contribute to global warming ___ careful analysis.'",
+          "options": [
+            "require",
+            "requires",
+            "requiring",
+            "is require"
+          ],
+          "correctAnswer": "requires",
+          "explanation": "The main subject is 'Each', which is singular."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Increasing the retirement age, as well as reducing pension benefits, are unpopular among voters.'",
+          "options": [
+            "Increasing",
+            "reducing",
+            "are",
+            "unpopular"
+          ],
+          "correctAnswer": "are",
+          "explanation": "The subject is the singular gerund 'Increasing'. The parenthetical 'as well as' does not make the subject plural."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Which is correct for describing a budget? 'One-third of the total funds ___ allocated to research.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "were"
+          ],
+          "correctAnswer": "is",
+          "explanation": "With fractions/percentages, the verb agrees with the noun in the 'of' phrase. 'Funds' is usually plural, but 'total funds' as a single sum takes 'is'."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Identify the correct verb: 'Developing sustainable energy sources such as wind and solar power ___ essential for the future.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Subject is the gerund 'Developing' (Singular)."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The data obtained from the participants were carefully analyzed by the researchers.'",
+          "options": [
+            "obtained",
+            "participants",
+            "were",
+            "analyzed"
+          ],
+          "correctAnswer": "were",
+          "explanation": "In standard academic English, 'data' is often treated as singular ('was'). Using 'were' is becoming less common in most exam contexts."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the 'majority' rule? 'The majority of people ___ that the government should act.'",
+          "options": [
+            "believes",
+            "believe",
+            "believing",
+            "is believing"
+          ],
+          "correctAnswer": "believe",
+          "explanation": "When 'majority' refers to a group of individuals (countable), it takes a plural verb."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Statistics ___ a subject that many students find challenging.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "As a field of study, 'Statistics' is singular."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Either of the two options presented in the report are feasible.'",
+          "options": [
+            "Either",
+            "presented",
+            "are",
+            "feasible"
+          ],
+          "correctAnswer": "are",
+          "explanation": "'Either' used as a pronoun is always singular ('is')."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Which verb completes the Task 1 trend? 'The criteria for selecting candidates ___ changed over the last decade.'",
+          "options": [
+            "has",
+            "have",
+            "is",
+            "are"
+          ],
+          "correctAnswer": "have",
+          "explanation": "'Criteria' is the plural form of 'criterion'."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The media ___ a powerful role in shaping public opinion.'",
+          "options": [
+            "play",
+            "plays",
+            "playing",
+            "are playing"
+          ],
+          "correctAnswer": "plays",
+          "explanation": "While 'media' is plural (medium), it is almost always treated as a singular collective noun in modern English."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Every man, woman, and child are affected by the new policy.'",
+          "options": [
+            "Every",
+            "woman",
+            "are",
+            "affected"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Sentences starting with 'Every' or 'Each' take a singular verb, even with compound subjects."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which is correct for Task 1 map descriptions? 'To the left of the houses ___ a small park.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "were"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Inverted sentence. Subject is 'a small park' (singular)."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Three-quarters of the city ___ without electricity.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "was"
+          ],
+          "correctAnswer": "is",
+          "explanation": "The noun 'city' is singular, so the fraction of it is also singular."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The team of researchers have published their findings in a prestigious journal.'",
+          "options": [
+            "team",
+            "have",
+            "their",
+            "findings"
+          ],
+          "correctAnswer": "have",
+          "explanation": "Subject is 'team' (singular collective). Use 'has'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly balanced? 'Reading more books and watching less television ___ the key to success.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "am"
+          ],
+          "correctAnswer": "is",
+          "explanation": "When two gerunds combine to form a single complex idea/habit, they can take a singular verb."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'There ___ several important implications of this research.'",
+          "options": [
+            "is",
+            "are",
+            "has",
+            "be"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Agreement with the plural noun 'implications'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'None of the participants who took the survey was satisfied.'",
+          "options": [
+            "None",
+            "participants",
+            "was",
+            "satisfied"
+          ],
+          "correctAnswer": "was",
+          "explanation": "When 'none' refers to a plural countable noun ('participants'), the plural verb 'were' is standard in most IELTS/TOEFL contexts."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Which verb form is correct? 'The phenomena observed in the experiment ___ extremely rare.'",
+          "options": [
+            "is",
+            "are",
+            "was",
+            "be"
+          ],
+          "correctAnswer": "are",
+          "explanation": "'Phenomena' is the plural of 'phenomenon'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Fifty kilometers are a long distance to travel every day.'",
+          "options": [
+            "kilometers",
+            "are",
+            "distance",
+            "travel"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Distances are treated as singular units: 'is'."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Neither the students nor the professor ___ able to solve the problem.'",
+          "options": [
+            "was",
+            "were",
+            "is",
+            "Both A and C are possible depending on tense."
+          ],
+          "correctAnswer": "Both A and C are possible depending on tense.",
+          "explanation": "Verb agrees with the closer subject 'professor' (singular)."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Find the error: 'One of the most important aspects of the study are the methodology used.'",
+          "options": [
+            "One",
+            "aspects",
+            "are",
+            "used"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Subject is 'One' (singular). Use 'is'."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Ethics play a major role in modern business practices.'",
+          "options": [
+            "Ethics",
+            "play",
+            "role",
+            "practices"
+          ],
+          "correctAnswer": "play",
+          "explanation": "As a field of study or a concept, 'Ethics' is singular: 'plays'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The scissors ___ on the desk.'",
+          "options": [
+            "is",
+            "are",
+            "be",
+            "was"
+          ],
+          "correctAnswer": "are",
+          "explanation": "'Scissors' is a plural-only noun."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Collecting stamps ___ been his hobby for years.'",
+          "options": [
+            "has",
+            "have",
+            "is",
+            "are"
+          ],
+          "correctAnswer": "has",
+          "explanation": "Subject is the gerund 'Collecting' (singular)."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Why is Subject-Verb agreement vital for a Band 7.0+ score?",
+          "options": [
+            "It is a basic grammar rule that examiners expect to be perfect.",
+            "Errors in agreement are considered 'systemic' and lower the GRA score.",
+            "It shows control over both simple and complex sentences.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Subject-verb agreement is fundamental to grammatical accuracy in all levels of the IELTS/TOEFL rubrics."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1594 @@
+{
+  "topicId": "05_word_forms",
+  "topicName": "Word Forms",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Suffix Code</h3><p>You can often tell what a word <b>does</b> in a sentence just by looking at its ending (suffix). Mastering these 'codes' helps you choose the right word form every time.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Part of Speech</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Common Suffixes</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Noun</b> (Thing/Idea)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">-tion, -ment, -ness, -ity</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Educa<b>tion</b>, Enjoy<b>ment</b></td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Verb</b> (Action)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">-ate, -ify, -ize, -en</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Simpl<b>ify</b>, Real<b>ize</b></td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Adjective</b> (Describing)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">-able, -ive, -ous, -al</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Creat<b>ive</b>, Fam<b>ous</b></td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Adverb</b> (How?)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">-ly</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Quick<b>ly</b>, Happi<b>ly</b></td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which of these words is a noun?",
+          "options": [
+            "Educate",
+            "Education",
+            "Educational",
+            "Educationally"
+          ],
+          "correctAnswer": "Education",
+          "explanation": "The suffix '-tion' indicates a noun (a thing or concept)."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Identify the verb form: 'We need to ___ the process.'",
+          "options": [
+            "Simple",
+            "Simplicity",
+            "Simplify",
+            "Simply"
+          ],
+          "correctAnswer": "Simplify",
+          "explanation": "The suffix '-ify' is used to turn an adjective or noun into a verb (to make simple)."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which word is an adjective used for describing someone?",
+          "options": [
+            "Create",
+            "Creation",
+            "Creative",
+            "Creatively"
+          ],
+          "correctAnswer": "Creative",
+          "explanation": "The suffix '-ive' typically identifies an adjective."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct adverb: 'The car moved ___.'",
+          "options": [
+            "Slow",
+            "Slowness",
+            "Slowly",
+            "Slowing"
+          ],
+          "correctAnswer": "Slowly",
+          "explanation": "The suffix '-ly' turns an adjective into an adverb describing how an action is done."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Identify the noun suffix in 'Enjoyment':",
+          "options": [
+            "En-",
+            "Joy",
+            "-ment",
+            "-y"
+          ],
+          "correctAnswer": "-ment",
+          "explanation": "'-ment' is a common noun suffix used to turn verbs into nouns (Enjoy -> Enjoyment)."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Which word is a verb?",
+          "options": [
+            "Critic",
+            "Criticism",
+            "Critical",
+            "Criticize"
+          ],
+          "correctAnswer": "Criticize",
+          "explanation": "The suffix '-ize' (or '-ise') indicates a verb."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct noun: 'The ___ was very difficult.'",
+          "options": [
+            "Decide",
+            "Decision",
+            "Decisive",
+            "Decisively"
+          ],
+          "correctAnswer": "Decision",
+          "explanation": "'-ion/sion' forms a noun from the verb 'decide'."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which suffix makes a word an adjective meaning 'full of'?",
+          "options": [
+            "-ness",
+            "-ful",
+            "-ment",
+            "-ize"
+          ],
+          "correctAnswer": "-ful",
+          "explanation": "Examples include 'helpful,' 'beautiful,' and 'careful'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the adverb in: 'He completed the task successfully.'",
+          "options": [
+            "Completed",
+            "Task",
+            "Successfully",
+            "He"
+          ],
+          "correctAnswer": "Successfully",
+          "explanation": "Contains the '-ly' adverbial suffix."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which word is a noun showing a state or quality?",
+          "options": [
+            "Happy",
+            "Happily",
+            "Happiness",
+            "Unhappy"
+          ],
+          "correctAnswer": "Happiness",
+          "explanation": "The suffix '-ness' turns an adjective into a noun representing a state."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Complete the sentence with the correct verb: 'Please ___ your seatbelts.'",
+          "options": [
+            "Fast",
+            "Faster",
+            "Fasten",
+            "Fastness"
+          ],
+          "correctAnswer": "Fasten",
+          "explanation": "The suffix '-en' can turn an adjective into a verb (to make fast/tight)."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Identify the adjective: 'She gave a very ___ presentation.'",
+          "options": [
+            "Profession",
+            "Professional",
+            "Professionally",
+            "Professor"
+          ],
+          "correctAnswer": "Professional",
+          "explanation": "'-al' is a common adjective suffix."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Which of these is a noun?",
+          "options": [
+            "Active",
+            "Activate",
+            "Activity",
+            "Actively"
+          ],
+          "correctAnswer": "Activity",
+          "explanation": "'-ity' is a suffix used to form abstract nouns."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Choose the correct part of speech: 'Information' is a ___.",
+          "options": [
+            "Noun",
+            "Verb",
+            "Adjective",
+            "Adverb"
+          ],
+          "correctAnswer": "Noun",
+          "explanation": "The ending '-tion' marks it as a noun."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Which word is a verb meaning 'to make valid'?",
+          "options": [
+            "Valid",
+            "Validity",
+            "Validate",
+            "Validly"
+          ],
+          "correctAnswer": "Validate",
+          "explanation": "The suffix '-ate' often forms verbs."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Identify the adjective in: 'The movie was quite famous.'",
+          "options": [
+            "Movie",
+            "Quite",
+            "Famous",
+            "Was"
+          ],
+          "correctAnswer": "Famous",
+          "explanation": "The suffix '-ous' forms adjectives (full of fame)."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which word is an adverb?",
+          "options": [
+            "Quiet",
+            "Quieter",
+            "Quietly",
+            "Quietness"
+          ],
+          "correctAnswer": "Quietly",
+          "explanation": "Standard '-ly' adverb."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Select the noun: 'We made an ___ today.'",
+          "options": [
+            "Agree",
+            "Agreement",
+            "Agreeable",
+            "Agreeably"
+          ],
+          "correctAnswer": "Agreement",
+          "explanation": "'-ment' indicates a noun."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Identify the verb: 'You should ___ the data.'",
+          "options": [
+            "Analysis",
+            "Analytical",
+            "Analyze",
+            "Analytically"
+          ],
+          "correctAnswer": "Analyze",
+          "explanation": "'-yze' or '-ize' is the verb ending."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Which adjective means 'possible to do'?",
+          "options": [
+            "Action",
+            "Active",
+            "Actable",
+            "Actually"
+          ],
+          "correctAnswer": "Actable",
+          "explanation": "The suffix '-able' (or '-ible') means 'able to be' or 'possible'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which word is a noun referring to a person?",
+          "options": [
+            "Teach",
+            "Teacher",
+            "Teaching",
+            "Teachable"
+          ],
+          "correctAnswer": "Teacher",
+          "explanation": "The suffix '-er' or '-or' often refers to a person who performs an action."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct part of speech: 'Beauty' is a ___.",
+          "options": [
+            "Noun",
+            "Verb",
+            "Adjective",
+            "Adverb"
+          ],
+          "correctAnswer": "Noun",
+          "explanation": "It is an abstract noun (the concept of being beautiful)."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Identify the verb form: 'We want to ___ our business.'",
+          "options": [
+            "Modern",
+            "Modernize",
+            "Modernity",
+            "Modernly"
+          ],
+          "correctAnswer": "Modernize",
+          "explanation": "'-ize' is the verb suffix."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which word is an adjective?",
+          "options": [
+            "Natural",
+            "Nature",
+            "Naturally",
+            "Naturalize"
+          ],
+          "correctAnswer": "Natural",
+          "explanation": "'-al' forms an adjective from 'nature'."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct noun: 'The ___ of the building took years.'",
+          "options": [
+            "Construct",
+            "Construction",
+            "Constructive",
+            "Constructor"
+          ],
+          "correctAnswer": "Construction",
+          "explanation": "'-tion' describes the process or the result of constructing."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Which suffix turns 'quick' into 'quickly'?",
+          "options": [
+            "-ness",
+            "-ly",
+            "-ment",
+            "-ity"
+          ],
+          "correctAnswer": "-ly",
+          "explanation": "Turns adjective to adverb."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Identify the noun: 'The ___ of the internet is huge.'",
+          "options": [
+            "Important",
+            "Importantly",
+            "Importance",
+            "Import"
+          ],
+          "correctAnswer": "Importance",
+          "explanation": "'-ance' is a noun suffix."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which word is a verb?",
+          "options": [
+            "Wide",
+            "Widen",
+            "Widely",
+            "Width"
+          ],
+          "correctAnswer": "Widen",
+          "explanation": "'-en' turns the adjective 'wide' into a verb (to make wider)."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Select the adjective: 'The task was ___.'",
+          "options": [
+            "Possible",
+            "Possibility",
+            "Possibly",
+            "Possess"
+          ],
+          "correctAnswer": "Possible",
+          "explanation": "'-ible' is an adjective ending."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: What does '-tion' usually signify?",
+          "options": [
+            "An action verb",
+            "A describing word",
+            "A noun or concept",
+            "A way of doing something"
+          ],
+          "correctAnswer": "A noun or concept",
+          "explanation": "It is one of the most reliable noun markers in English."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: -ed vs. -ing Adjectives",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Feeling vs. The Cause</h3><p>English uses two different adjective endings to show where a feeling comes from. Choosing the wrong one changes the entire meaning of your sentence.</p><ul style=\"line-height: 1.8;\"><li>😊 <b>-ED (The Feeling/Receiver):</b> Describes how a person <i>feels</i> inside.<br><i>I am <b>interested</b> in art.</i> (I have the feeling).</li><li>📢 <b>-ING (The Cause/Source):</b> Describes the <i>thing</i> that creates the feeling.<br><i>Art is <b>interesting</b>.</i> (Art is the source).</li><li>❌ <b>L1 Trap:</b> <i>I am <b>boring</b>.</i> (Meaning: I am a dull person).<br>✅ <b>Correct:</b> <i>I am <b>bored</b>.</i> (Meaning: I feel bored right now).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly describes a student's feeling?",
+          "options": [
+            "The student was very exciting about the trip.",
+            "The student was very excited about the trip.",
+            "The trip was very excited for the student.",
+            "The student felt exciting."
+          ],
+          "correctAnswer": "The student was very excited about the trip.",
+          "explanation": "'-ed' describes the person's internal feeling/emotion."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct form to describe a movie: 'That documentary was really ___.'",
+          "options": [
+            "interested",
+            "interesting",
+            "interest",
+            "interestingly"
+          ],
+          "correctAnswer": "interesting",
+          "explanation": "The movie is the 'source' of the interest, so we use '-ing'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am very confusing by this math problem.'",
+          "options": [
+            "am",
+            "very",
+            "confusing",
+            "math problem"
+          ],
+          "correctAnswer": "confusing",
+          "explanation": "The person feels the emotion, so it should be 'confused'. The problem is 'confusing'."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'Working for ten hours is ___.'",
+          "options": [
+            "tired",
+            "tiring",
+            "tire",
+            "tiresome"
+          ],
+          "correctAnswer": "tiring",
+          "explanation": "The work is the 'source' that causes the fatigue."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'He is a very bored teacher; no one likes his class.'",
+          "options": [
+            "He is a very boring teacher.",
+            "He is a very boredly teacher.",
+            "He is a very bore teacher.",
+            "No error."
+          ],
+          "correctAnswer": "He is a very boring teacher.",
+          "explanation": "If his class is dull, the teacher is the 'source' (boring). 'Bored' would mean the teacher himself is tired of the class."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'We were ___ to hear the news.'",
+          "options": [
+            "shocking",
+            "shocked",
+            "shock",
+            "shocks"
+          ],
+          "correctAnswer": "shocked",
+          "explanation": "The people received the feeling of shock."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Identify the correct description of an experience: 'Skydiving was an ___ experience.'",
+          "options": [
+            "amazed",
+            "amazing",
+            "amaze",
+            "amazement"
+          ],
+          "correctAnswer": "amazing",
+          "explanation": "The experience is the 'source' of the wonder."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'I am so ___ with my new phone!'",
+          "options": [
+            "disappointing",
+            "disappointed",
+            "disappoint",
+            "disappoints"
+          ],
+          "correctAnswer": "disappointed",
+          "explanation": "Describes the person's feeling of disappointment."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'personality' description? 'She is a very ___ person.'",
+          "options": [
+            "fascinated",
+            "fascinating",
+            "fascinate",
+            "fascinates"
+          ],
+          "correctAnswer": "fascinating",
+          "explanation": "'-ing' describes the quality of the person that affects others."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The results of the test were quite surprised.'",
+          "options": [
+            "results",
+            "test",
+            "quite",
+            "surprised"
+          ],
+          "correctAnswer": "surprised",
+          "explanation": "The results are the 'source'. They should be 'surprising'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Select the correct form: 'The long flight was ___.'",
+          "options": [
+            "exhausted",
+            "exhausting",
+            "exhaust",
+            "exhaustion"
+          ],
+          "correctAnswer": "exhausting",
+          "explanation": "The flight is the cause of the tiredness."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the feeling: 'After the marathon, the runners were ___.'",
+          "options": [
+            "exhausting",
+            "exhausted",
+            "exhaust",
+            "exhausts"
+          ],
+          "correctAnswer": "exhausted",
+          "explanation": "Describes how the runners feel."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Choose the correct adjective: 'This book is so ___ that I can't put it down.'",
+          "options": [
+            "gripped",
+            "gripping",
+            "grip",
+            "grips"
+          ],
+          "correctAnswer": "gripping",
+          "explanation": "The book is the source of the excitement."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Public speaking makes me feel very frightening.'",
+          "options": [
+            "speaking",
+            "makes",
+            "feel",
+            "frightening"
+          ],
+          "correctAnswer": "frightening",
+          "explanation": "The speaker feels the emotion, so it should be 'frightened'."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The museum had many ___ artifacts.'",
+          "options": [
+            "interested",
+            "interesting",
+            "interest",
+            "interests"
+          ],
+          "correctAnswer": "interesting",
+          "explanation": "The artifacts are the source of interest."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The city was ___ by the storm.'",
+          "options": [
+            "terrifying",
+            "terrified",
+            "terrify",
+            "terrifies"
+          ],
+          "correctAnswer": "terrified",
+          "explanation": "Describes the emotional state of the people in the city."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I found his behavior very ___.'",
+          "options": [
+            "annoyed",
+            "annoying",
+            "annoy",
+            "annoys"
+          ],
+          "correctAnswer": "annoying",
+          "explanation": "The behavior is the source of the irritation."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Identify the feeling: 'He looked ___ when he heard the news.'",
+          "options": [
+            "puzzling",
+            "puzzled",
+            "puzzle",
+            "puzzles"
+          ],
+          "correctAnswer": "puzzled",
+          "explanation": "Describes the person's facial expression/feeling."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Which of these is correct? 'Science is a ___ subject.'",
+          "options": [
+            "fascinated",
+            "fascinating",
+            "fascinate",
+            "fascinates"
+          ],
+          "correctAnswer": "fascinating",
+          "explanation": "The subject is the source of fascination."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I was very annoying because the train was late.'",
+          "options": [
+            "was",
+            "annoying",
+            "because",
+            "late"
+          ],
+          "correctAnswer": "annoying",
+          "explanation": "The person feels the irritation, so it should be 'annoyed'."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Select the correct form: 'The speech was quite ___.'",
+          "options": [
+            "inspired",
+            "inspiring",
+            "inspire",
+            "inspiration"
+          ],
+          "correctAnswer": "inspiring",
+          "explanation": "The speech is the cause of the inspiration."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Identify the feeling: 'The children were ___ by the clown.'",
+          "options": [
+            "amusing",
+            "amused",
+            "amuse",
+            "amuses"
+          ],
+          "correctAnswer": "amused",
+          "explanation": "Describes the children's reaction/feeling."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct adjective: 'It was a very ___ situation.'",
+          "options": [
+            "embarrassed",
+            "embarrassing",
+            "embarrass",
+            "embarrassment"
+          ],
+          "correctAnswer": "embarrassing",
+          "explanation": "The situation is the cause of the feeling."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She was very satisfying with her exam results.'",
+          "options": [
+            "was",
+            "satisfying",
+            "with",
+            "results"
+          ],
+          "correctAnswer": "satisfying",
+          "explanation": "Should be 'satisfied' as it describes her feeling."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'Watching the sunset is ___.'",
+          "options": [
+            "relaxed",
+            "relaxing",
+            "relax",
+            "relaxes"
+          ],
+          "correctAnswer": "relaxing",
+          "explanation": "The activity is the cause of the relaxation."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The students felt ___ after the lecture.'",
+          "options": [
+            "confusing",
+            "confused",
+            "confuse",
+            "confusion"
+          ],
+          "correctAnswer": "confused",
+          "explanation": "Describes the students' internal state."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'His story was quite ___.'",
+          "options": [
+            "touched",
+            "touching",
+            "touch",
+            "touches"
+          ],
+          "correctAnswer": "touching",
+          "explanation": "The story is the source of the emotion."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Identify the feeling: 'I am ___ about my future career.'",
+          "options": [
+            "worrying",
+            "worried",
+            "worry",
+            "worries"
+          ],
+          "correctAnswer": "worried",
+          "explanation": "Describes the person's internal feeling."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Which of these is correct? 'The game was ___.'",
+          "options": [
+            "thrilled",
+            "thrilling",
+            "thrill",
+            "thrills"
+          ],
+          "correctAnswer": "thrilling",
+          "explanation": "The game is the cause of the excitement."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'I was ___ by his kindness.'",
+          "options": [
+            "overwhelming",
+            "overwhelmed",
+            "overwhelm",
+            "overwhelms"
+          ],
+          "correctAnswer": "overwhelmed",
+          "explanation": "Describes the person's feeling in response to an action."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Part-of-Speech Audit</h3><p>In complex sentences, you must ensure the word form matches the grammatical slot. A common error is using an adjective to modify a verb, or a noun where an adjective is required.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>Adjective vs. Adverb:</b> <i>He spoke <b>clear</b> (Error) about the <b>economic</b> (Correct) situation.</i> ➔ <b>clearly</b>.</li><li>📊 <b>Noun vs. Adjective:</b> <i>The <b>technology</b> (Error) progress was fast.</i> ➔ <b>technological</b> progress.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'The company's success was due to its innovate approach to marketing and its focus on customer satisfaction.'",
+          "options": [
+            "success",
+            "innovate",
+            "marketing",
+            "satisfaction"
+          ],
+          "correctAnswer": "innovate",
+          "explanation": "Before the noun 'approach,' we need the adjective 'innovative,' not the verb 'innovate'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The results of the study were ___ significant.'",
+          "options": [
+            "statistics",
+            "statistical",
+            "statistically",
+            "statistic"
+          ],
+          "correctAnswer": "statistically",
+          "explanation": "We need an adverb (statistically) to modify the adjective (significant)."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the error: 'He completed the assignment quick and efficiently, much to the surprise of his professor.'",
+          "options": [
+            "completed",
+            "quick",
+            "efficiently",
+            "surprise"
+          ],
+          "correctAnswer": "quick",
+          "explanation": "To maintain parallel structure with 'efficiently,' we need the adverb 'quickly'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct noun for this context: 'The ___ of the new policy caused much debate.'",
+          "options": [
+            "implement",
+            "implementing",
+            "implementation",
+            "implemented"
+          ],
+          "correctAnswer": "implementation",
+          "explanation": "After 'The,' we require a formal noun for the process."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The government made a politics decision that affected thousands of people.'",
+          "options": [
+            "government",
+            "politics",
+            "affected",
+            "thousands"
+          ],
+          "correctAnswer": "politics",
+          "explanation": "Before the noun 'decision,' we need the adjective 'political'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which version is correct? 'The team worked ___ to finish the project on time.'",
+          "options": [
+            "hard",
+            "hardly",
+            "hardness",
+            "hardened"
+          ],
+          "correctAnswer": "hard",
+          "explanation": "'Hard' is both an adjective and an adverb. 'Hardly' means 'almost not,' which changes the meaning entirely."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Her explanation was very confuse, and no one understood the main point.'",
+          "options": [
+            "explanation",
+            "very",
+            "confuse",
+            "understood"
+          ],
+          "correctAnswer": "confuse",
+          "explanation": "We need an adjective here. 'Confusing' describes the explanation; 'confused' would describe a person."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The manager gave a ___ speech at the meeting.'",
+          "options": [
+            "power",
+            "powerful",
+            "powerfully",
+            "powering"
+          ],
+          "correctAnswer": "powerful",
+          "explanation": "Adjective needed to describe the noun 'speech'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The children played happy in the park all afternoon.'",
+          "options": [
+            "children",
+            "played",
+            "happy",
+            "afternoon"
+          ],
+          "correctAnswer": "happy",
+          "explanation": "The word modifies the verb 'played,' so it must be the adverb 'happily'."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The ___ growth of the city has led to traffic problems.'",
+          "options": [
+            "rapid",
+            "rapidly",
+            "rapidity",
+            "rapidness"
+          ],
+          "correctAnswer": "rapid",
+          "explanation": "Adjective 'rapid' modifies the noun 'growth'."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'It is extreme important to check your work before submitting it.'",
+          "options": [
+            "extreme",
+            "important",
+            "check",
+            "submitting"
+          ],
+          "correctAnswer": "extreme",
+          "explanation": "We need an adverb (extremely) to modify the adjective (important)."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The ___ of the internet changed everything.'",
+          "options": [
+            "appear",
+            "appearance",
+            "apparent",
+            "apparently"
+          ],
+          "correctAnswer": "appearance",
+          "explanation": "Noun needed as the subject of the sentence."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report was high detailed and covered all aspects of the study.'",
+          "options": [
+            "report",
+            "high",
+            "detailed",
+            "aspects"
+          ],
+          "correctAnswer": "high",
+          "explanation": "Needs the adverb 'highly' to modify the adjective 'detailed'."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'She is a very ___ student.'",
+          "options": [
+            "intelligence",
+            "intelligent",
+            "intelligently",
+            "intellect"
+          ],
+          "correctAnswer": "intelligent",
+          "explanation": "Adjective needed to describe the noun 'student'."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The data was analyzed careful by the team of experts.'",
+          "options": [
+            "data",
+            "analyzed",
+            "careful",
+            "experts"
+          ],
+          "correctAnswer": "careful",
+          "explanation": "Needs the adverb 'carefully' to modify the verb 'analyzed'."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The ___ of the environment is a global concern.'",
+          "options": [
+            "protect",
+            "protection",
+            "protective",
+            "protectively"
+          ],
+          "correctAnswer": "protection",
+          "explanation": "Noun needed after 'The'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He spoke very quiet during the meeting.'",
+          "options": [
+            "spoke",
+            "very",
+            "quiet",
+            "meeting"
+          ],
+          "correctAnswer": "quiet",
+          "explanation": "Needs the adverb 'quietly' to describe the action of speaking."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The plan was ___ successful.'",
+          "options": [
+            "complete",
+            "completely",
+            "completion",
+            "completing"
+          ],
+          "correctAnswer": "completely",
+          "explanation": "Adverb needed to modify the adjective 'successful'."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The technology development in the last decade has been amazing.'",
+          "options": [
+            "technology",
+            "development",
+            "decade",
+            "amazing"
+          ],
+          "correctAnswer": "technology",
+          "explanation": "Needs the adjective 'technological' to modify the noun 'development'."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'We must ___ the security of the building.'",
+          "options": [
+            "strong",
+            "strength",
+            "strengthen",
+            "strongly"
+          ],
+          "correctAnswer": "strengthen",
+          "explanation": "Verb needed after the modal 'must'."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The weather changed sudden, and it began to rain.'",
+          "options": [
+            "weather",
+            "changed",
+            "sudden",
+            "began"
+          ],
+          "correctAnswer": "sudden",
+          "explanation": "Needs the adverb 'suddenly' to describe the change."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The ___ of the situation was clear.'",
+          "options": [
+            "serious",
+            "seriously",
+            "seriousness",
+            "seriosity"
+          ],
+          "correctAnswer": "seriousness",
+          "explanation": "Noun needed after 'The'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'He is a high qualified professional with years of experience.'",
+          "options": [
+            "high",
+            "qualified",
+            "professional",
+            "experience"
+          ],
+          "correctAnswer": "high",
+          "explanation": "Needs the adverb 'highly' to modify 'qualified'."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The ___ of the experiment were surprising.'",
+          "options": [
+            "find",
+            "finding",
+            "findings",
+            "found"
+          ],
+          "correctAnswer": "findings",
+          "explanation": "Plural noun needed as the subject."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She looked beautiful in her wedding dress.'",
+          "options": [
+            "looked",
+            "beautiful",
+            "wedding",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "'Look' is a linking verb here, so it correctly takes an adjective (beautiful)."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The project was ___ difficult.'",
+          "options": [
+            "relative",
+            "relatively",
+            "relativity",
+            "relation"
+          ],
+          "correctAnswer": "relatively",
+          "explanation": "Adverb needed to modify 'difficult'."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The manager handled the crisis professional.'",
+          "options": [
+            "manager",
+            "handled",
+            "crisis",
+            "professional"
+          ],
+          "correctAnswer": "professional",
+          "explanation": "Needs the adverb 'professionally' to describe the handling of the crisis."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'His ___ of the topic was impressive.'",
+          "options": [
+            "know",
+            "knowledge",
+            "knowledgeable",
+            "knowingly"
+          ],
+          "correctAnswer": "knowledge",
+          "explanation": "Noun needed to show what was impressive."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The city has undergone a huge industrialize process.'",
+          "options": [
+            "undergone",
+            "huge",
+            "industrialize",
+            "process"
+          ],
+          "correctAnswer": "industrialize",
+          "explanation": "Needs the adjective 'industrialization' (as a modifier) or 'industrial' to describe 'process'."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'The system works ___.'",
+          "options": [
+            "perfect",
+            "perfectly",
+            "perfection",
+            "perfected"
+          ],
+          "correctAnswer": "perfectly",
+          "explanation": "Adverb needed to modify the verb 'works'."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Paraphrase Power-Up</h3><p>High-scoring essays avoid repeating the prompt by 'shifting' word forms. Mastering the transformation between nouns, verbs, and adjectives allows you to rewrite data and arguments with variety.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>🔄 <b>The Task 1 Shift:</b> <i>'Prices rose <b>sharply</b>'</i> (Verb + Adverb) ➔ <i>'There was a <b>sharp rise</b>'</i> (Adjective + Noun).</li><li>🧠 <b>The Task 2 Shift:</b> <i>'This <b>benefits</b> society'</i> (Verb) ➔ <i>'This is <b>beneficial</b> for society'</i> (Adjective) ➔ <i>'This brings <b>benefits</b> to society'</i> (Noun).</li><li>🛑 <b>The Precision Trap:</b> Be careful with <i>Economic</i> (related to economy) vs. <i>Economical</i> (saving money/cheap).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Paraphrase the Task 1 trend: 'Sales increased significantly in 2010.'",
+          "options": [
+            "There was a significant increase in sales in 2010.",
+            "There was a significantly increase in sales in 2010.",
+            "Sales were a significant increase in 2010.",
+            "There was significant increasing in sales in 2010."
+          ],
+          "correctAnswer": "There was a significant increase in sales in 2010.",
+          "explanation": "Shifting from 'increased' (verb) and 'significantly' (adverb) to 'significant' (adjective) and 'increase' (noun) is a standard high-level paraphrase."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Which is the most formal academic form for a Task 2 thesis statement?",
+          "options": [
+            "It is important to analyze the data.",
+            "An analysis of the data is of great importance.",
+            "The data analysis is important.",
+            "Analyzing the data is important."
+          ],
+          "correctAnswer": "An analysis of the data is of great importance.",
+          "explanation": "Nominalization (turning 'analyze' into 'analysis') elevates the register of the sentence."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Choose the correct adjective for a global context: 'The country is facing an ___ crisis.'",
+          "options": [
+            "Economy",
+            "Economic",
+            "Economical",
+            "Economically"
+          ],
+          "correctAnswer": "Economic",
+          "explanation": "'Economic' refers to the economy of a country. 'Economical' means 'cheap' or 'saving money'."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Paraphrase: 'The new technology simplifies our daily tasks.'",
+          "options": [
+            "The new technology provides a simplification of our daily tasks.",
+            "The new technology is simple our daily tasks.",
+            "The new technology simply our daily tasks.",
+            "There is a simple of our daily tasks by the technology."
+          ],
+          "correctAnswer": "The new technology provides a simplification of our daily tasks.",
+          "explanation": "'Simplification' is the noun form of the verb 'simplify'."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report suggests that the project is not financial viable.'",
+          "options": [
+            "suggests",
+            "project",
+            "financial",
+            "viable"
+          ],
+          "correctAnswer": "financial",
+          "explanation": "We need the adverb 'financially' to modify the adjective 'viable'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Choose the best academic noun: 'The ___ of fossil fuels is a major environmental issue.'",
+          "options": [
+            "Consume",
+            "Consuming",
+            "Consumption",
+            "Consumptive"
+          ],
+          "correctAnswer": "Consumption",
+          "explanation": "Formal noun form for the act of using something."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Task 1 Paraphrase: 'The number of travelers fell dramatically.'",
+          "options": [
+            "There was a dramatic fall in the number of travelers.",
+            "There was a dramatically fall in the number of travelers.",
+            "A dramatic falling occurred in the number of travelers.",
+            "The number of travelers was a dramatic fall."
+          ],
+          "correctAnswer": "There was a dramatic fall in the number of travelers.",
+          "explanation": "Adjective 'dramatic' + Noun 'fall'."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Identify the correct adjective: 'The government needs to take ___ action.'",
+          "options": [
+            "Decide",
+            "Decision",
+            "Decisive",
+            "Decisively"
+          ],
+          "correctAnswer": "Decisive",
+          "explanation": "'Decisive' is the adjective meaning 'firm' or 'conclusive'."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which sentence uses the correct word form for 'History'?",
+          "options": [
+            "This is a historical building.",
+            "This is a historic building.",
+            "Both are correct but have different nuances.",
+            "This is a history building."
+          ],
+          "correctAnswer": "Both are correct but have different nuances.",
+          "explanation": "'Historic' means famous/important in history; 'historical' means related to the past."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Choose the best verb: 'We must ___ the importance of education.'",
+          "options": [
+            "Emphasis",
+            "Emphasize",
+            "Emphatic",
+            "Emphatically"
+          ],
+          "correctAnswer": "Emphasize",
+          "explanation": "Verb form needed after 'must'."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Task 2 Paraphrase: 'This policy helps the community.'",
+          "options": [
+            "This policy is helpful to the community.",
+            "This policy provides help for the community.",
+            "The community benefits from this policy.",
+            "All of the above are excellent paraphrases."
+          ],
+          "correctAnswer": "All of the above are excellent paraphrases.",
+          "explanation": "Changing verb to adjective, noun, or changing the subject entirely."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The data shows a relative small change in temperature.'",
+          "options": [
+            "shows",
+            "relative",
+            "small",
+            "temperature"
+          ],
+          "correctAnswer": "relative",
+          "explanation": "Needs the adverb 'relatively' to modify 'small'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which noun describes a 'result'?",
+          "options": [
+            "Effect",
+            "Affect",
+            "Effective",
+            "Effectively"
+          ],
+          "correctAnswer": "Effect",
+          "explanation": "'Effect' is usually the noun; 'Affect' is usually the verb."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Complete the academic sentence: 'There is a high ___ that the plan will succeed.'",
+          "options": [
+            "Probable",
+            "Probably",
+            "Probability",
+            "Probabilize"
+          ],
+          "correctAnswer": "Probability",
+          "explanation": "Noun form needed after 'a high'."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which adjective means 'effective and not wasteful'?",
+          "options": [
+            "Efficient",
+            "Efficiency",
+            "Efficiently",
+            "Effect"
+          ],
+          "correctAnswer": "Efficient",
+          "explanation": "Adjective form describing a system or person."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He worked persistent until the task was finished.'",
+          "options": [
+            "worked",
+            "persistent",
+            "until",
+            "finished"
+          ],
+          "correctAnswer": "persistent",
+          "explanation": "Needs the adverb 'persistently' to describe how he worked."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which noun represents the 'act of identifying'?",
+          "options": [
+            "Identify",
+            "Identification",
+            "Identifiable",
+            "Identified"
+          ],
+          "correctAnswer": "Identification",
+          "explanation": "The '-fication' suffix often turns verbs into nouns."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the best academic verb: 'We need to ___ our findings.'",
+          "options": [
+            "Summary",
+            "Summarize",
+            "Summative",
+            "Summarily"
+          ],
+          "correctAnswer": "Summarize",
+          "explanation": "Verb form of 'summary'."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Task 1 Paraphrase: 'The figures fluctuated widely.'",
+          "options": [
+            "There were wide fluctuations in the figures.",
+            "There were widely fluctuations in the figures.",
+            "The figures had wide fluctuation.",
+            "Fluctuations were wide in the figures."
+          ],
+          "correctAnswer": "There were wide fluctuations in the figures.",
+          "explanation": "Adjective 'wide' + Noun 'fluctuations'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The project was complete on time.'",
+          "options": [
+            "project",
+            "was",
+            "complete",
+            "on time"
+          ],
+          "correctAnswer": "complete",
+          "explanation": "In the passive voice, we need the past participle 'completed'."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Which adjective refers to 'the whole world'?",
+          "options": [
+            "Globe",
+            "Global",
+            "Globally",
+            "Globalize"
+          ],
+          "correctAnswer": "Global",
+          "explanation": "Adjective form of 'globe'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Choose the best noun for a conclusion: 'The ___ of the study is clear.'",
+          "options": [
+            "Signify",
+            "Significant",
+            "Significance",
+            "Significantly"
+          ],
+          "correctAnswer": "Significance",
+          "explanation": "Noun form of 'significant'."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The system is high efficient.'",
+          "options": [
+            "system",
+            "is",
+            "high",
+            "efficient"
+          ],
+          "correctAnswer": "high",
+          "explanation": "Needs the adverb 'highly' to modify 'efficient'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Paraphrase: 'It is possible to solve the problem.'",
+          "options": [
+            "There is a possibility of solving the problem.",
+            "The problem is solvable.",
+            "Solving the problem is possible.",
+            "All of the above are correct."
+          ],
+          "correctAnswer": "All of the above are correct.",
+          "explanation": "Different ways to use noun, adjective, and gerund forms."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Which verb means 'to make something better'?",
+          "options": [
+            "Improve",
+            "Improvement",
+            "Improving",
+            "Improved"
+          ],
+          "correctAnswer": "Improve",
+          "explanation": "The base verb form."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The manager acted responsible in the crisis.'",
+          "options": [
+            "manager",
+            "acted",
+            "responsible",
+            "crisis"
+          ],
+          "correctAnswer": "responsible",
+          "explanation": "Needs the adverb 'responsibly' to describe the action 'acted'."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which noun refers to 'how much people like something'?",
+          "options": [
+            "Popular",
+            "Popularity",
+            "Popularize",
+            "Popularly"
+          ],
+          "correctAnswer": "Popularity",
+          "explanation": "Noun form of 'popular'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the best academic adjective: 'This is a ___ issue.'",
+          "options": [
+            "Complexity",
+            "Complex",
+            "Complexly",
+            "Complexed"
+          ],
+          "correctAnswer": "Complex",
+          "explanation": "Standard adjective form."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Task 1 Paraphrase: 'The trend remained stable.'",
+          "options": [
+            "There was a stability in the trend.",
+            "The trend showed stability.",
+            "The trend was a stable one.",
+            "All of these use different word forms correctly."
+          ],
+          "correctAnswer": "All of these use different word forms correctly.",
+          "explanation": "Using noun and adjective variations for variety."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Why is word form shifting essential for Band 7.0+?",
+          "options": [
+            "It shows control over English syntax.",
+            "It allows for high-quality paraphrasing.",
+            "It increases the 'Lexical Resource' score.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Flexibility with word forms is a core marker of advanced English proficiency."
+        }
+      ]
+    }
+  ]
+}

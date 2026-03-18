@@ -1,0 +1,1594 @@
+{
+  "topicId": "19_nominalization",
+  "topicName": "Nominalization",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: Noun-Heavy Writing</h3><p><b>Nominalization</b> means turning a verb (action) or an adjective (description) into a <b>Noun</b> (thing). This allows you to pack more information into a single sentence and sounds highly objective.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Original Word</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Nominalized (Noun) Form</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Academic Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">investigate (Verb)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">investigation</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The <b>investigation</b> revealed new data.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">poor (Adjective)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">poverty</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Poverty</b> is a systemic issue.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">develop (Verb)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">development</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Urban <b>development</b> is accelerating.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "What is the nominalized (noun) form of the verb 'analyze'?",
+          "options": [
+            "analytical",
+            "analytically",
+            "analysis",
+            "analyzing"
+          ],
+          "correctAnswer": "analysis",
+          "explanation": "'Analysis' is the noun form. 'Analytical' is an adjective, and 'analytically' is an adverb."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "What is the noun form of the adjective 'different'?",
+          "options": [
+            "differ",
+            "difference",
+            "differently",
+            "differentiating"
+          ],
+          "correctAnswer": "difference",
+          "explanation": "'Difference' is the noun form, ending in the common noun suffix '-ence'."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which sentence uses nominalization?",
+          "options": [
+            "We decided to delay the project.",
+            "The decision to delay the project was controversial.",
+            "They will decide on the project's delay tomorrow.",
+            "Because we decided to delay, people were angry."
+          ],
+          "correctAnswer": "The decision to delay the project was controversial.",
+          "explanation": "The verb 'decided' was turned into the noun 'decision' to act as the subject of the sentence."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Choose the nominalized form of 'improve':",
+          "options": [
+            "improving",
+            "improved",
+            "improvement",
+            "improves"
+          ],
+          "correctAnswer": "improvement",
+          "explanation": "The suffix '-ment' often turns a verb into a noun."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Fill in the blank with a nominalized word: 'The ___ of the new policy caused public outrage.'",
+          "options": [
+            "implement",
+            "implementing",
+            "implementation",
+            "implemented"
+          ],
+          "correctAnswer": "implementation",
+          "explanation": "'Implementation' is the noun form required after the article 'The'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'assess'?",
+          "options": [
+            "assessing",
+            "assessment",
+            "assessable",
+            "assessed"
+          ],
+          "correctAnswer": "assessment",
+          "explanation": "'Assessment' is the standard noun form for the act of evaluating something."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Which of these is the most academic (noun-heavy) sentence?",
+          "options": [
+            "When the economy grew, employment increased.",
+            "Because the economy grew, employment went up.",
+            "Economic growth led to an increase in employment.",
+            "The economy grew, so employment increased."
+          ],
+          "correctAnswer": "Economic growth led to an increase in employment.",
+          "explanation": "This sentence turns the verb 'grew' into the noun 'growth', creating a formal, objective tone."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "What is the nominalized form of 'destroy'?",
+          "options": [
+            "destruct",
+            "destructive",
+            "destruction",
+            "destroying"
+          ],
+          "correctAnswer": "destruction",
+          "explanation": "'Destruction' is the noun form of the verb 'destroy'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'There is a high ___ of rain tomorrow.'",
+          "options": [
+            "probable",
+            "probably",
+            "probability",
+            "probing"
+          ],
+          "correctAnswer": "probability",
+          "explanation": "'Probability' is the noun form of the adjective 'probable', ending in '-ity'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'rely'?",
+          "options": [
+            "reliable",
+            "reliably",
+            "reliance",
+            "relying"
+          ],
+          "correctAnswer": "reliance",
+          "explanation": "'Reliance' is the noun form, often followed by the preposition 'on'."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which sentence uses nominalization effectively?",
+          "options": [
+            "The researchers discovered the cure quickly, which was surprising.",
+            "The quick discovery of the cure by the researchers was surprising.",
+            "It was surprising that the researchers discovered the cure quickly.",
+            "They discovered the cure quickly, and it surprised everyone."
+          ],
+          "correctAnswer": "The quick discovery of the cure by the researchers was surprising.",
+          "explanation": "The verb 'discovered' is turned into the noun 'discovery', and the adverb 'quickly' becomes the adjective 'quick'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'frequent'?",
+          "options": [
+            "frequently",
+            "frequency",
+            "frequented",
+            "frequenting"
+          ],
+          "correctAnswer": "frequency",
+          "explanation": "'Frequency' is the noun form indicating how often something occurs."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The government's ___ to the crisis was heavily criticized.'",
+          "options": [
+            "respond",
+            "response",
+            "responsive",
+            "responsibly"
+          ],
+          "correctAnswer": "response",
+          "explanation": "'Response' is the noun form of the verb 'respond'."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "What is the nominalized form of 'perform'?",
+          "options": [
+            "performing",
+            "performance",
+            "performer",
+            "performative"
+          ],
+          "correctAnswer": "performance",
+          "explanation": "While 'performer' is a person noun, 'performance' is the abstract noun for the action of performing."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Choose the most academic rewrite of: 'They failed to communicate, which caused the problem.'",
+          "options": [
+            "Because they failed to communicate, the problem happened.",
+            "Their failure to communicate caused the problem.",
+            "They failed to communicate and this caused the problem.",
+            "Failing to communicate is why the problem happened."
+          ],
+          "correctAnswer": "Their failure to communicate caused the problem.",
+          "explanation": "Turning the verb 'failed' into the noun 'failure' creates a dense, objective subject."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'accurate'?",
+          "options": [
+            "accurately",
+            "accuracy",
+            "accurateness",
+            "accurate"
+          ],
+          "correctAnswer": "accuracy",
+          "explanation": "'Accuracy' is the standard noun form of the adjective 'accurate'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Public ___ of the new law is generally low.'",
+          "options": [
+            "aware",
+            "awareness",
+            "awares",
+            "awaring"
+          ],
+          "correctAnswer": "awareness",
+          "explanation": "The suffix '-ness' turns the adjective 'aware' into the noun 'awareness'."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "What is the nominalized form of 'evaluate'?",
+          "options": [
+            "evaluating",
+            "evaluative",
+            "evaluation",
+            "evaluator"
+          ],
+          "correctAnswer": "evaluation",
+          "explanation": "'Evaluation' is the noun form for the process of evaluating something."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Which sentence is more appropriate for IELTS Task 2?",
+          "options": [
+            "People are consuming more fast food, and this causes obesity.",
+            "The increased consumption of fast food is a leading cause of obesity.",
+            "Because people consume more fast food, they get obese.",
+            "Consuming fast food more makes people obese."
+          ],
+          "correctAnswer": "The increased consumption of fast food is a leading cause of obesity.",
+          "explanation": "Nominalizing 'consume' into 'consumption' allows the writer to build a strong, academic subject phrase."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "What is the noun form of the verb 'reduce'?",
+          "options": [
+            "reducing",
+            "reduction",
+            "reductive",
+            "reduced"
+          ],
+          "correctAnswer": "reduction",
+          "explanation": "'Reduction' is the noun form of 'reduce'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The sudden ___ of the CEO shocked the industry.'",
+          "options": [
+            "resign",
+            "resigning",
+            "resignation",
+            "resigned"
+          ],
+          "correctAnswer": "resignation",
+          "explanation": "'Resignation' is the noun form of the verb 'resign'."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "What is the nominalized form of 'secure'?",
+          "options": [
+            "securely",
+            "security",
+            "securing",
+            "secured"
+          ],
+          "correctAnswer": "security",
+          "explanation": "'Security' is the noun form of the adjective/verb 'secure'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Which is the nominalized version of: 'The machine operates efficiently.'",
+          "options": [
+            "The machine's operation is efficient.",
+            "Operating the machine is efficient.",
+            "The machine operates with efficiency.",
+            "Both A and C use nominalization."
+          ],
+          "correctAnswer": "Both A and C use nominalization.",
+          "explanation": "Option A turns 'operates' into 'operation'. Option C turns 'efficiently' into 'efficiency'. Both are valid nominalizations."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'expand'?",
+          "options": [
+            "expanding",
+            "expansive",
+            "expansion",
+            "expands"
+          ],
+          "correctAnswer": "expansion",
+          "explanation": "'Expansion' is the noun form of 'expand'."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The committee requires a detailed ___ of the budget.'",
+          "options": [
+            "explain",
+            "explaining",
+            "explanatory",
+            "explanation"
+          ],
+          "correctAnswer": "explanation",
+          "explanation": "'Explanation' is the noun form of the verb 'explain'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "What is the nominalized form of the adjective 'complex'?",
+          "options": [
+            "complexly",
+            "complexity",
+            "complexing",
+            "complexion"
+          ],
+          "correctAnswer": "complexity",
+          "explanation": "'Complexity' refers to the state of being complex. ('Complexion' refers to skin tone)."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Which of these words is NOT a nominalized noun?",
+          "options": [
+            "Management",
+            "Beautiful",
+            "Creativity",
+            "Conclusion"
+          ],
+          "correctAnswer": "Beautiful",
+          "explanation": "'Beautiful' is an adjective. The others are nouns formed from verbs or adjectives (manage, creative, conclude)."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'intervene'?",
+          "options": [
+            "intervening",
+            "intervention",
+            "intervened",
+            "interventional"
+          ],
+          "correctAnswer": "intervention",
+          "explanation": "'Intervention' is the noun form of 'intervene'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Rewrite using nominalization: 'They reacted negatively.'",
+          "options": [
+            "Their reaction was negative.",
+            "They had a reacting that was negative.",
+            "Negatively, they reacted.",
+            "Because they reacted, it was negative."
+          ],
+          "correctAnswer": "Their reaction was negative.",
+          "explanation": "The verb 'reacted' becomes the noun 'reaction', and the adverb 'negatively' becomes the adjective 'negative'."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "What is the noun form of 'produce' (in the context of manufacturing)?",
+          "options": [
+            "producing",
+            "product",
+            "production",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "Both 'product' (the physical item) and 'production' (the process) are nominalized forms of 'produce'."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "Controlled Practice (The Clause Swap)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Because' Trap</h3><p>Avoid starting every sentence with 'Because' or 'When'. Instead, turn the whole clause into a <b>Noun Phrase</b>. This allows you to use stronger academic verbs.</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em><b>Because the population is aging rapidly</b>, hospitals are crowded.</em> (Adverb + Verb)</li><li>✅ <em><b>The rapid aging of the population</b> has crowded hospitals.</em> (Adjective + Noun)</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Rewrite this clause using nominalization: 'Because the temperatures dropped suddenly...'",
+          "options": [
+            "Because of the temperatures dropping suddenly...",
+            "The sudden drop in temperatures...",
+            "Suddenly dropping temperatures...",
+            "When the temperatures dropped suddenly..."
+          ],
+          "correctAnswer": "The sudden drop in temperatures...",
+          "explanation": "The adverb 'suddenly' becomes the adjective 'sudden', and the verb 'dropped' becomes the noun 'drop'."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which noun phrase best replaces 'The government decided quickly'?",
+          "options": [
+            "The quick decision by the government",
+            "The government deciding quickly",
+            "Because the government decided quickly",
+            "The quickness of the government deciding"
+          ],
+          "correctAnswer": "The quick decision by the government",
+          "explanation": "Verb -> Noun (decided -> decision), Adverb -> Adjective (quickly -> quick)."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Nominalize this sentence: 'They performed poorly on the test.'",
+          "options": [
+            "They had a poor performing on the test.",
+            "Because they performed poorly on the test.",
+            "Their poor performance on the test.",
+            "The poorly performance they had on the test."
+          ],
+          "correctAnswer": "Their poor performance on the test.",
+          "explanation": "The pronoun 'They' becomes the possessive 'Their', 'poorly' becomes 'poor', and 'performed' becomes 'performance'."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "What is the best academic rewrite for: 'Since the technology advanced rapidly, society changed.'",
+          "options": [
+            "Rapid technological advancement caused societal change.",
+            "Because technology advanced rapidly, society changed.",
+            "Technology advancing rapidly made society change.",
+            "The rapidly advance of technology changed society."
+          ],
+          "correctAnswer": "Rapid technological advancement caused societal change.",
+          "explanation": "This perfectly nominalizes the first clause into 'Rapid technological advancement' and uses it as the subject for the main verb."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Nominalize this phrase: 'People rely heavily on smartphones.'",
+          "options": [
+            "People heavily relying on smartphones.",
+            "Heavy reliance on smartphones.",
+            "Because people rely heavily on smartphones.",
+            "The heavily rely on smartphones."
+          ],
+          "correctAnswer": "Heavy reliance on smartphones.",
+          "explanation": "The adverb 'heavily' becomes the adjective 'heavy', and the verb 'rely' becomes the noun 'reliance'."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Which option fixes the weak subject? 'That the company failed surprised investors.'",
+          "options": [
+            "Because the company failed, investors were surprised.",
+            "The company's failure surprised investors.",
+            "The company failing surprised investors.",
+            "Investors were surprised by the company failing."
+          ],
+          "correctAnswer": "The company's failure surprised investors.",
+          "explanation": "The noun clause 'That the company failed' is awkward. Nominalizing it to 'The company's failure' is highly professional."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Convert to a noun phrase: 'The manager evaluated the employees strictly.'",
+          "options": [
+            "The manager's strict evaluation of the employees",
+            "The manager strictly evaluating the employees",
+            "Because the manager evaluated the employees strictly",
+            "The strictly evaluation of the employees by the manager"
+          ],
+          "correctAnswer": "The manager's strict evaluation of the employees",
+          "explanation": "Strictly -> strict. Evaluated -> evaluation. The subject becomes possessive (manager's)."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "What is the most academic way to write: 'If we invest more in education, crime will go down.'",
+          "options": [
+            "Because we invest more in education, crime goes down.",
+            "Increased investment in education can lead to a reduction in crime.",
+            "Investing more in education makes crime go down.",
+            "When we invest more in education, crime will drop."
+          ],
+          "correctAnswer": "Increased investment in education can lead to a reduction in crime.",
+          "explanation": "Both clauses are nominalized ('Increased investment...' and 'a reduction...'), creating a dense, Band 7.5+ sentence."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'They argued aggressively.'",
+          "options": [
+            "They had an aggressively argue.",
+            "Their aggressive arguing.",
+            "Their aggressive argument.",
+            "Because they argued aggressively."
+          ],
+          "correctAnswer": "Their aggressive argument.",
+          "explanation": "Verb -> Noun (argued -> argument). Adverb -> Adjective (aggressively -> aggressive)."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Rewrite using nominalization: 'The students were confused because the instructions were complicated.'",
+          "options": [
+            "Because the instructions were complicated, the students were confused.",
+            "The complicated instructions caused student confusion.",
+            "The instructions being complicated made the students confused.",
+            "The complicatedness of the instructions caused the students to be confused."
+          ],
+          "correctAnswer": "The complicated instructions caused student confusion.",
+          "explanation": "The adjective 'complicated' describes the noun 'instructions', and 'were confused' becomes the noun object 'confusion'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Convert the clause: 'Because the product is safe...'",
+          "options": [
+            "Because of the safe product...",
+            "The safety of the product...",
+            "The safely product...",
+            "Since the product is safe..."
+          ],
+          "correctAnswer": "The safety of the product...",
+          "explanation": "The adjective 'safe' is nominalized into the noun 'safety'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which of these is a nominalized noun phrase?",
+          "options": [
+            "The patient recovered fully.",
+            "The patient is recovering fully.",
+            "The full recovery of the patient.",
+            "Because the patient recovered fully."
+          ],
+          "correctAnswer": "The full recovery of the patient.",
+          "explanation": "It transforms the verb 'recovered' to the noun 'recovery' and the adverb 'fully' to the adjective 'full'."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'The committee approved the proposal unanimously.'",
+          "options": [
+            "The unanimous approval of the proposal by the committee.",
+            "The committee unanimously approving the proposal.",
+            "The unanimously approval by the committee.",
+            "Because the committee approved the proposal unanimously."
+          ],
+          "correctAnswer": "The unanimous approval of the proposal by the committee.",
+          "explanation": "Unanimously -> unanimous. Approved -> approval."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Rewrite to sound more formal: 'The economy grew slowly.'",
+          "options": [
+            "The slowly economy grew.",
+            "The slow growth of the economy.",
+            "The economy had a slowly growth.",
+            "Because the economy grew slowly."
+          ],
+          "correctAnswer": "The slow growth of the economy.",
+          "explanation": "Slowly -> slow. Grew -> growth."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Nominalize this cause: 'Because resources are scarce...'",
+          "options": [
+            "The scarcity of resources...",
+            "Because of scarce resources...",
+            "The scarce of resources...",
+            "Resource are scarce..."
+          ],
+          "correctAnswer": "The scarcity of resources...",
+          "explanation": "The adjective 'scarce' turns into the abstract noun 'scarcity'."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which sentence uses the most effective nominalization?",
+          "options": [
+            "The workers were dissatisfied, so they went on strike.",
+            "Worker dissatisfaction led to a strike.",
+            "Because workers were dissatisfied, a strike happened.",
+            "The dissatisfying of workers caused them to strike."
+          ],
+          "correctAnswer": "Worker dissatisfaction led to a strike.",
+          "explanation": "'Were dissatisfied' becomes 'Worker dissatisfaction', creating a clear, punchy subject."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Convert the clause: 'When the machine was invented...'",
+          "options": [
+            "The machine inventing...",
+            "The invention of the machine...",
+            "When they invented the machine...",
+            "The invented machine..."
+          ],
+          "correctAnswer": "The invention of the machine...",
+          "explanation": "The verb 'invented' becomes the noun 'invention', turning a time clause into a noun phrase."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'She contributed generously to the charity.'",
+          "options": [
+            "Her generous contribution to the charity.",
+            "Her generously contribution to the charity.",
+            "She made a generously contribute to the charity.",
+            "Because she contributed generously."
+          ],
+          "correctAnswer": "Her generous contribution to the charity.",
+          "explanation": "Generously -> generous. Contributed -> contribution."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Rewrite using nominalization: 'They failed to agree on the terms.'",
+          "options": [
+            "Their fail to agree on the terms.",
+            "Their failure to reach an agreement on the terms.",
+            "Because they failed to agree.",
+            "They did not agree on the terms."
+          ],
+          "correctAnswer": "Their failure to reach an agreement on the terms.",
+          "explanation": "Failed -> failure. Agree -> agreement. This is a double nominalization."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Nominalize the phrase: 'The population is expanding rapidly.'",
+          "options": [
+            "The rapidly expand of the population.",
+            "The rapid expansion of the population.",
+            "Because the population expands rapidly.",
+            "The rapidly expanding population."
+          ],
+          "correctAnswer": "The rapid expansion of the population.",
+          "explanation": "Rapidly -> rapid. Expanding -> expansion."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Convert this to a noun phrase: 'He explained the theory clearly.'",
+          "options": [
+            "His clearly explain of the theory.",
+            "His clear explanation of the theory.",
+            "Because he explained the theory clearly.",
+            "He gave a clearly explanation."
+          ],
+          "correctAnswer": "His clear explanation of the theory.",
+          "explanation": "Clearly -> clear. Explained -> explanation."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which sentence shows higher grammatical range?",
+          "options": [
+            "When people migrate from rural to urban areas, cities become crowded.",
+            "Rural-to-urban migration results in urban overcrowding.",
+            "Because people migrate to cities, they become crowded.",
+            "Cities are crowded because people migrate there."
+          ],
+          "correctAnswer": "Rural-to-urban migration results in urban overcrowding.",
+          "explanation": "Verb 'migrate' -> noun 'migration'. Adjective 'crowded' -> noun 'overcrowding'. This is Band 8.0 phrasing."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'The building was constructed poorly.'",
+          "options": [
+            "The poorly construction of the building.",
+            "The poor construction of the building.",
+            "Because the building constructed poorly.",
+            "The building's poor constructing."
+          ],
+          "correctAnswer": "The poor construction of the building.",
+          "explanation": "Poorly -> poor. Constructed -> construction."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Convert this 'if' clause to a noun phrase: 'If the project is managed properly...'",
+          "options": [
+            "Proper management of the project...",
+            "Properly managing the project...",
+            "The properly management of the project...",
+            "If they manage the project properly..."
+          ],
+          "correctAnswer": "Proper management of the project...",
+          "explanation": "Properly -> proper. Managed -> management."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'The species survived against all odds.'",
+          "options": [
+            "The survival of the species against all odds.",
+            "The species surviving against all odds.",
+            "Because the species survived.",
+            "The survive of the species."
+          ],
+          "correctAnswer": "The survival of the species against all odds.",
+          "explanation": "Survived -> survival."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "What is the best rewrite for: 'Because they lacked evidence, the case was dismissed.'",
+          "options": [
+            "The lack of evidence resulted in the dismissal of the case.",
+            "Because of lacking evidence, the case dismissed.",
+            "They lacked evidence, so the case was dismissed.",
+            "Lacking evidence caused the case to dismiss."
+          ],
+          "correctAnswer": "The lack of evidence resulted in the dismissal of the case.",
+          "explanation": "Verb 'lacked' -> Noun 'lack'. Verb 'dismissed' -> Noun 'dismissal'."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'The software integrates seamlessly with existing systems.'",
+          "options": [
+            "The seamlessly integration of the software...",
+            "The seamless integration of the software...",
+            "Because the software integrates seamlessly...",
+            "The software's seamlessly integrating..."
+          ],
+          "correctAnswer": "The seamless integration of the software...",
+          "explanation": "Seamlessly -> seamless. Integrates -> integration."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Convert to a noun phrase: 'The public protested fiercely.'",
+          "options": [
+            "The fiercely protest of the public.",
+            "The fierce protest by the public.",
+            "Because the public protested fiercely.",
+            "The public's fiercely protesting."
+          ],
+          "correctAnswer": "The fierce protest by the public.",
+          "explanation": "Fiercely -> fierce. Protested -> protest."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Rewrite this sentence academically: 'People are becoming more aware of environmental issues, which is good.'",
+          "options": [
+            "It is good that people are aware of environmental issues.",
+            "Growing public awareness of environmental issues is a positive development.",
+            "Because people are aware of the environment, it is good.",
+            "The becoming aware of environmental issues is good."
+          ],
+          "correctAnswer": "Growing public awareness of environmental issues is a positive development.",
+          "explanation": "This turns the adjective 'aware' into the noun 'awareness', creating a formal, mature subject."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Nominalize: 'They adapted successfully to the new climate.'",
+          "options": [
+            "Their successfully adapt to the new climate.",
+            "Their successful adaptation to the new climate.",
+            "Because they adapted successfully.",
+            "Their successful adapting."
+          ],
+          "correctAnswer": "Their successful adaptation to the new climate.",
+          "explanation": "Successfully -> successful. Adapted -> adaptation."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Error Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The 'Zombie Noun' Trap</h3><p>Nominalization is powerful, but using too many nouns makes your writing dead and difficult to read. If you combine a <b>weak verb</b> (make, do, have, give, perform) with a <b>heavy noun</b> (-tion, -ment), you should change it back into a strong verb!</p><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">🧟 <strong>Zombie Noun:</strong> <em>The committee <b>made a decision</b> to <b>perform an evaluation</b> of the policy.</em></li><li>✨ <strong>Strong Verb:</strong> <em>The committee <b>decided</b> to <b>evaluate</b> the policy.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Which of the following sentences suffers from over-nominalization?",
+          "options": [
+            "The researchers analyzed the new data.",
+            "The researchers performed an analysis of the new data.",
+            "Analyzing the data took the researchers three weeks.",
+            "The data was analyzed by the researchers."
+          ],
+          "correctAnswer": "The researchers performed an analysis of the new data.",
+          "explanation": "Using 'performed an analysis' is wordy and weak compared to the strong, direct verb 'analyzed'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Improve this sentence by removing the zombie noun: 'The government must make an intervention in the crisis.'",
+          "options": [
+            "The government must do an intervention in the crisis.",
+            "The government's intervention in the crisis is a must.",
+            "The government must intervene in the crisis.",
+            "An intervention must be made by the government."
+          ],
+          "correctAnswer": "The government must intervene in the crisis.",
+          "explanation": "Changing 'make an intervention' back to the strong verb 'intervene' makes the sentence clear and active."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the weak verb + noun combination: 'We need to conduct an investigation into the cause of the failure.'",
+          "options": [
+            "need to",
+            "conduct an investigation",
+            "cause of",
+            "the failure"
+          ],
+          "correctAnswer": "conduct an investigation",
+          "explanation": "'Conduct an investigation' is a classic zombie noun phrase. It should simply be 'investigate'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Which is the most direct, academic rewrite of: 'The manager gave an explanation of the new rules.'?",
+          "options": [
+            "The manager made an explaining of the new rules.",
+            "The explanation of the new rules was given by the manager.",
+            "The manager explained the new rules.",
+            "The manager provided an explanation for the new rules."
+          ],
+          "correctAnswer": "The manager explained the new rules.",
+          "explanation": "'Explained' is much stronger and more concise than 'gave an explanation'."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the over-nominalized phrase: 'The board reached the conclusion that the project should be canceled.'",
+          "options": [
+            "The board",
+            "reached the conclusion",
+            "that the project",
+            "should be canceled"
+          ],
+          "correctAnswer": "reached the conclusion",
+          "explanation": "'Reached the conclusion' is wordy. It is better to use the strong verb: 'The board concluded'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Fix the zombie noun: 'The students had an argument about the test results.'",
+          "options": [
+            "The students' argument was about the test results.",
+            "The students argued about the test results.",
+            "There was an argument by the students about the test results.",
+            "The students made an argument regarding the test results."
+          ],
+          "correctAnswer": "The students argued about the test results.",
+          "explanation": "Changing 'had an argument' to the active verb 'argued' removes the unnecessary weak verb 'had'."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Which sentence has the strongest verb?",
+          "options": [
+            "The new software provides a reduction in processing time.",
+            "The new software gives a reduction to processing time.",
+            "The new software reduces processing time.",
+            "A reduction in processing time is provided by the new software."
+          ],
+          "correctAnswer": "The new software reduces processing time.",
+          "explanation": "'Reduces' is a strong, direct verb that eliminates the clunky phrase 'provides a reduction'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'The team is in agreement with the proposal.'",
+          "options": [
+            "The team has agreement with the proposal.",
+            "The team makes an agreement with the proposal.",
+            "The team agrees with the proposal.",
+            "The proposal is in agreement with the team."
+          ],
+          "correctAnswer": "The team agrees with the proposal.",
+          "explanation": "Changing 'is in agreement' to 'agrees' removes the weak 'to be' verb and restores the action."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Find the weak verb phrase: 'The company will make an announcement about the merger tomorrow.'",
+          "options": [
+            "will make",
+            "make an announcement",
+            "about the merger",
+            "tomorrow"
+          ],
+          "correctAnswer": "make an announcement",
+          "explanation": "The phrase 'make an announcement' uses the weak verb 'make'. It should be the strong verb 'announce'."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which rewrite is the most concise and powerful?",
+          "options": [
+            "The scientists performed a measurement of the radiation levels.",
+            "The scientists took a measurement of the radiation levels.",
+            "The scientists measured the radiation levels.",
+            "The measurement of the radiation levels was performed by the scientists."
+          ],
+          "correctAnswer": "The scientists measured the radiation levels.",
+          "explanation": "Replacing 'performed a measurement' with 'measured' creates a clear, active sentence."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Fix the over-nominalization: 'We must take into consideration the environmental impact.'",
+          "options": [
+            "We must have consideration for the environmental impact.",
+            "We must give consideration to the environmental impact.",
+            "We must consider the environmental impact.",
+            "The environmental impact must be in our consideration."
+          ],
+          "correctAnswer": "We must consider the environmental impact.",
+          "explanation": "'Take into consideration' is a clunky zombie phrase. 'Consider' is the direct, academic verb."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Identify the zombie noun: 'The doctor performed an examination of the patient.'",
+          "options": [
+            "doctor",
+            "performed",
+            "examination",
+            "patient"
+          ],
+          "correctAnswer": "examination",
+          "explanation": "'Examination' is a verb ('examine') that has been turned into a noun and paired with the weak verb 'performed'."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Which of the following is the best way to state this idea?",
+          "options": [
+            "The committee held a discussion regarding the budget.",
+            "The committee had a discussion about the budget.",
+            "The committee discussed the budget.",
+            "A discussion about the budget was held by the committee."
+          ],
+          "correctAnswer": "The committee discussed the budget.",
+          "explanation": "'Discussed' is a strong verb. 'Held a discussion' dilutes the action of the sentence."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'The CEO gave his approval to the new marketing plan.'",
+          "options": [
+            "The CEO made an approval of the new marketing plan.",
+            "The CEO approved the new marketing plan.",
+            "The new marketing plan got approval from the CEO.",
+            "The giving of approval to the new marketing plan was done by the CEO."
+          ],
+          "correctAnswer": "The CEO approved the new marketing plan.",
+          "explanation": "Changing 'gave his approval' to 'approved' restores the action directly to the subject (the CEO)."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the weak verb + noun combination: 'The city council made a proposal to build a new park.'",
+          "options": [
+            "city council",
+            "made a proposal",
+            "to build",
+            "new park"
+          ],
+          "correctAnswer": "made a proposal",
+          "explanation": "'Made a proposal' should be simplified to the strong verb 'proposed'."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Which sentence is too noun-heavy?",
+          "options": [
+            "The researchers estimated the total cost.",
+            "The researchers provided an estimation of the total cost.",
+            "The researchers accurately estimated the total cost.",
+            "Estimating the total cost was the researchers' priority."
+          ],
+          "correctAnswer": "The researchers provided an estimation of the total cost.",
+          "explanation": "'Provided an estimation' is a weak, over-nominalized phrase compared to simply using the verb 'estimated'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Fix the zombie noun: 'The author makes an assumption that all readers understand economics.'",
+          "options": [
+            "The author has an assumption that all readers understand economics.",
+            "The author's assumption is that all readers understand economics.",
+            "The author assumes that all readers understand economics.",
+            "Making an assumption that all readers understand economics is done by the author."
+          ],
+          "correctAnswer": "The author assumes that all readers understand economics.",
+          "explanation": "Changing 'makes an assumption' to 'assumes' tightens the sentence and makes it more readable."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Identify the best rewrite for: 'The system experienced a failure due to the power outage.'",
+          "options": [
+            "The system had a failing due to the power outage.",
+            "The system failed due to the power outage.",
+            "The system was in a state of failure due to the power outage.",
+            "A failure was experienced by the system due to the power outage."
+          ],
+          "correctAnswer": "The system failed due to the power outage.",
+          "explanation": "'Experienced a failure' is an overly complex way of saying 'failed'."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Find the weak verb phrase: 'The factory put a halt to production.'",
+          "options": [
+            "The factory",
+            "put a halt to",
+            "production",
+            "No error"
+          ],
+          "correctAnswer": "put a halt to",
+          "explanation": "'Put a halt to' uses a weak verb ('put') and a noun ('halt'). It should be the strong verb 'halted'."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Which sentence uses verbs most effectively?",
+          "options": [
+            "The teacher gave an illustration of the concept.",
+            "The teacher made an illustration of the concept.",
+            "The teacher illustrated the concept.",
+            "The concept had an illustration by the teacher."
+          ],
+          "correctAnswer": "The teacher illustrated the concept.",
+          "explanation": "'Illustrated' is a powerful, direct verb that replaces the clunky 'gave an illustration'."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'The new regulations will cause a disruption to local businesses.'",
+          "options": [
+            "The new regulations will make a disruption to local businesses.",
+            "The new regulations will be a disruption to local businesses.",
+            "The new regulations will disrupt local businesses.",
+            "A disruption to local businesses will be caused by the new regulations."
+          ],
+          "correctAnswer": "The new regulations will disrupt local businesses.",
+          "explanation": "Changing 'cause a disruption' to the active verb 'disrupt' makes the sentence punchy and clear."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Identify the zombie noun phrase: 'The police conducted an interrogation of the suspect.'",
+          "options": [
+            "police",
+            "conducted an interrogation",
+            "of the suspect",
+            "No error"
+          ],
+          "correctAnswer": "conducted an interrogation",
+          "explanation": "The phrase 'conducted an interrogation' is a classic zombie noun structure. It should just be 'interrogated'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Which of these is the most academic, yet readable, sentence?",
+          "options": [
+            "The researchers had an intention to publish their findings.",
+            "The researchers made an intention to publish their findings.",
+            "The researchers intended to publish their findings.",
+            "The researchers were with intention to publish their findings."
+          ],
+          "correctAnswer": "The researchers intended to publish their findings.",
+          "explanation": "'Intended' restores the verb that was trapped inside the noun phrase 'had an intention'."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Fix the over-nominalization: 'The students expressed a preference for online classes.'",
+          "options": [
+            "The students had a preference for online classes.",
+            "The students preferred online classes.",
+            "The students gave their preference for online classes.",
+            "The preference of the students was for online classes."
+          ],
+          "correctAnswer": "The students preferred online classes.",
+          "explanation": "'Preferred' is much more direct and active than 'expressed a preference'."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Find the weak verb + noun combination: 'The organization will provide funding for the project.'",
+          "options": [
+            "The organization",
+            "will provide funding",
+            "for the project",
+            "No error"
+          ],
+          "correctAnswer": "will provide funding",
+          "explanation": "'Provide funding' can usually be simplified to the strong verb 'fund' (e.g., 'The organization will fund the project')."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which rewrite removes the zombie noun successfully?",
+          "options": [
+            "Original: They made an objection to the plan. -> Rewrite: They objected to the plan.",
+            "Original: They made an objection to the plan. -> Rewrite: They had an objection to the plan.",
+            "Original: They made an objection to the plan. -> Rewrite: Their objection to the plan was made.",
+            "Original: They made an objection to the plan. -> Rewrite: The plan received an objection from them."
+          ],
+          "correctAnswer": "Original: They made an objection to the plan. -> Rewrite: They objected to the plan.",
+          "explanation": "Turning 'made an objection' into the active verb 'objected' perfectly solves the problem."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Identify the over-nominalized sentence:",
+          "options": [
+            "The medicine reduces the patient's pain.",
+            "The medicine produces a reduction in the patient's pain.",
+            "The medicine successfully reduced the pain.",
+            "The pain was reduced by the medicine."
+          ],
+          "correctAnswer": "The medicine produces a reduction in the patient's pain.",
+          "explanation": "'Produces a reduction' is wordy and unnatural compared to simply using the verb 'reduces'."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'The engineers carried out a test on the new engine.'",
+          "options": [
+            "The engineers performed a test on the new engine.",
+            "The engineers made a test on the new engine.",
+            "The engineers tested the new engine.",
+            "A test on the new engine was carried out by the engineers."
+          ],
+          "correctAnswer": "The engineers tested the new engine.",
+          "explanation": "'Tested' is the strong, active verb that was hidden inside 'carried out a test'."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Find the weak verb phrase: 'The author puts an emphasis on the importance of education.'",
+          "options": [
+            "The author",
+            "puts an emphasis on",
+            "the importance",
+            "of education"
+          ],
+          "correctAnswer": "puts an emphasis on",
+          "explanation": "'Puts an emphasis on' should be simplified to the strong verb 'emphasizes'."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Which is the best way to write this for an academic essay?",
+          "options": [
+            "The government must place a restriction on sugar consumption.",
+            "The government must do a restriction on sugar consumption.",
+            "The government must restrict sugar consumption.",
+            "A restriction on sugar consumption must be placed by the government."
+          ],
+          "correctAnswer": "The government must restrict sugar consumption.",
+          "explanation": "Using 'restrict' as an active verb is much stronger and clearer than 'place a restriction on'."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: Lexical Density</h3><p>To hit a Band 7.5+, combine <b>Nominalization</b> with <b>Academic Verbs</b> (cause, lead to, result in, contribute to) and <b>Hedging</b>. This allows you to write dense, objective topic sentences and flawless Task 1 overviews.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <strong>Task 1:</strong> <em>The graph shows that prices fluctuated.</em> ➔ <em>The graph illustrates <b>a significant fluctuation in prices</b>.</em></li><li>🗣️ <strong>Task 2:</strong> <em>If the government invests in education, it helps the economy.</em> ➔ <em><b>Increased government investment in education</b> can stimulate <b>economic growth</b>.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which of the following is the best IELTS Task 1 overview sentence?",
+          "options": [
+            "Overall, it is clear that people consumed more meat and less bread.",
+            "Overall, there was a steady increase in meat consumption and a decline in bread consumption.",
+            "Overall, because people ate more meat, they ate less bread.",
+            "Overall, the consuming of meat went up while bread went down."
+          ],
+          "correctAnswer": "Overall, there was a steady increase in meat consumption and a decline in bread consumption.",
+          "explanation": "This perfectly uses nominalized phrases ('increase in meat consumption', 'decline in bread consumption') to create a dense, objective overview."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Improve this Task 2 thesis: 'Because people use smartphones too much, their mental health suffers.'",
+          "options": [
+            "The overusing of smartphones makes mental health suffer.",
+            "When people overuse smartphones, their mental health suffers.",
+            "Excessive smartphone usage can have a detrimental impact on mental health.",
+            "Mental health suffers because of people heavily using smartphones."
+          ],
+          "correctAnswer": "Excessive smartphone usage can have a detrimental impact on mental health.",
+          "explanation": "This transforms the 'because' clause into a nominalized subject ('Excessive smartphone usage') and combines it with a hedged, academic verb phrase ('can have a detrimental impact')."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Rewrite this Task 1 sentence using nominalization: 'The number of tourists visiting the island dropped suddenly.'",
+          "options": [
+            "Because tourists stopped visiting, the numbers dropped suddenly.",
+            "There was a sudden drop in the number of tourist visitations to the island.",
+            "There was a sudden drop in the number of tourists visiting the island.",
+            "The island experienced a suddenly dropping of tourists."
+          ],
+          "correctAnswer": "There was a sudden drop in the number of tourists visiting the island.",
+          "explanation": "The verb 'dropped' is nominalized to the noun 'drop', and the adverb 'suddenly' becomes the adjective 'sudden'."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which verb best connects these two nominalized phrases: 'The rapid expansion of urban areas ___ the destruction of wildlife habitats.'",
+          "options": [
+            "makes",
+            "does",
+            "has led to",
+            "happens because of"
+          ],
+          "correctAnswer": "has led to",
+          "explanation": "'Has led to' is a strong academic verb phrase indicating cause and effect between two dense noun phrases."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the sentence with the highest lexical density for an essay introduction:",
+          "options": [
+            "Many people are moving to cities, and this causes many problems.",
+            "The migration of populations to urban centers presents significant socioeconomic challenges.",
+            "Because people migrate to cities, there are significant challenges.",
+            "Moving to cities is a thing that causes problems for society."
+          ],
+          "correctAnswer": "The migration of populations to urban centers presents significant socioeconomic challenges.",
+          "explanation": "It nominalizes 'moving' to 'migration', elevates 'problems' to 'socioeconomic challenges', and uses the strong verb 'presents'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Find the error in this Task 1 sentence: 'The chart illustrates a gradually increase in the percentage of renewable energy.'",
+          "options": [
+            "Change 'illustrates' to 'shows'",
+            "Change 'gradually' to 'gradual'",
+            "Change 'increase' to 'increasing'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'gradually' to 'gradual'",
+          "explanation": "Because 'increase' is acting as a noun here, it must be modified by an adjective ('gradual'), not an adverb ('gradually')."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Which of these is the most academic way to state a solution in Task 2?",
+          "options": [
+            "Governments must implement stricter regulations to solve this issue.",
+            "If governments regulate strictly, the issue will be solved.",
+            "The implementation of stricter regulations by the government is a necessary step.",
+            "Because governments must implement regulations, the issue will be solved."
+          ],
+          "correctAnswer": "The implementation of stricter regulations by the government is a necessary step.",
+          "explanation": "Nominalizing 'implement' into 'The implementation' creates a formal, objective tone perfectly suited for a Band 7.0+ essay."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Improve this cause-and-effect sentence: 'Students are failing because the curriculum was changed recently.'",
+          "options": [
+            "The recent change to the curriculum has resulted in higher student failure rates.",
+            "Because they changed the curriculum recently, students are failing.",
+            "The recently changing of the curriculum made students fail.",
+            "Students failing is caused by the curriculum changing recently."
+          ],
+          "correctAnswer": "The recent change to the curriculum has resulted in higher student failure rates.",
+          "explanation": "The 'because' clause is converted into a nominalized subject ('The recent change...'), followed by an academic verb ('has resulted in')."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Select the best Task 1 sentence describing a fluctuation:",
+          "options": [
+            "The numbers went up and down significantly between 2005 and 2010.",
+            "There was a significant fluctuation in the numbers between 2005 and 2010.",
+            "The significantly fluctuation of the numbers happened between 2005 and 2010.",
+            "Because the numbers fluctuated, it was significant between 2005 and 2010."
+          ],
+          "correctAnswer": "There was a significant fluctuation in the numbers between 2005 and 2010.",
+          "explanation": "This uses 'There was a...' followed by a strong Adjective + Noun nominalization ('significant fluctuation')."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "How should you rewrite 'People are relying too much on fast food, which causes obesity'?",
+          "options": [
+            "Because people rely on fast food, they get obese.",
+            "The over-reliance on fast food is a major contributor to obesity.",
+            "Relying too much on fast food is making people obese.",
+            "The relying on fast food causes the obesity of people."
+          ],
+          "correctAnswer": "The over-reliance on fast food is a major contributor to obesity.",
+          "explanation": "This uses the advanced nominalization 'over-reliance' and a hedged academic verb phrase ('is a major contributor to')."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Find the grammatical error in this dense subject: 'The rapid destroying of the rainforests threatens global biodiversity.'",
+          "options": [
+            "Change 'rapid' to 'rapidly'",
+            "Change 'destroying' to 'destruction'",
+            "Change 'threatens' to 'threaten'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'destroying' to 'destruction'",
+          "explanation": "While 'destroying' is a gerund, 'destruction' is the true abstract noun and sounds much more academic in this collocation."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Which of these pairs demonstrates the best verb-to-noun shift for Task 1?",
+          "options": [
+            "The price fell sharply -> The sharp falling of the price",
+            "The price fell sharply -> A sharp fall in the price",
+            "The price fell sharply -> The sharply fall in the price",
+            "The price fell sharply -> The price had a sharply fall"
+          ],
+          "correctAnswer": "The price fell sharply -> A sharp fall in the price",
+          "explanation": "Adverb + Verb ('fell sharply') perfectly translates to Adjective + Noun ('sharp fall')."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Identify the most sophisticated Task 2 topic sentence:",
+          "options": [
+            "If machines replace human workers, unemployment will go up.",
+            "The replacement of human workers by automation could trigger widespread unemployment.",
+            "Because automation replaces humans, unemployment happens.",
+            "Machines replacing human workers makes unemployment rise."
+          ],
+          "correctAnswer": "The replacement of human workers by automation could trigger widespread unemployment.",
+          "explanation": "This sentence uses nominalization ('The replacement...'), advanced vocabulary ('automation', 'trigger'), and hedging ('could')."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'The government funded the project generously, and it succeeded.'",
+          "options": [
+            "Because the government funded the project generously, it succeeded.",
+            "Generous government funding was instrumental to the project's success.",
+            "The generously funding by the government made the project succeed.",
+            "The success of the project was because of generous government fund."
+          ],
+          "correctAnswer": "Generous government funding was instrumental to the project's success.",
+          "explanation": "This turns the entire first clause into a dense noun phrase ('Generous government funding') and nominalizes the result ('project's success')."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly matches the subject and verb?",
+          "options": [
+            "The constant exposure to violent media have negative effects.",
+            "The constant exposure to violent media has negative effects.",
+            "The constantly exposure to violent media have negative effects.",
+            "Constant exposing to violent media are negative."
+          ],
+          "correctAnswer": "The constant exposure to violent media has negative effects.",
+          "explanation": "The head noun of the subject is 'exposure' (singular), so the verb must be 'has'. 'Constant' is the correct adjective."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "What is the most academic rewrite of 'They failed to manage the crisis properly'?",
+          "options": [
+            "Their fail to manage the crisis properly.",
+            "Because they failed to properly manage the crisis.",
+            "Their improper management of the crisis.",
+            "The improperly management of the crisis by them."
+          ],
+          "correctAnswer": "Their improper management of the crisis.",
+          "explanation": "Adverb 'properly' flips to the negative adjective 'improper', and verb 'manage' becomes noun 'management'."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "In Task 1, how do you fix 'The consumption of water rose steady'? ",
+          "options": [
+            "Change 'consumption' to 'consuming'",
+            "Change 'rose' to 'rise'",
+            "Change 'steady' to 'steadily'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'steady' to 'steadily'",
+          "explanation": "Because 'rose' is an active verb here, it must be modified by an adverb ('steadily')."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Which sentence uses an 'abstract noun' most effectively for an essay conclusion?",
+          "options": [
+            "To conclude, it is important to preserve historical sites.",
+            "In conclusion, the preservation of historical sites is of paramount importance.",
+            "To conclude, preserving historical sites is very important.",
+            "In conclusion, because we must preserve historical sites, it is important."
+          ],
+          "correctAnswer": "In conclusion, the preservation of historical sites is of paramount importance.",
+          "explanation": "Nominalizing 'preserve' to 'preservation' elevates the tone to a highly formal academic level."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the poorly constructed nominalization:",
+          "options": [
+            "The widespread availability of the internet...",
+            "The rapid industrialization of the country...",
+            "The significantly improvement of the infrastructure...",
+            "The sudden collapse of the market..."
+          ],
+          "correctAnswer": "The significantly improvement of the infrastructure...",
+          "explanation": "'Improvement' is a noun, so it must be modified by the adjective 'significant', not the adverb 'significantly'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'Many species are going extinct because humans are expanding their territories.'",
+          "options": [
+            "Because humans are expanding their territories, many species are going extinct.",
+            "Human territorial expansion is a primary driver of species extinction.",
+            "The human expanding of territories causes species to go extinct.",
+            "Species extinction happens because of humans expanding territories."
+          ],
+          "correctAnswer": "Human territorial expansion is a primary driver of species extinction.",
+          "explanation": "This perfectly nominalizes both the cause ('Human territorial expansion') and the effect ('species extinction')."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Which of these is the most concise way to express a trend?",
+          "options": [
+            "The data shows that there was a decline that was gradual in sales.",
+            "The data shows a gradual decline in sales.",
+            "The data shows that sales declined gradually.",
+            "Both B and C are excellent academic choices."
+          ],
+          "correctAnswer": "Both B and C are excellent academic choices.",
+          "explanation": "Option B uses Adjective + Noun nominalization. Option C uses Verb + Adverb. Both demonstrate high Grammatical Range."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Find the error in this complex subject: 'The frequent delays in the public transport system is causing frustration.'",
+          "options": [
+            "Change 'frequent' to 'frequently'",
+            "Change 'delays' to 'delay'",
+            "Change 'is' to 'are'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'is' to 'are'",
+          "explanation": "The head noun of the subject phrase is 'delays' (plural). Therefore, the verb must be 'are', regardless of the prepositional phrases that follow."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Which noun phrase best summarizes: 'The way the company distributes its resources is unequal'?",
+          "options": [
+            "The unequally distribution of resources by the company...",
+            "The unequal resource distribution within the company...",
+            "The company's unequal distributing of resources...",
+            "Because the company distributes resources unequally..."
+          ],
+          "correctAnswer": "The unequal resource distribution within the company...",
+          "explanation": "This creates a dense, grammatically correct noun phrase using an adjective ('unequal') to modify the compound noun ('resource distribution')."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "What is the most academic rewrite of 'They rely too much on fossil fuels'?",
+          "options": [
+            "They have an over-relying on fossil fuels.",
+            "Their over-reliance on fossil fuels.",
+            "Because they rely on fossil fuels too much.",
+            "The relying too much on fossil fuels."
+          ],
+          "correctAnswer": "Their over-reliance on fossil fuels.",
+          "explanation": "'Over-reliance' is a highly advanced nominalization that compresses 'rely too much' into a single noun."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Choose the best academic verb to link these nominalized phrases: 'The introduction of new farming techniques ___ a massive increase in crop yields.'",
+          "options": [
+            "made",
+            "resulted in",
+            "did",
+            "happened to"
+          ],
+          "correctAnswer": "resulted in",
+          "explanation": "When linking a nominalized cause to a nominalized effect, 'resulted in', 'led to', or 'contributed to' are the best academic choices."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Fix the mixed structure: 'The decline in poverty and people are living longer are positive trends.'",
+          "options": [
+            "The decline in poverty and increased life expectancy are positive trends.",
+            "Because poverty declined and people live longer, it is a positive trend.",
+            "The declining of poverty and people living longer are positive trends.",
+            "The decline in poverty and people's longer living are positive trends."
+          ],
+          "correctAnswer": "The decline in poverty and increased life expectancy are positive trends.",
+          "explanation": "This restores parallel structure by using two nominalized noun phrases ('decline in poverty' and 'increased life expectancy')."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which of these is an example of 'over-nominalization' (a zombie sentence) that should be avoided?",
+          "options": [
+            "The government's implementation of the policy was successful.",
+            "The successful implementation of the policy improved the economy.",
+            "The government made the implementation of the policy a success.",
+            "The policy was implemented successfully."
+          ],
+          "correctAnswer": "The government made the implementation of the policy a success.",
+          "explanation": "Using 'made the implementation of' is wordy and weak. The other options are much more direct."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Improve this Task 2 argument: 'When taxes are high, businesses cannot expand.'",
+          "options": [
+            "High taxation can severely hinder business expansion.",
+            "Because taxes are high, the expansion of businesses cannot happen.",
+            "The highness of taxes stops business from expanding.",
+            "When taxes are high, the expansion of businesses is stopped."
+          ],
+          "correctAnswer": "High taxation can severely hinder business expansion.",
+          "explanation": "This perfectly nominalizes 'taxes are high' to 'High taxation', and 'businesses cannot expand' to 'hinder business expansion'."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the correct punctuation for this nominalized subject:",
+          "options": [
+            "The prolonged exposure, to ultraviolet radiation can cause skin cancer.",
+            "The prolonged exposure to ultraviolet radiation, can cause skin cancer.",
+            "The prolonged exposure to ultraviolet radiation can cause skin cancer.",
+            "The prolonged exposure to, ultraviolet radiation can cause skin cancer."
+          ],
+          "correctAnswer": "The prolonged exposure to ultraviolet radiation can cause skin cancer.",
+          "explanation": "Never put a comma between a long noun phrase subject and its main verb ('can cause')."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "What is the primary benefit of using nominalization in the IELTS/TOEFL writing exams?",
+          "options": [
+            "It makes the essay much longer to hit the word count.",
+            "It hides grammatical mistakes.",
+            "It allows the writer to pack complex ideas into dense, objective, and highly formal sentences.",
+            "It forces the examiner to read more slowly."
+          ],
+          "correctAnswer": "It allows the writer to pack complex ideas into dense, objective, and highly formal sentences.",
+          "explanation": "Lexical density and an objective tone are key requirements for achieving a Band 7.0 or higher."
+        }
+      ]
+    }
+  ]
+}

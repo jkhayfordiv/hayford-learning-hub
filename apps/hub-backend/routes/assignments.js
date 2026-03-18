@@ -128,12 +128,17 @@ router.post('/', requireTeacher, async (req, res) => {
 
       let count = 0;
       for (const student of students) {
-        await connection.query(
-          `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-          [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, instructions || null, due_date || null]
-        );
-        count++;
+        try {
+          await connection.query(
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+             ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, instructions || null, due_date || null]
+          );
+          count++;
+        } catch (dupError) {
+          console.warn('Duplicate assignment skipped for student', student.id, dupError.message);
+        }
       }
       
       connection.release();
@@ -154,7 +159,7 @@ router.get('/my-tasks', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at, a.ai_feedback,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name
        FROM assigned_tasks a
@@ -177,22 +182,57 @@ router.get('/my-tasks', auth, async (req, res) => {
 // @desc    Get all tasks assigned by the logged-in teacher
 // @access  Private (Teacher/Admin only)
 router.get('/', requireTeacher, async (req, res) => {
-  const teacher_id = req.user.id;
+  const actor = req.user;
+  const teacher_id = actor.id;
+  const role = actor.role;
+  const institution_id = actor.institution_id;
 
   try {
     const connection = await pool.getConnection();
-    const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
-              m.module_name, m.module_type,
-              u.first_name as student_first_name, u.last_name as student_last_name
-       FROM assigned_tasks a
-       JOIN learning_modules m ON a.module_id = m.id
-       JOIN users u ON a.student_id = u.id
-       WHERE a.teacher_id = $1
-       ORDER BY a.created_at DESC`,
-      [teacher_id]
-    );
+    
+    let query, params;
+    
+    if (role === 'super_admin') {
+      // SuperAdmin: see all assignments
+      query = `
+        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+               m.module_name, m.module_type,
+               u.first_name as student_first_name, u.last_name as student_last_name
+        FROM assigned_tasks a
+        JOIN learning_modules m ON a.module_id = m.id
+        LEFT JOIN users u ON a.student_id = u.id
+        ORDER BY a.created_at DESC
+      `;
+      params = [];
+    } else if (role === 'admin' && institution_id) {
+      // Admin: see all assignments in their institution
+      query = `
+        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+               m.module_name, m.module_type,
+               u.first_name as student_first_name, u.last_name as student_last_name
+        FROM assigned_tasks a
+        JOIN learning_modules m ON a.module_id = m.id
+        JOIN users u ON a.student_id = u.id
+        WHERE u.institution_id = $1
+        ORDER BY a.created_at DESC
+      `;
+      params = [institution_id];
+    } else {
+      // Teacher: see own assignments only
+      query = `
+        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+               m.module_name, m.module_type,
+               u.first_name as student_first_name, u.last_name as student_last_name
+        FROM assigned_tasks a
+        JOIN learning_modules m ON a.module_id = m.id
+        JOIN users u ON a.student_id = u.id
+        WHERE a.teacher_id = $1
+        ORDER BY a.created_at DESC
+      `;
+      params = [teacher_id];
+    }
 
+    const [tasks] = await connection.query(query, params);
     connection.release();
     res.json(tasks);
   } catch (error) {

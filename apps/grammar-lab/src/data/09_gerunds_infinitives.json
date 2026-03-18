@@ -1,0 +1,1594 @@
+{
+  "topicId": "09_gerunds_infinitives",
+  "topicName": "Gerunds vs. Infinitives",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Verb Partner Rule</h3><p>In English, when two verbs follow each other, the second verb must take a specific form: the <b>Gerund</b> (-ing) or the <b>Infinitive</b> (to + verb). This depends entirely on the first verb.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Pattern</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Common Verbs</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Verb + Gerund</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">enjoy, finish, avoid, suggest, mind</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">I enjoy <b>reading</b>.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Verb + Infinitive</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">want, decide, hope, plan, promise</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">I want <b>to go</b> home.</td></tr></table><p style=\"margin-top: 10px;\">💡 <b>Preposition Tip:</b> After any preposition (in, on, at, about, of), you <b>always</b> use the Gerund form.</p></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which sentence uses the correct verb pattern for 'decide'?",
+          "options": [
+            "We decided going to the park.",
+            "We decided to go to the park.",
+            "We decided go to the park.",
+            "We decided to going to the park."
+          ],
+          "correctAnswer": "We decided to go to the park.",
+          "explanation": "'Decide' is always followed by the to-infinitive."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct form for 'enjoy': 'I really enjoy ___ in my free time.'",
+          "options": [
+            "to paint",
+            "painting",
+            "paint",
+            "to painting"
+          ],
+          "correctAnswer": "painting",
+          "explanation": "'Enjoy' is a verb that must be followed by a gerund (-ing)."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the correct pattern for a preposition: 'I am thinking about ___ a new car.'",
+          "options": [
+            "to buy",
+            "buying",
+            "buy",
+            "to buying"
+          ],
+          "correctAnswer": "buying",
+          "explanation": "After the preposition 'about,' the gerund (-ing) form is mandatory."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'She promised ___ me with my homework.'",
+          "options": [
+            "helping",
+            "to help",
+            "help",
+            "to helping"
+          ],
+          "correctAnswer": "to help",
+          "explanation": "'Promise' is an infinitive-taking verb."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which of these verbs takes a Gerund?",
+          "options": [
+            "Avoid",
+            "Want",
+            "Hope",
+            "Decide"
+          ],
+          "correctAnswer": "Avoid",
+          "explanation": "You avoid 'doing' something, while you want/hope/decide 'to do' something."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He hopes finishing his project by tomorrow.'",
+          "options": [
+            "hopes",
+            "finishing",
+            "by",
+            "tomorrow"
+          ],
+          "correctAnswer": "finishing",
+          "explanation": "It should be 'hopes to finish' because 'hope' requires an infinitive."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'I don't mind ___ late tonight.'",
+          "options": [
+            "working",
+            "to work",
+            "work",
+            "to working"
+          ],
+          "correctAnswer": "working",
+          "explanation": "'Mind' (in a negative or question) is followed by a gerund."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I am looking forward to ___ you.'",
+          "options": [
+            "see",
+            "seeing",
+            "to see",
+            "seen"
+          ],
+          "correctAnswer": "seeing",
+          "explanation": "In this phrase, 'to' is a preposition, not part of an infinitive, so it must be followed by the gerund 'seeing'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the infinitive: 'It is important to study hard for the exam.'",
+          "options": [
+            "important",
+            "to study",
+            "hard",
+            "for"
+          ],
+          "correctAnswer": "to study",
+          "explanation": "'To study' is the infinitive form following the adjective 'important'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'He suggested ___ a break.'",
+          "options": [
+            "taking",
+            "to take",
+            "take",
+            "to taking"
+          ],
+          "correctAnswer": "taking",
+          "explanation": "'Suggest' is followed by a gerund."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "I want to going home.",
+            "I want go home.",
+            "I want to go home.",
+            "I wanting to go home."
+          ],
+          "correctAnswer": "I want to go home.",
+          "explanation": "'Want' requires a simple to-infinitive."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Complete: 'They finished ___ the house yesterday.'",
+          "options": [
+            "painting",
+            "to paint",
+            "paint",
+            "painted"
+          ],
+          "correctAnswer": "painting",
+          "explanation": "'Finish' is followed by a gerund."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She learned how playing the piano when she was young.'",
+          "options": [
+            "learned",
+            "how",
+            "playing",
+            "was"
+          ],
+          "correctAnswer": "playing",
+          "explanation": "It should be 'how to play' (Infinitive after 'how/what/where')."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which is correct for a plan? 'We plan ___ a new business next year.'",
+          "options": [
+            "starting",
+            "to start",
+            "start",
+            "starts"
+          ],
+          "correctAnswer": "to start",
+          "explanation": "'Plan' requires an infinitive."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I'm interested in ___ more about history.'",
+          "options": [
+            "learn",
+            "learning",
+            "to learn",
+            "to learning"
+          ],
+          "correctAnswer": "learning",
+          "explanation": "After the preposition 'in,' use a gerund."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Identify the infinitive: 'I need to go now.'",
+          "options": [
+            "I",
+            "need",
+            "to go",
+            "now"
+          ],
+          "correctAnswer": "to go",
+          "explanation": "'To go' is the infinitive following 'need'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which verb takes a Gerund?",
+          "options": [
+            "Avoid",
+            "Decide",
+            "Learn",
+            "Offer"
+          ],
+          "correctAnswer": "Avoid",
+          "explanation": "You avoid 'doing' something."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'It started ___ heavily.'",
+          "options": [
+            "raining",
+            "to rain",
+            "Both A and B are correct.",
+            "rain"
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "'Start' and 'Begin' can be followed by either a gerund or an infinitive with no change in meaning."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I hope seeing you soon.'",
+          "options": [
+            "I",
+            "hope",
+            "seeing",
+            "soon"
+          ],
+          "correctAnswer": "seeing",
+          "explanation": "Should be 'hope to see'."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'She avoids ___ junk food.'",
+          "options": [
+            "eat",
+            "eating",
+            "to eat",
+            "to eating"
+          ],
+          "correctAnswer": "eating",
+          "explanation": "'Avoid' is followed by a gerund."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "I enjoy to listen to music.",
+            "I enjoy listening to music.",
+            "I enjoy listen to music.",
+            "I enjoy to listening to music."
+          ],
+          "correctAnswer": "I enjoy listening to music.",
+          "explanation": "'Enjoy' requires a gerund."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'He decided ___ the job.'",
+          "options": [
+            "quitting",
+            "to quit",
+            "quit",
+            "to quitting"
+          ],
+          "correctAnswer": "to quit",
+          "explanation": "'Decide' takes an infinitive."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Identify the prepositional gerund: 'Thank you for helping me.'",
+          "options": [
+            "Thank",
+            "you",
+            "for",
+            "helping"
+          ],
+          "correctAnswer": "helping",
+          "explanation": "Gerund following the preposition 'for'."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which verb takes an Infinitive?",
+          "options": [
+            "Finish",
+            "Mind",
+            "Want",
+            "Avoid"
+          ],
+          "correctAnswer": "Want",
+          "explanation": "You want 'to do' something."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I tried ___ the window, but it was stuck.'",
+          "options": [
+            "opening",
+            "to open",
+            "open",
+            "opened"
+          ],
+          "correctAnswer": "to open",
+          "explanation": "In this context (making an effort to do something difficult), 'try + infinitive' is the correct pattern."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am good at to cook.'",
+          "options": [
+            "I",
+            "am",
+            "at",
+            "to cook"
+          ],
+          "correctAnswer": "to cook",
+          "explanation": "After the preposition 'at,' it must be the gerund 'cooking'."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'Stop ___ so much noise!'",
+          "options": [
+            "make",
+            "making",
+            "to make",
+            "made"
+          ],
+          "correctAnswer": "making",
+          "explanation": "When 'stop' means to end an activity, it takes a gerund."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Complete: 'She chose ___ a doctor.'",
+          "options": [
+            "becoming",
+            "to become",
+            "become",
+            "to becoming"
+          ],
+          "correctAnswer": "to become",
+          "explanation": "'Choose' takes an infinitive."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Identify the infinitive: 'I would like to help you.'",
+          "options": [
+            "would",
+            "like",
+            "to help",
+            "you"
+          ],
+          "correctAnswer": "to help",
+          "explanation": "'To help' is the infinitive following 'would like'."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: A Gerund is a verb that acts like a ___.",
+          "options": [
+            "Adjective",
+            "Noun",
+            "Adverb",
+            "Preposition"
+          ],
+          "correctAnswer": "Noun",
+          "explanation": "Gerunds (-ing) function as nouns in a sentence."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: Meaning Shifts",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Logic Shift</h3><p>Some verbs change their meaning entirely based on the pattern that follows. Mixing these up can lead to embarrassing or confusing mistakes.</p><ul style=\"line-height: 1.8;\"><li>🛑 <b>STOP:</b><br>• <i>Stop <b>doing</b>:</i> To end an activity (Quit).<br>• <i>Stop <b>to do</b>:</i> To pause what you are doing in order to do something else.</li><li>🧠 <b>REMEMBER:</b><br>• <i>Remember <b>doing</b>:</i> To have a memory of a past action.<br>• <i>Remember <b>to do</b>:</i> To not forget a duty or task for the future.</li><li>🧪 <b>TRY:</b><br>• <i>Try <b>doing</b>:</i> To do something as an experiment to see if it works.<br>• <i>Try <b>to do</b>:</i> To make a difficult effort to achieve something.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I stopped ___ bread because I am on a diet.'",
+          "options": [
+            "to eat",
+            "eating",
+            "eat",
+            "ate"
+          ],
+          "correctAnswer": "eating",
+          "explanation": "'Stop + Gerund' means to quit or end a habit/action."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which sentence means 'I didn't forget my duty'?",
+          "options": [
+            "I remembered to lock the door.",
+            "I remembered locking the door.",
+            "I remember lock the door.",
+            "I remembered to locking the door."
+          ],
+          "correctAnswer": "I remembered to lock the door.",
+          "explanation": "'Remember + Infinitive' means you performed a task you were supposed to do."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the meaning: 'He stopped to talk to his neighbor.'",
+          "options": [
+            "He was talking and then he quit.",
+            "He was walking/driving and paused so he could talk.",
+            "He decided never to talk to his neighbor again.",
+            "He finished talking to his neighbor."
+          ],
+          "correctAnswer": "He was walking/driving and paused so he could talk.",
+          "explanation": "'Stop + Infinitive' indicates the purpose of the pause."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'If you have a headache, try ___ an aspirin.'",
+          "options": [
+            "to take",
+            "taking",
+            "take",
+            "took"
+          ],
+          "correctAnswer": "taking",
+          "explanation": "'Try + Gerund' means to experiment with a possible solution."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Choose the correct form for a memory: 'I clearly remember ___ my first bike.'",
+          "options": [
+            "to get",
+            "getting",
+            "get",
+            "got"
+          ],
+          "correctAnswer": "getting",
+          "explanation": "'Remember + Gerund' refers to a memory of a past event."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I tried to opening the jar, but it was stuck.'",
+          "options": [
+            "tried",
+            "to opening",
+            "jar",
+            "stuck"
+          ],
+          "correctAnswer": "to opening",
+          "explanation": "Should be 'tried to open' (effort to do something difficult)."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which sentence means the person is no longer a smoker?",
+          "options": [
+            "He stopped to smoke.",
+            "He stopped smoking.",
+            "He stopped smoke.",
+            "He is stopping to smoke."
+          ],
+          "correctAnswer": "He stopped smoking.",
+          "explanation": "Gerund indicates the action that was quit."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the meaning: 'I forgot to call my mother.'",
+          "options": [
+            "I called her, but I don't remember it.",
+            "I didn't call her because I forgot the task.",
+            "I will call her later.",
+            "I stopped calling her."
+          ],
+          "correctAnswer": "I didn't call her because I forgot the task.",
+          "explanation": "'Forget + Infinitive' means the task was not performed."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Complete: 'I'll never forget ___ the Northern Lights for the first time.'",
+          "options": [
+            "to see",
+            "seeing",
+            "see",
+            "saw"
+          ],
+          "correctAnswer": "seeing",
+          "explanation": "'Forget + Gerund' (usually used with 'never') refers to a memory of a past experience."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'We stopped ___ some gas on the way to the beach.'",
+          "options": [
+            "buying",
+            "to buy",
+            "buy",
+            "bought"
+          ],
+          "correctAnswer": "to buy",
+          "explanation": "The purpose of the stop was to buy gas."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Please remember turning off the lights before you leave.'",
+          "options": [
+            "Please",
+            "remember",
+            "turning off",
+            "leave"
+          ],
+          "correctAnswer": "turning off",
+          "explanation": "This is a future duty, so it should be 'remember to turn off'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct for an experiment? 'The room was hot, so I tried ___ the window.'",
+          "options": [
+            "to open",
+            "opening",
+            "open",
+            "opened"
+          ],
+          "correctAnswer": "opening",
+          "explanation": "'Try + Gerund' implies you did it to see if it would solve the heat problem."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Identify the meaning: 'I regret to inform you that your application was denied.'",
+          "options": [
+            "I am sorry for what I am about to say.",
+            "I am sorry for something I said in the past.",
+            "I don't remember telling you.",
+            "I quit telling you."
+          ],
+          "correctAnswer": "I am sorry for what I am about to say.",
+          "explanation": "'Regret + Infinitive' is used for formal announcements of bad news."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Choose the correct form for a past regret: 'I regret ___ so much money on that car.'",
+          "options": [
+            "to spend",
+            "spending",
+            "spend",
+            "spent"
+          ],
+          "correctAnswer": "spending",
+          "explanation": "'Regret + Gerund' means you are sorry for a past action."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'He went on ___ about his vacation for hours.'",
+          "options": [
+            "to talk",
+            "talking",
+            "talk",
+            "talked"
+          ],
+          "correctAnswer": "talking",
+          "explanation": "'Go on + Gerund' means to continue the same activity."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Identify the meaning: 'After discussing the budget, the manager went on to talk about the new project.'",
+          "options": [
+            "He continued talking about the budget.",
+            "He stopped and started a completely new topic.",
+            "He regretted talking about the budget.",
+            "He forgot the new project."
+          ],
+          "correctAnswer": "He stopped and started a completely new topic.",
+          "explanation": "'Go on + Infinitive' means to move to a different task or topic."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I stopped to play tennis because of my knee injury.'",
+          "options": [
+            "stopped",
+            "to play",
+            "because of",
+            "injury"
+          ],
+          "correctAnswer": "to play",
+          "explanation": "If an injury made you quit, it should be 'stopped playing'."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which sentence means 'I have a memory of this'?",
+          "options": [
+            "I remember to meet her at the cafe.",
+            "I remember meeting her at the cafe.",
+            "I remember meet her at the cafe.",
+            "I remembered to meet her at the cafe."
+          ],
+          "correctAnswer": "I remember meeting her at the cafe.",
+          "explanation": "Gerund = Past memory."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'If the computer is slow, try ___ it.'",
+          "options": [
+            "to restart",
+            "restarting",
+            "restart",
+            "restarted"
+          ],
+          "correctAnswer": "restarting",
+          "explanation": "Experimenting with a solution."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'Don't forget ___ the cat.'",
+          "options": [
+            "to feed",
+            "feeding",
+            "feed",
+            "fed"
+          ],
+          "correctAnswer": "to feed",
+          "explanation": "Future task/duty."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I'll never forget to visit the Grand Canyon.'",
+          "options": [
+            "never",
+            "forget",
+            "to visit",
+            "Grand Canyon"
+          ],
+          "correctAnswer": "to visit",
+          "explanation": "Should be 'visiting' (memorable past experience)."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'He tried ___ the heavy box, but it wouldn't move.'",
+          "options": [
+            "lifting",
+            "to lift",
+            "lift",
+            "lifts"
+          ],
+          "correctAnswer": "to lift",
+          "explanation": "Physical effort to do something difficult."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the meaning: 'I remember to post the letter.'",
+          "options": [
+            "I posted it, and I have a memory of it.",
+            "I didn't forget to post it; I did my duty.",
+            "I forgot where the post office is.",
+            "I regret posting the letter."
+          ],
+          "correctAnswer": "I didn't forget to post it; I did my duty.",
+          "explanation": "Infinitive = Task performed."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The students stopped ___ when the teacher entered.'",
+          "options": [
+            "to talk",
+            "talking",
+            "talk",
+            "talked"
+          ],
+          "correctAnswer": "talking",
+          "explanation": "They ended the activity of talking."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'I regret ___ you the truth.'",
+          "options": [
+            "to tell",
+            "telling",
+            "tell",
+            "told"
+          ],
+          "correctAnswer": "telling",
+          "explanation": "Sorry for a past action."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He went on to working even though he was tired.'",
+          "options": [
+            "went on",
+            "to working",
+            "even though",
+            "tired"
+          ],
+          "correctAnswer": "to working",
+          "explanation": "Should be 'working' (continue same activity)."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I forgot ___ my umbrella at the office.'",
+          "options": [
+            "leaving",
+            "to leave",
+            "leave",
+            "left"
+          ],
+          "correctAnswer": "leaving",
+          "explanation": "Meaning: 'I left it there, but I don't remember doing so'."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I remember ___ that movie before.'",
+          "options": [
+            "to see",
+            "seeing",
+            "see",
+            "saw"
+          ],
+          "correctAnswer": "seeing",
+          "explanation": "Past memory."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Complete: 'Stop ___ and start working!'",
+          "options": [
+            "to play",
+            "playing",
+            "play",
+            "played"
+          ],
+          "correctAnswer": "playing",
+          "explanation": "End an activity."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'I stopped ___ a coffee.'",
+          "options": [
+            "to buy",
+            "buying",
+            "buy",
+            "bought"
+          ],
+          "correctAnswer": "to buy",
+          "explanation": "Implies you paused your journey in order to purchase a coffee."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Verb-Chain Audit</h3><p>In academic writing, errors often occur when verbs are separated by long prepositional phrases or sub-clauses. You must ensure the secondary verb matches the primary verb's requirements.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The Prepositional Gerund:</b> <i>The committee succeeded <b>in</b> (Preposition) <b>implementing</b> (Gerund) the change.</i></li><li>📊 <b>Parallel Chains:</b> <i>He enjoys <b>reading</b> and <b>to write</b> (Error).</i> ➔ <b>writing</b>.</li><li>🧠 <b>Adjective + Infinitive:</b> <i>It is <b>difficult</b> (Adjective) <b>to maintain</b> (Infinitive) accuracy.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'The researchers decided to conducting a follow-up study after finishing the initial analysis of the data.'",
+          "options": [
+            "decided",
+            "to conducting",
+            "finishing",
+            "analysis"
+          ],
+          "correctAnswer": "to conducting",
+          "explanation": "'Decide' must be followed by a to-infinitive: 'to conduct'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which verb pattern is correct for this formal context? 'The university aims ___ the quality of student life.'",
+          "options": [
+            "improving",
+            "to improve",
+            "improve",
+            "to improving"
+          ],
+          "correctAnswer": "to improve",
+          "explanation": "'Aim' is an infinitive-taking verb in academic English."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the error: 'In addition to provide funding, the organization also offers technical support to local farmers.'",
+          "options": [
+            "In addition to",
+            "provide",
+            "offers",
+            "farmers"
+          ],
+          "correctAnswer": "provide",
+          "explanation": "'In addition to' is a prepositional phrase; 'to' here is a preposition, so it requires the gerund 'providing'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Experts suggest ___ more investment into renewable energy sources.'",
+          "options": [
+            "putting",
+            "to put",
+            "put",
+            "to putting"
+          ],
+          "correctAnswer": "putting",
+          "explanation": "'Suggest' is followed by a gerund when there is no 'that' clause."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'It is essential for students avoiding plagiarism when writing their final essays.'",
+          "options": [
+            "essential",
+            "for",
+            "avoiding",
+            "writing"
+          ],
+          "correctAnswer": "avoiding",
+          "explanation": "After 'It is [adjective] for [someone]...', we need an infinitive: 'to avoid'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which version is correct? 'The manager considered ___ the deadline for the project.'",
+          "options": [
+            "extending",
+            "to extend",
+            "extend",
+            "to extending"
+          ],
+          "correctAnswer": "extending",
+          "explanation": "'Consider' is a gerund-taking verb."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The company hopes to expanding its operations into Europe by the end of next year.'",
+          "options": [
+            "hopes",
+            "to expanding",
+            "operations",
+            "end"
+          ],
+          "correctAnswer": "to expanding",
+          "explanation": "'Hope' takes a to-infinitive: 'to expand'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct prepositional gerund: 'She is responsible for ___ the new employees.'",
+          "options": [
+            "train",
+            "to train",
+            "training",
+            "to training"
+          ],
+          "correctAnswer": "training",
+          "explanation": "Preposition 'for' requires a gerund."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'They failed to achieving the desired results despite their hard work.'",
+          "options": [
+            "failed",
+            "to achieving",
+            "desired",
+            "despite"
+          ],
+          "correctAnswer": "to achieving",
+          "explanation": "'Fail' takes a to-infinitive: 'to achieve'."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The government is committed to ___ the environment.'",
+          "options": [
+            "protect",
+            "protecting",
+            "to protect",
+            "protected"
+          ],
+          "correctAnswer": "protecting",
+          "explanation": "In 'be committed to', the 'to' is a preposition, requiring a gerund."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Many students prefer studying in the library to work at home.'",
+          "options": [
+            "prefer",
+            "studying",
+            "to",
+            "work"
+          ],
+          "correctAnswer": "work",
+          "explanation": "To maintain parallel structure with 'studying', it should be 'working'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The professor recommended ___ the data again.'",
+          "options": [
+            "analyzing",
+            "to analyze",
+            "analyze",
+            "analyzed"
+          ],
+          "correctAnswer": "analyzing",
+          "explanation": "'Recommend' is followed by a gerund."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am looking forward to meet you at the conference.'",
+          "options": [
+            "looking forward",
+            "to meet",
+            "at",
+            "conference"
+          ],
+          "correctAnswer": "to meet",
+          "explanation": "Should be 'to meeting'."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'It is worth ___ the latest research on this topic.'",
+          "options": [
+            "checking",
+            "to check",
+            "check",
+            "checked"
+          ],
+          "correctAnswer": "checking",
+          "explanation": "The expression 'be worth' is followed by a gerund."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The primary goal is to identifying the causes of the problem.'",
+          "options": [
+            "primary",
+            "goal",
+            "is",
+            "to identifying"
+          ],
+          "correctAnswer": "to identifying",
+          "explanation": "Should be 'to identify' (Infinitive used as a subject complement)."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'He admitted ___ a mistake in the calculations.'",
+          "options": [
+            "making",
+            "to make",
+            "make",
+            "to making"
+          ],
+          "correctAnswer": "making",
+          "explanation": "'Admit' is followed by a gerund."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She enjoys to learn new languages in her spare time.'",
+          "options": [
+            "enjoys",
+            "to learn",
+            "languages",
+            "spare time"
+          ],
+          "correctAnswer": "to learn",
+          "explanation": "Should be 'learning'."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The company plans ___ its market share next year.'",
+          "options": [
+            "increasing",
+            "to increase",
+            "increase",
+            "to increasing"
+          ],
+          "correctAnswer": "to increase",
+          "explanation": "'Plan' takes an infinitive."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Find the error: 'I am tired of to hear the same excuses.'",
+          "options": [
+            "tired",
+            "of",
+            "to hear",
+            "excuses"
+          ],
+          "correctAnswer": "to hear",
+          "explanation": "Preposition 'of' requires a gerund: 'hearing'."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The scientist successfully avoided ___ the sample.'",
+          "options": [
+            "contaminating",
+            "to contaminate",
+            "contaminate",
+            "to contaminating"
+          ],
+          "correctAnswer": "contaminating",
+          "explanation": "'Avoid' takes a gerund."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'You should avoid to use too much jargon in your presentation.'",
+          "options": [
+            "avoid",
+            "to use",
+            "much",
+            "jargon"
+          ],
+          "correctAnswer": "to use",
+          "explanation": "Should be 'using'."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'They arranged ___ at the airport.'",
+          "options": [
+            "meeting",
+            "to meet",
+            "meet",
+            "to meeting"
+          ],
+          "correctAnswer": "to meet",
+          "explanation": "'Arrange' takes an infinitive."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'I am interested in to learn more about this culture.'",
+          "options": [
+            "interested",
+            "in",
+            "to learn",
+            "about"
+          ],
+          "correctAnswer": "to learn",
+          "explanation": "Should be 'learning'."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'He doesn't mind ___ long hours.'",
+          "options": [
+            "working",
+            "to work",
+            "work",
+            "to working"
+          ],
+          "correctAnswer": "working",
+          "explanation": "'Mind' takes a gerund."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She promised to not tell anyone about the secret.'",
+          "options": [
+            "promised",
+            "to not tell",
+            "anyone",
+            "secret"
+          ],
+          "correctAnswer": "to not tell",
+          "explanation": "While common in speech, the formal academic preference is 'not to tell' (avoiding the split infinitive)."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The team managed ___ the deadline.'",
+          "options": [
+            "meeting",
+            "to meet",
+            "meet",
+            "to meeting"
+          ],
+          "correctAnswer": "to meet",
+          "explanation": "'Manage' takes an infinitive."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Find the error: 'I regret to telling him the news.'",
+          "options": [
+            "regret",
+            "to telling",
+            "him",
+            "news"
+          ],
+          "correctAnswer": "to telling",
+          "explanation": "Should be 'telling' (past regret) or 'to tell' (sorry for what I'm about to say). 'To telling' is never correct."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'We look forward to ___ the new office.'",
+          "options": [
+            "visit",
+            "visiting",
+            "to visit",
+            "visited"
+          ],
+          "correctAnswer": "visiting",
+          "explanation": "Gerund after the preposition 'to'."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The program is designed to helping students improve their skills.'",
+          "options": [
+            "designed",
+            "to helping",
+            "improve",
+            "skills"
+          ],
+          "correctAnswer": "to helping",
+          "explanation": "Should be 'to help' (Purpose infinitive)."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'I enjoy ___ and ___.'",
+          "options": [
+            "to run / to swim",
+            "running / swimming",
+            "running / to swim",
+            "run / swim"
+          ],
+          "correctAnswer": "running / swimming",
+          "explanation": "Parallelism requires both verbs to be gerunds following 'enjoy'."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Gerund Subject Power-Up</h3><p>To reach the highest bands, use <b>Gerund Phrases</b> as the subject of your topic sentences. This makes your writing more objective and 'academic'.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>🧠 <b>The Shift:</b> <i>'It is important <b>to protect</b> the environment.'</i> (Basic) ➔ <i>'<b>Protecting</b> the environment is a matter of global urgency.'</i> (Advanced).</li><li>📊 <b>The Task 1 Comparison:</b> <i>'<b>Comparing</b> the two charts reveals a stark contrast.'</i></li><li>🛑 <b>S-V Agreement Rule:</b> A Gerund subject is <b>always singular</b>. <br>✅ <i><b>Providing</b> resources <b>is</b> necessary.</i> (NOT 'are').</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Choose the most professional Task 2 topic sentence:",
+          "options": [
+            "To provide better healthcare is a duty of the government.",
+            "Providing better healthcare is a fundamental duty of the government.",
+            "Providing of better healthcare are a duty.",
+            "For providing better healthcare is important."
+          ],
+          "correctAnswer": "Providing better healthcare is a fundamental duty of the government.",
+          "explanation": "Starting with a gerund phrase ('Providing better healthcare') is the standard academic way to introduce a topic."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the Subject-Verb Agreement error: 'Improving the infrastructure of developing nations are a slow process.'",
+          "options": [
+            "Improving",
+            "infrastructure",
+            "are",
+            "slow process"
+          ],
+          "correctAnswer": "are",
+          "explanation": "The subject is the gerund 'Improving,' which is singular. The verb should be 'is'."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses an infinitive of purpose? 'The government raised taxes ___ the new project.'",
+          "options": [
+            "for funding",
+            "to fund",
+            "to funding",
+            "for to fund"
+          ],
+          "correctAnswer": "to fund",
+          "explanation": "To show the 'why' (purpose), the to-infinitive is the most direct and formal choice."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Choose the best academic paraphrase: 'People who smoke in public should be fined.'",
+          "options": [
+            "Smoking in public should result in a fine.",
+            "To smoke in public should be fined.",
+            "People smoking in public should be fine.",
+            "Smoked in public should be fined."
+          ],
+          "correctAnswer": "Smoking in public should result in a fine.",
+          "explanation": "Using the gerund 'Smoking' as the subject makes the statement more objective and formal."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The manager is looking forward to meet the new clients next week.'",
+          "options": [
+            "manager",
+            "looking forward",
+            "to meet",
+            "clients"
+          ],
+          "correctAnswer": "to meet",
+          "explanation": "In 'look forward to,' the 'to' is a preposition, so it must be 'to meeting'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly structured for an IELTS Task 1 overview?",
+          "options": [
+            "Examining the data suggests that levels are rising.",
+            "To examine the data suggests levels are rising.",
+            "Examine the data suggests that levels are rising.",
+            "For examining the data suggests levels are rising."
+          ],
+          "correctAnswer": "Examining the data suggests that levels are rising.",
+          "explanation": "Gerund subject ('Examining') followed by a singular verb ('suggests')."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'By implement new regulations, the city reduced pollution.'",
+          "options": [
+            "By",
+            "implement",
+            "regulations",
+            "pollution"
+          ],
+          "correctAnswer": "implement",
+          "explanation": "After the preposition 'By,' the gerund 'implementing' is required."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct academic form: 'The primary obstacle is ___ sufficient funding.'",
+          "options": [
+            "obtain",
+            "to obtain",
+            "obtaining",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "Both the infinitive and the gerund can function as subject complements."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report emphasizes the need of increasing the budget.'",
+          "options": [
+            "emphasizes",
+            "need",
+            "of increasing",
+            "budget"
+          ],
+          "correctAnswer": "of increasing",
+          "explanation": "The noun 'need' is paired with the infinitive: 'the need to increase'."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Which is best for a conclusion? '___, it is clear that education is the key.'",
+          "options": [
+            "To conclude",
+            "Concluding",
+            "For concluding",
+            "In concluding"
+          ],
+          "correctAnswer": "To conclude",
+          "explanation": "The to-infinitive is the standard way to begin a concluding sentence."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Complete the Task 2 argument: '___ only one perspective can lead to biased conclusions.'",
+          "options": [
+            "Consider",
+            "To consider",
+            "Considering",
+            "Considers"
+          ],
+          "correctAnswer": "Considering",
+          "explanation": "Gerund subject for a general concept."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am not used to wake up so early.'",
+          "options": [
+            "am",
+            "used to",
+            "wake up",
+            "early"
+          ],
+          "correctAnswer": "wake up",
+          "explanation": "In 'be used to,' 'to' is a preposition. It should be 'waking up'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which is more formal? 'He went to the library so that he could study' or 'He went to the library to study'?",
+          "options": [
+            "First",
+            "Second",
+            "Both are fine.",
+            "Neither."
+          ],
+          "correctAnswer": "Second",
+          "explanation": "The infinitive of purpose ('to study') is more concise and academic."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The ability ___ under pressure is a vital skill.'",
+          "options": [
+            "work",
+            "to work",
+            "working",
+            "works"
+          ],
+          "correctAnswer": "to work",
+          "explanation": "The noun 'ability' is always followed by an infinitive."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Reducing taxes helps to stimulating the economy.'",
+          "options": [
+            "Reducing",
+            "helps",
+            "to stimulating",
+            "economy"
+          ],
+          "correctAnswer": "to stimulating",
+          "explanation": "'Help' can take 'to stimulate' or just 'stimulate'. 'To stimulating' is never correct."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly structured? 'It is worth to note the changes.'",
+          "options": [
+            "It is worth noting the changes.",
+            "To note the changes is worth.",
+            "It is worthy noting the changes.",
+            "It is worth noting of the changes."
+          ],
+          "correctAnswer": "It is worth noting the changes.",
+          "explanation": "The expression 'it is worth' must be followed by a gerund."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She enjoys playing tennis and to swim.'",
+          "options": [
+            "enjoys",
+            "playing",
+            "tennis",
+            "to swim"
+          ],
+          "correctAnswer": "to swim",
+          "explanation": "Parallel structure error. It should be 'swimming'."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Complete the academic sentence: '___ the results requires a high level of expertise.'",
+          "options": [
+            "Analyze",
+            "Analyzing",
+            "To analyze",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "Both gerunds and infinitives can act as subjects, though the gerund is more common in essays."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am looking forward to see the final results.'",
+          "options": [
+            "looking forward",
+            "to see",
+            "final",
+            "results"
+          ],
+          "correctAnswer": "to see",
+          "explanation": "Should be 'to seeing'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which is best for Task 1? '___ the two categories, it is clear that...' ",
+          "options": [
+            "By comparing",
+            "Comparing",
+            "Compare",
+            "To comparing"
+          ],
+          "correctAnswer": "Comparing",
+          "explanation": "A participle phrase (using a gerund) is a sophisticated way to start a data overview."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Identify the 'Split Infinitive' (usually avoided in high formal writing):",
+          "options": [
+            "To boldly go.",
+            "To go boldly.",
+            "Boldly to go.",
+            "Going boldly."
+          ],
+          "correctAnswer": "To boldly go.",
+          "explanation": "Placing an adverb between 'to' and 'go' is a split infinitive. Formal academic style often prefers 'to go boldly'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I suggest ___ for a walk.'",
+          "options": [
+            "to go",
+            "going",
+            "go",
+            "to going"
+          ],
+          "correctAnswer": "going",
+          "explanation": "'Suggest' requires a gerund."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He stopped to smoke three years ago.'",
+          "options": [
+            "stopped",
+            "to smoke",
+            "three years",
+            "ago"
+          ],
+          "correctAnswer": "to smoke",
+          "explanation": "If he quit three years ago, it should be 'stopped smoking'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The researchers aim ___ the phenomenon.'",
+          "options": [
+            "observing",
+            "to observe",
+            "observe",
+            "to observing"
+          ],
+          "correctAnswer": "to observe",
+          "explanation": "'Aim' takes an infinitive."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I remember to lock the door when I left this morning.'",
+          "options": [
+            "remember",
+            "to lock",
+            "left",
+            "morning"
+          ],
+          "correctAnswer": "to lock",
+          "explanation": "Refers to a past memory, so it should be 'remember locking'."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'She is busy ___ the report.'",
+          "options": [
+            "to write",
+            "writing",
+            "write",
+            "to writing"
+          ],
+          "correctAnswer": "writing",
+          "explanation": "The expression 'be busy' is followed by a gerund."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I would like staying in a hotel tonight.'",
+          "options": [
+            "would like",
+            "staying",
+            "hotel",
+            "tonight"
+          ],
+          "correctAnswer": "staying",
+          "explanation": "'Would like' always takes an infinitive: 'to stay'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'I avoid ___ the manager if possible.'",
+          "options": [
+            "to see",
+            "seeing",
+            "see",
+            "to seeing"
+          ],
+          "correctAnswer": "seeing",
+          "explanation": "'Avoid' takes a gerund."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'They spent four hours to clean the room.'",
+          "options": [
+            "spent",
+            "four hours",
+            "to clean",
+            "room"
+          ],
+          "correctAnswer": "to clean",
+          "explanation": "The pattern is 'spend time doing something'. It should be 'cleaning'."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: A Gerund is preferred as a subject when you want to be ___.",
+          "options": [
+            "Conversational",
+            "Objective and Academic",
+            "Fast",
+            "Emotional"
+          ],
+          "correctAnswer": "Objective and Academic",
+          "explanation": "Nominalization (using gerunds as nouns) is a key feature of academic register."
+        }
+      ]
+    }
+  ]
+}

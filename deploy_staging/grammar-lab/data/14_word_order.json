@@ -1,0 +1,1594 @@
+{
+  "topicId": "14_word_order",
+  "topicName": "Word Order",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Golden Sequence (SVOPT)</h3><p>English follows a very strict order. If you break this order, your sentence becomes difficult to follow. The standard pattern is:</p><p style=\"text-align: center; font-size: 1.2em; font-weight: bold; color: #1e40af;\">Subject ➔ Verb ➔ Object ➔ Place ➔ Time</p><ul style=\"list-style-type: none; padding-left: 0;\"><li>✅ <em>I (S) studied (V) English (O) at the library (P) yesterday (T).</em></li><li>❌ <em>Yesterday at the library English I studied.</em> (Common L1 error)</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct word order:",
+          "options": [
+            "Yesterday I went to the store.",
+            "I went to the store yesterday.",
+            "To the store yesterday I went.",
+            "Both A and B are common, but B is the standard SVOPT order."
+          ],
+          "correctAnswer": "Both A and B are common, but B is the standard SVOPT order.",
+          "explanation": "While 'Yesterday' can move to the front for emphasis, the standard English position for time is at the end."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Where does the adverb usually go in this sentence? 'He ___ eats breakfast.'",
+          "options": [
+            "always",
+            "eats always",
+            "always eats",
+            "Both 'always eats' and 'always' are correct."
+          ],
+          "correctAnswer": "always eats",
+          "explanation": "Adverbs of frequency (always, usually, never) go *before* the main verb but *after* the 'be' verb."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the correct Object-Place order?",
+          "options": [
+            "He put on the table the book.",
+            "He put the book on the table.",
+            "On the table he put the book.",
+            "The book he put on the table."
+          ],
+          "correctAnswer": "He put the book on the table.",
+          "explanation": "The Object (the book) must come immediately after the Verb (put), followed by the Place (on the table)."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Unscramble this: 'she / often / movies / watches'",
+          "options": [
+            "Often she watches movies.",
+            "She watches often movies.",
+            "She often watches movies.",
+            "She watches movies often."
+          ],
+          "correctAnswer": "She often watches movies.",
+          "explanation": "Frequency adverbs belong between the Subject and the Verb."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Where is the mistake? 'I like very much chocolate.'",
+          "options": [
+            "No mistake.",
+            "The adverb 'very much' should be at the end.",
+            "The adverb 'very much' should be before 'like'.",
+            "Chocolate should be at the beginning."
+          ],
+          "correctAnswer": "The adverb 'very much' should be at the end.",
+          "explanation": "In English, you cannot separate a Verb from its direct Object. Correct: 'I like chocolate very much'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Which is correct with the verb 'to be'?",
+          "options": [
+            "She is usually late.",
+            "She usually is late.",
+            "Usually she is late.",
+            "Late she is usually."
+          ],
+          "correctAnswer": "She is usually late.",
+          "explanation": "Adverbs of frequency come *after* the verb 'to be'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Identify the correct order for multiple adjectives:",
+          "options": [
+            "A big red car.",
+            "A red big car.",
+            "Car big red.",
+            "Big car red."
+          ],
+          "correctAnswer": "A big red car.",
+          "explanation": "English adjective order usually follows [Size] before [Color]."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct sentence:",
+          "options": [
+            "I sent to my mother a letter.",
+            "I sent a letter to my mother.",
+            "To my mother I sent a letter.",
+            "A letter to my mother I sent."
+          ],
+          "correctAnswer": "I sent a letter to my mother.",
+          "explanation": "Standard order is [Verb] + [Direct Object] + [Prepositional Phrase]."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Where does the adverb 'enough' go?",
+          "options": [
+            "Is the water enough hot?",
+            "Is the water hot enough?",
+            "Is enough hot the water?",
+            "Hot the water enough is?"
+          ],
+          "correctAnswer": "Is the water hot enough?",
+          "explanation": "'Enough' comes *after* adjectives but *before* nouns."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which order is correct for Place and Time?",
+          "options": [
+            "I will meet you at 5:00 at the station.",
+            "I will meet you at the station at 5:00.",
+            "At the station I will meet you at 5:00.",
+            "Both B and C are possible, but B is standard."
+          ],
+          "correctAnswer": "Both B and C are possible, but B is standard.",
+          "explanation": "The standard rule is Place (Station) before Time (5:00)."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Select the correct sentence:",
+          "options": [
+            "He explained clearly the problem.",
+            "He clearly explained the problem.",
+            "He explained the problem clearly.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "Adverbs of manner can go before the verb or at the end of the clause, but never between the verb and object."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "What is the correct order for 'only' in this context?",
+          "options": [
+            "I only have five dollars.",
+            "I have only five dollars.",
+            "Only I have five dollars.",
+            "Both A and B are common."
+          ],
+          "correctAnswer": "Both A and B are common.",
+          "explanation": "In spoken English 'only' often moves before the verb, but in formal writing it should be near the word it modifies."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Where does 'well' go?",
+          "options": [
+            "She plays well the piano.",
+            "She well plays the piano.",
+            "She plays the piano well.",
+            "Well she plays the piano."
+          ],
+          "correctAnswer": "She plays the piano well.",
+          "explanation": "Adverbs of manner usually go at the end of the S-V-O sequence."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which is correct for a question?",
+          "options": [
+            "Where you are going?",
+            "Where are you going?",
+            "You are going where?",
+            "Are you going where?"
+          ],
+          "correctAnswer": "Where are you going?",
+          "explanation": "In questions, the auxiliary verb (are) must come before the subject (you)."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Identify the correct order:",
+          "options": [
+            "She bought a beautiful Italian silk scarf.",
+            "She bought an Italian beautiful silk scarf.",
+            "She bought a silk beautiful Italian scarf.",
+            "She bought a beautiful silk Italian scarf."
+          ],
+          "correctAnswer": "She bought a beautiful Italian silk scarf.",
+          "explanation": "Adjective order: [Opinion: beautiful] -> [Origin: Italian] -> [Material: silk]."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Fix the word order: 'I every day go to school.'",
+          "options": [
+            "I go to school every day.",
+            "Every day I go to school.",
+            "I go every day to school.",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "Time expressions like 'every day' go at the end or the beginning, never between subject and verb."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which is correct for 'also'?",
+          "options": [
+            "I also am a student.",
+            "I am also a student.",
+            "Also I am a student.",
+            "I am a student also."
+          ],
+          "correctAnswer": "I am also a student.",
+          "explanation": "Like frequency adverbs, 'also' comes after the verb 'to be'."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for an indirect object:",
+          "options": [
+            "Give me it.",
+            "Give it to me.",
+            "To me give it.",
+            "Give it me."
+          ],
+          "correctAnswer": "Give it to me.",
+          "explanation": "If the direct object is a pronoun (it), it must come first, followed by 'to' + person."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Where does the frequency adverb go in a sentence with 'can'?",
+          "options": [
+            "I usually can swim.",
+            "I can usually swim.",
+            "Usually I can swim.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "It goes after the modal verb (can) or at the beginning for emphasis."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Identify the correct negative question:",
+          "options": [
+            "Why you don't like it?",
+            "Why don't you like it?",
+            "Why you not like it?",
+            "Don't you like it why?"
+          ],
+          "correctAnswer": "Why don't you like it?",
+          "explanation": "The contraction (don't) comes before the subject (you) in a question."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which sentence follows correct adverb placement?",
+          "options": [
+            "He drove slowly the car.",
+            "He slowly drove the car.",
+            "He drove the car slowly.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "Manner adverbs can go before the verb or at the end."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Where does 'still' go?",
+          "options": [
+            "I still am working.",
+            "I am still working.",
+            "Still I am working.",
+            "I am working still."
+          ],
+          "correctAnswer": "I am still working.",
+          "explanation": "'Still' goes after the auxiliary verb (am)."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct order:",
+          "options": [
+            "I usually eat at home on Sundays.",
+            "On Sundays I usually eat at home.",
+            "I eat at home usually on Sundays.",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "SVOPT allows time to be at the start or the end."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which is correct for an 'if' clause?",
+          "options": [
+            "If it rains, we will stay home.",
+            "We will stay home if it rains.",
+            "Both are correct.",
+            "Neither is correct."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "Subordinate clauses can be placed at the beginning or end of a sentence."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the correct adjective order:",
+          "options": [
+            "An old wooden table.",
+            "A wooden old table.",
+            "A table old wooden.",
+            "Old table wooden."
+          ],
+          "correctAnswer": "An old wooden table.",
+          "explanation": "[Age: old] comes before [Material: wooden]."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Where does 'hardly ever' go?",
+          "options": [
+            "I hardly ever watch TV.",
+            "I watch TV hardly ever.",
+            "Hardly ever I watch TV.",
+            "I watch hardly ever TV."
+          ],
+          "correctAnswer": "I hardly ever watch TV.",
+          "explanation": "Frequency adverbs belong before the main verb."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Select the correct sentence:",
+          "options": [
+            "She speaks very well English.",
+            "She speaks English very well.",
+            "She very well speaks English.",
+            "Very well she speaks English."
+          ],
+          "correctAnswer": "She speaks English very well.",
+          "explanation": "Manner adverbs (very well) come after the Object (English)."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which is correct for 'never'?",
+          "options": [
+            "I never have been to Paris.",
+            "I have never been to Paris.",
+            "Never I have been to Paris.",
+            "I have been never to Paris."
+          ],
+          "correctAnswer": "I have never been to Paris.",
+          "explanation": "In present perfect, the adverb goes between 'have' and the 'past participle'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct word order:",
+          "options": [
+            "They will definitely arrive soon.",
+            "They definitely will arrive soon.",
+            "They will arrive definitely soon.",
+            "Definitely they will arrive soon."
+          ],
+          "correctAnswer": "They will definitely arrive soon.",
+          "explanation": "Adverbs of certainty (definitely) go after the auxiliary verb (will)."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final check: Which is the most natural SVOPT sentence?",
+          "options": [
+            "She studied for three hours at home.",
+            "She studied at home for three hours.",
+            "At home she studied for three hours.",
+            "For three hours she studied at home."
+          ],
+          "correctAnswer": "She studied at home for three hours.",
+          "explanation": "Standard order: Place (at home) before Duration/Time (for three hours)."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps (Adverb Placement)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Adverb Magnet</h3><p>In English, adverbs have very specific 'mid-sentence' homes. Following Japanese logic often puts them in the wrong spot.</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">📍 <b>Rule 1:</b> Before the <b>Main Verb</b> (<i>He <b>often</b> eats...</i>)</li><li>📍 <b>Rule 2:</b> After the <b>Be Verb</b> (<i>He is <b>often</b> late...</i>)</li><li>📍 <b>Rule 3:</b> Between the <b>Auxiliary</b> and <b>Main Verb</b> (<i>He has <b>often</b> eaten...</i>)</li><li>❌ <b>The L1 Trap:</b> <em>I like <b>very much</b> sushi.</em> (Never separate Verb and Object!)</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly places the adverb 'always'?",
+          "options": [
+            "He always is happy.",
+            "He is always happy.",
+            "Always he is happy.",
+            "He is happy always."
+          ],
+          "correctAnswer": "He is always happy.",
+          "explanation": "With the verb 'to be', adverbs of frequency must come *after* the verb."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'I enjoy very much traveling.'",
+          "options": [
+            "I enjoy traveling very much.",
+            "I very much enjoy traveling.",
+            "Both A and B are correct.",
+            "Very much I enjoy traveling."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "You cannot put 'very much' between the verb (enjoy) and the object (traveling). It must go at the end or before the verb."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Where does 'completely' go in this sentence? 'The bridge was ___ destroyed.'",
+          "options": [
+            "completely was",
+            "was completely",
+            "was destroyed completely",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "Adverbs of degree go between the auxiliary (was) and the participle (destroyed), or sometimes at the end."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Identify the natural word order for 'already':",
+          "options": [
+            "I already have finished my work.",
+            "I have already finished my work.",
+            "I have finished already my work.",
+            "Already I have finished my work."
+          ],
+          "correctAnswer": "I have already finished my work.",
+          "explanation": "In perfect tenses, the adverb sits between 'have' and the past participle."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Which sentence sounds most like a Japanese L1 translation error?",
+          "options": [
+            "Sometimes I go to the gym.",
+            "I go to the gym sometimes.",
+            "I every day go to the gym.",
+            "I go to the gym every day."
+          ],
+          "correctAnswer": "I every day go to the gym.",
+          "explanation": "Japanese speakers often place time expressions ('every day') between the subject and the verb, which is incorrect in English."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Where should 'hardly' be placed? 'He ___ eats meat.'",
+          "options": [
+            "eats hardly",
+            "hardly eats",
+            "hardly ever eats",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "Adverbs of frequency come before the main verb 'eats'."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which of these is the correct negative placement?",
+          "options": [
+            "I not will go.",
+            "I will go not.",
+            "I will not go.",
+            "Not I will go."
+          ],
+          "correctAnswer": "I will not go.",
+          "explanation": "The negative 'not' always follows the first auxiliary verb."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the correct order for 'only':",
+          "options": [
+            "I only saw him once.",
+            "I saw only him once.",
+            "Only I saw him once.",
+            "All are grammatically possible but have different meanings."
+          ],
+          "correctAnswer": "All are grammatically possible but have different meanings.",
+          "explanation": "'Only' is a 'limiting' word. It modifies the word immediately following it. Placement changes the meaning entirely."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Where does 'enough' go with an adjective?",
+          "options": [
+            "He is enough tall to reach.",
+            "He is tall enough to reach.",
+            "Enough he is tall to reach.",
+            "He tall is enough to reach."
+          ],
+          "correctAnswer": "He is tall enough to reach.",
+          "explanation": "Unlike most adverbs, 'enough' follows the adjective it modifies."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for a modal and an adverb: 'You ___ check the results.'",
+          "options": [
+            "should carefully",
+            "carefully should",
+            "should check carefully",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "Adverbs can follow the modal or appear at the end of the clause."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'I speak well English.'",
+          "options": [
+            "I well speak English.",
+            "I speak English well.",
+            "Well I speak English.",
+            "I speak well in English."
+          ],
+          "correctAnswer": "I speak English well.",
+          "explanation": "The adverb 'well' cannot separate the verb (speak) and its object (English)."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the correct placement for 'usually':",
+          "options": [
+            "Usually the weather is good.",
+            "The weather usually is good.",
+            "The weather is usually good.",
+            "Both A and C are common."
+          ],
+          "correctAnswer": "Both A and C are common.",
+          "explanation": "'Usually' is flexible, but mid-position (after 'is') is standard."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Where does 'also' go? 'She ___ plays the piano.'",
+          "options": [
+            "also plays",
+            "plays also",
+            "also is playing",
+            "Both A and C (if using continuous)."
+          ],
+          "correctAnswer": "Both A and C (if using continuous).",
+          "explanation": "'Also' behaves like a frequency adverb; it goes before the main verb."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which is correct: 'We ___ finished the project.'",
+          "options": [
+            "almost have",
+            "have almost",
+            "have finished almost",
+            "Almost have we"
+          ],
+          "correctAnswer": "have almost",
+          "explanation": "Adverbs of degree go after the first auxiliary verb."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Identify the word order error: 'He forgot completely the meeting.'",
+          "options": [
+            "Change to: He completely forgot the meeting.",
+            "Change to: He forgot the meeting completely.",
+            "Both A and B are correct fixes.",
+            "No error."
+          ],
+          "correctAnswer": "Both A and B are correct fixes.",
+          "explanation": "You must not separate 'forgot' and 'the meeting'."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Where does 'still' go in a negative sentence?",
+          "options": [
+            "I still haven't finished.",
+            "I haven't still finished.",
+            "I haven't finished still.",
+            "Still I haven't finished."
+          ],
+          "correctAnswer": "I still haven't finished.",
+          "explanation": "In negatives, 'still' comes *before* the auxiliary verb to show surprise or frustration."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Correct the order: 'She beautiful sang the song.'",
+          "options": [
+            "She sang beautiful the song.",
+            "She sang the song beautifully.",
+            "She beautifully sang the song.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "First, the adjective 'beautiful' must be the adverb 'beautifully'. Then it goes at the end or before the verb."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which is the most natural position for 'probably'?",
+          "options": [
+            "Probably it will rain.",
+            "It probably will rain.",
+            "It will probably rain.",
+            "It will rain probably."
+          ],
+          "correctAnswer": "It will probably rain.",
+          "explanation": "Adverbs of certainty go after the auxiliary (will)."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Fix the order: 'I can play very well the violin.'",
+          "options": [
+            "I can play the violin very well.",
+            "I can very well play the violin.",
+            "Very well I can play the violin.",
+            "I can play well very the violin."
+          ],
+          "correctAnswer": "I can play the violin very well.",
+          "explanation": "Adverbs of manner belong at the end of the clause."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Where does 'just' go? 'They ___ have arrived.'",
+          "options": [
+            "just have",
+            "have just",
+            "have arrived just",
+            "Just they have"
+          ],
+          "correctAnswer": "have just",
+          "explanation": "Just (meaning recently) goes between the auxiliary and the main verb."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the correct placement of 'never':",
+          "options": [
+            "I never am late.",
+            "I am never late.",
+            "Never I am late.",
+            "I am late never."
+          ],
+          "correctAnswer": "I am never late.",
+          "explanation": "'Never' follows the verb 'to be'."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which is correct: 'We ___ discussed the issue.'",
+          "options": [
+            "briefly discussed",
+            "discussed briefly",
+            "Both A and B (if 'the issue' follows B).",
+            "discussed the issue briefly."
+          ],
+          "correctAnswer": "Both A and B (if 'the issue' follows B).",
+          "explanation": "You can say 'briefly discussed the issue' or 'discussed the issue briefly'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Where does 'frequently' go? 'The bus ___ arrives on time.'",
+          "options": [
+            "frequently arrives",
+            "arrives frequently",
+            "Both are common.",
+            "arrives on time frequently."
+          ],
+          "correctAnswer": "Both are common.",
+          "explanation": "Frequency adverbs can go before the main verb or at the end of the phrase."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Identify the mistake: 'I yesterday went to Tokyo.'",
+          "options": [
+            "No mistake.",
+            "'Yesterday' should be at the end.",
+            "'Yesterday' should be at the beginning.",
+            "Both B and C are correct fixes."
+          ],
+          "correctAnswer": "Both B and C are correct fixes.",
+          "explanation": "In English, time adverbs cannot sit between the subject and the verb."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Where does 'seldom' go? 'They ___ visit their relatives.'",
+          "options": [
+            "seldom visit",
+            "visit seldom",
+            "are seldom visiting",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'Seldom' is an adverb of frequency and goes before the main verb."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Correct the order: 'He slowly is walking.'",
+          "options": [
+            "He is slowly walking.",
+            "He is walking slowly.",
+            "Slowly he is walking.",
+            "All are possible, but A and B are most common."
+          ],
+          "correctAnswer": "All are possible, but A and B are most common.",
+          "explanation": "Manner adverbs are very flexible but standard position is between 'be' and '-ing' or at the end."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Which is correct: 'I ___ understand the problem.'",
+          "options": [
+            "fully understand",
+            "understand fully",
+            "understand the problem fully.",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "'Fully' is an adverb of degree; it goes before the verb or at the end of the clause."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'She cooked quickly the dinner.'",
+          "options": [
+            "Change to: She quickly cooked the dinner.",
+            "Change to: She cooked the dinner quickly.",
+            "Both A and B are correct fixes.",
+            "No error."
+          ],
+          "correctAnswer": "Both A and B are correct fixes.",
+          "explanation": "Do not separate the verb 'cooked' from the object 'the dinner'."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Where does 'rarely' go? 'He ___ has been sick.'",
+          "options": [
+            "rarely has",
+            "has rarely",
+            "has been rarely",
+            "Rarely he has"
+          ],
+          "correctAnswer": "has rarely",
+          "explanation": "Frequency adverbs go after the first auxiliary verb."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final check: Where does 'quietly' go? 'She ___ closed the door.'",
+          "options": [
+            "quietly closed",
+            "closed quietly",
+            "closed the door quietly.",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "Manner adverbs work best before the verb or at the end of the SV-O sequence."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: Nesting Complex Modifiers</h3><p>In academic writing, sentences are longer. You must learn where to place multiple adverbs and phrases without losing the core meaning. Follow the <b>MP-T rule</b> (Manner, Place, then Time) for the end of the sentence.</p><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">✅ <em>The researchers (S) analyzed (V) the samples (O) <b>carefully</b> (Manner) <b>in the lab</b> (Place) <b>during the afternoon</b> (Time).</em></li><li>❌ <em>The researchers in the lab carefully during the afternoon analyzed the samples.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Choose the most natural word order for this academic sentence:",
+          "options": [
+            "The data was analyzed thoroughly by the team in 2023.",
+            "The team thoroughly analyzed the data in 2023.",
+            "In 2023, the data was thoroughly analyzed by the team.",
+            "All of the above are correct, but B is the most direct academic form."
+          ],
+          "correctAnswer": "All of the above are correct, but B is the most direct academic form.",
+          "explanation": "English allows flexibility for emphasis (Time at the start or end), but mid-position for the adverb 'thoroughly' is standard."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Fix the error in this complex sentence: 'The professor explained in the lecture the theory very clearly.'",
+          "options": [
+            "The professor very clearly explained the theory in the lecture.",
+            "The professor explained the theory very clearly in the lecture.",
+            "In the lecture, the professor explained the theory very clearly.",
+            "Both B and C are correct fixes."
+          ],
+          "correctAnswer": "Both B and C are correct fixes.",
+          "explanation": "You must not separate the verb 'explained' from its object 'the theory' with a prepositional phrase like 'in the lecture'."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Identify the correct order of multiple adverbs: 'The project was ___.'",
+          "options": [
+            "almost completely finished",
+            "completely almost finished",
+            "finished almost completely",
+            "almost finished completely"
+          ],
+          "correctAnswer": "almost completely finished",
+          "explanation": "Adverbs of degree usually follow a specific order: [Approximation: almost] before [Absolute: completely]."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly places the frequency and manner adverbs?",
+          "options": [
+            "He usually works hard in the office.",
+            "He works usually hard in the office.",
+            "Hardly he works usually in the office.",
+            "He usually in the office works hard."
+          ],
+          "correctAnswer": "He usually works hard in the office.",
+          "explanation": "Frequency (usually) comes before the verb; Manner (hard) comes after the verb."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Unscramble this formal sentence: 'has / the committee / already / the proposal / reviewed'",
+          "options": [
+            "The committee has already reviewed the proposal.",
+            "The committee already has reviewed the proposal.",
+            "Already the committee has reviewed the proposal.",
+            "The committee has reviewed already the proposal."
+          ],
+          "correctAnswer": "The committee has already reviewed the proposal.",
+          "explanation": "In present perfect, 'already' sits between the auxiliary 'has' and the participle 'reviewed'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Where does the 'Manner' adverb go in a passive sentence? 'The results were ___ recorded.'",
+          "options": [
+            "accurately were",
+            "were accurately",
+            "were recorded accurately",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "Manner adverbs can sit between the 'be' verb and the participle, or at the end of the sentence."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Identify the natural order for Place and Time: 'The conference will take place ___.'",
+          "options": [
+            "next week in London",
+            "in London next week",
+            "Both are common in speaking.",
+            "B is the standard M-P-T academic order."
+          ],
+          "correctAnswer": "B is the standard M-P-T academic order.",
+          "explanation": "English standardly places Place (London) before Time (Next week)."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for multiple adjectives: 'The researcher found a ___.'",
+          "options": [
+            "rare small blue bird",
+            "small rare blue bird",
+            "blue rare small bird",
+            "rare blue small bird"
+          ],
+          "correctAnswer": "rare small blue bird",
+          "explanation": "Adjective order: [Opinion: rare] -> [Size: small] -> [Color: blue]."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Where should 'enough' be placed in this sentence? 'There is ___ to feed the whole team.'",
+          "options": [
+            "food enough",
+            "enough food",
+            "food is enough",
+            "Both A and B."
+          ],
+          "correctAnswer": "enough food",
+          "explanation": "When 'enough' modifies a noun, it comes *before* the noun."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Fix the word order: 'She speaks fluently three languages.'",
+          "options": [
+            "She fluently speaks three languages.",
+            "She speaks three languages fluently.",
+            "Both A and B are correct.",
+            "Fluently she speaks three languages."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "The manner adverb 'fluently' must not separate the verb 'speaks' and the object 'three languages'."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Identify the correct negative question order:",
+          "options": [
+            "Why did you not finish the report?",
+            "Why didn't you finish the report?",
+            "Why you did not finish the report?",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "A is more formal (not follows subject); B is standard (not is contracted with the auxiliary)."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct placement for 'only': 'The policy ___ applies to small businesses.'",
+          "options": [
+            "only",
+            "applies only",
+            "applies to only",
+            "All are common, but A is standard mid-position."
+          ],
+          "correctAnswer": "All are common, but A is standard mid-position.",
+          "explanation": "'Only' usually sits before the verb in standard English prose."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Unscramble the phrase: 'has / still / the government / to / the decision / announce'",
+          "options": [
+            "The government still has to announce the decision.",
+            "Still the government has to announce the decision.",
+            "The government has still to announce the decision.",
+            "Both A and C are possible."
+          ],
+          "correctAnswer": "Both A and C are possible.",
+          "explanation": "'Still' goes before 'has' for emphasis or between 'has' and the verb phrase."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the correct Object-Place-Time order?",
+          "options": [
+            "He left the keys on the table this morning.",
+            "He left this morning the keys on the table.",
+            "On the table he left the keys this morning.",
+            "This morning on the table he left the keys."
+          ],
+          "correctAnswer": "He left the keys on the table this morning.",
+          "explanation": "Standard SVOPT: keys (O), on the table (P), this morning (T)."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Where does the adverb 'completely' belong? 'The city was ___ by the storm.'",
+          "options": [
+            "completely destroyed",
+            "destroyed completely",
+            "Both are correct.",
+            "Neither is correct."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "Degree adverbs can go before the main verb or at the end of the clause."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Identify the correct order for indirect and direct objects:",
+          "options": [
+            "I gave the document to the manager.",
+            "I gave the manager the document.",
+            "Both are correct.",
+            "To the manager I gave the document."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "English allows [V + Person + Thing] or [V + Thing + to + Person]."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'I every day check my email in the morning.'",
+          "options": [
+            "I check my email every day in the morning.",
+            "Every day in the morning I check my email.",
+            "Both are correct.",
+            "I check every day my email in the morning."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "Time expressions like 'every day' cannot separate the Subject and Verb."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Where does 'also' go with an auxiliary verb? 'He ___ has traveled to Asia.'",
+          "options": [
+            "also has",
+            "has also",
+            "has traveled also",
+            "Also he has"
+          ],
+          "correctAnswer": "has also",
+          "explanation": "Adverbs of addition (also) follow the first auxiliary verb."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly structured for an 'if' clause?",
+          "options": [
+            "If the price rises, people will buy less.",
+            "People will buy less if the price rises.",
+            "Both are correct.",
+            "Neither is correct."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "The position of the conditional clause is flexible in English."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Identify the correct placement of 'never' in a perfect tense:",
+          "options": [
+            "I never have seen such a result.",
+            "I have never seen such a result.",
+            "I have seen never such a result.",
+            "Never I have seen such a result."
+          ],
+          "correctAnswer": "I have never seen such a result.",
+          "explanation": "Mid-position adverbs sit between the auxiliary 'have' and the participle 'seen'."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Which sentence is too noun-heavy at the end?",
+          "options": [
+            "He explained the complicated, multi-step process carefully.",
+            "He carefully explained the complicated, multi-step process.",
+            "He explained carefully the complicated, multi-step process.",
+            "Both A and B are better."
+          ],
+          "correctAnswer": "Both A and B are better.",
+          "explanation": "In English, a long object phrase should be kept together, usually after the verb or after a short adverb."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Where does 'probably' go in a negative sentence?",
+          "options": [
+            "He probably won't come.",
+            "He won't probably come.",
+            "He will probably not come.",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "In negatives, adverbs of certainty go before the negative auxiliary (won't) or before 'not'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Identify the correct word order for this question:",
+          "options": [
+            "What did the researcher find in the study?",
+            "What the researcher did find in the study?",
+            "The researcher what did find in the study?",
+            "In the study what did the researcher find?"
+          ],
+          "correctAnswer": "What did the researcher find in the study?",
+          "explanation": "Standard question order: [Wh-word] + [Auxiliary] + [Subject] + [Verb]."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Where does the 'Place' phrase go? 'The students ___.'",
+          "options": [
+            "studied quietly in the library",
+            "in the library studied quietly",
+            "studied in the library quietly",
+            "Both A and C are possible, but A is standard."
+          ],
+          "correctAnswer": "Both A and C are possible, but A is standard.",
+          "explanation": "Manner (quietly) usually comes before Place (in the library)."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for 'well':",
+          "options": [
+            "The team performed well during the competition.",
+            "The team well performed during the competition.",
+            "Well the team performed during the competition.",
+            "The team during the competition performed well."
+          ],
+          "correctAnswer": "The team performed well during the competition.",
+          "explanation": "Manner adverbs (well) must follow the verb and precede time/place phrases."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Fix the order: 'I can't believe you already have finished!'",
+          "options": [
+            "I can't believe you have already finished!",
+            "I can't believe already you have finished!",
+            "I can't believe you have finished already!",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "'Already' sits between 'have' and the participle, or at the end for emphasis."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Where does the 'Time' phrase go in this list? 'He worked ___.'",
+          "options": [
+            "hard yesterday in the office",
+            "in the office hard yesterday",
+            "hard in the office yesterday",
+            "yesterday hard in the office"
+          ],
+          "correctAnswer": "hard in the office yesterday",
+          "explanation": "Standard M-P-T order: hard (M), in the office (P), yesterday (T)."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Identify the correct word order for an indirect object with a pronoun:",
+          "options": [
+            "Give it to me.",
+            "Give me it.",
+            "To me give it.",
+            "It give me."
+          ],
+          "correctAnswer": "Give it to me.",
+          "explanation": "When the direct object is a pronoun (it, them), it must come before the indirect object (me)."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for multiple adverbs: 'The stock price ___.'",
+          "options": [
+            "fell steadily almost",
+            "almost steadily fell",
+            "fell almost steadily",
+            "None of the above are natural."
+          ],
+          "correctAnswer": "None of the above are natural.",
+          "explanation": "Correct order would be: 'fell almost continuously' or 'almost fell'. 'Steadily' usually modifies the falling, so 'fell almost steadily' is awkward. Better: 'fell at an almost steady rate'."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final check: Which sentence is most natural for an academic paper?",
+          "options": [
+            "The temperature rose significantly during the last decade in the Arctic.",
+            "The temperature rose significantly in the Arctic during the last decade.",
+            "During the last decade, the temperature in the Arctic rose significantly.",
+            "Both B and C are excellent academic choices."
+          ],
+          "correctAnswer": "Both B and C are excellent academic choices.",
+          "explanation": "B follows Place-Time order. C uses Time at the beginning for emphasis/topic signaling. Both are high-level."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: Advanced Inversion</h3><p>To achieve an elite score, you must master <b>Inversion</b>. When you start a sentence with a negative or limiting word (<i>Not only, Never, Seldom, Hardly</i>), the auxiliary verb must come <b>before</b> the subject.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>⚖️ <strong>Standard:</strong> <em>The rate <b>not only</b> dropped, but it also became stable.</em></li><li>🚀 <strong>Inverted:</strong> <em><b>Not only did</b> the rate drop, but it also became stable.</em></li><li>🛑 <strong>Trap:</strong> Never invert the second clause; only the first!</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which sentence uses correct inversion for emphasis?",
+          "options": [
+            "Not only the price increased, but the quality dropped.",
+            "Not only did the price increase, but also the quality dropped.",
+            "Not only did the price increase, but the quality also dropped.",
+            "Not only increased the price, but the quality dropped."
+          ],
+          "correctAnswer": "Not only did the price increase, but the quality also dropped.",
+          "explanation": "When starting with 'Not only', you must use the auxiliary 'did' before the subject 'the price'."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct word order: '___ have I seen such a dramatic change in data.'",
+          "options": [
+            "Never",
+            "Rarely",
+            "Seldom",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "Starting with any negative adverb (Never, Rarely, Seldom) triggers inversion (Auxiliary + Subject)."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'Hardly the sun had set when the storm began.'",
+          "options": [
+            "Hardly had the sun set when the storm began.",
+            "Hardly did the sun set when the storm began.",
+            "The sun hardly had set when the storm began.",
+            "Both A and B are possible."
+          ],
+          "correctAnswer": "Hardly had the sun set when the storm began.",
+          "explanation": "'Hardly' followed by the past perfect (had + set) requires 'had' to move before the subject."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Identify the correct order after 'Only then':",
+          "options": [
+            "Only then the researchers realized their mistake.",
+            "Only then did the researchers realize their mistake.",
+            "Only then realized the researchers their mistake.",
+            "Realized the researchers their mistake only then."
+          ],
+          "correctAnswer": "Only then did the researchers realize their mistake.",
+          "explanation": "Phrases starting with 'Only' (Only then, Only after) trigger inversion in the main clause."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Which is the most sophisticated Task 1 description?",
+          "options": [
+            "The numbers never reached 50%.",
+            "At no point did the figures reach 50%.",
+            "The figures at no point reached 50%.",
+            "Never did the figures reached 50%."
+          ],
+          "correctAnswer": "At no point did the figures reach 50%.",
+          "explanation": "'At no point' is a formal negative phrase that triggers inversion, perfect for Band 8.0 Task 1."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Where is the auxiliary verb in this inverted sentence? 'Little ___ the consequences of their actions.'",
+          "options": [
+            "they knew",
+            "did they know",
+            "know they",
+            "they did know"
+          ],
+          "correctAnswer": "did they know",
+          "explanation": "Starting with 'Little' (meaning 'not at all') requires 'did' + subject + base verb."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for 'Under no circumstances':",
+          "options": [
+            "Under no circumstances students should use AI to cheat.",
+            "Under no circumstances should students use AI to cheat.",
+            "Students should under no circumstances use AI to cheat.",
+            "Both B and C are grammatically correct."
+          ],
+          "correctAnswer": "Both B and C are grammatically correct.",
+          "explanation": "B uses inversion for emphasis; C is the standard (but still formal) word order."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'No sooner had the policy been implemented than the economy improved.'",
+          "options": [
+            "The 'had' is in the wrong place.",
+            "The 'than' should be 'when'.",
+            "The sentence is correct.",
+            "The 'than' should be 'then'."
+          ],
+          "correctAnswer": "The sentence is correct.",
+          "explanation": "'No sooner... than' is a fixed structure that requires inversion (had the policy been)."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which sentence is best for a Task 2 argument?",
+          "options": [
+            "Seldom governments realize the long-term effects of debt.",
+            "Seldom do governments realize the long-term effects of debt.",
+            "Governments seldom realize the long-term effects of debt.",
+            "Both B and C are correct, but B is more emphatic."
+          ],
+          "correctAnswer": "Both B and C are correct, but B is more emphatic.",
+          "explanation": "B uses inversion to sound more authoritative and formal."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Where does the inversion happen with 'Only after'? 'Only after the data was verified ___.'",
+          "options": [
+            "did the publication occur",
+            "the publication occurred",
+            "occurred the publication",
+            "was the publication occurred"
+          ],
+          "correctAnswer": "did the publication occur",
+          "explanation": "Inversion happens in the *main* clause, not the 'Only after' clause."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Fix the word order: 'Not until much later they found the truth.'",
+          "options": [
+            "Not until much later did they find the truth.",
+            "Not until much later they did find the truth.",
+            "Until much later they not found the truth.",
+            "Did they find the truth not until much later."
+          ],
+          "correctAnswer": "Not until much later did they find the truth.",
+          "explanation": "'Not until' phrases trigger inversion in the main clause."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Which is correct for a conditional without 'if'?",
+          "options": [
+            "Should you have any questions, please ask.",
+            "If you should have any questions, please ask.",
+            "Both are correct.",
+            "Neither is correct."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "Moving the auxiliary 'Should' to the front is a formal way to replace 'If'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Identify the inversion error: 'Never I have been so surprised by a result.'",
+          "options": [
+            "Never have I been",
+            "I have never been",
+            "Both A and B are correct.",
+            "Never been I have"
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "A is inverted for emphasis; B is the standard neutral order."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Complete the 'In no way' structure: 'In no way ___ the complexity of the issue.'",
+          "options": [
+            "does this study simplify",
+            "this study simplifies",
+            "simplifies this study",
+            "this study does simplify"
+          ],
+          "correctAnswer": "does this study simplify",
+          "explanation": "'In no way' triggers standard auxiliary-subject inversion."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'double negative' word order error?",
+          "options": [
+            "Rarely did they not finish.",
+            "Rarely they didn't finish.",
+            "Neither did they finish nor did they try.",
+            "I don't never go there."
+          ],
+          "correctAnswer": "I don't never go there.",
+          "explanation": "Using 'don't' and 'never' together is a double negative error, common in some dialects but forbidden in academic writing."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Choose the best academic rewrite: 'Such a situation occurs rarely.'",
+          "options": [
+            "Rarely occurs such a situation.",
+            "Rarely does such a situation occur.",
+            "Such a situation rarely occurs.",
+            "Both B and C are correct."
+          ],
+          "correctAnswer": "Both B and C are correct.",
+          "explanation": "B is formal/inverted; C is standard academic prose."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "In Task 2, how would you emphasize a lack of alternatives?",
+          "options": [
+            "Not only we must change, but we must do it now.",
+            "Not only must we change, but we must also act immediately.",
+            "Must we not only change, but also act immediately.",
+            "We not only must change but act now also."
+          ],
+          "correctAnswer": "Not only must we change, but we must also act immediately.",
+          "explanation": "Inverts 'must we' after 'Not only' and keeps the second clause standard."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Identify the correctly inverted conditional:",
+          "options": [
+            "Were the company to fail, many would lose jobs.",
+            "Had the company failed, many would have lost jobs.",
+            "If the company were to fail, many would lose jobs.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "All three are high-level ways to express conditional outcomes."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Which word order is best for 'Hardly ever'?",
+          "options": [
+            "Hardly ever the price dropped.",
+            "Hardly ever did the price drop.",
+            "The price hardly ever dropped.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "B (Inverted) and C (Standard) are both correct."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Identify the trap in 'Scarcely had he arrived when the phone rang.'",
+          "options": [
+            "The word 'when' should be 'than'.",
+            "The word 'had' should be 'did'.",
+            "There is no trap; it is correct.",
+            "The 'he' and 'had' should be swapped."
+          ],
+          "correctAnswer": "There is no trap; it is correct.",
+          "explanation": "'Scarcely... when' is a standard high-level inverted structure."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Where does the inversion go with 'Only by'? 'Only by working together ___ succeed.'",
+          "options": [
+            "can we",
+            "we can",
+            "succeed can we",
+            "did we can"
+          ],
+          "correctAnswer": "can we",
+          "explanation": "Inversion triggers in the main clause after the 'Only' phrase."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct order for a formal prohibition:",
+          "options": [
+            "On no account should you disclose this information.",
+            "On no account you should disclose this information.",
+            "You should on no account disclose this information.",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "A is the inverted emphatic form; C is the standard formal form."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Not only he is a student, but he also works.'",
+          "options": [
+            "Not only is he",
+            "But also he works",
+            "He is not only",
+            "Both A and C are possible fixes."
+          ],
+          "correctAnswer": "Both A and C are possible fixes.",
+          "explanation": "You must either invert 'is he' or put 'not only' after the verb 'is'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which of these is an 'Adverbial Inversion' of place (often used in Task 1 maps)?",
+          "options": [
+            "Next to the park is a hospital.",
+            "Behind the shops was built a new road.",
+            "A hospital is next to the park.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "English allows moving the place phrase to the front and swapping the subject and verb (A and B)."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Where is the error? 'Not until 2010 the trend changed.'",
+          "options": [
+            "Until not 2010",
+            "Not until 2010 did the trend change",
+            "2010 not until",
+            "The trend changed not until 2010"
+          ],
+          "correctAnswer": "Not until 2010 did the trend change",
+          "explanation": "'Not until' phrases must be followed by an inverted auxiliary (did)."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Choose the most academic form of 'If I were you':",
+          "options": [
+            "Were I in your position",
+            "If I were you",
+            "I being you",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "A is the formal inverted form; B is standard but still acceptable."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the correctly punctuated inverted sentence:",
+          "options": [
+            "Never, have I seen such a result.",
+            "Never have I seen such a result.",
+            "Never have I seen, such a result.",
+            "Never have, I seen such a result."
+          ],
+          "correctAnswer": "Never have I seen such a result.",
+          "explanation": "Do not put a comma between the negative adverb and the inverted auxiliary."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Which is correct for 'So' and 'Neither'?",
+          "options": [
+            "I like it, and so do I.",
+            "I don't like it, and neither do I.",
+            "Both are correct ways to show agreement.",
+            "Neither are correct."
+          ],
+          "correctAnswer": "Both are correct ways to show agreement.",
+          "explanation": "Agreement with 'So' and 'Neither' requires inversion of the auxiliary."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Fix: 'Only with the help of teachers students can succeed.'",
+          "options": [
+            "Only with the help of teachers can students succeed.",
+            "Only can with the help of teachers students succeed.",
+            "With the help of teachers only can students succeed.",
+            "Only with the help of teachers students can they succeed."
+          ],
+          "correctAnswer": "Only with the help of teachers can students succeed.",
+          "explanation": "The auxiliary 'can' must come before the subject 'students' after the 'Only with...' phrase."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Why is inversion important for your score?",
+          "options": [
+            "It proves you can use complex grammatical structures.",
+            "It helps emphasize your most important points.",
+            "It allows you to vary your sentence structures.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Mastering inversion is a key metric for the 'Grammatical Range and Accuracy' band descriptor."
+        }
+      ]
+    }
+  ]
+}

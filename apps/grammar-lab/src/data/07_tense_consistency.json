@@ -1,0 +1,1594 @@
+{
+  "topicId": "07_tense_consistency",
+  "topicName": "Tense Consistency",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: Staying on the Timeline</h3><p>Tense consistency means using the same verb tense for all actions that happen at the same time. Changing tenses without a reason confuses the reader about <b>when</b> things are happening.</p><ul style=\"line-height: 1.8;\"><li>✅ <b>Consistent:</b> <i>He <b>walked</b> into the room and <b>sat</b> down.</i> (Both are Past).</li><li>❌ <b>Inconsistent:</b> <i>He <b>walked</b> into the room and <b>sits</b> down.</i> (Mixed Past and Present).</li><li>📊 <b>Rule:</b> If the first verb establishes a timeline, the following verbs should usually follow it.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which sentence maintains a consistent past tense?",
+          "options": [
+            "She opened the door and looks inside.",
+            "She opens the door and looked inside.",
+            "She opened the door and looked inside.",
+            "She open the door and looks inside."
+          ],
+          "correctAnswer": "She opened the door and looked inside.",
+          "explanation": "Both 'opened' and 'looked' are in the simple past tense, maintaining a consistent timeline."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Identify the inconsistent verb: 'The scientist prepares the slide, adjusted the microscope, and began the observation.'",
+          "options": [
+            "prepares",
+            "adjusted",
+            "began",
+            "observation"
+          ],
+          "correctAnswer": "prepares",
+          "explanation": "'Adjusted' and 'began' are past tense. 'Prepares' is present tense and breaks the consistency."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Complete the sentence consistently: 'When the bell rings, the students ___ the classroom.'",
+          "options": [
+            "leave",
+            "left",
+            "leaving",
+            "had left"
+          ],
+          "correctAnswer": "leave",
+          "explanation": "'Rings' is present tense, so the result should also be in the present tense ('leave')."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a past narrative: 'We arrived at the airport and ___ for our flight.'",
+          "options": [
+            "wait",
+            "waited",
+            "waiting",
+            "waits"
+          ],
+          "correctAnswer": "waited",
+          "explanation": "'Arrived' is past tense; 'waited' maintains that timeline."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which of these is a consistent present tense sentence?",
+          "options": [
+            "The sun rises in the east and set in the west.",
+            "The sun rose in the east and sets in the west.",
+            "The sun rises in the east and sets in the west.",
+            "The sun rose in the east and set in the west."
+          ],
+          "correctAnswer": "The sun rises in the east and sets in the west.",
+          "explanation": "Both verbs are in the simple present, used for general facts."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He picked up the phone, dialed the number, but nobody answers.'",
+          "options": [
+            "picked up",
+            "dialed",
+            "but",
+            "answers"
+          ],
+          "correctAnswer": "answers",
+          "explanation": "The sequence is in the past, so it should be 'answered'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'If you study hard, you ___ the test.'",
+          "options": [
+            "pass",
+            "will pass",
+            "passed",
+            "passing"
+          ],
+          "correctAnswer": "will pass",
+          "explanation": "This is a first conditional. Present tense in the 'if' clause usually pairs with 'will' for the future result."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which sentence shows correct past tense consistency?",
+          "options": [
+            "They saw the movie and then they go home.",
+            "They see the movie and then they went home.",
+            "They saw the movie and then they went home.",
+            "They seeing the movie and then they go home."
+          ],
+          "correctAnswer": "They saw the movie and then they went home.",
+          "explanation": "Both 'saw' and 'went' are simple past."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the inconsistent verb: 'The teacher enters the room, puts down her bag, and asked for silence.'",
+          "options": [
+            "enters",
+            "puts",
+            "asked",
+            "silence"
+          ],
+          "correctAnswer": "asked",
+          "explanation": "'Enters' and 'puts' are present. 'Asked' is past and breaks the flow."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Yesterday, I went to the store and ___ some milk.'",
+          "options": [
+            "buy",
+            "bought",
+            "buying",
+            "buys"
+          ],
+          "correctAnswer": "bought",
+          "explanation": "'Went' is past; 'bought' is the past of 'buy'."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which is correct for a current habit? 'Every morning, I wake up and ___ coffee.'",
+          "options": [
+            "drink",
+            "drank",
+            "drinking",
+            "drunk"
+          ],
+          "correctAnswer": "drink",
+          "explanation": "Matches the present tense 'wake up'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The birds flew south because winter is coming.'",
+          "options": [
+            "flew",
+            "because",
+            "is coming",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "This is a logical tense shift. The birds 'flew' (past action) because winter 'is coming' (ongoing state/reason in the present)."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Choose the consistent verb: 'She thinks about her future and ___ her goals.'",
+          "options": [
+            "plan",
+            "plans",
+            "planned",
+            "planning"
+          ],
+          "correctAnswer": "plans",
+          "explanation": "Maintains the present tense established by 'thinks'."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which is inconsistent? 'He ran fast, jumped the fence, and escapes the guard.'",
+          "options": [
+            "ran",
+            "jumped",
+            "escapes",
+            "No error"
+          ],
+          "correctAnswer": "escapes",
+          "explanation": "Should be 'escaped' to match the other past tense verbs."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The team worked hard and ___ the championship.'",
+          "options": [
+            "win",
+            "won",
+            "winning",
+            "wins"
+          ],
+          "correctAnswer": "won",
+          "explanation": "Past tense 'worked' requires past tense 'won'."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The engine starts, the wheels turn, and the car moved forward.'",
+          "options": [
+            "starts",
+            "turn",
+            "moved",
+            "forward"
+          ],
+          "correctAnswer": "moved",
+          "explanation": "The first two verbs are present; 'moved' should be 'moves'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I was reading a book when the phone ___.'",
+          "options": [
+            "ring",
+            "rang",
+            "rung",
+            "rings"
+          ],
+          "correctAnswer": "rang",
+          "explanation": "Past continuous 'was reading' is interrupted by a simple past action 'rang'."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Identify the consistent sentence:",
+          "options": [
+            "We go to the beach and had fun.",
+            "We went to the beach and have fun.",
+            "We went to the beach and had fun.",
+            "We going to the beach and having fun."
+          ],
+          "correctAnswer": "We went to the beach and had fun.",
+          "explanation": "Both 'went' and 'had' are past tense."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Technology changes quickly and ___ our lives.'",
+          "options": [
+            "impact",
+            "impacts",
+            "impacted",
+            "impacting"
+          ],
+          "correctAnswer": "impacts",
+          "explanation": "Present tense consistency for a general fact."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Identify the inconsistent verb: 'They walked to the park, sit on a bench, and talked.'",
+          "options": [
+            "walked",
+            "sit",
+            "talked",
+            "bench"
+          ],
+          "correctAnswer": "sit",
+          "explanation": "Should be the past tense 'sat'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'If it rained, we ___ stay home.'",
+          "options": [
+            "will",
+            "would",
+            "shall",
+            "can"
+          ],
+          "correctAnswer": "would",
+          "explanation": "Second conditional (unreal past) uses 'would' in the result clause."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The baker kneads the dough and then he baked it.'",
+          "options": [
+            "kneads",
+            "then",
+            "baked",
+            "it"
+          ],
+          "correctAnswer": "baked",
+          "explanation": "Should be 'bakes' to match the present tense 'kneads'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Complete: 'She finished her work and ___ the office.'",
+          "options": [
+            "leave",
+            "left",
+            "leaving",
+            "leaves"
+          ],
+          "correctAnswer": "left",
+          "explanation": "Past tense consistency."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which sentence is consistent?",
+          "options": [
+            "I study every day and I learned a lot.",
+            "I studied every day and I learn a lot.",
+            "I study every day and I learn a lot.",
+            "I studying every day and I learning a lot."
+          ],
+          "correctAnswer": "I study every day and I learn a lot.",
+          "explanation": "Consistency in the present tense for a habit."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the inconsistent verb: 'He woke up, ate breakfast, and goes to work.'",
+          "options": [
+            "woke up",
+            "ate",
+            "goes",
+            "breakfast"
+          ],
+          "correctAnswer": "goes",
+          "explanation": "Should be the past tense 'went'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The fire started and then it ___.'",
+          "options": [
+            "spread",
+            "spreads",
+            "spreading",
+            "spreaded"
+          ],
+          "correctAnswer": "spread",
+          "explanation": "'Spread' is the past tense of 'spread' (it is irregular)."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Choose the consistent verb: 'I usually eat lunch at noon, but today I ___ at 1 PM.'",
+          "options": [
+            "eat",
+            "ate",
+            "eaten",
+            "eating"
+          ],
+          "correctAnswer": "ate",
+          "explanation": "The contrast 'but today' allows a logical shift to the past tense for a specific event."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The storm began and the wind blows strongly.'",
+          "options": [
+            "began",
+            "and",
+            "blows",
+            "strongly"
+          ],
+          "correctAnswer": "blows",
+          "explanation": "Should be 'blew' to match 'began'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Which sentence is consistent?",
+          "options": [
+            "She says hello and smiled.",
+            "She said hello and smiles.",
+            "She says hello and smiles.",
+            "She saying hello and smiling."
+          ],
+          "correctAnswer": "She says hello and smiles.",
+          "explanation": "Consistent present tense."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Tense consistency is most important for ___.",
+          "options": [
+            "Making sentences longer.",
+            "Ensuring the timeline is clear for the reader.",
+            "Using difficult verbs.",
+            "Sounding formal."
+          ],
+          "correctAnswer": "Ensuring the timeline is clear for the reader.",
+          "explanation": "Clarity of the timeline is the primary purpose of tense consistency."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: The Accidental Shift",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: Lock the Frame</h3><p>Japanese speakers often shift to the present tense when describing a scene, even if the event happened yesterday. In English, you must <b>Lock the Frame</b>. If you start in the Past, stay in the Past.</p><ul style=\"line-height: 1.8;\"><li>❌ <b>L1 Trap:</b> <i>I <b>went</b> to the park yesterday. The weather <b>is</b> beautiful, so I <b>sit</b> down.</i></li><li>✅ <b>Correct:</b> <i>I <b>went</b> to the park yesterday. The weather <b>was</b> beautiful, so I <b>sat</b> down.</i></li><li>💡 <b>The Exception:</b> You only shift to Present if you are stating a universal truth (e.g., <i>He reminded me that the earth <b>is</b> round.</i>).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Fix the tense shift: 'The explorers reached the summit, but they see nothing but clouds.'",
+          "options": [
+            "The explorers reached the summit, but they saw nothing but clouds.",
+            "The explorers reach the summit, but they saw nothing but clouds.",
+            "The explorers reach the summit and they see nothing but clouds.",
+            "Both A and C are consistent."
+          ],
+          "correctAnswer": "Both A and C are consistent.",
+          "explanation": "A keeps the narrative in the Past; C keeps it in the Present. Mixing them is the error."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Identify the 'L1 Logic' error: 'I was very hungry, so I go to the kitchen.'",
+          "options": [
+            "was",
+            "hungry",
+            "go",
+            "kitchen"
+          ],
+          "correctAnswer": "go",
+          "explanation": "The first clause is Past ('was'), so the action must be 'went'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly shifts for a 'Universal Truth'?",
+          "options": [
+            "The teacher taught us that water boiled at 100 degrees.",
+            "The teacher taught us that water boils at 100 degrees.",
+            "The teacher teaches us that water boiled at 100 degrees.",
+            "The teacher taught us that water is boiling at 100 degrees."
+          ],
+          "correctAnswer": "The teacher taught us that water boils at 100 degrees.",
+          "explanation": "Even if the teaching happened in the past, the scientific fact stays in the Present."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The manager entered the room and tells everyone to be quiet.'",
+          "options": [
+            "entered",
+            "and",
+            "tells",
+            "quiet"
+          ],
+          "correctAnswer": "tells",
+          "explanation": "Should be 'told' to match 'entered'."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Choose the consistent sequence: 'He turned off the lights, locked the door, and ___.'",
+          "options": [
+            "leaves",
+            "left",
+            "is leaving",
+            "has left"
+          ],
+          "correctAnswer": "left",
+          "explanation": "Maintains the series of completed past actions."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'She said that she loves me.'",
+          "options": [
+            "No error if she still loves him now.",
+            "Should be 'She said that she loved me.'",
+            "The word 'said' should be 'says'.",
+            "Both A and B are possible, but B is safer for formal grammar."
+          ],
+          "correctAnswer": "Both A and B are possible, but B is safer for formal grammar.",
+          "explanation": "In 'Reported Speech,' we usually 'backshift' the tense to match 'said'."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Fix: 'I studied all night, but I still feel tired when I took the test.'",
+          "options": [
+            "I studied all night, but I still felt tired when I took the test.",
+            "I study all night, but I still feel tired when I take the test.",
+            "I studied all night, but I still feel tired when I take the test.",
+            "Both A and B are consistent."
+          ],
+          "correctAnswer": "Both A and B are consistent.",
+          "explanation": "Both options stay on one single timeline."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The movie was great because the actors are very talented.'",
+          "options": [
+            "was",
+            "because",
+            "are",
+            "talented"
+          ],
+          "correctAnswer": "are",
+          "explanation": "To keep the review consistent, use 'were'. The talent is part of the past experience of the movie."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'As soon as the alarm rang, he ___ out of bed.'",
+          "options": [
+            "jumps",
+            "jumped",
+            "is jumping",
+            "has jumped"
+          ],
+          "correctAnswer": "jumped",
+          "explanation": "The time signal 'rang' (Past) requires 'jumped' (Past)."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Find the shift: 'When I was a child, I play outside every day.'",
+          "options": [
+            "was",
+            "child",
+            "play",
+            "every day"
+          ],
+          "correctAnswer": "play",
+          "explanation": "Describing childhood requires the Past tense 'played' or 'used to play'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Choose the best academic consistency: 'The report indicated that the economy ___.'",
+          "options": [
+            "is growing",
+            "was growing",
+            "has grown",
+            "grows"
+          ],
+          "correctAnswer": "was growing",
+          "explanation": "Matches the 'Reported Speech' rule after the past tense verb 'indicated'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He forgot his umbrella, so he gets wet in the rain.'",
+          "options": [
+            "forgot",
+            "so",
+            "gets",
+            "rain"
+          ],
+          "correctAnswer": "gets",
+          "explanation": "Should be 'got' to match the past tense 'forgot'."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Fix the sentence: 'She opens her book and started to read.'",
+          "options": [
+            "She opened her book and started to read.",
+            "She opens her book and starts to read.",
+            "Both are consistent.",
+            "She opening her book and started to read."
+          ],
+          "correctAnswer": "Both are consistent.",
+          "explanation": "Consistency is about staying in one tense, whether Past or Present."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which is a 'Universal Truth' shift? 'He didn't know that the capital of France ___ Paris.'",
+          "options": [
+            "was",
+            "is",
+            "be",
+            "been"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Paris being the capital is a permanent fact."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The police arrived and arrest the suspect.'",
+          "options": [
+            "arrived",
+            "and",
+            "arrest",
+            "suspect"
+          ],
+          "correctAnswer": "arrest",
+          "explanation": "Should be 'arrested'."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Choose the consistent verb: 'I looked for my keys but I ___ find them.'",
+          "options": [
+            "can't",
+            "couldn't",
+            "don't",
+            "won't"
+          ],
+          "correctAnswer": "couldn't",
+          "explanation": "Past tense 'looked' requires the past modal 'couldn't'."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the shift: 'She works hard and she achieved her goals.'",
+          "options": [
+            "works",
+            "and",
+            "achieved",
+            "goals"
+          ],
+          "correctAnswer": "achieved",
+          "explanation": "Should be 'achieves' (Present) or 'worked' (Past)."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Fix: 'The chef tastes the soup and then he added more salt.'",
+          "options": [
+            "The chef tasted the soup and then he added more salt.",
+            "The chef tastes the soup and then he adds more salt.",
+            "Both are correct.",
+            "The chef taste the soup and added salt."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "Standard consistency check."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Which is incorrect? 'When the sun set, the temperature drops.'",
+          "options": [
+            "set",
+            "temperature",
+            "drops",
+            "No error"
+          ],
+          "correctAnswer": "drops",
+          "explanation": "Should be 'dropped' to match the past tense 'set'."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Final Logic Check: Why is consistency vital for a narrative?",
+          "options": [
+            "It makes the story easier to follow.",
+            "It prevents confusion about the timing of events.",
+            "It is a requirement for high-level writing scores.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Tense consistency is a fundamental marker of grammatical control."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I thought you are coming to the party.'",
+          "options": [
+            "thought",
+            "are",
+            "coming",
+            "party"
+          ],
+          "correctAnswer": "are",
+          "explanation": "Should be 'were' (Reported thought/Past frame)."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Complete: 'The plane took off and ___ into the clouds.'",
+          "options": [
+            "disappears",
+            "disappeared",
+            "disappearing",
+            "is disappearing"
+          ],
+          "correctAnswer": "disappeared",
+          "explanation": "Past tense consistency."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the shift: 'He reads the book and then he told me about it.'",
+          "options": [
+            "reads",
+            "then",
+            "told",
+            "about it"
+          ],
+          "correctAnswer": "told",
+          "explanation": "Should be 'tells' (Present) or 'read' (Past)."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'If I had a million dollars, I ___ buy a car.'",
+          "options": [
+            "will",
+            "would",
+            "shall",
+            "can"
+          ],
+          "correctAnswer": "would",
+          "explanation": "Second conditional (unreal) requires 'would'."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She won the race and she is very happy.'",
+          "options": [
+            "won",
+            "is",
+            "happy",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Logical shift: A past event ('won') causes a present state ('is happy')."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Fix: 'The rain stopped, so the children go outside.'",
+          "options": [
+            "The rain stopped, so the children went outside.",
+            "The rain stops, so the children go outside.",
+            "Both are consistent.",
+            "The rain stopped, so the children goes outside."
+          ],
+          "correctAnswer": "Both are consistent.",
+          "explanation": "Standard consistency fix."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the shift: 'They found the treasure and they become rich.'",
+          "options": [
+            "found",
+            "become",
+            "rich",
+            "No error"
+          ],
+          "correctAnswer": "become",
+          "explanation": "Should be 'became'."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'He mentioned that he ___ sushi.'",
+          "options": [
+            "like",
+            "likes",
+            "liked",
+            "Both B and C are possible."
+          ],
+          "correctAnswer": "Both B and C are possible.",
+          "explanation": "If he still likes it (is); if we are backshifting in reporting (liked)."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The sun rose and the world wakes up.'",
+          "options": [
+            "rose",
+            "world",
+            "wakes up",
+            "No error"
+          ],
+          "correctAnswer": "wakes up",
+          "explanation": "Should be 'woke up' to match 'rose'."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: If your main verb is in the Past, your subordinate verbs should usually be in the ___.",
+          "options": [
+            "Present",
+            "Past",
+            "Future",
+            "Gerund"
+          ],
+          "correctAnswer": "Past",
+          "explanation": "This is the 'Sequence of Tenses' rule for narrative clarity."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Academic Timeline Audit</h3><p>Advanced writing requires 'Logical Shifting.' You must know when to move between the <b>Permanent Present</b> (facts/theories) and the <b>Historical Past</b> (study results/past events).</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The Research Shift:</b> <i>The study <b>proves</b> (Present Fact) that the heart <b>pumps</b> blood, but the 2010 trial <b>showed</b> (Past Event) some anomalies.</i></li><li>📊 <b>The Narrative Anchor:</b> If you start a paragraph with 'Historically,' every verb must be Past until you reach the 'Currently' section.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'The experiment begins at 9:00 AM. The researchers monitored the subjects for three hours and recorded the data.'",
+          "options": [
+            "begins",
+            "monitored",
+            "recorded",
+            "subjects"
+          ],
+          "correctAnswer": "begins",
+          "explanation": "Since the rest of the paragraph describes completed actions ('monitored', 'recorded'), the first verb should also be in the past ('began')."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly shifts from a past event to a general truth?",
+          "options": [
+            "Newton discovered that gravity was a force.",
+            "Newton discovered that gravity is a force.",
+            "Newton discovers that gravity is a force.",
+            "Newton discovers that gravity was a force."
+          ],
+          "correctAnswer": "Newton discovered that gravity is a force.",
+          "explanation": "The discovery is a past event ('discovered'), but the fact that gravity is a force is a permanent present truth."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The report was comprehensive. It details every aspect of the project and provided a clear timeline.'",
+          "options": [
+            "was",
+            "details",
+            "provided",
+            "comprehensive"
+          ],
+          "correctAnswer": "details",
+          "explanation": "The verbs 'was' and 'provided' anchor the paragraph in the past. 'Details' should be 'detailed'."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for this academic context: 'In his 1995 paper, Smith ___ that the theory of relativity holds true today.'",
+          "options": [
+            "argues",
+            "argued",
+            "arguing",
+            "is arguing"
+          ],
+          "correctAnswer": "argued",
+          "explanation": "Referring to a specific past publication requires the past tense."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the logic error: 'The ancient Romans built amazing roads. These roads are still standing because they used high-quality stone.'",
+          "options": [
+            "built",
+            "are",
+            "used",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "This is a logical shift. They 'built' and 'used' (past) but the roads 'are' (present) still standing."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Fix the paragraph: 'Technology changes our lives. It created new jobs and made communication easier.'",
+          "options": [
+            "Technology changed our lives.",
+            "It creates new jobs and makes...",
+            "Technology is changing our lives.",
+            "Both A and B are possible depending on the focus."
+          ],
+          "correctAnswer": "Both A and B are possible depending on the focus.",
+          "explanation": "You must either move the whole paragraph to the past or keep the whole paragraph in the present."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Which quantifier fits the context? 'While the data ___ collected in 2020, the implications ___ still relevant today.'",
+          "options": [
+            "was / are",
+            "is / were",
+            "was / were",
+            "is / are"
+          ],
+          "correctAnswer": "was / are",
+          "explanation": "The collection is a past event, but the relevance is a present state."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The company expanded into Asia last year. Currently, it was the market leader in several countries.'",
+          "options": [
+            "expanded",
+            "Currently",
+            "was",
+            "leader"
+          ],
+          "correctAnswer": "was",
+          "explanation": "The word 'Currently' requires the present tense 'is'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Complete the logic: 'The witness testified that he ___ the suspect near the scene.'",
+          "options": [
+            "sees",
+            "saw",
+            "had seen",
+            "Both B and C are possible."
+          ],
+          "correctAnswer": "Both B and C are possible.",
+          "explanation": "Reported speech allows 'saw' (past) or 'had seen' (past-before-past)."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The algorithm analyzes user behavior and predicted future trends based on past data.'",
+          "options": [
+            "analyzes",
+            "predicted",
+            "based on",
+            "trends"
+          ],
+          "correctAnswer": "predicted",
+          "explanation": "If it 'analyzes' (present), it 'predicts' (present)."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The researchers found that the drug ___ the symptoms.'",
+          "options": [
+            "alleviates",
+            "alleviated",
+            "alleviating",
+            "Both A and B are possible."
+          ],
+          "correctAnswer": "Both A and B are possible.",
+          "explanation": "If the drug always works (fact = present); if we are just reporting the results of that one trial (past)."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Find the shift: 'He said he is coming, but he never arrived.'",
+          "options": [
+            "said",
+            "is coming",
+            "arrived",
+            "but"
+          ],
+          "correctAnswer": "is coming",
+          "explanation": "Since he 'never arrived' (past), the expectation should be 'was coming'."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Choose the best academic choice: 'The study, which ___ in 2015, ___ the importance of exercise.'",
+          "options": [
+            "was published / emphasizes",
+            "is published / emphasized",
+            "was published / emphasized",
+            "Both A and C are possible."
+          ],
+          "correctAnswer": "Both A and C are possible.",
+          "explanation": "The publication is definitely past. The result can be present (it still emphasizes it) or past (it emphasized it when it came out)."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The policy remains in effect until it was repealed by the board.'",
+          "options": [
+            "remains",
+            "until",
+            "was repealed",
+            "effect"
+          ],
+          "correctAnswer": "was repealed",
+          "explanation": "Should be 'is repealed' (present conditional) or 'was' if the whole event is in the past."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Which is more formal? 'The author believes that...' or 'The author believed that...'?",
+          "options": [
+            "First",
+            "Second",
+            "Both are fine.",
+            "Neither."
+          ],
+          "correctAnswer": "First",
+          "explanation": "Using the 'Literary Present' (the author believes) is the standard for discussing living or active theories."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Identify the 'Reduced' relative clause with correct tense: 'The data ___ from the 2020 census shows a trend.'",
+          "options": [
+            "gathering",
+            "gathered",
+            "gather",
+            "is gathering"
+          ],
+          "correctAnswer": "gathered",
+          "explanation": "The data 'which was gathered' (passive past) is reduced to 'gathered'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly defines a time-specific result? 'In 2010, the population ___ to 5 million, which ___ a record at the time.'",
+          "options": [
+            "rose / was",
+            "rises / is",
+            "rose / is",
+            "rises / was"
+          ],
+          "correctAnswer": "rose / was",
+          "explanation": "Both actions are tied to the specific past year '2010'."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Is the tense consistent here? 'The team won the game because they practice every day.'",
+          "options": [
+            "Yes",
+            "No, 'practice' should be 'practiced'.",
+            "Yes, if they still practice now.",
+            "No, 'won' should be 'wins'."
+          ],
+          "correctAnswer": "Yes, if they still practice now.",
+          "explanation": "This is a logical shift from a past result to a present habit."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Complete: 'I thought the movie ___ good, but it was terrible.'",
+          "options": [
+            "will be",
+            "would be",
+            "is",
+            "was"
+          ],
+          "correctAnswer": "would be",
+          "explanation": "Future-in-the-past expectation requires 'would be'."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'If the government increases taxes, the economy slowed down.'",
+          "options": [
+            "increases",
+            "taxes",
+            "slowed down",
+            "No error"
+          ],
+          "correctAnswer": "slowed down",
+          "explanation": "This should be 'will slow down' (1st conditional) or 'slows down' (zero conditional)."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Which sentence has a 'Mixed Timeline' error?",
+          "options": [
+            "I am tired because I didn't sleep.",
+            "I was tired because I don't sleep.",
+            "I am tired because I don't sleep.",
+            "I was tired because I didn't sleep."
+          ],
+          "correctAnswer": "I was tired because I don't sleep.",
+          "explanation": "You cannot be tired in the past because of a habit in the present."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'The survey results, ___ last week, are very interesting.'",
+          "options": [
+            "announced",
+            "announcing",
+            "announce",
+            "announces"
+          ],
+          "correctAnswer": "announced",
+          "explanation": "Reduced relative clause 'which were announced' (past)."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'He realized that he leaves his wallet at home.'",
+          "options": [
+            "Change 'leaves' to 'left'.",
+            "Change 'realized' to 'realizes'.",
+            "Change 'leaves' to 'had left'.",
+            "Both A and C are possible."
+          ],
+          "correctAnswer": "Both A and C are possible.",
+          "explanation": "To maintain past consistency, 'left' or 'had left' is required."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Identify the logic: 'Though the project failed, the experience remains valuable.'",
+          "options": [
+            "Failed is past; remains is present.",
+            "No error.",
+            "Logical shift from event to state.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "The failure was an event; the value is a current state."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly edited? 'The manager says that the report was due yesterday.'",
+          "options": [
+            "The manager said the report was due yesterday.",
+            "The manager says the report is due yesterday.",
+            "The manager said the report is due yesterday.",
+            "No change needed."
+          ],
+          "correctAnswer": "The manager said the report was due yesterday.",
+          "explanation": "Anchoring both actions in the past is the safest academic choice."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Where is the shift? 'The sun rises and then it was daytime.'",
+          "options": [
+            "rises",
+            "was",
+            "daytime",
+            "No error"
+          ],
+          "correctAnswer": "was",
+          "explanation": "Should be 'is' to match the present tense 'rises'."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Choose the correct subordinator: '___ the data is old, it still provides insight.'",
+          "options": [
+            "Because",
+            "Although",
+            "Since",
+            "If"
+          ],
+          "correctAnswer": "Although",
+          "explanation": "Correct logical contrast in the present tense."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'She hoped that he would have been there.'",
+          "options": [
+            "Should be 'would be'.",
+            "No error.",
+            "Should be 'will be'.",
+            "Should be 'is'."
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "This expresses a past hope about a past situation (Conditional Perfect)."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Which sentence is a 'Tense Consistency' error?",
+          "options": [
+            "He ran to the store, but it is closed.",
+            "He ran to the store, but it was closed.",
+            "He runs to the store, but it is closed.",
+            "He runs to the store, but it was closed."
+          ],
+          "correctAnswer": "He ran to the store, but it is closed.",
+          "explanation": "Unless the store is closed permanently, the past action 'ran' requires the past state 'was'."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Tense shifts are allowed only when ___.",
+          "options": [
+            "You are bored with the past tense.",
+            "The time period of the action actually changes.",
+            "You want to sound more complex.",
+            "The teacher isn't looking."
+          ],
+          "correctAnswer": "The time period of the action actually changes.",
+          "explanation": "Tense shifts must follow the reality of the timeline."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Strategic Timeline</h3><p>In Task 1, your tense choice is dictated by the dates on the graph. In Task 2, it is dictated by whether you are discussing a <b>General Fact</b>, a <b>Recent Trend</b>, or a <b>Hypothetical Future</b>.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📅 <b>Completed Past (1990-2015):</b> Use <i>Simple Past</i> (e.g., The number <b>fell</b>).</li><li>🆕 <b>Up to Now (Since 2000):</b> Use <i>Present Perfect</i> (e.g., The figure <b>has risen</b>).</li><li>🔮 <b>Projections (By 2050):</b> Use <i>Future Forms</i> (e.g., It <b>is predicted to</b> increase).</li><li>🛑 <b>The 'Static' Present:</b> Use <i>Simple Present</i> for the overview (e.g., The graph <b>shows</b>).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "The graph shows data from 1980 to 2000. Which sentence is correct?",
+          "options": [
+            "The amount of coal used has increased over the period.",
+            "The amount of coal used increases over the period.",
+            "The amount of coal used increased over the period.",
+            "The amount of coal used will increase over the period."
+          ],
+          "correctAnswer": "The amount of coal used increased over the period.",
+          "explanation": "Since the time period is entirely in the past and closed, the Simple Past is required."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "The graph shows a trend starting in 2005 and continuing to the current year. Which is the best choice?",
+          "options": [
+            "The number of users rose significantly.",
+            "The number of users has risen significantly.",
+            "The number of users is rising significantly.",
+            "Both B and C are possible depending on the emphasis."
+          ],
+          "correctAnswer": "Both B and C are possible depending on the emphasis.",
+          "explanation": "'Has risen' emphasizes the total growth until now; 'is rising' emphasizes the ongoing action."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "A Task 1 chart includes a projection for 2040. How should you describe it?",
+          "options": [
+            "Consumption reached 50 units by 2040.",
+            "Consumption is reaching 50 units by 2040.",
+            "Consumption is expected to reach 50 units by 2040.",
+            "Consumption reaches 50 units by 2040."
+          ],
+          "correctAnswer": "Consumption is expected to reach 50 units by 2040.",
+          "explanation": "Future projections require speculative language like 'is expected to' or 'is predicted to'."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which Task 2 introduction maintains correct consistency?",
+          "options": [
+            "In recent years, technology changed the way we work.",
+            "In recent years, technology has changed the way we work.",
+            "In recent years, technology changes the way we work.",
+            "In recent years, technology will change the way we work."
+          ],
+          "correctAnswer": "In recent years, technology has changed the way we work.",
+          "explanation": "'In recent years' is a classic time marker for the Present Perfect."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the error in this Task 1 overview: 'The map shows how the village developed since 1995.'",
+          "options": [
+            "shows",
+            "how",
+            "developed",
+            "since"
+          ],
+          "correctAnswer": "developed",
+          "explanation": "The word 'since' requires the Present Perfect: 'has developed'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which sentence is best for a Task 1 summary of a past process?",
+          "options": [
+            "First, the raw materials are collected.",
+            "First, the raw materials were collected.",
+            "First, the raw materials have been collected.",
+            "Both A and B (A for a general process, B if it's a specific historical one)."
+          ],
+          "correctAnswer": "Both A and B (A for a general process, B if it's a specific historical one).",
+          "explanation": "Process diagrams usually use the Simple Present Passive, but specific historical events use the Past."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Find the consistency error: 'In 2010, production peaked at 100 units, but it will drop to 50 in 2015.'",
+          "options": [
+            "peaked",
+            "at",
+            "will drop",
+            "in 2015"
+          ],
+          "correctAnswer": "will drop",
+          "explanation": "Since 2015 is in the past, it should be 'dropped' or 'had dropped'."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Choose the best verb for a hypothetical Task 2 argument: 'If the government ___ taxes, the economy would suffer.'",
+          "options": [
+            "raises",
+            "raised",
+            "will raise",
+            "is raising"
+          ],
+          "correctAnswer": "raised",
+          "explanation": "This is a Second Conditional (unreal/hypothetical). 'Would' in the result clause requires a Past tense in the 'if' clause."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which is correct for a report on 'current' data? 'The table ___ that the UK ___ the most energy.'",
+          "options": [
+            "shows / consumed",
+            "showed / consumes",
+            "shows / consumes",
+            "showed / consumed"
+          ],
+          "correctAnswer": "shows / consumes",
+          "explanation": "If the data represents a current/general fact, both verbs should be in the Simple Present."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'By the end of the century, the world's population reached 10 billion.'",
+          "options": [
+            "By the end",
+            "world's",
+            "reached",
+            "billion"
+          ],
+          "correctAnswer": "reached",
+          "explanation": "Assuming we haven't reached the end of the century yet, this should be 'will have reached' (Future Perfect)."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Complete the Task 1 trend: 'Between 2000 and 2010, the figure ___ fairly stable.'",
+          "options": [
+            "remains",
+            "remained",
+            "has remained",
+            "is remaining"
+          ],
+          "correctAnswer": "remained",
+          "explanation": "Describes a specific, completed period of time."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses the Present Perfect for a Task 2 opening?",
+          "options": [
+            "Over the past few decades, urbanization increased.",
+            "Over the past few decades, urbanization has increased.",
+            "Over the past few decades, urbanization increases.",
+            "Over the past few decades, urbanization will increase."
+          ],
+          "correctAnswer": "Over the past few decades, urbanization has increased.",
+          "explanation": "'Over the past...' connects the past to the present, requiring the Present Perfect."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'According to the chart, the number of smokers is declining in 2020.'",
+          "options": [
+            "According to",
+            "number of",
+            "is declining",
+            "in 2020"
+          ],
+          "correctAnswer": "is declining",
+          "explanation": "Since 2020 is a specific past point, it should be 'declined' or 'was declining'."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Choose the best verb for a 'Permanent Fact' in an essay: 'The sun ___ in the east.'",
+          "options": [
+            "rises",
+            "rose",
+            "has risen",
+            "is rising"
+          ],
+          "correctAnswer": "rises",
+          "explanation": "General truths are always Simple Present."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which is correct for Task 1? 'The percentage of graduates ___ from 10% to 20% by 2030.'",
+          "options": [
+            "rose",
+            "has risen",
+            "is set to rise",
+            "Both B and C."
+          ],
+          "correctAnswer": "is set to rise",
+          "explanation": "Refers to a scheduled or predicted future event."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'When I was younger, I have lived in London.'",
+          "options": [
+            "When",
+            "was",
+            "have lived",
+            "in"
+          ],
+          "correctAnswer": "have lived",
+          "explanation": "A specific time 'when I was younger' requires Simple Past ('lived')."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which is best for a conclusion? 'In conclusion, it ___ that the benefits outweigh the risks.'",
+          "options": [
+            "appeared",
+            "appears",
+            "is appearing",
+            "will appear"
+          ],
+          "correctAnswer": "appears",
+          "explanation": "Conclusions usually summarize a current state of belief (Simple Present)."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct tense: 'Since the law was passed, crime rates ___.'",
+          "options": [
+            "dropped",
+            "have dropped",
+            "drop",
+            "will drop"
+          ],
+          "correctAnswer": "have dropped",
+          "explanation": "'Since' signals an action that started in the past and continues to affect the present."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The chart illustrates that by 1990, many countries already achieve independence.'",
+          "options": [
+            "illustrates",
+            "by 1990",
+            "achieve",
+            "independence"
+          ],
+          "correctAnswer": "achieve",
+          "explanation": "Requires Past Perfect ('had achieved') to show an action completed before a past point in time."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which is best for Task 1 comparisons? 'In 2010, Brazil exported 50 tons, whereas Argentina ___ 30 tons.'",
+          "options": [
+            "exports",
+            "exported",
+            "has exported",
+            "will export"
+          ],
+          "correctAnswer": "exported",
+          "explanation": "Maintains parallel past tense for a past comparison."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Identify the correct Future-in-the-Past: 'Analysts predicted that the price ___ by 2015.'",
+          "options": [
+            "will fall",
+            "would fall",
+            "falls",
+            "has fallen"
+          ],
+          "correctAnswer": "would fall",
+          "explanation": "A past prediction about a future (from that time) uses 'would'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the 'Literary Present' rule?",
+          "options": [
+            "The author argued that poverty is the main cause of crime.",
+            "The author argues that poverty is the main cause of crime.",
+            "Both are common, but B is standard for active academic discussion.",
+            "Neither."
+          ],
+          "correctAnswer": "Both are common, but B is standard for active academic discussion.",
+          "explanation": "We treat the author's ideas as existing in the present."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The trend was downward for the first five years, then it turns upward.'",
+          "options": [
+            "was",
+            "downward",
+            "then",
+            "turns"
+          ],
+          "correctAnswer": "turns",
+          "explanation": "Should stay in the Past ('turned')."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'By the time the study is completed, millions ___ spent.'",
+          "options": [
+            "will be",
+            "will have been",
+            "were",
+            "are"
+          ],
+          "correctAnswer": "will have been",
+          "explanation": "Future Perfect Passive for an action completed by a future time."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The graph showed that the number of people who own cars rose dramatically.'",
+          "options": [
+            "showed",
+            "own",
+            "rose",
+            "No error"
+          ],
+          "correctAnswer": "own",
+          "explanation": "If 'showed' and 'rose' are past, 'own' must also be past ('owned')."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct for Task 1 projections? 'It is forecast that the figure ___.'",
+          "options": [
+            "will rise",
+            "rises",
+            "has risen",
+            "rose"
+          ],
+          "correctAnswer": "will rise",
+          "explanation": "Standard future prediction."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'There were three major changes that occur since the last report.'",
+          "options": [
+            "were",
+            "changes",
+            "occur",
+            "since"
+          ],
+          "correctAnswer": "occur",
+          "explanation": "Should be 'have occurred' due to 'since'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'If humanity ___ to colonize Mars, it would be a major milestone.'",
+          "options": [
+            "were",
+            "is",
+            "will",
+            "has"
+          ],
+          "correctAnswer": "were",
+          "explanation": "Second Conditional (hypothetical)."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The chart indicates that in 2000, most people spend their money on food.'",
+          "options": [
+            "indicates",
+            "in 2000",
+            "spend",
+            "money"
+          ],
+          "correctAnswer": "spend",
+          "explanation": "Should be 'spent' for the year 2000."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: Tense choice in Task 1 is based on ___.",
+          "options": [
+            "Personal preference.",
+            "The dates provided on the axes of the graph.",
+            "How long your essay is.",
+            "The complexity of the data."
+          ],
+          "correctAnswer": "The dates provided on the axes of the graph.",
+          "explanation": "Temporal mapping is the only way to accurately describe time-based data."
+        }
+      ]
+    }
+  ]
+}

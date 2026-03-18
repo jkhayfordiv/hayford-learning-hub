@@ -1,0 +1,1594 @@
+{
+  "topicId": "12_relative_clauses",
+  "topicName": "Relative Clauses",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Noun-Linker</h3><p>A relative clause describes a noun that comes right before it. We use different <b>relative pronouns</b> depending on what kind of noun we are describing.</p><ul style=\"line-height: 1.8;\"><li>👤 <b>WHO:</b> For People (<i>The man <b>who</b> lives there</i>).</li><li>📦 <b>WHICH:</b> For Things/Animals (<i>The car <b>which</b> I bought</i>).</li><li>🔗 <b>THAT:</b> For People or Things (Common in speech).</li><li>📍 <b>WHERE:</b> For Places (<i>The city <b>where</b> I live</i>).</li><li>🔑 <b>WHOSE:</b> For Possession (<i>The girl <b>whose</b> phone rang</i>).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun for a person: 'The scientist ___ won the award is very famous.'",
+          "options": [
+            "who",
+            "which",
+            "where",
+            "whose"
+          ],
+          "correctAnswer": "who",
+          "explanation": "We use 'who' to refer to people."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly describes an object?",
+          "options": [
+            "This is the bag who I bought.",
+            "This is the bag which I bought.",
+            "This is the bag where I bought.",
+            "This is the bag whose I bought."
+          ],
+          "correctAnswer": "which",
+          "explanation": "'Which' is used for objects and things."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the relative pronoun for a location: 'That is the office ___ my father works.'",
+          "options": [
+            "who",
+            "that",
+            "where",
+            "which"
+          ],
+          "correctAnswer": "where",
+          "explanation": "'Where' refers to a place."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The book ___ I borrowed is very long.'",
+          "options": [
+            "who",
+            "where",
+            "that",
+            "whom"
+          ],
+          "correctAnswer": "that",
+          "explanation": "'That' can be used for things in defining clauses."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The doctor which treated me was very kind.'",
+          "options": [
+            "doctor",
+            "which",
+            "treated",
+            "kind"
+          ],
+          "correctAnswer": "which",
+          "explanation": "For a person, use 'who' or 'that'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the possessive pronoun: 'The student ___ laptop is broken needs help.'",
+          "options": [
+            "who",
+            "which",
+            "whose",
+            "that"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "'Whose' shows possession (the student's laptop)."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Which pronoun is used for animals? 'The dog ___ was barking is my neighbor's.'",
+          "options": [
+            "who",
+            "which",
+            "where",
+            "whom"
+          ],
+          "correctAnswer": "which",
+          "explanation": "Animals usually take 'which' or 'that' unless they are personified pets."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The hotel who we stayed in was clean.'",
+          "options": [
+            "hotel",
+            "who",
+            "stayed",
+            "clean"
+          ],
+          "correctAnswer": "who",
+          "explanation": "A hotel is a place/thing; use 'which' or 'that'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The reason ___ I am late is the snow.'",
+          "options": [
+            "who",
+            "why",
+            "where",
+            "whose"
+          ],
+          "correctAnswer": "why",
+          "explanation": "'Why' is used after the noun 'reason'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'The people ___ live in this city are friendly.'",
+          "options": [
+            "which",
+            "who",
+            "where",
+            "whose"
+          ],
+          "correctAnswer": "who",
+          "explanation": "Refers to people."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I lost the watch who you gave me.'",
+          "options": [
+            "lost",
+            "watch",
+            "who",
+            "gave"
+          ],
+          "correctAnswer": "who",
+          "explanation": "Watch is a thing; use 'which' or 'that'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Which fits a place? 'I want to visit the town ___ my mother was born.'",
+          "options": [
+            "who",
+            "which",
+            "where",
+            "that"
+          ],
+          "correctAnswer": "where",
+          "explanation": "Refers to a location."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the possessive: 'The car ___ window is broken belongs to me.'",
+          "options": [
+            "who",
+            "which",
+            "whose",
+            "where"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "The window of the car (possession)."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The singer which I like is on TV.'",
+          "options": [
+            "singer",
+            "which",
+            "like",
+            "TV"
+          ],
+          "correctAnswer": "which",
+          "explanation": "Singer is a person; use 'who' or 'that'."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Complete: 'The email ___ I sent you had a mistake.'",
+          "options": [
+            "who",
+            "where",
+            "which",
+            "whose"
+          ],
+          "correctAnswer": "which",
+          "explanation": "Email is a thing."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The woman ___ bag was stolen called the police.'",
+          "options": [
+            "who",
+            "whose",
+            "which",
+            "that"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "The bag belonging to the woman."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'This is the restaurant who has the best pizza.'",
+          "options": [
+            "This",
+            "restaurant",
+            "who",
+            "pizza"
+          ],
+          "correctAnswer": "who",
+          "explanation": "Restaurant is a thing/place; use 'that' or 'which'."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The time ___ I arrived was 10 PM.'",
+          "options": [
+            "when",
+            "who",
+            "where",
+            "which"
+          ],
+          "correctAnswer": "when",
+          "explanation": "'When' is used for time periods."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Which pronoun fits? 'The flowers ___ are in the vase are dying.'",
+          "options": [
+            "who",
+            "that",
+            "where",
+            "whose"
+          ],
+          "correctAnswer": "that",
+          "explanation": "Things (flowers)."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The mountain who we climbed was very high.'",
+          "options": [
+            "mountain",
+            "who",
+            "climbed",
+            "high"
+          ],
+          "correctAnswer": "who",
+          "explanation": "Mountain is a thing; use 'which' or 'that'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Choose the correct possessive: 'The company ___ office is in London is huge.'",
+          "options": [
+            "who",
+            "which",
+            "whose",
+            "where"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "The office of the company."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The students which are in my class are smart.'",
+          "options": [
+            "students",
+            "which",
+            "class",
+            "smart"
+          ],
+          "correctAnswer": "which",
+          "explanation": "Students are people; use 'who'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Complete: 'This is the house ___ I grew up.'",
+          "options": [
+            "where",
+            "who",
+            "which",
+            "whose"
+          ],
+          "correctAnswer": "where",
+          "explanation": "Place/Location."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which pronoun fits? 'The teacher ___ gave us the homework was nice.'",
+          "options": [
+            "who",
+            "which",
+            "where",
+            "whose"
+          ],
+          "correctAnswer": "who",
+          "explanation": "Teacher is a person."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report who I finished is on the desk.'",
+          "options": [
+            "report",
+            "who",
+            "finished",
+            "desk"
+          ],
+          "correctAnswer": "who",
+          "explanation": "Report is a thing; use 'which' or 'that'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Choose the correct possessive: 'A person ___ name I forgot called me.'",
+          "options": [
+            "who",
+            "which",
+            "whose",
+            "whom"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "The person's name."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The car which its engine is loud is old.'",
+          "options": [
+            "car",
+            "which its",
+            "loud",
+            "old"
+          ],
+          "correctAnswer": "which its",
+          "explanation": "Redundant. Use 'The car whose engine is loud'."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Complete: 'The museum ___ we visited was closed.'",
+          "options": [
+            "who",
+            "where",
+            "which",
+            "whose"
+          ],
+          "correctAnswer": "which",
+          "explanation": "Referring to the museum as an object we visited."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The girl who she lives there is my friend.'",
+          "options": [
+            "girl",
+            "who she",
+            "lives",
+            "friend"
+          ],
+          "correctAnswer": "who she",
+          "explanation": "Redundant subject. Should be 'The girl who lives there'."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: A relative pronoun always comes ___ the noun it describes.",
+          "options": [
+            "before",
+            "after",
+            "inside",
+            "far from"
+          ],
+          "correctAnswer": "after",
+          "explanation": "In English syntax, the modifier follows the noun (antecedent)."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: The 'What' vs. 'That' Collision",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Greedy' Pronoun</h3><p>In Japanese, you can use the same structure to modify a noun as you do to create a 'thing' clause. In English, <b>WHAT</b> is a 'greedy' pronoun—it already contains the noun 'thing' inside it.</p><ul style=\"line-height: 1.8;\"><li>❌ <b>L1 Trap:</b> <i>I liked the book <b>what</b> you gave me.</i> (Error: You have two nouns in one spot).</li><li>✅ <b>Correct:</b> <i>I liked the book <b>that</b> you gave me.</i></li><li>✅ <b>Correct:</b> <i>I liked <b>what</b> you gave me.</i> (No 'book' before it).</li><li>💡 <b>The Golden Rule:</b> If there is a <b>Noun</b> (car, man, idea) before the gap, <b>NEVER</b> use 'what'. Use 'that' or 'which'.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'This is the evidence ___ the committee requested.'",
+          "options": [
+            "what",
+            "that",
+            "where",
+            "who"
+          ],
+          "correctAnswer": "that",
+          "explanation": "Since 'evidence' is a noun, you cannot use 'what'. Use 'that' or 'which'."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses 'what'?",
+          "options": [
+            "I don't understand the reason what he said.",
+            "I don't understand what he said.",
+            "I don't understand the words what he said.",
+            "I don't understand the thing what he said."
+          ],
+          "correctAnswer": "I don't understand what he said.",
+          "explanation": "'What' acts as the noun itself. If you add 'reason' or 'words', you must use 'that'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The information what you provided was extremely helpful.'",
+          "options": [
+            "information",
+            "what",
+            "provided",
+            "helpful"
+          ],
+          "correctAnswer": "what",
+          "explanation": "The noun 'information' is already present, so 'that' or 'which' is required."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'Everything ___ he touched turned to gold.'",
+          "options": [
+            "what",
+            "that",
+            "where",
+            "who"
+          ],
+          "correctAnswer": "that",
+          "explanation": "With words like 'everything', 'something', or 'all', we use 'that'."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Choose the correct version: 'Is this the gift ___ you wanted?'",
+          "options": [
+            "what",
+            "that",
+            "who",
+            "where"
+          ],
+          "correctAnswer": "that",
+          "explanation": "'Gift' is a noun, blocking the use of 'what'."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The man who he called was my brother.'",
+          "options": [
+            "man",
+            "who",
+            "he called",
+            "No error"
+          ],
+          "correctAnswer": "he called",
+          "explanation": "This is a 'double subject' error. 'Who' already acts as the object/link. Correct: 'The man who I called' (if the subject is I) or 'The man he called'."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: '___ you need is a good night's sleep.'",
+          "options": [
+            "That",
+            "Which",
+            "What",
+            "Where"
+          ],
+          "correctAnswer": "What",
+          "explanation": "No noun precedes the gap, so 'What' (the thing that) is the subject."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He told me the secret what I promised not to share.'",
+          "options": [
+            "told",
+            "secret",
+            "what",
+            "not to share"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'that' because 'secret' is the antecedent."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I found the keys ___ I lost yesterday.'",
+          "options": [
+            "what",
+            "that",
+            "who",
+            "whose"
+          ],
+          "correctAnswer": "that",
+          "explanation": "'Keys' is the noun being described."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Complete: 'They didn't give me ___ I asked for.'",
+          "options": [
+            "the thing that",
+            "what",
+            "the thing what",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'What' is a shortcut for 'the thing that'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report what was on the desk is gone.'",
+          "options": [
+            "report",
+            "what",
+            "on the",
+            "gone"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Use 'that' or 'which' after the noun 'report'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'I don't remember the name of the hotel ___ we stayed.'",
+          "options": [
+            "what",
+            "which",
+            "where",
+            "who"
+          ],
+          "correctAnswer": "where",
+          "explanation": "Refers to a location."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'This is the book what I bought for the class.'",
+          "options": [
+            "This",
+            "book",
+            "what",
+            "bought"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Incorrect relative pronoun after a noun."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? '___ she said was quite surprising.'",
+          "options": [
+            "That",
+            "What",
+            "Which",
+            "The thing what"
+          ],
+          "correctAnswer": "What",
+          "explanation": "Acts as the subject meaning 'The thing that she said'."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The restaurant what we went to was excellent.'",
+          "options": [
+            "restaurant",
+            "what",
+            "went to",
+            "excellent"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'that' or 'which'."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Complete: 'Did you hear ___ happened at the meeting?'",
+          "options": [
+            "that",
+            "what",
+            "which",
+            "the thing what"
+          ],
+          "correctAnswer": "what",
+          "explanation": "No noun precedes the gap."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The advice what my father gave me was helpful.'",
+          "options": [
+            "advice",
+            "what",
+            "gave",
+            "helpful"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Advice is the noun; 'that' is the correct linker."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I'll do ___ I can to help.'",
+          "options": [
+            "all what",
+            "all that",
+            "everything what",
+            "what that"
+          ],
+          "correctAnswer": "all that",
+          "explanation": "'All' is the noun/pronoun here, so 'that' is the linker."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The students what were late missed the quiz.'",
+          "options": [
+            "students",
+            "what",
+            "late",
+            "missed"
+          ],
+          "correctAnswer": "what",
+          "explanation": "For people, use 'who' or 'that'."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Complete: 'I can't believe ___ he did.'",
+          "options": [
+            "the action what",
+            "what",
+            "that",
+            "which"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Standard use of a nominal relative clause."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The movie what we saw was very long.'",
+          "options": [
+            "movie",
+            "what",
+            "saw",
+            "long"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'that' or 'which'."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'Tell me ___ you are thinking about.'",
+          "options": [
+            "that",
+            "what",
+            "the thing what",
+            "which"
+          ],
+          "correctAnswer": "what",
+          "explanation": "No noun before the gap."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The car what I drive is ten years old.'",
+          "options": [
+            "car",
+            "what",
+            "drive",
+            "old"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Incorrect relative pronoun after 'car'."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Complete: 'Please show me ___ you bought.'",
+          "options": [
+            "the items what",
+            "what",
+            "that",
+            "which"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Acts as the object of 'show'."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The story what she told me was unbelievable.'",
+          "options": [
+            "story",
+            "what",
+            "told",
+            "unbelievable"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'that' or 'which'."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I don't know ___ to do.'",
+          "options": [
+            "that",
+            "what",
+            "which",
+            "where"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Question-word relative pronoun."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The plan what we discussed is perfect.'",
+          "options": [
+            "plan",
+            "what",
+            "discussed",
+            "perfect"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'that' or 'which'."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Complete: 'This is precisely ___ I was talking about.'",
+          "options": [
+            "that",
+            "what",
+            "the thing what",
+            "which"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Acts as a nominal relative pronoun."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The reason what I am late is traffic.'",
+          "options": [
+            "reason",
+            "what",
+            "late",
+            "traffic"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'that' or 'why'."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Logic Check: In English, can you have a Noun + What?",
+          "options": [
+            "Yes, if it's informal.",
+            "No, it's a grammar collision.",
+            "Only for things.",
+            "Only in American English."
+          ],
+          "correctAnswer": "No, it's a grammar collision.",
+          "explanation": "'What' already contains the noun 'thing,' so it cannot follow another noun."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction: The Comma Rule",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: Essential vs. Extra Info</h3><p>Relative clauses come in two types. The difference is all about whether the information is <b>essential</b> to identify the noun or just <b>extra</b> information.</p><ul style=\"line-height: 1.8;\"><li>🎯 <b>Defining (No Commas):</b> <i>The students <b>who studied</b> passed the test.</i> (Only the ones who studied).</li><li>💡 <b>Non-defining (With Commas):</b> <i>The students<b>, who studied,</b> passed the test.</i> (All the students passed, and by the way, they all studied).</li><li>⚠️ <b>The 'THAT' Rule:</b> You can <b>never</b> use 'that' in a non-defining clause (the one with commas). Use 'which' for things and 'who' for people.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Which sentence implies I have more than one brother? 'My brother who lives in Tokyo is a doctor.'",
+          "options": [
+            "The sentence without commas.",
+            "The sentence with commas.",
+            "Neither implies I have more than one.",
+            "Both imply I have more than one."
+          ],
+          "correctAnswer": "The sentence without commas.",
+          "explanation": "No commas mean the clause 'who lives in Tokyo' is essential to distinguish *which* brother I am talking about, implying there are others."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Identify the punctuation error: 'Paris, that is the capital of France, is very beautiful.'",
+          "options": [
+            "Paris, that",
+            "capital of France",
+            "is very beautiful",
+            "No error"
+          ],
+          "correctAnswer": "Paris, that",
+          "explanation": "You cannot use 'that' in a non-defining clause (one set off by commas). It should be 'which'."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Choose the correct punctuation: 'The house ___ has a red door is mine.'",
+          "options": [
+            ", which",
+            "which",
+            "that",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "This is a defining clause (identifying which house), so no commas are needed, and either 'which' or 'that' is fine."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Albert Einstein who developed the theory of relativity was a genius.'",
+          "options": [
+            "Missing commas around the clause",
+            "Use of 'who' instead of 'that'",
+            "The word 'relativity'",
+            "No error"
+          ],
+          "correctAnswer": "Missing commas around the clause",
+          "explanation": "Einstein's name already identifies him; the clause is extra info and needs commas."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct for 'extra' information?",
+          "options": [
+            "My car that is ten years old still works.",
+            "My car, which is ten years old, still works.",
+            "My car which is ten years old still works.",
+            "My car, that is ten years old, still works."
+          ],
+          "correctAnswer": "My car, which is ten years old, still works.",
+          "explanation": "Non-defining clauses use 'which' and commas."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "What is the meaning? 'The workers, who went on strike, were fired.'",
+          "options": [
+            "Only the strikers were fired.",
+            "All the workers were fired.",
+            "Some workers were fired.",
+            "The strike was illegal."
+          ],
+          "correctAnswer": "All the workers were fired.",
+          "explanation": "The commas imply that 'who went on strike' applies to the entire group of workers mentioned."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The book, that I bought yesterday, is very interesting.'",
+          "options": [
+            "book, that",
+            "bought yesterday",
+            "is very",
+            "No error"
+          ],
+          "correctAnswer": "book, that",
+          "explanation": "You cannot use 'that' after a comma in a relative clause."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Vegetables ___ are grown organically are more expensive.'",
+          "options": [
+            ", which",
+            "which",
+            "that",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "This defines *which* vegetables (only organic ones), so no commas are used."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Tokyo which is the capital of Japan is a huge city.'",
+          "options": [
+            "Use of 'which'",
+            "Missing commas around the clause",
+            "Capital of Japan",
+            "No error"
+          ],
+          "correctAnswer": "Missing commas around the clause",
+          "explanation": "Since there is only one Tokyo, the description is extra info and needs commas."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which relative pronoun is used for 'extra' info about a person?",
+          "options": [
+            "that",
+            "who",
+            "whom",
+            "whose"
+          ],
+          "correctAnswer": "who",
+          "explanation": "In non-defining clauses (with commas), we use 'who' for people."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Meaning check: 'The windows which were broken have been fixed.'",
+          "options": [
+            "All the windows were fixed.",
+            "Only the broken windows were fixed.",
+            "No windows were fixed.",
+            "The windows broke themselves."
+          ],
+          "correctAnswer": "Only the broken windows were fixed.",
+          "explanation": "No commas = Defining clause. It identifies a specific subset of windows."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'My mother, that is a lawyer, lives in New York.'",
+          "options": [
+            "mother, that",
+            "lawyer",
+            "lives in",
+            "No error"
+          ],
+          "correctAnswer": "mother, that",
+          "explanation": "Non-defining clauses must use 'who' for people."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Which sentence implies I have only ONE sister? 'My sister, who is a nurse, lives in Kyoto.'",
+          "options": [
+            "The sentence with commas.",
+            "The sentence without commas.",
+            "Both imply the same thing.",
+            "Neither implies I have one sister."
+          ],
+          "correctAnswer": "The sentence with commas.",
+          "explanation": "Commas show the info is extra; I don't need it to 'define' which sister because I likely only have one."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report which I finished it yesterday is on the desk.'",
+          "options": [
+            "report",
+            "which",
+            "finished it",
+            "No error"
+          ],
+          "correctAnswer": "finished it",
+          "explanation": "Redundant pronoun. 'Which' already replaces 'it'."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Choose the correct punctuation: 'London ___ which is the capital of the UK ___ is very old.'",
+          "options": [
+            ", / ,",
+            "no commas",
+            ", / no comma",
+            "no comma / ,"
+          ],
+          "correctAnswer": ", / ,",
+          "explanation": "Proper nouns always take non-defining clauses with commas."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Which pronoun is forbidden after a comma?",
+          "options": [
+            "who",
+            "which",
+            "that",
+            "whose"
+          ],
+          "correctAnswer": "that",
+          "explanation": "'That' is only for defining clauses without commas."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Meaning check: 'The athletes, who had trained hard, won medals.'",
+          "options": [
+            "Only hard-working athletes won.",
+            "All the athletes won and they all worked hard.",
+            "Some athletes didn't train.",
+            "The medals were gold."
+          ],
+          "correctAnswer": "All the athletes won and they all worked hard.",
+          "explanation": "The commas make 'who had trained hard' a description of the whole group."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The man, who his car was stolen, called the police.'",
+          "options": [
+            "man, who",
+            "his car",
+            "was stolen",
+            "called"
+          ],
+          "correctAnswer": "who his car",
+          "explanation": "Should be 'whose car' for possession."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Which fits a defining clause for a thing?",
+          "options": [
+            "that",
+            "which",
+            "Both are correct.",
+            "who"
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "In defining clauses for things, 'that' and 'which' are interchangeable."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'My cat, that I've had for five years, is very lazy.'",
+          "options": [
+            "cat, that",
+            "had for",
+            "five years",
+            "lazy"
+          ],
+          "correctAnswer": "cat, that",
+          "explanation": "Cannot use 'that' in a non-defining clause."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Meaning check: 'The cars which are electric are cheaper to run.'",
+          "options": [
+            "All cars are electric.",
+            "All cars are cheaper to run.",
+            "Only electric cars are cheaper to run.",
+            "No cars are cheap."
+          ],
+          "correctAnswer": "Only electric cars are cheaper to run.",
+          "explanation": "No commas define a specific subset of 'cars'."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct punctuation: 'My parents ___ who live in Canada ___ are coming to visit.'",
+          "options": [
+            ", / ,",
+            "no commas",
+            ", / no comma",
+            "no comma / ,"
+          ],
+          "correctAnswer": ", / ,",
+          "explanation": "'My parents' is a specific group; the location is extra info."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The phone, which I bought it last week, is already broken.'",
+          "options": [
+            "phone,",
+            "which",
+            "bought it",
+            "broken"
+          ],
+          "correctAnswer": "bought it",
+          "explanation": "'Which' replaces 'it'. Don't use both."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Which is correct for a non-defining person clause?",
+          "options": [
+            "The man that I met",
+            "The man, who I met,",
+            "The man, that I met,",
+            "The man who I met"
+          ],
+          "correctAnswer": "The man, who I met,",
+          "explanation": "Non-defining requires commas and 'who'."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Meaning check: 'The books, which were on the top shelf, were dusty.'",
+          "options": [
+            "Only books on the top shelf were dusty.",
+            "All the books were on the top shelf and they were all dusty.",
+            "The bottom shelf was clean.",
+            "I like books."
+          ],
+          "correctAnswer": "All the books were on the top shelf and they were all dusty.",
+          "explanation": "Commas make the location extra info for the whole group."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'William Shakespeare who was born in Stratford wrote Hamlet.'",
+          "options": [
+            "Shakespeare who",
+            "born in",
+            "wrote",
+            "No error"
+          ],
+          "correctAnswer": "Shakespeare who",
+          "explanation": "Missing comma after Shakespeare (non-defining)."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The reason ___ I am late is a secret.'",
+          "options": [
+            "why",
+            "that",
+            "Both are correct.",
+            "which"
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "'The reason why' and 'the reason that' are both standard."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The hotel, that we stayed in, was very nice.'",
+          "options": [
+            "hotel, that",
+            "stayed in",
+            "very nice",
+            "No error"
+          ],
+          "correctAnswer": "hotel, that",
+          "explanation": "Cannot use 'that' after a comma."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'She is the woman ___ daughter won the race.'",
+          "options": [
+            "who",
+            "that",
+            "whose",
+            "which"
+          ],
+          "correctAnswer": "whose",
+          "explanation": "Shows the possession link (the daughter of the woman)."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Non-defining clauses ___ the meaning of the noun.",
+          "options": [
+            "Limit",
+            "Add extra detail to",
+            "Define",
+            "Change"
+          ],
+          "correctAnswer": "Add extra detail to",
+          "explanation": "Defining clauses limit/define; non-defining clauses just add extra info."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Data-Nesting Technique</h3><p>In academic writing, relative clauses are used to add precision and evidence without starting new, simple sentences. This increases your <b>Lexical Density</b> and <b>Grammatical Range</b>.</p><ul style=\"line-height: 1.8;\"><li>📊 <b>The Data Nest:</b> <i>The percentage of students<b>, which peaked at 40% in 2010,</b> declined steadily thereafter.</i></li><li>🧠 <b>The Sentential 'Which':</b> Use 'which' after a comma to comment on a whole preceding idea. <i>The population grew rapidly<b>, which</b> led to a housing shortage.</i></li><li>🏛️ <b>Formal Prepositions:</b> In high-level register, place the preposition before the pronoun. <i>The era <b>in which</b> he lived...</i> (instead of 'The era he lived in').</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is the best Task 1 overview for a graph showing 2010 data?",
+          "options": [
+            "The figure for coal, which was 50 tonnes in 2010, rose to 80 tonnes by 2020.",
+            "The figure for coal which was 50 tonnes in 2010 rose to 80 tonnes by 2020.",
+            "The figure for coal, that was 50 tonnes in 2010, rose to 80 tonnes by 2020.",
+            "The figure for coal, what was 50 tonnes in 2010, rose to 80 tonnes by 2020."
+          ],
+          "correctAnswer": "The figure for coal, which was 50 tonnes in 2010, rose to 80 tonnes by 2020.",
+          "explanation": "This uses a non-defining relative clause with commas to nest a specific data point into a trend sentence."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The unemployment rate fell to 5% in 2015. Which was the lowest point in the decade.'",
+          "options": [
+            "rate fell",
+            "to 5%",
+            "2015. Which",
+            "lowest point"
+          ],
+          "correctAnswer": "2015. Which",
+          "explanation": "This is a fragment. 'Which' must be attached to the previous sentence with a comma to refer back to the fact mentioned."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Choose the most formal academic structure:",
+          "options": [
+            "The method which the results were obtained by is controversial.",
+            "The method by which the results were obtained is controversial.",
+            "The method what the results were obtained by is controversial.",
+            "The method that the results were obtained by is controversial."
+          ],
+          "correctAnswer": "The method by which the results were obtained is controversial.",
+          "explanation": "Placing the preposition ('by') before the relative pronoun ('which') is the hallmark of a high academic register."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses 'whose' for an inanimate object in a Task 1 context?",
+          "options": [
+            "The sector whose growth was most significant was technology.",
+            "The sector who growth was most significant was technology.",
+            "The sector which growth was most significant was technology.",
+            "The sector that growth was most significant was technology."
+          ],
+          "correctAnswer": "The sector whose growth was most significant was technology.",
+          "explanation": "'Whose' can be used as a possessive for both people and inanimate objects (the growth of the sector)."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The two countries, that shared a border, had very different economic outcomes.'",
+          "options": [
+            "two countries,",
+            "that",
+            "shared",
+            "different"
+          ],
+          "correctAnswer": "that",
+          "explanation": "'That' cannot be used in non-defining clauses (those with commas). Use 'which'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Complete the Task 2 argument: 'Governments should invest in renewable energy, ___ would reduce carbon emissions.'",
+          "options": [
+            "that",
+            "which",
+            "what",
+            "where"
+          ],
+          "correctAnswer": "which",
+          "explanation": "A sentential 'which' is used after a comma to refer to the entire idea of investing in renewable energy."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Which is correct for a 'reduced' relative clause? 'The participants ___ the survey were all under 30.'",
+          "options": [
+            "who completing",
+            "completing",
+            "which completed",
+            "whom completed"
+          ],
+          "correctAnswer": "completing",
+          "explanation": "This is a reduced relative clause (short for 'who were completing' or 'who completed')."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The city in that I was born has changed significantly.'",
+          "options": [
+            "city",
+            "in that",
+            "born",
+            "significantly"
+          ],
+          "correctAnswer": "in that",
+          "explanation": "You cannot use 'that' after a preposition. It must be 'in which'."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses 'whom' in a formal context?",
+          "options": [
+            "The people to who the survey was sent responded quickly.",
+            "The people to whom the survey was sent responded quickly.",
+            "The people whom the survey was sent responded quickly.",
+            "The people who the survey was sent to whom responded quickly."
+          ],
+          "correctAnswer": "The people to whom the survey was sent responded quickly.",
+          "explanation": "'Whom' is the object form and follows the preposition 'to'."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Identify the punctuation error: 'The report, which was published in 2022 provided new insights.'",
+          "options": [
+            "report,",
+            "which",
+            "published in 2022",
+            "provided"
+          ],
+          "correctAnswer": "published in 2022",
+          "explanation": "Missing a second comma after '2022' to close the non-defining clause."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'The reason ___ the project failed was a lack of funding.'",
+          "options": [
+            "why",
+            "that",
+            "which",
+            "Both A and B."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'The reason why' or 'The reason that' are both acceptable in academic writing."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The data suggests a trend, what is likely to continue.'",
+          "options": [
+            "suggests",
+            "trend,",
+            "what",
+            "continue"
+          ],
+          "correctAnswer": "what",
+          "explanation": "'What' cannot be a relative pronoun for a noun. Use 'which'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly 'nested' with data?",
+          "options": [
+            "Wheat production, at 20 tons in 2000, fell to 10 tons in 2010.",
+            "Wheat production which was 20 tons in 2000 fell to 10 tons in 2010.",
+            "Wheat production, that was 20 tons in 2000, fell to 10 tons in 2010.",
+            "Both A and B."
+          ],
+          "correctAnswer": "Wheat production, at 20 tons in 2000, fell to 10 tons in 2010.",
+          "explanation": "Using a prepositional phrase (at 20 tons) is a very common 'reduced' way to nest data in Task 1."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'There are many situations in where this rule does not apply.'",
+          "options": [
+            "There are",
+            "situations",
+            "in where",
+            "apply"
+          ],
+          "correctAnswer": "in where",
+          "explanation": "Should be 'situations in which' or 'situations where'. 'In where' is incorrect."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which fits a formal opening for Task 2? 'The extent ___ technology affects daily life is immense.'",
+          "options": [
+            "to which",
+            "that",
+            "which",
+            "of which"
+          ],
+          "correctAnswer": "to which",
+          "explanation": "The noun 'extent' is almost always paired with the preposition 'to' (to an extent)."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The graph, whose data comes from the World Bank, shows a rise in GDP.'",
+          "options": [
+            "graph,",
+            "whose",
+            "comes from",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "'Whose' is perfectly correct for referring to the data belonging to the graph."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Choose the best pronoun: 'The criteria ___ the candidates were judged were strict.'",
+          "options": [
+            "by which",
+            "that",
+            "which",
+            "where"
+          ],
+          "correctAnswer": "by which",
+          "explanation": "Candidates are judged 'by' criteria, so 'by which' is the formal choice."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The professor, that I spoke to yesterday, was very helpful.'",
+          "options": [
+            "professor,",
+            "that",
+            "spoke to",
+            "helpful"
+          ],
+          "correctAnswer": "that",
+          "explanation": "Cannot use 'that' after a comma. Use 'who' or 'whom'."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses a sentential relative clause?",
+          "options": [
+            "The company went bankrupt, which was a shock to everyone.",
+            "The company went bankrupt. Which was a shock to everyone.",
+            "The company went bankrupt which was a shock to everyone.",
+            "The company went bankrupt, that was a shock to everyone."
+          ],
+          "correctAnswer": "The company went bankrupt, which was a shock to everyone.",
+          "explanation": "Requires a comma and 'which' to comment on the whole previous clause."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The town in where the festival is held is very small.'",
+          "options": [
+            "town",
+            "in where",
+            "held",
+            "small"
+          ],
+          "correctAnswer": "in where",
+          "explanation": "Should be 'the town where' or 'the town in which'."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Choose the most accurate Task 1 phrasing:",
+          "options": [
+            "Sales of cars, which stood at 100 units, then rose to 150.",
+            "Sales of cars, stood at 100 units, then rose to 150.",
+            "Sales of cars which stood at 100 units then rose to 150.",
+            "Sales of cars, that stood at 100 units, then rose to 150."
+          ],
+          "correctAnswer": "Sales of cars, which stood at 100 units, then rose to 150.",
+          "explanation": "Correct use of a non-defining clause to provide a baseline data point."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He is the only person that I know who can speak six languages.'",
+          "options": [
+            "only person",
+            "that I know",
+            "who can",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "This sentence correctly uses 'that' for the first restriction and 'who' for the second."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Which is more formal? 'The theory that he is famous for' or 'The theory for which he is famous'?",
+          "options": [
+            "The first",
+            "The second",
+            "Both are equally formal.",
+            "Neither is correct."
+          ],
+          "correctAnswer": "The second",
+          "explanation": "Preposition-first structure (Pied-piping) is the academic standard."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The data, what was collected over ten years, shows a trend.'",
+          "options": [
+            "data,",
+            "what",
+            "collected",
+            "trend"
+          ],
+          "correctAnswer": "what",
+          "explanation": "Should be 'which'."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Complete the phrase: 'The conditions ___ the workers lived were terrible.'",
+          "options": [
+            "under which",
+            "that",
+            "which",
+            "where"
+          ],
+          "correctAnswer": "under which",
+          "explanation": "Workers live 'under' conditions; this is the formal relative structure."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'None of the students, which were invited, attended the event.'",
+          "options": [
+            "None",
+            "students,",
+            "which",
+            "attended"
+          ],
+          "correctAnswer": "which",
+          "explanation": "For students (people), use 'who'."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I don't know the person ___ you are talking.'",
+          "options": [
+            "who",
+            "whom",
+            "about whom",
+            "that"
+          ],
+          "correctAnswer": "about whom",
+          "explanation": "Formal object form with the required preposition."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The city that I live in it is very crowded.'",
+          "options": [
+            "city",
+            "that",
+            "live in it",
+            "crowded"
+          ],
+          "correctAnswer": "live in it",
+          "explanation": "Redundant pronoun. 'That' already replaces 'it'. Should be 'The city that I live in'."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'The results ___ the researchers found were surprising.'",
+          "options": [
+            "what",
+            "that",
+            "who",
+            "whose"
+          ],
+          "correctAnswer": "that",
+          "explanation": "Refers to 'results' (things)."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: In Task 1, relative clauses help to ___.",
+          "options": [
+            "Increase word count without adding value.",
+            "Combine data points and trends into single, complex sentences.",
+            "Avoid using numbers.",
+            "Sound more like a story than a report."
+          ],
+          "correctAnswer": "Combine data points and trends into single, complex sentences.",
+          "explanation": "This is the primary goal of using relative clauses in data description."
+        }
+      ]
+    }
+  ]
+}

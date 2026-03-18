@@ -54,28 +54,40 @@ DROP CONSTRAINT IF EXISTS users_role_check;
 ALTER TABLE users
 ADD CONSTRAINT users_role_check CHECK(role IN ('super_admin', 'admin', 'teacher', 'student'));
 
--- Remove duplicate emails (keep the one with lowest id for each email)
+-- Drop old UNIQUE(email) constraint if it exists
 DO $$
 BEGIN
-    DELETE FROM users a USING users b
-    WHERE a.id > b.id AND a.email = b.email;
+    IF EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'users_email_unique'
+    ) THEN
+        ALTER TABLE users DROP CONSTRAINT users_email_unique;
+    END IF;
+    
+    IF EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'users_email_key'
+    ) THEN
+        ALTER TABLE users DROP CONSTRAINT users_email_key;
+    END IF;
 EXCEPTION
     WHEN OTHERS THEN
         NULL;
 END
 $$;
 
--- Ensure email is unique across all users
+-- Ensure email + role combination is unique (allows same email for different roles)
 DO $$
 BEGIN
     IF NOT EXISTS (
-        SELECT 1 FROM pg_constraint WHERE conname = 'users_email_unique'
+        SELECT 1 FROM pg_constraint WHERE conname = 'users_email_role_unique'
     ) THEN
         ALTER TABLE users
-        ADD CONSTRAINT users_email_unique UNIQUE(email);
+        ADD CONSTRAINT users_email_role_unique UNIQUE(email, role);
     END IF;
 END
 $$;
+
+-- Create index for faster email lookups
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
 -- ============================================================================
 -- CLASSES TABLE - Institution-Scoped
@@ -120,6 +132,23 @@ EXCEPTION
         NULL;
 END
 $$;
+
+-- ============================================================================
+-- CLASS ENROLLMENTS TABLE - Many-to-Many relationship between Users and Classes
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS class_enrollments (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    class_id INTEGER NOT NULL,
+    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (class_id) REFERENCES classes(id) ON DELETE CASCADE,
+    UNIQUE(user_id, class_id)
+);
+
+-- Create index for faster lookups
+CREATE INDEX IF NOT EXISTS idx_class_enrollments_user_id ON class_enrollments(user_id);
+CREATE INDEX IF NOT EXISTS idx_class_enrollments_class_id ON class_enrollments(class_id);
 
 -- ============================================================================
 -- LEARNING MODULES TABLE

@@ -1,0 +1,1581 @@
+{
+  "topicId": "04_prepositional_accuracy",
+  "topicName": "Prepositional Accuracy",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form (The Big Three)",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The 'In-On-At' Pyramid</h3><p>Prepositions show the relationship between a noun and the rest of the sentence. Think of them as moving from <b>General</b> to <b>Specific</b>.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Preposition</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Time (When?)</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Place (Where?)</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>IN</b> (General)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Months, Years, Centuries</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Cities, Countries, Rooms</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>ON</b> (Specific)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Days, Dates</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Streets, Surfaces, Floors</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>AT</b> (Very Specific)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Precise Times (9:00 AM)</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Specific Points, Addresses</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which preposition is used for a year? 'I graduated ___ 2022.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "in",
+          "explanation": "'In' is used for long periods of time like years and months."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition for a date: 'The meeting is ___ October 15th.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "on",
+          "explanation": "'On' is used for specific days and dates."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which is correct for a specific time? 'Class starts ___ 9:00 AM.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "for"
+          ],
+          "correctAnswer": "at",
+          "explanation": "'At' is the most specific time preposition."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'I live ___ Tokyo.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "in",
+          "explanation": "'In' is used for cities, countries, and large areas."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which is correct for a surface? 'The book is ___ the table.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "over"
+          ],
+          "correctAnswer": "on",
+          "explanation": "'On' indicates a position on a surface."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am meeting her in the station at noon.'",
+          "options": [
+            "am",
+            "in",
+            "at",
+            "noon"
+          ],
+          "correctAnswer": "in",
+          "explanation": "For a functional point in a city like a station, 'at' is usually more natural ('at the station')."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Complete the phrase: '___ Monday morning, I have a meeting.'",
+          "options": [
+            "At",
+            "On",
+            "In",
+            "To"
+          ],
+          "correctAnswer": "On",
+          "explanation": "Even with 'morning', the presence of 'Monday' (a day) requires 'on'."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which is used for a month? 'My birthday is ___ June.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "since"
+          ],
+          "correctAnswer": "in",
+          "explanation": "'In' is used for months."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The keys are ___ my pocket.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "in",
+          "explanation": "'In' suggests being inside an enclosed space."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'I work ___ the third floor.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Floors of a building always take 'on'."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which is used for a specific address? 'He lives ___ 123 Main Street.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "at",
+          "explanation": "An address is a specific point, so we use 'at'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Complete: 'The report was finished ___ the afternoon.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "in",
+          "explanation": "Parts of the day (morning, afternoon, evening) take 'in'."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the exception: 'I usually go to sleep ___ night.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "at",
+          "explanation": "While 'morning' takes 'in', 'night' is an exception and takes 'at'."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which is correct for a street (no number)? 'I live ___ Broadway.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "on",
+          "explanation": "For streets without a specific house number, use 'on'."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The price peaked ___ $50.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "at",
+          "explanation": "Specific data points or levels in Task 1 take 'at'."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'We are ___ Japan.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "into"
+          ],
+          "correctAnswer": "in",
+          "explanation": "Large geographic areas take 'in'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'I am sitting ___ my desk.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "at",
+          "explanation": "Sitting 'at' a desk implies a functional position."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Which is used for a weekend? 'I'll see you ___ the weekend.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "'At' is British English, 'On' is American English. Both are acceptable."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He was born on 1995.'",
+          "options": [
+            "He",
+            "was",
+            "on",
+            "1995"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Years take 'in', not 'on'."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'There is a picture ___ the wall.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Surfaces (even vertical ones) take 'on'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The conference is ___ the summer.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "in",
+          "explanation": "Seasons take 'in'."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Complete: 'I am waiting ___ the bus stop.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "at",
+          "explanation": "Specific points or markers in space take 'at'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Which is used for a holiday? 'I'll visit ___ Christmas Day.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Holidays with the word 'Day' take 'on'. (Note: 'at Christmas' is the whole period)."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The answers are at the back of the book.'",
+          "options": [
+            "answers",
+            "at",
+            "back",
+            "No error."
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "'At the back' or 'In the back' are both common and correct."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The study was published ___ the 20th century.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "in",
+          "explanation": "Centuries take 'in'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'I am ___ the office right now.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "'At' emphasizes the location; 'in' emphasizes being inside the building."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Complete: 'There is a spill ___ the floor.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "under"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Horizontal surfaces take 'on'."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which is used for the time? 'I will be there ___ five minutes.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "in",
+          "explanation": "A period of time from now takes 'in'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The store is in the corner of the street.'",
+          "options": [
+            "store",
+            "is",
+            "in",
+            "corner"
+          ],
+          "correctAnswer": "in",
+          "explanation": "Corners take 'on' or 'at'."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'The price rose ___ $100.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "to",
+          "explanation": "Movement toward a final data point takes 'to'."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: Dependent Prepositions",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Verb-Partner' Rule</h3><p>In English, certain verbs and adjectives are 'married' to specific prepositions. Translating from Japanese often leads to the wrong choice.</p><ul style=\"line-height: 1.8;\"><li>❌ <b>L1 Trap:</b> <i>We discussed <b>about</b> the problem.</i> ➔ ✅ <b>Discuss</b> (No preposition).</li><li>❌ <b>L1 Trap:</b> <i>I am married <b>with</b> a doctor.</i> ➔ ✅ <b>Married to</b>.</li><li>❌ <b>L1 Trap:</b> <i>It depends <b>from</b> the weather.</i> ➔ ✅ <b>Depends on</b>.</li><li>❌ <b>L1 Trap:</b> <i>I am good <b>in</b> English.</i> ➔ ✅ <b>Good at</b>.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'We need to ___ the new policy.'",
+          "options": [
+            "discuss about",
+            "discuss",
+            "discussing about",
+            "discuss to"
+          ],
+          "correctAnswer": "discuss",
+          "explanation": "'Discuss' is a transitive verb; it does not take 'about'. (You 'talk about' something, but you 'discuss' something)."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct partner: 'Success depends ___ hard work.'",
+          "options": [
+            "of",
+            "from",
+            "on",
+            "in"
+          ],
+          "correctAnswer": "on",
+          "explanation": "The verb 'depend' is always followed by the preposition 'on'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She has been married with her husband for ten years.'",
+          "options": [
+            "has been",
+            "married",
+            "with",
+            "for"
+          ],
+          "correctAnswer": "with",
+          "explanation": "In English, you are 'married to' someone."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'I am very interested ___ ancient history.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "about"
+          ],
+          "correctAnswer": "in",
+          "explanation": "The adjective 'interested' is paired with 'in'."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Which is correct for a skill? 'He is very good ___ mathematics.'",
+          "options": [
+            "in",
+            "at",
+            "on",
+            "with"
+          ],
+          "correctAnswer": "at",
+          "explanation": "We use 'good at', 'bad at', or 'talented at' for skills."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The car collided ___ a truck.'",
+          "options": [
+            "to",
+            "with",
+            "on",
+            "against"
+          ],
+          "correctAnswer": "with",
+          "explanation": "'Collide' is followed by 'with'."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am waiting to the bus.'",
+          "options": [
+            "am",
+            "waiting",
+            "to",
+            "bus"
+          ],
+          "correctAnswer": "to",
+          "explanation": "You 'wait for' something or someone."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'She apologized ___ her mistake.'",
+          "options": [
+            "at",
+            "to",
+            "for",
+            "about"
+          ],
+          "correctAnswer": "for",
+          "explanation": "You 'apologize to' a person, but 'apologize for' an action."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Are you afraid ___ spiders?'",
+          "options": [
+            "at",
+            "from",
+            "of",
+            "about"
+          ],
+          "correctAnswer": "of",
+          "explanation": "'Afraid' is paired with 'of'."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I arrived ___ the airport early.'",
+          "options": [
+            "to",
+            "at",
+            "in",
+            "on"
+          ],
+          "correctAnswer": "at",
+          "explanation": "You 'arrive at' a specific building/point, but 'arrive in' a city/country."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Complete: 'He is responsible ___ the marketing department.'",
+          "options": [
+            "of",
+            "to",
+            "for",
+            "at"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'Responsible' is followed by 'for'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am listening the music.'",
+          "options": [
+            "am",
+            "listening",
+            "the",
+            "music"
+          ],
+          "correctAnswer": "the",
+          "explanation": "The verb 'listen' requires 'to' before the object ('listening to the music')."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Choose the correct partner: 'She is similar ___ her sister.'",
+          "options": [
+            "with",
+            "to",
+            "as",
+            "like"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Similar' is followed by 'to'."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'They complained ___ the noise.'",
+          "options": [
+            "at",
+            "about",
+            "to",
+            "of"
+          ],
+          "correctAnswer": "about",
+          "explanation": "You 'complain about' a situation or thing."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I believe ___ ghosts.'",
+          "options": [
+            "on",
+            "at",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "in",
+          "explanation": "'Believe in' is the standard phrase for existence or trust."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I reached to the hotel at midnight.'",
+          "options": [
+            "reached",
+            "to",
+            "at",
+            "midnight"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Reach' is a transitive verb and does not take 'to'. (You 'get to' a hotel, but 'reach' a hotel)."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'He graduated ___ Harvard.'",
+          "options": [
+            "at",
+            "on",
+            "from",
+            "in"
+          ],
+          "correctAnswer": "from",
+          "explanation": "You 'graduate from' an institution."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'She is bored ___ her job.'",
+          "options": [
+            "with",
+            "at",
+            "about",
+            "of"
+          ],
+          "correctAnswer": "with",
+          "explanation": "'Bored' is usually followed by 'with'."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'I am proud ___ your achievements.'",
+          "options": [
+            "at",
+            "on",
+            "of",
+            "about"
+          ],
+          "correctAnswer": "of",
+          "explanation": "'Proud' is paired with 'of'."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'He is famous ___ his paintings.'",
+          "options": [
+            "at",
+            "by",
+            "for",
+            "with"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'Famous' is followed by 'for'."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am thinking to move to Tokyo.'",
+          "options": [
+            "am",
+            "thinking",
+            "to move",
+            "to Tokyo"
+          ],
+          "correctAnswer": "to move",
+          "explanation": "The verb 'think' is usually followed by 'about/of' + gerund ('thinking about moving')."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Complete: 'The solution depends ___ several factors.'",
+          "options": [
+            "on",
+            "from",
+            "at",
+            "of"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Always 'depend on'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'I am worried ___ the exam.'",
+          "options": [
+            "at",
+            "about",
+            "on",
+            "of"
+          ],
+          "correctAnswer": "about",
+          "explanation": "'Worried' is paired with 'about'."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Please explain me the problem.'",
+          "options": [
+            "Please",
+            "explain",
+            "me",
+            "problem"
+          ],
+          "correctAnswer": "me",
+          "explanation": "The verb 'explain' requires 'to' before the person being addressed ('explain to me')."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'She succeeded ___ passing the test.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "with"
+          ],
+          "correctAnswer": "in",
+          "explanation": "'Succeed' is followed by 'in' + gerund."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I am addicted ___ coffee.'",
+          "options": [
+            "at",
+            "on",
+            "to",
+            "with"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Addicted' is followed by 'to'."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He is jealous from his brother.'",
+          "options": [
+            "He",
+            "is",
+            "jealous",
+            "from"
+          ],
+          "correctAnswer": "from",
+          "explanation": "The correct phrase is 'jealous of'."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Complete: 'They are looking forward ___ the holiday.'",
+          "options": [
+            "at",
+            "on",
+            "to",
+            "for"
+          ],
+          "correctAnswer": "to",
+          "explanation": "The phrase is 'look forward to'."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'I am familiar ___ this area.'",
+          "options": [
+            "at",
+            "on",
+            "with",
+            "to"
+          ],
+          "correctAnswer": "with",
+          "explanation": "'Familiar' is paired with 'with' (for people/places) or 'to' (for sounds/sights)."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'The company entered ___ an agreement.'",
+          "options": [
+            "into",
+            "to",
+            "at",
+            "in"
+          ],
+          "correctAnswer": "into",
+          "explanation": "While 'enter' (a room) takes no preposition, 'enter into' (an agreement/contract) is the correct idiom."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Prepositional Audit</h3><p>In academic texts, prepositions often fail due to <b>Distance</b> or <b>Complex Pairing</b>. You must check that the preposition still matches the main verb, even if there are many words in between.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The Distance Trap:</b> <i>The <b>demand</b> (1) from the local citizens and several international organizations <b>for</b> (2) better housing was ignored.</i> ('Demand' and 'For' must match).</li><li>📊 <b>Double Prepositions:</b> <i>The study focuses <b>on</b> the causes <b>of</b> and the solutions <b>to</b> the problem.</i> (Each noun needs its own correct partner).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'The researchers were dedicated in their work. They spent years investigating into the causes of the disease.'",
+          "options": [
+            "dedicated in",
+            "investigating into",
+            "causes of",
+            "No error"
+          ],
+          "correctAnswer": "investigating into",
+          "explanation": "'Investigate' is a transitive verb and does not take 'into'. (You 'look into' something, but you 'investigate' it directly)."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which preposition correctly completes the academic sentence? 'The evidence provided by the witness is consistent ___ the physical data found at the scene.'",
+          "options": [
+            "to",
+            "with",
+            "from",
+            "for"
+          ],
+          "correctAnswer": "with",
+          "explanation": "The adjective 'consistent' is paired with 'with' when comparing two things."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The primary advantage for using this software is its ability to handle large amounts of data without crashing.'",
+          "options": [
+            "advantage for",
+            "using",
+            "ability to",
+            "amounts of"
+          ],
+          "correctAnswer": "advantage for",
+          "explanation": "In English, we say the 'advantage of' doing something."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The government's lack of response ___ the crisis led to widespread protests.'",
+          "options": [
+            "to",
+            "for",
+            "with",
+            "about"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Response' (and 'react') always takes the preposition 'to'."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The study was independent from any government funding, which ensured that the results remained objective.'",
+          "options": [
+            "independent from",
+            "any",
+            "ensured that",
+            "objective"
+          ],
+          "correctAnswer": "independent from",
+          "explanation": "The correct academic pairing is 'independent of'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which version is correct? 'The manager commented ___ the performance of the team.'",
+          "options": [
+            "about",
+            "on",
+            "to",
+            "at"
+          ],
+          "correctAnswer": "on",
+          "explanation": "To 'comment' (and 'remark') requires 'on' before the subject of the comment."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The discrepancy between the two reports was attributed to a lack in communication between the departments.'",
+          "options": [
+            "between",
+            "attributed to",
+            "lack in",
+            "between"
+          ],
+          "correctAnswer": "lack in",
+          "explanation": "While you can have a 'lack of' (noun), you 'lack' (verb) something. 'Lack in' is used for qualities (e.g., lacking in confidence), but for general absence, use 'lack of'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'There is a high demand ___ skilled workers in the technology sector.'",
+          "options": [
+            "of",
+            "for",
+            "to",
+            "with"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'Demand' as a noun is followed by 'for'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She is capable to handle the pressure of the job.'",
+          "options": [
+            "capable to",
+            "handle",
+            "pressure",
+            "of"
+          ],
+          "correctAnswer": "capable to",
+          "explanation": "The correct structure is 'capable of' + gerund ('capable of handling')."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The increase ___ the price of oil was unexpected.'",
+          "options": [
+            "at",
+            "of",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "in",
+          "explanation": "For trends and changes in values, we use 'increase/decrease in'."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The company complied to all the safety regulations during the construction process.'",
+          "options": [
+            "complied to",
+            "safety regulations",
+            "during",
+            "construction"
+          ],
+          "correctAnswer": "complied to",
+          "explanation": "The verb 'comply' is always followed by 'with'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'He was oblivious ___ the changes happening around him.'",
+          "options": [
+            "of",
+            "to",
+            "at",
+            "about"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Oblivious' is paired with 'to'."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The book is composed from five different sections.'",
+          "options": [
+            "is composed",
+            "from",
+            "different",
+            "sections"
+          ],
+          "correctAnswer": "from",
+          "explanation": "The correct phrase is 'composed of'."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I am familiar ___ the protocol.'",
+          "options": [
+            "to",
+            "with",
+            "at",
+            "on"
+          ],
+          "correctAnswer": "with",
+          "explanation": "You are 'familiar with' a subject or situation."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The reason for the delay was due to a technical failure.'",
+          "options": [
+            "reason for",
+            "delay",
+            "due to",
+            "No error"
+          ],
+          "correctAnswer": "due to",
+          "explanation": "'The reason was due to' is redundant. Use 'The reason was...' or 'The delay was due to...'."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The data is relevant ___ our current research.'",
+          "options": [
+            "to",
+            "for",
+            "with",
+            "about"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Relevant' is followed by 'to'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She apologized for her behavior to the meeting.'",
+          "options": [
+            "apologized for",
+            "behavior",
+            "to",
+            "meeting"
+          ],
+          "correctAnswer": "to",
+          "explanation": "You apologize 'to' a person/group, but 'at' or 'during' a meeting. (e.g., 'to the committee at the meeting')."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The team is consist of ten members.'",
+          "options": [
+            "consist of",
+            "consists of",
+            "is consisting of",
+            "consisting of"
+          ],
+          "correctAnswer": "consists of",
+          "explanation": "'Consist' is a state verb and is not used in the passive 'is consist'. Use 'consists of'."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The report provides a solution of the problem.'",
+          "options": [
+            "provides",
+            "data",
+            "solution of",
+            "No error"
+          ],
+          "correctAnswer": "solution of",
+          "explanation": "The standard academic phrase is 'solution to' the problem."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The city is famous ___ its historical monuments.'",
+          "options": [
+            "at",
+            "for",
+            "with",
+            "by"
+          ],
+          "correctAnswer": "for",
+          "explanation": "'Famous' is followed by 'for'."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am thinking on taking a gap year before university.'",
+          "options": [
+            "am",
+            "thinking on",
+            "taking",
+            "gap year"
+          ],
+          "correctAnswer": "thinking on",
+          "explanation": "Use 'thinking about' or 'thinking of'."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The result depends ___ the final score.'",
+          "options": [
+            "from",
+            "on",
+            "at",
+            "to"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Always 'depend on'."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The suspect was charged of robbery.'",
+          "options": [
+            "suspect",
+            "was",
+            "charged of",
+            "robbery"
+          ],
+          "correctAnswer": "charged of",
+          "explanation": "The correct legal pairing is 'charged with'."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The success of the project is vital ___ our future.'",
+          "options": [
+            "to",
+            "for",
+            "with",
+            "at"
+          ],
+          "correctAnswer": "to",
+          "explanation": "Something is 'vital to' a result or goal."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The students are prohibited to smoke on campus.'",
+          "options": [
+            "students",
+            "prohibited to",
+            "smoke",
+            "on campus"
+          ],
+          "correctAnswer": "prohibited to",
+          "explanation": "The correct structure is 'prohibited from' + gerund ('prohibited from smoking')."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The manager was satisfied ___ the progress.'",
+          "options": [
+            "at",
+            "with",
+            "about",
+            "for"
+          ],
+          "correctAnswer": "with",
+          "explanation": "'Satisfied' is followed by 'with'."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Find the error: 'He succeeded to finish the marathon despite the heat.'",
+          "options": [
+            "succeeded to",
+            "finish",
+            "despite",
+            "heat"
+          ],
+          "correctAnswer": "succeeded to",
+          "explanation": "Use 'succeeded in finishing'."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The article makes reference ___ several recent studies.'",
+          "options": [
+            "to",
+            "for",
+            "on",
+            "at"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Reference' (noun) takes 'to'."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am bored of this movie.'",
+          "options": [
+            "am",
+            "bored of",
+            "this",
+            "movie"
+          ],
+          "correctAnswer": "bored of",
+          "explanation": "While 'bored of' is common in slang, 'bored with' is the formal academic standard."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'The study was conducted ___ collaboration with the university.'",
+          "options": [
+            "at",
+            "on",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "in",
+          "explanation": "The fixed phrase is 'in collaboration with'."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Data Precision Rule</h3><p>In Task 1, prepositions define the mathematical relationship of your data. If you mix these up, your description of the graph becomes factually incorrect.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <b>TO (The End Point):</b> <i>The figure rose <b>to</b> 50%.</i> (50% is the final number).</li><li>📉 <b>BY (The Difference):</b> <i>The figure rose <b>by</b> 10%.</i> (It was 40%, now it is 50%).</li><li>🎯 <b>AT (Specific Points):</b> <i>The price peaked <b>at</b> $100.</i> / <i>It remained steady <b>at</b> 20%.</i></li><li>📏 <b>OF (Nouns of Change):</b> <i>There was a rise <b>of</b> 15%.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly describes a final value? 'The percentage of smokers fell ___ 15% in 2015.'",
+          "options": [
+            "by",
+            "to",
+            "of",
+            "at"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'To' indicates the final destination or end point of a trend."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The number of cars increased to 5,000, which was a rise by 1,000 from the previous year.'",
+          "options": [
+            "number of",
+            "increased to",
+            "rise by",
+            "previous year"
+          ],
+          "correctAnswer": "rise by",
+          "explanation": "When using 'rise' as a noun, the correct preposition is 'of' (a rise of 1,000)."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which preposition is used for a peak? 'Oil production reached a peak ___ 50 million barrels.'",
+          "options": [
+            "to",
+            "of",
+            "at",
+            "by"
+          ],
+          "correctAnswer": "at",
+          "explanation": "Peaks and plateaus are specific points on a graph, so we use 'at'."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition for the amount of change: 'Unemployment figures dropped ___ 5%.'",
+          "options": [
+            "to",
+            "by",
+            "of",
+            "at"
+          ],
+          "correctAnswer": "by",
+          "explanation": "If the decrease was 5% (e.g., from 15% to 10%), we use 'by' to show the difference."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the correctly structured Task 1 sentence:",
+          "options": [
+            "There was an increase of 10% in the number of students.",
+            "There was an increase at 10% in the number of students.",
+            "There was an increase to 10% in the number of students.",
+            "There was an increase by 10% in the number of students."
+          ],
+          "correctAnswer": "There was an increase of 10% in the number of students.",
+          "explanation": "Noun (increase) + 'of' (the amount) + 'in' (the category)."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which preposition fits 'plateau'? 'Sales plateaued ___ 200 units for three months.'",
+          "options": [
+            "at",
+            "to",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "at",
+          "explanation": "Like 'peak,' 'plateau' refers to a specific level/point."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The figure for 2010 stood on 50%.'",
+          "options": [
+            "figure for",
+            "stood",
+            "on",
+            "No error"
+          ],
+          "correctAnswer": "on",
+          "explanation": "The correct academic phrase is 'stood at 50%.'"
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition for a range: 'The temperature fluctuated ___ 10 and 20 degrees.'",
+          "options": [
+            "at",
+            "from",
+            "between",
+            "to"
+          ],
+          "correctAnswer": "between",
+          "explanation": "Fluctuations happen 'between' two points."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Complete the Task 1 comparison: 'The number was higher ___ 10% compared to the previous year.'",
+          "options": [
+            "at",
+            "by",
+            "to",
+            "with"
+          ],
+          "correctAnswer": "by",
+          "explanation": "We use 'by' to show the margin of difference in a comparison."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The graph shows a decline to the number of people smoking.'",
+          "options": [
+            "shows",
+            "decline to",
+            "number of",
+            "smoking"
+          ],
+          "correctAnswer": "decline to",
+          "explanation": "We say a 'decline/rise in' a category. 'Decline to' would mean the number literally became a certain value."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which is correct for 'lowest point'? 'The value hit a low ___ 5 units.'",
+          "options": [
+            "at",
+            "of",
+            "to",
+            "in"
+          ],
+          "correctAnswer": "of",
+          "explanation": "While you 'hit a low point at...', when 'low' is used as a noun for a value, 'a low of [number]' is common."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Choose the best preposition for Task 2: 'Access ___ education is a fundamental right.'",
+          "options": [
+            "to",
+            "for",
+            "with",
+            "at"
+          ],
+          "correctAnswer": "to",
+          "explanation": "'Access' as a noun is followed by 'to'."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Correct the Task 1 phrase: 'The data for Sweden was similar with that for Norway.'",
+          "options": [
+            "similar to",
+            "similar from",
+            "similar at",
+            "No change."
+          ],
+          "correctAnswer": "similar to",
+          "explanation": "'Similar' is always paired with 'to'."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Which preposition introduces a reason in an essay? '___ these reasons, the policy should be changed.'",
+          "options": [
+            "For",
+            "Because",
+            "By",
+            "To"
+          ],
+          "correctAnswer": "For",
+          "explanation": "'For these reasons' is a standard formal transition."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the correct phrasing: 'The proportion ___ cars rose.'",
+          "options": [
+            "of",
+            "for",
+            "in",
+            "to"
+          ],
+          "correctAnswer": "of",
+          "explanation": "'Proportion of' is the standard way to describe a part of a whole."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which preposition completes the 'Difference' phrase? 'There was a difference ___ 20% between the two years.'",
+          "options": [
+            "at",
+            "by",
+            "of",
+            "to"
+          ],
+          "correctAnswer": "of",
+          "explanation": "A 'difference/gap/margin of' [amount]."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The figure stayed constant to 30% throughout the period.'",
+          "options": [
+            "figure",
+            "constant",
+            "to",
+            "period"
+          ],
+          "correctAnswer": "to",
+          "explanation": "Static levels take 'at' (stayed constant at)."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Complete the 'Physics' sentence: 'The speed was measured ___ 100 km/h.'",
+          "options": [
+            "at",
+            "in",
+            "on",
+            "by"
+          ],
+          "correctAnswer": "at",
+          "explanation": "Measured rates and speeds take 'at'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Choose the best preposition for Task 1 comparison: 'Expenditure on food was higher than that ___ housing.'",
+          "options": [
+            "at",
+            "for",
+            "on",
+            "with"
+          ],
+          "correctAnswer": "on",
+          "explanation": "Maintain parallel prepositions: 'Expenditure on X... than that on Y'."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The researchers were surprised by the results of the survey.'",
+          "options": [
+            "surprised by",
+            "results",
+            "survey",
+            "No error."
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "'Surprised by' or 'surprised at' are both correct."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which is best for a conclusion? '___ conclusion, the data shows...' ",
+          "options": [
+            "In",
+            "At",
+            "To",
+            "On"
+          ],
+          "correctAnswer": "In",
+          "explanation": "Standard fixed phrase: 'In conclusion'."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Correct the quantifier: 'There is a high demand for information in the internet.'",
+          "options": [
+            "on the internet",
+            "at the internet",
+            "to the internet",
+            "No error"
+          ],
+          "correctAnswer": "on the internet",
+          "explanation": "Digital platforms and surfaces take 'on'."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The percentage fell ___ a low point in 2012.'",
+          "options": [
+            "at",
+            "to",
+            "in",
+            "by"
+          ],
+          "correctAnswer": "to",
+          "explanation": "Movement 'to' a specific point."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The figures for 2010 and 2015 are shown in the table.'",
+          "options": [
+            "figures",
+            "for",
+            "in",
+            "No error"
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "All prepositions are used correctly for data representation."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The population grew ___ 10 million.'",
+          "options": [
+            "by",
+            "to",
+            "at",
+            "Both A and B depending on meaning."
+          ],
+          "correctAnswer": "Both A and B depending on meaning.",
+          "explanation": "'Grew by' (added 10m); 'Grew to' (final total is 10m)."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The pie chart is divided in four sections.'",
+          "options": [
+            "pie chart",
+            "is divided",
+            "in",
+            "sections"
+          ],
+          "correctAnswer": "in",
+          "explanation": "The standard phrase is 'divided into'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct preposition: 'The trend is consistent ___ the findings.'",
+          "options": [
+            "to",
+            "with",
+            "from",
+            "for"
+          ],
+          "correctAnswer": "with",
+          "explanation": "'Consistent' pairs with 'with'."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'There was a decrease of the number of smokers.'",
+          "options": [
+            "was",
+            "decrease",
+            "of",
+            "number of"
+          ],
+          "correctAnswer": "of",
+          "explanation": "Should be 'decrease in the number.' (You have an 'increase/decrease of [amount],' but 'in [category]')."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: Prepositions in Task 1 are vital because ___.",
+          "options": [
+            "They explain the direction of trends.",
+            "They separate the category from the value.",
+            "They show the size of the change.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Prepositional accuracy is the backbone of clear data description."
+        }
+      ]
+    }
+  ]
+}

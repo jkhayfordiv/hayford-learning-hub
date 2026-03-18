@@ -8,12 +8,14 @@ const { pool } = require('../db');
 // @desc    Create a new class
 // @access  Private (Teacher/Admin/SuperAdmin)
 router.post('/', requireTeacher, async (req, res) => {
-  const { class_name, start_date, end_date, institution_id: req_institution_id } = req.body;
-  const teacher_id = req.user.id;
+  const { class_name, start_date, end_date, institution_id: req_institution_id, teacher_id: req_teacher_id } = req.body;
+  const actor_id = req.user.id;
   const actor_role = req.user.role;
   
-  // SuperAdmin can specify institution_id in request, others use their own
-  const institution_id = actor_role === 'super_admin' ? req_institution_id : req.user.institution_id;
+  // SuperAdmin/Admin can specify teacher_id and institution_id
+  const isPrivileged = actor_role === 'super_admin' || actor_role === 'admin';
+  const teacher_id = isPrivileged && req_teacher_id ? req_teacher_id : actor_id;
+  const institution_id = isPrivileged && req_institution_id ? req_institution_id : req.user.institution_id;
   
   if (!class_name) {
     return res.status(400).json({ error: 'Class name is required' });
@@ -57,11 +59,11 @@ router.get('/all', requireTeacher, async (req, res) => {
       query = `
         SELECT c.*, i.name as institution_name, 
                u.first_name as teacher_first_name, u.last_name as teacher_last_name,
-               COUNT(DISTINCT students.id) as student_count
+               COUNT(DISTINCT ce.user_id) as student_count
         FROM classes c
         LEFT JOIN institutions i ON c.institution_id = i.id
         LEFT JOIN users u ON c.teacher_id = u.id
-        LEFT JOIN users students ON students.class_id = c.id AND students.role = 'student'
+        LEFT JOIN class_enrollments ce ON ce.class_id = c.id
         GROUP BY c.id, i.name, u.first_name, u.last_name
         ORDER BY c.created_at DESC
       `;
@@ -71,11 +73,11 @@ router.get('/all', requireTeacher, async (req, res) => {
       query = `
         SELECT c.*, i.name as institution_name,
                u.first_name as teacher_first_name, u.last_name as teacher_last_name,
-               COUNT(DISTINCT students.id) as student_count
+               COUNT(DISTINCT ce.user_id) as student_count
         FROM classes c
         LEFT JOIN institutions i ON c.institution_id = i.id
         LEFT JOIN users u ON c.teacher_id = u.id
-        LEFT JOIN users students ON students.class_id = c.id AND students.role = 'student'
+        LEFT JOIN class_enrollments ce ON ce.class_id = c.id
         WHERE c.institution_id = $1
         GROUP BY c.id, i.name, u.first_name, u.last_name
         ORDER BY c.created_at DESC
@@ -134,15 +136,17 @@ router.get('/', auth, async (req, res) => {
       connection.release();
       return res.json(classes);
     } else {
-      // Student
-      const [userRows] = await connection.query('SELECT class_id FROM users WHERE id = $1', [user_id]);
-      if (userRows.length > 0 && userRows[0].class_id) {
-        const [classInfo] = await connection.query('SELECT * FROM classes WHERE id = $1', [userRows[0].class_id]);
-        connection.release();
-        return res.json(classInfo);
-      }
+      // Student - fetch all enrolled classes
+      const [classInfo] = await connection.query(
+        `SELECT c.* 
+         FROM classes c
+         JOIN class_enrollments ce ON ce.class_id = c.id
+         WHERE ce.user_id = $1
+         ORDER BY ce.joined_at DESC`,
+        [user_id]
+      );
       connection.release();
-      return res.json([]);
+      return res.json(classInfo);
     }
   } catch (error) {
     console.error('Fetch classes error:', error);
@@ -178,8 +182,17 @@ router.post('/join', auth, async (req, res) => {
     const class_id = classes[0].id;
     const institution_id = classes[0].institution_id;
     
-    // PHASE 2.4: Update both class_id AND institution_id when student joins
-    await connection.query('UPDATE users SET class_id = $1, institution_id = $2 WHERE id = $3', [class_id, institution_id, user_id]);
+    // Insert enrollment (ON CONFLICT DO NOTHING prevents duplicate enrollments)
+    await connection.query(
+      'INSERT INTO class_enrollments (user_id, class_id) VALUES ($1, $2) ON CONFLICT (user_id, class_id) DO NOTHING',
+      [user_id, class_id]
+    );
+    
+    // Update user's institution_id if not already set
+    await connection.query(
+      'UPDATE users SET institution_id = $1 WHERE id = $2 AND institution_id IS NULL',
+      [institution_id, user_id]
+    );
 
     // Retroactively assign existing class assignments to the new student
     const [existingAssignments] = await connection.query(
@@ -229,31 +242,148 @@ router.put('/:id', requireTeacher, async (req, res) => {
   const class_id = req.params.id;
   const { class_name, start_date, end_date } = req.body;
   const teacher_id = req.user.id;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
 
   try {
     const connection = await pool.getConnection();
     
-    // Verify ownership
-    const [existing] = await connection.query('SELECT teacher_id FROM classes WHERE id = $1', [class_id]);
+    // TENANT ISOLATION: Verify ownership and institution access
+    const [existing] = await connection.query(
+      'SELECT teacher_id, institution_id FROM classes WHERE id = $1', 
+      [class_id]
+    );
+    
     if (existing.length === 0) {
       connection.release();
       return res.status(404).json({ error: 'Class not found' });
     }
-    if (existing[0].teacher_id !== teacher_id && req.user.role !== 'admin') {
+    
+    // Check ownership or admin privileges
+    const isOwner = existing[0].teacher_id === teacher_id;
+    const isPrivileged = actor_role === 'admin' || actor_role === 'super_admin';
+    
+    if (!isOwner && !isPrivileged) {
       connection.release();
       return res.status(403).json({ error: 'Unauthorized to edit this class' });
     }
+    
+    // TENANT ISOLATION: Admin can only edit classes in their institution
+    if (actor_role === 'admin' && existing[0].institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: Class belongs to a different institution' });
+    }
 
-    await connection.query(
-      'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3 WHERE id = $4',
-      [class_name, start_date || null, end_date || null, class_id]
-    );
+    // Build UPDATE query with tenant isolation
+    let updateQuery, updateParams;
+    if (actor_role === 'super_admin') {
+      updateQuery = 'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3 WHERE id = $4';
+      updateParams = [class_name, start_date || null, end_date || null, class_id];
+    } else {
+      // Admin/Teacher: add institution_id constraint
+      updateQuery = 'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3 WHERE id = $4 AND institution_id = $5';
+      updateParams = [class_name, start_date || null, end_date || null, class_id, actor_institution_id];
+    }
+    
+    const [result] = await connection.query(updateQuery, updateParams);
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
     
     connection.release();
+    
+    if (updated === 0) {
+      return res.status(404).json({ error: 'Class not found or access denied' });
+    }
+    
     res.json({ success: true, message: 'Class updated successfully' });
   } catch (error) {
     console.error('Update class error:', error);
     res.status(500).json({ error: 'Server error updating class' });
+  }
+});
+
+// @route   PATCH api/classes/:id/teacher
+// @desc    Reassign a class to a different teacher (Admin/SuperAdmin only)
+// @access  Private (Admin/SuperAdmin)
+router.patch('/:id/teacher', requireTeacher, async (req, res) => {
+  const class_id = req.params.id;
+  const { teacher_id } = req.body;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
+
+  if (actor_role !== 'admin' && actor_role !== 'super_admin') {
+    return res.status(403).json({ error: 'Only admins can reassign teachers to classes' });
+  }
+
+  if (!teacher_id) {
+    return res.status(400).json({ error: 'Teacher ID is required' });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // TENANT ISOLATION: Verify class exists and belongs to admin's institution
+    let classQuery, classParams;
+    if (actor_role === 'super_admin') {
+      classQuery = 'SELECT id, institution_id FROM classes WHERE id = $1';
+      classParams = [class_id];
+    } else {
+      classQuery = 'SELECT id, institution_id FROM classes WHERE id = $1 AND institution_id = $2';
+      classParams = [class_id, actor_institution_id];
+    }
+    
+    const [classRows] = await connection.query(classQuery, classParams);
+    
+    if (classRows.length === 0) {
+      connection.release();
+      return res.status(403).json({ error: 'Class not found or access denied' });
+    }
+
+    // Verify new teacher exists and has appropriate role
+    const [teacherRows] = await connection.query(
+      'SELECT id, role, institution_id FROM users WHERE id = $1',
+      [teacher_id]
+    );
+    
+    if (teacherRows.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'Teacher not found' });
+    }
+
+    const teacher = teacherRows[0];
+    if (teacher.role !== 'teacher' && teacher.role !== 'admin' && teacher.role !== 'super_admin') {
+      connection.release();
+      return res.status(400).json({ error: 'User must have teacher, admin, or super_admin role' });
+    }
+
+    // TENANT ISOLATION: For admins, ensure teacher is in the same institution
+    if (actor_role === 'admin' && teacher.institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Cannot assign teachers from other institutions' });
+    }
+
+    // Update the class teacher_id with tenant isolation
+    let updateQuery, updateParams;
+    if (actor_role === 'super_admin') {
+      updateQuery = 'UPDATE classes SET teacher_id = $1 WHERE id = $2';
+      updateParams = [teacher_id, class_id];
+    } else {
+      updateQuery = 'UPDATE classes SET teacher_id = $1 WHERE id = $2 AND institution_id = $3';
+      updateParams = [teacher_id, class_id, actor_institution_id];
+    }
+    
+    const [result] = await connection.query(updateQuery, updateParams);
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
+    
+    connection.release();
+    
+    if (updated === 0) {
+      return res.status(403).json({ error: 'Class not found or access denied' });
+    }
+    
+    res.json({ success: true, message: 'Teacher reassigned successfully', class_id, teacher_id });
+  } catch (error) {
+    console.error('Reassign teacher error:', error);
+    res.status(500).json({ error: 'Server error reassigning teacher' });
   }
 });
 
@@ -263,27 +393,60 @@ router.put('/:id', requireTeacher, async (req, res) => {
 router.delete('/:id', requireTeacher, async (req, res) => {
   const class_id = req.params.id;
   const teacher_id = Number(req.user.id);
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
 
   try {
     const connection = await pool.getConnection();
     
-    // Verify ownership
-    const [existing] = await connection.query('SELECT teacher_id FROM classes WHERE id = $1', [class_id]);
+    // TENANT ISOLATION: Verify ownership and institution access
+    const [existing] = await connection.query(
+      'SELECT teacher_id, institution_id FROM classes WHERE id = $1', 
+      [class_id]
+    );
+    
     if (existing.length === 0) {
       connection.release();
       return res.status(404).json({ error: 'Class not found' });
     }
-    if (Number(existing[0].teacher_id) !== teacher_id && req.user.role !== 'admin') {
+    
+    const isOwner = Number(existing[0].teacher_id) === teacher_id;
+    const isPrivileged = actor_role === 'admin' || actor_role === 'super_admin';
+    
+    if (!isOwner && !isPrivileged) {
       connection.release();
       return res.status(403).json({ error: 'Unauthorized to delete this class' });
     }
+    
+    // TENANT ISOLATION: Admin can only delete classes in their institution
+    if (actor_role === 'admin' && existing[0].institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: Class belongs to a different institution' });
+    }
 
-    // Unassign students explicitly to avoid FK differences across environments.
-    await connection.query('UPDATE users SET class_id = NULL WHERE class_id = $1', [class_id]);
+    // Remove all student enrollments for this class (CASCADE will handle this automatically, but explicit is safer)
+    await connection.query('DELETE FROM class_enrollments WHERE class_id = $1', [class_id]);
 
-    await connection.query('DELETE FROM classes WHERE id = $1', [class_id]);
+    // Delete class with tenant isolation
+    let deleteQuery, deleteParams;
+    if (actor_role === 'super_admin') {
+      deleteQuery = 'DELETE FROM classes WHERE id = $1';
+      deleteParams = [class_id];
+    } else {
+      // Admin/Teacher: add institution_id constraint
+      deleteQuery = 'DELETE FROM classes WHERE id = $1 AND institution_id = $2';
+      deleteParams = [class_id, actor_institution_id];
+    }
+    
+    const [result] = await connection.query(deleteQuery, deleteParams);
+    const deleted = result?.affectedRows ?? result?.rowCount ?? 0;
     
     connection.release();
+    
+    if (deleted === 0) {
+      return res.status(404).json({ error: 'Class not found or access denied' });
+    }
+    
     res.json({ success: true, message: 'Class deleted successfully' });
   } catch (error) {
     console.error('Delete class error:', error);
@@ -300,18 +463,18 @@ router.delete('/leave', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
 
-    // Get current class_id before removal
-    const [userRows] = await connection.query('SELECT class_id FROM users WHERE id = $1', [user_id]);
-    if (userRows.length === 0 || !userRows[0].class_id) {
+    // Get all enrolled class_ids before removal
+    const [enrollments] = await connection.query('SELECT class_id FROM class_enrollments WHERE user_id = $1', [user_id]);
+    if (enrollments.length === 0) {
       connection.release();
       return res.status(400).json({ error: 'You are not enrolled in any class' });
     }
-    const class_id = userRows[0].class_id;
+    const classIds = enrollments.map(e => e.class_id);
 
-    // Hard delete from class enrollment
-    await connection.query('UPDATE users SET class_id = NULL WHERE id = $1', [user_id]);
+    // Delete all enrollments
+    await connection.query('DELETE FROM class_enrollments WHERE user_id = $1', [user_id]);
 
-    // Clean up incomplete assigned_tasks from this class
+    // Clean up incomplete assigned_tasks from all enrolled classes
     // Note: We identify class-originated tasks by joining through assignments that were assigned to the class (student_id IS NULL)
     const [result] = await connection.query(
       `DELETE FROM assigned_tasks
@@ -320,15 +483,16 @@ router.delete('/leave', auth, async (req, res) => {
          AND (teacher_id, module_id, assignment_type, grammar_topic_id) IN (
            SELECT teacher_id, module_id, assignment_type, grammar_topic_id
            FROM assigned_tasks
-           WHERE student_id IS NULL AND class_id = $2
+           WHERE student_id IS NULL AND class_id = ANY($2)
          )`,
-      [user_id, class_id]
+      [user_id, classIds]
     );
 
     connection.release();
     res.json({
       success: true,
-      message: 'Successfully left class and cleaned incomplete assignments',
+      message: 'Successfully left all classes and cleaned incomplete assignments',
+      classesLeft: classIds.length,
       cleanedAssignments: result.rowCount
     });
   } catch (error) {

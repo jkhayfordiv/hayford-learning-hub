@@ -1,0 +1,1197 @@
+{
+  "topicId": "20_hedging",
+  "topicName": "Hedging",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Language of Caution</h3><p>Academic writers rarely use 100% absolute statements (like <i>always, never, will, is</i>). Instead, they use <b>Hedging</b> to soften their claims, showing that alternative results are possible.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Hedge Type</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Common Words</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Modal Verbs</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">may, might, could, would</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">This <strong>could</strong> lead to issues.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Cautious Verbs</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">seem, appear, tend, suggest</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The data <strong>suggests</strong> a link.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Adverbs/Adjectives</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">likely, probably, generally</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">It is <strong>likely</strong> that...</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which sentence contains a hedging word?",
+          "options": [
+            "The experiment failed.",
+            "The experiment might have failed.",
+            "The experiment failed completely.",
+            "The experiment did fail."
+          ],
+          "correctAnswer": "The experiment might have failed.",
+          "explanation": "'Might' is a modal verb used to show possibility rather than absolute certainty."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Identify the absolute (non-hedged) statement:",
+          "options": [
+            "Smoking tends to cause cancer.",
+            "Smoking is generally linked to cancer.",
+            "Smoking causes cancer.",
+            "Smoking is likely to cause cancer."
+          ],
+          "correctAnswer": "Smoking causes cancer.",
+          "explanation": "This statement is 100% absolute, leaving no room for exceptions."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which verb acts as a hedge in this sentence: 'The results suggest that the temperature rose.'",
+          "options": [
+            "results",
+            "suggest",
+            "that",
+            "rose"
+          ],
+          "correctAnswer": "suggest",
+          "explanation": "'Suggest' softens the claim, meaning 'it points to this conclusion' rather than 'it proves this conclusion'."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Which word makes this claim softer? 'The new policy is ___ responsible for the economic growth.'",
+          "options": [
+            "absolutely",
+            "definitely",
+            "partially",
+            "entirely"
+          ],
+          "correctAnswer": "partially",
+          "explanation": "'Partially' limits the certainty of the claim, making it more defensible."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Select the sentence that uses a cautious adverb:",
+          "options": [
+            "The project will succeed.",
+            "The project is going to succeed.",
+            "The project will inevitably succeed.",
+            "The project will probably succeed."
+          ],
+          "correctAnswer": "The project will probably succeed.",
+          "explanation": "'Probably' acknowledges that while success is expected, it is not 100% guaranteed."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Which of these is NOT a hedging word?",
+          "options": [
+            "Always",
+            "Often",
+            "Sometimes",
+            "Generally"
+          ],
+          "correctAnswer": "Always",
+          "explanation": "'Always' is an absolute term that removes any possibility of exceptions."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Identify the hedged sentence:",
+          "options": [
+            "People who exercise are healthier.",
+            "People who exercise tend to be healthier.",
+            "People who exercise are always healthier.",
+            "People who exercise live longer."
+          ],
+          "correctAnswer": "People who exercise tend to be healthier.",
+          "explanation": "The phrase 'tend to be' indicates a general pattern rather than an unbreakable rule."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which modal verb best softens this claim: 'This strategy ___ reduce pollution.'",
+          "options": [
+            "will",
+            "must",
+            "could",
+            "shall"
+          ],
+          "correctAnswer": "could",
+          "explanation": "'Could' indicates a possibility without making a concrete promise like 'will' or 'must'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Find the hedging language: 'It appears that the ancient civilization collapsed due to drought.'",
+          "options": [
+            "collapsed",
+            "due to",
+            "It appears that",
+            "ancient civilization"
+          ],
+          "correctAnswer": "It appears that",
+          "explanation": "'It appears that' frames the following statement as a strong observation rather than an undeniable fact."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which sentence is the most cautious?",
+          "options": [
+            "Social media destroys teenagers' mental health.",
+            "Social media definitely damages mental health.",
+            "Social media can arguably have a negative impact on mental health.",
+            "Social media causes severe mental health issues."
+          ],
+          "correctAnswer": "Social media can arguably have a negative impact on mental health.",
+          "explanation": "Using 'can' and 'arguably' creates a highly mature, defensible academic claim."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "What is the function of 'arguably' in a sentence?",
+          "options": [
+            "To show that the writer is angry.",
+            "To prove a point beyond a doubt.",
+            "To indicate that a statement can be supported by evidence, though some may disagree.",
+            "To summarize a paragraph."
+          ],
+          "correctAnswer": "To indicate that a statement can be supported by evidence, though some may disagree.",
+          "explanation": "'Arguably' is a sophisticated hedge meaning 'a good argument can be made for this'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Replace the absolute word with a hedge: 'Online education is *never* as effective as traditional classrooms.'",
+          "options": [
+            "always",
+            "rarely",
+            "completely",
+            "absolutely"
+          ],
+          "correctAnswer": "rarely",
+          "explanation": "'Rarely' acknowledges that there might be exceptions, making the statement more academically sound than 'never'."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the cautious adjective:",
+          "options": [
+            "Certain",
+            "Undeniable",
+            "Possible",
+            "Absolute"
+          ],
+          "correctAnswer": "Possible",
+          "explanation": "'Possible' leaves room for doubt, whereas the other options declare 100% certainty."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Which sentence uses a 'hedging noun'?",
+          "options": [
+            "There is a proof that the earth is warming.",
+            "There is a possibility that the earth is warming.",
+            "The fact is that the earth is warming.",
+            "The truth is that the earth is warming."
+          ],
+          "correctAnswer": "There is a possibility that the earth is warming.",
+          "explanation": "'Possibility' is a noun that introduces doubt or caution."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Fill in the blank with a hedging verb: 'The evidence ___ that early humans used these tools for hunting.'",
+          "options": [
+            "proves",
+            "confirms",
+            "guarantees",
+            "indicates"
+          ],
+          "correctAnswer": "indicates",
+          "explanation": "'Indicates' points toward a conclusion without declaring it as absolute, unshakeable proof."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Which of these phrases is an absolute claim?",
+          "options": [
+            "It is widely believed that...",
+            "There is a tendency for...",
+            "It is an undeniable fact that...",
+            "Research suggests that..."
+          ],
+          "correctAnswer": "It is an undeniable fact that...",
+          "explanation": "This phrase leaves zero room for debate or opposing evidence."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Identify the hedged sentence:",
+          "options": [
+            "A lack of sleep ruins memory.",
+            "A lack of sleep will ruin your memory.",
+            "A lack of sleep may impair memory function.",
+            "A lack of sleep destroys memory function."
+          ],
+          "correctAnswer": "A lack of sleep may impair memory function.",
+          "explanation": "The use of 'may' softens the verb 'impair', creating a cautious academic tone."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Which frequency adverb acts as a hedge?",
+          "options": [
+            "Never",
+            "Every time",
+            "Frequently",
+            "Always"
+          ],
+          "correctAnswer": "Frequently",
+          "explanation": "'Frequently' means often, but not 100% of the time, allowing for exceptions."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "How can you soften this sentence? 'These measures will solve the housing crisis.'",
+          "options": [
+            "Change 'will' to 'must'.",
+            "Change 'will' to 'are going to'.",
+            "Change 'will' to 'could potentially'.",
+            "Change 'measures' to 'rules'."
+          ],
+          "correctAnswer": "Change 'will' to 'could potentially'.",
+          "explanation": "Combining the modal 'could' with the adverb 'potentially' creates a strong, layered hedge."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Which of these introductory phrases is a hedge?",
+          "options": [
+            "It is clear that...",
+            "It seems likely that...",
+            "It is obvious that...",
+            "There is no doubt that..."
+          ],
+          "correctAnswer": "It seems likely that...",
+          "explanation": "'Seems' and 'likely' both lower the degree of absolute certainty."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Find the hedging language: 'To a certain extent, the economic reforms were successful.'",
+          "options": [
+            "economic reforms",
+            "were successful",
+            "To a certain extent",
+            "the"
+          ],
+          "correctAnswer": "To a certain extent",
+          "explanation": "This phrase acts as a hedge by limiting the scope of the success, acknowledging it wasn't perfect."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Which sentence uses a cautious quantifier?",
+          "options": [
+            "All students benefit from this method.",
+            "Every student benefits from this method.",
+            "The majority of students benefit from this method.",
+            "None of the students benefit from this method."
+          ],
+          "correctAnswer": "The majority of students benefit from this method.",
+          "explanation": "Saying 'the majority' (instead of 'all') is a way to hedge against absolute numbers."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Select the absolute statement:",
+          "options": [
+            "This approach is generally considered effective.",
+            "This approach is effective in most cases.",
+            "This approach might be effective.",
+            "This approach is the only effective method."
+          ],
+          "correctAnswer": "This approach is the only effective method.",
+          "explanation": "The word 'only' creates a rigid, absolute boundary."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Which verb is NOT typically used for hedging?",
+          "options": [
+            "Assume",
+            "Indicate",
+            "Prove",
+            "Suggest"
+          ],
+          "correctAnswer": "Prove",
+          "explanation": "In academic writing, 'prove' implies 100% indisputable fact, which is rarely achievable outside pure mathematics."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the hedged sentence:",
+          "options": [
+            "The data shows exactly why the bridge collapsed.",
+            "The data provides a possible explanation for the collapse.",
+            "The data proves the cause of the collapse.",
+            "The data confirms why the bridge collapsed."
+          ],
+          "correctAnswer": "The data provides a possible explanation for the collapse.",
+          "explanation": "Using 'a possible explanation' is cautious and leaves room for other theories."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Which modal verb expresses the lowest degree of certainty?",
+          "options": [
+            "Will",
+            "Must",
+            "Should",
+            "Might"
+          ],
+          "correctAnswer": "Might",
+          "explanation": "'Might' expresses a weak possibility, acting as a very strong hedge."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "What is the hedged version of 'This causes stress'?",
+          "options": [
+            "This will cause stress.",
+            "This must cause stress.",
+            "This is known to cause stress.",
+            "This can contribute to stress."
+          ],
+          "correctAnswer": "This can contribute to stress.",
+          "explanation": "'Can contribute to' softens the direct cause-and-effect relationship."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Find the hedging word: 'The CEO's decision was presumably based on the recent financial report.'",
+          "options": [
+            "decision",
+            "presumably",
+            "based",
+            "recent"
+          ],
+          "correctAnswer": "presumably",
+          "explanation": "'Presumably' means we are assuming this is true, but we don't have absolute proof."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Which sentence is too absolute for an IELTS Task 2 essay?",
+          "options": [
+            "Banning cars in city centers will completely eliminate air pollution.",
+            "Banning cars in city centers could significantly reduce air pollution.",
+            "Banning cars in city centers may help to alleviate air pollution.",
+            "Banning cars in city centers appears to be a viable step toward reducing air pollution."
+          ],
+          "correctAnswer": "Banning cars in city centers will completely eliminate air pollution.",
+          "explanation": "Using 'will completely eliminate' is an indefensible, absolute claim."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Identify the cautious phrasing:",
+          "options": [
+            "It is an established fact that...",
+            "It is undeniable that...",
+            "There is a growing consensus that...",
+            "It is completely obvious that..."
+          ],
+          "correctAnswer": "There is a growing consensus that...",
+          "explanation": "A 'consensus' acknowledges that many agree, but it avoids declaring it an 'undeniable fact'."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "Controlled Practice (The Absolute Trap)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Absolute' Trap</h3><p>In academic writing, one exception destroys an absolute rule. If you say <b>'All teenagers play video games,'</b> and the examiner knows one who doesn't, your argument is invalid. You must replace absolute words with cautious language.</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em>This <strong>proves</strong> that taxes <strong>will</strong> ruin the economy.</em></li><li>✅ <em>This <strong>suggests</strong> that taxes <strong>could</strong> damage the economy.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which word makes this sentence too absolute? 'The implementation of this policy will solve the housing crisis.'",
+          "options": [
+            "implementation",
+            "policy",
+            "will",
+            "crisis"
+          ],
+          "correctAnswer": "will",
+          "explanation": "'Will' is a 100% guarantee. In academic writing, 'could' or 'may' is much safer."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Replace the absolute word: 'The recent survey *proves* that employees are unhappy.'",
+          "options": [
+            "shows",
+            "indicates",
+            "suggests",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "A single survey rarely 'proves' a fact. Words like 'shows', 'indicates', or 'suggests' are much better."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Find the trap: 'Every student benefits from an increase in technology in the classroom.'",
+          "options": [
+            "Every student",
+            "benefits from",
+            "an increase",
+            "in technology"
+          ],
+          "correctAnswer": "Every student",
+          "explanation": "'Every' is absolute. Changing it to 'Most students' or 'The majority of students' makes the claim defensible."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "What is the best way to soften this statement? 'Fast food causes obesity.'",
+          "options": [
+            "Fast food always causes obesity.",
+            "Fast food is known to cause obesity.",
+            "Fast food is a major contributing factor to obesity.",
+            "Fast food must cause obesity."
+          ],
+          "correctAnswer": "Fast food is a major contributing factor to obesity.",
+          "explanation": "Saying it is a 'contributing factor' acknowledges that obesity has multiple causes, not just fast food."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Identify the absolute word: 'Children never learn effectively when they are stressed.'",
+          "options": [
+            "Children",
+            "never",
+            "effectively",
+            "stressed"
+          ],
+          "correctAnswer": "never",
+          "explanation": "'Never' leaves no room for exceptions. 'Rarely' or 'struggle to' would be better."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Replace the trap word: 'It is *obvious* that global warming is accelerating.'",
+          "options": [
+            "apparent",
+            "clear",
+            "likely",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "'Obvious' can sound arrogant in academic writing. 'Apparent', 'clear', or 'likely' are more professional."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Fix this sentence: 'This approach guarantees success in the business world.'",
+          "options": [
+            "Change 'guarantees' to 'promotes'.",
+            "Change 'guarantees' to 'increases the likelihood of'.",
+            "Change 'guarantees' to 'can lead to'.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Nothing 'guarantees' success in business. All of these alternatives soften the claim."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The government must completely ban all plastic packaging.'",
+          "options": [
+            "must completely",
+            "all plastic",
+            "packaging",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Must completely' and 'all' create an extreme, absolute argument that is very hard to defend in an essay."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Which of these is the best hedged version of 'Video games make children violent'?",
+          "options": [
+            "Video games absolutely make children violent.",
+            "Video games will make children violent.",
+            "Excessive exposure to violent video games may increase aggressive tendencies in some children.",
+            "There is proof that video games make children violent."
+          ],
+          "correctAnswer": "Excessive exposure to violent video games may increase aggressive tendencies in some children.",
+          "explanation": "This specifies the type of games ('violent'), uses a modal ('may'), and limits the scope ('some children')."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Find the trap: 'Without a university degree, people are destined to live in poverty.'",
+          "options": [
+            "Without a university degree",
+            "people are destined",
+            "to live",
+            "in poverty"
+          ],
+          "correctAnswer": "people are destined",
+          "explanation": "'Destined' implies an unavoidable fate. Changing it to 'people are more likely to face financial difficulties' is much safer."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Replace the absolute: 'The data *undeniably* points to a flaw in the system.'",
+          "options": [
+            "strongly",
+            "suggests",
+            "appears to",
+            "All of the above can soften it"
+          ],
+          "correctAnswer": "All of the above can soften it",
+          "explanation": "'Undeniably' means no one can argue against it. Academic writing always invites argument, so softer adverbs are better."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which sentence avoids the absolute trap?",
+          "options": [
+            "Taxes hurt the economy.",
+            "Taxes always hurt the economy.",
+            "High taxes can potentially stifle economic growth.",
+            "High taxes will definitely ruin the economy."
+          ],
+          "correctAnswer": "High taxes can potentially stifle economic growth.",
+          "explanation": "Using 'can' and 'potentially' creates a mature, academic evaluation."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Any attempt to change the law will result in chaos.'",
+          "options": [
+            "Change 'Any' to 'Some'",
+            "Change 'will' to 'could'",
+            "Change 'chaos' to 'instability'",
+            "All of the above are good hedging strategies"
+          ],
+          "correctAnswer": "All of the above are good hedging strategies",
+          "explanation": "The original sentence is full of absolutes ('Any', 'will', 'chaos'). Softening all of them creates a better sentence."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "What makes this sentence weak? 'It is a fact that technology isolates people.'",
+          "options": [
+            "It lacks a subject",
+            "It uses the word 'fact'",
+            "It is a fragment",
+            "It uses the present tense"
+          ],
+          "correctAnswer": "It uses the word 'fact'",
+          "explanation": "Calling a subjective opinion a 'fact' is an absolute trap. It should be framed as 'It can be argued that...'"
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Which verb best replaces 'ensures' in this sentence: 'Studying abroad ensures fluency.'",
+          "options": [
+            "guarantees",
+            "cements",
+            "facilitates",
+            "proves"
+          ],
+          "correctAnswer": "facilitates",
+          "explanation": "'Facilitates' means 'makes easier' or 'helps', which is much more accurate than 'ensures' (guarantees)."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Identify the absolute word: 'There is no alternative to this method.'",
+          "options": [
+            "There",
+            "is",
+            "no",
+            "alternative"
+          ],
+          "correctAnswer": "no",
+          "explanation": "Saying 'no alternative' is extreme. 'Few viable alternatives' is much safer."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Fix this sentence: 'All crime is caused by poverty.'",
+          "options": [
+            "Change 'All' to 'Much'",
+            "Change 'is caused by' to 'can be linked to'",
+            "Both A and B",
+            "No change needed"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "Both 'All' and 'is caused by' are absolutes. 'Much crime can be linked to poverty' is a strong, hedged sentence."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which of these is NOT an absolute word?",
+          "options": [
+            "Always",
+            "Never",
+            "Must",
+            "Frequently"
+          ],
+          "correctAnswer": "Frequently",
+          "explanation": "'Frequently' means often, but not 100% of the time. The others are 100% absolutes."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Find the trap: 'People entirely rely on their smartphones today.'",
+          "options": [
+            "People",
+            "entirely",
+            "rely",
+            "today"
+          ],
+          "correctAnswer": "entirely",
+          "explanation": "The adverb 'entirely' means 100%. Changing it to 'heavily' makes the sentence academically acceptable."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Replace the absolute: 'This method is *perfect* for learning languages.'",
+          "options": [
+            "flawless",
+            "highly effective",
+            "unbeatable",
+            "infallible"
+          ],
+          "correctAnswer": "highly effective",
+          "explanation": "Academic writing avoids emotional or absolute words like 'perfect'. 'Highly effective' is professional and realistic."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "What is wrong with this claim: 'Everyone agrees that climate change is an emergency.'",
+          "options": [
+            "Everyone",
+            "agrees",
+            "emergency",
+            "that"
+          ],
+          "correctAnswer": "Everyone",
+          "explanation": "You cannot speak for 'everyone'. 'There is a broad consensus that...' is the correct academic phrasing."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which sentence is properly hedged?",
+          "options": [
+            "The loss of habitat inevitably causes species extinction.",
+            "The loss of habitat is a primary driver of species extinction.",
+            "The loss of habitat guarantees species extinction.",
+            "The loss of habitat will cause species extinction."
+          ],
+          "correctAnswer": "The loss of habitat is a primary driver of species extinction.",
+          "explanation": "'Primary driver' acknowledges it is a huge factor, but avoids absolute words like 'inevitably' or 'guarantees'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The experiment was a complete failure.'",
+          "options": [
+            "experiment",
+            "was",
+            "complete",
+            "failure"
+          ],
+          "correctAnswer": "complete",
+          "explanation": "'Complete' is an absolute. 'Largely unsuccessful' sounds much more analytical."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Replace the trap word: 'If we lower taxes, the economy *will* boom.'",
+          "options": [
+            "is going to",
+            "must",
+            "is likely to",
+            "shall"
+          ],
+          "correctAnswer": "is likely to",
+          "explanation": "'Is likely to' provides a strong prediction without making a foolish absolute guarantee."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the absolute claim:",
+          "options": [
+            "Social media tends to distract students.",
+            "Social media can be a major distraction for students.",
+            "Social media ruins students' ability to concentrate.",
+            "Social media is arguably detrimental to focus."
+          ],
+          "correctAnswer": "Social media ruins students' ability to concentrate.",
+          "explanation": "The verb 'ruins' is absolute and emotional, lacking the caution of the other options."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "How can you fix this sentence? 'Working from home is the best option for employees.'",
+          "options": [
+            "Change 'is' to 'can be'.",
+            "Change 'the best' to 'a highly beneficial'.",
+            "Both A and B.",
+            "No change needed."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "'Can be a highly beneficial option' turns a subjective, absolute opinion into a balanced academic claim."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Find the trap: 'Censorship always leads to corruption.'",
+          "options": [
+            "Censorship",
+            "always",
+            "leads",
+            "corruption"
+          ],
+          "correctAnswer": "always",
+          "explanation": "'Always' is the absolute. 'Often' or 'frequently' should be used instead."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Which of these is a hedged synonym for 'proves'?",
+          "options": [
+            "demonstrates",
+            "confirms",
+            "establishes",
+            "suggests"
+          ],
+          "correctAnswer": "suggests",
+          "explanation": "While 'demonstrates' is okay, 'suggests' is the safest hedging verb for academic data analysis."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the absolute phrase: 'Without a doubt, the new system is superior.'",
+          "options": [
+            "Without a doubt",
+            "the new system",
+            "is",
+            "superior"
+          ],
+          "correctAnswer": "Without a doubt",
+          "explanation": "Academic writers always leave room for doubt. 'Arguably' or 'It appears that' is much better."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Which is the most academic rewrite of 'Cars must be banned'?",
+          "options": [
+            "Cars should absolutely be banned.",
+            "It is necessary to ban cars.",
+            "There is a strong argument for restricting car usage.",
+            "We have to ban cars immediately."
+          ],
+          "correctAnswer": "There is a strong argument for restricting car usage.",
+          "explanation": "This phrasing removes the absolute 'must', softens 'banned' to 'restricting', and frames it as an 'argument' rather than a command."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: Academic Distancing</h3><p>To score a Band 7.0+, you must distance yourself from absolute claims. Show the examiner that you are objectively evaluating trends and arguments rather than stating emotional opinions.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📉 <strong>Task 1 (Future):</strong> Use <em>is projected to</em> or <em>is expected to</em> instead of 'will'.</li><li>🗣️ <strong>Task 2 (Argument):</strong> Use <em>It can be argued that...</em> or <em>Evidence suggests...</em> instead of 'It is a fact'.</li><li>⚖️ <strong>Task 2 (Cause):</strong> Use <em>is a contributing factor to</em> instead of 'causes'.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which is the most appropriate phrase for an IELTS Task 1 future projection?",
+          "options": [
+            "The population will definitely reach 10 million by 2050.",
+            "The population is projected to reach 10 million by 2050.",
+            "The population is going to reach 10 million by 2050.",
+            "The population must reach 10 million by 2050."
+          ],
+          "correctAnswer": "The population is projected to reach 10 million by 2050.",
+          "explanation": "'Is projected to' is the standard, objective academic hedge for future data."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "How should you hedge this Task 1 sentence? 'Car ownership will drop next year.'",
+          "options": [
+            "Car ownership might drop completely next year.",
+            "Car ownership is absolutely expected to drop next year.",
+            "Car ownership is anticipated to decrease in the following year.",
+            "Car ownership has to drop next year."
+          ],
+          "correctAnswer": "Car ownership is anticipated to decrease in the following year.",
+          "explanation": "'Is anticipated to' softens the prediction and sounds highly formal."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Find the error in tone for a Task 1 overview: 'The graph proves that renewable energy is taking over.'",
+          "options": [
+            "Change 'proves' to 'indicates'",
+            "Change 'is taking over' to 'is becoming the dominant source'",
+            "Both A and B are necessary",
+            "No change is needed"
+          ],
+          "correctAnswer": "Both A and B are necessary",
+          "explanation": "Graphs 'indicate' or 'illustrate', they don't 'prove'. 'Taking over' is also too informal and absolute."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which of these Task 1 phrases uses a cautious adjective?",
+          "options": [
+            "There will be a massive crash in sales.",
+            "A slight fluctuation is likely to occur.",
+            "Sales will inevitably plummet.",
+            "The numbers are going to drop."
+          ],
+          "correctAnswer": "A slight fluctuation is likely to occur.",
+          "explanation": "Combining the cautious 'likely to occur' with objective descriptive language is perfect for Task 1."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Select the best hedged prediction for 2030 data:",
+          "options": [
+            "The figures will be identical.",
+            "The figures are expected to follow a similar trajectory.",
+            "The figures must continue to rise.",
+            "The figures will undeniably increase."
+          ],
+          "correctAnswer": "The figures are expected to follow a similar trajectory.",
+          "explanation": "'Are expected to follow a similar trajectory' is cautious and sophisticated."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "In Task 2, how do you fix: 'Everyone knows that exercise is important'?",
+          "options": [
+            "It is an undeniable fact that exercise is important.",
+            "Exercise is completely important to everyone.",
+            "It is widely acknowledged that regular exercise is crucial.",
+            "Nobody can deny that exercise is important."
+          ],
+          "correctAnswer": "It is widely acknowledged that regular exercise is crucial.",
+          "explanation": "Academic distancing uses passive constructions like 'It is widely acknowledged' instead of 'Everyone knows'."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses 'academic distancing'?",
+          "options": [
+            "I am absolutely sure that this policy will fail.",
+            "This policy will fail.",
+            "It could be argued that this policy has significant flaws.",
+            "Everyone can see that this policy is terrible."
+          ],
+          "correctAnswer": "It could be argued that this policy has significant flaws.",
+          "explanation": "'It could be argued that' removes the writer's personal emotion and frames the criticism objectively."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Improve this Task 2 thesis: 'Banning plastic bags will save the environment.'",
+          "options": [
+            "Banning plastic bags is a vital step that could significantly benefit the environment.",
+            "Banning plastic bags is guaranteed to save the environment.",
+            "If we ban plastic bags, the environment will be saved.",
+            "We must ban plastic bags to save the environment."
+          ],
+          "correctAnswer": "Banning plastic bags is a vital step that could significantly benefit the environment.",
+          "explanation": "This acknowledges the importance of the action without making the unrealistic absolute claim that it will 'save' everything."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Identify the hedged Task 2 generalisation:",
+          "options": [
+            "All teenagers are addicted to their phones.",
+            "Teenagers are addicted to their phones.",
+            "A considerable proportion of teenagers appear to be overly reliant on smartphones.",
+            "Every teenager is addicted to smartphones."
+          ],
+          "correctAnswer": "A considerable proportion of teenagers appear to be overly reliant on smartphones.",
+          "explanation": "Replacing 'all' with 'a considerable proportion' and 'are' with 'appear to be' creates a defensible academic claim."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Choose the most appropriate phrase to introduce an opposing view:",
+          "options": [
+            "The other side is completely wrong when they say...",
+            "Some people stupidly believe that...",
+            "While it is frequently asserted that...",
+            "It is a lie that..."
+          ],
+          "correctAnswer": "While it is frequently asserted that...",
+          "explanation": "This acknowledges the opposing view respectfully and neutrally before you counter it."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'strong hedge' for a Task 2 conclusion?",
+          "options": [
+            "Therefore, it is highly probable that...",
+            "Therefore, it might possibly happen that...",
+            "Therefore, it is going to happen that...",
+            "Therefore, it is an absolute fact that..."
+          ],
+          "correctAnswer": "Therefore, it is highly probable that...",
+          "explanation": "Conclusions need to be firm but not absolute. 'Highly probable' is firm but safe."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Fix the cause-and-effect error: 'Video games cause violent behavior.'",
+          "options": [
+            "Video games will cause violent behavior.",
+            "Video games are the only cause of violent behavior.",
+            "Exposure to violent video games may be a contributing factor to aggressive behavior.",
+            "Video games never cause violent behavior."
+          ],
+          "correctAnswer": "Exposure to violent video games may be a contributing factor to aggressive behavior.",
+          "explanation": "Psychological causes are always complex. 'May be a contributing factor' is the correct academic way to show a link."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "What is wrong with this IELTS sentence: 'Lack of funding ruins schools.'",
+          "options": [
+            "It uses the present tense.",
+            "It is too brief.",
+            "The verb 'ruins' is emotional and absolute.",
+            "It doesn't use the passive voice."
+          ],
+          "correctAnswer": "The verb 'ruins' is emotional and absolute.",
+          "explanation": "Academic essays require objective language. 'Can severely impact the quality of education' would be better."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Select the properly hedged policy recommendation:",
+          "options": [
+            "Governments must implement this law now.",
+            "It would be advisable for governments to consider implementing tighter regulations.",
+            "Governments have to make this a law.",
+            "There is no choice but for governments to pass this law."
+          ],
+          "correctAnswer": "It would be advisable for governments to consider implementing tighter regulations.",
+          "explanation": "When telling governments what to do, use cautious modal structures like 'It would be advisable'."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which introductory clause is best for citing general knowledge in TOEFL?",
+          "options": [
+            "Everybody knows...",
+            "It is a well-documented phenomenon that...",
+            "It is the truth that...",
+            "Obviously,..."
+          ],
+          "correctAnswer": "It is a well-documented phenomenon that...",
+          "explanation": "This sounds authoritative and academic, relying on 'documentation' rather than 'everyone's opinion'."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Find the absolute trap in this Task 1 sentence: 'The chart clearly shows that the UK will always consume the most tea.'",
+          "options": [
+            "clearly shows",
+            "will",
+            "always",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "You cannot predict that a trend will 'always' continue. 'Is projected to remain the highest consumer' is safer."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which of these adverbs provides a good academic hedge?",
+          "options": [
+            "Undoubtedly",
+            "Unquestionably",
+            "Arguably",
+            "Categorically"
+          ],
+          "correctAnswer": "Arguably",
+          "explanation": "'Arguably' means a good case can be made for it, but it invites academic discussion rather than shutting it down."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'Poverty leads to crime.'",
+          "options": [
+            "Poverty is the root cause of all crime.",
+            "Poverty undeniably leads to crime.",
+            "Socio-economic disadvantage is often linked to higher crime rates.",
+            "Crime is completely caused by poverty."
+          ],
+          "correctAnswer": "Socio-economic disadvantage is often linked to higher crime rates.",
+          "explanation": "This elevates the vocabulary ('socio-economic disadvantage') and hedges the verb ('is often linked to')."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Which phrase indicates that a cause is important but not the ONLY cause?",
+          "options": [
+            "The sole reason is...",
+            "The absolute cause is...",
+            "A primary driver behind this trend appears to be...",
+            "This is exclusively due to..."
+          ],
+          "correctAnswer": "A primary driver behind this trend appears to be...",
+          "explanation": "'Primary driver' means it's a big factor, but 'appears to be' keeps it hedged."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Identify the poorly hedged Task 2 statement:",
+          "options": [
+            "There is a tendency for urban areas to experience more pollution.",
+            "Urbanization generally correlates with increased emissions.",
+            "Cities are always polluted.",
+            "It is often the case that cities struggle with air quality."
+          ],
+          "correctAnswer": "Cities are always polluted.",
+          "explanation": "The word 'always' is a fatal absolute trap."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Choose the best academic rewrite for: 'This proves my point.'",
+          "options": [
+            "This completely proves my point.",
+            "This evidence strongly supports the assertion that...",
+            "This guarantees that my point is true.",
+            "This undeniable fact proves my argument."
+          ],
+          "correctAnswer": "This evidence strongly supports the assertion that...",
+          "explanation": "Academics don't 'prove' their 'points'; their 'evidence supports assertions'."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which of these modal constructions is best for a nuanced IELTS conclusion?",
+          "options": [
+            "Therefore, society must change.",
+            "Therefore, it may be necessary for society to adapt.",
+            "Therefore, society will change.",
+            "Therefore, society has to change."
+          ],
+          "correctAnswer": "Therefore, it may be necessary for society to adapt.",
+          "explanation": "'May be necessary' is the perfect level of strong but cautious hedging for a conclusion."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The statistics prove that the new educational method is flawless.'",
+          "options": [
+            "prove",
+            "flawless",
+            "Both A and B",
+            "No error"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "Statistics 'suggest', they don't 'prove'. And nothing in education is 'flawless' (an absolute)."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "How do you soften a counter-argument in an essay?",
+          "options": [
+            "While it is true that X has some benefits, it is evident that...",
+            "X is terrible, but Y is better.",
+            "Those who support X are wrong because...",
+            "X is absolutely flawed."
+          ],
+          "correctAnswer": "While it is true that X has some benefits, it is evident that...",
+          "explanation": "This structure politely concedes a small point ('some benefits') before introducing the stronger counter-argument."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Which noun phrase works best as a hedge?",
+          "options": [
+            "The truth is...",
+            "The absolute fact is...",
+            "There is a strong likelihood that...",
+            "The guarantee is..."
+          ],
+          "correctAnswer": "There is a strong likelihood that...",
+          "explanation": "'Likelihood' implies high probability without committing to absolute certainty."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'Tourists ruin historical sites.'",
+          "options": [
+            "Tourists always ruin historical sites.",
+            "Mass tourism can potentially accelerate the degradation of historical sites.",
+            "It is a fact that tourists destroy historical sites.",
+            "Tourists will ruin historical sites."
+          ],
+          "correctAnswer": "Mass tourism can potentially accelerate the degradation of historical sites.",
+          "explanation": "This elevates the vocabulary ('degradation') and uses modal hedging ('can potentially accelerate')."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "What is the most objective way to state a problem in Task 2?",
+          "options": [
+            "This is a massive disaster for society.",
+            "This poses a significant challenge to social stability.",
+            "This will destroy society.",
+            "This is the worst problem ever."
+          ],
+          "correctAnswer": "This poses a significant challenge to social stability.",
+          "explanation": "'Poses a significant challenge' is formal, measured, and academically appropriate."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Identify the hedged recommendation:",
+          "options": [
+            "Schools must ban phones immediately.",
+            "Schools are required to ban phones.",
+            "It could be argued that restricting phone usage in schools would be beneficial.",
+            "Schools will definitely ban phones."
+          ],
+          "correctAnswer": "It could be argued that restricting phone usage in schools would be beneficial.",
+          "explanation": "This uses 'It could be argued' and 'would be beneficial', making it a highly sophisticated recommendation."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Which of the following describes a future trend in Task 1 perfectly?",
+          "options": [
+            "The numbers will shoot up.",
+            "The figures are forecast to experience a steady incline.",
+            "The data is going to go up.",
+            "The statistics will inevitably rise."
+          ],
+          "correctAnswer": "The figures are forecast to experience a steady incline.",
+          "explanation": "'Are forecast to' is an excellent academic hedge for predictions, avoiding 'will'."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "What is the ultimate goal of hedging in an IELTS/TOEFL essay?",
+          "options": [
+            "To make your writing confusing.",
+            "To avoid answering the question directly.",
+            "To demonstrate critical thinking by acknowledging nuance and avoiding indefensible absolutes.",
+            "To use longer words to increase the word count."
+          ],
+          "correctAnswer": "To demonstrate critical thinking by acknowledging nuance and avoiding indefensible absolutes.",
+          "explanation": "Hedging shows the examiner that you understand the complexity of the topic and can express your views with precision and maturity."
+        }
+      ]
+    }
+  ]
+}

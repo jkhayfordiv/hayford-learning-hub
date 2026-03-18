@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Sub-app: ielts-writing
+  RewriteCond %{REQUEST_URI} ^/ielts-writing/.*
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ielts-writing/.* /ielts-writing/index.html [L]
+
+  # Sub-app: vocab-tool
+  RewriteCond %{REQUEST_URI} ^/vocab-tool/.*
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^vocab-tool/.* /vocab-tool/index.html [L]
+
+  # Sub-app: grammar-lab
+  RewriteCond %{REQUEST_URI} ^/grammar-lab/.*
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^grammar-lab/.* /grammar-lab/index.html [L]
+
+  # Sub-app: article-lab
+  RewriteCond %{REQUEST_URI} ^/article-lab/.*
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^article-lab/.* /article-lab/index.html [L]
+
+  # Main Hub SPA
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

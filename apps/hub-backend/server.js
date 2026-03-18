@@ -7,7 +7,26 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173', // Local Vite development
+  'http://localhost:3001', // Local backend (for some tools)
+  'https://hayford-learning-hub.onrender.com', // Current deployment fallback
+  // ADD YOUR HOSTINGER DOMAIN HERE
+  // 'https://your-hostinger-domain.com'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
 app.use(express.json());
 
 // Health Check Endpoint
@@ -67,13 +86,13 @@ app.use('/api/ai', aiRoutes);
 const bulkRoutes = require('./routes/bulk');
 app.use('/api/bulk', bulkRoutes);
 
+// Platform management routes (Admin/Super Admin)
+const platformRoutes = require('./routes/platform');
+app.use('/api', platformRoutes);
+
 // Institutions routes (Super Admin)
 const institutionsRoutes = require('./routes/institutions');
 app.use('/api/institutions', institutionsRoutes);
-
-// Platform management routes (Super Admin)
-const platformRoutes = require('./routes/platform');
-app.use('/api', platformRoutes);
 
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {

@@ -1,0 +1,1594 @@
+{
+  "topicId": "10_passive_voice",
+  "topicName": "Passive Voice Construction",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The 'Object-First' Rule</h3><p>The passive voice is formed using <b>be (in the correct tense) + past participle (V3)</b>. We use it when the action is more important than who did it.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Tense</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Passive Form</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Present Simple</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">am/is/are + V3</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The tea <b>is grown</b> in India.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Past Simple</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">was/were + V3</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The window <b>was broken</b>.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Future</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">will be + V3</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The results <b>will be sent</b>.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is in the Passive Voice?",
+          "options": [
+            "The chef cooked the meal.",
+            "The meal was cooked by the chef.",
+            "The chef was cooking the meal.",
+            "The meal cooked slowly."
+          ],
+          "correctAnswer": "The meal was cooked by the chef.",
+          "explanation": "It uses the 'be + past participle' structure where the subject (the meal) receives the action."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct past passive form: 'The letters ___ yesterday.'",
+          "options": [
+            "are delivered",
+            "were delivered",
+            "delivered",
+            "was delivered"
+          ],
+          "correctAnswer": "were delivered",
+          "explanation": "Plural subject 'letters' + past tense 'yesterday' requires 'were delivered'."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the passive verb in: 'Rice is grown in many Asian countries.'",
+          "options": [
+            "Rice",
+            "is grown",
+            "many",
+            "countries"
+          ],
+          "correctAnswer": "is grown",
+          "explanation": "'Is' (be) + 'grown' (past participle of grow)."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The bridge ___ in 1950.'",
+          "options": [
+            "built",
+            "was built",
+            "is built",
+            "was build"
+          ],
+          "correctAnswer": "was built",
+          "explanation": "Specific past date requires 'was' + the past participle 'built'."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which of these is the correct past participle for 'write'?",
+          "options": [
+            "wrote",
+            "writed",
+            "written",
+            "writing"
+          ],
+          "correctAnswer": "written",
+          "explanation": "The passive voice always uses the 3rd form (V3) of the verb."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report was wrote by the manager.'",
+          "options": [
+            "was",
+            "wrote",
+            "by",
+            "manager"
+          ],
+          "correctAnswer": "wrote",
+          "explanation": "Should be the past participle 'written'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct present passive form: 'English ___ all over the world.'",
+          "options": [
+            "is spoke",
+            "is spoken",
+            "is speaking",
+            "speaks"
+          ],
+          "correctAnswer": "is spoken",
+          "explanation": "General fact requires present 'is' + V3 'spoken'."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct for a future action?",
+          "options": [
+            "The room will clean tomorrow.",
+            "The room will be cleaned tomorrow.",
+            "The room is cleaned tomorrow.",
+            "The room will be clean tomorrow."
+          ],
+          "correctAnswer": "The room will be cleaned tomorrow.",
+          "explanation": "'Will be' + past participle is the future passive."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'A lot of money was stole from the bank.'",
+          "options": [
+            "was",
+            "stole",
+            "from",
+            "No error"
+          ],
+          "correctAnswer": "stole",
+          "explanation": "The past participle of 'steal' is 'stolen'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Complete: '___ the car repaired yet?'",
+          "options": [
+            "Is",
+            "Was",
+            "Has",
+            "Does"
+          ],
+          "correctAnswer": "Is",
+          "explanation": "'Is the car repaired' is the correct present passive question."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The pyramids ___ by the ancient Egyptians.'",
+          "options": [
+            "built",
+            "were built",
+            "was built",
+            "were build"
+          ],
+          "correctAnswer": "were built",
+          "explanation": "Plural 'pyramids' + past tense."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Identify the passive form: 'The secret was kept for years.'",
+          "options": [
+            "secret",
+            "was kept",
+            "for",
+            "years"
+          ],
+          "correctAnswer": "was kept",
+          "explanation": "'Was' (be) + 'kept' (V3 of keep)."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'This song ___ by millions of people.'",
+          "options": [
+            "is loved",
+            "is love",
+            "loving",
+            "loves"
+          ],
+          "correctAnswer": "is loved",
+          "explanation": "Present passive 'is' + V3 'loved'."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The cake were eaten by the children.'",
+          "options": [
+            "cake",
+            "were",
+            "eaten",
+            "children"
+          ],
+          "correctAnswer": "were",
+          "explanation": "Singular 'cake' requires 'was'."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The results ___ next week.'",
+          "options": [
+            "are announce",
+            "will be announced",
+            "announced",
+            "will announced"
+          ],
+          "correctAnswer": "will be announced",
+          "explanation": "Future passive."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The movie ___ by Spielberg.'",
+          "options": [
+            "directed",
+            "was directed",
+            "is direct",
+            "was direct"
+          ],
+          "correctAnswer": "was directed",
+          "explanation": "Past passive."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The windows is cleaned every week.'",
+          "options": [
+            "windows",
+            "is",
+            "cleaned",
+            "every week"
+          ],
+          "correctAnswer": "is",
+          "explanation": "Plural 'windows' requires 'are'."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The house ___ ten years ago.'",
+          "options": [
+            "sold",
+            "was sold",
+            "was sell",
+            "is sold"
+          ],
+          "correctAnswer": "was sold",
+          "explanation": "'Sold' is the V3 of 'sell'."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Identify the passive construction: 'The email has been sent.'",
+          "options": [
+            "The",
+            "email",
+            "has been sent",
+            "sent"
+          ],
+          "correctAnswer": "has been sent",
+          "explanation": "Present Perfect Passive: 'has been' + V3."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Complete: 'Many books ___ into Japanese every year.'",
+          "options": [
+            "translate",
+            "are translated",
+            "translated",
+            "is translated"
+          ],
+          "correctAnswer": "are translated",
+          "explanation": "Present passive for plural 'books'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The package ___ by tomorrow.'",
+          "options": [
+            "will delivered",
+            "will be delivered",
+            "is delivered",
+            "be delivered"
+          ],
+          "correctAnswer": "will be delivered",
+          "explanation": "Future passive."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The room was tidy up by the staff.'",
+          "options": [
+            "room",
+            "was",
+            "tidy up",
+            "staff"
+          ],
+          "correctAnswer": "tidy up",
+          "explanation": "Should be the past participle 'tidied up'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Thousands of cars ___ in this factory.'",
+          "options": [
+            "are made",
+            "is made",
+            "make",
+            "made"
+          ],
+          "correctAnswer": "are made",
+          "explanation": "Present passive for plural 'cars'."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Identify the passive: 'I was given a gift.'",
+          "options": [
+            "I",
+            "was given",
+            "a",
+            "gift"
+          ],
+          "correctAnswer": "was given",
+          "explanation": "'Was' + V3 'given'."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The truth ___ finally.'",
+          "options": [
+            "knew",
+            "was known",
+            "is know",
+            "was knowing"
+          ],
+          "correctAnswer": "was known",
+          "explanation": "Past passive."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The light was turn off.'",
+          "options": [
+            "light",
+            "was",
+            "turn",
+            "off"
+          ],
+          "correctAnswer": "turn",
+          "explanation": "Should be 'turned'."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'His name ___ in the list.'",
+          "options": [
+            "included",
+            "is included",
+            "include",
+            "is including"
+          ],
+          "correctAnswer": "is included",
+          "explanation": "Present passive."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Complete: '___ the room cleaned yesterday?'",
+          "options": [
+            "Is",
+            "Was",
+            "Were",
+            "Did"
+          ],
+          "correctAnswer": "Was",
+          "explanation": "Past passive question for singular 'room'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The keys were found on the floor.'",
+          "options": [
+            "keys",
+            "were",
+            "found",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Correct past passive for plural 'keys'."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: In a Passive sentence, the subject ___ the action.",
+          "options": [
+            "Performs",
+            "Receives",
+            "Ignores",
+            "Changes"
+          ],
+          "correctAnswer": "Receives",
+          "explanation": "The passive voice shifts focus from the 'doer' to the 'receiver'."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: Dropping the Agent",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Objectivity' Shift</h3><p>In the passive voice, we only use 'by + agent' if the person is <b>important</b> or <b>surprising</b>. In most academic contexts, we drop the agent to keep the focus on the process or the result.</p><ul style=\"line-height: 1.8;\"><li>❌ <b>Redundant:</b> <i>The road was built <b>by workers</b>.</i> (Obvious).</li><li>✅ <b>Objective:</b> <i>The road was built in 1990.</i></li><li>❌ <b>L1 Trap:</b> <i>The mistake was happened.</i> (<b>Error:</b> 'Happen' is an intransitive verb and <b>cannot</b> be passive).</li><li>✅ <b>Correct:</b> <i>The mistake happened.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is the most appropriate for a formal report?",
+          "options": [
+            "The data was collected by the researchers.",
+            "The data was collected.",
+            "Researchers collected the data.",
+            "The data collected by them."
+          ],
+          "correctAnswer": "The data was collected.",
+          "explanation": "In formal reporting, dropping the agent (the researchers) makes the statement more objective."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Identify the 'Intransitive Verb' error: 'The accident was occurred at midnight.'",
+          "options": [
+            "accident",
+            "was occurred",
+            "at",
+            "midnight"
+          ],
+          "correctAnswer": "was occurred",
+          "explanation": "'Occur' is like 'happen'; it cannot be used in the passive voice. It should be 'The accident occurred'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "When is it NECESSARY to use the 'by' phrase?",
+          "options": [
+            "When the agent is unknown.",
+            "When the agent is obvious (e.g., the police).",
+            "When the agent is a specific, famous person (e.g., 'The play was written by Shakespeare').",
+            "When you want the sentence to be longer."
+          ],
+          "correctAnswer": "When the agent is a specific, famous person (e.g., 'The play was written by Shakespeare').",
+          "explanation": "We use 'by' when the specific identity of the doer is the most important information."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Fix the redundancy: 'The crime was investigated by the police.'",
+          "options": [
+            "The crime was investigated.",
+            "The police investigated the crime.",
+            "Both are better than the original passive with 'by the police'.",
+            "No change needed."
+          ],
+          "correctAnswer": "Both are better than the original passive with 'by the police'.",
+          "explanation": "Since only police investigate crimes, 'by the police' is redundant in the passive."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The sun is risen in the east.'",
+          "options": [
+            "sun",
+            "is risen",
+            "in the",
+            "east"
+          ],
+          "correctAnswer": "is risen",
+          "explanation": "'Rise' is an intransitive verb. It should be the active 'The sun rises'."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The decision ___ yesterday.'",
+          "options": [
+            "made",
+            "was made",
+            "is made",
+            "was make"
+          ],
+          "correctAnswer": "was made",
+          "explanation": "Standard past passive without an unnecessary agent."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which verb CANNOT be used in the passive voice?",
+          "options": [
+            "Eat",
+            "Fix",
+            "Die",
+            "Write"
+          ],
+          "correctAnswer": "Die",
+          "explanation": "'Die' has no object; you cannot 'die something,' so it cannot be made passive."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The package was arrived this morning.'",
+          "options": [
+            "package",
+            "was arrived",
+            "this",
+            "morning"
+          ],
+          "correctAnswer": "was arrived",
+          "explanation": "'Arrive' is intransitive. Correct form: 'The package arrived'."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Which sentence sounds more objective?",
+          "options": [
+            "I have finished the experiment.",
+            "The experiment has been finished.",
+            "We finished the experiment.",
+            "The experiment finished."
+          ],
+          "correctAnswer": "The experiment has been finished.",
+          "explanation": "The passive voice removes personal pronouns (I/We), creating a neutral tone."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The house was belonged to my grandfather.'",
+          "options": [
+            "house",
+            "was belonged",
+            "to",
+            "grandfather"
+          ],
+          "correctAnswer": "was belonged",
+          "explanation": "'Belong' is a state verb that cannot be passive. Correct: 'The house belonged to...'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Which 'by' phrase is helpful?",
+          "options": [
+            "The window was broken by someone.",
+            "The email was sent by a computer.",
+            "The law was passed by a narrow margin of votes.",
+            "The cake was eaten by a person."
+          ],
+          "correctAnswer": "The law was passed by a narrow margin of votes.",
+          "explanation": "This 'by' phrase provides crucial, non-obvious information."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He was disappeared into the woods.'",
+          "options": [
+            "He",
+            "was disappeared",
+            "into",
+            "woods"
+          ],
+          "correctAnswer": "was disappeared",
+          "explanation": "'Disappear' is intransitive. Correct: 'He disappeared'."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Choose the best academic choice: 'The participants ___ into three groups.'",
+          "options": [
+            "divided",
+            "were divided",
+            "were divide",
+            "divide"
+          ],
+          "correctAnswer": "were divided",
+          "explanation": "Passive is needed to show the researchers' action on the participants."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The book is consisted of ten chapters.'",
+          "options": [
+            "book",
+            "is consisted",
+            "of",
+            "chapters"
+          ],
+          "correctAnswer": "is consisted",
+          "explanation": "'Consist' is always active: 'The book consists of...'."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Complete: 'Smoking ___ in the building.'",
+          "options": [
+            "is prohibited",
+            "prohibits",
+            "prohibited",
+            "is prohibit"
+          ],
+          "correctAnswer": "is prohibited",
+          "explanation": "The rule is the focus, not who made the rule."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which verb is transitive (can be passive)?",
+          "options": [
+            "Sleep",
+            "Destroy",
+            "Wait",
+            "Go"
+          ],
+          "correctAnswer": "Destroy",
+          "explanation": "You can 'destroy a city,' so 'The city was destroyed' is possible."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I was graduated from university in 2020.'",
+          "options": [
+            "I",
+            "was graduated",
+            "from",
+            "2020"
+          ],
+          "correctAnswer": "was graduated",
+          "explanation": "While technically possible in old English, modern English is always active: 'I graduated'."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which sentence avoids an unnecessary agent?",
+          "options": [
+            "English is spoken in Australia by people.",
+            "English is spoken in Australia.",
+            "They speak English in Australia.",
+            "People speak English in Australia."
+          ],
+          "correctAnswer": "English is spoken in Australia.",
+          "explanation": "The fact that 'people' speak it is obvious."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Many problems were resulted from the new policy.'",
+          "options": [
+            "Many",
+            "were resulted",
+            "from",
+            "policy"
+          ],
+          "correctAnswer": "were resulted",
+          "explanation": "'Result' is intransitive. Correct: 'Many problems resulted from...'."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The thief ___ by the end of the day.'",
+          "options": [
+            "caught",
+            "was caught",
+            "was catch",
+            "is catch"
+          ],
+          "correctAnswer": "was caught",
+          "explanation": "Past passive using the V3 of 'catch'."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The sun is set behind the mountains.'",
+          "options": [
+            "sun",
+            "is set",
+            "behind",
+            "mountains"
+          ],
+          "correctAnswer": "is set",
+          "explanation": "'Set' (for the sun) is intransitive. Correct: 'The sun sets'."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which is more appropriate for a news headline?",
+          "options": [
+            "Someone stole the diamonds.",
+            "The diamonds were stolen.",
+            "A person took the diamonds.",
+            "The diamonds stolen."
+          ],
+          "correctAnswer": "The diamonds were stolen.",
+          "explanation": "The object (diamonds) is the focus."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The car was collided with a truck.'",
+          "options": [
+            "car",
+            "was collided",
+            "with",
+            "truck"
+          ],
+          "correctAnswer": "was collided",
+          "explanation": "'Collide' is intransitive. Correct: 'The car collided'."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Complete: 'This computer ___ in Japan.'",
+          "options": [
+            "manufactured",
+            "was manufactured",
+            "is manufacture",
+            "manufactures"
+          ],
+          "correctAnswer": "was manufactured",
+          "explanation": "Passive focuses on the origin."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The story was seemed very interesting.'",
+          "options": [
+            "story",
+            "was seemed",
+            "very",
+            "interesting"
+          ],
+          "correctAnswer": "was seemed",
+          "explanation": "'Seem' is a linking verb and cannot be passive."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Which sentence has a useful 'by' phrase?",
+          "options": [
+            "The dinner was made by my mom.",
+            "The dinner was made by using ingredients.",
+            "The dinner was made by a professional chef.",
+            "Both A and C are useful depending on the story."
+          ],
+          "correctAnswer": "Both A and C are useful depending on the story.",
+          "explanation": "Specific individuals add meaning."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The phone is belonged to her.'",
+          "options": [
+            "phone",
+            "is belonged",
+            "to",
+            "her"
+          ],
+          "correctAnswer": "is belonged",
+          "explanation": "'Belong' is never passive."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Complete the phrase: 'The project ___ next week.'",
+          "options": [
+            "is finished",
+            "will be finished",
+            "finished",
+            "be finished"
+          ],
+          "correctAnswer": "will be finished",
+          "explanation": "Future passive."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'It was happened suddenly.'",
+          "options": [
+            "It",
+            "was happened",
+            "suddenly",
+            "No error"
+          ],
+          "correctAnswer": "was happened",
+          "explanation": "Intransitive verb 'happen' cannot be passive."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Intransitive verbs (happen, exist, arrive) ___.",
+          "options": [
+            "Always take a passive form.",
+            "Never take a passive form.",
+            "Take a passive form only in the past.",
+            "Take a passive form only in the present."
+          ],
+          "correctAnswer": "Never take a passive form.",
+          "explanation": "Since they have no object, there is nothing to move to the 'subject' position."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Passive-Active Balance</h3><p>Academic excellence requires knowing <b>when</b> to be passive. Use the passive to describe methodology, but use the active voice to describe the logical conclusions of the author.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The Methodology Shift:</b> <i>The samples <b>were collected</b> (Passive) and then <b>analyzed</b> (Passive). The results <b>suggest</b> (Active) a new trend.</i></li><li>📊 <b>The Wordy Trap:</b> <i>A decision <b>was made</b> by the committee.</i> (Heavy) ➔ <i>The committee <b>decided</b>.</i> (Punchy and clear).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'The experiment was designed by the team. Then, the data was collected and the results were appeared to be significant.'",
+          "options": [
+            "was designed",
+            "was collected",
+            "were appeared",
+            "significant"
+          ],
+          "correctAnswer": "were appeared",
+          "explanation": "'Appear' is an intransitive verb; it cannot be made passive. It should be 'the results appeared'."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which sentence is the best academic rewrite for: 'We saw the bacteria under the microscope.'?",
+          "options": [
+            "The bacteria was seen under the microscope.",
+            "The bacteria were seen under the microscope.",
+            "The bacteria seen under the microscope.",
+            "Bacteria was being seen."
+          ],
+          "correctAnswer": "The bacteria were seen under the microscope.",
+          "explanation": "'Bacteria' is plural (singular is 'bacterium'), so it requires 'were'."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the redundant agent: 'The research was conducted by scientists in a laboratory setting.'",
+          "options": [
+            "research",
+            "conducted",
+            "by scientists",
+            "laboratory"
+          ],
+          "correctAnswer": "by scientists",
+          "explanation": "Since research is inherently done by scientists, this phrase adds no new information to a formal report."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct form for a recent change: 'New safety measures ___ by the city council.'",
+          "options": [
+            "have been implemented",
+            "have implemented",
+            "were implement",
+            "has been implemented"
+          ],
+          "correctAnswer": "have been implemented",
+          "explanation": "Present Perfect Passive: 'have been' + V3 'implemented' matches the plural 'measures'."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report has been writing by the intern for three days.'",
+          "options": [
+            "report",
+            "has been writing",
+            "by the intern",
+            "for three days"
+          ],
+          "correctAnswer": "has been writing",
+          "explanation": "This should be the passive 'has been written' or the active 'the intern has been writing'."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The artifacts ___ in an ancient tomb.'",
+          "options": [
+            "discovered",
+            "were discovered",
+            "was discovered",
+            "have discover"
+          ],
+          "correctAnswer": "were discovered",
+          "explanation": "Plural subject 'artifacts' requires 'were'."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The meeting was took place in the conference room.'",
+          "options": [
+            "meeting",
+            "was took place",
+            "conference room",
+            "No error"
+          ],
+          "correctAnswer": "was took place",
+          "explanation": "'Take place' is an intransitive idiom. Correct form: 'The meeting took place'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the best academic choice: 'The theory ___ by many experts in the field.'",
+          "options": [
+            "is supported",
+            "supports",
+            "is support",
+            "supporting"
+          ],
+          "correctAnswer": "is supported",
+          "explanation": "Present passive showing the current status of the theory."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He was told to not tell anyone about the plan.'",
+          "options": [
+            "was told",
+            "to not tell",
+            "anyone",
+            "plan"
+          ],
+          "correctAnswer": "to not tell",
+          "explanation": "Formal preference: 'not to tell' (avoiding the split infinitive after the passive 'was told')."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The data ___ for any errors.'",
+          "options": [
+            "was check",
+            "were checked",
+            "has checked",
+            "is check"
+          ],
+          "correctAnswer": "were checked",
+          "explanation": "In formal academic contexts, 'data' is the plural of 'datum' and takes 'were'."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The suspect was remained in custody for further questioning.'",
+          "options": [
+            "suspect",
+            "was remained",
+            "custody",
+            "questioning"
+          ],
+          "correctAnswer": "was remained",
+          "explanation": "'Remain' is an intransitive verb and cannot be passive. Correct: 'The suspect remained'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Thousands of emails ___ every second.'",
+          "options": [
+            "sent",
+            "is sent",
+            "are sent",
+            "are send"
+          ],
+          "correctAnswer": "are sent",
+          "explanation": "Present passive for a general, ongoing fact."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The book was published in 2020 and it has been read by millions of people since then.'",
+          "options": [
+            "was published",
+            "has been read",
+            "since then",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Correct use of past passive for the event and present perfect passive for the ongoing status."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The building ___ by the end of the year.'",
+          "options": [
+            "will complete",
+            "will be completed",
+            "is completed",
+            "will completed"
+          ],
+          "correctAnswer": "will be completed",
+          "explanation": "Future passive structure."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The information was found to be incorrect by the committee.'",
+          "options": [
+            "information",
+            "was found",
+            "to be",
+            "by the committee"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Grammatically sound; the 'by' phrase is useful as it identifies who made the judgment."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The problem ___ by the engineers right now.'",
+          "options": [
+            "is being solved",
+            "is solved",
+            "is solving",
+            "has solved"
+          ],
+          "correctAnswer": "is being solved",
+          "explanation": "Present Continuous Passive: 'is being' + V3 'solved'."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The bridge was fell down during the earthquake.'",
+          "options": [
+            "bridge",
+            "was fell down",
+            "during",
+            "earthquake"
+          ],
+          "correctAnswer": "was fell down",
+          "explanation": "'Fall' is intransitive. It should be 'The bridge fell down'."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The results ___ next Friday.'",
+          "options": [
+            "will announce",
+            "will be announced",
+            "announced",
+            "will announced"
+          ],
+          "correctAnswer": "will be announced",
+          "explanation": "Future passive."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The decision was reached after much discussion.'",
+          "options": [
+            "decision",
+            "was reached",
+            "after",
+            "discussion"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "'Reach a decision' is a transitive phrase; passive is correct."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Choose the best academic form: 'It ___ that the project will succeed.'",
+          "options": [
+            "is believe",
+            "is believed",
+            "believes",
+            "believing"
+          ],
+          "correctAnswer": "is believed",
+          "explanation": "Standard impersonal passive 'It is believed that...' used for objectivity."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The car was belonged to a collector.'",
+          "options": [
+            "car",
+            "was belonged",
+            "to",
+            "collector"
+          ],
+          "correctAnswer": "was belonged",
+          "explanation": "'Belong' is always active."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The package ___ to your office.'",
+          "options": [
+            "has delivered",
+            "has been delivered",
+            "delivered",
+            "is deliver"
+          ],
+          "correctAnswer": "has been delivered",
+          "explanation": "Present perfect passive."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The fire was spreading quickly through the building.'",
+          "options": [
+            "fire",
+            "was spreading",
+            "quickly",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Active past continuous is correct here."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The students ___ about the changes yesterday.'",
+          "options": [
+            "informed",
+            "were informed",
+            "are informed",
+            "were inform"
+          ],
+          "correctAnswer": "were informed",
+          "explanation": "Past passive."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The mountain is consisted of granite.'",
+          "options": [
+            "mountain",
+            "is consisted",
+            "of",
+            "granite"
+          ],
+          "correctAnswer": "is consisted",
+          "explanation": "Should be active 'consists of'."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The window ___ when I arrived.'",
+          "options": [
+            "broken",
+            "had been broken",
+            "has broken",
+            "is broken"
+          ],
+          "correctAnswer": "had been broken",
+          "explanation": "Past Perfect Passive showing an action completed before another past event."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The law was passed by a majority vote.'",
+          "options": [
+            "law",
+            "was passed",
+            "majority vote",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "The 'by' phrase is necessary and informative here."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The treasure ___ in a hidden cave.'",
+          "options": [
+            "found",
+            "was found",
+            "is find",
+            "was find"
+          ],
+          "correctAnswer": "was found",
+          "explanation": "Past passive V3."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The accident was happened at 5 PM.'",
+          "options": [
+            "accident",
+            "was happened",
+            "at 5 PM",
+            "No error"
+          ],
+          "correctAnswer": "was happened",
+          "explanation": "Intransitive 'happen' cannot be passive."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: 'The email ___ by the manager.'",
+          "options": [
+            "sent",
+            "was sent",
+            "has sent",
+            "is send"
+          ],
+          "correctAnswer": "was sent",
+          "explanation": "Standard past passive."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Process Specialist</h3><p>In Task 1 Process Diagrams, the passive voice is mandatory because the 'agent' (the factory worker or the machine) is irrelevant. The focus must remain entirely on the stages of production.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>⚙️ <b>The Process Chain:</b> <i>First, the raw materials <b>are collected</b>. Subsequently, they <b>are transported</b> to the factory where they <b>are processed</b> into the final product.</i></li><li>🧠 <b>Impersonal Passives (Task 2):</b> <i>It <b>is often argued</b> that... / It <b>has been suggested</b> that...</i> (This adds a layer of academic distance).</li><li>🛑 <b>The Modal Passive:</b> <i>Immediate action <b>must be taken</b>.</i> (Modal + be + V3).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Choose the best opening for a Task 1 Process Diagram (e.g., Making Brick):",
+          "options": [
+            "Workers dig the clay out of the ground.",
+            "The clay is dug out of the ground.",
+            "They are digging the clay from the ground.",
+            "Clay digs out of the ground."
+          ],
+          "correctAnswer": "The clay is dug out of the ground.",
+          "explanation": "The passive voice 'is dug' focuses on the material, which is standard for process descriptions."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the correct Modal Passive for a Task 2 conclusion:",
+          "options": [
+            "The government should be fixed the problem.",
+            "The problem should be fixed by the government.",
+            "The problem should being fixed.",
+            "The government should fix."
+          ],
+          "correctAnswer": "The problem should be fixed by the government.",
+          "explanation": "Modal (should) + be + V3 (fixed) is the correct passive structure for recommendations."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which sentence uses an 'Impersonal Passive' to introduce an opinion?",
+          "options": [
+            "I think that technology is good.",
+            "People say technology is good.",
+            "It is widely believed that technology is beneficial.",
+            "Technology is being good."
+          ],
+          "correctAnswer": "It is widely believed that technology is beneficial.",
+          "explanation": "'It is [V3] that...' is the hallmark of high-level, objective academic writing."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Complete the process step: 'Once the glass has been collected, it ___ into small pieces.'",
+          "options": [
+            "is crushed",
+            "crushes",
+            "is crushing",
+            "was crushed"
+          ],
+          "correctAnswer": "is crushed",
+          "explanation": "Processes that happen 'always' or 'regularly' use the Present Simple Passive."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The data suggests that more research needs to be conduct.'",
+          "options": [
+            "suggests",
+            "research",
+            "to be",
+            "conduct"
+          ],
+          "correctAnswer": "conduct",
+          "explanation": "After 'to be,' you must use the past participle 'conducted'."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which is the most formal way to describe a result? 'The study ___ in the journal last month.'",
+          "options": [
+            "published",
+            "was published",
+            "has been published",
+            "is published"
+          ],
+          "correctAnswer": "was published",
+          "explanation": "Specific past time ('last month') requires the Past Simple Passive."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'After the fruit is picked, it is then wash and dried.'",
+          "options": [
+            "is picked",
+            "is then",
+            "wash",
+            "dried"
+          ],
+          "correctAnswer": "wash",
+          "explanation": "Parallelism in the passive: both verbs must be V3 ('washed and dried')."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Choose the best passive for a 'Future Plan' (Task 2): 'The new law ___ next year.'",
+          "options": [
+            "is implemented",
+            "will be implemented",
+            "was implemented",
+            "implemented"
+          ],
+          "correctAnswer": "will be implemented",
+          "explanation": "Future passive for a planned event."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Identify the impersonal passive: '___ that the climate is changing.'",
+          "options": [
+            "It is generally accepted",
+            "It generally accepts",
+            "It has generally accepted",
+            "It is generally accepting"
+          ],
+          "correctAnswer": "It is generally accepted",
+          "explanation": "Impersonal passive structure for widely held facts."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Which is correct for a 'Recent Trend'? 'Many new schools ___ in the area recently.'",
+          "options": [
+            "were built",
+            "have been built",
+            "are being built",
+            "built"
+          ],
+          "correctAnswer": "have been built",
+          "explanation": "'Recently' triggers the Present Perfect Passive ('have been' + V3)."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Final Check: Why is the passive voice preferred in Process Diagrams?",
+          "options": [
+            "It makes the word count higher.",
+            "It removes the focus from the worker and places it on the product.",
+            "It is easier to write than the active voice.",
+            "It is only used for verbs ending in -ing."
+          ],
+          "correctAnswer": "It removes the focus from the worker and places it on the product.",
+          "explanation": "Objective reporting is the primary goal of Task 1 process descriptions."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The mixture is heated until it will be boiled.'",
+          "options": [
+            "mixture",
+            "is heated",
+            "until",
+            "will be boiled"
+          ],
+          "correctAnswer": "will be boiled",
+          "explanation": "In time clauses, we use the present: 'until it boils' (active) or 'is boiled' (passive)."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'These results ___ with caution.'",
+          "options": [
+            "should viewed",
+            "should be viewed",
+            "should being viewed",
+            "should be view"
+          ],
+          "correctAnswer": "should be viewed",
+          "explanation": "Modal passive: should + be + V3."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'English ___ by over a billion people.'",
+          "options": [
+            "speaks",
+            "is spoken",
+            "is speaking",
+            "spoken"
+          ],
+          "correctAnswer": "is spoken",
+          "explanation": "Present passive for a general fact."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The building was design by a famous architect.'",
+          "options": [
+            "building",
+            "was",
+            "design",
+            "architect"
+          ],
+          "correctAnswer": "design",
+          "explanation": "Needs the V3 form 'designed'."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which is correct for 'Ongoing Action'? 'A new stadium ___ in the city center.'",
+          "options": [
+            "is built",
+            "is being built",
+            "has built",
+            "was built"
+          ],
+          "correctAnswer": "is being built",
+          "explanation": "Present Continuous Passive showing an action currently in progress."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The package has being delivered already.'",
+          "options": [
+            "package",
+            "has being",
+            "delivered",
+            "already"
+          ],
+          "correctAnswer": "has being",
+          "explanation": "Should be 'has been' (Present Perfect Passive)."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The windows ___ once a month.'",
+          "options": [
+            "are cleaned",
+            "clean",
+            "is cleaned",
+            "are clean"
+          ],
+          "correctAnswer": "are cleaned",
+          "explanation": "Present passive for a regular routine."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He was given the information by the secretary.'",
+          "options": [
+            "was",
+            "given",
+            "by the secretary",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Correct passive with an 'agent' (secretary) that provides useful context."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which is best for Task 1? 'Finally, the finished goods ___ to retailers.'",
+          "options": [
+            "ship",
+            "are shipped",
+            "is shipped",
+            "shipping"
+          ],
+          "correctAnswer": "are shipped",
+          "explanation": "Plural subject 'goods' + Present Passive."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The decision will being made tomorrow.'",
+          "options": [
+            "decision",
+            "will",
+            "being",
+            "tomorrow"
+          ],
+          "correctAnswer": "being",
+          "explanation": "Future passive is 'will be' + V3."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The car ___ in 2020.'",
+          "options": [
+            "bought",
+            "was bought",
+            "is bought",
+            "was buy"
+          ],
+          "correctAnswer": "was bought",
+          "explanation": "Past passive."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The flowers are watered by the gardener every day.'",
+          "options": [
+            "flowers",
+            "are watered",
+            "by the gardener",
+            "No error"
+          ],
+          "correctAnswer": "No error",
+          "explanation": "Grammatically correct; the 'by' phrase is optional but acceptable here."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'Many houses ___ in the storm.'",
+          "options": [
+            "destroyed",
+            "were destroyed",
+            "was destroyed",
+            "destroy"
+          ],
+          "correctAnswer": "were destroyed",
+          "explanation": "Past passive for plural 'houses'."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The report is wrote by me.'",
+          "options": [
+            "report",
+            "is",
+            "wrote",
+            "by me"
+          ],
+          "correctAnswer": "wrote",
+          "explanation": "Should be 'written'."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The secret ___ for decades.'",
+          "options": [
+            "is kept",
+            "has been kept",
+            "kept",
+            "is keep"
+          ],
+          "correctAnswer": "has been kept",
+          "explanation": "Present Perfect Passive for a state continuing from the past."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The bridge was build in three years.'",
+          "options": [
+            "bridge",
+            "was",
+            "build",
+            "three years"
+          ],
+          "correctAnswer": "build",
+          "explanation": "Needs V3 'built'."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The results ___ after the test.'",
+          "options": [
+            "are announced",
+            "announced",
+            "announce",
+            "is announced"
+          ],
+          "correctAnswer": "are announced",
+          "explanation": "Present passive for plural 'results'."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The email was send this morning.'",
+          "options": [
+            "email",
+            "was",
+            "send",
+            "morning"
+          ],
+          "correctAnswer": "send",
+          "explanation": "Needs V3 'sent'."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Rule: The passive voice is a tool to make your writing ___.",
+          "options": [
+            "Exciting",
+            "Objective and Formal",
+            "Longer",
+            "Easier"
+          ],
+          "correctAnswer": "Objective and Formal",
+          "explanation": "Shifting the focus to the action or object creates a neutral, academic tone."
+        }
+      ]
+    }
+  ]
+}

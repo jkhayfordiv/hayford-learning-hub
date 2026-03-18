@@ -1,0 +1,1594 @@
+{
+  "topicId": "11_sentence_boundaries",
+  "topicName": "Sentence Boundaries",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Anatomy of a Sentence</h3><p>An <b>independent clause</b> is a group of words that can stand alone as a sentence. It requires three ingredients:</p><ul style=\"line-height: 1.8;\"><li>👤 <b>Subject:</b> Who or what is doing the action?</li><li>🎬 <b>Verb:</b> What is the action or state?</li><li>✅ <b>Complete Thought:</b> Does the sentence make sense by itself?</li></ul><p><b>Fragment Error:</b> <i>Because it was raining.</i> (Not a complete thought).<br><b>Run-on Error:</b> <i>I like coffee I drink it every day.</i> (Two sentences crashed together).</p></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which of these is a complete sentence?",
+          "options": [
+            "Running through the park at night.",
+            "The sun rose over the horizon.",
+            "Because he was tired from work.",
+            "A beautiful day in the city."
+          ],
+          "correctAnswer": "The sun rose over the horizon.",
+          "explanation": "It has a subject (The sun), a verb (rose), and expresses a complete thought."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Identify the 'Fragment' error:",
+          "options": [
+            "She studied for the exam.",
+            "The cat slept on the sofa.",
+            "Although the weather was cold.",
+            "The train arrived on time."
+          ],
+          "correctAnswer": "Although the weather was cold.",
+          "explanation": "'Although' makes this a dependent clause; it needs another clause to be a complete sentence."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "What is missing from this fragment? 'Walking quickly to the store.'",
+          "options": [
+            "A subject",
+            "A verb",
+            "A complete thought",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "'Walking' is a participle, not a main verb here. There is no subject and no complete thought."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct way to fix this run-on: 'The car is fast it is also expensive.'",
+          "options": [
+            "The car is fast, it is also expensive.",
+            "The car is fast; it is also expensive.",
+            "The car is fast it is, also expensive.",
+            "The car is fast and, it is also expensive."
+          ],
+          "correctAnswer": "The car is fast; it is also expensive.",
+          "explanation": "A semicolon or a period is needed to separate two independent clauses."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Identify the error in: 'John, a very tall and talented basketball player.'",
+          "options": [
+            "Subject",
+            "Verb",
+            "Complete Thought",
+            "No error"
+          ],
+          "correctAnswer": "Verb",
+          "explanation": "This is a long noun phrase, but there is no action (verb) describing what John did or is."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'Comma Splice'?",
+          "options": [
+            "I am hungry, so I will eat.",
+            "I am hungry, I will eat.",
+            "I am hungry; I will eat.",
+            "I am hungry. I will eat."
+          ],
+          "correctAnswer": "I am hungry, I will eat.",
+          "explanation": "A comma alone cannot join two independent clauses. This is a very common error."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Complete the sentence to make it an independent clause: '___ increases the risk of heart disease.'",
+          "options": [
+            "Smoking",
+            "To smoke",
+            "That people smoke",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "All these options function as subjects (Gerund, Infinitive, or Noun Clause) to complete the sentence."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Identify the 'Run-on' sentence:",
+          "options": [
+            "It was late, yet he kept working.",
+            "It was late he kept working.",
+            "Since it was late, he went home.",
+            "It was late. He went home."
+          ],
+          "correctAnswer": "It was late he kept working.",
+          "explanation": "Two sentences are pushed together with no punctuation or conjunction."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Which word is a 'conjunction' that can safely join two sentences with a comma?",
+          "options": [
+            "However",
+            "Therefore",
+            "But",
+            "Furthermore"
+          ],
+          "correctAnswer": "But",
+          "explanation": "'But' is a coordinating conjunction (FANBOYS). The others are conjunctive adverbs and require a semicolon."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Even though the price was high.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "This is a dependent clause waiting for a main clause."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'The weather was beautiful, we decided to go for a hike.'",
+          "options": [
+            "The weather was beautiful. We decided to go for a hike.",
+            "The weather was beautiful; we decided to go for a hike.",
+            "The weather was beautiful, so we decided to go for a hike.",
+            "All of the above are correct."
+          ],
+          "correctAnswer": "All of the above are correct.",
+          "explanation": "You can use a period, a semicolon, or a comma + conjunction to fix a comma splice."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Identify the complete sentence:",
+          "options": [
+            "Waiting for the bus in the rain.",
+            "The bus was late.",
+            "The bus that was late.",
+            "When the bus was late."
+          ],
+          "correctAnswer": "The bus was late.",
+          "explanation": "Simple, complete subject-verb structure."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Is this a complete sentence? 'Help!'",
+          "options": [
+            "Yes",
+            "No",
+            "Only in speech",
+            "It is a fragment"
+          ],
+          "correctAnswer": "Yes",
+          "explanation": "In English, an imperative (command) has an understood subject 'You' (You help!)."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Computers are useful tools, however, they can be distracting.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Subject-Verb Agreement",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "You cannot use a comma before 'however' to join two sentences. It needs a semicolon."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "What makes this a fragment? 'The man who lives next door.'",
+          "options": [
+            "Missing subject",
+            "Missing main verb",
+            "Missing adjective",
+            "Too many commas"
+          ],
+          "correctAnswer": "Missing main verb",
+          "explanation": "The 'who' clause describes the man, but we don't know what the man *did* or *is* (e.g., The man who lives next door is nice)."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Choose the best way to connect these ideas: 'She is tired.' 'She stays up late.'",
+          "options": [
+            "She is tired, she stays up late.",
+            "She is tired because she stays up late.",
+            "She is tired she stays up late.",
+            "She is tired. Because she stays up late."
+          ],
+          "correctAnswer": "She is tired because she stays up late.",
+          "explanation": "This uses a subordinator to create a logical connection."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The experiment was a success, the results were published.'",
+          "options": [
+            "Run-on",
+            "Comma Splice",
+            "Fragment",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two independent clauses joined only by a comma."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly punctuated?",
+          "options": [
+            "I like apples, and oranges.",
+            "I like apples, oranges, and bananas.",
+            "I like apples oranges and bananas.",
+            "I like apples, oranges and, bananas."
+          ],
+          "correctAnswer": "I like apples, oranges, and bananas.",
+          "explanation": "Standard list punctuation."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Since the government increased taxes.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "It starts a thought but doesn't finish the consequence."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct structure: 'The project is finished ___ we can celebrate.'",
+          "options": [
+            ", now",
+            "; now",
+            ". Now",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "Either a semicolon or a period is required to separate these independent clauses."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Identify the fragment:",
+          "options": [
+            "Think about it.",
+            "To think about it.",
+            "I thought about it.",
+            "Thinking about it is good."
+          ],
+          "correctAnswer": "To think about it.",
+          "explanation": "An infinitive phrase on its own is not a complete sentence."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The phone rang, it was my mother.'",
+          "options": [
+            "Comma Splice",
+            "Run-on",
+            "Fragment",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two independent clauses joined by a comma."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Fix the run-on: 'He is smart he works hard.'",
+          "options": [
+            "He is smart, he works hard.",
+            "He is smart and works hard.",
+            "He is smart he works, hard.",
+            "He is smart, and works hard."
+          ],
+          "correctAnswer": "He is smart and works hard.",
+          "explanation": "This combines the verbs under one subject, making it a single complete sentence."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'In the middle of the dark and mysterious forest.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "This is a prepositional phrase with no subject or verb."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Which is a complete sentence?",
+          "options": [
+            "Which was very interesting.",
+            "It was very interesting.",
+            "That being very interesting.",
+            "The story very interesting."
+          ],
+          "correctAnswer": "It was very interesting.",
+          "explanation": "Standard Subject + Verb + Adjective structure."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Prices rose dramatically, this led to inflation.'",
+          "options": [
+            "Comma Splice",
+            "Run-on",
+            "Fragment",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two independent clauses ('Prices rose' and 'this led') joined by only a comma."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "What is missing? 'The city of London, established by the Romans.'",
+          "options": [
+            "Subject",
+            "Main Verb",
+            "Adjective",
+            "Noun"
+          ],
+          "correctAnswer": "Main Verb",
+          "explanation": "Established is part of a descriptor; we need a verb like 'is' or 'was' to make it a sentence."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Fix the fragment: 'Because I was late.'",
+          "options": [
+            "I was late.",
+            "Because I was late, I missed the bus.",
+            "Both are complete sentences.",
+            "Because I late."
+          ],
+          "correctAnswer": "Both are complete sentences.",
+          "explanation": "Option 1 removes the subordinator; Option 2 finishes the thought."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Identify the run-on:",
+          "options": [
+            "I study English, I also study Math.",
+            "I study English and Math.",
+            "I study English. I also study Math.",
+            "I study English; I also study Math."
+          ],
+          "correctAnswer": "I study English, I also study Math.",
+          "explanation": "Wait—this is a Comma Splice! A Comma Splice is a type of Run-on."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Final Check: An independent clause must have a ___.",
+          "options": [
+            "Subject",
+            "Verb",
+            "Complete Thought",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These are the three non-negotiable pillars of an English sentence."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: The Comma Splice",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Weak Comma' Trap</h3><p>A <b>Comma Splice</b> occurs when you join two complete sentences with only a comma. In English, a comma is not a 'stop' sign; it is a 'pause' sign.</p><ul style=\"line-height: 1.8;\"><li>❌ <b>The Error:</b> <i>The price of oil rose, it affected the global economy.</i></li><li>✅ <b>Fix 1 (The Period):</b> <i>The price of oil rose<b>. It</b> affected the global economy.</i></li><li>✅ <b>Fix 2 (The Semicolon):</b> <i>The price of oil rose<b>; it</b> affected the global economy.</i></li><li>✅ <b>Fix 3 (The Conjunction):</b> <i>The price of oil rose<b>, and</b> it affected the global economy.</i></li><li>✅ <b>Fix 4 (The Subordinator):</b> <i><b>Because</b> the price of oil rose, it affected the economy.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Identify the comma splice:",
+          "options": [
+            "The movie was long, but it was exciting.",
+            "The movie was long, it was exciting.",
+            "The movie was long; it was exciting.",
+            "The movie was long. It was exciting."
+          ],
+          "correctAnswer": "The movie was long, it was exciting.",
+          "explanation": "Joining two complete thoughts with only a comma is a comma splice."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which transition word requires a semicolon (;) and NOT just a comma?",
+          "options": [
+            "and",
+            "but",
+            "however",
+            "so"
+          ],
+          "correctAnswer": "however",
+          "explanation": "'However' is a conjunctive adverb. If it connects two sentences, it needs a semicolon before it."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Fix this error: 'The experiment failed, the researchers were disappointed.'",
+          "options": [
+            "The experiment failed, so the researchers were disappointed.",
+            "The experiment failed; the researchers were disappointed.",
+            "The experiment failed. The researchers were disappointed.",
+            "All of the above are correct."
+          ],
+          "correctAnswer": "All of the above are correct.",
+          "explanation": "Any of these methods safely separates or connects the two independent clauses."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I love traveling, I have visited ten countries.'",
+          "options": [
+            "Fragment",
+            "Comma Splice",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two independent clauses joined by only a comma."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Which of these is NOT a comma splice?",
+          "options": [
+            "He is a doctor, his wife is a lawyer.",
+            "He is a doctor, and his wife is a lawyer.",
+            "He is a doctor, she is a lawyer.",
+            "He is a doctor, but his wife is a lawyer."
+          ],
+          "correctAnswer": "He is a doctor, and his wife is a lawyer.",
+          "explanation": "Adding the coordinating conjunction 'and' after the comma fixes the splice."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The weather is cold, therefore, I will wear a coat.'",
+          "options": [
+            "Comma Splice",
+            "Subject-Verb Agreement",
+            "Fragment",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Even with 'therefore,' you cannot use a comma to join two sentences. It must be a semicolon: 'cold; therefore,'."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which punctuation is missing? 'I finished my work ___ now I am free.'",
+          "options": [
+            ", and",
+            ";",
+            ".",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These are all valid ways to separate the two independent clauses."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She enjoys playing the piano, she practices every day.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two complete sentences joined only by a comma."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly punctuated?",
+          "options": [
+            "I study hard, because I want to pass.",
+            "I study hard because I want to pass.",
+            "I study hard; because I want to pass.",
+            "I study hard. Because I want to pass."
+          ],
+          "correctAnswer": "I study hard because I want to pass.",
+          "explanation": "No comma is needed before 'because' when the dependent clause comes at the end."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Fix the comma splice: 'The team won the game, they celebrated all night.'",
+          "options": [
+            "The team won the game; they celebrated all night.",
+            "The team won the game, and they celebrated all night.",
+            "After the team won the game, they celebrated all night.",
+            "All of the above are correct."
+          ],
+          "correctAnswer": "All of the above are correct.",
+          "explanation": "Semicolons, conjunctions, and subordinators all solve the problem."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Computers are expensive, they are very useful.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two complete thoughts separated only by a weak comma."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I have a dog, ___ he is very friendly.'",
+          "options": [
+            "but",
+            "and",
+            "so",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "A coordinating conjunction after the comma fixes the sentence."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He worked late, he was tired.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Classic comma splice structure."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Which punctuation should replace the comma? 'The report is ready, it is on your desk.'",
+          "options": [
+            ";",
+            ".",
+            ", and",
+            "Any of the above"
+          ],
+          "correctAnswer": "Any of the above",
+          "explanation": "All three correctly address the comma splice."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The sun was shining, the birds were singing.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two independent clauses joined by only a comma."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I like tea, ___ I prefer coffee.'",
+          "options": [
+            "but",
+            "however",
+            "although",
+            "Both A and B (with different punctuation)."
+          ],
+          "correctAnswer": "Both A and B (with different punctuation).",
+          "explanation": "'Tea, but coffee' or 'Tea; however, coffee'."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She is a talented artist, she has won many awards.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two complete sentences joined only by a comma."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "It was raining, so we stayed home.",
+            "It was raining, we stayed home.",
+            "It was raining so we stayed home.",
+            "It was raining, therefore, we stayed home."
+          ],
+          "correctAnswer": "It was raining, so we stayed home.",
+          "explanation": "Comma + coordinating conjunction ('so') is correct."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The library is quiet, it is a good place to study.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'He forgot his keys, he had to call a locksmith.'",
+          "options": [
+            "He forgot his keys. He had to call a locksmith.",
+            "He forgot his keys, so he had to call a locksmith.",
+            "He forgot his keys; he had to call a locksmith.",
+            "All of the above are correct."
+          ],
+          "correctAnswer": "All of the above are correct.",
+          "explanation": "Each provides a valid way to fix the comma splice."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'I am tired, I will go to bed soon.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Two independent clauses joined by only a comma."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I like to swim, ___ I also like to run.'",
+          "options": [
+            "and",
+            "but",
+            "so",
+            "All of the above"
+          ],
+          "correctAnswer": "and",
+          "explanation": "'And' is the most logical connection for two similar ideas."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The coffee is hot, be careful.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses (statement and command) with only a comma."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Which punctuation should replace the comma? 'The car broke down, we had to walk.'",
+          "options": [
+            ";",
+            ".",
+            ", so",
+            "Any of the above"
+          ],
+          "correctAnswer": "Any of the above",
+          "explanation": "All three correctly address the comma splice."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The stars were bright, the moon was full.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I have a sister, ___ she is older than me.'",
+          "options": [
+            "and",
+            "but",
+            "so",
+            "All of the above"
+          ],
+          "correctAnswer": "and",
+          "explanation": "A coordinating conjunction after the comma fixes the sentence."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The road was closed, we had to take a detour.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I like apples, ___ I don't like oranges.'",
+          "options": [
+            "but",
+            "however",
+            "although",
+            "Both A and B (with different punctuation)."
+          ],
+          "correctAnswer": "Both A and B (with different punctuation).",
+          "explanation": "'Apples, but oranges' or 'Apples; however, oranges'."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She is a good student, she always does her homework.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: A comma splice happens when you use only a comma to connect two ___.",
+          "options": [
+            "Words",
+            "Phrases",
+            "Independent Clauses",
+            "Dependent Clauses"
+          ],
+          "correctAnswer": "Independent Clauses",
+          "explanation": "Independent clauses are complete thoughts that require stronger punctuation than a comma."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The 'Transition' Boundary</h3><p>The most common advanced error is using a <b>Conjunctive Adverb</b> (however, therefore, moreover) as if it were a simple conjunction (and, but). These heavy words require a <b>semicolon</b> or a <b>period</b> to separate independent clauses.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The 'However' Trap:</b> <i>The data is clear, however, more research is needed.</i> (<b>Error: Comma Splice</b>)</li><li>✅ <b>The Fix:</b> <i>The data is clear<b>; however,</b> more research is needed.</i></li><li>📊 <b>The Fragment Check:</b> Ensure that your 'Because' or 'Although' clauses are actually attached to a main sentence, not floating alone.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the error in this paragraph: 'Urbanization has increased rapidly in recent years. This trend has led to many social changes, for instance, traditional family structures are evolving.'",
+          "options": [
+            "increased rapidly",
+            "This trend",
+            "social changes, for instance,",
+            "evolving"
+          ],
+          "correctAnswer": "social changes, for instance,",
+          "explanation": "'For instance' is starting a new independent clause. You cannot join it with a comma. It should be: 'social changes; for instance, traditional...'"
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which is the correctly punctuated academic sentence?",
+          "options": [
+            "The results were inconclusive, therefore, the study was repeated.",
+            "The results were inconclusive; therefore, the study was repeated.",
+            "The results were inconclusive, therefore the study was repeated.",
+            "The results were inconclusive. Therefore the study was repeated."
+          ],
+          "correctAnswer": "The results were inconclusive; therefore, the study was repeated.",
+          "explanation": "'Therefore' requires a semicolon when connecting two independent thoughts."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the 'Fragment' in this sequence: '(1) The government implemented new taxes. (2) Which caused widespread protests. (3) However, the policy remained in place.'",
+          "options": [
+            "Sentence 1",
+            "Sentence 2",
+            "Sentence 3",
+            "No error"
+          ],
+          "correctAnswer": "Sentence 2",
+          "explanation": "Sentence 2 is a relative clause starting with 'Which'. It cannot stand alone; it must be attached to Sentence 1 with a comma."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Correct the boundary: 'Many students study abroad, they want to improve their language skills.'",
+          "options": [
+            "Many students study abroad because they want to improve their language skills.",
+            "Many students study abroad; they want to improve their language skills.",
+            "Many students study abroad. They want to improve their language skills.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "These are all grammatically correct ways to fix a comma splice."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Although the new technology is expensive and requires specialized training for all staff members.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "This is a long dependent clause. It is 'waiting' for a main clause to tell us what happens despite the technology being expensive."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which sentence uses 'moreover' correctly?",
+          "options": [
+            "The city is beautiful, moreover, the people are friendly.",
+            "The city is beautiful; moreover, the people are friendly.",
+            "The city is beautiful moreover the people are friendly.",
+            "The city is beautiful. Moreover, the people are friendly."
+          ],
+          "correctAnswer": "The city is beautiful; moreover, the people are friendly.",
+          "explanation": "'Moreover' is a conjunctive adverb and needs a semicolon (or a period) before it."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The population is aging, consequently, healthcare costs are rising.'",
+          "options": [
+            "population is aging",
+            "consequently",
+            "healthcare costs",
+            "No error"
+          ],
+          "correctAnswer": "consequently",
+          "explanation": "This is a comma splice. It needs a semicolon before 'consequently'."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Fix this run-on: 'Prices increased the demand stayed high.'",
+          "options": [
+            "Prices increased, the demand stayed high.",
+            "Prices increased while the demand stayed high.",
+            "Prices increased; the demand stayed high.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "Option A is a comma splice. B and C correctly handle the boundary."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The team worked hard to finish the project. Even staying late on weekends.'",
+          "options": [
+            "worked hard",
+            "finish the project",
+            "Even staying late",
+            "No error"
+          ],
+          "correctAnswer": "Even staying late",
+          "explanation": "This is a fragment. It should be attached to the previous sentence with a comma."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which punctuation is correct? 'The car was old ___ nevertheless, it ran perfectly.'",
+          "options": [
+            ",",
+            ";",
+            ". Nevertheless",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'Nevertheless' is a heavy transition that requires a strong boundary."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The Internet has changed the world, for example, communication is now instantaneous.'",
+          "options": [
+            "Internet",
+            "changed the world",
+            "for example",
+            "instantaneous"
+          ],
+          "correctAnswer": "for example",
+          "explanation": "Comma splice. Needs a semicolon before 'for example'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct version: 'I didn't go to the party ___ I was feeling unwell.'",
+          "options": [
+            ", because",
+            "because",
+            "; because",
+            ". Because"
+          ],
+          "correctAnswer": "because",
+          "explanation": "No comma or semicolon is needed before 'because' at the end of a sentence."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the fragment:",
+          "options": [
+            "The book that I bought yesterday.",
+            "I bought the book yesterday.",
+            "The book is interesting.",
+            "I like the book."
+          ],
+          "correctAnswer": "The book that I bought yesterday.",
+          "explanation": "This is just a subject with a relative clause. It needs a verb (e.g., '...is on the table')."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'He forgot his umbrella, hence, he got wet.'",
+          "options": [
+            "He forgot his umbrella; hence, he got wet.",
+            "He forgot his umbrella. Hence, he got wet.",
+            "Both are correct.",
+            "He forgot his umbrella, so he got wet."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "'Hence' is a conjunctive adverb needing a strong boundary."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The recipe is simple. Only requiring three ingredients.'",
+          "options": [
+            "recipe",
+            "simple",
+            "Only requiring",
+            "No error"
+          ],
+          "correctAnswer": "Only requiring",
+          "explanation": "Fragment. Should be: 'The recipe is simple, only requiring...'"
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The sun was setting ___ the sky turned orange.'",
+          "options": [
+            ", and",
+            ";",
+            ".",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Standard ways to separate/connect two independent clauses."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'We went to the beach, it was a beautiful day.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with a comma."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Choose the best academic punctuation: 'The test was difficult ___ many students failed.'",
+          "options": [
+            ", so",
+            "; so",
+            ". So",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "Comma + 'so' or a new sentence starting with 'So' are both acceptable."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Because of the heavy rain and the strong winds during the night.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "A long prepositional phrase with no subject or verb."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'The store was closed, I went home.'",
+          "options": [
+            "The store was closed; I went home.",
+            "The store was closed. I went home.",
+            "Since the store was closed, I went home.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Various ways to fix a comma splice."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He is a great cook, furthermore, he is a wonderful host.'",
+          "options": [
+            "furthermore",
+            "great cook",
+            "wonderful host",
+            "No error"
+          ],
+          "correctAnswer": "furthermore",
+          "explanation": "Needs a semicolon before 'furthermore'."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I enjoy running ___ it helps me relax.'",
+          "options": [
+            "because",
+            ", because",
+            "; because",
+            ". Because"
+          ],
+          "correctAnswer": "because",
+          "explanation": "No punctuation before 'because' at the end of a sentence."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Identify the fragment:",
+          "options": [
+            "I will see you tomorrow.",
+            "See you tomorrow.",
+            "To see you tomorrow.",
+            "Seeing you tomorrow will be fun."
+          ],
+          "correctAnswer": "To see you tomorrow.",
+          "explanation": "An infinitive phrase alone is not a sentence."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'The data was clear, however, we needed more time.'",
+          "options": [
+            "The data was clear; however, we needed more time.",
+            "The data was clear. However, we needed more time.",
+            "Both are correct.",
+            "The data was clear, but we needed more time."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "'However' is a heavy transition needing a strong boundary."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The project is finished. Although it was difficult.'",
+          "options": [
+            "finished",
+            "Although",
+            "difficult",
+            "No error"
+          ],
+          "correctAnswer": "Although",
+          "explanation": "Fragment. 'Although' starts a dependent clause that must be joined to the previous sentence."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The weather was cold ___ the snow began to fall.'",
+          "options": [
+            ", and",
+            ";",
+            ".",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Standard ways to separate/connect independent clauses."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She is a talented singer, she has recorded many songs.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with a comma."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the best academic choice: 'The plan was good ___ it failed.'",
+          "options": [
+            ", but",
+            "; however,",
+            ". However,",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "All are correct ways to show contrast between two sentences."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'In the corner of the room, next to the old fireplace.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "Prepositional phrases with no subject or verb."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: A semicolon is used to connect two ___.",
+          "options": [
+            "Words",
+            "Phrases",
+            "Independent Clauses",
+            "Dependent Clauses"
+          ],
+          "correctAnswer": "Independent Clauses",
+          "explanation": "A semicolon is a 'soft stop' between two complete, related sentences."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Architect's Rule</h3><p>High-scoring essays use <b>Complex-Compound sentences</b>. Punctuation is the 'glue' that holds these massive structures together without them collapsing into run-ons or fragments.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>🏗️ <b>The Build:</b> <i>[Although the cost was high]<b>,</b> [the government proceeded]<b>;</b> [consequently]<b>,</b> [it was finished on time].</i></li><li>📊 <b>The Task 1 Comparison:</b> Use semicolons to contrast two categories without starting a new, repetitive sentence.</li><li>🛑 <b>The 'Which' Trap:</b> Never start a new sentence with 'Which' to refer to the previous sentence; use a comma to attach it as a relative clause.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Choose the most sophisticated and correctly punctuated Task 2 sentence:",
+          "options": [
+            "Technology has improved lives, however it has also created new problems, which we must solve.",
+            "Technology has improved lives; however, it has also created new problems, which we must solve.",
+            "Technology has improved lives. However it has also created new problems which we must solve.",
+            "Although technology has improved lives, but it has also created new problems."
+          ],
+          "correctAnswer": "Technology has improved lives; however, it has also created new problems, which we must solve.",
+          "explanation": "This uses a semicolon for the heavy transition ('however') and a comma for the non-defining relative clause ('which')."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The production of coal rose to 50 tonnes in 2010, this was the highest figure in the period.'",
+          "options": [
+            "production of",
+            "rose to",
+            "2010, this",
+            "highest figure"
+          ],
+          "correctAnswer": "2010, this",
+          "explanation": "This is a comma splice. It should be '2010; this' or '2010, which'."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses a 'Which' clause to refer back to a whole idea?",
+          "options": [
+            "The population increased. Which led to a housing shortage.",
+            "The population increased, which led to a housing shortage.",
+            "The population increased; which led to a housing shortage.",
+            "The population increased which led to a housing shortage."
+          ],
+          "correctAnswer": "The population increased, which led to a housing shortage.",
+          "explanation": "A 'sentential' relative clause must be attached to the main clause with a comma."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Which is the correct punctuation for a 'Conjunctive Adverb' in the middle of a sentence?",
+          "options": [
+            "The data was clear, therefore, we proceeded.",
+            "The data was clear; therefore, we proceeded.",
+            "The data was clear therefore we proceeded.",
+            "The data was clear. Therefore we proceeded."
+          ],
+          "correctAnswer": "The data was clear; therefore, we proceeded.",
+          "explanation": "Strong transitions like 'therefore' require a semicolon when joining two independent clauses."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Identify the 'Fragment' error:",
+          "options": [
+            "While the rate of inflation decreased.",
+            "The rate of inflation decreased.",
+            "It is clear that the rate decreased.",
+            "Inflation, which was high, decreased."
+          ],
+          "correctAnswer": "While the rate of inflation decreased.",
+          "explanation": "'While' creates a dependent clause that needs a main clause to complete it."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which sentence is a 'Complex-Compound' structure?",
+          "options": [
+            "I like tea and coffee.",
+            "Since it was raining, we stayed inside and we played games.",
+            "We stayed inside because it was raining.",
+            "It was raining; therefore, we stayed inside."
+          ],
+          "correctAnswer": "Since it was raining, we stayed inside and we played games.",
+          "explanation": "It has one dependent clause ('Since...') and two independent clauses joined by 'and'."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The number of tourists fell, nevertheless, the industry remained profitable.'",
+          "options": [
+            "number of",
+            "fell, nevertheless,",
+            "industry",
+            "remained"
+          ],
+          "correctAnswer": "fell, nevertheless,",
+          "explanation": "Comma splice. Needs a semicolon before 'nevertheless'."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Fix the punctuation: 'He didn't study, consequently, he failed the exam.'",
+          "options": [
+            "He didn't study; consequently, he failed.",
+            "He didn't study. Consequently, he failed.",
+            "Since he didn't study, he failed.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "All these options correctly separate or link the two thoughts."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'In the 20th century. Technology advanced at an unprecedented rate.'",
+          "options": [
+            "20th century.",
+            "advanced",
+            "unprecedented",
+            "No error"
+          ],
+          "correctAnswer": "20th century.",
+          "explanation": "The first part is just a time phrase (fragment). It should be 'In the 20th century, technology...'"
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses 'Moreover'?",
+          "options": [
+            "The car is fast, moreover, it is efficient.",
+            "The car is fast; moreover, it is efficient.",
+            "Moreover the car is fast and efficient.",
+            "The car is fast moreover efficient."
+          ],
+          "correctAnswer": "The car is fast; moreover, it is efficient.",
+          "explanation": "Semicolon + transition + comma is the correct academic pattern."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Because many people are moving to cities for better job opportunities.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "Dependent clause with no result."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The sun set ___ the stars appeared.'",
+          "options": [
+            ", and",
+            ";",
+            ".",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Standard ways to separate/connect independent clauses."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She is a talented musician, she has won many awards.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Choose the best academic punctuation: 'The test was difficult ___ many students failed.'",
+          "options": [
+            ", so",
+            "; so",
+            ". So",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "Comma + 'so' or a new sentence starting with 'So' are both acceptable."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Although it was cold. We went for a walk.'",
+          "options": [
+            "Although it was cold.",
+            "went for",
+            "walk",
+            "No error"
+          ],
+          "correctAnswer": "Although it was cold.",
+          "explanation": "Fragment. Should be 'Although it was cold, we went...'"
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I enjoy running ___ it helps me relax.'",
+          "options": [
+            "because",
+            ", because",
+            "; because",
+            ". Because"
+          ],
+          "correctAnswer": "because",
+          "explanation": "No punctuation before 'because' at the end of a sentence."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The manager handled the crisis, furthermore, he improved safety.'",
+          "options": [
+            "handled",
+            "furthermore",
+            "improved",
+            "No error"
+          ],
+          "correctAnswer": "furthermore",
+          "explanation": "Needs a semicolon before 'furthermore'."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the correct version: 'He was late ___ he missed the meeting.'",
+          "options": [
+            ", and",
+            ";",
+            ". Therefore",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Each provides a valid boundary fix."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'In the middle of the dark and mysterious forest.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "Prepositional phrase with no subject or verb."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I like tea ___ I prefer coffee.'",
+          "options": [
+            ", but",
+            "; however,",
+            ". However,",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Different ways to show contrast between two independent clauses."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The stars were bright, the moon was full.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I have a sister ___ she is older than me.'",
+          "options": [
+            ", and",
+            ";",
+            ". She",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Correct ways to separate/connect the two thoughts."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Since the government increased taxes.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "Starts a thought but doesn't finish it."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The road was closed ___ we had to take a detour.'",
+          "options": [
+            ", so",
+            ";",
+            ". Therefore,",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "All three correctly address the boundary."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The book that I bought yesterday.'",
+          "options": [
+            "Fragment",
+            "Run-on",
+            "Comma Splice",
+            "No error"
+          ],
+          "correctAnswer": "Fragment",
+          "explanation": "Subject with relative clause but no main verb."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I like apples ___ I don't like oranges.'",
+          "options": [
+            ", but",
+            "; however,",
+            ". However,",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Standard contrast boundaries."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'She is a good student, she always does her homework.'",
+          "options": [
+            "Comma Splice",
+            "Fragment",
+            "Run-on",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with a comma."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'I finished my work ___ now I am free.'",
+          "options": [
+            ", and",
+            ";",
+            ". Now",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "Correct ways to separate independent clauses."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The phone rang, it was my mother.'",
+          "options": [
+            "Comma Splice",
+            "Run-on",
+            "Fragment",
+            "No error"
+          ],
+          "correctAnswer": "Comma Splice",
+          "explanation": "Joining two independent clauses with only a comma."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: A Band 7.0+ essay must demonstrate 'Grammatical Range,' which means ___.",
+          "options": [
+            "Only using short, simple sentences.",
+            "Using a variety of complex structures with accurate punctuation.",
+            "Avoiding commas entirely.",
+            "Starting every sentence with 'And' or 'But'."
+          ],
+          "correctAnswer": "Using a variety of complex structures with accurate punctuation.",
+          "explanation": "Complexity with boundary control is the key to high scores."
+        }
+      ]
+    }
+  ]
+}

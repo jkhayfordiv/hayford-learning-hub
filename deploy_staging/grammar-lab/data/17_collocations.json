@@ -1,0 +1,1529 @@
+{
+  "topicId": "17_collocations",
+  "topicName": "Collocations",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: Natural Pairings</h3><p>Collocations are groups of words that naturally go together. If you use the wrong pair, you sound unnatural even if the grammar is correct. The most common types are <b>Verb + Noun</b> and <b>Adjective + Noun</b>.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Correct Pairing</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Common Error (L1 Trap)</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>make</strong> a decision</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">do a decision</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>heavy</strong> traffic</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">big traffic / many traffic</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>take</strong> a risk</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">do a risk</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>conduct</strong> research</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">make research</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which verb correctly completes the phrase: 'The government needs to ___ action to reduce pollution.'?",
+          "options": [
+            "do",
+            "make",
+            "take",
+            "give"
+          ],
+          "correctAnswer": "take",
+          "explanation": "'Take action' is the standard fixed collocation for starting a process or policy."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Which adjective correctly describes a busy road?",
+          "options": [
+            "big traffic",
+            "heavy traffic",
+            "much traffic",
+            "strong traffic"
+          ],
+          "correctAnswer": "heavy traffic",
+          "explanation": "In English, traffic volume is described as 'heavy' or 'light'."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a mistake:",
+          "options": [
+            "make a mistake",
+            "do a mistake",
+            "perform a mistake",
+            "create a mistake"
+          ],
+          "correctAnswer": "make a mistake",
+          "explanation": "We always 'make' mistakes, we never 'do' them."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "What is the natural pairing for medicine in English?",
+          "options": [
+            "drink medicine",
+            "take medicine",
+            "eat medicine",
+            "use medicine"
+          ],
+          "correctAnswer": "take medicine",
+          "explanation": "Unlike some other languages, English speakers 'take' medicine."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Identify the correct academic collocation: 'The scientists ___ an experiment.'",
+          "options": [
+            "made",
+            "conducted",
+            "did",
+            "acted"
+          ],
+          "correctAnswer": "conducted",
+          "explanation": "While 'did' is okay for speaking, 'conducted' is the formal academic collocation for experiments and research."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a strong wind?",
+          "options": [
+            "powerful wind",
+            "high wind",
+            "strong wind",
+            "heavy wind"
+          ],
+          "correctAnswer": "strong wind",
+          "explanation": "'Strong wind' or 'high winds' (plural) are the natural collocations."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'You must ___ a decision soon.'",
+          "options": [
+            "do",
+            "make",
+            "take",
+            "give"
+          ],
+          "correctAnswer": "make",
+          "explanation": "You 'make' decisions; you don't 'do' them."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which of these describes a fast change?",
+          "options": [
+            "rapid change",
+            "quick change",
+            "swift change",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Rapid', 'quick', and 'swift' are all natural collocations for change, though 'rapid' is most common in Task 1."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for progress?",
+          "options": [
+            "do progress",
+            "make progress",
+            "get progress",
+            "take progress"
+          ],
+          "correctAnswer": "make progress",
+          "explanation": "We 'make progress' as we move toward a goal."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for tea/coffee:",
+          "options": [
+            "strong coffee",
+            "heavy coffee",
+            "hard coffee",
+            "powerful coffee"
+          ],
+          "correctAnswer": "strong coffee",
+          "explanation": "Coffee and tea are 'strong' or 'weak'."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Which verb goes with 'effort'?",
+          "options": [
+            "do an effort",
+            "make an effort",
+            "take an effort",
+            "give an effort"
+          ],
+          "correctAnswer": "make an effort",
+          "explanation": "You 'make an effort' when you try hard to do something."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a rainy day with a lot of rain?",
+          "options": [
+            "big rain",
+            "hard rain",
+            "heavy rain",
+            "strong rain"
+          ],
+          "correctAnswer": "heavy rain",
+          "explanation": "'Heavy rain' is the standard way to describe high precipitation."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a phone call:",
+          "options": [
+            "make a phone call",
+            "do a phone call",
+            "take a phone call",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "You 'make' a call (start it) or 'take' a call (answer it)."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Identify the academic collocation for data:",
+          "options": [
+            "collect data",
+            "gather data",
+            "get data",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Collect' and 'gather' are formal academic collocations for research material."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Which adjective completes the phrase: 'There is a ___ difference between the two groups.'?",
+          "options": [
+            "big",
+            "wide",
+            "stark",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "While 'big' is common, 'wide' and 'stark' (very clear/strong) are excellent academic collocations."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Which verb goes with 'homework'?",
+          "options": [
+            "make homework",
+            "do homework",
+            "take homework",
+            "write homework"
+          ],
+          "correctAnswer": "do homework",
+          "explanation": "School tasks like 'homework' or 'assignments' use the verb 'do'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Choose the correct pairing for an opinion:",
+          "options": [
+            "give an opinion",
+            "make an opinion",
+            "voice an opinion",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "You can 'give' or 'voice' (state) an opinion."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Which adjective describes very cold weather?",
+          "options": [
+            "bitterly cold",
+            "sharply cold",
+            "heavily cold",
+            "hard cold"
+          ],
+          "correctAnswer": "bitterly cold",
+          "explanation": "The adverb 'bitterly' is a very common collocation for 'cold'."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for a business?",
+          "options": [
+            "make a business",
+            "do a business",
+            "run a business",
+            "act a business"
+          ],
+          "correctAnswer": "run a business",
+          "explanation": "'Run' is the standard verb for managing a business or organization."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'injury':",
+          "options": [
+            "take an injury",
+            "get an injury",
+            "sustain an injury",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "In casual English we 'get' an injury; in formal English we 'sustain' one."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which verb goes with 'a shower'?",
+          "options": [
+            "make a shower",
+            "take a shower",
+            "do a shower",
+            "Both 'take' and 'have'"
+          ],
+          "correctAnswer": "Both 'take' and 'have'",
+          "explanation": "English speakers use 'take a shower' or 'have a shower'."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Which adjective describes someone who smokes a lot?",
+          "options": [
+            "big smoker",
+            "hard smoker",
+            "heavy smoker",
+            "strong smoker"
+          ],
+          "correctAnswer": "heavy smoker",
+          "explanation": "Habits like smoking or drinking are described as 'heavy'."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a goal:",
+          "options": [
+            "reach a goal",
+            "achieve a goal",
+            "get a goal",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "You 'reach' or 'achieve' a goal. 'Get' is too informal."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'knowledge':",
+          "options": [
+            "get knowledge",
+            "acquire knowledge",
+            "gain knowledge",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Acquire' and 'gain' are the academic collocations for learning information."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a price that is very high?",
+          "options": [
+            "expensive price",
+            "high price",
+            "steep price",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "Prices are 'high', 'low', or 'steep' (slangy/informal for very high). A car is 'expensive', but its price is 'high'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Which verb goes with 'a risk'?",
+          "options": [
+            "do a risk",
+            "make a risk",
+            "take a risk",
+            "give a risk"
+          ],
+          "correctAnswer": "take a risk",
+          "explanation": "We 'take' risks when we do something that might have a bad result."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Choose the correct pairing for a rule/law:",
+          "options": [
+            "break a law",
+            "violate a law",
+            "do a law",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "You can 'break' or 'violate' (more formal) a law."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a smell that is very noticeable?",
+          "options": [
+            "big smell",
+            "strong smell",
+            "heavy smell",
+            "hard smell"
+          ],
+          "correctAnswer": "strong smell",
+          "explanation": "Smells and tastes are described as 'strong' or 'faint'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for a secret?",
+          "options": [
+            "keep a secret",
+            "have a secret",
+            "make a secret",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "You 'have' a secret, and you 'keep' it (don't tell anyone)."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Identify the academic collocation for an issue:",
+          "options": [
+            "address an issue",
+            "fix an issue",
+            "talk about an issue",
+            "do an issue"
+          ],
+          "correctAnswer": "address an issue",
+          "explanation": "To 'address an issue' means to deal with or discuss it formally."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps (The Translation Gap)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Translation Trap</h3><p>Japanese students often translate directly from Japanese. However, English words 'collocate' (pair up) differently. You must memorize the English 'chunk' rather than translating the individual words.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #fee2e2;\"><th style=\"padding: 8px; border: 1px solid #fecaca;\">Japanese Logic</th><th style=\"padding: 8px; border: 1px solid #fecaca;\">Common Error</th><th style=\"padding: 8px; border: 1px solid #fecaca;\">Natural English</th></tr><tr><td style=\"padding: 8px; border: 1px solid #fecaca;\">Kusuri o nomu</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">❌ drink medicine</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">✅ <b>take</b> medicine</td></tr><tr style=\"background-color: #fff1f2;\"><td style=\"padding: 8px; border: 1px solid #fecaca;\">Takai kakaku</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">❌ tall price</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">✅ <b>high</b> price</td></tr><tr><td style=\"padding: 8px; border: 1px solid #fecaca;\">Tesuto o ukeru</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">❌ receive a test</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">✅ <b>take/sit</b> a test</td></tr><tr style=\"background-color: #fff1f2;\"><td style=\"padding: 8px; border: 1px solid #fecaca;\">Densha ni noru</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">❌ ride a train</td><td style=\"padding: 8px; border: 1px solid #fecaca;\">✅ <b>get on/take</b> a train</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Find the error: 'I need to drink my medicine before I go to sleep.'",
+          "options": [
+            "Change 'drink' to 'take'",
+            "Change 'my' to 'the'",
+            "Change 'go to sleep' to 'sleep'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'drink' to 'take'",
+          "explanation": "In English, we 'take' medicine (pills, liquids, etc.). 'Drink' is only for beverages."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which adjective correctly describes an expensive price?",
+          "options": [
+            "tall price",
+            "big price",
+            "high price",
+            "long price"
+          ],
+          "correctAnswer": "high price",
+          "explanation": "Prices, temperatures, and levels are 'high' or 'low', never 'tall' or 'big'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'Next week, I will ___ an entrance exam for university.'",
+          "options": [
+            "receive",
+            "get",
+            "take",
+            "undergo"
+          ],
+          "correctAnswer": "take",
+          "explanation": "You 'take' or 'sit' an exam. 'Receive' is a direct translation of 'ukeru' but sounds unnatural in English."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'It is a ___ mistake to assume that all students learn the same way.'",
+          "options": [
+            "big",
+            "common",
+            "large",
+            "popular"
+          ],
+          "correctAnswer": "common",
+          "explanation": "'Common mistake' is the standard collocation. 'Big mistake' is okay for speaking, but 'common' is better for academic writing."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing: 'She ___ a dream about traveling to Mars.'",
+          "options": [
+            "saw",
+            "watched",
+            "had",
+            "did"
+          ],
+          "correctAnswer": "had",
+          "explanation": "In English, you 'have' a dream. You don't 'see' (mita) one."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Which verb completes this work-related phrase: 'He ___ a living as a freelance writer.'?",
+          "options": [
+            "makes",
+            "earns",
+            "gets",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "You can 'make a living' or 'earn a living'. Both are natural collocations."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The traffic was very many this morning.'",
+          "options": [
+            "Change 'very many' to 'heavy'",
+            "Change 'this morning' to 'today morning'",
+            "Change 'was' to 'had'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'very many' to 'heavy'",
+          "explanation": "Traffic is uncountable and described by intensity ('heavy/light'), not quantity ('many')."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "What is the correct way to say you are participating in a meeting?",
+          "options": [
+            "join a meeting",
+            "attend a meeting",
+            "enter a meeting",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "You 'attend' (formal) or 'join' (neutral) a meeting. 'Enter' sounds like you are just walking into the room."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Choose the correct adjective for a deep sleep:",
+          "options": [
+            "heavy sleep",
+            "deep sleep",
+            "strong sleep",
+            "hard sleep"
+          ],
+          "correctAnswer": "deep sleep",
+          "explanation": "'Deep sleep' or being a 'heavy sleeper' are the correct pairings."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'news':",
+          "options": [
+            "big news",
+            "great news",
+            "breaking news",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Breaking news' is for new reports; 'big' or 'great' news is for personal or important events."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Replace the incorrect verb: 'I will *make* an effort to study more.'",
+          "options": [
+            "do",
+            "give",
+            "take",
+            "No error, 'make' is correct"
+          ],
+          "correctAnswer": "No error, 'make' is correct",
+          "explanation": "This is a trick! 'Make an effort' is the correct English collocation."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a strong possibility?",
+          "options": [
+            "high possibility",
+            "big possibility",
+            "strong possibility",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "Possibilities are 'high' (math/stats focus) or 'strong' (likelihood focus)."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Find the error: 'Please do a phone call to the client.'",
+          "options": [
+            "Change 'do' to 'make'",
+            "Change 'to' to 'for'",
+            "Change 'phone call' to 'calling'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'do' to 'make'",
+          "explanation": "You 'make' a phone call. 'Do' is never paired with calls."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for a promise?",
+          "options": [
+            "keep a promise",
+            "do a promise",
+            "make a promise",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "You 'make' (start) a promise and 'keep' (finish/honor) a promise."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'advice':",
+          "options": [
+            "give advice",
+            "take advice",
+            "follow advice",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "You 'give' it, and the other person 'takes' or 'follows' it."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'problem':",
+          "options": [
+            "solve a problem",
+            "fix a problem",
+            "address a problem",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "All three are natural, with 'address' being the most formal for essays."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a 'tall' building?",
+          "options": [
+            "high building",
+            "tall building",
+            "long building",
+            "big building"
+          ],
+          "correctAnswer": "tall building",
+          "explanation": "Physical objects with vertical height are 'tall'. Altitudes or levels are 'high'."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Find the error: 'We had a big argument about the budget.'",
+          "options": [
+            "Change 'big' to 'heated'",
+            "Change 'had' to 'did'",
+            "Change 'about' to 'on'",
+            "No error, 'big' is fine"
+          ],
+          "correctAnswer": "No error, 'big' is fine",
+          "explanation": "'Big argument' is natural, though 'heated argument' is more academic/descriptive."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for a goal in sports?",
+          "options": [
+            "make a goal",
+            "do a goal",
+            "score a goal",
+            "hit a goal"
+          ],
+          "correctAnswer": "score a goal",
+          "explanation": "In sports like soccer or hockey, you 'score' a goal."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'accident':",
+          "options": [
+            "do an accident",
+            "have an accident",
+            "get an accident",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "You can 'have' or 'get into' an accident."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb: 'I need to ___ my hair before the party.'",
+          "options": [
+            "make",
+            "do",
+            "fix",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "In English, we 'do our hair' or 'fix our hair'."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a 'powerful' storm?",
+          "options": [
+            "strong storm",
+            "severe storm",
+            "heavy storm",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "Storms are 'strong', 'severe', or 'violent'."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Find the error: 'I am taking a diet to lose weight.'",
+          "options": [
+            "Change 'taking' to 'on'",
+            "Change 'lose' to 'less'",
+            "Change 'a' to 'the'",
+            "No error"
+          ],
+          "correctAnswer": "Change 'taking' to 'on'",
+          "explanation": "You are 'on a diet' or you 'start a diet'. You don't 'take' one."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for a photo?",
+          "options": [
+            "take a photo",
+            "make a photo",
+            "do a photo",
+            "shoot a photo"
+          ],
+          "correctAnswer": "take a photo",
+          "explanation": "'Take a photo' is the standard; 'shoot' is more professional/artistic."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'homework':",
+          "options": [
+            "make homework",
+            "do homework",
+            "finish homework",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "You 'do' or 'finish' homework. You never 'make' it (which would mean creating the questions!)."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & Academic Pairings",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Scholar's Lexicon</h3><p>Academic English relies on specific 'high-level' collocations. Replacing common words with these pairings instantly boosts your score. Look for <b>Adverb + Adjective</b> and <b>Verb + Noun</b> combinations used in research and analysis.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #dcfce7;\"><th style=\"padding: 8px; border: 1px solid #bbf7d0;\">Common Phrase</th><th style=\"padding: 8px; border: 1px solid #bbf7d0;\">Academic Collocation</th></tr><tr><td style=\"padding: 8px; border: 1px solid #bbf7d0;\">big difference</td><td style=\"padding: 8px; border: 1px solid #bbf7d0;\"><b>stark contrast</b> / <b>marked difference</b></td></tr><tr style=\"background-color: #f0fdf4;\"><td style=\"padding: 8px; border: 1px solid #bbf7d0;\">important part</td><td style=\"padding: 8px; border: 1px solid #bbf7d0;\"><b>integral component</b> / <b>pivotal role</b></td></tr><tr><td style=\"padding: 8px; border: 1px solid #bbf7d0;\">do research</td><td style=\"padding: 8px; border: 1px solid #bbf7d0;\"><b>conduct</b> / <b>undertake</b> research</td></tr><tr style=\"background-color: #f0fdf4;\"><td style=\"padding: 8px; border: 1px solid #bbf7d0;\">strongly suggest</td><td style=\"padding: 8px; border: 1px solid #bbf7d0;\"><b>tentatively suggest</b> / <b>compellingly argue</b></td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Choose the most formal collocation: 'The two theories stand in ___ to each other.'",
+          "options": [
+            "big difference",
+            "stark contrast",
+            "wide opposite",
+            "strong change"
+          ],
+          "correctAnswer": "stark contrast",
+          "explanation": "'Stark contrast' is a high-level academic collocation used to highlight very clear differences."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which verb best completes the phrase: 'Education plays a ___ in a child's development.'?",
+          "options": [
+            "pivotal role",
+            "big part",
+            "large function",
+            "main work"
+          ],
+          "correctAnswer": "pivotal role",
+          "explanation": "To 'play a pivotal role' is a standard academic way of saying something is extremely important."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Identify the natural academic pairing for 'evidence':",
+          "options": [
+            "big evidence",
+            "hard evidence",
+            "compelling evidence",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Hard evidence' (factual/physical) and 'compelling evidence' (persuasive) are excellent academic choices."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The study was ___ by a group of independent researchers.'",
+          "options": [
+            "done",
+            "made",
+            "carried",
+            "conducted"
+          ],
+          "correctAnswer": "conducted",
+          "explanation": "'Conducted' is the formal verb that collocates with 'study', 'survey', or 'experiment'."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Which adverb collocates with 'related' to show a strong connection?",
+          "options": [
+            "intimately related",
+            "closely related",
+            "strongly related",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Closely related' or 'strongly related' are common academic ways to describe links."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Choose the best adjective for 'impact': 'The new law had a ___ impact on the economy.'",
+          "options": [
+            "profound",
+            "big",
+            "deep",
+            "heavy"
+          ],
+          "correctAnswer": "profound",
+          "explanation": "While 'big' is okay, 'profound' or 'significant' are preferred in formal writing."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Which verb completes this research phrase: 'The data ___ the hypothesis.'?",
+          "options": [
+            "holds",
+            "supports",
+            "keeps",
+            "backs up"
+          ],
+          "correctAnswer": "supports",
+          "explanation": "'Supports the hypothesis' is the standard scientific/academic collocation."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Identify the formal pairing for 'knowledge': 'It is necessary to ___ new knowledge.'",
+          "options": [
+            "get",
+            "gain",
+            "acquire",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Gain knowledge' or 'acquire knowledge' (more formal) are superior to the conversational 'get'."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a change that is very easy to notice?",
+          "options": [
+            "marked change",
+            "noticeable change",
+            "big change",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Marked change' or 'noticeable change' are formal collocations for data trends."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a theory: 'The researcher ___ a new theory.'",
+          "options": [
+            "put forward",
+            "presented",
+            "gave",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Put forward' (phrasal but academic) or 'presented' are standard for introducing theories."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "What is the natural pairing for 'component'?",
+          "options": [
+            "main component",
+            "integral component",
+            "big component",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "Something that is a necessary part is an 'integral component'."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Which adverb collocates with 'disagree' to show total opposition?",
+          "options": [
+            "strongly disagree",
+            "fundamentally disagree",
+            "completely disagree",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Fundamentally' is a particularly strong academic choice for total disagreement."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'conclusion': 'We can ___ a conclusion from this.'",
+          "options": [
+            "make",
+            "draw",
+            "get",
+            "take"
+          ],
+          "correctAnswer": "draw",
+          "explanation": "In English, we 'draw a conclusion' based on evidence."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a very high level of accuracy?",
+          "options": [
+            "pinpoint accuracy",
+            "high accuracy",
+            "correct accuracy",
+            "strong accuracy"
+          ],
+          "correctAnswer": "pinpoint accuracy",
+          "explanation": "'Pinpoint accuracy' or 'highly accurate' are strong collocations."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for 'responsibility': 'The government must ___ responsibility.'",
+          "options": [
+            "take",
+            "accept",
+            "assume",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Assume responsibility' is the most formal of the three."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Which adverb collocates with 'aware' to show someone knows a lot?",
+          "options": [
+            "fully aware",
+            "acutely aware",
+            "deeply aware",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Acutely aware' is a sophisticated way to say someone is very conscious of something."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Identify the academic pairing for 'opportunity':",
+          "options": [
+            "grab an opportunity",
+            "seize an opportunity",
+            "take an opportunity",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Seize an opportunity' is a powerful academic/literary collocation."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Which adjective completes the phrase: 'This is a ___ example of the problem.'?",
+          "options": [
+            "prime",
+            "classic",
+            "main",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Prime example' or 'classic example' are very common in essay writing."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for 'a role'?",
+          "options": [
+            "act a role",
+            "play a role",
+            "do a role",
+            "make a role"
+          ],
+          "correctAnswer": "play a role",
+          "explanation": "In social or scientific contexts, factors 'play a role' in an outcome."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'conflict':",
+          "options": [
+            "solve a conflict",
+            "resolve a conflict",
+            "fix a conflict",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Resolve a conflict' is the preferred academic term."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a topic that is very popular right now?",
+          "options": [
+            "hot topic",
+            "burning issue",
+            "pressing matter",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Hot topic' is informal. 'Burning issue' or 'pressing matter' are better for essays."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for 'measures': 'The city ___ new measures.'",
+          "options": [
+            "did",
+            "implemented",
+            "took",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "You 'take measures' or 'implement measures' (more formal)."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Which adverb collocates with 'obvious'?",
+          "options": [
+            "painfully obvious",
+            "glaringly obvious",
+            "blatantly obvious",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These are all used to emphasize that something is extremely clear, though they carry a slightly critical tone."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'consequences':",
+          "options": [
+            "face consequences",
+            "suffer consequences",
+            "bear consequences",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "All three verbs are commonly used with 'consequences'."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a very clear and detailed explanation?",
+          "options": [
+            "lucid explanation",
+            "clear explanation",
+            "good explanation",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Lucid' is a high-level academic synonym for clear and easy to understand."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which verb goes with 'an argument' in an essay?",
+          "options": [
+            "make an argument",
+            "present an argument",
+            "put forward an argument",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "All three are standard. 'Present' and 'Put forward' are the most academic."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Choose the correct pairing for 'consensus':",
+          "options": [
+            "reach a consensus",
+            "make a consensus",
+            "do a consensus",
+            "get a consensus"
+          ],
+          "correctAnswer": "reach a consensus",
+          "explanation": "When a group agrees, they 'reach a consensus'."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a 'sudden' and 'violent' change?",
+          "options": [
+            "drastic change",
+            "radical change",
+            "abrupt change",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Drastic' and 'radical' suggest a large, fundamental change."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for 'circumstances'?",
+          "options": [
+            "in certain circumstances",
+            "under certain circumstances",
+            "within certain circumstances",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "You can be 'in' or 'under' circumstances."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Identify the academic collocation for 'gap':",
+          "options": [
+            "bridge the gap",
+            "close the gap",
+            "narrow the gap",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "To 'bridge the gap' is a very common metaphor for connecting two different things."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: Exam-Ready Chunks</h3><p>In the exams, collocations are categorized by function. You need <b>Trend Collocations</b> for Task 1 and <b>Argument Collocations</b> for Task 2.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <strong>Task 1 (Trends):</strong> <em>marginal increase, dramatic rise, steady decline, fluctuated wildly.</em></li><li>🗣️ <strong>Task 2 (Arguments):</strong> <em>stark contrast, underlying cause, compelling argument, far-reaching consequences.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which collocation best describes a very small increase in a Task 1 graph?",
+          "options": [
+            "huge increase",
+            "marginal increase",
+            "strong increase",
+            "heavy increase"
+          ],
+          "correctAnswer": "marginal increase",
+          "explanation": "'Marginal' is the precise academic collocation for a very small or slight change."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Choose the best academic pairing for a Task 2 argument: 'There is a ___ that social media isolates individuals.'",
+          "options": [
+            "big idea",
+            "growing concern",
+            "large worry",
+            "strong thought"
+          ],
+          "correctAnswer": "growing concern",
+          "explanation": "'Growing concern' is a high-level academic chunk used to introduce a social problem."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which verb-adverb pair is correct for a line that goes up and down a lot?",
+          "options": [
+            "changed many",
+            "rose and fell big",
+            "fluctuated wildly",
+            "moved strongly"
+          ],
+          "correctAnswer": "fluctuated wildly",
+          "explanation": "To 'fluctuate wildly' (or 'significantly') is the standard way to describe erratic data movement."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "In Task 2, which phrase best describes a result that affects many people?",
+          "options": [
+            "far-reaching consequences",
+            "long-going results",
+            "big-distance effects",
+            "strong-ending impacts"
+          ],
+          "correctAnswer": "far-reaching consequences",
+          "explanation": "'Far-reaching consequences' is a sophisticated collocation for broad social or economic impacts."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Complete the Task 1 overview: 'The chart shows a ___ between urban and rural spending.'",
+          "options": [
+            "stark contrast",
+            "wide difference",
+            "big opposite",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Stark contrast' and 'wide difference' are both excellent for comparing two distinct data sets."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a reason that is hidden or not obvious?",
+          "options": [
+            "underneath cause",
+            "underlying cause",
+            "bottom cause",
+            "deep-down cause"
+          ],
+          "correctAnswer": "underlying cause",
+          "explanation": "'Underlying cause' is a mandatory academic collocation for analyzing root problems."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for a Task 1 peak: 'The figures ___ at 50%.'",
+          "options": [
+            "reached a top",
+            "peaked",
+            "hit a maximum",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "To 'peak at' or 'hit a maximum of' are the standard ways to describe the highest point."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Which phrase is best for introducing the main point of an essay?",
+          "options": [
+            "The main thing is...",
+            "A central argument is...",
+            "The big point is...",
+            "The first thing to say is..."
+          ],
+          "correctAnswer": "A central argument is...",
+          "explanation": "'A central argument' or 'A key consideration' elevates the register of your introduction."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Choose the best adjective for a Task 1 decline: 'There was a ___ drop in the number of students.'",
+          "options": [
+            "precipitous",
+            "steep",
+            "sharp",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Precipitous', 'steep', and 'sharp' all collocate with 'drop' to show a very fast decrease."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "In Task 2, which verb goes with 'a crucial role'?",
+          "options": [
+            "does",
+            "makes",
+            "plays",
+            "gives"
+          ],
+          "correctAnswer": "plays",
+          "explanation": "Factors or individuals 'play a crucial role' in a specific outcome."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Which adverb-adjective pair shows something is very likely?",
+          "options": [
+            "highly probable",
+            "very likely",
+            "strongly possible",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Highly probable' is a Band 7.5+ collocation for expressing certainty."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Complete the Task 1 trend: 'Sales ___ for most of the year.'",
+          "options": [
+            "stayed the same",
+            "remained steady",
+            "kept equal",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'Remained steady' or 'remained stable' are the preferred academic collocations."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a problem that is very urgent?",
+          "options": [
+            "hot problem",
+            "pressing issue",
+            "burning matter",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Pressing issue' or 'burning issue' are strong collocations for Task 2 introductions."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Identify the collocation for starting a discussion: 'It is important to ___ this issue.'",
+          "options": [
+            "talk about",
+            "address",
+            "deal with",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "To 'address an issue' or 'tackle a problem' are standard academic pairings."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Which adjective describes data that is not consistent?",
+          "options": [
+            "broken data",
+            "erratic behavior",
+            "uneven numbers",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Erratic' is a high-level academic term to describe inconsistent trends."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The government made a law to stop crime.'",
+          "options": [
+            "Change 'made' to 'enacted'",
+            "Change 'stop' to 'combat'",
+            "Both A and B improve the tone",
+            "No error"
+          ],
+          "correctAnswer": "Both A and B improve the tone",
+          "explanation": "Enacting laws and combating crime are the formal collocations required for Task 2."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a 'large' amount of evidence?",
+          "options": [
+            "heavy evidence",
+            "overwhelming evidence",
+            "big evidence",
+            "strong evidence"
+          ],
+          "correctAnswer": "overwhelming evidence",
+          "explanation": "'Overwhelming evidence' is a powerful academic chunk for proving a point."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "What is the correct verb for a Task 1 comparison: 'The two charts ___ different aspects.'?",
+          "options": [
+            "show",
+            "illustrate",
+            "depict",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "While 'show' is okay, 'illustrate' and 'depict' are more formal."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct academic pairing: 'There is a ___ that the policy will fail.'",
+          "options": [
+            "high likelihood",
+            "big chance",
+            "strong maybe",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "'High likelihood' is significantly more formal than 'big chance'."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which verb goes with 'an opinion' in a formal debate?",
+          "options": [
+            "voice an opinion",
+            "state an opinion",
+            "express an opinion",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "All three are natural; 'voice' is slightly more emphatic."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a change that is impossible to reverse?",
+          "options": [
+            "un-backable change",
+            "irreversible change",
+            "permanent change",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Irreversible' is a precise academic term for permanent changes."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Identify the collocation for a Task 1 decline: 'Numbers ___ significantly.'",
+          "options": [
+            "fell",
+            "declined",
+            "plummeted",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "'Plummeted' specifically means fell very fast and is an excellent Task 1 word."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Which phrase is best for summarizing a Task 2 paragraph?",
+          "options": [
+            "So basically...",
+            "Therefore, it is evident that...",
+            "As I said...",
+            "Like I mentioned..."
+          ],
+          "correctAnswer": "Therefore, it is evident that...",
+          "explanation": "This is a formal academic signpost for drawing a logical conclusion."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Which adjective describes a 'strong' influence?",
+          "options": [
+            "heavy influence",
+            "profound influence",
+            "big influence",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Profound influence' is a classic academic collocation."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct verb for a Task 1 series: 'The period ___ a sharp rise.'",
+          "options": [
+            "saw",
+            "witnessed",
+            "experienced",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "Using a time period as the subject (e.g., '1990 saw...') is a Band 7.0+ move."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for a Task 2 solution: 'To ___ this problem, we must...'?",
+          "options": [
+            "fix",
+            "resolve",
+            "rectify",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'Resolve' and 'rectify' are formal academic synonyms for 'fix'."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which adverb collocates with 'important' to show extreme importance?",
+          "options": [
+            "crucially important",
+            "critically important",
+            "vitally important",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These intensifiers are far superior to the basic 'very' in an essay."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The price took a huge rise in January.'",
+          "options": [
+            "Change 'took' to 'experienced'",
+            "Change 'huge' to 'dramatic'",
+            "Both A and B improve the score",
+            "No error"
+          ],
+          "correctAnswer": "Both A and B improve the score",
+          "explanation": "'Experienced a dramatic rise' is a textbook Band 7.0+ Task 1 sentence."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Which phrase is best for a Task 2 conclusion?",
+          "options": [
+            "To sum up everything...",
+            "In conclusion...",
+            "To wrap it up...",
+            "Finally..."
+          ],
+          "correctAnswer": "In conclusion...",
+          "explanation": "'In conclusion' is the standard, safe, and formal choice for an academic essay."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Why are collocations important for your score?",
+          "options": [
+            "They make you sound like a native speaker.",
+            "They increase your Lexical Resource score.",
+            "They help you write faster.",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Collocations demonstrate that you know how words work together in context, which is vital for fluency and precision."
+        }
+      ]
+    }
+  ]
+}

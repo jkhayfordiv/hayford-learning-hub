@@ -3,7 +3,8 @@ const router = express.Router();
 const { pool } = require('../db');
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_hayford_key_2026';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) { console.error('FATAL: JWT_SECRET is not defined'); process.exit(1); }
 
 // Middleware to verify super_admin or admin
 const verifyAdminOrSuperAdmin = (req, res, next) => {
@@ -59,12 +60,19 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           u.role, 
           u.institution_id,
           i.name as institution_name,
-          u.class_id,
-          c.class_name,
-          u.created_at
+          u.created_at,
+          COALESCE(
+            json_agg(
+              json_build_object('class_id', c.id, 'class_name', c.class_name)
+              ORDER BY ce.joined_at DESC
+            ) FILTER (WHERE c.id IS NOT NULL),
+            '[]'::json
+          ) as classes
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
-        LEFT JOIN classes c ON u.class_id = c.id
+        LEFT JOIN class_enrollments ce ON u.id = ce.user_id
+        LEFT JOIN classes c ON ce.class_id = c.id
+        GROUP BY u.id, i.name
         ORDER BY u.id ASC
       `;
       params = [];
@@ -79,13 +87,20 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           u.role, 
           u.institution_id,
           i.name as institution_name,
-          u.class_id,
-          c.class_name,
-          u.created_at
+          u.created_at,
+          COALESCE(
+            json_agg(
+              json_build_object('class_id', c.id, 'class_name', c.class_name)
+              ORDER BY ce.joined_at DESC
+            ) FILTER (WHERE c.id IS NOT NULL),
+            '[]'::json
+          ) as classes
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
-        LEFT JOIN classes c ON u.class_id = c.id
+        LEFT JOIN class_enrollments ce ON u.id = ce.user_id
+        LEFT JOIN classes c ON ce.class_id = c.id
         WHERE u.institution_id = $1
+        GROUP BY u.id, i.name
         ORDER BY u.id ASC
       `;
       params = [actor_institution_id];
@@ -95,21 +110,51 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
     }
     
     const [users] = await connection.query(query, params);
+    
+    // Add backwards compatibility fields (class_id and class_name from first enrollment)
+    const usersWithCompat = users.map(user => ({
+      ...user,
+      class_id: user.classes && user.classes.length > 0 ? user.classes[0].class_id : null,
+      class_name: user.classes && user.classes.length > 0 ? user.classes[0].class_name : null
+    }));
+    
     connection.release();
-    res.json(users);
+    res.json(usersWithCompat);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to fetch users' });
   }
 });
 
-// PATCH update user (role, institution_id, class_id) - Admin and SuperAdmin
+// PATCH update user (role, institution_id) - Admin and SuperAdmin
+// Note: Class enrollments are managed via /api/users/enroll-class and /api/users/unenroll-class
 router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   const { id } = req.params;
-  const { role, institution_id, class_id } = req.body;
+  const { role, institution_id } = req.body;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
 
   try {
     const connection = await pool.getConnection();
+    
+    // TENANT ISOLATION: Verify user exists and belongs to admin's institution
+    if (actor_role === 'admin') {
+      const [userCheck] = await connection.query(
+        'SELECT id, institution_id FROM users WHERE id = $1',
+        [id]
+      );
+      
+      if (userCheck.length === 0) {
+        connection.release();
+        return res.status(404).json({ error: 'User not found' });
+      }
+      
+      // Admin can only update users in their institution
+      if (userCheck[0].institution_id !== actor_institution_id) {
+        connection.release();
+        return res.status(403).json({ error: 'Access denied: User belongs to a different institution' });
+      }
+    }
     
     // Build dynamic update query
     const updates = [];
@@ -124,10 +169,6 @@ router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
       updates.push(`institution_id = $${paramIndex++}`);
       values.push(institution_id || null);
     }
-    if (class_id !== undefined) {
-      updates.push(`class_id = $${paramIndex++}`);
-      values.push(class_id || null);
-    }
 
     if (updates.length === 0) {
       connection.release();
@@ -135,10 +176,25 @@ router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
     }
 
     values.push(id);
-    const query = `UPDATE users SET ${updates.join(', ')} WHERE id = $${paramIndex}`;
     
-    await connection.query(query, values);
+    // TENANT ISOLATION: Add institution_id constraint for admins
+    let whereClause = `WHERE id = $${paramIndex}`;
+    if (actor_role === 'admin') {
+      paramIndex++;
+      whereClause += ` AND institution_id = $${paramIndex}`;
+      values.push(actor_institution_id);
+    }
+    
+    const query = `UPDATE users SET ${updates.join(', ')} ${whereClause}`;
+    
+    const [result] = await connection.query(query, values);
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
+    
     connection.release();
+    
+    if (updated === 0) {
+      return res.status(404).json({ error: 'User not found or access denied' });
+    }
     
     res.json({ message: 'User updated successfully' });
   } catch (err) {
@@ -150,23 +206,105 @@ router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
 // DELETE user permanently - Admin and SuperAdmin
 router.delete('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   const { id } = req.params;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
 
   try {
     const connection = await pool.getConnection();
     
-    // Delete user's scores, assignments, and grammar progress first (foreign key constraints)
-    await connection.query('DELETE FROM student_scores WHERE user_id = $1', [id]);
-    await connection.query('DELETE FROM assigned_tasks WHERE user_id = $1', [id]);
-    await connection.query('DELETE FROM grammar_progress WHERE user_id = $1', [id]);
+    // 1. Get user role and basic info with institution check
+    const [userRows] = await connection.query(
+      'SELECT role, first_name, last_name, institution_id FROM users WHERE id = $1', 
+      [id]
+    );
     
-    // Delete the user
-    const [result] = await connection.query('DELETE FROM users WHERE id = $1', [id]);
+    if (userRows.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    const userRole = userRows[0].role;
+    const userInstitutionId = userRows[0].institution_id;
+    
+    // TENANT ISOLATION: Admin can only delete users in their institution
+    if (actor_role === 'admin' && userInstitutionId !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: User belongs to a different institution' });
+    }
+
+    // 2. Special Case: If Teacher, reassign classes to a SuperAdmin
+    if (userRole === 'teacher') {
+      // Find the first available SuperAdmin (excluding the one being deleted, just in case)
+      const [superAdmins] = await connection.query(
+        'SELECT id FROM users WHERE role = $1 AND id != $2 LIMIT 1', 
+        ['super_admin', id]
+      );
+      
+      const fallbackAdminId = superAdmins.length > 0 ? superAdmins[0].id : null;
+      
+      if (fallbackAdminId) {
+        await connection.query('UPDATE classes SET teacher_id = $1 WHERE teacher_id = $2', [fallbackAdminId, id]);
+        console.log(`Reassigned classes from teacher ${id} to SuperAdmin ${fallbackAdminId}`);
+      } else {
+        // If no other SuperAdmin exists (highly unlikely), set to null to avoid FK errors
+        await connection.query('UPDATE classes SET teacher_id = NULL WHERE teacher_id = $1', [id]);
+      }
+    }
+
+    // 3. Deep Clean Deletion Sequence (Shadow Tables first to respect potential FKs)
+    // Order: user_logs -> student_attendance -> student_answers -> grammar_progress -> student_scores -> assigned_tasks -> submissions
+    const tablesToClean = [
+      { name: 'user_logs', column: 'user_id' },
+      { name: 'student_attendance', column: 'student_id' },
+      { name: 'student_answers', column: 'student_id' },
+      { name: 'grammar_progress', column: 'student_id' },
+      { name: 'student_scores', column: 'student_id' },
+      { name: 'assigned_tasks', column: 'student_id' },
+      { name: 'submissions', column: 'student_id' }
+    ];
+
+    for (const table of tablesToClean) {
+      try {
+        await connection.query(`DELETE FROM ${table.name} WHERE ${table.column} = $1`, [id]);
+      } catch (err) {
+        // Table might not exist in all environments, log but continue
+        console.warn(`Cleanup: Could not delete from ${table.name} (it might not exist).`);
+      }
+    }
+    
+    // 4. Finally delete the user
+    await connection.query('DELETE FROM users WHERE id = $1', [id]);
+    
     connection.release();
-    
-    res.json({ message: 'User deleted successfully' });
+    res.json({ 
+      message: 'User deleted and records cleaned successfully',
+      details: userRole === 'teacher' ? 'Classes reassigned to SuperAdmin.' : 'All student records purged.'
+    });
+  } catch (err) {
+    console.error('Deep-Clean Deletion Error:', err);
+    res.status(500).json({ error: 'Failed to delete user and clean records' });
+  }
+});
+
+// GET all institutions (Admin and SuperAdmin)
+router.get('/institutions', verifyAdminOrSuperAdmin, async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    const [institutions] = await connection.query(`
+      SELECT 
+        id,
+        name,
+        address,
+        contact_email,
+        created_at
+      FROM institutions
+      ORDER BY id ASC
+    `);
+    connection.release();
+    res.json(institutions);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to delete user' });
+    res.status(500).json({ error: 'Failed to fetch institutions' });
   }
 });
 

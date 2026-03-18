@@ -1,0 +1,1594 @@
+{
+  "topicId": "16_transitional_devices",
+  "topicName": "Transitional Devices",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Four Main Signals</h3><p>Transitions tell the reader the relationship between two ideas. In academic English, we categorize them by their <b>function</b>. Most academic transitions are followed by a <b>comma</b>.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Function</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Academic Transitions</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Addition (+)</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Furthermore, Moreover, Additionally</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Moreover,</b> it is cost-effective.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Contrast (≠)</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">However, Nevertheless, Conversely</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>However,</b> there are risks.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Result (→)</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">Consequently, Therefore, As a result</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Therefore,</b> the plan failed.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><strong>Example (🔍)</strong></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">For instance, To illustrate</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>For instance,</b> in Japan...</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Which transition is used to add more information?",
+          "options": [
+            "However",
+            "Furthermore",
+            "Consequently",
+            "Otherwise"
+          ],
+          "correctAnswer": "Furthermore",
+          "explanation": "'Furthermore' is used to provide additional supporting information for a previous point."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Choose the correct transition for a result: 'The price of oil rose. ___ , transportation costs increased.'",
+          "options": [
+            "Nevertheless",
+            "In addition",
+            "Consequently",
+            "On the other hand"
+          ],
+          "correctAnswer": "Consequently",
+          "explanation": "'Consequently' shows that the second sentence is a direct result of the first sentence."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Which word indicates a contrast or opposite idea?",
+          "options": [
+            "Moreover",
+            "However",
+            "Therefore",
+            "Similarly"
+          ],
+          "correctAnswer": "However",
+          "explanation": "'However' is the standard transition for introducing a contrasting or conflicting idea."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'Many students struggle with grammar. ___ , they often make mistakes with articles.'",
+          "options": [
+            "For example",
+            "Nevertheless",
+            "Otherwise",
+            "Secondly"
+          ],
+          "correctAnswer": "For example",
+          "explanation": "'For example' (or 'For instance') introduces a specific case that illustrates a general point."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which transition is the formal equivalent of 'Also'?",
+          "options": [
+            "But",
+            "Moreover",
+            "So",
+            "Yet"
+          ],
+          "correctAnswer": "Moreover",
+          "explanation": "'Moreover' or 'Additionally' are the academic alternatives to the conversational 'Also'."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Identify the transition used for a conclusion:",
+          "options": [
+            "Therefore",
+            "Furthermore",
+            "In contrast",
+            "Notably"
+          ],
+          "correctAnswer": "Therefore",
+          "explanation": "'Therefore' or 'Thus' are used to signal a logical conclusion or result."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct contrast transition: 'The technology is advanced. ___ , it is very expensive.'",
+          "options": [
+            "Additionally",
+            "Nevertheless",
+            "Consequently",
+            "In conclusion"
+          ],
+          "correctAnswer": "Nevertheless",
+          "explanation": "'Nevertheless' shows contrast—despite being advanced, it has the negative trait of being expensive."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Which of these is used to show a similarity?",
+          "options": [
+            "Conversely",
+            "Similarly",
+            "Therefore",
+            "Instead"
+          ],
+          "correctAnswer": "Similarly",
+          "explanation": "'Similarly' (or 'Likewise') compares two things that share common characteristics."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "What is the function of 'Consequently'?",
+          "options": [
+            "To add an idea",
+            "To show a result",
+            "To give an example",
+            "To show contrast"
+          ],
+          "correctAnswer": "To show a result",
+          "explanation": "'Consequently' is a formal transition for 'So' or 'As a result'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which transition is the formal equivalent of 'But'?",
+          "options": [
+            "However",
+            "In addition",
+            "As a result",
+            "For instance"
+          ],
+          "correctAnswer": "However",
+          "explanation": "In academic writing, 'However' replaces the coordinating conjunction 'But' to start a sentence."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Complete the sequence: 'First, we must identify the problem. ___ , we need to find a solution.'",
+          "options": [
+            "Thirdly",
+            "Secondly",
+            "However",
+            "In contrast"
+          ],
+          "correctAnswer": "Secondly",
+          "explanation": "'Secondly' is part of a numbering or sequencing transition group."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Which of these is a synonym for 'For example'?",
+          "options": [
+            "To illustrate",
+            "In contrast",
+            "Moreover",
+            "Ultimately"
+          ],
+          "correctAnswer": "To illustrate",
+          "explanation": "'To illustrate' and 'For instance' are standard academic synonyms for 'For example'."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Choose the transition for an additional point: 'Walking is good for your heart. ___ , it reduces stress.'",
+          "options": [
+            "Additionally",
+            "However",
+            "Consequently",
+            "Instead"
+          ],
+          "correctAnswer": "Additionally",
+          "explanation": "'Additionally' signals that the writer is providing another benefit of the same activity."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Identify the transition for a summary:",
+          "options": [
+            "In summary",
+            "For instance",
+            "Furthermore",
+            "Nevertheless"
+          ],
+          "correctAnswer": "In summary",
+          "explanation": "'In summary', 'In conclusion', or 'To conclude' signal the end of a text or argument."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Which word indicates the opposite of a previous statement?",
+          "options": [
+            "Conversely",
+            "Moreover",
+            "Therefore",
+            "Notably"
+          ],
+          "correctAnswer": "Conversely",
+          "explanation": "'Conversely' is used to introduce an idea that is the inverse or opposite of what was just said."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "What is the function of 'Nonetheless'?",
+          "options": [
+            "Contrast",
+            "Addition",
+            "Result",
+            "Example"
+          ],
+          "correctAnswer": "Contrast",
+          "explanation": "'Nonetheless' and 'Nevertheless' are formal contrast markers, meaning 'despite this'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Choose the correct result transition: 'She studied hard. ___ , she passed the exam.'",
+          "options": [
+            "As a result",
+            "In contrast",
+            "Furthermore",
+            "For instance"
+          ],
+          "correctAnswer": "As a result",
+          "explanation": "'As a result' shows the outcome of her hard work."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Which transition is used to emphasize a point?",
+          "options": [
+            "Notably",
+            "However",
+            "Consequently",
+            "Otherwise"
+          ],
+          "correctAnswer": "Notably",
+          "explanation": "'Notably', 'Importantly', or 'In particular' are used to highlight significant information."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The experiment was risky. ___ , it provided valuable data.'",
+          "options": [
+            "Yet",
+            "In addition",
+            "Therefore",
+            "Moreover"
+          ],
+          "correctAnswer": "Yet",
+          "explanation": "While 'Yet' is a coordinating conjunction, it is often used like a transition to show contrast."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Which of these shows a causal link?",
+          "options": [
+            "Thus",
+            "Moreover",
+            "Similarly",
+            "Alternatively"
+          ],
+          "correctAnswer": "Thus",
+          "explanation": "'Thus' is a formal alternative to 'Therefore' or 'So'."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Identify the transition used to offer a different choice:",
+          "options": [
+            "Alternatively",
+            "Furthermore",
+            "Consequently",
+            "Notably"
+          ],
+          "correctAnswer": "Alternatively",
+          "explanation": "'Alternatively' is used when presenting a second option or possibility."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Which of these is an example of an addition marker?",
+          "options": [
+            "In addition",
+            "On the other hand",
+            "As a consequence",
+            "For instance"
+          ],
+          "correctAnswer": "In addition",
+          "explanation": "'In addition' adds more information to the current topic."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct contrast transition: 'He is very talented. ___ , he is quite lazy.'",
+          "options": [
+            "On the other hand",
+            "Furthermore",
+            "Therefore",
+            "In summary"
+          ],
+          "correctAnswer": "On the other hand",
+          "explanation": "'On the other hand' is a very common phrase for contrasting two different traits or viewpoints."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "What is the function of 'In light of this'?",
+          "options": [
+            "Addition",
+            "Result/Explanation",
+            "Contrast",
+            "Example"
+          ],
+          "correctAnswer": "Result/Explanation",
+          "explanation": "'In light of this' means 'because of this new information' and introduces a logical step."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Identify the transition used for 'lastly' in a sequence:",
+          "options": [
+            "Ultimately",
+            "Moreover",
+            "However",
+            "Notably"
+          ],
+          "correctAnswer": "Ultimately",
+          "explanation": "While 'Ultimately' often means 'In the end', it can serve as a final point in an argument."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Which transition word is usually followed by a comma?",
+          "options": [
+            "And",
+            "But",
+            "Furthermore",
+            "Or"
+          ],
+          "correctAnswer": "Furthermore",
+          "explanation": "Conjunctive adverbs (Furthermore, However, etc.) are followed by a comma when they start a sentence."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Complete the contrast: 'The software is fast. ___ , it crashes frequently.'",
+          "options": [
+            "However",
+            "Additionally",
+            "Therefore",
+            "Similarly"
+          ],
+          "correctAnswer": "However",
+          "explanation": "'However' is required here because 'fast' and 'crashes' are contrasting ideas."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which word is a more formal version of 'So'?",
+          "options": [
+            "Therefore",
+            "Also",
+            "But",
+            "Like"
+          ],
+          "correctAnswer": "Therefore",
+          "explanation": "'Therefore' is the academic replacement for the conversational 'So'."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Identify the transition for adding a final, important point:",
+          "options": [
+            "Moreover",
+            "Finally",
+            "Consequently",
+            "For example"
+          ],
+          "correctAnswer": "Finally",
+          "explanation": "'Finally' marks the last item in a list or sequence."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Which of these shows the most formal contrast?",
+          "options": [
+            "But",
+            "In contrast",
+            "Conversely",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'In contrast' and 'Conversely' are high-level academic markers, whereas 'But' is a simple conjunction."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps (The Punctuation Pitfall)",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The Semicolon Secret</h3><p>Transitions like <b>However</b> and <b>Therefore</b> are not 'glue' like <i>and</i> or <i>but</i>. You cannot join two sentences with just a comma. You must use a period or a semicolon.</p><ul style=\"list-style-type: none; padding-left: 0; font-size: 1.1em;\"><li style=\"margin-bottom: 8px;\">❌ <em>The car is old, <b>however</b> it is reliable.</em> (Comma Splice!)</li><li>✅ <em>The car is old<b>. However,</b> it is reliable.</em></li><li>✅ <em>The car is old<b>; however,</b> it is reliable.</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Identify the punctuation error: 'The results were inconclusive, therefore, the study was repeated.'",
+          "options": [
+            "Change the first comma to a semicolon",
+            "Remove the comma after 'therefore'",
+            "Change 'therefore' to 'but'",
+            "No error"
+          ],
+          "correctAnswer": "Change the first comma to a semicolon",
+          "explanation": "'Therefore' is a conjunctive adverb. It cannot join two independent clauses with only a comma. This is a comma splice."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Which sentence is punctuated correctly?",
+          "options": [
+            "Online classes are flexible, however, they require discipline.",
+            "Online classes are flexible; however, they require discipline.",
+            "Online classes are flexible however they require discipline.",
+            "Online classes are flexible, however they require discipline."
+          ],
+          "correctAnswer": "Online classes are flexible; however, they require discipline.",
+          "explanation": "The semicolon joins the two sentences, and the comma after 'however' follows standard academic rules."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'The store was closed, consequently I went home.'",
+          "options": [
+            "The store was closed; consequently, I went home.",
+            "The store was closed consequently, I went home.",
+            "The store was closed. consequently I went home.",
+            "The store was closed, and consequently, I went home."
+          ],
+          "correctAnswer": "The store was closed; consequently, I went home.",
+          "explanation": "Adding the semicolon and the comma after the transition correctly separates the two independent ideas."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'Run-on' sentence error?",
+          "options": [
+            "It rained moreover it was cold.",
+            "It rained; moreover, it was cold.",
+            "It rained. Moreover, it was cold.",
+            "It rained, and moreover, it was cold."
+          ],
+          "correctAnswer": "It rained moreover it was cold.",
+          "explanation": "Failing to use any punctuation or a conjunction between two sentences is a 'run-on' or 'fused' sentence error."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Identify the correct use of 'Furthermore':",
+          "options": [
+            "The city is beautiful, furthermore, it is safe.",
+            "The city is beautiful. Furthermore, it is safe.",
+            "The city is beautiful furthermore it is safe.",
+            "Furthermore the city is beautiful and safe."
+          ],
+          "correctAnswer": "The city is beautiful. Furthermore, it is safe.",
+          "explanation": "Starting a new sentence with 'Furthermore,' followed by a comma is the safest and clearest academic style."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "What is wrong with this sentence? 'I like coffee, but, I don't like tea.'",
+          "options": [
+            "The comma after 'but' is unnecessary.",
+            "The comma before 'but' is unnecessary.",
+            "It should be a semicolon.",
+            "No error"
+          ],
+          "correctAnswer": "The comma after 'but' is unnecessary.",
+          "explanation": "'But' is a coordinating conjunction, not a transition. It should have a comma before it, but never after it."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which word can replace 'But' without changing the punctuation?",
+          "options": [
+            "However",
+            "Yet",
+            "Nevertheless",
+            "Moreover"
+          ],
+          "correctAnswer": "Yet",
+          "explanation": "'Yet' is a coordinating conjunction (FANBOYS) like 'but'. It can use the same [comma + word] structure."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The report is due tomorrow; Nevertheless, I haven't started yet.'",
+          "options": [
+            "The 'N' in 'Nevertheless' should be lowercase.",
+            "The semicolon should be a comma.",
+            "The comma after 'Nevertheless' should be removed.",
+            "No error"
+          ],
+          "correctAnswer": "The 'N' in 'Nevertheless' should be lowercase.",
+          "explanation": "When using a semicolon, you are still in the same sentence. You do not capitalize the next word unless it is a proper noun."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Select the correct punctuation for a result:",
+          "options": [
+            "He was late, as a result, he missed the meeting.",
+            "He was late; as a result, he missed the meeting.",
+            "He was late. as a result he missed the meeting.",
+            "He was late, as a result he missed the meeting."
+          ],
+          "correctAnswer": "He was late; as a result, he missed the meeting.",
+          "explanation": "'As a result' acts as a conjunctive phrase. It requires the semicolon/comma boundary."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Which of these words does NOT require a comma after it when starting a sentence?",
+          "options": [
+            "Therefore",
+            "Thus",
+            "So",
+            "Consequently"
+          ],
+          "correctAnswer": "So",
+          "explanation": "'So' is a coordinating conjunction. In formal writing, we avoid starting sentences with it, but it typically doesn't take a comma like 'Therefore' does."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Fix the comma splice: 'The team won the match, moreover, they broke the record.'",
+          "options": [
+            "The team won the match; moreover, they broke the record.",
+            "The team won the match, and moreover they broke the record.",
+            "The team won the match. Moreover, they broke the record.",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "Both the semicolon and the period are correct ways to separate these two independent thoughts."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Identify the punctuation trap: 'I don't like meat, however, I love seafood.'",
+          "options": [
+            "The 'however' needs a semicolon before it.",
+            "The 'however' needs to be 'but'.",
+            "The comma after 'however' is wrong.",
+            "Both A and B are possible fixes."
+          ],
+          "correctAnswer": "Both A and B are possible fixes.",
+          "explanation": "You can use a semicolon with 'however' or simply use 'but' with a comma to fix the error."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Which sentence follows the 'Semicolon + Transition + Comma' pattern?",
+          "options": [
+            "Tourism brings money; however, it also brings pollution.",
+            "Tourism brings money, however; it also brings pollution.",
+            "Tourism brings money; however it also brings pollution.",
+            "Tourism brings money however, it also brings pollution."
+          ],
+          "correctAnswer": "Tourism brings money; however, it also brings pollution.",
+          "explanation": "This is the 'Golden Rule' for mid-sentence academic transitions."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "What happens if you use 'And' after a semicolon?",
+          "options": [
+            "It is a grammar error.",
+            "It is usually unnecessary; use a comma instead.",
+            "It is perfectly fine.",
+            "It must be capitalized."
+          ],
+          "correctAnswer": "It is usually unnecessary; use a comma instead.",
+          "explanation": "Coordinating conjunctions (and, but, so) use commas. Semicolons are for transitions (however, therefore)."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The experiment was successful; therefore the hypothesis was confirmed.'",
+          "options": [
+            "Add a comma after 'therefore'",
+            "Change the semicolon to a comma",
+            "Lowercase 'therefore'",
+            "No error"
+          ],
+          "correctAnswer": "Add a comma after 'therefore'",
+          "explanation": "In academic writing, conjunctive adverbs like 'therefore' are almost always followed by a comma."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which transition word is punctuated correctly?",
+          "options": [
+            "Conversely, some people prefer city life.",
+            "Conversely some people prefer city life.",
+            "Conversely; some people prefer city life.",
+            "Conversely. some people prefer city life."
+          ],
+          "correctAnswer": "Conversely, some people prefer city life.",
+          "explanation": "An introductory transition at the start of a sentence must be followed by a comma."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He forgot his umbrella; as a result he got wet.'",
+          "options": [
+            "Add a comma after 'result'",
+            "Change the semicolon to a period",
+            "Add a comma before 'as'",
+            "No error"
+          ],
+          "correctAnswer": "Add a comma after 'result'",
+          "explanation": "Just like 'Therefore', the phrase 'as a result' needs a following comma when used as a transition."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Choose the best fix: 'Inflation is rising, nevertheless, consumers continue to spend.'",
+          "options": [
+            "Inflation is rising; nevertheless, consumers continue to spend.",
+            "Inflation is rising, but nevertheless, consumers continue to spend.",
+            "Inflation is rising. Nevertheless, consumers continue to spend.",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "You need a strong boundary (period or semicolon) before 'nevertheless'."
+        },
+        {
+          "id": "q2_19",
+          "type": "multiple_choice",
+          "question": "Why is 'The team practiced hard, so, they won' wrong?",
+          "options": [
+            "The comma after 'so' is wrong.",
+            "The comma before 'so' is wrong.",
+            "It needs a semicolon.",
+            "It is a fragment."
+          ],
+          "correctAnswer": "The comma after 'so' is wrong.",
+          "explanation": "Again, 'so' is a conjunction. It doesn't take a comma after it like 'Therefore' does."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Which of these is a correct academic sequence?",
+          "options": [
+            "Firstly, we must... Secondly, we must...",
+            "First, we must... Second, we must...",
+            "Firstly. we must... Secondly. we must...",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "Both 'First/Second' and 'Firstly/Secondly' are acceptable as long as they are followed by commas."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Identify the punctuation error: 'To illustrate; the graph shows a decline in 2010.'",
+          "options": [
+            "Change the semicolon to a comma",
+            "Change 'To illustrate' to 'For example'",
+            "Add a comma after 'graph'",
+            "No error"
+          ],
+          "correctAnswer": "Change the semicolon to a comma",
+          "explanation": "Introductory phrases at the start of a sentence use commas, not semicolons."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Correct the error: 'The battery is dead, hence, the car won't start.'",
+          "options": [
+            "The battery is dead; hence, the car won't start.",
+            "The battery is dead. Hence, the car won't start.",
+            "The battery is dead, and hence the car won't start.",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "'Hence' is a transition. It needs a semicolon, a period, or an 'and' to avoid a comma splice."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Which sentence is perfectly balanced for Task 2?",
+          "options": [
+            "Education is free; on the other hand, books are expensive.",
+            "Education is free, on the other hand, books are expensive.",
+            "Education is free. On the other hand, books are expensive.",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "Using a strong boundary for contrast phrases is essential for the Cohesion score."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'Moreover, the data is clear.'",
+          "options": [
+            "The comma after 'Moreover' is required.",
+            "The comma after 'Moreover' is optional.",
+            "It should be 'Moreover; the data...'",
+            "No error"
+          ],
+          "correctAnswer": "The comma after 'Moreover' is required.",
+          "explanation": "Leaving out the comma after an introductory academic transition is a punctuation error."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Fix the error: 'I was tired, therefore I slept.'",
+          "options": [
+            "I was tired; therefore, I slept.",
+            "I was tired, so I slept.",
+            "I was tired. Therefore, I slept.",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "All three correctly separate the two thoughts using proper conjunction or transition rules."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Which transition is NOT a conjunctive adverb?",
+          "options": [
+            "However",
+            "And",
+            "Furthermore",
+            "Consequently"
+          ],
+          "correctAnswer": "And",
+          "explanation": "'And' is a coordinating conjunction. It follows different punctuation rules (no comma after it)."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Select the correct punctuation for 'Otherwise':",
+          "options": [
+            "Study hard, otherwise, you will fail.",
+            "Study hard; otherwise, you will fail.",
+            "Study hard otherwise you will fail.",
+            "Study hard. Otherwise you will fail."
+          ],
+          "correctAnswer": "Study hard; otherwise, you will fail.",
+          "explanation": "Transition word 'otherwise' requires the semicolon/comma structure."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The winter was long, but, it was beautiful.'",
+          "options": [
+            "Remove the comma after 'but'",
+            "Remove the comma before 'but'",
+            "Use a semicolon",
+            "No error"
+          ],
+          "correctAnswer": "Remove the comma after 'but'",
+          "explanation": "Again, coordinating conjunctions like 'but' do not take a comma after them."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "What is the rule for 'Thus'?",
+          "options": [
+            "It is usually followed by a comma.",
+            "It can sometimes be used without a comma in very formal writing.",
+            "It requires a semicolon before it if used mid-sentence.",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "'Thus' is a flexible transition, but generally follows the same rules as 'Therefore'."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Which of these is the most common error for Japanese learners?",
+          "options": [
+            "Comma splices (S1, however, S2)",
+            "Forgetting the comma after 'Moreover'",
+            "Using 'but' to start every sentence",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These are the three most frequent mistakes regarding transitional devices in ESL essays."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Application & The Variety Shift",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: Precision over Repetition</h3><p>To reach Band 7.0+, you must stop using 'And', 'But', and 'So' to start sentences. Replace them with specific academic signals that show the <i>exact</i> relationship between your ideas.</p><ul style=\"list-style-type: none; padding-left: 0;\"><li style=\"margin-bottom: 8px;\">➕ <strong>Instead of 'Also':</strong> Use <em>Furthermore, Moreover, In addition to this</em></li><li>🔄 <strong>Instead of 'But':</strong> Use <em>Nevertheless, Nonetheless, Conversely, By contrast</em></li><li>🎯 <strong>Instead of 'So':</strong> Use <em>Consequently, Therefore, Thus, Accordingly</em></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Improve this sentence: 'And, the new policy will create more jobs.'",
+          "options": [
+            "Also, the new policy...",
+            "Furthermore, the new policy...",
+            "But, the new policy...",
+            "So, the new policy..."
+          ],
+          "correctAnswer": "Furthermore, the new policy...",
+          "explanation": "'Furthermore' is a high-level academic addition marker that replaces the informal 'And' at the start of a sentence."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Which transition is most precise for a direct opposite? 'City life is fast. ___ , country life is slow.'",
+          "options": [
+            "Additionally",
+            "Consequently",
+            "Conversely",
+            "Moreover"
+          ],
+          "correctAnswer": "Conversely",
+          "explanation": "'Conversely' is used when two ideas are the exact opposite of each other."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Replace the weak transition 'So' in this context: 'The data was lost. ___ , the experiment had to be canceled.'",
+          "options": [
+            "But",
+            "Thus",
+            "In contrast",
+            "Notably"
+          ],
+          "correctAnswer": "Thus",
+          "explanation": "'Thus' or 'Therefore' are the formal academic results of a previous situation."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Which of these is the most sophisticated way to add a final point?",
+          "options": [
+            "Lastly",
+            "Finally",
+            "Ultimately",
+            "And finally"
+          ],
+          "correctAnswer": "Ultimately",
+          "explanation": "'Ultimately' suggests that after considering everything, this is the final, most important point."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the best contrast marker: 'The results were promising. ___ , many questions remain unanswered.'",
+          "options": [
+            "Moreover",
+            "Nevertheless",
+            "Similarly",
+            "Therefore"
+          ],
+          "correctAnswer": "Nevertheless",
+          "explanation": "'Nevertheless' means 'despite what was just said', which perfectly fits the 'promising results vs. unanswered questions' contrast."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The population is aging, also, the birth rate is falling.'",
+          "options": [
+            "Change 'also' to 'moreover' and use a semicolon",
+            "Change 'also' to 'but'",
+            "Remove the commas",
+            "No error"
+          ],
+          "correctAnswer": "Change 'also' to 'moreover' and use a semicolon",
+          "explanation": "'Also' is informal and, when used as a transition, creates a comma splice. 'Moreover' with a semicolon is the academic standard."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Which transition best introduces a 'concession' (admitting a small truth before your main point)?",
+          "options": [
+            "Admittedly",
+            "Furthermore",
+            "Consequently",
+            "In addition"
+          ],
+          "correctAnswer": "Admittedly",
+          "explanation": "'Admittedly' signals that you are acknowledging an opposing fact before moving back to your argument."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Improve 'But' in this argument: 'The plan is expensive. ___ , it is the only way to save the forest.'",
+          "options": [
+            "In addition",
+            "Nonetheless",
+            "Similarly",
+            "Therefore"
+          ],
+          "correctAnswer": "Nonetheless",
+          "explanation": "'Nonetheless' is a sophisticated synonym for 'However' or 'But' in a formal context."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Choose the most precise addition marker for a 'more important' point:",
+          "options": [
+            "Also",
+            "Moreover",
+            "Furthermore",
+            "What is more"
+          ],
+          "correctAnswer": "Moreover",
+          "explanation": "In many academic styles, 'Moreover' is used when the second point is even more important or convincing than the first."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which transition signals a logical 'follow-up' action? 'The budget was approved. ___ , hiring began immediately.'",
+          "options": [
+            "Conversely",
+            "Accordingly",
+            "Nevertheless",
+            "For instance"
+          ],
+          "correctAnswer": "Accordingly",
+          "explanation": "'Accordingly' means 'in a way that is appropriate to the circumstances'—hiring followed the budget approval logically."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Identify the best way to introduce an alternative view:",
+          "options": [
+            "In contrast",
+            "On the other hand",
+            "Alternatively",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "Depending on the sentence structure, all three are excellent for showing different perspectives."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Replace the weak 'So' in Task 1: 'Sales rose in January. ___ , revenue increased by 10%.'",
+          "options": [
+            "Subsequently",
+            "However",
+            "In addition",
+            "Notably"
+          ],
+          "correctAnswer": "Subsequently",
+          "explanation": "'Subsequently' is an excellent Task 1 word to show one event following another in time."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Which of these shows the strongest emphasis?",
+          "options": [
+            "Notably",
+            "Significantly",
+            "In particular",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These are all 'Signaling' transitions used to draw the examiner's eye to your most important evidence."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Fix the repetitive transition: 'I like apples. Also, I like oranges. Also, I like bananas.'",
+          "options": [
+            "Use 'Furthermore' for the second 'Also' and 'Additionally' for the third.",
+            "Use 'But' and 'So'.",
+            "Remove all transitions.",
+            "Combine them into a list without transitions."
+          ],
+          "correctAnswer": "Use 'Furthermore' for the second 'Also' and 'Additionally' for the third.",
+          "explanation": "Varying your transition words is key to the Lexical Resource and Cohesion scores."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Which transition shows a 'contradiction'? 'He says he is poor. ___ , he owns three luxury cars.'",
+          "options": [
+            "Moreover",
+            "In addition",
+            "Yet",
+            "Similarly"
+          ],
+          "correctAnswer": "Yet",
+          "explanation": "'Yet' (or 'However') is the best way to show that the second fact contradicts the first."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Identify the formal way to say 'This means that':",
+          "options": [
+            "It follows that",
+            "So",
+            "Which means",
+            "That is why"
+          ],
+          "correctAnswer": "It follows that",
+          "explanation": "'It follows that' is a high-level academic signal for logical deduction."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Which transition is best for 'limiting' a previous statement? 'The law is good. ___ , it only applies to large companies.'",
+          "options": [
+            "However",
+            "Furthermore",
+            "Therefore",
+            "Notably"
+          ],
+          "correctAnswer": "However",
+          "explanation": "'However' is used here to show the limitation or exception to the general rule."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Choose the best result transition for a Task 2 conclusion:",
+          "options": [
+            "Thus",
+            "So",
+            "And so",
+            "Then"
+          ],
+          "correctAnswer": "Thus",
+          "explanation": "'Thus' is the most formal way to wrap up a logical point in a conclusion."
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "What does 'Notwithstanding' mean as a transition?",
+          "options": [
+            "Addition",
+            "Result",
+            "Contrast (Despite this)",
+            "Example"
+          ],
+          "correctAnswer": "Contrast (Despite this)",
+          "explanation": "'Notwithstanding' is a very high-level formal word meaning 'despite' or 'nevertheless'."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Which word improves this transition? 'In ___ , the policy was a success.'",
+          "options": [
+            "particular",
+            "short",
+            "conclusion",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "All three create standard academic transition phrases ('In particular', 'In short', 'In conclusion')."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Find the best way to add a 'side note' or related point:",
+          "options": [
+            "Incidentally",
+            "Moreover",
+            "However",
+            "Consequently"
+          ],
+          "correctAnswer": "Incidentally",
+          "explanation": "'Incidentally' (or 'In a related vein') is used for points that are connected but not the main focus."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Which transition is best for a sequence of events in Task 1?",
+          "options": [
+            "Subsequently",
+            "Simultaneously",
+            "Prior to this",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These allow you to describe time relationships (after, at the same time, before) with precision."
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Replace the conversational 'Instead' in an essay:",
+          "options": [
+            "Alternatively",
+            "Rather",
+            "On the contrary",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These all provide a more formal way of offering an alternative or correction."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Which transition signals a 're-statement' for clarity?",
+          "options": [
+            "In other words",
+            "To put it simply",
+            "Specifically",
+            "Both A and B"
+          ],
+          "correctAnswer": "Both A and B",
+          "explanation": "Use these when you want to explain a complex idea in simpler terms for the reader."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Identify the transition that shows a 'degree of truth':",
+          "options": [
+            "To some extent",
+            "In a sense",
+            "Arguably",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These are 'hedging' transitions that show your argument is balanced and nuanced."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which of these is NOT a transition word?",
+          "options": [
+            "Nevertheless",
+            "Although",
+            "Consequently",
+            "Moreover"
+          ],
+          "correctAnswer": "Although",
+          "explanation": "'Although' is a subordinating conjunction (Topic 13). It joins clauses; it doesn't transition between sentences."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Choose the best academic 'Result' transition:",
+          "options": [
+            "This leads to",
+            "This results in",
+            "As a consequence",
+            "All of these"
+          ],
+          "correctAnswer": "All of these",
+          "explanation": "These are all highly effective for showing cause-and-effect in Task 2."
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "What is the function of 'In particular'?",
+          "options": [
+            "Addition",
+            "Contrast",
+            "Focus/Exemplification",
+            "Summary"
+          ],
+          "correctAnswer": "Focus/Exemplification",
+          "explanation": "Use it to narrow down from a general point to a specific example."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Which transition is the formal equivalent of 'In my opinion'?",
+          "options": [
+            "From an academic perspective",
+            "I think",
+            "It appears that",
+            "Both A and C"
+          ],
+          "correctAnswer": "Both A and C",
+          "explanation": "These keep the writing objective while still presenting your viewpoint."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Identify the ultimate 'Band 7.0+' transition for contrasting data in Task 1:",
+          "options": [
+            "But",
+            "However",
+            "Whereas",
+            "In stark contrast"
+          ],
+          "correctAnswer": "In stark contrast",
+          "explanation": "While 'Whereas' is good, 'In stark contrast' is a powerful, formal collocation that signals high-level comparison."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Cohesion Masterclass</h3><p>To score a Band 7.5+, transitions must be <b>seamless</b>. Do not just 'glue' sentences together; use transitions to signal the <i>logical progression</i> of your argument.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>🚦 <strong>Task 1 (Trends):</strong> Use <em>'Following this...'</em> or <em>'In stark contrast...'</em> to connect data points.</li><li>⚖️ <strong>Task 2 (Counter-Arguments):</strong> Use <em>'While it is true that...'</em> or <em>'Nonetheless...'</em> to show nuance.</li><li>💡 <strong>Task 2 (Emphasis):</strong> Use <em>'It is particularly noteworthy that...'</em> to highlight your strongest evidence.</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which transition is most effective for an IELTS Task 1 overview?",
+          "options": [
+            "And, the numbers went up.",
+            "Overall, it is clear that there was a general upward trend.",
+            "First, the numbers were low.",
+            "So, the graph shows changes."
+          ],
+          "correctAnswer": "Overall, it is clear that there was a general upward trend.",
+          "explanation": "'Overall' is the mandatory academic signpost for a Task 1 overview paragraph."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Choose the best transition to connect two Task 1 data points: 'Sales peaked in June. ___ , they fell sharply in July.'",
+          "options": [
+            "Moreover",
+            "Subsequently",
+            "In addition",
+            "Therefore"
+          ],
+          "correctAnswer": "Subsequently",
+          "explanation": "'Subsequently' indicates a chronological sequence, which is vital for describing trends over time."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Which phrase best introduces a counter-argument in a Task 2 essay?",
+          "options": [
+            "But some people think...",
+            "On the other hand, it is often argued that...",
+            "Also, others say...",
+            "So, some believe..."
+          ],
+          "correctAnswer": "On the other hand, it is often argued that...",
+          "explanation": "This is a formal, high-level signpost that alerts the examiner to a shift in perspective."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Improve this Task 2 thesis: 'Technology is good. ___, it can be dangerous.'",
+          "options": [
+            "Also",
+            "However",
+            "Consequently",
+            "Therefore"
+          ],
+          "correctAnswer": "However",
+          "explanation": "The relationship is a contrast, so 'However' (properly punctuated) is the correct academic signal."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Which transition is best for adding an 'even more important' reason in a paragraph?",
+          "options": [
+            "Moreover",
+            "Also",
+            "Secondly",
+            "Next"
+          ],
+          "correctAnswer": "Moreover",
+          "explanation": "'Moreover' signals that the next point adds significant weight to the existing argument."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Select the best transition for a Task 1 comparison: 'Germany produced 50 tons of waste. ___ , France produced only 20 tons.'",
+          "options": [
+            "Similarly",
+            "By contrast",
+            "Therefore",
+            "Additionally"
+          ],
+          "correctAnswer": "By contrast",
+          "explanation": "When comparing two different sets of data, 'By contrast' or 'In stark contrast' is the highest-scoring choice."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "How should you start a Task 2 conclusion to ensure maximum cohesion?",
+          "options": [
+            "To wrap it up,",
+            "In conclusion,",
+            "Finally,",
+            "So, in the end,"
+          ],
+          "correctAnswer": "In conclusion,",
+          "explanation": "'In conclusion' is the standard, formal signpost for the final paragraph of an academic essay."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Which of these provides the best 'linkage' between two paragraphs?",
+          "options": [
+            "Despite these benefits, there are also significant drawbacks to consider.",
+            "And now I will talk about the bad things.",
+            "Paragraph 2 is about the problems.",
+            "Also, there are problems."
+          ],
+          "correctAnswer": "Despite these benefits, there are also significant drawbacks to consider.",
+          "explanation": "A 'transitional sentence' that references the previous paragraph while introducing the next is a Band 8.0 move."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Find the error in this Task 1 sentence: 'The numbers increased steadily, conversely, they dropped in the final year.'",
+          "options": [
+            "The comma before 'conversely' should be a semicolon.",
+            "The 'conversely' should be 'however'.",
+            "Both A and B are correct.",
+            "No error."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "It is a comma splice (needs a semicolon) and 'conversely' is usually for direct opposites, while 'however' is for general contrast."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Which transition word is best for emphasizing a specific piece of evidence?",
+          "options": [
+            "For example",
+            "Notably",
+            "Thus",
+            "Instead"
+          ],
+          "correctAnswer": "Notably",
+          "explanation": "'Notably' or 'In particular' draws the reader's attention to a key detail or statistic."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Choose the best result transition for a Task 2 cause-and-effect argument:",
+          "options": [
+            "As a consequence,",
+            "So,",
+            "And then,",
+            "After that,"
+          ],
+          "correctAnswer": "As a consequence,",
+          "explanation": "'As a consequence' is more formal and precise than 'So' for academic essays."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "In Task 1, which phrase is used to show two things happening at once?",
+          "options": [
+            "Subsequently",
+            "Simultaneously",
+            "Previously",
+            "Beforehand"
+          ],
+          "correctAnswer": "Simultaneously",
+          "explanation": "'Simultaneously' or 'At the same time' is the correct academic term for concurrent trends."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Identify the transition that introduces a 'concession' in Task 2:",
+          "options": [
+            "Admittedly,",
+            "Furthermore,",
+            "Therefore,",
+            "In addition,"
+          ],
+          "correctAnswer": "Admittedly,",
+          "explanation": "Use 'Admittedly' to acknowledge a valid opposing point before you refute it."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Which transition is best for a 'restatement' to clarify a complex point?",
+          "options": [
+            "In other words,",
+            "To put it simply,",
+            "That is to say,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These all signal that you are explaining an idea in a different way to ensure clarity."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "What is the best way to avoid using 'And' at the start of a sentence in Task 2?",
+          "options": [
+            "Use 'Moreover,'",
+            "Use 'In addition to this,'",
+            "Use 'Additionally,'",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Varying these three addition markers prevents repetition and improves your cohesion score."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Find the punctuation error: 'The experiment was successful; nevertheless the results were ignored.'",
+          "options": [
+            "Add a comma after 'nevertheless'",
+            "Change the semicolon to a comma",
+            "Capitalize 'nevertheless'",
+            "No error"
+          ],
+          "correctAnswer": "Add a comma after 'nevertheless'",
+          "explanation": "Conjunctive adverbs require a comma after them in academic writing."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which transition is best for a Task 1 process diagram sequence?",
+          "options": [
+            "Following this,",
+            "In the next stage,",
+            "Subsequently,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Process diagrams require specific 'sequencing' markers to show the order of steps."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Identify the strongest way to conclude a logical argument:",
+          "options": [
+            "Thus,",
+            "So,",
+            "In the end,",
+            "Finally,"
+          ],
+          "correctAnswer": "Thus,",
+          "explanation": "'Thus' or 'Therefore' are the most formal markers for a logical deduction."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Which transition helps 'limit' your argument in Task 2?",
+          "options": [
+            "To a certain extent,",
+            "Broadly speaking,",
+            "In general,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These 'hedging' transitions show that your argument is nuanced rather than absolute."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Choose the correct contrast marker for Task 2: 'Private cars are convenient. ___, they contribute to urban pollution.'",
+          "options": [
+            "Nevertheless,",
+            "Additionally,",
+            "Consequently,",
+            "Similarly,"
+          ],
+          "correctAnswer": "Nevertheless,",
+          "explanation": "'Nevertheless' or 'Nonetheless' perfectly connects the benefit (convenience) to the drawback (pollution)."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Which phrase is best for citing a specific example in TOEFL Writing?",
+          "options": [
+            "Like this:",
+            "A case in point is...",
+            "For example...",
+            "Both B and C"
+          ],
+          "correctAnswer": "Both B and C",
+          "explanation": "'A case in point is...' is a very high-level academic way to introduce an example."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Fix the 'Cohesion' error: 'Taxes rose. People spent less money.'",
+          "options": [
+            "Taxes rose, so people spent less money.",
+            "Taxes rose; as a result, consumer spending declined.",
+            "Taxes rose and people spent less money.",
+            "Because taxes rose people spent less money."
+          ],
+          "correctAnswer": "Taxes rose; as a result, consumer spending declined.",
+          "explanation": "This rewrite uses a high-level transition and formal vocabulary ('consumer spending declined') to boost the score."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Which transition is the formal equivalent of 'Nowadays'?",
+          "options": [
+            "Presently,",
+            "Currently,",
+            "In contemporary society,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These phrases elevate the register of your Task 2 introduction."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Identify the transition for showing a 'summary' of a specific point:",
+          "options": [
+            "In short,",
+            "Briefly,",
+            "To summarize,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "Use these to quickly recap a complex point before moving to the next idea."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Which of these is a 'Transition of Emphasis'?",
+          "options": [
+            "Crucially,",
+            "Indeed,",
+            "Importantly,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These words 'flag' your most important arguments for the examiner."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The policy was unpopular, however, it saved the economy.'",
+          "options": [
+            "Change the first comma to a semicolon.",
+            "Change 'however' to 'but'.",
+            "Neither, it is correct.",
+            "Both A and B are valid fixes."
+          ],
+          "correctAnswer": "Both A and B are valid fixes.",
+          "explanation": "To fix a comma splice, you must use a stronger boundary (semicolon) or a simple conjunction (but)."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which transition is best for 'rebutting' an opposing view?",
+          "options": [
+            "Conversely,",
+            "On the contrary,",
+            "Despite this,",
+            "All of the above"
+          ],
+          "correctAnswer": "All of the above",
+          "explanation": "These all signal that you are about to disagree with a previously stated idea."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Identify the natural pairing for 'In light of':",
+          "options": [
+            "In light of this evidence,",
+            "In light of this stuff,",
+            "In light of this thing,",
+            "In light of this idea,"
+          ],
+          "correctAnswer": "In light of this evidence,",
+          "explanation": "'In light of this evidence' is a high-level academic collocation."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Choose the best academic 'Addition' marker for a third point:",
+          "options": [
+            "Furthermore,",
+            "Moreover,",
+            "Additionally,",
+            "All are acceptable; use the one you haven't used yet."
+          ],
+          "correctAnswer": "All are acceptable; use the one you haven't used yet.",
+          "explanation": "Variety is the key to a high score in Coherence and Cohesion."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "What is the ultimate goal of transitional devices in an academic essay?",
+          "options": [
+            "To make the essay longer.",
+            "To use fancy words.",
+            "To ensure the reader can follow the logical flow of your ideas easily.",
+            "To show you know grammar rules."
+          ],
+          "correctAnswer": "To ensure the reader can follow the logical flow of your ideas easily.",
+          "explanation": "Cohesion is about the 'flow' and 'linkage' of ideas, which transitions provide."
+        }
+      ]
+    }
+  ]
+}

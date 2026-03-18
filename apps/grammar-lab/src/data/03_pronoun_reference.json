@@ -1,0 +1,1581 @@
+{
+  "topicId": "03_pronoun_reference",
+  "topicName": "Pronoun Reference",
+  "levels": [
+    {
+      "level": 1,
+      "title": "Identification & Form",
+      "miniLesson": "<div style=\"border: 2px solid #0A1930; border-radius: 8px; padding: 15px; background-color: #f8fafc; font-family: sans-serif;\"><h3 style=\"color: #0A1930; margin-top: 0; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px;\">🎯 Level 1: The Sentence Seat-Holders</h3><p>Pronouns replace nouns to avoid repetition. You must choose the right form based on the pronoun's <b>job</b> in the sentence.</p><table style=\"width: 100%; border-collapse: collapse; margin-top: 10px; text-align: left;\"><tr style=\"background-color: #e2e8f0;\"><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Role</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Pronouns</th><th style=\"padding: 8px; border: 1px solid #cbd5e1;\">Example</th></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Subject</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">I, you, he, she, it, we, they</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>They</b> study hard.</td></tr><tr style=\"background-color: #f1f5f9;\"><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Object</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">me, you, him, her, it, us, them</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">The teacher helped <b>us</b>.</td></tr><tr><td style=\"padding: 8px; border: 1px solid #cbd5e1;\"><b>Possessive</b></td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">my, your, his, her, its, our, their</td><td style=\"padding: 8px; border: 1px solid #cbd5e1;\">This is <b>their</b> classroom.</td></tr></table></div>",
+      "questionBank": [
+        {
+          "id": "q1_1",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'The students are in the library. ___ are studying for the exam.'",
+          "options": [
+            "He",
+            "She",
+            "They",
+            "Them"
+          ],
+          "correctAnswer": "They",
+          "explanation": "'They' is the subject pronoun used to replace the plural noun 'students'."
+        },
+        {
+          "id": "q1_2",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'I saw Sarah at the station and spoke to ___.'",
+          "options": [
+            "she",
+            "her",
+            "hers",
+            "herself"
+          ],
+          "correctAnswer": "her",
+          "explanation": "'Her' is the object pronoun used after the preposition 'to'."
+        },
+        {
+          "id": "q1_3",
+          "type": "multiple_choice",
+          "question": "Identify the possessive adjective: 'The cat licked ___ paw.'",
+          "options": [
+            "it",
+            "it's",
+            "its",
+            "itself"
+          ],
+          "correctAnswer": "its",
+          "explanation": "'Its' is the possessive form. (Note: 'it's' is a contraction for 'it is')."
+        },
+        {
+          "id": "q1_4",
+          "type": "multiple_choice",
+          "question": "Choose the correct subject pronoun: '___ and I went to the park yesterday.'",
+          "options": [
+            "Him",
+            "He",
+            "His",
+            "He's"
+          ],
+          "correctAnswer": "He",
+          "explanation": "In a compound subject, you must use the subject pronoun 'He'."
+        },
+        {
+          "id": "q1_5",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "This book is my.",
+            "This book is mine.",
+            "This book is me.",
+            "This book is mine's."
+          ],
+          "correctAnswer": "This book is mine.",
+          "explanation": "'Mine' is a possessive pronoun used at the end of a sentence without a following noun."
+        },
+        {
+          "id": "q1_6",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Our neighbors are very kind. We often talk to ___.'",
+          "options": [
+            "they",
+            "their",
+            "them",
+            "theirs"
+          ],
+          "correctAnswer": "them",
+          "explanation": "'Them' is the object pronoun replacing the plural 'neighbors'."
+        },
+        {
+          "id": "q1_7",
+          "type": "multiple_choice",
+          "question": "Choose the correct possessive: 'Is this ___ umbrella?'",
+          "options": [
+            "you",
+            "your",
+            "yours",
+            "you're"
+          ],
+          "correctAnswer": "your",
+          "explanation": "'Your' is a possessive adjective used before the noun 'umbrella'."
+        },
+        {
+          "id": "q1_8",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The teacher gave we the homework assignments.'",
+          "options": [
+            "teacher",
+            "gave",
+            "we",
+            "assignments"
+          ],
+          "correctAnswer": "we",
+          "explanation": "Since it follows the verb 'gave', it should be the object pronoun 'us'."
+        },
+        {
+          "id": "q1_9",
+          "type": "multiple_choice",
+          "question": "Complete the sentence: 'The laptop is very heavy. ___ is also very expensive.'",
+          "options": [
+            "He",
+            "She",
+            "It",
+            "Its"
+          ],
+          "correctAnswer": "It",
+          "explanation": "'It' is the subject pronoun for inanimate objects like 'laptop'."
+        },
+        {
+          "id": "q1_10",
+          "type": "multiple_choice",
+          "question": "Which pronoun correctly replaces 'John and Mary'?",
+          "options": [
+            "Them",
+            "They",
+            "We",
+            "Us"
+          ],
+          "correctAnswer": "They",
+          "explanation": "As the subject of a new sentence, 'They' is the correct replacement."
+        },
+        {
+          "id": "q1_11",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The keys are on the table. Can you see ___?'",
+          "options": [
+            "it",
+            "them",
+            "they",
+            "their"
+          ],
+          "correctAnswer": "them",
+          "explanation": "'Them' is the plural object pronoun for 'keys'."
+        },
+        {
+          "id": "q1_12",
+          "type": "multiple_choice",
+          "question": "Choose the correct reflexive pronoun: 'The researchers conducted the experiment ___.'",
+          "options": [
+            "themselves",
+            "theirselves",
+            "himself",
+            "them"
+          ],
+          "correctAnswer": "themselves",
+          "explanation": "'Themselves' is the correct reflexive form for 'researchers'."
+        },
+        {
+          "id": "q1_13",
+          "type": "multiple_choice",
+          "question": "Identify the possessive pronoun: 'The blue car is ___.'",
+          "options": [
+            "her",
+            "hers",
+            "she",
+            "herself"
+          ],
+          "correctAnswer": "hers",
+          "explanation": "'Hers' is a possessive pronoun that stands alone."
+        },
+        {
+          "id": "q1_14",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: '___ house is very old.'",
+          "options": [
+            "Us",
+            "Our",
+            "Ours",
+            "We"
+          ],
+          "correctAnswer": "Our",
+          "explanation": "'Our' is a possessive adjective describing the noun 'house'."
+        },
+        {
+          "id": "q1_15",
+          "type": "multiple_choice",
+          "question": "Which sentence is correct?",
+          "options": [
+            "Please call I later.",
+            "Please call me later.",
+            "Please call my later.",
+            "Please call mine later."
+          ],
+          "correctAnswer": "Please call me later.",
+          "explanation": "'Me' is the object pronoun."
+        },
+        {
+          "id": "q1_16",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'John bought a new car. ___ is red.'",
+          "options": [
+            "It",
+            "Its",
+            "He",
+            "Him"
+          ],
+          "correctAnswer": "It",
+          "explanation": "'It' replaces 'car'."
+        },
+        {
+          "id": "q1_17",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Did you see ___?'",
+          "options": [
+            "he",
+            "him",
+            "his",
+            "he's"
+          ],
+          "correctAnswer": "him",
+          "explanation": "'Him' is the object pronoun."
+        },
+        {
+          "id": "q1_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The children played with they toys.'",
+          "options": [
+            "children",
+            "played",
+            "they",
+            "toys"
+          ],
+          "correctAnswer": "they",
+          "explanation": "It should be the possessive adjective 'their' toys."
+        },
+        {
+          "id": "q1_19",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'Mary and ___ are going to the mall.'",
+          "options": [
+            "I",
+            "me",
+            "my",
+            "mine"
+          ],
+          "correctAnswer": "I",
+          "explanation": "As part of the subject, 'I' is correct."
+        },
+        {
+          "id": "q1_20",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The computer belongs to the school. It is ___.'",
+          "options": [
+            "it",
+            "its",
+            "their",
+            "theirs"
+          ],
+          "correctAnswer": "theirs",
+          "explanation": "Replacing 'the school's' as a possessive pronoun."
+        },
+        {
+          "id": "q1_21",
+          "type": "multiple_choice",
+          "question": "Which pronoun replaces 'The company'?",
+          "options": [
+            "They",
+            "It",
+            "She",
+            "He"
+          ],
+          "correctAnswer": "It",
+          "explanation": "A company is a single entity/thing."
+        },
+        {
+          "id": "q1_22",
+          "type": "multiple_choice",
+          "question": "Choose the correct form: 'The dog wagged ___ tail.'",
+          "options": [
+            "it's",
+            "its",
+            "his",
+            "their"
+          ],
+          "correctAnswer": "its",
+          "explanation": "Possessive form for an animal."
+        },
+        {
+          "id": "q1_23",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'If you need help, ask ___.'",
+          "options": [
+            "us",
+            "we",
+            "our",
+            "ours"
+          ],
+          "correctAnswer": "us",
+          "explanation": "Object pronoun after 'ask'."
+        },
+        {
+          "id": "q1_24",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The students finished them homework.'",
+          "options": [
+            "students",
+            "finished",
+            "them",
+            "homework"
+          ],
+          "correctAnswer": "them",
+          "explanation": "Should be 'their' homework."
+        },
+        {
+          "id": "q1_25",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'This is my pen. Where is ___?'",
+          "options": [
+            "your",
+            "yours",
+            "you",
+            "you're"
+          ],
+          "correctAnswer": "yours",
+          "explanation": "Possessive pronoun meaning 'your pen'."
+        },
+        {
+          "id": "q1_26",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'The doctor gave ___ the medicine.'",
+          "options": [
+            "I",
+            "me",
+            "my",
+            "mine"
+          ],
+          "correctAnswer": "me",
+          "explanation": "Object pronoun."
+        },
+        {
+          "id": "q1_27",
+          "type": "multiple_choice",
+          "question": "Identify the subject pronoun: '___ will arrive at noon.'",
+          "options": [
+            "Us",
+            "We",
+            "Our",
+            "Ours"
+          ],
+          "correctAnswer": "We",
+          "explanation": "Subject of the sentence."
+        },
+        {
+          "id": "q1_28",
+          "type": "multiple_choice",
+          "question": "Which is correct? 'The book is ___.'",
+          "options": [
+            "his",
+            "him",
+            "he",
+            "he's"
+          ],
+          "correctAnswer": "his",
+          "explanation": "Possessive pronoun (His is both adjective and pronoun)."
+        },
+        {
+          "id": "q1_29",
+          "type": "multiple_choice",
+          "question": "Fill in the blank: 'Please tell ___ the truth.'",
+          "options": [
+            "she",
+            "her",
+            "hers",
+            "herself"
+          ],
+          "correctAnswer": "her",
+          "explanation": "Object pronoun."
+        },
+        {
+          "id": "q1_30",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'Those shoes are ___.'",
+          "options": [
+            "mine",
+            "my",
+            "me",
+            "I"
+          ],
+          "correctAnswer": "mine",
+          "explanation": "Possessive pronoun."
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "title": "L1 Traps: Repetition vs. Ambiguity",
+      "miniLesson": "<div style=\"border: 2px solid #b91c1c; border-radius: 8px; padding: 15px; background-color: #fef2f2; font-family: sans-serif;\"><h3 style=\"color: #b91c1c; margin-top: 0; border-bottom: 2px solid #fecaca; padding-bottom: 5px;\">⚠️ Level 2: The 'Clarity' Balance</h3><p>Pronouns are powerful, but they are dangerous if they have 'Ambiguous Reference.' This happens when a pronoun could refer to two different nouns.</p><ul style=\"line-height: 1.8;\"><li>❌ <b>Ambiguous:</b> <i>The <b>teacher</b> told the <b>student</b> that <b>he</b> failed.</i> (Who failed? The teacher or the student?)</li><li>✅ <b>Clear:</b> <i>The teacher told the student, 'You failed.'</i> or <i>The student was told by the teacher that the exam was a failure.</i></li><li>❌ <b>Over-Repetition:</b> <i><b>The car</b> is fast. <b>The car</b> is red. <b>The car</b> was expensive.</i></li><li>✅ <b>Natural:</b> <i><b>The car</b> is fast and red; <b>it</b> was also quite expensive.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q2_1",
+          "type": "multiple_choice",
+          "question": "Which sentence is ambiguous (unclear)?",
+          "options": [
+            "John and David went to the park, and he had a great time.",
+            "John and David went to the park, and they both had a great time.",
+            "When John went to the park with David, John had a great time.",
+            "They went to the park together."
+          ],
+          "correctAnswer": "John and David went to the park, and he had a great time.",
+          "explanation": "'He' could refer to either John or David. This is an ambiguous reference."
+        },
+        {
+          "id": "q2_2",
+          "type": "multiple_choice",
+          "question": "Fix the repetition: 'The laptop is new. The laptop works well. The laptop was cheap.'",
+          "options": [
+            "The laptop is new, it works well, and it was cheap.",
+            "The laptop is new, works well, and was cheap.",
+            "The laptop is new. It works well and was cheap.",
+            "All of the above are better than the original."
+          ],
+          "correctAnswer": "All of the above are better than the original.",
+          "explanation": "Using pronouns or combining sentences removes the robotic repetition of 'The laptop'."
+        },
+        {
+          "id": "q2_3",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The researchers found the chemicals, but they were dangerous.'",
+          "options": [
+            "Who does 'they' refer to? The researchers or the chemicals?",
+            "The word 'they' should be 'it'.",
+            "The word 'chemicals' should be 'chemical'.",
+            "No error."
+          ],
+          "correctAnswer": "Who does 'they' refer to? The researchers or the chemicals?",
+          "explanation": "This is ambiguous. It's unclear if the people or the substances are dangerous."
+        },
+        {
+          "id": "q2_4",
+          "type": "multiple_choice",
+          "question": "Choose the clearest version: 'The mother told her daughter that she needed to clean the room.'",
+          "options": [
+            "The mother told her daughter to clean the room.",
+            "The mother told her daughter, 'I need to clean the room.'",
+            "The mother told her daughter, 'You need to clean the room.'",
+            "All of these are clearer than the original."
+          ],
+          "correctAnswer": "All of these are clearer than the original.",
+          "explanation": "The original 'she' is ambiguous. Direct speech or a simple infinitive removes the confusion."
+        },
+        {
+          "id": "q2_5",
+          "type": "multiple_choice",
+          "question": "Which pronoun is best for a general group? 'A student should always bring ___ book to class.'",
+          "options": [
+            "his",
+            "their",
+            "its",
+            "her"
+          ],
+          "correctAnswer": "their",
+          "explanation": "In modern academic English, the singular 'their' is preferred to avoid gender bias."
+        },
+        {
+          "id": "q2_6",
+          "type": "multiple_choice",
+          "question": "Identify the 'Missing Subject' trap: 'Went to the store and bought some milk.'",
+          "options": [
+            "The sentence is missing a subject pronoun like 'I' or 'He'.",
+            "The sentence is already correct.",
+            "The word 'bought' is wrong.",
+            "The word 'some' is unnecessary."
+          ],
+          "correctAnswer": "The sentence is missing a subject pronoun like 'I' or 'He'.",
+          "explanation": "Japanese allows dropping the subject, but English requires one."
+        },
+        {
+          "id": "q2_7",
+          "type": "multiple_choice",
+          "question": "Which sentence correctly uses 'It' as a dummy subject?",
+          "options": [
+            "Is raining today.",
+            "It is raining today.",
+            "Today is raining.",
+            "Raining it is today."
+          ],
+          "correctAnswer": "It is raining today.",
+          "explanation": "English requires 'It' as a placeholder for weather/time even if it doesn't represent a 'thing'."
+        },
+        {
+          "id": "q2_8",
+          "type": "multiple_choice",
+          "question": "Fix the ambiguity: 'The cup fell on the glass table and it broke.'",
+          "options": [
+            "The cup fell on the glass table and the cup broke.",
+            "The cup fell on the glass table, which broke into pieces.",
+            "The cup fell and broke upon hitting the glass table.",
+            "All of these are clearer."
+          ],
+          "correctAnswer": "All of these are clearer.",
+          "explanation": "'It' could be the cup or the table. Specificity is required."
+        },
+        {
+          "id": "q2_9",
+          "type": "multiple_choice",
+          "question": "Why is 'The government made a decision, but they are unpopular' potentially confusing?",
+          "options": [
+            "Because 'government' is singular, but 'they' is plural.",
+            "Because 'they' could refer to the members or the decision.",
+            "Both A and B.",
+            "There is no confusion."
+          ],
+          "correctAnswer": "Both A and B.",
+          "explanation": "Shifting from singular 'government' to plural 'they' creates an agreement and clarity gap."
+        },
+        {
+          "id": "q2_10",
+          "type": "multiple_choice",
+          "question": "Choose the most natural rewrite: 'John saw the dog. The dog was big. John ran from the dog.'",
+          "options": [
+            "John saw the dog, it was big, and he ran from it.",
+            "John saw a big dog and ran from it.",
+            "John saw a dog, which was big, so John ran from the dog.",
+            "John ran from the big dog he saw."
+          ],
+          "correctAnswer": "John saw a big dog and ran from it.",
+          "explanation": "This combines the ideas and uses a pronoun effectively to eliminate three repetitions of 'dog'."
+        },
+        {
+          "id": "q2_11",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Everyone must bring their own laptop.'",
+          "options": [
+            "No error in modern English.",
+            "'Everyone' is singular, so it should be 'his or her'.",
+            "'Laptop' should be 'laptops'.",
+            "Both A and B are discussed in grammar, but A is common."
+          ],
+          "correctAnswer": "Both A and B are discussed in grammar, but A is common.",
+          "explanation": "Traditional grammar says 'his or her,' but modern usage (and IELTS/TOEFL) accepts the singular 'their'."
+        },
+        {
+          "id": "q2_12",
+          "type": "multiple_choice",
+          "question": "Which sentence uses a pronoun to summarize a whole idea? 'The company lost money, and ___ led to layoffs.'",
+          "options": [
+            "it",
+            "this",
+            "they",
+            "those"
+          ],
+          "correctAnswer": "this",
+          "explanation": "'This' is often used to refer back to the entire situation mentioned in the previous clause."
+        },
+        {
+          "id": "q2_13",
+          "type": "multiple_choice",
+          "question": "Fix the ambiguity: 'The doctor talked to the patient about his symptoms.'",
+          "options": [
+            "The doctor discussed the patient's symptoms with him.",
+            "The doctor talked about his own symptoms to the patient.",
+            "The patient's symptoms were discussed during the meeting.",
+            "All of these clarify whose symptoms they are."
+          ],
+          "correctAnswer": "All of these clarify whose symptoms they are.",
+          "explanation": "'His' could be the doctor's or the patient's. Using a possessive noun clarifies it."
+        },
+        {
+          "id": "q2_14",
+          "type": "multiple_choice",
+          "question": "Identify the 'Dropped Pronoun' error: 'If you want to pass, must study hard.'",
+          "options": [
+            "Should be: 'If you want to pass, you must study hard.'",
+            "Should be: 'If you want to pass, must you study hard.'",
+            "Should be: 'If want to pass, you must study hard.'",
+            "No error."
+          ],
+          "correctAnswer": "Should be: 'If you want to pass, you must study hard.'",
+          "explanation": "The second clause needs its own subject 'you'."
+        },
+        {
+          "id": "q2_15",
+          "type": "multiple_choice",
+          "question": "Choose the best pronoun: 'The team won ___ first game.'",
+          "options": [
+            "its",
+            "their",
+            "it's",
+            "they're"
+          ],
+          "correctAnswer": "its",
+          "explanation": "In American English and most formal exams, collective nouns like 'team' are treated as singular (its)."
+        },
+        {
+          "id": "q2_16",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly edited? 'The book and the movie are different. It is better.'",
+          "options": [
+            "The book is better than the movie.",
+            "The movie is better than the book.",
+            "Both are different; the former is better.",
+            "All of these are clearer than 'It is better'."
+          ],
+          "correctAnswer": "All of these are clearer than 'It is better'.",
+          "explanation": "'It' is ambiguous when two items (book and movie) have been mentioned."
+        },
+        {
+          "id": "q2_17",
+          "type": "multiple_choice",
+          "question": "Find the error: 'None of the students brought his book.'",
+          "options": [
+            "'His' should be 'their'.",
+            "'None' should be 'No one'.",
+            "'Brought' should be 'bring'.",
+            "No error."
+          ],
+          "correctAnswer": "'His' should be 'their'.",
+          "explanation": "Agreement with 'students' (plural) requires 'their' for clarity and inclusivity."
+        },
+        {
+          "id": "q2_18",
+          "type": "multiple_choice",
+          "question": "Where is the ambiguous pronoun? 'When the boys met the girls, they were excited.'",
+          "options": [
+            "the boys",
+            "the girls",
+            "they",
+            "excited"
+          ],
+          "correctAnswer": "they",
+          "explanation": "Does 'they' mean the boys, the girls, or both? It is unclear."
+        },
+        {
+          "id": "q2_20",
+          "type": "multiple_choice",
+          "question": "Identify the correct summarizing pronoun: 'The population is aging rapidly. ___ will cause economic problems.'",
+          "options": [
+            "This",
+            "It",
+            "They",
+            "These"
+          ],
+          "correctAnswer": "This",
+          "explanation": "'This' effectively points to the entire phenomenon described in the first sentence."
+        },
+        {
+          "id": "q2_21",
+          "type": "multiple_choice",
+          "question": "Which of these is a redundant repetition?",
+          "options": [
+            "My father, he is a doctor.",
+            "My father is a doctor.",
+            "He is a doctor.",
+            "Both B and C."
+          ],
+          "correctAnswer": "My father, he is a doctor.",
+          "explanation": "You don't need both the noun 'father' and the pronoun 'he' as the subject of the same clause."
+        },
+        {
+          "id": "q2_22",
+          "type": "multiple_choice",
+          "question": "Fix: 'The keys are in the car. It is locked.'",
+          "options": [
+            "The car is locked, with the keys inside.",
+            "The keys are in the car, which is locked.",
+            "Both are clearer.",
+            "No change needed."
+          ],
+          "correctAnswer": "Both are clearer.",
+          "explanation": "'It' is ambiguous (is the key locked or the car locked?)."
+        },
+        {
+          "id": "q2_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'One of the girls lost ___ bag.'",
+          "options": [
+            "their",
+            "her",
+            "hers",
+            "she"
+          ],
+          "correctAnswer": "her",
+          "explanation": "Matches the singular 'one' of the girls."
+        },
+        {
+          "id": "q2_24",
+          "type": "multiple_choice",
+          "question": "Identify the ambiguity: 'The teacher told the student that his grade was low.'",
+          "options": [
+            "Whose grade? The teacher's or the student's?",
+            "The word 'low' is too informal.",
+            "The word 'grade' should be 'grades'.",
+            "No error."
+          ],
+          "correctAnswer": "Whose grade? The teacher's or the student's?",
+          "explanation": "While logic suggests the student, grammatically 'his' could refer to either male mentioned."
+        },
+        {
+          "id": "q2_25",
+          "type": "multiple_choice",
+          "question": "Which is best for a formal essay?",
+          "options": [
+            "If a person wants to succeed, you must work hard.",
+            "If a person wants to succeed, he or she must work hard.",
+            "If a person wants to succeed, they must work hard.",
+            "Both B and C are acceptable."
+          ],
+          "correctAnswer": "Both B and C are acceptable.",
+          "explanation": "Option A shifts from 'person' to 'you,' which is a pronoun consistency error."
+        },
+        {
+          "id": "q2_26",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The birds built it's nest.'",
+          "options": [
+            "birds",
+            "built",
+            "it's",
+            "nest"
+          ],
+          "correctAnswer": "it's",
+          "explanation": "Should be the possessive 'its'. Also, 'birds' is plural, so it should be 'their nest'."
+        },
+        {
+          "id": "q2_27",
+          "type": "multiple_choice",
+          "question": "Correct the repetition: 'The phone is ringing. Answer the phone!'",
+          "options": [
+            "The phone is ringing. Answer it!",
+            "Answer the phone ringing.",
+            "The phone is ringing, answer the phone.",
+            "No change."
+          ],
+          "correctAnswer": "The phone is ringing. Answer it!",
+          "explanation": "Using 'it' avoids repeating 'the phone' immediately."
+        },
+        {
+          "id": "q2_28",
+          "type": "multiple_choice",
+          "question": "Which summarizing pronoun is used for plural items? 'He bought apples and oranges. ___ were fresh.'",
+          "options": [
+            "This",
+            "They",
+            "These",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "Both refer to the plural fruit previously mentioned."
+        },
+        {
+          "id": "q2_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'Me and him are going home.'",
+          "options": [
+            "Should be 'He and I'.",
+            "Should be 'Him and me'.",
+            "Should be 'We'.",
+            "Both A and C are correct."
+          ],
+          "correctAnswer": "Both A and C are correct.",
+          "explanation": "Object pronouns (Me/Him) cannot be the subject of a sentence."
+        },
+        {
+          "id": "q2_30",
+          "type": "multiple_choice",
+          "question": "Final Check: A pronoun must always have a clear ___.",
+          "options": [
+            "Verb",
+            "Antecedent",
+            "Preposition",
+            "Object"
+          ],
+          "correctAnswer": "Antecedent",
+          "explanation": "An 'antecedent' is the noun that the pronoun refers back to. It must be clear and logical."
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "title": "Contextual Correction",
+      "miniLesson": "<div style=\"border: 2px solid #15803d; border-radius: 8px; padding: 15px; background-color: #f0fdf4; font-family: sans-serif;\"><h3 style=\"color: #15803d; margin-top: 0; border-bottom: 2px solid #bbf7d0; padding-bottom: 5px;\">📝 Level 3: The Pronoun Audit</h3><p>In academic paragraphs, the distance between a pronoun and its noun (the <b>antecedent</b>) can be long. You must ensure there is no 'Intervening Noun' that could steal the reference.</p><ul style=\"line-height: 1.8;\"><li>🔍 <b>The Intervening Noun:</b> <i>The <b>report</b> (1) was placed inside the <b>cabinet</b> (2). <b>It</b> (Which one?) was locked.</i> ➔ <b>The cabinet</b> was locked.</li><li>📊 <b>Summarizing 'This':</b> Use <i>This + [Summary Noun]</i> to be 100% clear. <br>❌ <i>The prices rose. <b>This</b> was bad.</i><br>✅ <i>The prices rose. <b>This trend</b> was worrying.</i></li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q3_1",
+          "type": "multiple_choice",
+          "question": "Identify the ambiguous reference: 'The company launched a new advertising campaign to attract younger customers, but it was not successful.'",
+          "options": [
+            "What was not successful? The company, the campaign, or the customers?",
+            "The word 'it' should be 'they'.",
+            "The word 'campaign' should be plural.",
+            "No error."
+          ],
+          "correctAnswer": "What was not successful? The company, the campaign, or the customers?",
+          "explanation": "This is a classic 'intervening noun' trap. It is unclear if the company or the campaign failed."
+        },
+        {
+          "id": "q3_2",
+          "type": "multiple_choice",
+          "question": "Choose the clearest academic rewrite: 'Researchers observed the monkeys while they were eating fruit. They seemed very hungry.'",
+          "options": [
+            "Researchers observed the monkeys while they were eating fruit; the animals seemed very hungry.",
+            "Researchers observed the monkeys while they were eating fruit; they were very hungry.",
+            "They seemed very hungry while the monkeys ate fruit.",
+            "No change needed."
+          ],
+          "correctAnswer": "Researchers observed the monkeys while they were eating fruit; the animals seemed very hungry.",
+          "explanation": "Replacing 'They' with 'the animals' removes the possibility that 'They' refers back to 'Researchers'."
+        },
+        {
+          "id": "q3_3",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The policy was designed to help the poor, but the government ignored them when making the final decision.'",
+          "options": [
+            "policy",
+            "help",
+            "them",
+            "government"
+          ],
+          "correctAnswer": "them",
+          "explanation": "While 'the poor' is a group, the pronoun 'them' is often better replaced by 'this demographic' or 'this group' for higher academic clarity."
+        },
+        {
+          "id": "q3_4",
+          "type": "multiple_choice",
+          "question": "Which summarizing phrase is most academic? 'The birth rate has declined significantly over the last decade. ___ has led to a labor shortage.'",
+          "options": [
+            "This",
+            "It",
+            "This decline",
+            "They"
+          ],
+          "correctAnswer": "This decline",
+          "explanation": "Using 'This + [Noun]' (This decline) is the gold standard for cohesion in IELTS/TOEFL."
+        },
+        {
+          "id": "q3_5",
+          "type": "multiple_choice",
+          "question": "Identify the error in logic: 'Students should always check their emails regularly. It is how the university communicates.'",
+          "options": [
+            "The word 'It' has no clear antecedent.",
+            "The word 'It' should be 'They'.",
+            "The word 'emails' should be singular.",
+            "No error."
+          ],
+          "correctAnswer": "The word 'It' has no clear antecedent.",
+          "explanation": "'It' doesn't refer to 'students' or 'emails'. It refers to 'checking emails,' but that hasn't been established as a noun yet."
+        },
+        {
+          "id": "q3_6",
+          "type": "multiple_choice",
+          "question": "Which sentence is correctly edited? 'The manager told the employee that he would be promoted.'",
+          "options": [
+            "The manager informed the employee of his upcoming promotion.",
+            "The manager told the employee, 'You will be promoted.'",
+            "The employee was told by the manager that a promotion was coming.",
+            "All of the above are clearer than the original."
+          ],
+          "correctAnswer": "All of the above are clearer than the original.",
+          "explanation": "The original 'he' is ambiguous. These rewrites specify who is getting the promotion."
+        },
+        {
+          "id": "q3_7",
+          "type": "multiple_choice",
+          "question": "Find the ambiguous reference: 'Put the cake on the plate and then wash it.'",
+          "options": [
+            "cake",
+            "plate",
+            "it",
+            "wash"
+          ],
+          "correctAnswer": "it",
+          "explanation": "Are we washing the cake or the plate? Grammar-wise, it could be either."
+        },
+        {
+          "id": "q3_8",
+          "type": "multiple_choice",
+          "question": "Choose the best pronoun: 'The team members disagreed with the coach. ___ wanted a different strategy.'",
+          "options": [
+            "He",
+            "They",
+            "It",
+            "Those"
+          ],
+          "correctAnswer": "They",
+          "explanation": "Matches 'team members' (plural)."
+        },
+        {
+          "id": "q3_9",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'When the city built the new library, it was very expensive.'",
+          "options": [
+            "city",
+            "library",
+            "it",
+            "No error"
+          ],
+          "correctAnswer": "it",
+          "explanation": "'It' could be the city or the library. In context, we assume library, but a specific noun is safer."
+        },
+        {
+          "id": "q3_10",
+          "type": "multiple_choice",
+          "question": "Which sentence uses 'this' to link ideas effectively?",
+          "options": [
+            "The price of oil rose. This caused inflation.",
+            "The price of oil rose; this spike caused inflation.",
+            "The price of oil rose. It caused inflation.",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "Both use 'this' to refer back to the previous sentence's idea."
+        },
+        {
+          "id": "q3_11",
+          "type": "multiple_choice",
+          "question": "Identify the 'Vague Pronoun' error: 'They say that it will rain tomorrow.'",
+          "options": [
+            "Who are 'They'?",
+            "The word 'it' should be 'the weather'.",
+            "The word 'tomorrow' should be 'next day'.",
+            "No error."
+          ],
+          "correctAnswer": "Who are 'They'?",
+          "explanation": "In academic writing, you should avoid 'They say' if 'they' has no specific antecedent (like 'Meteorologists')."
+        },
+        {
+          "id": "q3_12",
+          "type": "multiple_choice",
+          "question": "Correct the pronoun consistency: 'One should always be careful when you drive.'",
+          "options": [
+            "One should always be careful when one drives.",
+            "You should always be careful when you drive.",
+            "Both A and B are correct.",
+            "One should always be careful when they drive."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "You must maintain the same person (One/One or You/You) throughout the sentence."
+        },
+        {
+          "id": "q3_13",
+          "type": "multiple_choice",
+          "question": "Choose the clearest rewrite: 'The students finished the projects before their teachers expected them.'",
+          "options": [
+            "The students finished the projects before the teachers expected the work to be done.",
+            "The students finished the projects before the teachers expected them to.",
+            "Both are clearer than 'them'.",
+            "No change needed."
+          ],
+          "correctAnswer": "Both are clearer than 'them'.",
+          "explanation": "In the original, 'them' could refer to the students or the projects."
+        },
+        {
+          "id": "q3_14",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The committee met yesterday, and they decided to delay the vote.'",
+          "options": [
+            "committee",
+            "met",
+            "they",
+            "delay"
+          ],
+          "correctAnswer": "they",
+          "explanation": "'Committee' is singular in American English; it should be 'it decided'. (In UK English, 'they' is often accepted)."
+        },
+        {
+          "id": "q3_15",
+          "type": "multiple_choice",
+          "question": "Which is best for a Task 2 argument? 'If a child is given too much freedom, ___ may become spoiled.'",
+          "options": [
+            "he",
+            "she",
+            "they",
+            "the child"
+          ],
+          "correctAnswer": "they",
+          "explanation": "Singular 'they' is the standard gender-neutral choice for academic exams."
+        },
+        {
+          "id": "q3_16",
+          "type": "multiple_choice",
+          "question": "Find the ambiguous pronoun: 'She put her purse in the shopping cart and then it was gone.'",
+          "options": [
+            "her",
+            "purse",
+            "cart",
+            "it"
+          ],
+          "correctAnswer": "it",
+          "explanation": "Is the purse gone or the cart gone? 'It' is unclear."
+        },
+        {
+          "id": "q3_17",
+          "type": "multiple_choice",
+          "question": "Choose the correct summarizing phrase: 'Many people now work from home. ___ has changed the housing market.'",
+          "options": [
+            "It",
+            "They",
+            "This shift",
+            "Those"
+          ],
+          "correctAnswer": "This shift",
+          "explanation": "Summarizes the entire first sentence clearly."
+        },
+        {
+          "id": "q3_18",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'The box and the lid were both red, but it was broken.'",
+          "options": [
+            "box",
+            "lid",
+            "red",
+            "it"
+          ],
+          "correctAnswer": "it",
+          "explanation": "'It' is ambiguous. Which part was broken?"
+        },
+        {
+          "id": "q3_19",
+          "type": "multiple_choice",
+          "question": "Correct the consistency: 'If a traveler loses their passport, you should go to the embassy.'",
+          "options": [
+            "If a traveler loses their passport, they should go to the embassy.",
+            "If travelers lose their passports, they should go to the embassy.",
+            "Both are correct.",
+            "No change needed."
+          ],
+          "correctAnswer": "Both are correct.",
+          "explanation": "Maintains consistency between the traveler(s) and the pronoun."
+        },
+        {
+          "id": "q3_20",
+          "type": "multiple_choice",
+          "question": "Identify the missing antecedent: 'It is important to study. They will help you in the future.'",
+          "options": [
+            "Who does 'They' refer to?",
+            "Should be 'This will help you'.",
+            "Should be 'Studying will help you'.",
+            "All of the above."
+          ],
+          "correctAnswer": "All of the above.",
+          "explanation": "'They' has nothing to refer back to in the first sentence."
+        },
+        {
+          "id": "q3_21",
+          "type": "multiple_choice",
+          "question": "Which sentence avoids the 'Vague This' trap?",
+          "options": [
+            "The car crashed into the wall. This was shocking.",
+            "The car crashed into the wall. This accident was shocking.",
+            "The car crashed into the wall, which was shocking.",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "They provide a clear target for the reference."
+        },
+        {
+          "id": "q3_22",
+          "type": "multiple_choice",
+          "question": "Find the error: 'The workers and the managers had a meeting, but they didn't agree.'",
+          "options": [
+            "workers",
+            "managers",
+            "they",
+            "agree"
+          ],
+          "correctAnswer": "they",
+          "explanation": "Ambiguous. Does 'they' mean just the workers, just the managers, or both?"
+        },
+        {
+          "id": "q3_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct pronoun: 'Either of the students can give ___ presentation today.'",
+          "options": [
+            "their",
+            "his",
+            "hers",
+            "those"
+          ],
+          "correctAnswer": "their",
+          "explanation": "Singular 'they/their' is the standard choice for 'either/one'."
+        },
+        {
+          "id": "q3_24",
+          "type": "multiple_choice",
+          "question": "Identify the ambiguity: 'John told Mike that he was wrong.'",
+          "options": [
+            "Who was wrong? John or Mike?",
+            "No error.",
+            "The word 'that' is wrong.",
+            "Mike should be plural."
+          ],
+          "correctAnswer": "Who was wrong? John or Mike?",
+          "explanation": "Standard male-male ambiguity trap."
+        },
+        {
+          "id": "q3_25",
+          "type": "multiple_choice",
+          "question": "Fix: 'The results were surprising. It showed a new trend.'",
+          "options": [
+            "They showed a new trend.",
+            "The results showed a new trend.",
+            "Both are better.",
+            "No error."
+          ],
+          "correctAnswer": "Both are better.",
+          "explanation": "'It' is singular, but 'results' is plural."
+        },
+        {
+          "id": "q3_26",
+          "type": "multiple_choice",
+          "question": "Which is best for an IELTS Task 1? 'The figures rose sharply. ___ were higher than expected.'",
+          "options": [
+            "It",
+            "They",
+            "This",
+            "Those"
+          ],
+          "correctAnswer": "They",
+          "explanation": "Refers back to 'The figures'."
+        },
+        {
+          "id": "q3_27",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'He liked the movie and the book, but it was too long.'",
+          "options": [
+            "movie",
+            "book",
+            "it",
+            "long"
+          ],
+          "correctAnswer": "it",
+          "explanation": "Was the movie long or the book long?"
+        },
+        {
+          "id": "q3_28",
+          "type": "multiple_choice",
+          "question": "Choose the best academic linking phrase: 'The research was successful. ___ will lead to new treatments.'",
+          "options": [
+            "It",
+            "This",
+            "These findings",
+            "They"
+          ],
+          "correctAnswer": "These findings",
+          "explanation": "Most precise way to link the ideas."
+        },
+        {
+          "id": "q3_29",
+          "type": "multiple_choice",
+          "question": "Find the missing subject: 'Although it was late, decided to stay.'",
+          "options": [
+            "Needs 'I' or 'he' before 'decided'.",
+            "No error.",
+            "Needs 'it' before 'decided'.",
+            "Needs 'is' before 'decided'."
+          ],
+          "correctAnswer": "Needs 'I' or 'he' before 'decided'.",
+          "explanation": "English clauses must have a subject."
+        },
+        {
+          "id": "q3_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Clarity is more important than ___.",
+          "options": [
+            "Grammar",
+            "Repetition",
+            "Length",
+            "Brevity"
+          ],
+          "correctAnswer": "Brevity",
+          "explanation": "If a pronoun is unclear, it is better to repeat the noun than to be 'short' and confusing."
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "title": "IELTS/TOEFL Integration",
+      "miniLesson": "<div style=\"border: 2px solid #6d28d9; border-radius: 8px; padding: 15px; background-color: #f5f3ff; font-family: sans-serif;\"><h3 style=\"color: #6d28d9; margin-top: 0; border-bottom: 2px solid #ddd6fe; padding-bottom: 5px;\">📈 Level 4: The Summarizing 'This'</h3><p>To achieve high marks in <b>Coherence and Cohesion</b>, use <i>This/These + [Noun]</i> to refer back to abstract concepts or whole sentences. This prevents ambiguity and shows a high range of vocabulary.</p><ul style=\"line-height: 1.8; font-size: 1.05em;\"><li>📊 <b>The Trend Link:</b> <i>Prices rose by 20% in 2010. <b>This sharp increase</b> surprised analysts.</i></li><li>⚖️ <b>The Argument Link:</b> <i>Some believe that taxes should be lowered. <b>Such a policy</b> would stimulate growth.</i></li><li>🛑 <b>Avoid 'Vague This':</b> Never end a paragraph with 'This shows...' without specifying <i>what</i> it shows (e.g., <i>This data shows...</i>).</li></ul></div>",
+      "questionBank": [
+        {
+          "id": "q4_1",
+          "type": "multiple_choice",
+          "question": "Which sentence provides the best cohesion for a Task 2 essay?",
+          "options": [
+            "Governments are investing more in green energy. This is good for the environment.",
+            "Governments are investing more in green energy. This shift in policy is beneficial for the environment.",
+            "Governments are investing more in green energy, it is good.",
+            "Governments are investing more in green energy. They are good."
+          ],
+          "correctAnswer": "Governments are investing more in green energy. This shift in policy is beneficial for the environment.",
+          "explanation": "'This shift in policy' summarizes the previous action perfectly and provides a clear link."
+        },
+        {
+          "id": "q4_2",
+          "type": "multiple_choice",
+          "question": "Identify the best use of 'these' for a Task 1 data report:",
+          "options": [
+            "Sales peaked in June but fell in July. These were unexpected.",
+            "Sales peaked in June but fell in July. These fluctuations were unexpected.",
+            "Sales peaked in June but fell in July. This was unexpected.",
+            "Sales peaked in June but fell in July. Those were unexpected."
+          ],
+          "correctAnswer": "Sales peaked in June but fell in July. These fluctuations were unexpected.",
+          "explanation": "'These fluctuations' accurately describes the movement in the data (up and down)."
+        },
+        {
+          "id": "q4_3",
+          "type": "multiple_choice",
+          "question": "Choose the most academic way to link these sentences: 'The birth rate is falling. This will cause problems.'",
+          "options": [
+            "The birth rate is falling, which will cause problems.",
+            "The birth rate is falling. This demographic trend will cause problems.",
+            "The birth rate is falling. It will cause problems.",
+            "Both A and B are high-level academic structures."
+          ],
+          "correctAnswer": "Both A and B are high-level academic structures.",
+          "explanation": "A uses a sentential relative clause; B uses a summarizing demonstrative. Both are Band 7.0+ moves."
+        },
+        {
+          "id": "q4_4",
+          "type": "multiple_choice",
+          "question": "Identify the 'Vague Pronoun' in this conclusion: 'Overall, the data proves that urbanization is inevitable. This shows why we must plan carefully.'",
+          "options": [
+            "data",
+            "urbanization",
+            "This",
+            "it"
+          ],
+          "correctAnswer": "This",
+          "explanation": "To be more precise, it should be 'This evidence shows' or 'This trend shows'."
+        },
+        {
+          "id": "q4_5",
+          "type": "multiple_choice",
+          "question": "Complete the comparison: 'Men spent 50 hours on housework, ___ was significantly higher than the figure for women.'",
+          "options": [
+            "that",
+            "which",
+            "this",
+            "it"
+          ],
+          "correctAnswer": "which",
+          "explanation": "A non-defining relative clause ('which') is used to add a comment to the previous clause."
+        },
+        {
+          "id": "q4_6",
+          "type": "multiple_choice",
+          "question": "Which summarizing noun is most appropriate? 'Young people are spending more time on social media. ___ is a cause of concern for parents.'",
+          "options": [
+            "This habit",
+            "This person",
+            "This media",
+            "This time"
+          ],
+          "correctAnswer": "This habit",
+          "explanation": "The previous sentence describes a recurring behavior (a habit)."
+        },
+        {
+          "id": "q4_7",
+          "type": "multiple_choice",
+          "question": "Correct the error: 'The company reduced its staff by 20%. Such a move was intended to save costs.'",
+          "options": [
+            "The sentence is correct.",
+            "Change 'Such a move' to 'This move'.",
+            "Change 'Such a move' to 'That move'.",
+            "Both A and B are correct."
+          ],
+          "correctAnswer": "Both A and B are correct.",
+          "explanation": "'Such a move' and 'This move' are both professional ways to refer back to a specific action."
+        },
+        {
+          "id": "q4_8",
+          "type": "multiple_choice",
+          "question": "Identify the ambiguity: 'The researchers gave the participants the results, and they were surprised.'",
+          "options": [
+            "Who was surprised? The researchers or the participants?",
+            "The word 'results' should be singular.",
+            "The word 'they' should be 'it'.",
+            "No error."
+          ],
+          "correctAnswer": "Who was surprised? The researchers or the participants?",
+          "explanation": "'They' could refer to either group mentioned. A clarifying noun is needed."
+        },
+        {
+          "id": "q4_9",
+          "type": "multiple_choice",
+          "question": "Which phrase is best for a Task 1 overview? 'Coal consumption dropped to zero by 2050. ___ signaled the end of fossil fuel use in the country.'",
+          "options": [
+            "It",
+            "This",
+            "This decline",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'This' or 'This decline' effectively bridges the two sentences."
+        },
+        {
+          "id": "q4_10",
+          "type": "multiple_choice",
+          "question": "Choose the most sophisticated rewrite: 'Some people argue that prison is effective. I do not agree with this.'",
+          "options": [
+            "Some argue that prison is effective; however, I disagree with this notion.",
+            "Some argue that prison is effective, but I don't agree.",
+            "I do not agree with the argument that prison is effective.",
+            "All are correct, but A is the most academic."
+          ],
+          "correctAnswer": "All are correct, but A is the most academic.",
+          "explanation": "Using 'this notion' provides a professional summary of the opposing argument."
+        },
+        {
+          "id": "q4_11",
+          "type": "multiple_choice",
+          "question": "Complete with a summarizing demonstrative: 'Many cities have introduced bike-sharing schemes. ___ have proved successful in reducing traffic.'",
+          "options": [
+            "This",
+            "These",
+            "These initiatives",
+            "Both B and C."
+          ],
+          "correctAnswer": "Both B and C.",
+          "explanation": "'These' refers back to 'schemes', while 'These initiatives' is more precise."
+        },
+        {
+          "id": "q4_12",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'If a student fails the exam, they can retake it in June.'",
+          "options": [
+            "No error in modern academic English.",
+            "'They' should be 'he or she'.",
+            "'Student' should be 'Students'.",
+            "The word 'June' needs 'the'."
+          ],
+          "correctAnswer": "No error in modern academic English.",
+          "explanation": "The singular 'they' is now standard for avoiding gender assumptions in general examples."
+        },
+        {
+          "id": "q4_13",
+          "type": "multiple_choice",
+          "question": "Which summarizing noun fits best? 'Automation is replacing manual labor. ___ is inevitable in the digital age.'",
+          "options": [
+            "This process",
+            "This person",
+            "This work",
+            "This job"
+          ],
+          "correctAnswer": "This process",
+          "explanation": "The shift toward automation is described as a 'process'."
+        },
+        {
+          "id": "q4_14",
+          "type": "multiple_choice",
+          "question": "Find the ambiguous pronoun: 'Put the document in the folder and then shred it.'",
+          "options": [
+            "document",
+            "folder",
+            "it",
+            "wash"
+          ],
+          "correctAnswer": "it",
+          "explanation": "Are we shredding the document or the folder? This is grammatically unclear."
+        },
+        {
+          "id": "q4_15",
+          "type": "multiple_choice",
+          "question": "Choose the correct academic linking: 'The company ignored safety regulations. ___ resulted in a major accident.'",
+          "options": [
+            "This",
+            "It",
+            "This negligence",
+            "Both A and C."
+          ],
+          "correctAnswer": "Both A and C.",
+          "explanation": "'This negligence' is a high-level lexical choice that summarizes the action."
+        },
+        {
+          "id": "q4_16",
+          "type": "multiple_choice",
+          "question": "Identify the error in pronoun consistency: 'We should protect the environment because it affects our health.'",
+          "options": [
+            "We",
+            "it",
+            "our",
+            "No error."
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "The pronouns 'We', 'it' (environment), and 'our' are all used correctly and consistently."
+        },
+        {
+          "id": "q4_17",
+          "type": "multiple_choice",
+          "question": "Which is best for Task 1? 'The number of travelers decreased in 2010. ___ fell from 500 to 300.'",
+          "options": [
+            "It",
+            "They",
+            "This",
+            "The figure"
+          ],
+          "correctAnswer": "The figure",
+          "explanation": "In Task 1, 'The figure' or 'The number' is more precise than 'It' or 'They' when referring to data points."
+        },
+        {
+          "id": "q4_18",
+          "type": "multiple_choice",
+          "question": "Choose the best summary: 'The experiment was repeated five times. ___ ensured the reliability of the results.'",
+          "options": [
+            "This",
+            "It",
+            "This repetition",
+            "They"
+          ],
+          "correctAnswer": "This repetition",
+          "explanation": "Summarizes the repeated action mentioned in the first sentence."
+        },
+        {
+          "id": "q4_19",
+          "type": "multiple_choice",
+          "question": "Identify the trap: 'Students should study hard. They will help them in the future.'",
+          "options": [
+            "Who are the second 'them'?",
+            "What does the first 'They' refer to?",
+            "Both are ambiguous.",
+            "No error."
+          ],
+          "correctAnswer": "Both are ambiguous.",
+          "explanation": "The sentence is a mess of 'they/them' with no clear antecedents."
+        },
+        {
+          "id": "q4_20",
+          "type": "multiple_choice",
+          "question": "Which noun clarifies 'this' in an essay about diet? 'Fast food is cheap and accessible. ___ has led to rising obesity levels.'",
+          "options": [
+            "This food",
+            "This trend",
+            "This availability",
+            "All of the above work, but B or C are more academic."
+          ],
+          "correctAnswer": "All of the above work, but B or C are more academic.",
+          "explanation": "They accurately describe the situation mentioned."
+        },
+        {
+          "id": "q4_21",
+          "type": "multiple_choice",
+          "question": "Complete the data description: 'House prices in the city are high, ___ prevents many young people from buying homes.'",
+          "options": [
+            "that",
+            "which",
+            "this",
+            "it"
+          ],
+          "correctAnswer": "which",
+          "explanation": "A sentential 'which' referring to the entire situation in the first clause."
+        },
+        {
+          "id": "q4_22",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'None of the participants who took part in the study were able to complete it.'",
+          "options": [
+            "None",
+            "participants",
+            "were",
+            "it"
+          ],
+          "correctAnswer": "No error.",
+          "explanation": "In modern English, 'none' can be followed by a plural verb when referring to plural individuals."
+        },
+        {
+          "id": "q4_23",
+          "type": "multiple_choice",
+          "question": "Choose the correct summarizing word: 'Tourism provides jobs but damages the environment. Balancing ___ is a challenge for governments.'",
+          "options": [
+            "this",
+            "them",
+            "these two factors",
+            "it"
+          ],
+          "correctAnswer": "these two factors",
+          "explanation": "Clearly refers to the 'jobs' (positive) and 'damage' (negative) mentioned."
+        },
+        {
+          "id": "q4_24",
+          "type": "multiple_choice",
+          "question": "Find the ambiguous pronoun: 'The manager spoke to the secretary about her schedule.'",
+          "options": [
+            "The manager",
+            "secretary",
+            "her",
+            "schedule"
+          ],
+          "correctAnswer": "her",
+          "explanation": "Whose schedule? The manager's or the secretary's? (Grammatically ambiguous)."
+        },
+        {
+          "id": "q4_25",
+          "type": "multiple_choice",
+          "question": "Which is best for a formal overview? 'The graph shows a steady rise in sales. ___ indicates a growing market.'",
+          "options": [
+            "This",
+            "It",
+            "This growth",
+            "They"
+          ],
+          "correctAnswer": "This growth",
+          "explanation": "Specifically names the trend described."
+        },
+        {
+          "id": "q4_26",
+          "type": "multiple_choice",
+          "question": "Identify the 'Vague This' fix: 'The company ignored the warnings. This was a mistake.'",
+          "options": [
+            "This decision was a mistake.",
+            "Ignoring the warnings was a mistake.",
+            "The failure to heed the warnings was a mistake.",
+            "All of these are better academic options."
+          ],
+          "correctAnswer": "All of these are better academic options.",
+          "explanation": "They replace the vague 'This' with a specific noun or gerund phrase."
+        },
+        {
+          "id": "q4_27",
+          "type": "multiple_choice",
+          "question": "Which sentence effectively uses 'such'? 'Many people are moving to cities. ___ a large-scale migration has never been seen before.'",
+          "options": [
+            "Such",
+            "This",
+            "It",
+            "They"
+          ],
+          "correctAnswer": "Such",
+          "explanation": "'Such' is used to emphasize the nature or scale of the noun being referred to."
+        },
+        {
+          "id": "q4_28",
+          "type": "multiple_choice",
+          "question": "Choose the best pronoun: 'The government and the private sector must work together. ___ should share the costs.'",
+          "options": [
+            "They",
+            "It",
+            "This",
+            "Those"
+          ],
+          "correctAnswer": "They",
+          "explanation": "Refers to the two groups mentioned as the subject."
+        },
+        {
+          "id": "q4_29",
+          "type": "multiple_choice",
+          "question": "Identify the error: 'If a traveler loses their passport, he should go to the embassy.'",
+          "options": [
+            "traveler",
+            "their",
+            "he",
+            "embassy"
+          ],
+          "correctAnswer": "he",
+          "explanation": "Pronoun shift error. If you start with gender-neutral 'their,' you should continue with 'they'."
+        },
+        {
+          "id": "q4_30",
+          "type": "multiple_choice",
+          "question": "Final Check: Cohesion is achieved when pronouns have clear ___.",
+          "options": [
+            "Verbs",
+            "Adjectives",
+            "Antecedents",
+            "Prepositions"
+          ],
+          "correctAnswer": "Antecedents",
+          "explanation": "The 'antecedent' is the noun or idea the pronoun replaces. It must be unmistakable for the reader."
+        }
+      ]
+    }
+  ]
+}
