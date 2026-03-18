@@ -121,7 +121,9 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
     connection.release();
     res.json(usersWithCompat);
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in GET /api/users/all:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to fetch users' });
   }
 });
@@ -198,7 +200,9 @@ router.patch('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
     
     res.json({ message: 'User updated successfully' });
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in PATCH /api/users/:id:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to update user' });
   }
 });
@@ -281,7 +285,9 @@ router.delete('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
       details: userRole === 'teacher' ? 'Classes reassigned to SuperAdmin.' : 'All student records purged.'
     });
   } catch (err) {
-    console.error('Deep-Clean Deletion Error:', err);
+    console.error('DB Error in DELETE /api/users/:id:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to delete user and clean records' });
   }
 });
@@ -303,7 +309,9 @@ router.get('/institutions', verifyAdminOrSuperAdmin, async (req, res) => {
     connection.release();
     res.json(institutions);
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in GET /api/institutions:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to fetch institutions' });
   }
 });

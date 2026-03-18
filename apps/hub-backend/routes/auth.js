@@ -68,7 +68,9 @@ router.post('/register', async (req, res) => {
       if (err.name === 'JsonWebTokenError') {
         return res.status(401).json({ error: 'Invalid token' });
       }
-      console.error(err);
+      console.error('DB Error in POST /api/auth/register (privileged creation):', err.message);
+      console.error('Full error:', err);
+      if (err.query) console.error('Failed query:', err.query);
       return res.status(500).json({ error: 'Internal server error' });
     }
   }
@@ -102,7 +104,9 @@ router.post('/register', async (req, res) => {
     res.status(201).json({ message: 'Student account created successfully', userId: result.insertId });
     
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in POST /api/auth/register (student self-registration):', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -121,8 +125,9 @@ router.post('/login', async (req, res) => {
     // Allow teacher/admin/super_admin to login with 'teacher' role selection
     let query, params;
     if (role === 'teacher') {
-      query = 'SELECT * FROM users WHERE email = $1 AND role IN ($2, $3, $4)';
-      params = [email, 'teacher', 'admin', 'super_admin'];
+      // Use ANY with array for PostgreSQL IN clause
+      query = 'SELECT * FROM users WHERE email = $1 AND role = ANY($2)';
+      params = [email, ['teacher', 'admin', 'super_admin']];
     } else {
       // Exact role match for students
       query = 'SELECT * FROM users WHERE email = $1 AND role = $2';
@@ -182,7 +187,9 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    console.error(err);
+    console.error('DB Error in POST /api/auth/login:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
