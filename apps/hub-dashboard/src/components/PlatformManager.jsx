@@ -37,6 +37,12 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [classesSearch, setClassesSearch] = useState('');
   const [classesPage, setClassesPage] = useState(1);
   const [selectedInstitutionId, setSelectedInstitutionId] = useState('');
+  const [isEditClassModalOpen, setIsEditClassModalOpen] = useState(false);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [classEditForm, setClassEditForm] = useState({ class_name: '', class_code: '', institution_id: '', start_date: '', end_date: '' });
+  const [studentSearchQuery, setStudentSearchQuery] = useState('');
+  const [studentSearchResults, setStudentSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   // Fetch functions
   const fetchInstitutions = async () => {
@@ -275,6 +281,105 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
     }
   };
 
+  const handleUpdateClass = async (e) => {
+    e.preventDefault();
+    if (!selectedClass) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/classes/${selectedClass.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(classEditForm)
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to update class');
+
+      alert('Class updated successfully');
+      setIsEditClassModalOpen(false);
+      setSelectedClass(null);
+      await fetchAllClasses();
+    } catch (err) {
+      alert(err.message || 'Failed to update class');
+    }
+  };
+
+  const handleDeleteClass = async () => {
+    if (!selectedClass) return;
+    if (!window.confirm(`Permanently delete "${selectedClass.class_name}"? This will remove all student enrollments. This cannot be undone.`)) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/classes/${selectedClass.id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete class');
+
+      alert('Class deleted successfully');
+      setIsEditClassModalOpen(false);
+      setSelectedClass(null);
+      await fetchAllClasses();
+    } catch (err) {
+      alert(err.message || 'Failed to delete class');
+    }
+  };
+
+  const searchStudents = async (query) => {
+    if (!query || query.trim().length < 2) {
+      setStudentSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/search?q=${encodeURIComponent(query)}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        // Filter to only show students
+        const students = data.filter(u => u.role === 'student');
+        setStudentSearchResults(students);
+      } else {
+        setStudentSearchResults([]);
+      }
+    } catch (err) {
+      console.error('Failed to search students', err);
+      setStudentSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const handleAddStudentToClass = async (student) => {
+    if (!selectedClass) return;
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/enroll-class`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ email: student.email, class_id: selectedClass.id })
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to add student to class');
+
+      alert(`${student.first_name} ${student.last_name} added to ${selectedClass.class_name}`);
+      setStudentSearchQuery('');
+      setStudentSearchResults([]);
+      await fetchAllClasses();
+    } catch (err) {
+      alert(err.message || 'Failed to add student to class');
+    }
+  };
+
   // Fetch data when the navigation view changes
   useEffect(() => {
     if (navigationView === 'institutions') fetchInstitutions();
@@ -336,6 +441,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         <th className="px-6 py-4">Start Date</th>
                         <th className="px-6 py-4">End Date</th>
                         <th className="px-6 py-4">Class Code</th>
+                        <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
@@ -376,6 +482,26 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                               <code className="bg-purple-100 text-purple-700 px-3 py-1 rounded font-mono text-xs font-bold">
                                 {cls.class_code}
                               </code>
+                            </td>
+                            <td className="px-6 py-4 text-right">
+                              <button
+                                onClick={() => {
+                                  setSelectedClass(cls);
+                                  setClassEditForm({
+                                    class_name: cls.class_name,
+                                    class_code: cls.class_code,
+                                    institution_id: cls.institution_id || '',
+                                    start_date: cls.start_date ? cls.start_date.split('T')[0] : '',
+                                    end_date: cls.end_date ? cls.end_date.split('T')[0] : ''
+                                  });
+                                  setStudentSearchQuery('');
+                                  setStudentSearchResults([]);
+                                  setIsEditClassModalOpen(true);
+                                }}
+                                className="text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg border border-indigo-200 transition-colors"
+                              >
+                                Edit
+                              </button>
                             </td>
                           </tr>
                         ));
@@ -1197,6 +1323,144 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   className="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg"
                 >
                   Create Class
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Class Modal */}
+      {isEditClassModalOpen && selectedClass && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-indigo-600 to-purple-600">
+              <h3 className="font-black text-2xl text-white tracking-tight">Edit Class</h3>
+              <p className="text-sm text-indigo-100 mt-1">{selectedClass.class_name} ({selectedClass.class_code})</p>
+            </div>
+            <form onSubmit={handleUpdateClass} className="p-8 space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class Name</label>
+                <input
+                  required
+                  type="text"
+                  value={classEditForm.class_name}
+                  onChange={e => setClassEditForm({...classEditForm, class_name: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class Code</label>
+                <input
+                  required
+                  type="text"
+                  value={classEditForm.class_code}
+                  onChange={e => setClassEditForm({...classEditForm, class_code: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  maxLength={6}
+                />
+              </div>
+              {user.role === 'super_admin' && (
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution</label>
+                  <select
+                    required
+                    value={classEditForm.institution_id}
+                    onChange={e => setClassEditForm({...classEditForm, institution_id: e.target.value})}
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  >
+                    <option value="">Select Institution</option>
+                    {institutions.map(inst => (
+                      <option key={inst.id} value={inst.id}>{inst.name}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Start Date</label>
+                  <input
+                    type="date"
+                    value={classEditForm.start_date}
+                    onChange={e => setClassEditForm({...classEditForm, start_date: e.target.value})}
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">End Date (Optional)</label>
+                  <input
+                    type="date"
+                    value={classEditForm.end_date}
+                    onChange={e => setClassEditForm({...classEditForm, end_date: e.target.value})}
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Autocomplete Add Student Feature */}
+              <div className="space-y-1 border-t border-slate-200 pt-4">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Add Student to Class</label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={studentSearchQuery}
+                    onChange={e => {
+                      setStudentSearchQuery(e.target.value);
+                      searchStudents(e.target.value);
+                    }}
+                    placeholder="Type student name or email..."
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                  />
+                  {isSearching && (
+                    <div className="absolute right-3 top-3 text-slate-400 text-xs">Searching...</div>
+                  )}
+                  {studentSearchResults.length > 0 && (
+                    <div className="absolute z-10 w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-lg max-h-48 overflow-y-auto">
+                      {studentSearchResults.map(student => (
+                        <button
+                          key={student.id}
+                          type="button"
+                          onClick={() => handleAddStudentToClass(student)}
+                          className="w-full text-left px-4 py-3 hover:bg-indigo-50 transition-colors border-b border-slate-100 last:border-b-0"
+                        >
+                          <div className="font-bold text-slate-900 text-sm">
+                            {student.first_name} {student.last_name}
+                          </div>
+                          <div className="text-xs text-slate-500">{student.email}</div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs text-slate-500 mt-1">Start typing to search for students in your institution</p>
+              </div>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={handleDeleteClass}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg"
+                >
+                  Delete Class
+                </button>
+                <div className="flex-1"></div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsEditClassModalOpen(false);
+                    setSelectedClass(null);
+                    setStudentSearchQuery('');
+                    setStudentSearchResults([]);
+                  }}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-xl transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg"
+                >
+                  Update Class
                 </button>
               </div>
             </form>

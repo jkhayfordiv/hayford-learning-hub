@@ -226,4 +226,76 @@ router.delete('/:id/classes', auth, async (req, res) => {
   }
 });
 
+// @route   GET api/users/search
+// @desc    Search users by name or email (with tenant isolation)
+// @access  Private (Teacher/Admin only)
+router.get('/search', requireTeacher, async (req, res) => {
+  const { q } = req.query;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
+
+  if (!q || q.trim().length < 2) {
+    return res.status(400).json({ error: 'Search query must be at least 2 characters' });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    const searchTerm = `%${q.trim()}%`;
+
+    // TENANT ISOLATION: Filter by institution for admins/teachers
+    let query, params;
+    if (actor_role === 'super_admin') {
+      query = `
+        SELECT 
+          id, 
+          first_name, 
+          last_name, 
+          email, 
+          role,
+          institution_id
+        FROM users
+        WHERE (
+          LOWER(first_name) LIKE LOWER($1) OR
+          LOWER(last_name) LIKE LOWER($1) OR
+          LOWER(email) LIKE LOWER($1)
+        )
+        ORDER BY last_name, first_name
+        LIMIT 20
+      `;
+      params = [searchTerm];
+    } else {
+      // Admin/Teacher: only search within their institution
+      query = `
+        SELECT 
+          id, 
+          first_name, 
+          last_name, 
+          email, 
+          role,
+          institution_id
+        FROM users
+        WHERE (
+          LOWER(first_name) LIKE LOWER($1) OR
+          LOWER(last_name) LIKE LOWER($1) OR
+          LOWER(email) LIKE LOWER($1)
+        )
+        AND institution_id = $2
+        ORDER BY last_name, first_name
+        LIMIT 20
+      `;
+      params = [searchTerm, actor_institution_id];
+    }
+
+    const [users] = await connection.query(query, params);
+    connection.release();
+
+    res.json(users);
+  } catch (err) {
+    console.error('DB Error in GET /api/users/search:', err.message);
+    console.error('Full error:', err);
+    if (err.query) console.error('Failed query:', err.query);
+    res.status(500).json({ error: 'Failed to search users' });
+  }
+});
+
 module.exports = router;
