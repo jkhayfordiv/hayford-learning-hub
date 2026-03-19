@@ -8,7 +8,7 @@ const { pool } = require('../db');
 // @desc    Create a new assignment(s) for a specific student, entire class, or all students
 // @access  Private (Teacher/Admin only)
 router.post('/', requireTeacher, async (req, res) => {
-  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, writing_task_type } = req.body;
+  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, writing_task_type, speaking_task_part } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
   
@@ -49,9 +49,9 @@ router.post('/', requireTeacher, async (req, res) => {
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, instructions || null, due_date || null]
+        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
       );
       
       connection.release();
@@ -59,9 +59,9 @@ router.post('/', requireTeacher, async (req, res) => {
     } else if (class_id) {
       // Assign to an entire class: create template assignment with class_id
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-        [teacher_id, class_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, instructions || null, due_date || null]
+        `INSERT INTO assigned_tasks (teacher_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+        [teacher_id, class_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
       );
       
       // Query class_enrollments table for all enrolled students
@@ -74,8 +74,8 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const enrollment of enrollments) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
              ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
             [
               teacher_id,
@@ -85,6 +85,7 @@ router.post('/', requireTeacher, async (req, res) => {
               aType,
               grammar_topic_id || null,
               writing_task_type || null,
+              speaking_task_part || null,
               instructions || null,
               due_date || null
             ]
@@ -134,10 +135,10 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
              ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
-            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, instructions || null, due_date || null]
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
           );
           count++;
         } catch (dupError) {
@@ -301,6 +302,42 @@ router.delete('/bulk', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Delete bulk assignments error:', error);
     res.status(500).json({ error: 'Server Error deleting assignments' });
+  }
+});
+
+// @route   PATCH api/assignments/:id/comment
+// @desc    Add or update teacher comment on a specific assignment
+// @access  Private (Teacher/Admin only)
+router.patch('/:id/comment', requireTeacher, async (req, res) => {
+  const assignment_id = req.params.id;
+  const { teacher_comment } = req.body;
+  const teacher_id = req.user.id;
+
+  if (!teacher_comment) {
+    return res.status(400).json({ error: 'teacher_comment is required.' });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // Update the assignment with the teacher's comment and set teacher_comment_read to FALSE
+    const [result] = await connection.query(
+      `UPDATE assigned_tasks 
+       SET teacher_comment = $1, teacher_comment_read = FALSE 
+       WHERE id = $2 AND teacher_id = $3`,
+      [teacher_comment, assignment_id, teacher_id]
+    );
+
+    connection.release();
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Assignment not found or you do not have permission to comment on it.' });
+    }
+
+    res.json({ success: true, message: 'Teacher comment saved successfully.' });
+  } catch (error) {
+    console.error('Update teacher comment error:', error);
+    res.status(500).json({ error: 'Server Error saving teacher comment' });
   }
 });
 

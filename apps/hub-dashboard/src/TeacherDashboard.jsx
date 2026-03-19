@@ -4,6 +4,7 @@ import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2,
 import logo from './assets/logo.png';
 import PlatformManager from './components/PlatformManager';
 import ClassDetails from './components/ClassDetails';
+import SubmissionReviewModal from './components/SubmissionReviewModal';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
   {
@@ -59,6 +60,7 @@ const DEFAULT_ASSIGNMENT_FORM = {
   assignment_type: 'writing',
   writing_task_type: '1',
   grammar_topic_id: '',
+  speaking_task_part: '1',
   instructions: '',
   due_date: ''
 };
@@ -120,6 +122,10 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [selectedAssignments, setSelectedAssignments] = useState([]);
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
   
+  // Submission Review Modal State
+  const [selectedSubmission, setSelectedSubmission] = useState(null);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  
   // Platform Management - institutions kept here for the Class Creation modal dropdown
   const [institutions, setInstitutions] = useState([]);
   const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes, class-details
@@ -138,6 +144,32 @@ export default function TeacherDashboard({ user, onLogout }) {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+  };
+
+  // Handle opening submission review modal
+  const handleOpenSubmissionReview = (activity) => {
+    setSelectedSubmission(activity);
+    setIsReviewModalOpen(true);
+  };
+
+  // Handle saving teacher comment
+  const handleSaveTeacherComment = async (assignmentId, comment) => {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${apiBase}/api/assignments/${assignmentId}/comment`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ teacher_comment: comment })
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to save comment');
+    
+    // Refresh activity data
+    fetchClassData();
+    return data;
   };
 
   // PHASE 4.3: Bulk Action Handlers
@@ -849,6 +881,19 @@ export default function TeacherDashboard({ user, onLogout }) {
       {/* Admin Level Navigation Bar (Crimson) - Platform Management */}
       {(user.role === 'admin' || user.role === 'super_admin') && (
         <div className="bg-gradient-to-r from-[#800000] to-[#600000] border-b border-[#700000] px-8 py-3 flex gap-6 sticky top-[73px] z-30">
+          <button
+            onClick={() => {
+              setNavigationView('dashboard');
+              setSelectedClassId(null);
+            }}
+            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+              navigationView === 'dashboard'
+                ? 'bg-white text-slate-900 shadow-lg'
+                : 'text-white hover:bg-white/20'
+            }`}
+          >
+            Home
+          </button>
           {user.role === 'super_admin' && (
             <button
               onClick={() => setNavigationView('institutions')}
@@ -1287,10 +1332,14 @@ export default function TeacherDashboard({ user, onLogout }) {
               <div className="px-8 py-8 text-center text-slate-400 text-sm">No recent activity found.</div>
             ) : (
               recentActivity.map((activity) => (
-                <div key={activity.id} className="px-8 py-3 flex items-center justify-between gap-4 hover:bg-slate-50 transition-colors">
+                <div 
+                  key={activity.id} 
+                  onClick={() => handleOpenSubmissionReview(activity)}
+                  className="px-8 py-3 flex items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer group"
+                >
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-slate-900 truncate">{activity.student_first_name} {activity.student_last_name}</p>
-                    <p className="text-xs text-slate-500 truncate">{activity.module_name} · {new Date(activity.completed_at).toLocaleString()}</p>
+                    <p className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-amber-700 dark:group-hover:text-amber-500 transition-colors">{activity.student_first_name} {activity.student_last_name}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{activity.module_name} · {new Date(activity.completed_at).toLocaleString()}</p>
                   </div>
                   <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-black rounded-lg border border-green-200 shrink-0">
                     <CheckCircle2 size={12} /> {Number(activity.overall_score).toFixed(1)}
@@ -1325,14 +1374,11 @@ export default function TeacherDashboard({ user, onLogout }) {
                       <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assignment Type</label>
                       <select
                         value={assignmentForm.assignment_type}
-                        onChange={e => setAssignmentForm({
-                          ...assignmentForm,
-                          assignment_type: e.target.value,
-                          grammar_topic_id: e.target.value === 'grammar-practice' ? assignmentForm.grammar_topic_id : ''
-                        })}
+                        onChange={e => setAssignmentForm({...assignmentForm, assignment_type: e.target.value})}
                         className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
                       >
                         <option value="writing">IELTS Writing</option>
+                        <option value="speaking">IELTS Speaking</option>
                         <option value="vocabulary">Vocabulary Builder</option>
                         <option value="grammar-practice">Grammar Practice</option>
                       </select>
@@ -1349,6 +1395,21 @@ export default function TeacherDashboard({ user, onLogout }) {
                           <option value="1">Task 1 - Academic Report</option>
                           <option value="2">Task 2 - Essay</option>
                           <option value="both">Both Tasks (Task 1 + Task 2)</option>
+                        </select>
+                      </div>
+                    )}
+
+                    {assignmentForm.assignment_type === 'speaking' && (
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Speaking Part</label>
+                        <select
+                          value={assignmentForm.speaking_task_part}
+                          onChange={e => setAssignmentForm({ ...assignmentForm, speaking_task_part: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                        >
+                          <option value="1">Part 1 - Introduction & Interview</option>
+                          <option value="2">Part 2 - Long Turn (Cue Card)</option>
+                          <option value="3">Part 3 - Discussion</option>
                         </select>
                       </div>
                     )}
@@ -1970,6 +2031,18 @@ export default function TeacherDashboard({ user, onLogout }) {
             </form>
           </div>
         </div>
+      )}
+
+      {/* Submission Review Modal */}
+      {isReviewModalOpen && selectedSubmission && (
+        <SubmissionReviewModal
+          submission={selectedSubmission}
+          onClose={() => {
+            setIsReviewModalOpen(false);
+            setSelectedSubmission(null);
+          }}
+          onSaveComment={handleSaveTeacherComment}
+        />
       )}
 
     </main>
