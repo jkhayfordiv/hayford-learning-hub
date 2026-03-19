@@ -92,7 +92,9 @@ router.post('/', requireTeacher, async (req, res) => {
           );
           count++;
         } catch (dupError) {
-          console.warn('Duplicate assignment skipped for student', enrollment.user_id, dupError.message);
+          console.error('Error inserting assignment for student:', enrollment.user_id);
+          console.error('Error details:', dupError.message);
+          console.error('Values:', { teacher_id, student_id: enrollment.user_id, class_id, module_id: resolvedModuleId, assignment_type: aType, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date });
         }
       }
       
@@ -151,7 +153,9 @@ router.post('/', requireTeacher, async (req, res) => {
     }
   } catch (error) {
     console.error('Create assignment error:', error);
-    res.status(500).json({ error: 'Server Error saving assignment' });
+    console.error('Error stack:', error.stack);
+    console.error('Request body:', req.body);
+    res.status(500).json({ error: 'Server Error saving assignment', details: error.message });
   }
 });
 

@@ -476,7 +476,7 @@ export default function Dashboard() {
                 Here's an overview of your recent learning progress and completed modules.
               </p>
               {user.class_name && (
-                <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-amber-200">
+                <div className="inline-flex items-center gap-2 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-3 py-1.5 rounded-lg text-xs font-bold border border-amber-200 dark:border-amber-700">
                   <Users size={14} /> Class: {user.class_name}
                 </div>
               )}
@@ -568,7 +568,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     {task.due_date && (
-                      <div className="inline-flex bg-rose-50 text-rose-700 px-3 py-1.5 rounded-lg text-xs font-bold border border-rose-100 items-center gap-1.5 mb-4">
+                      <div className="inline-flex bg-rose-50 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400 px-3 py-1.5 rounded-lg text-xs font-bold border border-rose-100 dark:border-rose-800 items-center gap-1.5 mb-4">
                         <Calendar size={14} /> Due {new Date(task.due_date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}
                       </div>
                     )}
@@ -595,10 +595,10 @@ export default function Dashboard() {
                     }}
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors mt-auto ${
                       task.assignment_type === 'vocabulary' 
-                        ? 'bg-amber-50 text-amber-700 hover:bg-amber-600 hover:text-white' 
+                        ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 hover:bg-amber-600 hover:text-white dark:hover:bg-amber-600' 
                         : task.assignment_type === 'grammar-practice'
-                          ? 'bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white'
-                          : 'bg-slate-900 text-white hover:bg-slate-950'
+                          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600'
+                          : 'bg-slate-900 text-white hover:bg-slate-950 dark:bg-amber-600 dark:hover:bg-amber-700'
                     }`}
                   >
                     <PenTool size={18} /> {task.assignment_type === 'grammar-practice' ? 'Start Practice' : 'Start Assignment'}
@@ -681,7 +681,7 @@ export default function Dashboard() {
                       </td>
                       <td className="px-8 py-6">{score.word_count} words</td>
                       <td className="px-8 py-6 text-center">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 font-black rounded-lg border border-green-200">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 font-black rounded-lg border border-green-200 dark:border-green-700">
                           <CheckCircle2 size={14} /> {Number(score.overall_score).toFixed(1)}
                         </span>
                       </td>
@@ -767,7 +767,7 @@ export default function Dashboard() {
                       }}
                     >
                       <div className="flex items-center gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-amber-50 text-amber-700 rounded-xl flex flex-col items-center justify-center border border-amber-100">
+                        <div className="flex-shrink-0 w-12 h-12 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-xl flex flex-col items-center justify-center border border-amber-100 dark:border-amber-700">
                           <span className="text-sm font-black">{Number(score.overall_score).toFixed(1)}</span>
                           <span className="text-[8px] uppercase font-bold tracking-widest">Score</span>
                         </div>
@@ -814,21 +814,21 @@ export default function Dashboard() {
                             ) : (typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.bandScore ? (
                               <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
                                 <p className="text-slate-700 dark:text-slate-300 italic border-l-4 border-indigo-200 dark:border-indigo-700 pl-4 mb-4">"{(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.modelHighlights}"</p>
-                                <div className="grid grid-cols-2 gap-4 text-xs font-medium text-slate-600">
-                                  <div><span className="font-bold text-slate-900">Task Achievement:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.taskAchievement}</div>
-                                  <div><span className="font-bold text-slate-900">Coherence:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.coherenceCohesion}</div>
-                                  <div><span className="font-bold text-slate-900">Lexical:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.lexicalResource}</div>
-                                  <div><span className="font-bold text-slate-900">Grammar:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.grammarAccuracy}</div>
+                                <div className="grid grid-cols-2 gap-4 text-xs font-medium text-slate-600 dark:text-slate-300">
+                                  <div><span className="font-bold text-slate-900 dark:text-white">Task Achievement:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.taskAchievement}</div>
+                                  <div><span className="font-bold text-slate-900 dark:text-white">Coherence:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.coherenceCohesion}</div>
+                                  <div><span className="font-bold text-slate-900 dark:text-white">Lexical:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.lexicalResource}</div>
+                                  <div><span className="font-bold text-slate-900 dark:text-white">Grammar:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.grammarAccuracy}</div>
                                 </div>
                                 <div className="mt-4">
-                                  <span className="font-bold text-slate-900 text-xs">Improvement Tips:</span>
-                                  <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-600">
+                                  <span className="font-bold text-slate-900 dark:text-white text-xs">Improvement Tips:</span>
+                                  <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-600 dark:text-slate-300">
                                     {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.improvementTips?.map((tip, i) => <li key={i}>{tip}</li>)}
                                   </ul>
                                 </div>
                               </div>
                             ) : (
-                              <pre className="whitespace-pre-wrap bg-white p-4 rounded-xl border border-slate-200 font-mono text-xs text-slate-600 overflow-x-auto">
+                              <pre className="whitespace-pre-wrap bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 font-mono text-xs text-slate-600 dark:text-slate-300 overflow-x-auto">
                                 {JSON.stringify(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback, null, 2)}
                               </pre>
                             )}
@@ -836,8 +836,8 @@ export default function Dashboard() {
                         ) : (
                           <div className="text-slate-500 text-sm">No detailed feedback available for this submission.</div>
                         )}
-                        <h5 className="font-black text-slate-900 uppercase tracking-widest text-xs mt-6 mb-3">Your Answer</h5>
-                        <div className="bg-white p-4 rounded-xl border border-slate-200 text-slate-600 whitespace-pre-wrap font-serif leading-relaxed italic">
+                        <h5 className="font-black text-slate-900 dark:text-white uppercase tracking-widest text-xs mt-6 mb-3">Your Answer</h5>
+                        <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 whitespace-pre-wrap font-serif leading-relaxed italic">
                           "{score.submitted_text}"
                         </div>
                       </div>
@@ -856,8 +856,8 @@ export default function Dashboard() {
       {/* Quick Tour Modal overlay */}
       {isTourOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 flex justify-between items-center bg-slate-900">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center bg-slate-900 dark:bg-slate-900">
               <h3 className="font-black text-xl text-white tracking-tight flex items-center gap-2">
                 <Shield className="text-amber-500" /> Quick Tour
               </h3>

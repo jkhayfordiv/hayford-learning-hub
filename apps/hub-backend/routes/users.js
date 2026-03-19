@@ -4,6 +4,54 @@ const requireTeacher = require('../middleware/requireTeacher');
 const auth = require('../middleware/auth');
 const { pool } = require('../db');
 
+// @route   GET api/users/me
+// @desc    Get current user's profile data
+// @access  Private
+router.get('/me', auth, async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    
+    const [users] = await connection.query(
+      'SELECT id, first_name, last_name, email, role, institution_id FROM users WHERE id = $1',
+      [req.user.id]
+    );
+    
+    if (users.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    const user = users[0];
+    
+    // Fetch enrolled classes for the user
+    const [enrollmentRows] = await connection.query(
+      `SELECT c.id, c.class_name, c.class_code, ce.joined_at
+       FROM class_enrollments ce
+       JOIN classes c ON ce.class_id = c.id
+       WHERE ce.user_id = $1
+       ORDER BY ce.joined_at DESC`,
+      [user.id]
+    );
+    
+    connection.release();
+    
+    res.json({
+      id: user.id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+      role: user.role,
+      institution_id: user.institution_id,
+      classes: enrollmentRows,
+      class_id: enrollmentRows.length > 0 ? enrollmentRows[0].id : null,
+      class_name: enrollmentRows.length > 0 ? enrollmentRows[0].class_name : null
+    });
+  } catch (error) {
+    console.error('Get user profile error:', error);
+    res.status(500).json({ error: 'Server error fetching user profile' });
+  }
+});
+
 // @route   POST api/users/enroll-class
 // @desc    Enroll a student in a class (supports multiple enrollments)
 // @access  Private (Teacher/Admin only)

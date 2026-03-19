@@ -121,12 +121,12 @@ export default function WordBank({ user }) {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center">
-            <BookOpen className="text-amber-600 w-6 h-6" />
+          <div className="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center">
+            <BookOpen className="text-amber-600 dark:text-amber-500 w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight">My Word Bank</h2>
-            <p className="text-slate-500 font-medium">Save and practice your vocabulary words</p>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">My Word Bank</h2>
+            <p className="text-slate-500 dark:text-slate-400 font-medium">Save and practice your vocabulary words</p>
           </div>
         </div>
       </div>
@@ -134,10 +134,10 @@ export default function WordBank({ user }) {
       {/* Message Toast */}
       {message.text && (
         <div className={`mb-6 p-4 rounded-xl border flex items-center gap-3 animate-in slide-in-from-top-2 ${
-          message.type === 'success' ? 'bg-green-50 border-green-200 text-green-800' :
-          message.type === 'error' ? 'bg-red-50 border-red-200 text-red-800' :
-          message.type === 'warning' ? 'bg-amber-50 border-amber-200 text-amber-800' :
-          'bg-blue-50 border-blue-200 text-blue-800'
+          message.type === 'success' ? 'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-700 text-green-800 dark:text-green-400' :
+          message.type === 'error' ? 'bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-700 text-red-800 dark:text-red-400' :
+          message.type === 'warning' ? 'bg-amber-50 dark:bg-amber-900/30 border-amber-200 dark:border-amber-700 text-amber-800 dark:text-amber-400' :
+          'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-700 text-blue-800 dark:text-blue-400'
         }`}>
           {message.type === 'success' && <CheckCircle size={20} />}
           {message.type === 'error' && <AlertCircle size={20} />}
@@ -160,7 +160,7 @@ export default function WordBank({ user }) {
       </div>
 
       {/* Add Word Form */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-8 shadow-sm">
+      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 mb-8 shadow-sm">
         <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">Add New Word</h3>
         <form onSubmit={handleAddWord} className="flex gap-3">
           <input
@@ -168,7 +168,7 @@ export default function WordBank({ user }) {
             value={newWord}
             onChange={(e) => setNewWord(e.target.value)}
             placeholder="Enter a vocabulary word..."
-            className="flex-1 bg-slate-50 border border-slate-200 px-4 py-3 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 focus:outline-none"
+            className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-amber-500 focus:outline-none"
             disabled={isAdding}
           />
           <button
@@ -186,7 +186,7 @@ export default function WordBank({ user }) {
       </div>
 
       {/* Words List */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+      <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
         <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-4">
           Your Saved Words ({words.length})
         </h3>
@@ -197,10 +197,10 @@ export default function WordBank({ user }) {
             <p className="font-medium">Loading your word bank...</p>
           </div>
         ) : words.length === 0 ? (
-          <div className="text-center py-12 border-2 border-dashed border-slate-200 rounded-xl bg-slate-50">
-            <BookOpen size={48} className="text-slate-300 mx-auto mb-4" />
-            <h4 className="font-bold text-lg text-slate-900 mb-2">No words yet!</h4>
-            <p className="text-slate-500 font-medium max-w-sm mx-auto">
+          <div className="text-center py-12 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-900/50">
+            <BookOpen size={48} className="text-slate-300 dark:text-slate-600 mx-auto mb-4" />
+            <h4 className="font-bold text-lg text-slate-900 dark:text-white mb-2">No words yet!</h4>
+            <p className="text-slate-500 dark:text-slate-400 font-medium max-w-sm mx-auto">
               Start building your vocabulary by adding words above. Words you struggle with in the Vocab Lab will also appear here automatically.
             </p>
           </div>
@@ -209,27 +209,27 @@ export default function WordBank({ user }) {
             {words.map((wordItem) => (
               <div
                 key={wordItem.id}
-                className="bg-slate-50 border border-slate-200 rounded-xl p-4 hover:shadow-md transition-all group relative"
+                className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-4 hover:shadow-md transition-all group relative"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
-                    <h4 className="text-lg font-bold text-slate-900 mb-1">{wordItem.word}</h4>
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{wordItem.word}</h4>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs font-bold px-2 py-1 rounded ${
                         wordItem.source === 'manual' 
-                          ? 'bg-blue-100 text-blue-700' 
-                          : 'bg-purple-100 text-purple-700'
+                          ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' 
+                          : 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400'
                       }`}>
                         {wordItem.source === 'manual' ? 'Manual' : 'Vocab Lab'}
                       </span>
-                      <span className="text-xs text-slate-500 font-medium">
+                      <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                         {new Date(wordItem.created_at).toLocaleDateString()}
                       </span>
                     </div>
                   </div>
                   <button
                     onClick={() => handleDeleteWord(wordItem.id, wordItem.word)}
-                    className="text-slate-400 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-lg"
+                    className="text-slate-400 hover:text-red-600 dark:hover:text-red-400 transition-colors p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
                     title="Delete word"
                   >
                     <Trash2 size={18} />
