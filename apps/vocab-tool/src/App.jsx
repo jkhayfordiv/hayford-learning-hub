@@ -5,6 +5,7 @@ export default function App() {
   const [token, setToken] = useState(null);
   const [taskId, setTaskId] = useState(null);
   const [targetWords, setTargetWords] = useState([]);
+  const [isInitializing, setIsInitializing] = useState(true);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [inputSentence, setInputSentence] = useState('');
@@ -35,6 +36,7 @@ export default function App() {
         const customWords = JSON.parse(customWordsJson);
         if (customWords && customWords.length > 0) {
           setTargetWords(customWords);
+          setIsInitializing(false);
           // Don't remove immediately - allow page refreshes to work
           // Will be cleared when user returns to dashboard or starts new practice
           return; // Skip normal assignment parsing
@@ -58,6 +60,8 @@ export default function App() {
         console.error('Error parsing taskMeta', e);
       }
     }
+    
+    setIsInitializing(false);
   }, []);
 
   const handleCheckSentence = async () => {
@@ -212,6 +216,19 @@ export default function App() {
       setSaveStatus({ loading: false, success: false, error: error.message });
     }
   };
+
+  // Show loading screen while initializing
+  if (isInitializing) {
+    return (
+      <div className="min-h-screen bg-slate-50 font-sans flex items-center justify-center p-6">
+        <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md w-full text-center border border-slate-200">
+          <Loader2 className="w-12 h-12 text-slate-400 mx-auto mb-4 animate-spin" />
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight mb-2">Loading...</h1>
+          <p className="text-slate-500">Preparing your vocabulary practice</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!targetWords || targetWords.length === 0) {
     return (
