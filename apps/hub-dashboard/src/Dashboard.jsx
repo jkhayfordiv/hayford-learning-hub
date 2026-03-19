@@ -636,7 +636,7 @@ export default function Dashboard() {
               <p className="text-xs text-white/80 mt-1">Practice targeted grammar skills</p>
            </button>
            <button
-              onClick={() => window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}`}
+              onClick={() => setActiveTab('wordbank')}
               className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
            >
               <div className="flex items-center justify-between mb-2">

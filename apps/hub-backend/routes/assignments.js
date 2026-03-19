@@ -36,6 +36,15 @@ router.post('/', requireTeacher, async (req, res) => {
     }
     const [resolvedGrammarModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'grammar' LIMIT 1");
 
+    // Ensure speaking module exists
+    const [speakingModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'speaking' LIMIT 1");
+    if (speakingModules.length === 0) {
+      await connection.query(
+        "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('IELTS Speaking', 'speaking', 'Practice IELTS Speaking tasks with AI feedback.')"
+      );
+    }
+    const [resolvedSpeakingModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'speaking' LIMIT 1");
+
     if (aType === 'grammar-practice' && !grammar_topic_id) {
       connection.release();
       return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
@@ -44,7 +53,9 @@ router.post('/', requireTeacher, async (req, res) => {
     // FIX: Don't default to module_id=1, use what frontend sends (Task 2 = module_id 2)
     const resolvedModuleId = aType === 'grammar-practice'
       ? resolvedGrammarModule?.[0]?.id
-      : module_id;
+      : aType === 'speaking'
+        ? resolvedSpeakingModule?.[0]?.id
+        : module_id;
 
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
