@@ -9,7 +9,13 @@ import {
 const urlParams = new URLSearchParams(window.location.search);
 const tokenFromUrl = urlParams.get('token');
 const taskFromUrl = urlParams.get('task');
-const forcedWritingTask = taskFromUrl === '2' ? 'task2' : taskFromUrl === '1' ? 'task1' : null;
+const writingTaskFromUrl = urlParams.get('writingTask'); // New parameter: 'task1', 'task2', or 'both'
+const forcedWritingTask = writingTaskFromUrl === 'both' ? 'both' 
+  : writingTaskFromUrl === 'task2' ? 'task2' 
+  : writingTaskFromUrl === 'task1' ? 'task1'
+  : taskFromUrl === '2' ? 'task2' 
+  : taskFromUrl === '1' ? 'task1' 
+  : null;
 if (tokenFromUrl) {
   localStorage.setItem('token', tokenFromUrl);
 }
@@ -692,7 +698,8 @@ export default function App() {
   const [writingTask, setWritingTask] = useState(forcedWritingTask || 'task1');
   const [currentPrompt, setCurrentPrompt] = useState(() => {
     const initialTask = forcedWritingTask || 'task1';
-    const pool = initialTask === 'task2' ? TASK_2_PROMPTS : TASK_1_PROMPTS;
+    // For 'both', start with Task 1
+    const pool = (initialTask === 'task2') ? TASK_2_PROMPTS : TASK_1_PROMPTS;
     return pool[Math.floor(Math.random() * pool.length)];
   });
   const [text, setText] = useState("");
@@ -705,7 +712,15 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [view, setView] = useState("practice");
   const [activeTaskId, setActiveTaskId] = useState(initialTaskMeta?.assignment_id || null);
-  const minWordTarget = writingTask === 'task2' ? 250 : 150;
+  const [saveMessage, setSaveMessage] = useState("");
+  
+  // For 'both' mode: track which task student is currently working on
+  const [currentTaskInBothMode, setCurrentTaskInBothMode] = useState('task1'); // task1 or task2
+  const [task1Completed, setTask1Completed] = useState(false);
+  
+  // Determine actual current task type for rendering
+  const actualCurrentTask = writingTask === 'both' ? currentTaskInBothMode : writingTask;
+  const minWordTarget = actualCurrentTask === 'task2' ? 250 : 150;
 
   const getPromptPool = (taskType) => (taskType === 'task2' ? TASK_2_PROMPTS : TASK_1_PROMPTS);
   const getRandomPrompt = (taskType) => {
@@ -781,8 +796,6 @@ export default function App() {
     setIsTimerRunning(!isTimerRunning);
   };
 
-  const [saveMessage, setSaveMessage] = useState("");
-
   const submitWriting = async () => {
     if (isLoading) return;
 
@@ -799,7 +812,7 @@ export default function App() {
     setErrorMessage("");
     setSaveMessage("");
 
-    const systemPrompt = getSystemPrompt(writingTask, currentPrompt);
+    const systemPrompt = getSystemPrompt(actualCurrentTask, currentPrompt);
 
     try {
       if (!apiKey) {
@@ -918,7 +931,7 @@ export default function App() {
 
       <div className="px-6 pt-4 bg-slate-50 border-b border-slate-200">
         <div className="max-w-md mx-auto bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-indigo-700 text-center">
-          Assignment: {writingTask === 'task2' ? 'IELTS Task 2 Essay' : 'IELTS Task 1 Academic Report'}
+          Assignment: {writingTask === 'both' ? 'IELTS Both Tasks (Task 1 + Task 2)' : writingTask === 'task2' ? 'IELTS Task 2 Essay' : 'IELTS Task 1 Academic Report'}
         </div>
       </div>
       
@@ -940,7 +953,7 @@ export default function App() {
                 <div className="flex items-center gap-2 text-slate-900 mb-2">{getIcon(currentPrompt.type)}<span className="font-black uppercase tracking-widest text-[10px]">{currentPrompt.type}</span></div>
                 <h2 className="text-2xl font-black mb-4 text-slate-800 tracking-tight">{currentPrompt.title}</h2>
                 <div className="bg-slate-50 rounded-xl border border-slate-100 p-5 mb-8 text-slate-600 leading-relaxed font-medium italic">"{currentPrompt.instruction}"</div>
-                {writingTask === 'task1' ? (
+                {actualCurrentTask === 'task1' ? (
                   <div className="bg-white border border-slate-200 shadow-sm rounded-2xl overflow-hidden mb-8 min-h-[350px] flex flex-col">
                     <div className="bg-slate-50 px-4 py-2 border-b flex justify-between items-center"><span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Visual Data View</span><span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-bold">TASK 1</span></div>
                     <div className="flex-1 flex items-center justify-center p-4">
@@ -957,7 +970,7 @@ export default function App() {
                     </div>
                     <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-900">
                       <p className="font-bold mb-1">Instructions:</p>
-                      <p>{TASK_INSTRUCTIONS[writingTask]}</p>
+                      <p>{TASK_INSTRUCTIONS[actualCurrentTask]}</p>
                     </div>
                   </div>
                 )}
@@ -968,12 +981,12 @@ export default function App() {
             <div className="w-full lg:w-1/2 flex flex-col bg-slate-50">
               <div className="flex-1 p-6 flex flex-col">
                 <div className="flex justify-between items-center mb-2 px-2"><span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Your Response</span><span className={`text-[10px] font-black uppercase ${getWordCount(text) < minWordTarget ? 'text-amber-500' : 'text-green-500'}`}>{getWordCount(text)} words</span></div>
-                {writingTask === 'task1' && (
+                {actualCurrentTask === 'task1' && (
                   <div className="mb-3 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900 leading-relaxed">
-                    <span className="font-bold">Instructions:</span> {TASK_INSTRUCTIONS[writingTask]}
+                    <span className="font-bold">Instructions:</span> {TASK_INSTRUCTIONS[actualCurrentTask]}
                   </div>
                 )}
-                <textarea className="flex-1 w-full p-8 rounded-2xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-slate-200 outline-none text-lg leading-relaxed resize-none font-serif placeholder:text-slate-300 transition-all" placeholder={writingTask === 'task1' ? 'The chart illustrates...' : 'It is often argued that...'} value={text} onChange={handleTextChange} disabled={isLoading} />
+                <textarea className="flex-1 w-full p-8 rounded-2xl border border-slate-200 shadow-sm focus:ring-4 focus:ring-slate-200 outline-none text-lg leading-relaxed resize-none font-serif placeholder:text-slate-300 transition-all" placeholder={actualCurrentTask === 'task1' ? 'The chart illustrates...' : 'It is often argued that...'} value={text} onChange={handleTextChange} disabled={isLoading} />
               </div>
               {errorMessage && <div className="mx-6 mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600 flex items-center gap-2 font-bold animate-pulse"><XCircle size={16} /> {errorMessage}</div>}
               <div className="p-6 bg-white border-t flex justify-between items-center shadow-inner">

@@ -496,9 +496,10 @@ export default function Dashboard() {
                       if (task.assignment_type === 'vocabulary') {
                         window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                       } else {
-                        // IELTS Writing - pass writing_task_type
+                        // IELTS Writing - pass writing_task_type (1, 2, or both)
                         const taskType = task.writing_task_type || '1';
-                        window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}&writingTask=task${taskType}`;
+                        const writingTaskParam = taskType === 'both' ? 'both' : `task${taskType}`;
+                        window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}&writingTask=${writingTaskParam}`;
                       }
                     }}
                     className={`w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors mt-auto ${
