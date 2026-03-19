@@ -123,3 +123,8 @@ hub.db
 !/logo.png
 !/logo.svg
 !/vite.svg
+
+# Deployment zip files
+hostinger-full-deploy.zip
+*.zip
+*.tar.gz

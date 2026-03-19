@@ -9,5 +9,8 @@
   "scripts": {
     "dev": "pnpm -r --parallel run dev",
     "build": "pnpm -r run build"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
   }
 }
