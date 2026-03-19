@@ -334,41 +334,41 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
-      <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
+      <header className="bg-white dark:bg-[#0F1C2E] border-b border-slate-200 dark:border-slate-700 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
            <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
           <div>
-            <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">
+            <h1 className="font-bold text-slate-900 dark:text-white tracking-tight leading-none text-lg group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
               Hayford Global Learning Hub
             </h1>
-            <span className="text-[10px] uppercase font-black tracking-widest text-slate-500">
+            <span className="text-[10px] uppercase font-black tracking-widest text-slate-500 dark:text-slate-400">
               Student Dashboard
             </span>
           </div>
         </div>
 
         <div className="flex items-center gap-4 relative" ref={dropdownRef}>
-          <button onClick={handleRefresh} className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors" title="Refresh scores and tasks">
+          <button onClick={handleRefresh} className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors" title="Refresh scores and tasks">
             <RefreshCw size={18} />
           </button>
-          <button onClick={() => setIsTourOpen(true)} className="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-full transition-colors hidden md:block" title="Quick Tour">
+          <button onClick={() => setIsTourOpen(true)} className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors hidden md:block" title="Quick Tour">
             <HelpIcon size={18} />
           </button>
-          <div className="h-6 w-px bg-slate-200 hidden md:block"></div>
+          <div className="h-6 w-px bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 transition-colors rounded-full border border-slate-200 cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors rounded-full border border-slate-200 dark:border-slate-600 cursor-pointer"
           >
-             <User size={14} className="text-slate-500" />
-             <span className="text-xs font-bold text-slate-700">{user.first_name || 'Guest'}</span>
-             <ChevronDown size={14} className={`text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+             <User size={14} className="text-slate-500 dark:text-slate-400" />
+             <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{user.first_name || 'Guest'}</span>
+             <ChevronDown size={14} className={`text-slate-400 dark:text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
           
            {isDropdownOpen && (
-            <div className="absolute top-12 right-0 w-56 bg-white dark:bg-brand-darkBg border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
-               <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+            <div className="absolute top-12 right-0 w-56 bg-white dark:bg-[#0F1C2E] border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
+               <div className="p-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
                   <p className="font-bold text-slate-900 dark:text-white text-sm">{user.first_name} {user.last_name}</p>
-                  <p className="text-xs text-slate-500 truncate">{user.email}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
                </div>
                <div className="p-2 space-y-1">
                  <button onClick={toggleTheme} className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
@@ -388,7 +388,7 @@ export default function Dashboard() {
                    <HelpCircle size={16} /> Help & Support
                  </a>
                </div>
-               <div className="p-2 border-t border-slate-100 dark:border-slate-800">
+               <div className="p-2 border-t border-slate-100 dark:border-slate-700">
                  <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-left">
                    <LogOut size={16} /> Logout
                  </button>
@@ -425,7 +425,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => navigate('/my-stats')}
-              className="bg-white border border-slate-200 text-slate-700 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50 transition-colors shadow-sm"
+              className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
             >
               <BarChart3 size={18} /> My Stats
             </button>
@@ -440,7 +440,7 @@ export default function Dashboard() {
               <button 
                 onClick={handleLeaveClass}
                 disabled={isLeaving}
-                className="bg-white border border-red-200 text-red-600 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-red-50 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-white dark:bg-slate-800 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Users size={18} /> {isLeaving ? 'Leaving...' : 'Leave Class'}
               </button>
@@ -448,24 +448,24 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="flex gap-4 border-b border-slate-200 mb-8 pb-4">
+        <div className="flex gap-4 border-b border-slate-200 dark:border-slate-700 mb-8 pb-4">
           <button 
             onClick={() => setActiveTab('overview')}
-            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'overview' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'overview' ? 'border-amber-600 text-amber-700 dark:text-amber-500' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'}`}
             style={{ marginBottom: '-17px' }}
           >
             Overview
           </button>
           <button 
             onClick={() => setActiveTab('progress')}
-            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'progress' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'progress' ? 'border-amber-600 text-amber-700 dark:text-amber-500' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'}`}
             style={{ marginBottom: '-17px' }}
           >
             My Progress
           </button>
           <button 
             onClick={() => setActiveTab('wordbank')}
-            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'wordbank' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'wordbank' ? 'border-amber-600 text-amber-700 dark:text-amber-500' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'}`}
             style={{ marginBottom: '-17px' }}
           >
             My Word Bank
@@ -476,22 +476,22 @@ export default function Dashboard() {
           <>
         {/* Your To-Do List Section */}
         <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="font-black text-xl text-slate-900 tracking-tight mb-4 flex items-center gap-2"><CheckCircle2 className="text-amber-600" /> Your To-Do List</h3>
+          <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2"><CheckCircle2 className="text-amber-600" /> Your To-Do List</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {isLoadingTasks ? (
-              <div className="col-span-full border border-slate-200 rounded-2xl p-8 bg-white text-center text-slate-400">Loading your tasks...</div>
+              <div className="col-span-full border border-slate-200 dark:border-slate-700 rounded-2xl p-8 bg-white dark:bg-slate-800 text-center text-slate-400">Loading your tasks...</div>
             ) : tasks.filter(t => t.status === 'pending').length === 0 ? (
-              <div className="col-span-full border border-dashed border-slate-300 rounded-3xl p-10 bg-slate-50 text-center flex flex-col items-center justify-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><BookOpen size={32} className="text-slate-400" /></div>
+              <div className="col-span-full border border-dashed border-slate-300 dark:border-slate-700 rounded-3xl p-10 bg-slate-50 dark:bg-slate-800/50 text-center flex flex-col items-center justify-center gap-4">
+                <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><BookOpen size={32} className="text-slate-400" /></div>
                 <div>
-                  <h4 className="font-bold text-lg text-slate-900">All caught up!</h4>
-                  <p className="text-slate-500 font-medium max-w-sm mx-auto">No homework assigned yet! Check back later or use the practice tools below.</p>
+                  <h4 className="font-bold text-lg text-slate-900 dark:text-white">All caught up!</h4>
+                  <p className="text-slate-500 dark:text-slate-400 font-medium max-w-sm mx-auto">No homework assigned yet! Check back later or use the practice tools below.</p>
                 </div>
               </div>
             ) : (
               tasks.filter(t => t.status === 'pending').map(task => (
-                <div key={task.id} className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group flex flex-col h-full">
-                  <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-900"></div>
+                <div key={task.id} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group flex flex-col h-full">
+                  <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-900 dark:bg-amber-600"></div>
                   <div className="flex-grow">
                     <div className="flex justify-between items-start mb-4">
                       <div>
@@ -504,7 +504,7 @@ export default function Dashboard() {
                                 : 'IELTS Task 1 & 2'
                             : task.module_name}
                         </div>
-                        <h4 className="font-bold text-slate-900 leading-tight line-clamp-2" title={task.instructions}>{task.instructions || 'General Practice Task'}</h4>
+                        <h4 className="font-bold text-slate-900 dark:text-white leading-tight line-clamp-2" title={task.instructions}>{task.instructions || 'General Practice Task'}</h4>
                       </div>
                     </div>
                     {task.due_date && (
@@ -512,7 +512,7 @@ export default function Dashboard() {
                         <Calendar size={14} /> Due {new Date(task.due_date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })}
                       </div>
                     )}
-                    <p className="text-xs text-slate-500 mb-6 flex items-center gap-1.5 font-medium mt-1">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 flex items-center gap-1.5 font-medium mt-1">
                       <User size={14} className="text-slate-400" /> Assigned by {task.teacher_first_name} {task.teacher_last_name}
                     </p>
                   </div>
@@ -551,19 +551,19 @@ export default function Dashboard() {
 
         {/* Metrics Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
               <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Completed Submissions</span>
-              <span className="text-4xl font-black text-slate-900 tracking-tighter">{scores.length}</span>
+              <span className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">{scores.length}</span>
            </div>
-           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
               <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Average Band Score</span>
-              <span className="text-4xl font-black text-amber-600 tracking-tighter">
+              <span className="text-4xl font-black text-amber-600 dark:text-amber-500 tracking-tighter">
                 {scores.length > 0 ? (scores.reduce((acc, curr) => acc + parseFloat(curr.overall_score), 0) / scores.length).toFixed(1) : 'N/A'}
               </span>
            </div>
-           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
               <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Global Ranking</span>
-              <span className="text-4xl font-black text-slate-900 tracking-tighter">Top 15%</span>
+              <span className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">Top 15%</span>
            </div>
            <div className="bg-gradient-to-br from-slate-900 to-slate-950 p-6 rounded-2xl shadow-soft text-white flex flex-col justify-between border-t-2 border-amber-500">
               <div>
@@ -574,16 +574,16 @@ export default function Dashboard() {
         </div>
 
         {/* Scores Table */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-            <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2"><FileText className="text-slate-400" /> Recent Learning Activity</h3>
-            <button className="text-xs font-bold text-slate-900 bg-slate-100 px-4 py-2 rounded-lg hover:bg-slate-200 transition-colors">View Detailed Reports</button>
+        <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+          <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+            <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2"><FileText className="text-slate-400" /> Recent Learning Activity</h3>
+            <button className="text-xs font-bold text-slate-900 dark:text-slate-200 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">View Detailed Reports</button>
           </div>
           
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200 dark:border-slate-700">
                   <th className="px-8 py-4">Submission Date</th>
                   <th className="px-8 py-4">Module / Task Type</th>
                   <th className="px-8 py-4">Word Count</th>
@@ -591,21 +591,21 @@ export default function Dashboard() {
                   <th className="px-8 py-4"></th>
                 </tr>
               </thead>
-              <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+              <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
                 {isLoading ? (
                   <tr><td colSpan="5" className="px-8 py-12 text-center text-slate-400">Loading history...</td></tr>
                 ) : scores.length === 0 ? (
                   <tr><td colSpan="5" className="px-8 py-12 text-center text-slate-400">No recent submissions found. Start practicing!</td></tr>
                 ) : (
                   scores.map((score) => (
-                    <tr key={score.id} className="hover:bg-slate-50 transition-colors group cursor-pointer">
+                    <tr key={score.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group cursor-pointer">
                       <td className="px-8 py-6 flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><Calendar size={14} className="text-slate-400" /></div>
+                        <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><Calendar size={14} className="text-slate-400" /></div>
                         {new Date(score.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </td>
                       <td className="px-8 py-6">
-                        <div className="font-bold text-slate-900">{score.module_name}</div>
-                        <div className="text-xs text-slate-500 mt-1">{score.module_type}</div>
+                        <div className="font-bold text-slate-900 dark:text-white">{score.module_name}</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{score.module_type}</div>
                       </td>
                       <td className="px-8 py-6">{score.word_count} words</td>
                       <td className="px-8 py-6 text-center">
@@ -629,22 +629,22 @@ export default function Dashboard() {
             {/* Top 3 Focus Areas */}
             {topFocusAreas.length > 0 && (
               <div className="mb-12">
-                <h3 className="font-black text-xl text-slate-900 tracking-tight mb-4 flex items-center gap-2">
+                <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2">
                   <Shield className="text-amber-600" /> DRA: Top 3 Focus Areas
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {topFocusAreas.map((area, idx) => (
-                    <div key={idx} className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+                    <div key={idx} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
                       <div className="flex items-start justify-between mb-4">
-                        <div className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center text-rose-600 font-black border border-rose-100">
+                        <div className="w-10 h-10 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 dark:text-rose-400 font-black border border-rose-100 dark:border-rose-800">
                           #{idx + 1}
                         </div>
-                        <span className="text-[10px] font-black uppercase tracking-widest bg-slate-100 text-slate-500 px-2 py-1 rounded">
+                        <span className="text-[10px] font-black uppercase tracking-widest bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-2 py-1 rounded">
                           {area.count} {area.count === 1 ? 'Error' : 'Errors'}
                         </span>
                       </div>
-                      <h4 className="font-bold text-slate-900 text-lg leading-tight">{area.displayTag}</h4>
-                      <p className="text-xs font-medium text-slate-500 mt-2">
+                      <h4 className="font-bold text-slate-900 dark:text-white text-lg leading-tight">{area.displayTag}</h4>
+                      <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-2">
                         Review this area before your next submission to improve your band score.
                       </p>
                       {DIAGNOSTIC_TO_TOPIC_MAP[area.tag] && (
@@ -653,7 +653,7 @@ export default function Dashboard() {
                             const topicId = DIAGNOSTIC_TO_TOPIC_MAP[area.tag];
                             window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
                           }}
-                          className="mt-4 w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 shadow-sm"
+                          className="mt-4 w-full bg-slate-900 dark:bg-amber-600 hover:bg-slate-950 dark:hover:bg-amber-700 text-white font-bold py-2 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 shadow-sm"
                         >
                           Practice Now ⚡
                         </button>
@@ -664,23 +664,23 @@ export default function Dashboard() {
               </div>
             )}
 
-            <h3 className="font-black text-xl text-slate-900 tracking-tight mb-4 flex items-center gap-2"><CheckCircle2 className="text-amber-600" /> My Completed Work</h3>
+            <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2"><CheckCircle2 className="text-amber-600" /> My Completed Work</h3>
             <div className="space-y-4">
               {isLoading ? (
-                <div className="border border-slate-200 rounded-2xl p-8 bg-white text-center text-slate-400">Loading history...</div>
+                <div className="border border-slate-200 dark:border-slate-700 rounded-2xl p-8 bg-white dark:bg-slate-800 text-center text-slate-400">Loading history...</div>
               ) : scores.length === 0 ? (
-                <div className="border border-dashed border-slate-300 rounded-3xl p-10 bg-slate-50 text-center flex flex-col items-center justify-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center"><CheckCircle2 size={32} className="text-slate-400" /></div>
+                <div className="border border-dashed border-slate-300 dark:border-slate-700 rounded-3xl p-10 bg-slate-50 dark:bg-slate-800/50 text-center flex flex-col items-center justify-center gap-4">
+                  <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><CheckCircle2 size={32} className="text-slate-400" /></div>
                   <div>
-                    <h4 className="font-bold text-lg text-slate-900">No submissions yet</h4>
-                    <p className="text-slate-500 font-medium max-w-sm mx-auto">Complete an assignment or practice task to see your progress here.</p>
+                    <h4 className="font-bold text-lg text-slate-900 dark:text-white">No submissions yet</h4>
+                    <p className="text-slate-500 dark:text-slate-400 font-medium max-w-sm mx-auto">Complete an assignment or practice task to see your progress here.</p>
                   </div>
                 </div>
               ) : (
                 scores.map((score) => (
-                  <div key={score.id} className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                  <div key={score.id} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm">
                     <div 
-                      className="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition-colors"
+                      className="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                       onClick={() => setExpandedScoreId(expandedScoreId === score.id ? null : score.id)}
                     >
                       <div className="flex items-center gap-4">
@@ -689,12 +689,12 @@ export default function Dashboard() {
                           <span className="text-[8px] uppercase font-bold tracking-widest">Score</span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-slate-900">{score.module_name}</h4>
-                          <span className="text-xs text-slate-500 uppercase tracking-widest">{score.module_type}</span>
+                          <h4 className="font-bold text-slate-900 dark:text-white">{score.module_name}</h4>
+                          <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest">{score.module_type}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-6">
-                        <div className="text-sm text-slate-500 flex items-center gap-2">
+                        <div className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
                           <Calendar size={14} />
                           {new Date(score.completed_at).toLocaleDateString()}
                         </div>
@@ -703,23 +703,23 @@ export default function Dashboard() {
                     </div>
                     
                     {expandedScoreId === score.id && (
-                      <div className="p-6 bg-slate-50 border-t border-slate-100 text-sm animate-in slide-in-from-top-2">
-                        <h5 className="font-black text-slate-900 uppercase tracking-widest text-xs mb-3">AI Feedback</h5>
+                      <div className="p-6 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-700 text-sm animate-in slide-in-from-top-2">
+                        <h5 className="font-black text-slate-900 dark:text-white uppercase tracking-widest text-xs mb-3">AI Feedback</h5>
                         {score.ai_feedback ? (
                           <div className="space-y-4">
                             {score.module_type === 'vocabulary' && Array.isArray(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback) ? (
                               (typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback).map((f, i) => (
-                                <div key={i} className="bg-white p-4 rounded-xl border border-slate-200">
-                                  <div className="font-bold text-indigo-900 mb-1">{f?.word || 'Unknown Word'}</div>
-                                  <div className="text-slate-600 italic mb-2">"{f?.sentence || 'No sentence provided'}"</div>
-                                  <div className="text-slate-500 text-xs mt-2 pt-2 border-t border-slate-100">
+                                <div key={i} className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                                  <div className="font-bold text-indigo-900 dark:text-indigo-400 mb-1">{f?.word || 'Unknown Word'}</div>
+                                  <div className="text-slate-600 dark:text-slate-300 italic mb-2">"{f?.sentence || 'No sentence provided'}"</div>
+                                  <div className="text-slate-500 dark:text-slate-400 text-xs mt-2 pt-2 border-t border-slate-100 dark:border-slate-700">
                                     💡 {f?.feedback?.explanation || "No explanation"}
                                   </div>
                                 </div>
                               ))
                             ) : (typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.bandScore ? (
-                              <div className="bg-white p-5 rounded-xl border border-slate-200 space-y-3">
-                                <p className="text-slate-700 italic border-l-4 border-indigo-200 pl-4 mb-4">"{(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.modelHighlights}"</p>
+                              <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
+                                <p className="text-slate-700 dark:text-slate-300 italic border-l-4 border-indigo-200 dark:border-indigo-700 pl-4 mb-4">"{(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.modelHighlights}"</p>
                                 <div className="grid grid-cols-2 gap-4 text-xs font-medium text-slate-600">
                                   <div><span className="font-bold text-slate-900">Task Achievement:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.taskAchievement}</div>
                                   <div><span className="font-bold text-slate-900">Coherence:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.coherenceCohesion}</div>

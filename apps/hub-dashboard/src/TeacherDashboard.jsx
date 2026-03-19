@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown, Shield, Building2, UserCog } from 'lucide-react';
+import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown, Shield, Building2, UserCog, Moon, Sun } from 'lucide-react';
 import logo from './assets/logo.png';
 import PlatformManager from './components/PlatformManager';
 import ClassDetails from './components/ClassDetails';
@@ -125,6 +125,20 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes, class-details
   const [selectedClassId, setSelectedClassId] = useState(null); // For viewing class details
   const [preselectedClassId, setPreselectedClassId] = useState(null); // For pre-filling assignment form from ClassDetails
+
+  // Dark Mode Support
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -764,16 +778,16 @@ export default function TeacherDashboard({ user, onLogout }) {
   const unassignedStudents = students.filter(s => !s.class_id);
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
-      <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
+      <header className="bg-white dark:bg-[#0F1C2E] border-b border-slate-200 dark:border-slate-700 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
            <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain mx-auto" />
           <div>
-            <h1 className="font-bold text-slate-900 tracking-tight leading-none text-lg group-hover:text-slate-700 transition-colors">
+            <h1 className="font-bold text-slate-900 dark:text-white tracking-tight leading-none text-lg group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
               Hayford Global Learning Hub
             </h1>
-            <span className="text-[10px] uppercase font-black tracking-widest text-slate-500">
+            <span className="text-[10px] uppercase font-black tracking-widest text-slate-500 dark:text-slate-400">
               Instructor Portal
             </span>
           </div>
@@ -782,18 +796,18 @@ export default function TeacherDashboard({ user, onLogout }) {
         <div className="flex items-center gap-6 relative" ref={dropdownRef}>
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 transition-colors rounded-full border border-slate-200 cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors rounded-full border border-slate-200 dark:border-slate-600 cursor-pointer"
           >
-             <User size={14} className="text-slate-500" />
-             <span className="text-xs font-bold text-slate-700">{user.first_name} {user.last_name}</span>
-             <ChevronDown size={14} className={`text-slate-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+             <User size={14} className="text-slate-500 dark:text-slate-400" />
+             <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{user.first_name} {user.last_name}</span>
+             <ChevronDown size={14} className={`text-slate-400 dark:text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
           
           {isDropdownOpen && (
-            <div className="absolute top-12 right-0 w-56 bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
-              <div className="p-4 border-b border-slate-100 bg-slate-50/50">
-                <p className="font-bold text-slate-900 text-sm">{user.first_name} {user.last_name}</p>
-                <p className="text-xs text-slate-500 truncate">{user.email}</p>
+            <div className="absolute top-12 right-0 w-56 bg-white dark:bg-[#0F1C2E] border border-slate-200 dark:border-slate-700 rounded-2xl shadow-xl overflow-hidden animate-in slide-in-from-top-2 z-50">
+              <div className="p-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
+                <p className="font-bold text-slate-900 dark:text-white text-sm">{user.first_name} {user.last_name}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
                 <span className={`inline-block mt-2 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider rounded ${
                   user.role === 'super_admin' ? 'bg-purple-100 text-purple-700' :
                   user.role === 'admin' ? 'bg-blue-100 text-blue-700' :
@@ -807,15 +821,22 @@ export default function TeacherDashboard({ user, onLogout }) {
                 </span>
               </div>
               <div className="p-2 space-y-1">
-                <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition-colors text-left">
+                <button onClick={toggleTheme} className="w-full flex items-center justify-between px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
+                  <div className="flex items-center gap-3">
+                    {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />} 
+                    Theme
+                  </div>
+                  <span className="text-[10px] font-black uppercase text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">{theme}</span>
+                </button>
+                <button onClick={() => navigate('/profile')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                   <Settings size={16} /> My Account
                 </button>
-                <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition-colors text-left">
+                <a href="mailto:your-email@gmail.com" className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors text-left">
                   <HelpCircle size={16} /> Help & Support
                 </a>
               </div>
-              <div className="p-2 border-t border-slate-100">
-                <button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 rounded-xl transition-colors text-left">
+              <div className="p-2 border-t border-slate-100 dark:border-slate-700">
+                <button onClick={onLogout} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-bold text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors text-left">
                   <LogOut size={16} /> Logout
                 </button>
               </div>
@@ -866,7 +887,7 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Teacher Level Navigation Bar - Teaching Tools (Always visible when not in platform management views) */}
       {navigationView === 'dashboard' && (
-        <div className={`bg-white border-b border-slate-200 px-8 flex gap-8 z-30 ${
+        <div className={`bg-white dark:bg-[#0F1C2E] border-b border-slate-200 dark:border-slate-700 px-8 flex gap-8 z-30 ${
           user.role === 'admin' || user.role === 'super_admin' ? 'sticky top-[121px]' : 'sticky top-[73px]'
         }`}>
           <button 
