@@ -753,6 +753,16 @@ export default function App() {
     window.location.href = "/login";
   };
 
+  // Ensure prompt is set on initial mount
+  useEffect(() => {
+    if (!currentPrompt || !currentPrompt.instruction) {
+      const initialTask = forcedWritingTask || 'task1';
+      const pool = (initialTask === 'task2') ? TASK_2_PROMPTS : TASK_1_PROMPTS;
+      const randomPrompt = pool[Math.floor(Math.random() * pool.length)];
+      setCurrentPrompt(randomPrompt);
+    }
+  }, []);
+
   useEffect(() => {
     let timer;
     if (isTimerRunning && timeLeft > 0) {
@@ -985,7 +995,9 @@ export default function App() {
               <div className="max-w-xl mx-auto">
                 <div className="flex items-center gap-2 text-slate-900 mb-2">{getIcon(currentPrompt.type)}<span className="font-black uppercase tracking-widest text-[10px]">{currentPrompt.type}</span></div>
                 <h2 className="text-2xl font-black mb-4 text-slate-800 tracking-tight">{currentPrompt.title}</h2>
-                <div className="bg-slate-50 rounded-xl border border-slate-100 p-5 mb-8 text-slate-600 leading-relaxed font-medium italic">"{currentPrompt.instruction}"</div>
+                {actualCurrentTask === 'task1' && (
+                  <div className="bg-slate-50 rounded-xl border border-slate-100 p-5 mb-8 text-slate-600 leading-relaxed font-medium italic">"{currentPrompt.instruction}"</div>
+                )}
                 {actualCurrentTask === 'task1' ? (
                   <div className="bg-white border border-slate-200 shadow-sm rounded-2xl overflow-hidden mb-8 min-h-[350px] flex flex-col">
                     <div className="bg-slate-50 px-4 py-2 border-b flex justify-between items-center"><span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Visual Data View</span><span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-bold">TASK 1</span></div>

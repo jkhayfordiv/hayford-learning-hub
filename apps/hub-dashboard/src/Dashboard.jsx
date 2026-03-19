@@ -472,7 +472,15 @@ export default function Dashboard() {
                   <div className="flex-grow">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">{task.module_name}</div>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">
+                          {task.module_name === 'IELTS Writing' && task.writing_task_type 
+                            ? task.writing_task_type === '1' 
+                              ? 'IELTS Task 1'
+                              : task.writing_task_type === '2'
+                                ? 'IELTS Task 2'
+                                : 'IELTS Task 1 & 2'
+                            : task.module_name}
+                        </div>
                         <h4 className="font-bold text-slate-900 leading-tight line-clamp-2" title={task.instructions}>{task.instructions || 'General Practice Task'}</h4>
                       </div>
                     </div>
