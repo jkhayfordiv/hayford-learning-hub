@@ -158,6 +158,29 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    // Refresh user data from server on every mount to prevent stale data
+    const refreshUserData = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        const res = await fetch(`${apiBase}/api/users/me`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        
+        if (res.ok) {
+          const freshUser = await res.json();
+          localStorage.setItem('user', JSON.stringify(freshUser));
+        }
+      } catch (err) {
+        console.error('Failed to refresh user data', err);
+      }
+    };
+
+    refreshUserData();
+  }, []);
+
+  useEffect(() => {
     // Only fetch scores if it is a student dashboard
     if (user.role === 'teacher' || user.role === 'admin') {
        setIsLoading(false);

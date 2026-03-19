@@ -276,43 +276,99 @@ export default function App() {
             <section className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
               <h2 className="text-xs uppercase tracking-[0.16em] font-black text-slate-500 mb-5">Quiz (10 Questions)</h2>
               {isQuizComplete ? (
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8">
-                  <h3 className="text-2xl font-black text-slate-900">Quiz Complete</h3>
-                  <p className="text-slate-600 mt-2">Your score: <span className="font-black text-slate-900">{correctCount}/{totalQuestions}</span> ({scorePercent}%)</p>
-                  <p className={`text-sm font-bold mt-3 ${hasPassedLevel ? 'text-green-700' : 'text-amber-700'}`}>
-                    {hasPassedLevel
-                      ? 'Great work! You unlocked the next level.'
-                      : 'Score 80% or higher to unlock the next level.'}
-                  </p>
+                <>
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8">
+                    <h3 className="text-2xl font-black text-slate-900">Quiz Complete</h3>
+                    <p className="text-slate-600 mt-2">Your score: <span className="font-black text-slate-900">{correctCount}/{totalQuestions}</span> ({scorePercent}%)</p>
+                    <p className={`text-sm font-bold mt-3 ${hasPassedLevel ? 'text-green-700' : 'text-amber-700'}`}>
+                      {hasPassedLevel
+                        ? 'Great work! You unlocked the next level.'
+                        : 'Score 80% or higher to unlock the next level.'}
+                    </p>
 
-                  <div className="flex flex-col sm:flex-row gap-3 mt-6">
-                    <button
-                      type="button"
-                      onClick={handleRetakeQuiz}
-                      className="px-4 py-2.5 rounded-xl text-sm font-bold border border-slate-300 bg-white hover:bg-slate-100 text-slate-800"
-                    >
-                      Try Again
-                    </button>
-
-                    {hasPassedLevel && hasNextLevel && (
+                    <div className="flex flex-col sm:flex-row gap-3 mt-6">
                       <button
                         type="button"
-                        onClick={() => handleLevelChange(nextLevel)}
-                        className="px-4 py-2.5 rounded-xl text-sm font-bold border border-slate-900 bg-slate-900 text-white hover:bg-black"
+                        onClick={handleRetakeQuiz}
+                        className="px-4 py-2.5 rounded-xl text-sm font-bold border border-slate-300 bg-white hover:bg-slate-100 text-slate-800"
                       >
-                        Next Level
+                        Try Again
                       </button>
-                    )}
 
-                    <button
-                      type="button"
-                      onClick={() => { window.location.href = '/dashboard' }}
-                      className="px-4 py-2.5 rounded-xl text-sm font-bold border border-indigo-200 bg-indigo-50 hover:bg-indigo-100 text-indigo-900"
-                    >
-                      Back to Dashboard
-                    </button>
+                      {hasPassedLevel && hasNextLevel && (
+                        <button
+                          type="button"
+                          onClick={() => handleLevelChange(nextLevel)}
+                          className="px-4 py-2.5 rounded-xl text-sm font-bold border border-slate-900 bg-slate-900 text-white hover:bg-black"
+                        >
+                          Next Level
+                        </button>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => { window.location.href = '/dashboard' }}
+                        className="px-4 py-2.5 rounded-xl text-sm font-bold border border-indigo-200 bg-indigo-50 hover:bg-indigo-100 text-indigo-900"
+                      >
+                        Back to Dashboard
+                      </button>
+                    </div>
                   </div>
-                </div>
+
+                  {/* Review Your Answers Section */}
+                  <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
+                    <h3 className="text-xl font-black text-slate-900 mb-6">Review Your Answers</h3>
+                    <div className="space-y-6">
+                      {quizQuestions.map((question, index) => {
+                        const selectedAnswer = answersById[question.id]
+                        const correctAnswer = question.correctAnswer
+                        const isCorrect = selectedAnswer === correctAnswer
+
+                        return (
+                          <article key={question.id} className={`border-2 rounded-2xl p-5 ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                            {/* Question Number and Status */}
+                            <div className="flex items-center justify-between mb-3">
+                              <h4 className="text-sm font-black uppercase tracking-wider text-slate-600">Question {index + 1}</h4>
+                              <span className={`px-3 py-1 rounded-full text-xs font-black uppercase ${isCorrect ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
+                                {isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                              </span>
+                            </div>
+
+                            {/* Original Sentence/Question */}
+                            <div className="mb-4">
+                              <p className="text-sm font-bold text-slate-500 mb-1">Original Sentence:</p>
+                              <p className="text-base font-medium text-slate-900">{question.question}</p>
+                            </div>
+
+                            {/* Student's Answer */}
+                            <div className="mb-4">
+                              <p className="text-sm font-bold text-slate-500 mb-1">Your Answer:</p>
+                              <div className={`px-4 py-2 rounded-lg border-2 ${isCorrect ? 'bg-green-100 border-green-300' : 'bg-red-100 border-red-300'}`}>
+                                <p className={`font-bold ${isCorrect ? 'text-green-900' : 'text-red-900'}`}>{selectedAnswer}</p>
+                              </div>
+                            </div>
+
+                            {/* Correct Answer (if wrong) */}
+                            {!isCorrect && (
+                              <div className="mb-4">
+                                <p className="text-sm font-bold text-slate-500 mb-1">Correct Answer:</p>
+                                <div className="px-4 py-2 rounded-lg border-2 bg-green-100 border-green-300">
+                                  <p className="font-bold text-green-900">{correctAnswer}</p>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Explanation/Rationale */}
+                            <div className="mt-4 pt-4 border-t-2 border-slate-200">
+                              <p className="text-sm font-black uppercase tracking-wider text-slate-600 mb-2">📚 Grammar Rule Explanation</p>
+                              <p className="text-sm leading-relaxed text-slate-700">{question.explanation}</p>
+                            </div>
+                          </article>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </>
               ) : (
                 <div className="space-y-6">
                   {quizQuestions.map((question, index) => {
