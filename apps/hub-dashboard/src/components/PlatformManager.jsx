@@ -5,7 +5,7 @@ const USERS_PER_PAGE = 15;
 const INSTITUTIONS_PER_PAGE = 5;
 const CLASSES_PER_PAGE = 10;
 
-export default function PlatformManager({ user, apiBase, navigationView, classes, onInstitutionsLoad }) {
+export default function PlatformManager({ user, apiBase, navigationView, classes, onInstitutionsLoad, onViewClassDetails }) {
   // Platform Management state
   const [institutions, setInstitutions] = useState([]);
   const [globalUsers, setGlobalUsers] = useState([]);
@@ -460,7 +460,14 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
                         return paginated.map((cls) => (
                           <tr key={cls.id} className="hover:bg-slate-50 transition-colors">
-                            <td className="px-6 py-4 font-bold text-slate-900">{cls.class_name}</td>
+                            <td className="px-6 py-4">
+                              <button
+                                onClick={() => onViewClassDetails && onViewClassDetails(cls.id)}
+                                className="font-bold text-slate-900 hover:text-[#800000] transition-colors text-left"
+                              >
+                                {cls.class_name}
+                              </button>
+                            </td>
                             <td className="px-6 py-4 text-slate-600">
                               {cls.teacher_first_name} {cls.teacher_last_name}
                             </td>

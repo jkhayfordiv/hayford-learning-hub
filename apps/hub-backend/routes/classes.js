@@ -454,6 +454,81 @@ router.delete('/:id', requireTeacher, async (req, res) => {
   }
 });
 
+// @route   GET api/classes/:id/details
+// @desc    Get class details including enrolled students and assignments
+// @access  Private (Teacher/Admin/SuperAdmin)
+router.get('/:id/details', requireTeacher, async (req, res) => {
+  const class_id = req.params.id;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
+  const actor_id = req.user.id;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // TENANT ISOLATION: Verify access to this class
+    const [classRows] = await connection.query(
+      'SELECT c.*, i.name as institution_name, u.first_name as teacher_first_name, u.last_name as teacher_last_name FROM classes c LEFT JOIN institutions i ON c.institution_id = i.id LEFT JOIN users u ON c.teacher_id = u.id WHERE c.id = $1',
+      [class_id]
+    );
+    
+    if (classRows.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'Class not found' });
+    }
+    
+    const classInfo = classRows[0];
+    
+    // Check access permissions
+    const isOwner = classInfo.teacher_id === actor_id;
+    const isAdmin = actor_role === 'admin' && classInfo.institution_id === actor_institution_id;
+    const isSuperAdmin = actor_role === 'super_admin';
+    
+    if (!isOwner && !isAdmin && !isSuperAdmin) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied to this class' });
+    }
+    
+    // Get enrolled students
+    const [students] = await connection.query(
+      `SELECT u.id, u.first_name, u.last_name, u.email, ce.joined_at
+       FROM class_enrollments ce
+       JOIN users u ON ce.user_id = u.id
+       WHERE ce.class_id = $1
+       ORDER BY u.last_name, u.first_name`,
+      [class_id]
+    );
+    
+    // Get unique assignments for this class
+    const [assignments] = await connection.query(
+      `SELECT DISTINCT ON (a.module_id, a.assignment_type, a.grammar_topic_id, a.instructions, a.due_date)
+         a.id, a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
+         a.instructions, a.due_date, a.created_at,
+         m.module_name, m.module_type,
+         COUNT(CASE WHEN a.status = 'completed' THEN 1 END) as completed_count,
+         COUNT(a.student_id) as total_assigned
+       FROM assigned_tasks a
+       JOIN learning_modules m ON a.module_id = m.id
+       WHERE a.class_id = $1
+       GROUP BY a.id, a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
+                a.instructions, a.due_date, a.created_at, m.module_name, m.module_type
+       ORDER BY a.module_id, a.assignment_type, a.grammar_topic_id, a.instructions, a.due_date, a.created_at DESC`,
+      [class_id]
+    );
+    
+    connection.release();
+    
+    res.json({
+      class: classInfo,
+      students,
+      assignments
+    });
+  } catch (error) {
+    console.error('Fetch class details error:', error);
+    res.status(500).json({ error: 'Server error fetching class details' });
+  }
+});
+
 // @route   DELETE api/classes/leave
 // @desc    Hard remove a student from a class and clean incomplete assignments
 // @access  Private (Student only)

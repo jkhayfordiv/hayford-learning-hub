@@ -64,19 +64,23 @@ router.post('/', requireTeacher, async (req, res) => {
         [teacher_id, class_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, instructions || null, due_date || null]
       );
       
-      // Also assign to existing students in the class
-      const [students] = await connection.query(`SELECT id FROM users WHERE role = 'student' AND class_id = $1`, [class_id]);
+      // Query class_enrollments table for all enrolled students
+      const [enrollments] = await connection.query(
+        `SELECT user_id FROM class_enrollments WHERE class_id = $1`,
+        [class_id]
+      );
       
       let count = 0;
-      for (const student of students) {
+      for (const enrollment of enrollments) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
              ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
             [
               teacher_id,
-              student.id,
+              enrollment.user_id,
+              class_id,
               resolvedModuleId,
               aType,
               grammar_topic_id || null,
@@ -87,7 +91,7 @@ router.post('/', requireTeacher, async (req, res) => {
           );
           count++;
         } catch (dupError) {
-          console.warn('Duplicate assignment skipped for student', student.id, dupError.message);
+          console.warn('Duplicate assignment skipped for student', enrollment.user_id, dupError.message);
         }
       }
       

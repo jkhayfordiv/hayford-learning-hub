@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown, Shield, Building2, UserCog } from 'lucide-react';
 import logo from './assets/logo.png';
 import PlatformManager from './components/PlatformManager';
+import ClassDetails from './components/ClassDetails';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
   {
@@ -121,7 +122,8 @@ export default function TeacherDashboard({ user, onLogout }) {
   
   // Platform Management - institutions kept here for the Class Creation modal dropdown
   const [institutions, setInstitutions] = useState([]);
-  const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes
+  const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes, class-details
+  const [selectedClassId, setSelectedClassId] = useState(null); // For viewing class details
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -888,14 +890,28 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-8 py-12">
-        {/* Platform Management Views (Admin/SuperAdmin) */}
-        {(user.role === 'admin' || user.role === 'super_admin') && navigationView !== 'dashboard' ? (
+        {/* Class Details View */}
+        {navigationView === 'class-details' && selectedClassId ? (
+          <ClassDetails
+            classId={selectedClassId}
+            onBack={() => {
+              setNavigationView('classes');
+              setSelectedClassId(null);
+            }}
+            user={user}
+            apiBase={apiBase}
+          />
+        ) : (user.role === 'admin' || user.role === 'super_admin') && navigationView !== 'dashboard' ? (
           <PlatformManager
             user={user}
             apiBase={apiBase}
             navigationView={navigationView}
             classes={classes}
             onInstitutionsLoad={setInstitutions}
+            onViewClassDetails={(classId) => {
+              setSelectedClassId(classId);
+              setNavigationView('class-details');
+            }}
           />
         ) : activeTab === 'overview' ? (
           <>
