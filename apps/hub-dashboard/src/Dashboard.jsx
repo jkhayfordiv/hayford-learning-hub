@@ -218,6 +218,9 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
+    // Clear any stale vocab practice data when returning to dashboard
+    sessionStorage.removeItem('custom_practice_words');
+    
     // Refresh user data from server on every mount to prevent stale data
     const refreshUserData = async () => {
       try {

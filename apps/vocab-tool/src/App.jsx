@@ -35,8 +35,8 @@ export default function App() {
         const customWords = JSON.parse(customWordsJson);
         if (customWords && customWords.length > 0) {
           setTargetWords(customWords);
-          // CRITICAL: Remove immediately to prevent infinite loop
-          sessionStorage.removeItem('custom_practice_words');
+          // Don't remove immediately - allow page refreshes to work
+          // Will be cleared when user returns to dashboard or starts new practice
           return; // Skip normal assignment parsing
         }
       } catch (e) {
@@ -221,7 +221,8 @@ export default function App() {
             <BookOpen className="text-slate-400 w-8 h-8" />
           </div>
           <h1 className="text-2xl font-black text-slate-900 tracking-tight mb-2">Vocabulary Builder</h1>
-          <p className="text-slate-500 mb-8">This app requires a task assignment from your teacher containing target words.</p>
+          <p className="text-slate-500 mb-4">No words to practice right now.</p>
+          <p className="text-sm text-slate-400 mb-8">Add words to your Word Bank from the dashboard, or wait for your teacher to assign vocabulary practice.</p>
           <button 
              onClick={() => window.location.href = '/'}
              className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-800 transition-colors flex justify-center items-center gap-2"
