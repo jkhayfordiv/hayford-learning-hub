@@ -593,7 +593,7 @@ export default function Dashboard() {
           </div>
         </div>
         </>
-        ) : (
+        ) : activeTab === 'progress' ? (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Top 3 Focus Areas */}
             {topFocusAreas.length > 0 && (
