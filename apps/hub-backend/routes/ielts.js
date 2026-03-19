@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { gradeIeltsSpeaking } = require('../services/aiService');
-const { authenticateToken } = require('../middleware/auth');
+const authenticateToken = require('../middleware/auth');
 
 // @route   POST /api/ielts/speak/grade
 // @desc    Grade IELTS Speaking transcribed response
