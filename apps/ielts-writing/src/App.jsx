@@ -776,6 +776,27 @@ export default function App() {
     setErrorMessage("");
   };
 
+  const handleProceedToTask2 = () => {
+    // Transition from Task 1 to Task 2 in Both mode
+    setCurrentTaskInBothMode('task2');
+    setTask1Completed(true);
+    
+    // Get a random Task 2 prompt
+    const task2Prompt = getRandomPrompt('task2');
+    setCurrentPrompt(task2Prompt);
+    
+    // Reset the writing interface
+    setText("");
+    setTimeLeft(1200);
+    setHasStarted(false);
+    setFeedback(null);
+    setView("practice");
+    setIsTimerRunning(false);
+    setShowWarning(false);
+    setErrorMessage("");
+    setSaveMessage("");
+  };
+
   const handleTextChange = (e) => {
     const val = e.target.value;
     setText(val);
@@ -931,7 +952,16 @@ export default function App() {
 
       <div className="px-6 pt-4 bg-slate-50 border-b border-slate-200">
         <div className="max-w-md mx-auto bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-indigo-700 text-center">
-          Assignment: {writingTask === 'both' ? 'IELTS Both Tasks (Task 1 + Task 2)' : writingTask === 'task2' ? 'IELTS Task 2 Essay' : 'IELTS Task 1 Academic Report'}
+          {writingTask === 'both' ? (
+            <div className="flex items-center justify-center gap-2">
+              <span>Assignment: IELTS Both Tasks</span>
+              <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-[10px]">
+                {currentTaskInBothMode === 'task1' ? 'Task 1 Active' : 'Task 2 Active'}
+              </span>
+            </div>
+          ) : (
+            <span>Assignment: {writingTask === 'task2' ? 'IELTS Task 2 Essay' : 'IELTS Task 1 Academic Report'}</span>
+          )}
         </div>
       </div>
       
@@ -939,11 +969,14 @@ export default function App() {
         {view === "feedback" ? (
           <FeedbackView 
             feedback={feedback} 
-            writingTask={writingTask}
+            writingTask={actualCurrentTask}
             originalText={text} 
             saveMessage={saveMessage}
             onReset={() => startPractice(getRandomPrompt(writingTask))} 
             onNextRandom={() => startPractice(getRandomPrompt(writingTask))}
+            isBothMode={writingTask === 'both'}
+            currentTaskInBothMode={currentTaskInBothMode}
+            onProceedToTask2={handleProceedToTask2}
           />
         ) : (
           <div className="h-full flex flex-col lg:flex-row">
@@ -1037,9 +1070,12 @@ function PromptList({ onSelect, prompts, writingTask }) {
   );
 }
 
-function FeedbackView({ feedback, writingTask, originalText, saveMessage, onReset, onNextRandom }) {
+function FeedbackView({ feedback, writingTask, originalText, saveMessage, onReset, onNextRandom, isBothMode, currentTaskInBothMode, onProceedToTask2 }) {
   if (!feedback) return null;
   const focusTags = Array.isArray(feedback.diagnostic_tags) ? feedback.diagnostic_tags.slice(0, 3) : [];
+  
+  // Determine if we should show "Proceed to Task 2" button
+  const showProceedToTask2 = isBothMode && currentTaskInBothMode === 'task1';
 
   return (
     <div className="max-w-4xl mx-auto p-10 animate-in zoom-in-95 duration-500 relative">
@@ -1104,8 +1140,22 @@ function FeedbackView({ feedback, writingTask, originalText, saveMessage, onRese
               </p>
             )}
           </div>
-          <div className="flex justify-center">
-             <button onClick={() => window.location.href = '../index.html#/dashboard'} className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-black hover:bg-black transition-all shadow-xl tracking-widest uppercase text-xs">Return to Dashboard</button>
+          <div className="flex justify-center gap-4">
+            {showProceedToTask2 ? (
+              <button 
+                onClick={onProceedToTask2} 
+                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-12 py-5 rounded-2xl font-black hover:from-indigo-700 hover:to-purple-700 transition-all shadow-xl tracking-widest uppercase text-xs flex items-center gap-3"
+              >
+                Proceed to Task 2 <ArrowRight size={20} />
+              </button>
+            ) : (
+              <button 
+                onClick={() => window.location.href = '../index.html#/dashboard'} 
+                className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-black hover:bg-black transition-all shadow-xl tracking-widest uppercase text-xs"
+              >
+                Return to Dashboard
+              </button>
+            )}
           </div>
         </div>
       </div>
