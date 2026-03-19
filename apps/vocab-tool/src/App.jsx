@@ -239,7 +239,7 @@ export default function App() {
     if (isCompleted && !saveStatus.success && !saveStatus.loading) {
       submitScoreToHub();
     }
-  }, [isCompleted]);
+  }, [isCompleted, saveStatus.success, saveStatus.loading]);
 
   if (isCompleted) {
     return (
