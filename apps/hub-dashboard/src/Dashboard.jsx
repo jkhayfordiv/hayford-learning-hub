@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3 } from 'lucide-react';
+import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 import WordBank from './components/WordBank';
+import StudentFeedbackModal from './components/StudentFeedbackModal';
 import logo from './assets/logo.png';
 
 const DIAGNOSTIC_DICTIONARY = {
@@ -88,6 +89,8 @@ export default function Dashboard() {
   const [joinError, setJoinError] = useState('');
   const [isJoining, setIsJoining] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
+  const [selectedFeedbackScore, setSelectedFeedbackScore] = useState(null);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   
   // PHASE 4.2: Student Limbo Modal (shows when class_id is null)
   const [showLimboModal, setShowLimboModal] = useState(false);
@@ -133,6 +136,42 @@ export default function Dashboard() {
       setJoinError(err.message);
     } finally {
       setIsJoining(false);
+    }
+  };
+
+  const fetchScores = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return navigate('/login');
+
+      const res = await fetch(`${apiBase}/api/scores/my-scores`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (res.ok) {
+        const data = await res.json();
+        setScores(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch scores', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleMarkFeedbackAsRead = async (assignmentId) => {
+    try {
+      const token = localStorage.getItem('token');
+      await fetch(`${apiBase}/api/assignments/${assignmentId}/mark-read`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      // Refresh scores to update the badge
+      fetchScores();
+    } catch (error) {
+      console.error('Error marking feedback as read:', error);
     }
   };
 
@@ -186,26 +225,6 @@ export default function Dashboard() {
        setIsLoading(false);
        return;
     }
-
-    const fetchScores = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) return navigate('/login');
-
-        const res = await fetch(`${apiBase}/api/scores/my-scores`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        
-        if (res.ok) {
-          const data = await res.json();
-          setScores(data);
-        }
-      } catch (err) {
-        console.error('Failed to fetch scores', err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
     const fetchTasks = async () => {
       try {
@@ -561,16 +580,28 @@ export default function Dashboard() {
                 {scores.length > 0 ? (scores.reduce((acc, curr) => acc + parseFloat(curr.overall_score), 0) / scores.length).toFixed(1) : 'N/A'}
               </span>
            </div>
-           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
-              <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Global Ranking</span>
-              <span className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">Top 15%</span>
-           </div>
-           <div className="bg-gradient-to-br from-slate-900 to-slate-950 p-6 rounded-2xl shadow-soft text-white flex flex-col justify-between border-t-2 border-amber-500">
-              <div>
-                 <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest drop-shadow-sm">Account Logic</span>
-                 <h3 className="text-xl font-bold mt-1 tracking-tight flex items-center gap-2 text-amber-50"><Shield size={18} className="text-amber-500" /> {user.role?.toUpperCase() || 'STUDENT'}</h3>
+           <button
+              onClick={() => window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+           >
+              <div className="flex items-center justify-between mb-2">
+                 <BookOpen size={28} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-xs font-black uppercase text-white/70 tracking-widest">Workshop</span>
               </div>
-           </div>
+              <h3 className="text-xl font-black tracking-tight">Grammar Lab</h3>
+              <p className="text-xs text-white/80 mt-1">Practice targeted grammar skills</p>
+           </button>
+           <button
+              onClick={() => window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+           >
+              <div className="flex items-center justify-between mb-2">
+                 <BookOpen size={28} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-xs font-black uppercase text-white/70 tracking-widest">Word Bank</span>
+              </div>
+              <h3 className="text-xl font-black tracking-tight">Vocabulary Builder</h3>
+              <p className="text-xs text-white/80 mt-1">Expand your academic vocabulary</p>
+           </button>
         </div>
 
         {/* Scores Table */}
@@ -678,18 +709,36 @@ export default function Dashboard() {
                 </div>
               ) : (
                 scores.map((score) => (
-                  <div key={score.id} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm">
+                  <div key={score.id} className={`bg-white dark:bg-slate-800 border rounded-2xl overflow-hidden shadow-sm ${
+                    score.teacher_comment && !score.teacher_comment_read 
+                      ? 'border-amber-400 dark:border-amber-600 ring-2 ring-amber-200 dark:ring-amber-900/50' 
+                      : 'border-slate-200 dark:border-slate-700'
+                  }`}>
                     <div 
                       className="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
-                      onClick={() => setExpandedScoreId(expandedScoreId === score.id ? null : score.id)}
+                      onClick={() => {
+                        if (score.teacher_comment) {
+                          setSelectedFeedbackScore(score);
+                          setIsFeedbackModalOpen(true);
+                        } else {
+                          setExpandedScoreId(expandedScoreId === score.id ? null : score.id);
+                        }
+                      }}
                     >
                       <div className="flex items-center gap-4">
                         <div className="flex-shrink-0 w-12 h-12 bg-amber-50 text-amber-700 rounded-xl flex flex-col items-center justify-center border border-amber-100">
                           <span className="text-sm font-black">{Number(score.overall_score).toFixed(1)}</span>
                           <span className="text-[8px] uppercase font-bold tracking-widest">Score</span>
                         </div>
-                        <div>
-                          <h4 className="font-bold text-slate-900 dark:text-white">{score.module_name}</h4>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-bold text-slate-900 dark:text-white">{score.module_name}</h4>
+                            {score.teacher_comment && !score.teacher_comment_read && (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-black uppercase tracking-wider rounded-full border border-amber-300 dark:border-amber-700 animate-pulse">
+                                <MessageSquare size={10} /> New Feedback
+                              </span>
+                            )}
+                          </div>
                           <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest">{score.module_type}</span>
                         </div>
                       </div>
@@ -698,7 +747,11 @@ export default function Dashboard() {
                           <Calendar size={14} />
                           {new Date(score.completed_at).toLocaleDateString()}
                         </div>
-                        <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${expandedScoreId === score.id ? 'rotate-180 text-amber-600' : ''}`} />
+                        {score.teacher_comment ? (
+                          <MessageSquare className="w-5 h-5 text-amber-600 dark:text-amber-500" />
+                        ) : (
+                          <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${expandedScoreId === score.id ? 'rotate-180 text-amber-600' : ''}`} />
+                        )}
                       </div>
                     </div>
                     
@@ -885,6 +938,18 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Student Feedback Modal */}
+      {isFeedbackModalOpen && selectedFeedbackScore && (
+        <StudentFeedbackModal
+          score={selectedFeedbackScore}
+          onClose={() => {
+            setIsFeedbackModalOpen(false);
+            setSelectedFeedbackScore(null);
+          }}
+          onMarkAsRead={handleMarkFeedbackAsRead}
+        />
       )}
     </div>
   );

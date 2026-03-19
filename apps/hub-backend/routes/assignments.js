@@ -341,4 +341,35 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
   }
 });
 
+// @route   PATCH api/assignments/:id/mark-read
+// @desc    Mark teacher comment as read by student
+// @access  Private (Student)
+router.patch('/:id/mark-read', auth, async (req, res) => {
+  const assignment_id = req.params.id;
+  const student_id = req.user.id;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // Update teacher_comment_read to TRUE for this student's assignment
+    const [result] = await connection.query(
+      `UPDATE assigned_tasks 
+       SET teacher_comment_read = TRUE 
+       WHERE id = $1 AND student_id = $2`,
+      [assignment_id, student_id]
+    );
+
+    connection.release();
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Assignment not found or you do not have permission to access it.' });
+    }
+
+    res.json({ success: true, message: 'Feedback marked as read.' });
+  } catch (error) {
+    console.error('Mark feedback as read error:', error);
+    res.status(500).json({ error: 'Server Error marking feedback as read' });
+  }
+});
+
 module.exports = router;
