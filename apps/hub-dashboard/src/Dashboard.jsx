@@ -672,14 +672,30 @@ export default function Dashboard() {
                   <tr><td colSpan="5" className="px-8 py-12 text-center text-slate-400">No recent submissions found. Start practicing!</td></tr>
                 ) : (
                   scores.map((score) => (
-                    <tr key={score.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group cursor-pointer">
+                    <tr 
+                      key={score.id} 
+                      onClick={() => {
+                        setSelectedFeedbackScore(score);
+                        setIsFeedbackModalOpen(true);
+                      }}
+                      className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group cursor-pointer"
+                    >
                       <td className="px-8 py-6 flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><Calendar size={14} className="text-slate-400" /></div>
                         {new Date(score.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </td>
                       <td className="px-8 py-6">
-                        <div className="font-bold text-slate-900 dark:text-white">{score.module_name}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{score.module_type}</div>
+                        <div className="flex items-center gap-2">
+                          <div>
+                            <div className="font-bold text-slate-900 dark:text-white">{score.module_name}</div>
+                            <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{score.module_type}</div>
+                          </div>
+                          {score.teacher_comment && !score.teacher_comment_read && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-black rounded-md border border-amber-200 dark:border-amber-700 animate-pulse">
+                              <MessageSquare size={12} /> New Feedback
+                            </span>
+                          )}
+                        </div>
                       </td>
                       <td className="px-8 py-6">{score.word_count} words</td>
                       <td className="px-8 py-6 text-center">
