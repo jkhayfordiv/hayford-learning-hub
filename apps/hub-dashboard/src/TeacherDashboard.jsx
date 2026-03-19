@@ -334,8 +334,6 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
-
-
   useEffect(() => {
     fetchClasses();
     fetchClassData();

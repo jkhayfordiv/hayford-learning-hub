@@ -647,9 +647,8 @@ export default function Dashboard() {
 
         {/* Scores Table */}
         <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
-          <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+          <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50">
             <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2"><FileText className="text-slate-400" /> Recent Learning Activity</h3>
-            <button className="text-xs font-bold text-slate-900 dark:text-slate-200 bg-slate-100 dark:bg-slate-700 px-4 py-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">View Detailed Reports</button>
           </div>
           
           <div className="overflow-x-auto">
