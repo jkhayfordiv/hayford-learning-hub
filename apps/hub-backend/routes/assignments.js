@@ -163,7 +163,7 @@ router.get('/my-tasks', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at, a.ai_feedback,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name
        FROM assigned_tasks a
