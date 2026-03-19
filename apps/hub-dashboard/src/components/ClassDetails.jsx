@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Users, FileText, Calendar, PlusCircle, Trash2, CheckCircle2, Loader2 } from 'lucide-react';
 
-export default function ClassDetails({ classId, onBack, user, apiBase }) {
+export default function ClassDetails({ classId, onBack, onOpenAssignmentForm, user, apiBase }) {
   const [classData, setClassData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isAssignModalOpen, setIsAssignModalOpen] = useState(false);
 
   useEffect(() => {
     fetchClassDetails();
@@ -141,7 +140,7 @@ export default function ClassDetails({ classId, onBack, user, apiBase }) {
               <FileText className="text-slate-400" /> Class Assignments
             </h3>
             <button
-              onClick={() => setIsAssignModalOpen(true)}
+              onClick={() => onOpenAssignmentForm && onOpenAssignmentForm(classId)}
               className="bg-slate-900 text-white font-bold text-sm px-4 py-2 rounded-xl hover:bg-slate-950 transition-colors flex items-center gap-2 shadow-sm"
             >
               <PlusCircle size={16} /> Assign to Class
@@ -157,7 +156,7 @@ export default function ClassDetails({ classId, onBack, user, apiBase }) {
                   Create assignments for this class to get started.
                 </p>
                 <button
-                  onClick={() => setIsAssignModalOpen(true)}
+                  onClick={() => onOpenAssignmentForm && onOpenAssignmentForm(classId)}
                   className="bg-slate-900 text-white font-bold px-6 py-3 rounded-xl hover:bg-slate-950 transition-colors inline-flex items-center gap-2"
                 >
                   <PlusCircle size={18} /> Create First Assignment
@@ -205,29 +204,6 @@ export default function ClassDetails({ classId, onBack, user, apiBase }) {
           </div>
         </div>
       </div>
-
-      {/* Assignment Modal Placeholder */}
-      {isAssignModalOpen && (
-        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-slate-900 to-slate-800">
-              <h3 className="font-black text-2xl text-white tracking-tight">Assign to Class</h3>
-              <p className="text-sm text-slate-300 mt-1">Create assignment for {classInfo.class_name}</p>
-            </div>
-            <div className="p-8 text-center">
-              <p className="text-slate-600 font-medium mb-6">
-                Assignment creation modal will be integrated with the existing assignment form, pre-filling class_id: <span className="font-black text-slate-900">{classId}</span>
-              </p>
-              <button
-                onClick={() => setIsAssignModalOpen(false)}
-                className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-950 transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

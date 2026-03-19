@@ -124,6 +124,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [institutions, setInstitutions] = useState([]);
   const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes, class-details
   const [selectedClassId, setSelectedClassId] = useState(null); // For viewing class details
+  const [preselectedClassId, setPreselectedClassId] = useState(null); // For pre-filling assignment form from ClassDetails
 
   // PHASE 4.3: Bulk Action Handlers
   const handleBulkDeleteStudents = async () => {
@@ -377,6 +378,7 @@ export default function TeacherDashboard({ user, onLogout }) {
       if (!res.ok) throw new Error(data.error || 'Failed to create assignment');
       setAssignmentStatus({ loading: false, error: null, success: true });
       setAssignmentForm(DEFAULT_ASSIGNMENT_FORM);
+      setPreselectedClassId(null); // Clear preselected class after successful creation
       fetchAssignments();
       setTimeout(() => setAssignmentStatus(prev => ({...prev, success: false})), 3000);
     } catch (err) {
@@ -898,6 +900,17 @@ export default function TeacherDashboard({ user, onLogout }) {
               setNavigationView('classes');
               setSelectedClassId(null);
             }}
+            onOpenAssignmentForm={(classId) => {
+              setPreselectedClassId(classId);
+              setActiveTab('assignments');
+              setNavigationView('dashboard');
+              // Pre-fill the assignment form with the class
+              setAssignmentForm({
+                ...DEFAULT_ASSIGNMENT_FORM,
+                student_id: `class_${classId}`,
+                class_id: classId
+              });
+            }}
             user={user}
             apiBase={apiBase}
           />
@@ -1343,8 +1356,26 @@ export default function TeacherDashboard({ user, onLogout }) {
                     )}
 
                     <div className="space-y-1">
-                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assign To</label>
-                      <select value={assignmentForm.student_id} onChange={e => setAssignmentForm({...assignmentForm, student_id: e.target.value})} className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none">
+                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">
+                        Assign To
+                        {preselectedClassId && (
+                          <span className="ml-2 text-amber-600 font-black">(Pre-selected from Class Details)</span>
+                        )}
+                      </label>
+                      <select 
+                        value={assignmentForm.student_id} 
+                        onChange={e => {
+                          setAssignmentForm({...assignmentForm, student_id: e.target.value});
+                          // Clear preselected if user manually changes
+                          if (preselectedClassId) setPreselectedClassId(null);
+                        }}
+                        disabled={!!preselectedClassId}
+                        className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
+                          preselectedClassId 
+                            ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
+                            : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
+                        }`}
+                      >
                         <option value="all">All Students</option>
                         {classes.length > 0 && (
                           <optgroup label="Classes">
@@ -1355,6 +1386,23 @@ export default function TeacherDashboard({ user, onLogout }) {
                           {students.map(s => <option key={s.id} value={s.id}>{s.first_name} {s.last_name}</option>)}
                         </optgroup>
                       </select>
+                      {preselectedClassId && (
+                        <div className="flex items-center justify-between bg-amber-50 border border-amber-200 rounded-lg p-3 mt-2">
+                          <p className="text-xs font-bold text-amber-800">
+                            This assignment will be created for the selected class only.
+                          </p>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setPreselectedClassId(null);
+                              setAssignmentForm({...assignmentForm, student_id: 'all'});
+                            }}
+                            className="text-xs font-bold text-amber-700 hover:text-amber-900 underline"
+                          >
+                            Clear
+                          </button>
+                        </div>
+                      )}
                     </div>
 
                     <div className="space-y-1">
