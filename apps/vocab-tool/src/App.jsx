@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, CheckCircle, XCircle, ArrowRight, Save, LayoutDashboard, Loader2, RefreshCw } from 'lucide-react';
+import { BookOpen, CheckCircle, XCircle, ArrowRight, Save, LayoutDashboard, Loader2, RefreshCw, SkipForward } from 'lucide-react';
 
 export default function App() {
   const [token, setToken] = useState(null);
@@ -126,6 +126,17 @@ export default function App() {
     }
   };
 
+  const handleSkipWord = () => {
+    // Skip without saving result - only for free practice
+    if (currentIndex + 1 < targetWords.length) {
+      setCurrentIndex(prev => prev + 1);
+      setInputSentence('');
+      setFeedback(null);
+    } else {
+      setIsCompleted(true);
+    }
+  };
+
   const submitScoreToHub = async () => {
     if (!token) {
       setSaveStatus({ loading: false, success: false, error: 'Not authenticated with Hub.' });
@@ -222,6 +233,13 @@ export default function App() {
     );
   }
 
+  // Auto-sync on completion
+  useEffect(() => {
+    if (isCompleted && !saveStatus.success && !saveStatus.loading) {
+      submitScoreToHub();
+    }
+  }, [isCompleted]);
+
   if (isCompleted) {
     return (
       <div className="min-h-screen bg-slate-50 font-sans flex flex-col items-center justify-center p-6">
@@ -258,7 +276,12 @@ export default function App() {
             ))}
           </div>
 
-          {saveStatus.success ? (
+          {saveStatus.loading ? (
+            <div className="bg-blue-50 text-blue-800 p-6 rounded-2xl border border-blue-200 text-center space-y-4">
+              <Loader2 size={32} className="animate-spin mx-auto text-blue-600" />
+              <p className="font-bold text-lg">Syncing your progress...</p>
+            </div>
+          ) : saveStatus.success ? (
             <div className="bg-green-50 text-green-800 p-6 rounded-2xl border border-green-200 text-center space-y-4">
               <p className="font-bold text-lg">Progress Synced Successfully!</p>
               <button 
@@ -268,25 +291,28 @@ export default function App() {
                 <LayoutDashboard size={18} /> Return to Hub
               </button>
             </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button 
-                 onClick={submitScoreToHub}
-                 disabled={saveStatus.loading}
-                 className="flex-1 bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-950 transition-colors flex justify-center items-center gap-2 disabled:opacity-50"
-              >
-                {saveStatus.loading ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
-                {saveStatus.loading ? 'Syncing...' : 'Sync Progress to Hub'}
-              </button>
-              <button 
-                 onClick={() => window.location.href = '/'}
-                 className="flex-1 bg-white border border-slate-200 text-slate-700 font-bold py-4 rounded-xl hover:bg-slate-50 transition-colors flex justify-center items-center gap-2"
-              >
-                <LayoutDashboard size={18} /> Return to Hub
-              </button>
+          ) : saveStatus.error ? (
+            <div className="space-y-4">
+              <div className="bg-red-50 text-red-800 p-6 rounded-2xl border border-red-200 text-center">
+                <p className="font-bold text-lg mb-2">Sync Failed</p>
+                <p className="text-sm">{saveStatus.error}</p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                   onClick={submitScoreToHub}
+                   className="flex-1 bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-slate-950 transition-colors flex justify-center items-center gap-2"
+                >
+                  <RefreshCw size={18} /> Retry Sync
+                </button>
+                <button 
+                   onClick={() => window.location.href = '/'}
+                   className="flex-1 bg-white border border-slate-200 text-slate-700 font-bold py-4 rounded-xl hover:bg-slate-50 transition-colors flex justify-center items-center gap-2"
+                >
+                  <LayoutDashboard size={18} /> Return to Hub
+                </button>
+              </div>
             </div>
-          )}
-          {saveStatus.error && <p className="text-red-500 text-center mt-4 font-bold text-sm bg-red-50 p-3 rounded-lg">{saveStatus.error}</p>}
+          ) : null}
         </div>
       </div>
     );
@@ -345,11 +371,19 @@ export default function App() {
            </div>
 
            {!feedback ? (
-             <div className="mt-8 flex justify-end">
+             <div className="mt-8 flex justify-between items-center gap-4">
+               {!taskId && (
+                 <button
+                   onClick={handleSkipWord}
+                   className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold px-6 py-3 rounded-xl transition-colors flex items-center gap-2"
+                 >
+                   <SkipForward size={18} /> Skip Word
+                 </button>
+               )}
                <button
                  onClick={handleCheckSentence}
                  disabled={!inputSentence.trim() || isChecking}
-                 className="bg-slate-900 hover:bg-slate-950 cursor-pointer disabled:bg-slate-300 disabled:cursor-not-allowed text-white text-lg font-bold px-8 py-3.5 rounded-xl transition-colors flex items-center gap-2 shadow-soft"
+                 className="bg-slate-900 hover:bg-slate-950 cursor-pointer disabled:bg-slate-300 disabled:cursor-not-allowed text-white text-lg font-bold px-8 py-3.5 rounded-xl transition-colors flex items-center gap-2 shadow-soft ml-auto"
                >
                  {isChecking ? (
                    <><RefreshCw className="animate-spin w-5 h-5" /> Checking...</>

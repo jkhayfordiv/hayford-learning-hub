@@ -148,6 +148,16 @@ export default function Dashboard() {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
+      // Auto-logout on token expiry
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('theme');
+        localStorage.removeItem('limboModalDismissed');
+        navigate('/login');
+        return;
+      }
+      
       if (res.ok) {
         const data = await res.json();
         setScores(data);
@@ -162,12 +172,23 @@ export default function Dashboard() {
   const handleMarkFeedbackAsRead = async (assignmentId) => {
     try {
       const token = localStorage.getItem('token');
-      await fetch(`${apiBase}/api/assignments/${assignmentId}/mark-read`, {
+      const res = await fetch(`${apiBase}/api/assignments/${assignmentId}/mark-read`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
+      
+      // Auto-logout on token expiry
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('theme');
+        localStorage.removeItem('limboModalDismissed');
+        navigate('/login');
+        return;
+      }
+      
       // Refresh scores to update the badge
       fetchScores();
     } catch (error) {
@@ -207,6 +228,16 @@ export default function Dashboard() {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
+        // Auto-logout on token expiry
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          localStorage.removeItem('theme');
+          localStorage.removeItem('limboModalDismissed');
+          navigate('/login');
+          return;
+        }
+        
         if (res.ok) {
           const freshUser = await res.json();
           localStorage.setItem('user', JSON.stringify(freshUser));
@@ -217,7 +248,7 @@ export default function Dashboard() {
     };
 
     refreshUserData();
-  }, []);
+  }, [navigate, apiBase]);
 
   useEffect(() => {
     // Only fetch scores if it is a student dashboard
@@ -234,6 +265,16 @@ export default function Dashboard() {
         const res = await fetch(`${apiBase}/api/assignments/my-tasks`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
+        
+        // Auto-logout on token expiry
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          localStorage.removeItem('theme');
+          localStorage.removeItem('limboModalDismissed');
+          navigate('/login');
+          return;
+        }
         
         if (res.ok) {
           setTasks(await res.json());

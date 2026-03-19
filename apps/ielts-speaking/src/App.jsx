@@ -124,6 +124,32 @@ function App() {
 
       const result = await response.json();
       setFeedback(result);
+
+      // Auto-save score to dashboard
+      if (token && result.scores?.overall) {
+        try {
+          const saveRes = await fetch(`${apiBase}/api/scores`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              module_type: 'speaking',
+              submitted_text: transcript.trim(),
+              word_count: transcript.trim().split(/\s+/).length,
+              overall_score: result.scores.overall,
+              ai_feedback: result
+            })
+          });
+          
+          if (!saveRes.ok) {
+            console.error('Failed to auto-save speaking score');
+          }
+        } catch (saveErr) {
+          console.error('Error auto-saving speaking score:', saveErr);
+        }
+      }
     } catch (err) {
       console.error('Grading error:', err);
       setError('Failed to grade your response. Please try again.');
