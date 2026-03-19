@@ -395,7 +395,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
       <header className="bg-white dark:bg-[#0F1C2E] border-b border-slate-200 dark:border-slate-700 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
-        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/dashboard')}>
+        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
            <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
           <div>
             <h1 className="font-bold text-slate-900 dark:text-white tracking-tight leading-none text-lg group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
