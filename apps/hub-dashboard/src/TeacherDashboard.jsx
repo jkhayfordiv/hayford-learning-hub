@@ -821,19 +821,9 @@ export default function TeacherDashboard({ user, onLogout }) {
         </div>
       </header>
 
-      {/* Admin/SuperAdmin Navigation Bar */}
+      {/* Admin Level Navigation Bar (Crimson) - Platform Management */}
       {(user.role === 'admin' || user.role === 'super_admin') && (
         <div className="bg-gradient-to-r from-[#800000] to-[#600000] border-b border-[#700000] px-8 py-3 flex gap-6 sticky top-[73px] z-30">
-          <button
-            onClick={() => setNavigationView('dashboard')}
-            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
-              navigationView === 'dashboard'
-                ? 'bg-white text-slate-900 shadow-lg'
-                : 'text-white hover:bg-white/20'
-            }`}
-          >
-            Dashboard
-          </button>
           {user.role === 'super_admin' && (
             <button
               onClick={() => setNavigationView('institutions')}
@@ -870,9 +860,11 @@ export default function TeacherDashboard({ user, onLogout }) {
       )}
 
 
-      {/* Tabs - Only show when in dashboard view */}
+      {/* Teacher Level Navigation Bar - Teaching Tools (Always visible when not in platform management views) */}
       {navigationView === 'dashboard' && (
-        <div className="bg-white border-b border-slate-200 px-8 flex gap-8 sticky top-[73px] z-30">
+        <div className={`bg-white border-b border-slate-200 px-8 flex gap-8 z-30 ${
+          user.role === 'admin' || user.role === 'super_admin' ? 'sticky top-[121px]' : 'sticky top-[73px]'
+        }`}>
           <button 
             onClick={() => setActiveTab('overview')}
             className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'overview' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
@@ -883,16 +875,14 @@ export default function TeacherDashboard({ user, onLogout }) {
             onClick={() => setActiveTab('assignments')}
             className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'assignments' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
           >
-            Assignments & Tasks
+            Assignments
           </button>
-          {(user.role === 'admin' || user.role === 'super_admin') && (
-            <button 
-              onClick={() => setActiveTab('institution')}
-              className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'institution' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-            >
-              Institution Settings
-            </button>
-          )}
+          <button 
+            onClick={() => setActiveTab('tasks')}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'tasks' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+          >
+            Task Queue
+          </button>
         </div>
       )}
 
@@ -1503,158 +1493,24 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
             </div>
           </div>
-        ) : activeTab === 'institution' ? (
+        ) : activeTab === 'tasks' ? (
           <>
-            {/* PHASE 4.4: Institution Settings Tab */}
+            {/* Task Queue Tab */}
             <div className="flex justify-between items-end mb-8">
               <div>
-                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Institution Settings</h2>
-                <p className="text-slate-500 font-medium">Manage your institution and create teacher accounts.</p>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Task Queue</h2>
+                <p className="text-slate-500 font-medium">View and manage all pending student tasks across your classes.</p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Create Teacher Account Form */}
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-brand-navy to-slate-800">
-                  <h3 className="font-black text-xl text-white tracking-tight flex items-center gap-2">
-                    <UserPlus className="text-white" /> Create Teacher Account
-                  </h3>
-                </div>
-                <div className="p-8">
-                  <form onSubmit={handleCreateTeacher} className="space-y-4">
-                    {createTeacherStatus.error && (
-                      <div className="p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100">
-                        {createTeacherStatus.error}
-                      </div>
-                    )}
-                    {createTeacherStatus.success && (
-                      <div className="p-4 bg-green-50 text-green-700 text-xs font-bold rounded-xl border border-green-100">
-                        ✓ Teacher account created successfully!
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">First Name</label>
-                        <input
-                          required
-                          type="text"
-                          value={newTeacherForm.first_name}
-                          onChange={e => setNewTeacherForm({...newTeacherForm, first_name: e.target.value})}
-                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
-                          placeholder="John"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Last Name</label>
-                        <input
-                          required
-                          type="text"
-                          value={newTeacherForm.last_name}
-                          onChange={e => setNewTeacherForm({...newTeacherForm, last_name: e.target.value})}
-                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
-                          placeholder="Smith"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Email Address</label>
-                      <input
-                        required
-                        type="email"
-                        value={newTeacherForm.email}
-                        onChange={e => setNewTeacherForm({...newTeacherForm, email: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
-                        placeholder="teacher@school.edu"
-                      />
-                    </div>
-
-                    {user.role === 'super_admin' && (
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution</label>
-                        <select
-                          required
-                          value={newTeacherForm.institution_id}
-                          onChange={e => setNewTeacherForm({...newTeacherForm, institution_id: e.target.value})}
-                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
-                        >
-                          <option value="">Select Institution</option>
-                          {institutions.map(inst => (
-                            <option key={inst.id} value={inst.id}>{inst.name}</option>
-                          ))}
-                        </select>
-                      </div>
-                    )}
-
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Temporary Password</label>
-                      <input
-                        required
-                        type="password"
-                        value={newTeacherForm.password}
-                        onChange={e => setNewTeacherForm({...newTeacherForm, password: e.target.value})}
-                        className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-brand-navy focus:outline-none"
-                        placeholder="••••••••"
-                      />
-                      <p className="text-xs text-slate-500 mt-1">The teacher should change this password after first login.</p>
-                    </div>
-
-                    <button
-                      disabled={createTeacherStatus.loading}
-                      type="submit"
-                      className="w-full bg-brand-navy text-white font-black py-3 rounded-xl hover:bg-slate-800 transition-colors disabled:opacity-50 mt-4 shadow-lg"
-                    >
-                      {createTeacherStatus.loading ? 'Creating Account...' : 'Create Teacher Account'}
-                    </button>
-                  </form>
-                </div>
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-12 text-center">
+              <div className="w-16 h-16 bg-slate-100 rounded-2xl mx-auto flex items-center justify-center mb-6">
+                <FileText className="text-slate-400 w-8 h-8" />
               </div>
-
-              {/* Institution Info */}
-              <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                <div className="px-8 py-6 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="font-black text-xl text-slate-900 tracking-tight flex items-center gap-2">
-                    <Shield className="text-slate-400" /> Institution Information
-                  </h3>
-                </div>
-                <div className="p-8 space-y-6">
-                  <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
-                        <BookOpen className="text-amber-600" size={24} />
-                      </div>
-                      <div>
-                        <h4 className="font-black text-lg text-slate-900 mb-1">Hayford Global Academy</h4>
-                        <p className="text-sm text-slate-600 font-medium">Your institution ID: 1</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
-                      <span className="text-sm font-bold text-slate-700">Total Teachers</span>
-                      <span className="text-lg font-black text-slate-900">{students.filter(s => s.role === 'teacher').length || 'N/A'}</span>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
-                      <span className="text-sm font-bold text-slate-700">Total Students</span>
-                      <span className="text-lg font-black text-slate-900">{students.length}</span>
-                    </div>
-                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-200">
-                      <span className="text-sm font-bold text-slate-700">Active Classes</span>
-                      <span className="text-lg font-black text-slate-900">{classes?.length || 0}</span>
-                    </div>
-                  </div>
-
-                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                    <p className="text-xs font-bold text-blue-900 mb-2">💡 Admin Tip</p>
-                    <p className="text-xs text-blue-700 leading-relaxed">
-                      Teacher accounts created here will automatically be assigned to your institution. They can create classes and manage students within your organization.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <h3 className="font-bold text-lg text-slate-900 mb-2">Task Queue View</h3>
+              <p className="text-slate-500 font-medium max-w-md mx-auto">
+                This view will display all pending assignments and tasks across your classes in a unified queue for easy monitoring and management.
+              </p>
             </div>
           </>
         ) : null}
