@@ -99,6 +99,10 @@ app.use('/api/institutions', institutionsRoutes);
 const wordbankRoutes = require('./routes/wordbank');
 app.use('/api/wordbank', wordbankRoutes);
 
+// IELTS routes (Speaking, Writing, etc.)
+const ieltsRoutes = require('./routes/ielts');
+app.use('/api/ielts', ieltsRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });

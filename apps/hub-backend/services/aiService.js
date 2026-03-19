@@ -174,7 +174,22 @@ No markdown wrapping. Return only the JSON object.
   return limiter.schedule(() => executeWithRetry(prompt, requestId));
 }
 
+async function gradeIeltsSpeaking({ transcript, questionPrompt, part, requestId }) {
+  const prompt = `
+You are an expert, strict IELTS Speaking Examiner. You are evaluating a transcribed audio response from a student. Evaluate based on: 1. Fluency and Coherence (FC) - look for discourse markers and transcribed hesitations like um/uh. 2. Lexical Resource (LR) - look for vocabulary variety. 3. Grammatical Range and Accuracy (GRA). DO NOT evaluate Pronunciation. Calculate the Overall Band Score as the average of FC, LR, and GRA, rounded down to the nearest 0.5. Return your evaluation STRICTLY as a JSON object with this exact structure: { "scores": { "fluency": 0.0, "lexical": 0.0, "grammar": 0.0, "overall": 0.0 }, "feedback": { "strengths": "1-2 sentences.", "weaknesses": "1-2 sentences highlighting specific errors.", "improvement_tip": "1 specific actionable tip." } }
+
+Part: ${part}
+Question: "${questionPrompt}"
+Student Response (Transcribed): "${transcript}"
+
+Return ONLY the JSON object. No markdown wrapping.
+`;
+
+  return limiter.schedule(() => executeWithRetry(prompt, requestId));
+}
+
 module.exports = {
   getVocabularyFeedback,
+  gradeIeltsSpeaking,
   AiRequestError
 };
