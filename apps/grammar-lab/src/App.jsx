@@ -203,11 +203,11 @@ export default function App() {
 
   if (!topic) {
     return (
-      <main className="min-h-screen bg-slate-100 text-slate-900 px-4 py-10 md:px-6">
-        <div className="max-w-3xl mx-auto rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+      <main className="min-h-screen bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 px-4 py-10 md:px-6">
+        <div className="max-w-3xl mx-auto rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800 p-8 shadow-sm">
           <h1 className="text-2xl font-black mb-3">Topic not found</h1>
-          <p className="text-slate-600">Could not load topic ID <span className="font-mono">{topicId}</span>.</p>
-          <p className="text-sm text-slate-500 mt-3">Try <span className="font-mono">?topicId=01_article_usage</span>.</p>
+          <p className="text-slate-600 dark:text-slate-400">Could not load topic ID <span className="font-mono">{topicId}</span>.</p>
+          <p className="text-sm text-slate-500 dark:text-slate-500 mt-3 italic tracking-tight">Try specifying a valid <span className="font-mono">?topicId=</span> parameter.</p>
         </div>
       </main>
     )
