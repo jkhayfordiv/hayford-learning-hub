@@ -217,6 +217,13 @@ export default function App() {
     }
   };
 
+  // Auto-sync on completion (must be before any conditional returns - Rules of Hooks)
+  useEffect(() => {
+    if (isCompleted && !saveStatus.success && !saveStatus.loading) {
+      submitScoreToHub();
+    }
+  }, [isCompleted]);
+
   // Show loading screen while initializing
   if (isInitializing) {
     return (
@@ -250,13 +257,6 @@ export default function App() {
       </div>
     );
   }
-
-  // Auto-sync on completion
-  useEffect(() => {
-    if (isCompleted && !saveStatus.success && !saveStatus.loading) {
-      submitScoreToHub();
-    }
-  }, [isCompleted, saveStatus.success, saveStatus.loading]);
 
   if (isCompleted) {
     return (
