@@ -2,406 +2,423 @@ import { useState, useEffect, useRef } from 'react'
 
 const PART_1_QUESTIONS = [
   "Describe your hometown. What do you like most about it?",
-  "Do you work or are you a student? Tell me about your work/studies.",
+  "Do you work or are you a student? Tell me about your work or studies.",
   "What do you like to do in your free time?",
   "Do you prefer to spend time with family or friends? Why?",
-  "What kind of music do you enjoy listening to?"
-];
+  "What kind of music do you enjoy listening to?",
+  "How do you usually spend your weekends?",
+  "What is your favourite season of the year and why?",
+  "Do you prefer living in a city or in the countryside?",
+  "How important is technology in your daily life?",
+  "Do you think it is important to learn a foreign language?",
+]
 
-function App() {
-  const [token, setToken] = useState(null);
-  const [currentQuestion, setCurrentQuestion] = useState(PART_1_QUESTIONS[0]);
-  const [isRecording, setIsRecording] = useState(false);
-  const [transcript, setTranscript] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [feedback, setFeedback] = useState(null);
-  const [error, setError] = useState('');
-  const [browserSupported, setBrowserSupported] = useState(true);
-  
-  const recognitionRef = useRef(null);
+function getRandomQuestion(exclude = '') {
+  const pool = PART_1_QUESTIONS.filter((q) => q !== exclude)
+  return pool[Math.floor(Math.random() * pool.length)]
+}
 
+export default function App() {
+  // --- Theme ---
   useEffect(() => {
-    // Extract token from URL or localStorage
-    const params = new URLSearchParams(window.location.search);
-    const urlToken = params.get('token');
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
+
+  // --- Auth ---
+  const [token, setToken] = useState(null)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const urlToken = params.get('token')
     if (urlToken) {
-      setToken(urlToken);
-      localStorage.setItem('token', urlToken);
+      setToken(urlToken)
+      localStorage.setItem('token', urlToken)
     } else {
-      setToken(localStorage.getItem('token'));
+      setToken(localStorage.getItem('token'))
     }
-  }, []);
+  }, [])
 
+  // --- Question ---
+  const [currentQuestion, setCurrentQuestion] = useState(() => getRandomQuestion())
+
+  // --- Recording ---
+  const [isRecording, setIsRecording] = useState(false)
+  const [audioBlob, setAudioBlob] = useState(null)
+  const [audioUrl, setAudioUrl] = useState(null)
+  const [recordingSeconds, setRecordingSeconds] = useState(0)
+  const mediaRecorderRef = useRef(null)
+  const audioChunksRef = useRef([])
+  const timerRef = useRef(null)
+
+  // --- Submission ---
+  const [isLoading, setIsLoading] = useState(false)
+  const [feedback, setFeedback] = useState(null)
+  const [error, setError] = useState('')
+
+  // Clean up audio URL on unmount
   useEffect(() => {
-    // Check if browser supports Web Speech API
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    
-    if (!SpeechRecognition) {
-      setBrowserSupported(false);
-      return;
-    }
-
-    // Initialize speech recognition
-    const recognition = new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.lang = 'en-US';
-
-    recognition.onresult = (event) => {
-      let interimTranscript = '';
-      let finalTranscript = '';
-
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const transcriptPiece = event.results[i][0].transcript;
-        if (event.results[i].isFinal) {
-          finalTranscript += transcriptPiece + ' ';
-        } else {
-          interimTranscript += transcriptPiece;
-        }
-      }
-
-      setTranscript(prev => prev + finalTranscript);
-    };
-
-    recognition.onerror = (event) => {
-      console.error('Speech recognition error:', event.error);
-      setError(`Microphone error: ${event.error}. Please check permissions.`);
-      setIsRecording(false);
-    };
-
-    recognition.onend = () => {
-      if (isRecording) {
-        recognition.start(); // Restart if still recording
-      }
-    };
-
-    recognitionRef.current = recognition;
-
     return () => {
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-    };
-  }, [isRecording]);
-
-  const handleNewQuestion = () => {
-    const randomQuestion = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)];
-    setCurrentQuestion(randomQuestion);
-    setTranscript('');
-    setFeedback(null);
-    setError('');
-  };
-
-  const toggleRecording = () => {
-    if (!recognitionRef.current) return;
-
-    if (isRecording) {
-      recognitionRef.current.stop();
-      setIsRecording(false);
-    } else {
-      setError('');
-      recognitionRef.current.start();
-      setIsRecording(true);
+      if (audioUrl) URL.revokeObjectURL(audioUrl)
     }
-  };
+  }, [audioUrl])
 
-  const handleSubmit = async () => {
-    if (!transcript.trim()) {
-      setError('Please record your response before submitting.');
-      return;
-    }
-
-    setIsLoading(true);
-    setError('');
+  const startRecording = async () => {
+    setError('')
+    setAudioBlob(null)
+    setAudioUrl(null)
+    setFeedback(null)
+    audioChunksRef.current = []
 
     try {
-      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4'
+      const recorder = new MediaRecorder(stream, { mimeType })
 
-      const response = await fetch(`${apiBase}/api/ielts/speak/grade`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          transcript: transcript.trim(),
-          questionPrompt: currentQuestion,
-          part: '1'
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to get feedback from AI examiner');
-      }
-
-      const result = await response.json();
-      setFeedback(result);
-
-      // Auto-save score to dashboard
-      if (token && result.scores?.overall) {
-        try {
-          const saveRes = await fetch(`${apiBase}/api/scores`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              module_type: 'speaking',
-              submitted_text: transcript.trim(),
-              word_count: transcript.trim().split(/\s+/).length,
-              overall_score: result.scores.overall,
-              ai_feedback: result
-            })
-          });
-          
-          if (!saveRes.ok) {
-            console.error('Failed to auto-save speaking score');
-          }
-        } catch (saveErr) {
-          console.error('Error auto-saving speaking score:', saveErr);
+      recorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) {
+          audioChunksRef.current.push(e.data)
         }
       }
+
+      recorder.onstop = () => {
+        const blob = new Blob(audioChunksRef.current, { type: mimeType })
+        const url = URL.createObjectURL(blob)
+        setAudioBlob(blob)
+        setAudioUrl(url)
+        // Stop all tracks to release microphone
+        stream.getTracks().forEach((track) => track.stop())
+      }
+
+      recorder.start(250) // collect data every 250ms
+      mediaRecorderRef.current = recorder
+      setIsRecording(true)
+      setRecordingSeconds(0)
+
+      timerRef.current = setInterval(() => {
+        setRecordingSeconds((prev) => prev + 1)
+      }, 1000)
     } catch (err) {
-      console.error('Grading error:', err);
-      setError('Failed to grade your response. Please try again.');
-    } finally {
-      setIsLoading(false);
+      setError('Microphone access denied. Please allow microphone permissions and try again.')
     }
-  };
-
-  const handleReset = () => {
-    setTranscript('');
-    setFeedback(null);
-    setError('');
-    handleNewQuestion();
-  };
-
-  if (!browserSupported) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-3xl shadow-xl p-12 text-center border border-slate-200 max-w-2xl">
-          <div className="text-6xl mb-6">⚠️</div>
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">Browser Not Supported</h2>
-          <p className="text-slate-600 text-lg mb-6">
-            Your browser doesn't support the Web Speech API. Please use Google Chrome, Microsoft Edge, or Safari.
-          </p>
-          <a 
-            href="/"
-            className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium"
-          >
-            Return to Dashboard
-          </a>
-        </div>
-      </div>
-    );
   }
 
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+      mediaRecorderRef.current.stop()
+    }
+    clearInterval(timerRef.current)
+    setIsRecording(false)
+  }
+
+  const handleToggleRecording = () => {
+    if (isRecording) {
+      stopRecording()
+    } else {
+      startRecording()
+    }
+  }
+
+  const handleNewQuestion = () => {
+    if (isRecording) stopRecording()
+    setCurrentQuestion(getRandomQuestion(currentQuestion))
+    setAudioBlob(null)
+    setAudioUrl(null)
+    setFeedback(null)
+    setError('')
+    setRecordingSeconds(0)
+  }
+
+  const handleSubmit = async () => {
+    if (!audioBlob) {
+      setError('Please record your response first before submitting.')
+      return
+    }
+
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com')
+
+      const formData = new FormData()
+      formData.append('audio', audioBlob, 'response.webm')
+      formData.append('prompt', currentQuestion)
+      formData.append('part', '1')
+
+      const response = await fetch(`${apiBase}/api/ielts/evaluate`, {
+        method: 'POST',
+        headers: {
+          // Do NOT set Content-Type — browser sets it with multipart boundary
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: formData,
+      })
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}))
+        throw new Error(errData.error || `Server responded with ${response.status}`)
+      }
+
+      const result = await response.json()
+      setFeedback(result)
+    } catch (err) {
+      setError(err.message || 'Failed to evaluate your response. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const handleReset = () => {
+    setAudioBlob(null)
+    setAudioUrl(null)
+    setFeedback(null)
+    setError('')
+    setRecordingSeconds(0)
+    setCurrentQuestion(getRandomQuestion(currentQuestion))
+  }
+
+  const formatTime = (seconds) => {
+    const m = String(Math.floor(seconds / 60)).padStart(2, '0')
+    const s = String(seconds % 60).padStart(2, '0')
+    return `${m}:${s}`
+  }
+
+  // --- Feedback View ---
   if (feedback) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 py-8">
-        <div className="max-w-4xl mx-auto">
+      <main className="min-h-screen bg-slate-100 dark:bg-[#0A1930] text-slate-900 dark:text-slate-100 px-4 py-8 md:py-12 transition-colors duration-300">
+        <div className="max-w-3xl mx-auto space-y-6">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-black text-slate-900 mb-2 tracking-tight">
-              Your IELTS Speaking Score
-            </h1>
-            <p className="text-slate-600">AI Examiner Feedback</p>
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => { window.location.href = '/dashboard' }}
+              className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+            >
+              ← Dashboard
+            </button>
+            <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">IELTS Speaking</span>
           </div>
 
-          {/* Overall Band Score */}
-          <div className="bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl shadow-2xl p-12 text-center mb-8 text-white">
-            <div className="text-sm font-black uppercase tracking-widest mb-2 opacity-90">Overall Band Score</div>
-            <div className="text-8xl font-black mb-2">{feedback.scores.overall}</div>
-            <div className="text-lg opacity-90">Out of 9.0</div>
+          {/* Band Score Hero */}
+          <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 md:p-10 text-center text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.12)_0%,_transparent_60%)]"></div>
+            <p className="text-xs font-black uppercase tracking-widest mb-3 opacity-80">AI Examiner Result</p>
+            <div className="text-8xl font-black mb-1">{feedback.scores?.overall ?? '—'}</div>
+            <p className="text-sm opacity-75 font-semibold">Overall Band Score / 9.0</p>
           </div>
 
           {/* Score Breakdown */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
-              <div className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Fluency & Coherence</div>
-              <div className="text-4xl font-black text-indigo-600">{feedback.scores.fluency}</div>
-            </div>
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
-              <div className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Lexical Resource</div>
-              <div className="text-4xl font-black text-purple-600">{feedback.scores.lexical}</div>
-            </div>
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-slate-200">
-              <div className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Grammar Range</div>
-              <div className="text-4xl font-black text-pink-600">{feedback.scores.grammar}</div>
-            </div>
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { label: 'Fluency', key: 'fluency', color: 'text-indigo-600 dark:text-indigo-400' },
+              { label: 'Lexical', key: 'lexical', color: 'text-purple-600 dark:text-purple-400' },
+              { label: 'Grammar', key: 'grammar', color: 'text-rose-600 dark:text-rose-400' },
+              { label: 'Pronunciation', key: 'pronunciation', color: 'text-amber-600 dark:text-amber-400' },
+            ].map(({ label, key, color }) => (
+              feedback.scores?.[key] !== undefined && (
+                <div key={key} className="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 text-center shadow-sm">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">{label}</p>
+                  <p className={`text-3xl font-black ${color}`}>{feedback.scores[key]}</p>
+                </div>
+              )
+            ))}
           </div>
 
           {/* Feedback Cards */}
-          <div className="space-y-6 mb-8">
-            <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="font-black text-green-900 uppercase text-sm tracking-wider">Strengths</h3>
-              </div>
-              <p className="text-green-800 leading-relaxed">{feedback.feedback.strengths}</p>
-            </div>
-
-            <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-                <h3 className="font-black text-amber-900 uppercase text-sm tracking-wider">Areas to Improve</h3>
-              </div>
-              <p className="text-amber-800 leading-relaxed">{feedback.feedback.weaknesses}</p>
-            </div>
-
-            <div className="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6">
-              <div className="flex items-center gap-2 mb-3">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-                <h3 className="font-black text-blue-900 uppercase text-sm tracking-wider">Improvement Tip</h3>
-              </div>
-              <p className="text-blue-800 leading-relaxed">{feedback.feedback.improvement_tip}</p>
-            </div>
+          <div className="space-y-4">
+            {[
+              { key: 'strengths', label: '✅ Strengths', bg: 'bg-green-50 dark:bg-green-900/10', border: 'border-green-200 dark:border-green-800/50', text: 'text-green-800 dark:text-green-300' },
+              { key: 'weaknesses', label: '⚠️ Areas to Improve', bg: 'bg-amber-50 dark:bg-amber-900/10', border: 'border-amber-200 dark:border-amber-800/50', text: 'text-amber-800 dark:text-amber-300' },
+              { key: 'improvement_tip', label: '💡 Tip', bg: 'bg-blue-50 dark:bg-blue-900/10', border: 'border-blue-200 dark:border-blue-800/50', text: 'text-blue-800 dark:text-blue-300' },
+            ].map(({ key, label, bg, border, text }) => (
+              feedback.feedback?.[key] && (
+                <div key={key} className={`${bg} border-2 ${border} rounded-2xl p-6`}>
+                  <p className="text-xs font-black uppercase tracking-widest mb-3 text-slate-500 dark:text-slate-400">{label}</p>
+                  <p className={`leading-relaxed font-medium ${text}`}>{feedback.feedback[key]}</p>
+                </div>
+              )
+            ))}
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={handleReset}
-              className="bg-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-indigo-700 transition-colors shadow-lg flex items-center gap-2"
+              className="flex-1 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transition-all transform hover:scale-[1.02]"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
               Try Another Question
             </button>
-            <a
-              href="/"
-              className="bg-slate-200 text-slate-700 px-8 py-4 rounded-xl font-bold hover:bg-slate-300 transition-colors shadow-lg flex items-center gap-2"
+            <button
+              onClick={() => { window.location.href = '/dashboard' }}
+              className="px-6 py-4 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all shadow-sm"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Return to Dashboard
-            </a>
+              ← Dashboard
+            </button>
           </div>
         </div>
-      </div>
-    );
+      </main>
+    )
   }
 
+  // --- Main Recorder View ---
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-black text-slate-900 mb-2 tracking-tight">
-            IELTS Speaking Simulator
-          </h1>
-          <p className="text-lg text-slate-600 font-medium">Part 1 - Introduction & Interview</p>
+    <main className="min-h-screen bg-slate-100 dark:bg-[#0A1930] text-slate-900 dark:text-slate-100 px-4 py-8 md:py-12 transition-colors duration-300">
+      <div className="max-w-2xl mx-auto space-y-6">
+
+        {/* Top Nav */}
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => { window.location.href = '/dashboard' }}
+            className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+          >
+            ← Dashboard
+          </button>
+          <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">IELTS Speaking • Part 1</span>
         </div>
 
+        {/* Header Card */}
+        <section className="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm backdrop-blur-sm">
+          <p className="text-[11px] uppercase tracking-[0.18em] font-black text-indigo-500 dark:text-indigo-400 mb-2">AI Speaking Examiner</p>
+          <h1 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 dark:text-white">IELTS Speaking Simulator</h1>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 font-medium">Record your spoken response. The AI will evaluate your fluency, vocabulary, grammar, and pronunciation.</p>
+        </section>
+
         {/* Question Card */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 mb-6 border border-slate-200">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex-1">
-              <div className="text-xs font-black uppercase tracking-widest text-indigo-600 mb-2">Examiner's Question</div>
-              <p className="text-2xl font-bold text-slate-900 leading-relaxed">{currentQuestion}</p>
+        <section className="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500 rounded-l-3xl"></div>
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 pl-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-3">Examiner's Question</p>
+              <p className="text-xl font-bold text-slate-900 dark:text-white leading-snug">{currentQuestion}</p>
             </div>
             <button
               onClick={handleNewQuestion}
-              className="ml-4 bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl font-bold text-sm transition-colors flex items-center gap-2"
+              disabled={isRecording}
+              className="px-3 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border border-slate-200 dark:border-slate-600 flex-shrink-0"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              New Question
+              New
             </button>
           </div>
-        </div>
+        </section>
 
-        {/* Recording Controls */}
-        <div className="bg-white rounded-3xl shadow-xl p-8 mb-6 border border-slate-200">
-          <div className="text-center mb-6">
-            <button
-              onClick={toggleRecording}
-              className={`w-32 h-32 rounded-full flex items-center justify-center transition-all shadow-2xl ${
-                isRecording 
-                  ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
-                  : 'bg-indigo-600 hover:bg-indigo-700'
-              }`}
-            >
-              <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-              </svg>
-            </button>
-            <p className="mt-4 text-sm font-bold text-slate-600">
-              {isRecording ? '🔴 Recording... Click to stop' : 'Click microphone to start recording'}
-            </p>
+        {/* Recorder Card */}
+        <section className="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm">
+          {/* Big Mic Button */}
+          <div className="flex flex-col items-center gap-5 mb-6">
+            <div className="relative">
+              {/* Pulsing ring while recording */}
+              {isRecording && (
+                <>
+                  <span className="absolute inset-0 rounded-full bg-red-500 opacity-20 animate-ping"></span>
+                  <span className="absolute -inset-3 rounded-full border-2 border-red-400 opacity-30 animate-pulse"></span>
+                </>
+              )}
+              <button
+                onClick={handleToggleRecording}
+                className={`relative w-28 h-28 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform active:scale-95 ${
+                  isRecording
+                    ? 'bg-red-500 hover:bg-red-600'
+                    : 'bg-indigo-600 hover:bg-indigo-700 hover:scale-105'
+                }`}
+              >
+                {isRecording ? (
+                  /* Stop icon */
+                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <rect x="6" y="6" width="12" height="12" rx="2" />
+                  </svg>
+                ) : (
+                  /* Mic icon */
+                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            <div className="text-center">
+              {isRecording ? (
+                <div className="space-y-1">
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                    <span className="text-sm font-black text-red-500 uppercase tracking-widest">Recording</span>
+                  </div>
+                  <p className="text-2xl font-black text-slate-800 dark:text-white font-mono tabular-nums">{formatTime(recordingSeconds)}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Click the button again to stop</p>
+                </div>
+              ) : audioBlob ? (
+                <div className="space-y-1">
+                  <p className="text-sm font-black text-green-600 dark:text-green-400 uppercase tracking-widest">✓ Response Captured</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Duration: {formatTime(recordingSeconds)}</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">Click mic to record again</p>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  <p className="text-sm font-bold text-slate-600 dark:text-slate-400">Click the microphone to start</p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500">Your browser will ask for microphone permission</p>
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="mb-4">
-            <label className="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">
-              Your Response (editable)
-            </label>
-            <textarea
-              value={transcript}
-              onChange={(e) => setTranscript(e.target.value)}
-              placeholder="Your spoken response will appear here... You can edit it before submitting."
-              className="w-full h-40 p-4 border-2 border-slate-200 rounded-xl focus:ring-4 focus:ring-indigo-200 focus:border-indigo-400 outline-none resize-none text-slate-800 leading-relaxed"
-            />
-          </div>
-
-          {error && (
-            <div className="mb-4 p-4 bg-red-50 border-2 border-red-200 rounded-xl text-red-700 text-sm font-medium flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {error}
+          {/* Audio Playback (after recording) */}
+          {audioUrl && !isRecording && (
+            <div className="mb-5 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">Playback Your Response</p>
+              <audio controls src={audioUrl} className="w-full h-10 rounded-xl" />
             </div>
           )}
 
+          {/* Error */}
+          {error && (
+            <div className="mb-5 p-4 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800/50 rounded-xl text-red-700 dark:text-red-400 text-sm font-medium flex items-start gap-2">
+              <span className="mt-0.5 flex-shrink-0">⚠️</span>
+              <span>{error}</span>
+            </div>
+          )}
+
+          {/* Submit Button */}
           <button
             onClick={handleSubmit}
-            disabled={isLoading || !transcript.trim()}
-            className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-black text-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            disabled={isLoading || !audioBlob || isRecording}
+            className="w-full py-4 rounded-2xl font-black text-sm uppercase tracking-widest bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed disabled:text-slate-400 dark:disabled:text-slate-500 text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3"
           >
             {isLoading ? (
               <>
-                <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                Examiner is grading...
+                AI Examiner is grading...
               </>
             ) : (
               <>
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                Get Band Score
+                Submit for Grading
               </>
             )}
           </button>
-        </div>
+        </section>
 
-        {/* Back to Dashboard */}
-        <div className="text-center">
-          <a 
-            href="/"
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 font-medium transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Return to Dashboard
-          </a>
-        </div>
+        {/* Tips */}
+        <section className="bg-white dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 shadow-sm">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">Tips for a Higher Band</p>
+          <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-medium">
+            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Speak for 1–2 minutes, using full sentences.</li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Use connectors like "furthermore", "however", "as a result".</li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Use a variety of vocabulary — avoid repetition.</li>
+            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Speak clearly and at a natural pace — don't rush.</li>
+          </ul>
+        </section>
       </div>
-    </div>
+    </main>
   )
 }
-
-export default App
