@@ -64,6 +64,14 @@ export default function App() {
     setIsInitializing(false);
   }, []);
 
+  // Auto-sync on completion (placed at top with other hooks)
+  useEffect(() => {
+    if (isCompleted && !saveStatus.success && !saveStatus.loading) {
+      submitScoreToHub();
+    }
+  }, [isCompleted, saveStatus.success, saveStatus.loading]);
+
+
   const handleCheckSentence = async () => {
     if (!inputSentence.trim()) return;
     setIsChecking(true);
@@ -217,14 +225,7 @@ export default function App() {
     }
   };
 
-  // Auto-sync on completion (must be before any conditional returns - Rules of Hooks)
-  useEffect(() => {
-    if (isCompleted && !saveStatus.success && !saveStatus.loading) {
-      submitScoreToHub();
-    }
-  }, [isCompleted]);
 
-  // Show loading screen while initializing
   if (isInitializing) {
     return (
       <div className="min-h-screen bg-slate-50 font-sans flex items-center justify-center p-6">
