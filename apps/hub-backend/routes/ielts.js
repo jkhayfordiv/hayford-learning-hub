@@ -1,31 +1,89 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
-const { gradeIeltsSpeaking } = require('../services/aiService');
+const { gradeIeltsSpeaking, gradeIeltsSpeakingAudio } = require('../services/aiService');
 const authenticateToken = require('../middleware/auth');
 
-// @route   POST /api/ielts/speak/grade
+// Use memory storage — audio buffer is passed directly to Gemini without touching disk
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 25 * 1024 * 1024 }, // 25 MB max
+  fileFilter: (req, file, cb) => {
+    const allowed = ['audio/webm', 'audio/mp4', 'audio/ogg', 'audio/wav', 'audio/mpeg'];
+    if (allowed.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error(`Unsupported audio type: ${file.mimetype}`));
+    }
+  },
+});
+
+// @route   POST /api/ielts/evaluate
+// @desc    Evaluate IELTS Speaking via real audio (Gemini multimodal)
+// @access  Private
+router.post('/evaluate', authenticateToken, upload.single('audio'), async (req, res) => {
+  const requestId = `speak-audio-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No audio file uploaded. Send the audio as a "audio" field in multipart/form-data.' });
+    }
+
+    const { prompt, part = '1' } = req.body;
+    if (!prompt) {
+      return res.status(400).json({ error: 'Missing required field: prompt' });
+    }
+
+    if (!['1', '2', '3'].includes(String(part))) {
+      return res.status(400).json({ error: 'Invalid part value. Must be 1, 2, or 3.' });
+    }
+
+    console.log(`[IELTS Evaluate] Request ${requestId} — ${req.file.size} bytes (${req.file.mimetype}) for Part ${part}`);
+
+    const result = await gradeIeltsSpeakingAudio({
+      audioBuffer: req.file.buffer,
+      mimeType: req.file.mimetype,
+      questionPrompt: prompt,
+      part: String(part),
+      requestId,
+    });
+
+    console.log(`[IELTS Evaluate] Successfully graded ${requestId}`);
+    res.json(result);
+  } catch (error) {
+    console.error(`[IELTS Evaluate] Error ${requestId}:`, error);
+
+    if (error.isTimeout) {
+      return res.status(504).json({ error: 'AI grading timed out. Your recording may be too long — please try a shorter response.' });
+    }
+    if (error.statusCode === 429) {
+      return res.status(429).json({ error: 'Too many requests. Please wait a moment and try again.' });
+    }
+
+    res.status(500).json({ error: 'Failed to evaluate your speaking response. Please try again.' });
+  }
+});
+
+// @route   POST /api/ielts/speak/grade  (legacy text-based route)
 // @desc    Grade IELTS Speaking transcribed response
-// @access  Private (Student)
+// @access  Private
 router.post('/speak/grade', authenticateToken, async (req, res) => {
   const { transcript, questionPrompt, part } = req.body;
   const requestId = `speak-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
   try {
-    // Validate required fields
     if (!transcript || !questionPrompt || !part) {
       return res.status(400).json({ 
         error: 'Missing required fields: transcript, questionPrompt, and part are required' 
       });
     }
 
-    // Validate part is 1, 2, or 3
     if (!['1', '2', '3'].includes(String(part))) {
       return res.status(400).json({ 
         error: 'Invalid part value. Must be 1, 2, or 3' 
       });
     }
 
-    // Call AI service to grade the speaking response
     console.log(`[IELTS Speaking] Grading request ${requestId} for Part ${part}`);
     
     const result = await gradeIeltsSpeaking({
@@ -60,3 +118,4 @@ router.post('/speak/grade', authenticateToken, async (req, res) => {
 });
 
 module.exports = router;
+

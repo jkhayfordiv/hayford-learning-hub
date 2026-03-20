@@ -1,7 +1,8 @@
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const RETRYABLE_STATUS_CODES = new Set([429, 503]);
 const MAX_RETRIES = 3;
 const BASE_BACKOFF_MS = 1000;
-const REQUEST_TIMEOUT_MS = Number(process.env.AI_REQUEST_TIMEOUT_MS || 30000);
+const REQUEST_TIMEOUT_MS = Number(process.env.AI_REQUEST_TIMEOUT_MS || 60000);
 const MAX_CONCURRENT_REQUESTS = Number(process.env.AI_MAX_CONCURRENT || 4);
 
 class AiRequestError extends Error {
@@ -188,8 +189,75 @@ Return ONLY the JSON object. No markdown wrapping.
   return limiter.schedule(() => executeWithRetry(prompt, requestId));
 }
 
+async function gradeIeltsSpeakingAudio({ audioBuffer, mimeType, questionPrompt, part, requestId }) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new AiRequestError('GEMINI_API_KEY is not configured on the backend.');
+
+  const genAI = new GoogleGenerativeAI(apiKey);
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+  const systemInstruction = `You are a strict, professional IELTS Speaking Examiner. You are listening to real audio of a student responding to an IELTS Part ${part} question.
+
+Evaluate the student on ALL FOUR official IELTS speaking criteria by listening to the audio:
+1. Fluency and Coherence (FC): Listen for hesitations, self-corrections, speed, and connectors.
+2. Lexical Resource (LR): Assess vocabulary range and natural word choice.
+3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures.
+4. Pronunciation (P): CRITICAL. Listen to actual sounds. Evaluate clarity, word stress, sentence rhythm, intonation, and intelligibility. Identify specific phoneme or stress errors if present.
+
+Calculate Overall Band Score as average of all four, rounded to nearest 0.5.
+
+Return ONLY valid JSON (no markdown, no extra text) with this exact structure:
+{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."}}`;
+
+  const audioPart = {
+    inlineData: {
+      data: audioBuffer.toString('base64'),
+      mimeType,
+    },
+  };
+
+  const textPart = {
+    text: `IELTS Part ${part} question: "${questionPrompt}"\n\nListen to the audio and evaluate the response. Return only the JSON object.`,
+  };
+
+  let lastError;
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      console.log(`[IELTS Audio][${requestId}] Calling Gemini multimodal — attempt ${attempt}`);
+
+      const result = await Promise.race([
+        model.generateContent({
+          systemInstruction: { parts: [{ text: systemInstruction }] },
+          contents: [{ role: 'user', parts: [audioPart, textPart] }],
+          generationConfig: { temperature: 0.1 },
+        }),
+        new Promise((_, reject) =>
+          setTimeout(
+            () => reject(new AiRequestError(`Gemini audio timed out after ${REQUEST_TIMEOUT_MS}ms`, { isTimeout: true })),
+            REQUEST_TIMEOUT_MS
+          )
+        ),
+      ]);
+
+      const rawText = result.response.text();
+      const cleaned = rawText.replace(/```json|```/g, '').trim();
+      return JSON.parse(cleaned);
+    } catch (err) {
+      lastError = err;
+      const isRetryable = err.statusCode && RETRYABLE_STATUS_CODES.has(err.statusCode);
+      if (!isRetryable || attempt === MAX_RETRIES) break;
+      const waitMs = BASE_BACKOFF_MS * (2 ** (attempt - 1));
+      console.warn(`[IELTS Audio][${requestId}] Retrying in ${waitMs}ms...`);
+      await sleep(waitMs);
+    }
+  }
+
+  throw lastError || new AiRequestError('Audio grading failed after retries.');
+}
+
 module.exports = {
   getVocabularyFeedback,
   gradeIeltsSpeaking,
+  gradeIeltsSpeakingAudio,
   AiRequestError
 };
