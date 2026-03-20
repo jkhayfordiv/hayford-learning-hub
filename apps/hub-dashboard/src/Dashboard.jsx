@@ -343,9 +343,10 @@ export default function Dashboard() {
     window.location.href = '/login';
   };
 
-  const handleLaunchPractice = () => {
+  const handleLaunchPractice = (type = 'writing') => {
     const token = localStorage.getItem('token');
-    window.location.href = `/ielts-writing/?token=${token}`;
+    const path = type === 'speaking' ? '/ielts-speaking/' : '/ielts-writing/';
+    window.location.href = `${path}?token=${token}`;
   };
 
   const handleRefresh = () => {
@@ -589,6 +590,8 @@ export default function Dashboard() {
                       const instructionsObj = { assignment_id: task.id, instructions: task.instructions };
                       if (task.assignment_type === 'vocabulary') {
                         window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
+                      } else if (task.assignment_type === 'speaking') {
+                        window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                       } else {
                         // IELTS Writing - pass writing_task_type (1, 2, or both)
                         const taskType = task.writing_task_type || '1';
@@ -613,38 +616,64 @@ export default function Dashboard() {
         </div>
 
         {/* Metrics Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-12">
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2 lg:col-span-1">
               <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Completed Submissions</span>
-              <span className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">{scores.length}</span>
+              <span className="font-black text-slate-900 dark:text-white tracking-tighter text-3xl">{scores.length}</span>
            </div>
-           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2 lg:col-span-1">
               <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Average Band Score</span>
-              <span className="text-4xl font-black text-amber-600 dark:text-amber-500 tracking-tighter">
+              <span className="font-black text-amber-600 dark:text-amber-500 tracking-tighter text-3xl">
                 {scores.length > 0 ? (scores.reduce((acc, curr) => acc + parseFloat(curr.overall_score), 0) / scores.length).toFixed(1) : 'N/A'}
               </span>
            </div>
+           
+           <button
+              onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+           >
+              <div className="flex items-center justify-between mb-2">
+                 <PenTool size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>
+              </div>
+              <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Writing</h3>
+              <p className="text-[10px] text-white/80 mt-1">Get instant band scores</p>
+           </button>
+
+           <button
+              onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+           >
+              <div className="flex items-center justify-between mb-2">
+                 <MessageSquare size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>
+              </div>
+              <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Speaking</h3>
+              <p className="text-[10px] text-white/80 mt-1">AI examiner simulation</p>
+           </button>
+
            <button
               onClick={() => window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}`}
-              className="bg-gradient-to-br from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+              className="bg-gradient-to-br from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">
-                 <BookOpen size={28} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-xs font-black uppercase text-white/70 tracking-widest">Workshop</span>
+                 <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Workshop</span>
               </div>
-              <h3 className="text-xl font-black tracking-tight">Grammar Lab</h3>
-              <p className="text-xs text-white/80 mt-1">Practice targeted grammar skills</p>
+              <h3 className="text-lg font-black tracking-tight leading-tight">Grammar Lab</h3>
+              <p className="text-[10px] text-white/80 mt-1">Targeted skill builder</p>
            </button>
+
            <button
               onClick={() => setActiveTab('wordbank')}
-              className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+              className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">
-                 <BookOpen size={28} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-xs font-black uppercase text-white/70 tracking-widest">Word Bank</span>
+                 <RefreshCw size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Word Bank</span>
               </div>
-              <h3 className="text-xl font-black tracking-tight">Vocabulary Builder</h3>
-              <p className="text-xs text-white/80 mt-1">Expand your academic vocabulary</p>
+              <h3 className="text-lg font-black tracking-tight leading-tight">Vocab Builder</h3>
+              <p className="text-[10px] text-white/80 mt-1">Academic Word Bank</p>
            </button>
         </div>
 

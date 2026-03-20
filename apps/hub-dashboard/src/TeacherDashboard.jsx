@@ -1000,26 +1000,26 @@ export default function TeacherDashboard({ user, onLogout }) {
           <div className="flex flex-wrap gap-3 items-center">
             <button 
               onClick={handleRefreshOverview}
-              className="bg-white border border-slate-200 text-slate-700 font-bold text-sm px-4 py-3 rounded-xl shadow-sm hover:bg-slate-50 transition-all flex items-center gap-2"
+              className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm px-4 py-3 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2"
               title="Refresh analytics and student data"
             >
               <RefreshCw size={18} /> Refresh
             </button>
             <button 
               onClick={() => setIsClassModalOpen(true)}
-              className="bg-white border border-slate-200 text-slate-700 font-bold text-sm px-6 py-3 rounded-xl shadow-sm hover:bg-slate-50 transition-all flex items-center gap-2"
+              className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm px-6 py-3 rounded-xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2"
             >
               <PlusCircle size={18} /> Create Class
             </button>
             <button 
               onClick={() => setIsAssignClassModalOpen(true)}
-              className="bg-white border border-brand-copper text-brand-copper font-bold text-sm px-6 py-3 rounded-xl shadow-sm hover:bg-amber-50 transition-all flex items-center gap-2"
+              className="bg-white dark:bg-slate-800 border border-brand-copper dark:border-brand-copper/50 text-brand-copper dark:text-brand-copper font-bold text-sm px-6 py-3 rounded-xl shadow-sm hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-all flex items-center gap-2"
             >
               <UserPlus size={18} /> Assign to Class
             </button>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="bg-slate-900 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-soft hover:bg-slate-950 hover:shadow-glow transition-all flex items-center gap-2"
+              className="bg-slate-900 dark:bg-slate-700 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-soft hover:bg-slate-950 dark:hover:bg-slate-600 hover:shadow-glow transition-all flex items-center gap-2"
             >
               <PlusCircle size={18} /> Register Student
             </button>
@@ -1121,19 +1121,19 @@ export default function TeacherDashboard({ user, onLogout }) {
         <>
         {/* Metrics Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
-              <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Total Active Students</span>
-              <span className="text-4xl font-black text-slate-900 tracking-tighter">{filteredStudents.length}</span>
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
+              <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest">Total Active Students</span>
+              <span className="text-4xl font-black text-slate-900 dark:text-white tracking-tighter">{filteredStudents.length}</span>
            </div>
-           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
-              <span className="text-xs font-black uppercase text-slate-400 tracking-widest">At Risk (&gt;7 Days Inactive)</span>
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
+              <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest">At Risk (&gt;7 Days Inactive)</span>
               <span className="text-4xl font-black text-red-500 tracking-tighter">
                 {filteredStudents.filter(s => isInactive(s.last_active_date)).length}
               </span>
            </div>
-           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col gap-2">
-              <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Class Average Band</span>
-              <span className="text-4xl font-black text-amber-600 tracking-tighter">
+           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2">
+              <span className="text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest">Class Average Band</span>
+              <span className="text-4xl font-black text-amber-600 dark:text-amber-500 tracking-tighter">
                  {filteredStudents.filter(s => s.average_band_score).length > 0
                   ? (filteredStudents.reduce((acc, curr) => acc + parseFloat(curr.average_band_score || 0), 0) / filteredStudents.filter(s => s.average_band_score).length).toFixed(1)
                   : 'N/A'
@@ -1144,21 +1144,21 @@ export default function TeacherDashboard({ user, onLogout }) {
 
         {/* Class Diagnostics Heatmap */}
         {currentDiagnostics.length > 0 && (
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden mb-12">
-            <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-              <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2">
-                <AlertCircle className="text-slate-400" /> Class Diagnostics
+          <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden mb-12">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+              <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+                <AlertCircle className="text-slate-400 dark:text-slate-500" /> Class Diagnostics
               </h3>
-              <span className="text-xs font-bold text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">
                 Top 3 Common Error Types
               </span>
             </div>
             <div className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {currentDiagnostics.map((item, index) => (
-                  <div key={index} className="bg-white border border-slate-200 p-4 rounded-2xl flex items-center justify-between">
-                    <span className="font-bold text-sm text-slate-700">{item.tag}</span>
-                    <span className="text-xs font-black bg-amber-100 text-amber-700 px-2 py-1 rounded-lg">
+                  <div key={index} className="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl flex items-center justify-between">
+                    <span className="font-bold text-sm text-slate-700 dark:text-slate-300">{item.tag}</span>
+                    <span className="text-xs font-black bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-2 py-1 rounded-lg">
                       {item.count} {item.count === 1 ? 'Error' : 'Errors'}
                     </span>
                   </div>
@@ -1169,23 +1169,23 @@ export default function TeacherDashboard({ user, onLogout }) {
         )}
 
         {/* Class Roster Table */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden relative">
-          <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-            <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2"><Users className="text-slate-400" /> Student Roster</h3>
+        <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden relative">
+          <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+            <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2"><Users className="text-slate-400 dark:text-slate-500" /> Student Roster</h3>
             <div className="flex items-center gap-3">
               {selectedStudents.length > 0 && (
-                <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 px-4 py-2 rounded-lg">
-                  <span className="text-xs font-bold text-amber-700">{selectedStudents.length} selected</span>
+                <div className="flex items-center gap-2 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 px-4 py-2 rounded-lg">
+                  <span className="text-xs font-bold text-amber-700 dark:text-amber-400">{selectedStudents.length} selected</span>
                   <button
                     onClick={handleBulkDeleteStudents}
                     disabled={bulkActionLoading}
-                    className="text-xs font-bold text-red-600 hover:text-red-700 bg-white px-3 py-1 rounded border border-red-200 hover:bg-red-50 transition-colors disabled:opacity-50"
+                    className="text-xs font-bold text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 bg-white dark:bg-slate-800 px-3 py-1 rounded border border-red-200 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors disabled:opacity-50"
                   >
                     {bulkActionLoading ? 'Deleting...' : 'Delete Selected'}
                   </button>
                   <button
                     onClick={() => setSelectedStudents([])}
-                    className="text-xs font-bold text-slate-600 hover:text-slate-700"
+                    className="text-xs font-bold text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                   >
                     Clear
                   </button>
@@ -1196,29 +1196,29 @@ export default function TeacherDashboard({ user, onLogout }) {
                 placeholder="Search students..."
                 value={studentSearch}
                 onChange={(e) => setStudentSearch(e.target.value)}
-                className="px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-slate-400 bg-white"
+                className="px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-slate-600 focus:border-slate-400 dark:focus:border-slate-500 bg-white dark:bg-slate-800 dark:text-white dark:placeholder-slate-500"
               />
             </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
                   <th className="px-4 py-4 w-12">
                     <input
                       type="checkbox"
                       checked={selectedStudents.length === filteredStudents.length && filteredStudents.length > 0}
                       onChange={toggleSelectAllStudents}
-                      className="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500"
+                      className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-amber-600 focus:ring-amber-500"
                     />
                   </th>
                   <th className="px-8 py-4">
-                    <button onClick={() => handleRosterSort('student')} className="inline-flex items-center gap-1 hover:text-slate-600 transition-colors">
+                    <button onClick={() => handleRosterSort('student')} className="inline-flex items-center gap-1 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
                       Student <ArrowUpDown size={12} />
                     </button>
                   </th>
                   <th className="px-8 py-4">
-                    <button onClick={() => handleRosterSort('class')} className="inline-flex items-center gap-1 hover:text-slate-600 transition-colors">
+                    <button onClick={() => handleRosterSort('class')} className="inline-flex items-center gap-1 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
                       Class Name <ArrowUpDown size={12} />
                     </button>
                   </th>
@@ -1229,7 +1229,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                   <th className="px-8 py-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+              <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
                 {isLoading ? (
                   <tr><td colSpan="7" className="px-8 py-12 text-center text-slate-400">Loading class data...</td></tr>
                 ) : filteredStudents.length === 0 ? (
@@ -1317,32 +1317,32 @@ export default function TeacherDashboard({ user, onLogout }) {
         )}
 
         {/* Recent Activity Feed */}
-        <div className="mt-8 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-            <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2">
-              <FileText className="text-slate-400" /> Recent Learning Activity
+        <div className="mt-8 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+          <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+            <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+              <FileText className="text-slate-400 dark:text-slate-500" /> Recent Learning Activity
             </h3>
           </div>
-          <div className="max-h-64 overflow-y-auto divide-y divide-slate-100">
+          <div className="max-h-64 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-700">
             {isLoading ? (
               <div className="px-8 py-8 text-center text-slate-400 text-sm">Loading recent activity...</div>
             ) : recentActivity.length === 0 ? (
               <div className="px-8 py-8 text-center text-slate-400 text-sm">No recent activity found.</div>
             ) : (
               recentActivity.map((activity) => (
-                <div 
-                  key={activity.id} 
-                  onClick={() => handleOpenSubmissionReview(activity)}
-                  className="px-8 py-3 flex items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer group"
-                >
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-amber-700 dark:group-hover:text-amber-500 transition-colors">{activity.student_first_name} {activity.student_last_name}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{activity.module_name} · {new Date(activity.completed_at).toLocaleString()}</p>
+                  <div 
+                    key={activity.id} 
+                    onClick={() => handleOpenSubmissionReview(activity)}
+                    className="px-8 py-3 flex items-center justify-between gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer group"
+                  >
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-amber-700 dark:group-hover:text-amber-500 transition-colors">{activity.student_first_name} {activity.student_last_name}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{activity.module_name} · {new Date(activity.completed_at).toLocaleString()}</p>
+                    </div>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs font-black rounded-lg border border-green-200 dark:border-green-800 shrink-0">
+                      <CheckCircle2 size={12} /> {Number(activity.overall_score).toFixed(1)}
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-green-50 text-green-700 text-xs font-black rounded-lg border border-green-200 shrink-0">
-                    <CheckCircle2 size={12} /> {Number(activity.overall_score).toFixed(1)}
-                  </span>
-                </div>
               ))
             )}
           </div>
@@ -1361,8 +1361,8 @@ export default function TeacherDashboard({ user, onLogout }) {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Form Col */}
               <div className="lg:col-span-1">
-                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
-                  <h3 className="font-black text-lg text-slate-900 tracking-tight mb-6 flex items-center gap-2"><PlusCircle className="text-amber-500" /> New Assignment</h3>
+                <div className="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                  <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight mb-6 flex items-center gap-2"><PlusCircle className="text-amber-500" /> New Assignment</h3>
                   
                   <form onSubmit={handleCreateAssignment} className="space-y-4">
                     {assignmentStatus.error && <div className="p-3 bg-red-50 text-red-600 text-xs font-bold rounded-lg border border-red-100">{assignmentStatus.error}</div>}
@@ -1517,9 +1517,9 @@ export default function TeacherDashboard({ user, onLogout }) {
 
               {/* History Col */}
               <div className="lg:col-span-2">
-                <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden h-full">
-                  <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                    <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2"><FileText className="text-slate-400" /> Active & Past Assignments</h3>
+                <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden h-full">
+                  <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
+                    <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2"><FileText className="text-slate-400 dark:text-slate-500" /> Active & Past Assignments</h3>
                     {selectedAssignments.length > 0 && (
                       <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 px-4 py-2 rounded-lg">
                         <span className="text-xs font-bold text-amber-700">{selectedAssignments.length} selected</span>
@@ -1559,9 +1559,9 @@ export default function TeacherDashboard({ user, onLogout }) {
                         const someSelected = groupAssignmentIds.some(id => selectedAssignments.includes(id));
 
                         return (
-                        <div key={idx} className="border border-slate-200 rounded-2xl overflow-hidden hover:border-slate-400 transition-colors">
+                        <div key={idx} className="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
                           <div 
-                            className="bg-white p-5 flex items-center gap-4 cursor-pointer hover:bg-slate-50"
+                            className="bg-white dark:bg-slate-800 p-5 flex items-center gap-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50"
                             onClick={() => setExpandedAssignmentId(expandedAssignmentId === idx ? null : idx)}
                           >
                             <input
@@ -1577,26 +1577,26 @@ export default function TeacherDashboard({ user, onLogout }) {
                                 }
                               }}
                               onClick={(e) => e.stopPropagation()}
-                              className="w-4 h-4 rounded border-slate-300 text-amber-600 focus:ring-amber-500 shrink-0"
+                              className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-amber-600 focus:ring-amber-500 shrink-0"
                             />
                             <div className="flex-1">
-                              <h4 className="font-bold text-slate-900">
+                              <h4 className="font-bold text-slate-900 dark:text-white">
                                 {group.assignment_type === 'vocabulary' ? 'Vocabulary Builder' : group.module_name}
                               </h4>
-                              <p className="text-sm text-slate-500 mt-1 line-clamp-1">{group.instructions || 'No specific instructions provided.'}</p>
-                              <div className="mt-3 flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 line-clamp-1">{group.instructions || 'No specific instructions provided.'}</p>
+                              <div className="mt-3 flex items-center gap-4 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
                                 <span className="flex items-center gap-1.5"><Calendar size={14} /> Due: {group.due_date ? new Date(group.due_date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }) : 'N/A'}</span>
                                 {group.assignment_type && (
-                                  <span className="flex items-center gap-1.5 px-2 py-0.5 bg-slate-100 rounded-md border border-slate-200">
+                                  <span className="flex items-center gap-1.5 px-2 py-0.5 bg-slate-100 dark:bg-slate-900/30 rounded-md border border-slate-200 dark:border-slate-700">
                                     {group.assignment_type}
                                   </span>
                                 )}
                               </div>
                             </div>
                             <div className="flex items-center gap-6 shrink-0 ml-6">
-                              <div className="flex flex-col items-center justify-center bg-slate-50 px-4 py-3 rounded-xl border border-slate-100">
-                                 <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Completion</span>
-                                 <span className={`text-xl font-black ${group.completedCount === group.totalAssigned ? 'text-green-600' : 'text-slate-900'}`}>
+                              <div className="flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-900/50 px-4 py-3 rounded-xl border border-slate-100 dark:border-slate-700">
+                                 <span className="text-[10px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest mb-1">Completion</span>
+                                 <span className={`text-xl font-black ${group.completedCount === group.totalAssigned ? 'text-green-600' : 'text-slate-900 dark:text-white'}`}>
                                    {group.completedCount} / {group.totalAssigned}
                                  </span>
                               </div>

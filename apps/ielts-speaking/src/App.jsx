@@ -9,6 +9,7 @@ const PART_1_QUESTIONS = [
 ];
 
 function App() {
+  const [token, setToken] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(PART_1_QUESTIONS[0]);
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -18,6 +19,18 @@ function App() {
   const [browserSupported, setBrowserSupported] = useState(true);
   
   const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    // Extract token from URL or localStorage
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get('token');
+    if (urlToken) {
+      setToken(urlToken);
+      localStorage.setItem('token', urlToken);
+    } else {
+      setToken(localStorage.getItem('token'));
+    }
+  }, []);
 
   useEffect(() => {
     // Check if browser supports Web Speech API
@@ -103,13 +116,12 @@ function App() {
 
     try {
       const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const token = localStorage.getItem('token');
 
       const response = await fetch(`${apiBase}/api/ielts/speak/grade`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...(token && { 'Authorization': `Bearer ${token}` })
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           transcript: transcript.trim(),

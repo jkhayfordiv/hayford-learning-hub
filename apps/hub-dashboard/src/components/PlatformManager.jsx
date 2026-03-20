@@ -411,8 +411,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
             </button>
           </div>
 
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+            <div className="px-8 py-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
               <input
                 type="text"
                 placeholder="Search classes by name, teacher, or institution..."
@@ -421,19 +421,19 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   setClassesSearch(e.target.value);
                   setClassesPage(1);
                 }}
-                className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none dark:text-white dark:placeholder-slate-400"
               />
             </div>
             <div className="p-8">
               {platformLoading ? (
-                <div className="text-center py-12 text-slate-400">Loading classes...</div>
+                <div className="text-center py-12 text-slate-400 dark:text-slate-500">Loading classes...</div>
               ) : allClasses.length === 0 ? (
-                <div className="text-center py-12 text-slate-400">No classes found.</div>
+                <div className="text-center py-12 text-slate-400 dark:text-slate-500">No classes found.</div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                      <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
                         <th className="px-6 py-4">Class Name</th>
                         <th className="px-6 py-4">Teacher</th>
                         {user.role === 'super_admin' && <th className="px-6 py-4">Institution</th>}
@@ -444,7 +444,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                    <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
                       {(() => {
                         const filtered = allClasses.filter(cls => {
                           const searchLower = classesSearch.toLowerCase();
@@ -459,34 +459,34 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         const paginated = filtered.slice(startIdx, endIdx);
 
                         return paginated.map((cls) => (
-                          <tr key={cls.id} className="hover:bg-slate-50 transition-colors">
+                          <tr key={cls.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                             <td className="px-6 py-4">
                               <button
                                 onClick={() => onViewClassDetails && onViewClassDetails(cls.id)}
-                                className="font-bold text-slate-900 hover:text-[#800000] transition-colors text-left"
+                                className="font-bold text-slate-900 dark:text-white hover:text-[#800000] dark:hover:text-[#a00000] transition-colors text-left"
                               >
                                 {cls.class_name}
                               </button>
                             </td>
-                            <td className="px-6 py-4 text-slate-600">
+                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
                               {cls.teacher_first_name} {cls.teacher_last_name}
                             </td>
                             {user.role === 'super_admin' && (
-                              <td className="px-6 py-4 text-slate-600">{cls.institution_name || 'N/A'}</td>
+                              <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{cls.institution_name || 'N/A'}</td>
                             )}
                             <td className="px-6 py-4 text-center">
-                              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold">
+                              <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-lg font-bold">
                                 {cls.student_count || 0}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-500">
+                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">
                               {cls.start_date ? new Date(cls.start_date).toLocaleDateString() : 'N/A'}
                             </td>
-                            <td className="px-6 py-4 text-slate-500">
+                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">
                               {cls.end_date ? new Date(cls.end_date).toLocaleDateString() : 'Ongoing'}
                             </td>
                             <td className="px-6 py-4">
-                              <code className="bg-purple-100 text-purple-700 px-3 py-1 rounded font-mono text-xs font-bold">
+                              <code className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1 rounded font-mono text-xs font-bold">
                                 {cls.class_code}
                               </code>
                             </td>
@@ -505,7 +505,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                   setStudentSearchResults([]);
                                   setIsEditClassModalOpen(true);
                                 }}
-                                className="text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg border border-indigo-200 transition-colors"
+                                className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 px-3 py-1.5 rounded-lg border border-indigo-200 dark:border-indigo-800 transition-colors"
                               >
                                 Edit
                               </button>
@@ -591,8 +591,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
             </button>
           </div>
 
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+            <div className="px-8 py-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
               <input
                 type="text"
                 placeholder="Search institutions..."
@@ -601,28 +601,28 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   setInstitutionsSearch(e.target.value);
                   setInstitutionsPage(1);
                 }}
-                className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none"
+                className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none dark:text-white dark:placeholder-slate-400"
               />
             </div>
             <div className="p-8">
               {platformLoading ? (
-                <div className="text-center py-12 text-slate-400">Loading institutions...</div>
+                <div className="text-center py-12 text-slate-400 dark:text-slate-500">Loading institutions...</div>
               ) : institutions.length === 0 ? (
-                <div className="text-center py-12 text-slate-400">No institutions found.</div>
+                <div className="text-center py-12 text-slate-400 dark:text-slate-500">No institutions found.</div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                      <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
                         <th className="px-6 py-4">ID</th>
                         <th className="px-6 py-4">Name</th>
                         <th className="px-6 py-4">Contact Email</th>
-                        <th className="px-6 py-4 text-center">Users</th>
+                        <th className="px-6 py-4 text-center">Student Count</th>
                         <th className="px-6 py-4">Created</th>
                         <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
                     </thead>
-                    <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
+                    <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
                       {(() => {
                         const filtered = institutions.filter(inst => {
                           const searchLower = institutionsSearch.toLowerCase();
@@ -634,16 +634,16 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         const paginated = filtered.slice(startIdx, endIdx);
 
                         return paginated.map((inst) => (
-                          <tr key={inst.id} className="hover:bg-slate-50 transition-colors">
-                            <td className="px-6 py-4 font-bold text-[#800000]">{inst.id}</td>
-                            <td className="px-6 py-4 font-bold text-slate-900">{inst.name}</td>
-                            <td className="px-6 py-4 text-slate-600">{inst.contact_email || 'N/A'}</td>
+                          <tr key={inst.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                            <td className="px-6 py-4 font-bold text-[#800000] dark:text-[#a00000]">{inst.id}</td>
+                            <td className="px-6 py-4 font-bold text-slate-900 dark:text-white">{inst.name}</td>
+                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{inst.contact_email || 'N/A'}</td>
                             <td className="px-6 py-4 text-center">
-                              <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg font-bold">
-                                {inst.user_count || 0}
+                              <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-lg font-bold">
+                                {inst.student_count || 0}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-500">
+                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">
                               {inst.created_at ? new Date(inst.created_at).toLocaleDateString() : 'N/A'}
                             </td>
                             <td className="px-6 py-4 text-right">
@@ -747,8 +747,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
             </button>
           </div>
 
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-            <div className="px-8 py-4 border-b border-slate-100 bg-slate-50">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+            <div className="px-8 py-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50">
               <input
                 type="text"
                 placeholder="Search by name or email..."
@@ -757,19 +757,19 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   setGlobalUsersSearch(e.target.value);
                   setGlobalUsersPage(1);
                 }}
-                className="w-full bg-white border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none"
+                className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none dark:text-white dark:placeholder-slate-400"
               />
             </div>
             <div className="p-8">
               {platformLoading ? (
-                <div className="text-center py-12 text-slate-400">Loading users...</div>
+                <div className="text-center py-12 text-slate-400 dark:text-slate-500">Loading users...</div>
               ) : globalUsers.length === 0 ? (
-                <div className="text-center py-12 text-slate-400">No users found.</div>
+                <div className="text-center py-12 text-slate-400 dark:text-slate-500">No users found.</div>
               ) : (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
-                      <tr className="bg-slate-50 text-[10px] uppercase tracking-widest text-slate-400 font-black border-b border-slate-200">
+                      <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
                         <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'id',
@@ -856,22 +856,22 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         const paginated = sorted.slice(startIdx, endIdx);
 
                         return paginated.map((u) => (
-                          <tr key={u.id} className="hover:bg-slate-50 transition-colors">
-                            <td className="px-6 py-4 font-bold text-[#800000]">{u.id}</td>
-                            <td className="px-6 py-4 font-bold text-slate-900">{u.first_name} {u.last_name}</td>
-                            <td className="px-6 py-4 text-slate-600">{u.email}</td>
+                          <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                            <td className="px-6 py-4 font-bold text-[#800000] dark:text-[#a00000]">{u.id}</td>
+                            <td className="px-6 py-4 font-bold text-slate-900 dark:text-white">{u.first_name} {u.last_name}</td>
+                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{u.email}</td>
                             <td className="px-6 py-4">
                               <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
-                                u.role === 'super_admin' ? 'bg-purple-100 text-purple-700' :
-                                u.role === 'admin' ? 'bg-blue-100 text-blue-700' :
-                                u.role === 'teacher' ? 'bg-green-100 text-green-700' :
-                                'bg-slate-100 text-slate-700'
+                                u.role === 'super_admin' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' :
+                                u.role === 'admin' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
+                                u.role === 'teacher' ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400' :
+                                'bg-slate-100 dark:bg-slate-900/30 text-slate-700 dark:text-slate-400'
                               }`}>
                                 {u.role}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-600">{u.institution_name || 'None'}</td>
-                            <td className="px-6 py-4 text-slate-600">{u.class_name || 'None'}</td>
+                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{u.institution_name || 'None'}</td>
+                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{u.class_name || 'None'}</td>
                             <td className="px-6 py-4 text-right">
                               <div className="flex gap-2 justify-end">
                                 <button
@@ -983,40 +983,40 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       {/* Create Institution Modal */}
       {isCreateInstitutionModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-purple-600 to-blue-600">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-purple-600 to-blue-600">
               <h3 className="font-black text-2xl text-white tracking-tight">Create New Institution</h3>
             </div>
             <form onSubmit={handleCreateInstitution} className="p-8 space-y-4">
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Institution Name</label>
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Institution Name</label>
                 <input
                   required
                   type="text"
                   value={newInstitutionForm.name}
                   onChange={e => setNewInstitutionForm({...newInstitutionForm, name: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none dark:text-white dark:placeholder-slate-400"
                   placeholder="e.g., Springfield High School"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Address (Optional)</label>
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Address (Optional)</label>
                 <input
                   type="text"
                   value={newInstitutionForm.address}
                   onChange={e => setNewInstitutionForm({...newInstitutionForm, address: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none dark:text-white dark:placeholder-slate-400"
                   placeholder="123 Main St, City, State"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Contact Email</label>
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Contact Email</label>
                 <input
                   required
                   type="email"
                   value={newInstitutionForm.contact_email}
                   onChange={e => setNewInstitutionForm({...newInstitutionForm, contact_email: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-purple-500 focus:outline-none dark:text-white dark:placeholder-slate-400"
                   placeholder="admin@school.edu"
                 />
               </div>
@@ -1024,7 +1024,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                 <button
                   type="button"
                   onClick={() => setIsCreateInstitutionModalOpen(false)}
-                  className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition-colors"
+                  className="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl transition-colors"
                 >
                   Cancel
                 </button>
@@ -1043,19 +1043,19 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       {/* Edit User Modal */}
       {isUserEditModalOpen && selectedUser && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-blue-600 to-indigo-600">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-indigo-600">
               <h3 className="font-black text-2xl text-white tracking-tight">Edit User</h3>
               <p className="text-sm text-blue-100 mt-1">{selectedUser.first_name} {selectedUser.last_name} ({selectedUser.email})</p>
             </div>
             <form onSubmit={handleUpdateUser} className="p-8 space-y-4">
               <div className="space-y-1">
-                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Role</label>
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Role</label>
                 <select
                   required
                   value={userEditForm.role}
                   onChange={e => setUserEditForm({...userEditForm, role: e.target.value})}
-                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
                 >
                   <option value="student">Student</option>
                   <option value="teacher">Teacher</option>
@@ -1134,7 +1134,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                     setIsUserEditModalOpen(false);
                     setSelectedUser(null);
                   }}
-                  className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition-colors"
+                  className="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl transition-colors"
                 >
                   Cancel
                 </button>
@@ -1153,20 +1153,20 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       {/* Create User Modal */}
       {isCreateUserModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-emerald-600 to-teal-600">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-emerald-600 to-teal-600">
               <h3 className="font-black text-2xl text-white tracking-tight">Create New User</h3>
             </div>
             <form onSubmit={handleCreateUser} className="p-8 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">First Name</label>
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">First Name</label>
                   <input
                     required
                     type="text"
                     value={newUserForm.first_name}
                     onChange={e => setNewUserForm({...newUserForm, first_name: e.target.value})}
-                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-emerald-500 focus:outline-none dark:text-white"
                   />
                 </div>
                 <div className="space-y-1">
@@ -1233,7 +1233,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                 <button
                   type="button"
                   onClick={() => setIsCreateUserModalOpen(false)}
-                  className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition-colors"
+                  className="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl transition-colors"
                 >
                   Cancel
                 </button>
@@ -1252,8 +1252,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       {/* Create Class Modal */}
       {isCreateClassModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-purple-600 to-indigo-600">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-purple-600 to-indigo-600">
               <h3 className="font-black text-2xl text-white tracking-tight">Create New Class</h3>
             </div>
             <form onSubmit={handleCreateClass} className="p-8 space-y-4">
@@ -1340,8 +1340,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       {/* Edit Class Modal */}
       {isEditClassModalOpen && selectedClass && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 bg-gradient-to-r from-indigo-600 to-purple-600">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-2xl overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-indigo-600 to-purple-600">
               <h3 className="font-black text-2xl text-white tracking-tight">Edit Class</h3>
               <p className="text-sm text-indigo-100 mt-1">{selectedClass.class_name} ({selectedClass.class_code})</p>
             </div>
