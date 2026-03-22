@@ -33,6 +33,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [institutionsPage, setInstitutionsPage] = useState(1);
   const [selectedInstitution, setSelectedInstitution] = useState(null);
   const [isEditInstitutionModalOpen, setIsEditInstitutionModalOpen] = useState(false);
+  const [editInstitutionForm, setEditInstitutionForm] = useState({ name: '', address: '', contact_email: '' });
   const [allClasses, setAllClasses] = useState([]);
   const [classesSearch, setClassesSearch] = useState('');
   const [classesPage, setClassesPage] = useState(1);
@@ -258,6 +259,26 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       await fetchGlobalUsers();
     } catch (err) {
       alert(err.message || 'Failed to delete user');
+    }
+  };
+
+  const handleUpdateInstitution = async (e) => {
+    e.preventDefault();
+    if (!selectedInstitution) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/institutions/${selectedInstitution.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(editInstitutionForm)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to update institution');
+      await fetchInstitutions();
+      setIsEditInstitutionModalOpen(false);
+      setSelectedInstitution(null);
+    } catch (err) {
+      alert(err.message || 'Failed to update institution');
     }
   };
 
@@ -651,6 +672,11 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                 <button
                                   onClick={() => {
                                     setSelectedInstitution(inst);
+                                    setEditInstitutionForm({
+                                      name: inst.name || '',
+                                      address: inst.address || '',
+                                      contact_email: inst.contact_email || ''
+                                    });
                                     setIsEditInstitutionModalOpen(true);
                                   }}
                                   className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
@@ -1468,6 +1494,62 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg"
                 >
                   Update Class
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      {/* Edit Institution Modal */}
+      {isEditInstitutionModalOpen && selectedInstitution && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h3 className="font-black text-2xl text-white tracking-tight">Edit Institution</h3>
+              <p className="text-sm text-blue-100 mt-1">ID: {selectedInstitution.id}</p>
+            </div>
+            <form onSubmit={handleUpdateInstitution} className="p-8 space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Institution Name *</label>
+                <input
+                  required
+                  type="text"
+                  value={editInstitutionForm.name}
+                  onChange={e => setEditInstitutionForm({...editInstitutionForm, name: e.target.value})}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Address (Optional)</label>
+                <input
+                  type="text"
+                  value={editInstitutionForm.address}
+                  onChange={e => setEditInstitutionForm({...editInstitutionForm, address: e.target.value})}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Contact Email</label>
+                <input
+                  type="email"
+                  value={editInstitutionForm.contact_email}
+                  onChange={e => setEditInstitutionForm({...editInstitutionForm, contact_email: e.target.value})}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => { setIsEditInstitutionModalOpen(false); setSelectedInstitution(null); }}
+                  className="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg"
+                >
+                  Save Changes
                 </button>
               </div>
             </form>

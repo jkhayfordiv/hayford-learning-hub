@@ -34,10 +34,19 @@ router.get('/', verifySuperAdmin, async (req, res) => {
         i.address,
         i.contact_email,
         i.created_at,
-        CAST(COUNT(u.id) AS INTEGER) as total_users,
-        CAST(COUNT(CASE WHEN u.role = 'student' THEN u.id END) AS INTEGER) as student_count
+        COUNT(DISTINCT linked_users.id) AS total_users,
+        COUNT(DISTINCT CASE WHEN linked_users.role = 'student' THEN linked_users.id END) AS student_count
       FROM institutions i
-      LEFT JOIN users u ON u.institution_id = i.id
+      LEFT JOIN (
+        -- Users directly linked to the institution
+        SELECT id, role, institution_id FROM users WHERE institution_id IS NOT NULL
+        UNION
+        -- Users linked via class enrollment (in case institution_id was never set on the user)
+        SELECT u.id, u.role, c.institution_id
+        FROM class_enrollments ce
+        JOIN users u ON u.id = ce.user_id
+        JOIN classes c ON c.id = ce.class_id
+      ) AS linked_users ON linked_users.institution_id = i.id
       GROUP BY i.id
       ORDER BY i.id ASC
     `);
@@ -82,6 +91,34 @@ router.post('/', verifySuperAdmin, async (req, res) => {
     res.status(500).json({ error: 'Failed to create institution' });
   }
 });
+
+// PUT update institution
+router.put('/:id', verifySuperAdmin, async (req, res) => {
+  const { id } = req.params;
+  const { name, address, contact_email } = req.body;
+
+  if (!name) {
+    return res.status(400).json({ error: 'Institution name is required' });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      'UPDATE institutions SET name = $1, address = $2, contact_email = $3 WHERE id = $4',
+      [name, address || null, contact_email || null, id]
+    );
+    connection.release();
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
+    if (updated === 0) {
+      return res.status(404).json({ error: 'Institution not found' });
+    }
+    res.json({ message: 'Institution updated successfully' });
+  } catch (err) {
+    console.error('DB Error in PUT /api/institutions/:id:', err.message);
+    res.status(500).json({ error: 'Failed to update institution' });
+  }
+});
+
 
 // DELETE institution permanently
 router.delete('/:id', verifySuperAdmin, async (req, res) => {
