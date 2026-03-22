@@ -34,8 +34,7 @@ router.get('/', verifySuperAdmin, async (req, res) => {
         i.address,
         i.contact_email,
         i.created_at,
-        COUNT(DISTINCT linked_users.id) AS total_users,
-        COUNT(DISTINCT CASE WHEN linked_users.role = 'student' THEN linked_users.id END) AS student_count
+        COUNT(DISTINCT linked_users.id) AS student_count
       FROM institutions i
       LEFT JOIN (
         -- Users directly linked to the institution
@@ -54,7 +53,6 @@ router.get('/', verifySuperAdmin, async (req, res) => {
     // Ensure counts are numbers
     const institutionsWithCount = institutions.map(inst => ({
       ...inst,
-      total_users: parseInt(inst.total_users) || 0,
       student_count: parseInt(inst.student_count) || 0
     }));
     
