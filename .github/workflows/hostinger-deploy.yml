@@ -1,0 +1,36 @@
+name: Deploy Frontend to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: 🎉 Build & Deploy Frontend
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: ⚙️ Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: 🔨 Run Build Script
+      run: |
+        node build-deploy.js
+
+    - name: 📂 Unzip build package
+      run: |
+        unzip hostinger-full-deploy.zip -d hostinger-dist
+
+    - name: 🚀 Sync files to Hostinger
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./hostinger-dist/
+        server-dir: /public_html/
