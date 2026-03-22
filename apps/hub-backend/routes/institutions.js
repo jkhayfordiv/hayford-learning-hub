@@ -23,8 +23,25 @@ const verifySuperAdmin = (req, res, next) => {
   }
 };
 
+// Middleware to verify admin or super_admin
+const verifyAdminOrAbove = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    if (decoded.user.role !== 'super_admin' && decoded.user.role !== 'admin') {
+      return res.status(403).json({ error: 'Admin access required' });
+    }
+    req.user = decoded.user;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
 // GET all institutions with user counts
-router.get('/', verifySuperAdmin, async (req, res) => {
+router.get('/', verifyAdminOrAbove, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [institutions] = await connection.query(`
@@ -52,7 +69,7 @@ router.get('/', verifySuperAdmin, async (req, res) => {
     }));
     
     connection.release();
-    res.json(institutionsWithCount);
+    res.json(institutionsWithCount.map(inst => ({ ...inst, deployment_check: "v3_with_counts" })));
   } catch (err) {
     console.error('DB Error in GET /api/institutions:', err.message);
     console.error('Full error:', err);
