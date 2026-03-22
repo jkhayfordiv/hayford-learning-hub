@@ -617,7 +617,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         <th className="px-6 py-4">ID</th>
                         <th className="px-6 py-4">Name</th>
                         <th className="px-6 py-4">Contact Email</th>
-                        <th className="px-6 py-4 text-center">Student Count</th>
+                        <th className="px-6 py-4 text-center">Total Users</th>
                         <th className="px-6 py-4">Created</th>
                         <th className="px-6 py-4 text-right">Actions</th>
                       </tr>
@@ -640,7 +640,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                             <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{inst.contact_email || 'N/A'}</td>
                             <td className="px-6 py-4 text-center">
                               <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-lg font-bold">
-                                {inst.student_count || 0}
+                                {inst.total_users || 0}
                               </span>
                             </td>
                             <td className="px-6 py-4 text-slate-500 dark:text-slate-400">

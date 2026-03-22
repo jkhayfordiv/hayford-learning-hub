@@ -161,11 +161,14 @@ AXIS 2 - SECONDARY GRAMMAR (Secondary):
 - This is helpful feedback but does NOT fail the vocabulary word itself
  
 CRITICAL: Evaluate spelling and punctuation accurately based ONLY on the user's exact input. DO NOT hallucinate punctuation errors. If a word is misspelled, address the spelling. Never falsely claim there is a 'space before a period' or other formatting issues unless that exact formatting error actually exists in the student's text.
+- If you claim there is a punctuation or spacing error, you MUST quote the specific part of the student's text that is incorrect.
+- Example: If the student writes "Hello world.", there is NO space before the period. Do not report one.
+- Only report a "space before period" if you see a literal " ." sequence.
 
 Return ONLY a raw JSON object with these THREE keys:
 1. target_word_correct (boolean): Did they use the target word correctly in meaning and form?
 2. secondary_grammar_correct (boolean): Is the rest of the sentence grammatically correct (punctuation, capitalization, other spelling)?
-3. feedback (string): Helpful explanation of their errors, or praise if perfect. If target_word_correct is true but secondary_grammar_correct is false, acknowledge they used the word correctly but point out the grammar issues.
+3. feedback (string): Helpful explanation of their errors, or praise if perfect. If target_word_correct is true but secondary_grammar_correct is false, acknowledge they used the word correctly but point out the grammar issues. Explicitly mention the text you are correcting.
 
 Example 1: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly to mean temporary! However, you're missing a period at the end of the sentence."}
 Example 2: {"target_word_correct": false, "secondary_grammar_correct": true, "feedback": "Your sentence is grammatically perfect, but 'ephemeral' means temporary, not eternal. Try using it to describe something brief."}
