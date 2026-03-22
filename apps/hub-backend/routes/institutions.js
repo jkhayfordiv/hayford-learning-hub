@@ -69,7 +69,7 @@ router.get('/', verifyAdminOrAbove, async (req, res) => {
     }));
     
     connection.release();
-    res.json(institutionsWithCount.map(inst => ({ ...inst, deployment_check: "v3_with_counts" })));
+    res.json(institutionsWithCount);
   } catch (err) {
     console.error('DB Error in GET /api/institutions:', err.message);
     console.error('Full error:', err);
