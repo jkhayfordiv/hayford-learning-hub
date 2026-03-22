@@ -9,8 +9,19 @@ const PART_1_QUESTIONS = [
   "How do you usually spend your weekends?",
   "What is your favourite season of the year and why?",
   "Do you prefer living in a city or in the countryside?",
-  "How important is technology in your daily life?",
-  "Do you think it is important to learn a foreign language?",
+  "How important is technology in your daily life? How much time do you spend online?",
+  "Do you think it is important to learn a foreign language? Why?",
+  "What are your future plans for your career or education?",
+  "Describe your typical daily routine. Which part of the day do you like best?",
+  "Do you enjoy travelling to new places? Where would you like to visit in the future?",
+  "What kind of food do you like to eat? Do you prefer eating at home or at restaurants?",
+  "Is it important to protect the environment? What can individuals do to help?",
+  "Do you use social media often? What are the advantages and disadvantages of it?",
+  "Tell me about a memorable event from your childhood. Why was it special?",
+  "What subjects did you enjoy most at school? Why?",
+  "Do you think life is better now than it was in the past? Why or why not?",
+  "Describe a person you admire. Who are they and why are they special to you?",
+  "Describe a piece of technology you find useful. How does it help you in your daily life?",
 ]
 
 function getRandomQuestion(exclude = '') {
@@ -19,20 +30,14 @@ function getRandomQuestion(exclude = '') {
 }
 
 export default function App() {
-  // --- Theme ---
+  // --- Forced Light Theme ---
   useEffect(() => {
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    document.documentElement.classList.remove('dark')
   }, [])
 
   // --- Auth ---
   const [token, setToken] = useState(null)
+  const [authChecked, setAuthChecked] = useState(false)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const urlToken = params.get('token')
@@ -42,6 +47,7 @@ export default function App() {
     } else {
       setToken(localStorage.getItem('token'))
     }
+    setAuthChecked(true)
   }, [])
 
   // --- Question ---
@@ -91,11 +97,10 @@ export default function App() {
         const url = URL.createObjectURL(blob)
         setAudioBlob(blob)
         setAudioUrl(url)
-        // Stop all tracks to release microphone
         stream.getTracks().forEach((track) => track.stop())
       }
 
-      recorder.start(250) // collect data every 250ms
+      recorder.start(250)
       mediaRecorderRef.current = recorder
       setIsRecording(true)
       setRecordingSeconds(0)
@@ -117,11 +122,8 @@ export default function App() {
   }
 
   const handleToggleRecording = () => {
-    if (isRecording) {
-      stopRecording()
-    } else {
-      startRecording()
-    }
+    if (isRecording) stopRecording()
+    else startRecording()
   }
 
   const handleNewQuestion = () => {
@@ -154,7 +156,6 @@ export default function App() {
       const response = await fetch(`${apiBase}/api/ielts/evaluate`, {
         method: 'POST',
         headers: {
-          // Do NOT set Content-Type — browser sets it with multipart boundary
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: formData,
@@ -183,241 +184,261 @@ export default function App() {
     setCurrentQuestion(getRandomQuestion(currentQuestion))
   }
 
+  if (!authChecked) return null
+
+  if (!token) {
+    return (
+      <main className="min-h-screen bg-slate-50 flex items-center justify-center p-6 font-sans">
+        <div className="max-w-md w-full bg-white rounded-3xl p-10 border border-slate-200 shadow-xl text-center space-y-8">
+          <div className="w-24 h-24 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto border-2 border-indigo-100">
+            <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m0 0v2m0-2h2m-2 0H10m11-3.5a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div className="space-y-4">
+            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Access Restricted</h2>
+            <p className="text-slate-500 leading-relaxed font-medium">
+              The Speaking Simulator requires active authentication. Please launch this module from your <span className="text-indigo-600 font-semibold">Student Dashboard</span>.
+            </p>
+          </div>
+          <button
+            onClick={() => window.location.href = '/dashboard'}
+            className="w-full py-4 bg-slate-900 hover:bg-black text-white font-bold rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 uppercase tracking-widest text-xs"
+          >
+            Return to Dashboard
+          </button>
+        </div>
+      </main>
+    )
+  }
+
   const formatTime = (seconds) => {
     const m = String(Math.floor(seconds / 60)).padStart(2, '0')
     const s = String(seconds % 60).padStart(2, '0')
     return `${m}:${s}`
   }
 
-  // --- Feedback View ---
   if (feedback) {
     return (
-      <main className="min-h-screen bg-slate-100 dark:bg-[#0A1930] text-slate-900 dark:text-slate-100 px-4 py-8 md:py-12 transition-colors duration-300">
-        <div className="max-w-3xl mx-auto space-y-6">
+      <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans">
+        <div className="max-w-4xl mx-auto space-y-10">
           {/* Header */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-8">
+            <div className="space-y-1">
+              <h1 className="text-3xl font-black tracking-tight text-slate-900">Performance Report</h1>
+              <p className="text-sm font-medium text-slate-500 uppercase tracking-[0.2em]">Official AI Assessment Result</p>
+            </div>
             <button
-              onClick={() => { window.location.href = '/dashboard' }}
-              className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
+                onClick={() => { window.location.href = '/dashboard' }}
+                className="bg-white border border-slate-200 text-slate-600 hover:text-slate-900 px-6 py-3 rounded-2xl font-bold text-sm shadow-sm transition-all hover:bg-slate-50"
             >
-              ← Dashboard
+                Dashboard
             </button>
-            <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">IELTS Speaking</span>
           </div>
 
-          {/* Band Score Hero */}
-          <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-8 md:p-10 text-center text-white shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.12)_0%,_transparent_60%)]"></div>
-            <p className="text-xs font-black uppercase tracking-widest mb-3 opacity-80">AI Examiner Result</p>
-            <div className="text-8xl font-black mb-1">{feedback.scores?.overall ?? '—'}</div>
-            <p className="text-sm opacity-75 font-semibold">Overall Band Score / 9.0</p>
-          </div>
-
-          {/* Score Breakdown */}
-          <div className="grid grid-cols-3 gap-4">
-            {[
-              { label: 'Fluency', key: 'fluency', color: 'text-indigo-600 dark:text-indigo-400' },
-              { label: 'Lexical', key: 'lexical', color: 'text-purple-600 dark:text-purple-400' },
-              { label: 'Grammar', key: 'grammar', color: 'text-rose-600 dark:text-rose-400' },
-              { label: 'Pronunciation', key: 'pronunciation', color: 'text-amber-600 dark:text-amber-400' },
-            ].map(({ label, key, color }) => (
-              feedback.scores?.[key] !== undefined && (
-                <div key={key} className="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 text-center shadow-sm">
-                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">{label}</p>
-                  <p className={`text-3xl font-black ${color}`}>{feedback.scores[key]}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Left Column: Scores */}
+            <div className="lg:col-span-5 space-y-6">
+                <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-2xl relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent opacity-50"></div>
+                    <p className="relative text-xs font-black uppercase tracking-[0.25em] mb-6 text-indigo-300">Overall Band Score</p>
+                    <div className="relative text-[8rem] font-black leading-none mb-4 animate-in fade-in zoom-in duration-700">{feedback.scores?.overall ?? '—'}</div>
+                    <p className="relative text-lg font-medium text-slate-400">Out of 9.0</p>
                 </div>
-              )
-            ))}
-          </div>
 
-          {/* Feedback Cards */}
-          <div className="space-y-4">
-            {[
-              { key: 'strengths', label: '✅ Strengths', bg: 'bg-green-50 dark:bg-green-900/10', border: 'border-green-200 dark:border-green-800/50', text: 'text-green-800 dark:text-green-300' },
-              { key: 'weaknesses', label: '⚠️ Areas to Improve', bg: 'bg-amber-50 dark:bg-amber-900/10', border: 'border-amber-200 dark:border-amber-800/50', text: 'text-amber-800 dark:text-amber-300' },
-              { key: 'improvement_tip', label: '💡 Tip', bg: 'bg-blue-50 dark:bg-blue-900/10', border: 'border-blue-200 dark:border-blue-800/50', text: 'text-blue-800 dark:text-blue-300' },
-            ].map(({ key, label, bg, border, text }) => (
-              feedback.feedback?.[key] && (
-                <div key={key} className={`${bg} border-2 ${border} rounded-2xl p-6`}>
-                  <p className="text-xs font-black uppercase tracking-widest mb-3 text-slate-500 dark:text-slate-400">{label}</p>
-                  <p className={`leading-relaxed font-medium ${text}`}>{feedback.feedback[key]}</p>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: 'Fluency', key: 'fluency', border: 'border-blue-100', bg: 'bg-blue-50/30' },
+                    { label: 'Lexical', key: 'lexical', border: 'border-indigo-100', bg: 'bg-indigo-50/30' },
+                    { label: 'Grammar', key: 'grammar', border: 'border-purple-100', bg: 'bg-purple-50/30' },
+                    { label: 'Pronunciation', key: 'pronunciation', border: 'border-amber-100', bg: 'bg-amber-50/30' },
+                  ].map(({ label, key, border, bg }) => (
+                    feedback.scores?.[key] !== undefined && (
+                      <div key={key} className={`bg-white border ${border} rounded-2xl p-6 text-center shadow-sm relative overflow-hidden`}>
+                        <div className={`absolute top-0 right-0 w-8 h-8 ${bg} rounded-bl-3xl`}></div>
+                        <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-400 mb-2">{label}</p>
+                        <p className="text-3xl font-black text-slate-900">{feedback.scores[key]}</p>
+                      </div>
+                    )
+                  ))}
                 </div>
-              )
-            ))}
-          </div>
+            </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={handleReset}
-              className="flex-1 px-6 py-4 rounded-2xl font-black text-sm uppercase tracking-widest bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transition-all transform hover:scale-[1.02]"
-            >
-              Try Another Question
-            </button>
-            <button
-              onClick={() => { window.location.href = '/dashboard' }}
-              className="px-6 py-4 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition-all shadow-sm"
-            >
-              ← Dashboard
-            </button>
+            {/* Right Column: Feedback Details */}
+            <div className="lg:col-span-7 space-y-6">
+                <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm space-y-8">
+                    {[
+                    { key: 'strengths', label: 'Positive Indicators', icon: 'M5 13l4 4L19 7', color: 'text-green-600', bg: 'bg-green-50' },
+                    { key: 'weaknesses', label: 'Development Points', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z', color: 'text-amber-600', bg: 'bg-amber-50' },
+                    { key: 'improvement_tip', label: 'Recommended Strategy', icon: 'M9.663 17h4.674a1 1 0 00.958-.713l.7-2.587A8 8 0 106.005 13.712l.71 2.575a1 1 0 00.958.713h1.99z', color: 'text-indigo-600', bg: 'bg-indigo-50' },
+                    ].map(({ key, label, icon, color, bg }) => (
+                    feedback.feedback?.[key] && (
+                        <div key={key} className="space-y-3">
+                            <div className="flex items-center gap-3">
+                                <div className={`w-8 h-8 ${bg} ${color} rounded-lg flex items-center justify-center`}>
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} /></svg>
+                                </div>
+                                <h3 className="text-sm font-black uppercase tracking-wider text-slate-900">{label}</h3>
+                            </div>
+                            <p className="text-slate-600 leading-relaxed font-medium pl-11">{feedback.feedback[key]}</p>
+                            <div className="h-px bg-slate-100 last:hidden"></div>
+                        </div>
+                    )
+                    ))}
+                </div>
+
+                <div className="flex gap-4">
+                    <button
+                        onClick={handleReset}
+                        className="flex-1 px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                        New Assessment
+                    </button>
+                    <button
+                        onClick={() => { window.location.href = '/dashboard' }}
+                        className="px-8 py-5 bg-white border border-slate-200 text-slate-600 hover:text-slate-900 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-md transition-all hover:bg-slate-50"
+                    >
+                        Finish
+                    </button>
+                </div>
+            </div>
           </div>
         </div>
       </main>
     )
   }
 
-  // --- Main Recorder View ---
   return (
-    <main className="min-h-screen bg-slate-100 dark:bg-[#0A1930] text-slate-900 dark:text-slate-100 px-4 py-8 md:py-12 transition-colors duration-300">
-      <div className="max-w-2xl mx-auto space-y-6">
-
-        {/* Top Nav */}
-        <div className="flex items-center justify-between">
-          <button
-            onClick={() => { window.location.href = '/dashboard' }}
-            className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-white dark:bg-slate-800 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
-          >
-            ← Dashboard
-          </button>
-          <span className="text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">IELTS Speaking • Part 1</span>
-        </div>
-
-        {/* Header Card */}
-        <section className="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm backdrop-blur-sm">
-          <p className="text-[11px] uppercase tracking-[0.18em] font-black text-indigo-500 dark:text-indigo-400 mb-2">AI Speaking Examiner</p>
-          <h1 className="text-2xl md:text-3xl font-black tracking-tight text-slate-900 dark:text-white">IELTS Speaking Simulator</h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2 font-medium">Record your spoken response. The AI will evaluate your fluency, vocabulary, grammar, and pronunciation.</p>
-        </section>
-
-        {/* Question Card */}
-        <section className="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500 rounded-l-3xl"></div>
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1 pl-2">
-              <p className="text-[10px] font-black uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-3">Examiner's Question</p>
-              <p className="text-xl font-bold text-slate-900 dark:text-white leading-snug">{currentQuestion}</p>
+    <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans overflow-x-hidden">
+      <div className="max-w-3xl mx-auto space-y-12">
+        {/* Header Section */}
+        <header className="flex items-center justify-between border-b border-slate-200 pb-8">
+            <div className="space-y-1">
+                <p className="text-xs font-black uppercase tracking-[0.25em] text-indigo-600">IELTS Master v2.0</p>
+                <h1 className="text-4xl font-black tracking-tighter text-slate-950">Speaking Simulator</h1>
             </div>
             <button
-              onClick={handleNewQuestion}
-              disabled={isRecording}
-              className="px-3 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed transition-colors border border-slate-200 dark:border-slate-600 flex-shrink-0"
+                onClick={() => { window.location.href = '/dashboard' }}
+                className="bg-white border border-slate-200 text-slate-600 hover:text-slate-900 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all hover:bg-slate-50 uppercase tracking-widest"
             >
-              New
+                Dashboard
             </button>
-          </div>
+        </header>
+
+        {/* Examiner Module */}
+        <section className="space-y-4">
+            <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-slate-900 text-white rounded-xl flex items-center justify-center font-bold text-xs ring-4 ring-slate-100 shadow-sm">AI</div>
+                <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500">Virtual Examiner</h2>
+            </div>
+            
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 md:p-14 shadow-sm relative overflow-hidden group transition-all">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-50/30 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                
+                <div className="relative space-y-8">
+                    <p className="text-2xl md:text-4xl font-bold text-slate-900 leading-[1.15] tracking-tight">{currentQuestion}</p>
+                    
+                    <div className="flex flex-wrap gap-3 pt-4">
+                        <button
+                            onClick={handleNewQuestion}
+                            disabled={isRecording}
+                            className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm"
+                        >
+                            Next Question
+                        </button>
+                        <span className="bg-indigo-50 text-indigo-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest shadow-sm">Part 1: Introduction</span>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        {/* Recorder Card */}
-        <section className="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 md:p-8 shadow-sm">
-          {/* Big Mic Button */}
-          <div className="flex flex-col items-center gap-5 mb-6">
-            <div className="relative">
-              {/* Pulsing ring while recording */}
-              {isRecording && (
-                <>
-                  <span className="absolute inset-0 rounded-full bg-red-500 opacity-20 animate-ping"></span>
-                  <span className="absolute -inset-3 rounded-full border-2 border-red-400 opacity-30 animate-pulse"></span>
-                </>
-              )}
-              <button
-                onClick={handleToggleRecording}
-                className={`relative w-28 h-28 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 transform active:scale-95 ${
-                  isRecording
-                    ? 'bg-red-500 hover:bg-red-600'
-                    : 'bg-indigo-600 hover:bg-indigo-700 hover:scale-105'
-                }`}
-              >
-                {isRecording ? (
-                  /* Stop icon */
-                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <rect x="6" y="6" width="12" height="12" rx="2" />
-                  </svg>
-                ) : (
-                  /* Mic icon */
-                  <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                  </svg>
+        {/* Recording Interface */}
+        <section className="bg-slate-900 text-white rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent"></div>
+            
+            <div className="relative flex flex-col items-center gap-10">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="relative">
+                        {isRecording && (
+                            <div className="absolute inset-0 bg-red-500/30 rounded-full animate-ping scale-150"></div>
+                        )}
+                        <button
+                            onClick={handleToggleRecording}
+                            className={`relative w-32 h-32 rounded-full border-8 border-slate-800 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
+                                isRecording ? 'bg-white' : 'bg-slate-800 hover:bg-slate-700 hover:border-slate-600'
+                            }`}
+                        >
+                            {isRecording ? (
+                                <div className="w-8 h-8 bg-red-600 rounded-sm"></div>
+                            ) : (
+                                <svg className="w-12 h-12 text-indigo-400 group-hover:text-indigo-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                                </svg>
+                            )}
+                        </button>
+                    </div>
+                    
+                    <div className="text-center space-y-1">
+                        <p className={`text-sm font-black uppercase tracking-[0.2em] ${isRecording ? 'text-red-400' : 'text-slate-400'}`}>
+                            {isRecording ? 'Recording Live' : audioBlob ? 'Response Ready' : 'Standby'}
+                        </p>
+                        <p className={`text-4xl font-black tabular-nums transition-all ${isRecording ? 'text-white' : 'text-slate-500'}`}>
+                            {formatTime(recordingSeconds)}
+                        </p>
+                    </div>
+                </div>
+
+                {audioUrl && !isRecording && (
+                    <div className="w-full max-w-sm space-y-4 animate-in slide-in-from-bottom-4 duration-500">
+                      <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/50 backdrop-blur-md">
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">Review Recording</p>
+                        <audio controls src={audioUrl} className="w-full h-8 brightness-110 filter invert contrast-150" />
+                      </div>
+                    </div>
                 )}
-              </button>
-            </div>
 
-            <div className="text-center">
-              {isRecording ? (
-                <div className="space-y-1">
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                    <span className="text-sm font-black text-red-500 uppercase tracking-widest">Recording</span>
-                  </div>
-                  <p className="text-2xl font-black text-slate-800 dark:text-white font-mono tabular-nums">{formatTime(recordingSeconds)}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Click the button again to stop</p>
-                </div>
-              ) : audioBlob ? (
-                <div className="space-y-1">
-                  <p className="text-sm font-black text-green-600 dark:text-green-400 uppercase tracking-widest">✓ Response Captured</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Duration: {formatTime(recordingSeconds)}</p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500">Click mic to record again</p>
-                </div>
-              ) : (
-                <div className="space-y-1">
-                  <p className="text-sm font-bold text-slate-600 dark:text-slate-400">Click the microphone to start</p>
-                  <p className="text-xs text-slate-400 dark:text-slate-500">Your browser will ask for microphone permission</p>
-                </div>
-              )}
+                <button
+                    onClick={handleSubmit}
+                    disabled={isLoading || !audioBlob || isRecording}
+                    className="w-full max-w-sm py-5 bg-white hover:bg-slate-50 disabled:bg-slate-800/50 disabled:text-slate-600 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3 group"
+                >
+                    {isLoading ? (
+                        <>
+                            <div className="w-4 h-4 border-4 border-slate-200 border-t-indigo-600 rounded-full animate-spin"></div>
+                            Analyzing Audio...
+                        </>
+                    ) : (
+                        <>
+                            Evaluate Performance
+                            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                        </>
+                    )}
+                </button>
             </div>
+        </section>
+
+        {/* Evaluation Criteria */}
+        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
+            <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Assessment Criteria</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm font-medium text-slate-600">
+                <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span className="text-indigo-500 font-bold text-lg">01</span>
+                    <p>Fluency & Coherence: Maintain a natural pace and use appropriate connectors.</p>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                    <span className="text-indigo-500 font-bold text-lg">02</span>
+                    <p>Lexical Resource: Demonstrate a wide range of academic vocabulary.</p>
+                </div>
+            </div>
+        </section>
+
+        {error && (
+          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm font-medium flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
+            <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <span>{error}</span>
           </div>
-
-          {/* Audio Playback (after recording) */}
-          {audioUrl && !isRecording && (
-            <div className="mb-5 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-2">Playback Your Response</p>
-              <audio controls src={audioUrl} className="w-full h-10 rounded-xl" />
-            </div>
-          )}
-
-          {/* Error */}
-          {error && (
-            <div className="mb-5 p-4 bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-800/50 rounded-xl text-red-700 dark:text-red-400 text-sm font-medium flex items-start gap-2">
-              <span className="mt-0.5 flex-shrink-0">⚠️</span>
-              <span>{error}</span>
-            </div>
-          )}
-
-          {/* Submit Button */}
-          <button
-            onClick={handleSubmit}
-            disabled={isLoading || !audioBlob || isRecording}
-            className="w-full py-4 rounded-2xl font-black text-sm uppercase tracking-widest bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed disabled:text-slate-400 dark:disabled:text-slate-500 text-white shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3"
-          >
-            {isLoading ? (
-              <>
-                <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                AI Examiner is grading...
-              </>
-            ) : (
-              <>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Submit for Grading
-              </>
-            )}
-          </button>
-        </section>
-
-        {/* Tips */}
-        <section className="bg-white dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700/50 rounded-2xl p-5 shadow-sm">
-          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-3">Tips for a Higher Band</p>
-          <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-medium">
-            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Speak for 1–2 minutes, using full sentences.</li>
-            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Use connectors like "furthermore", "however", "as a result".</li>
-            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Use a variety of vocabulary — avoid repetition.</li>
-            <li className="flex items-start gap-2"><span className="text-indigo-500 mt-0.5">▸</span> Speak clearly and at a natural pace — don't rush.</li>
-          </ul>
-        </section>
+        )}
       </div>
     </main>
   )

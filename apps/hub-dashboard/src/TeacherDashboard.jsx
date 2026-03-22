@@ -951,11 +951,84 @@ export default function TeacherDashboard({ user, onLogout }) {
           >
             Task Queue
           </button>
+          {user.role === 'teacher' && (
+            <button 
+              onClick={() => setActiveTab('ai-tools')}
+              className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'ai-tools' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            >
+              AI Lab Tools
+            </button>
+          )}
         </div>
       )}
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-8 py-12">
+        {/* AI Lab Tools Tab */}
+        {activeTab === 'ai-tools' && user.role === 'teacher' && (
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
+            <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-8 shadow-sm">
+              <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-2">AI Lab Tools</h2>
+              <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">Directly launch and preview the learning tools with your instructor credentials.</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { 
+                    id: 'speaking', 
+                    name: 'IELTS Speaking', 
+                    desc: 'Multimodal AI Audio Examiner', 
+                    path: '/ielts-speaking/', 
+                    icon: <MessageSquare className="text-indigo-500" size={24} />,
+                    color: 'from-indigo-500 to-purple-600'
+                  },
+                  { 
+                    id: 'writing', 
+                    name: 'IELTS Writing', 
+                    desc: 'Advanced EAP Evaluator', 
+                    path: '/ielts-writing/', 
+                    icon: <PenTool className="text-amber-500" size={24} />,
+                    color: 'from-amber-500 to-orange-600'
+                  },
+                  { 
+                    id: 'grammar', 
+                    name: 'Grammar Lab', 
+                    desc: 'Rule-Based Practice Suite', 
+                    path: '/grammar-lab/', 
+                    icon: <BookOpen className="text-emerald-500" size={24} />,
+                    color: 'from-emerald-500 to-teal-600'
+                  },
+                  { 
+                    id: 'vocab', 
+                    name: 'Vocab Tool', 
+                    desc: 'Dynamic Word Bank Builder', 
+                    path: '/vocab-tool/', 
+                    icon: <RefreshCw className="text-rose-500" size={24} />,
+                    color: 'from-rose-500 to-pink-600'
+                  }
+                ].map(tool => (
+                  <button
+                    key={tool.id}
+                    onClick={() => {
+                      const token = localStorage.getItem('token');
+                      window.location.href = `${tool.path}?token=${token}`;
+                    }}
+                    className="group relative bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl text-left hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      {tool.icon}
+                    </div>
+                    <h4 className="font-black text-slate-900 dark:text-white mb-1">{tool.name}</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">{tool.desc}</p>
+                    <div className="mt-4 flex items-center text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] group-hover:text-amber-600 transition-colors">
+                      Launch Tool <ArrowRight size={12} className="ml-1" />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Class Details View */}
         {navigationView === 'class-details' && selectedClassId ? (
           <ClassDetails

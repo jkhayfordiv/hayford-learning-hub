@@ -179,7 +179,7 @@ router.get('/my-tasks', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name
        FROM assigned_tasks a
@@ -215,7 +215,7 @@ router.get('/', requireTeacher, async (req, res) => {
     if (role === 'super_admin') {
       // SuperAdmin: see all assignments
       query = `
-        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
                m.module_name, m.module_type,
                u.first_name as student_first_name, u.last_name as student_last_name
         FROM assigned_tasks a
@@ -227,7 +227,7 @@ router.get('/', requireTeacher, async (req, res) => {
     } else if (role === 'admin' && institution_id) {
       // Admin: see all assignments in their institution
       query = `
-        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
                m.module_name, m.module_type,
                u.first_name as student_first_name, u.last_name as student_last_name
         FROM assigned_tasks a
@@ -240,7 +240,7 @@ router.get('/', requireTeacher, async (req, res) => {
     } else {
       // Teacher: see own assignments only
       query = `
-        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.instructions, a.due_date, a.status, a.created_at,
+        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
                m.module_name, m.module_type,
                u.first_name as student_first_name, u.last_name as student_last_name
         FROM assigned_tasks a

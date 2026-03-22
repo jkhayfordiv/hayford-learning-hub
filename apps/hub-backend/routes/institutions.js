@@ -34,18 +34,16 @@ router.get('/', verifySuperAdmin, async (req, res) => {
         i.address,
         i.contact_email,
         i.created_at,
-        CAST(COUNT(u.id) AS INTEGER) as user_count,
-        CAST(COUNT(CASE WHEN u.role = 'student' THEN u.id END) AS INTEGER) as student_count
+        CAST(COUNT(u.id) AS INTEGER) as student_count
       FROM institutions i
-      LEFT JOIN users u ON u.institution_id = i.id
-      GROUP BY i.id, i.name, i.address, i.contact_email, i.created_at
+      LEFT JOIN users u ON u.institution_id = i.id AND u.role = 'student'
+      GROUP BY i.id
       ORDER BY i.id ASC
     `);
     
     // Ensure counts are numbers
     const institutionsWithCount = institutions.map(inst => ({
       ...inst,
-      user_count: parseInt(inst.user_count) || 0,
       student_count: parseInt(inst.student_count) || 0
     }));
     

@@ -37,13 +37,9 @@ const PASS_THRESHOLD = 80
 export default function App() {
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com')
 
-  // Theme Initialization
+  // Forced Theme: Remove dark mode for Grammar Lab
   useEffect(() => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    document.documentElement.classList.remove('dark')
   }, [])
 
   const [topicId] = useState(parseTopicIdFromQuery)

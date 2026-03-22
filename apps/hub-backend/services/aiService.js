@@ -159,6 +159,8 @@ AXIS 2 - SECONDARY GRAMMAR (Secondary):
 - Is the REST of the sentence grammatically correct?
 - Consider: punctuation, capitalization, spelling of OTHER words (not the target word)
 - This is helpful feedback but does NOT fail the vocabulary word itself
+ 
+CRITICAL: Evaluate spelling and punctuation accurately based ONLY on the user's exact input. DO NOT hallucinate punctuation errors. If a word is misspelled, address the spelling. Never falsely claim there is a 'space before a period' or other formatting issues unless that exact formatting error actually exists in the student's text.
 
 Return ONLY a raw JSON object with these THREE keys:
 1. target_word_correct (boolean): Did they use the target word correctly in meaning and form?

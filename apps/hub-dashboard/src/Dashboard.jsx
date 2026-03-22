@@ -560,13 +560,19 @@ export default function Dashboard() {
                     <div className="flex justify-between items-start mb-4">
                       <div>
                         <div className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">
-                          {task.module_name === 'IELTS Writing' && task.writing_task_type 
+                          {task.assignment_type === 'writing' 
                             ? task.writing_task_type === '1' 
-                              ? 'IELTS Task 1'
-                              : task.writing_task_type === '2'
-                                ? 'IELTS Task 2'
+                              ? 'IELTS Task 1 Academic' 
+                              : task.writing_task_type === '2' 
+                                ? 'IELTS Task 2 Essay' 
                                 : 'IELTS Task 1 & 2'
-                            : task.module_name}
+                            : task.assignment_type === 'speaking'
+                              ? `IELTS Speaking Part ${task.speaking_task_part || '1'}`
+                              : task.assignment_type === 'grammar-practice'
+                                ? `Grammar Lab: ${task.grammar_topic_id?.replace(/-/g, ' ') || 'Practice'}`
+                                : task.assignment_type === 'vocabulary'
+                                  ? 'Vocabulary Builder'
+                                  : task.module_name}
                         </div>
                         <h4 className="font-bold text-slate-900 dark:text-white leading-tight line-clamp-2" title={task.instructions}>{task.instructions || 'General Practice Task'}</h4>
                       </div>
@@ -616,20 +622,14 @@ export default function Dashboard() {
         </div>
 
         {/* Metrics Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2 lg:col-span-1">
               <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Completed Submissions</span>
               <span className="font-black text-slate-900 dark:text-white tracking-tighter text-3xl">{scores.length}</span>
            </div>
-           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2 lg:col-span-1">
-              <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Average Band Score</span>
-              <span className="font-black text-amber-600 dark:text-amber-500 tracking-tighter text-3xl">
-                {scores.length > 0 ? (scores.reduce((acc, curr) => acc + parseFloat(curr.overall_score), 0) / scores.length).toFixed(1) : 'N/A'}
-              </span>
-           </div>
            
            <button
-              onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}`}
+              onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both`}
               className="bg-gradient-to-br from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">

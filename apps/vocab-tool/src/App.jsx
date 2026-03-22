@@ -53,7 +53,7 @@ export default function App() {
         const meta = JSON.parse(decodeURIComponent(metaString));
         if (meta.assignment_id) setTaskId(meta.assignment_id);
         if (meta.instructions) {
-          const words = meta.instructions.split(/[\n, ]+/).map(w => w.trim()).filter(w => w.length > 0);
+          const words = meta.instructions.split(/[\n,]+/).map(w => w.trim()).filter(w => w.length > 0);
           setTargetWords(words);
         }
       } catch (e) {
