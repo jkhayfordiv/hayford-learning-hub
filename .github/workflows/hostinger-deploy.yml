@@ -25,6 +25,12 @@ jobs:
       run: |
         npm install
         npm install archiver
+        for dir in apps/*; do
+          if [ -d "$dir" ]; then
+            echo "Installing dependencies in $dir"
+            (cd "$dir" && npm install)
+          fi
+        done
 
     - name: 🔨 Run Build Script
       run: |
