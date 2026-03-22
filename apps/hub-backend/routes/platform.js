@@ -357,28 +357,4 @@ router.delete('/users/:id', verifyAdminOrSuperAdmin, async (req, res) => {
   }
 });
 
-// GET all institutions (Admin and SuperAdmin)
-router.get('/institutions', verifyAdminOrSuperAdmin, async (req, res) => {
-  try {
-    const connection = await pool.getConnection();
-    const [institutions] = await connection.query(`
-      SELECT 
-        id,
-        name,
-        address,
-        contact_email,
-        created_at
-      FROM institutions
-      ORDER BY id ASC
-    `);
-    connection.release();
-    res.json(institutions);
-  } catch (err) {
-    console.error('DB Error in GET /api/institutions:', err.message);
-    console.error('Full error:', err);
-    if (err.query) console.error('Failed query:', err.query);
-    res.status(500).json({ error: 'Failed to fetch institutions' });
-  }
-});
-
 module.exports = router;
