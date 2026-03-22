@@ -34,19 +34,14 @@ router.get('/', verifySuperAdmin, async (req, res) => {
         i.address,
         i.contact_email,
         i.created_at,
-        COUNT(DISTINCT linked_users.id) AS student_count
+        (
+          (SELECT COUNT(*) FROM users u WHERE u.institution_id = i.id) +
+          (SELECT COUNT(DISTINCT ce.user_id) 
+           FROM class_enrollments ce 
+           JOIN classes c ON ce.class_id = c.id 
+           WHERE c.institution_id = i.id)
+        ) AS student_count
       FROM institutions i
-      LEFT JOIN (
-        -- Users directly linked to the institution
-        SELECT id, role, institution_id FROM users WHERE institution_id IS NOT NULL
-        UNION
-        -- Users linked via class enrollment (in case institution_id was never set on the user)
-        SELECT u.id, u.role, c.institution_id
-        FROM class_enrollments ce
-        JOIN users u ON u.id = ce.user_id
-        JOIN classes c ON c.id = ce.class_id
-      ) AS linked_users ON linked_users.institution_id = i.id
-      GROUP BY i.id
       ORDER BY i.id ASC
     `);
     
