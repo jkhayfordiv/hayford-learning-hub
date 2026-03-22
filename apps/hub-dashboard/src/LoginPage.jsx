@@ -115,7 +115,7 @@ export default function LoginPage() {
 
         <div className="relative z-10 max-w-lg">
           <h1 className={`text-5xl font-black tracking-tighter mb-6 leading-[1.1] text-transparent bg-clip-text drop-shadow-sm ${isTeacherMode ? 'bg-gradient-to-r from-white to-slate-400' : 'bg-gradient-to-r from-white to-brand-copper'}`}>
-            {isTeacherMode ? 'Manage your institution seamlessly.' : 'Level up your English skills.'}
+            {isTeacherMode ? 'Manage your institution seamlessly.' : "Let's Level up your English."}
           </h1>
           <p className={`${isTeacherMode ? 'text-slate-300' : 'text-indigo-200'} text-lg font-medium leading-relaxed max-w-md`}>
             {isTeacherMode ? 'The centralized instructor portal for monitoring student progress, managing scores, and accelerating outcomes.' : 'Your smart English tutor. Master the IELTS, improve your grammar and vocabulary, and get instant AI feedback to reach your goals.'}
