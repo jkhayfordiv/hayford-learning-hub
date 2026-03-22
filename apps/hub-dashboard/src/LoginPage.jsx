@@ -118,7 +118,7 @@ export default function LoginPage() {
             {isTeacherMode ? 'Manage your institution seamlessly.' : 'Level up your English skills.'}
           </h1>
           <p className={`${isTeacherMode ? 'text-slate-300' : 'text-indigo-200'} text-lg font-medium leading-relaxed max-w-md`}>
-            {isTeacherMode ? 'The centralized instructor portal for monitoring student progress, managing scores, and accelerating outcomes.' : 'The proprietary learning suite for mastering IELTS, tracking your scores, and receiving world-class AI feedback.'}
+            {isTeacherMode ? 'The centralized instructor portal for monitoring student progress, managing scores, and accelerating outcomes.' : 'Your smart English tutor. Master the IELTS, improve your grammar and vocabulary, and get instant AI feedback to reach your goals.'}
           </p>
         </div>
 
