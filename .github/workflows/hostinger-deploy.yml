@@ -21,6 +21,11 @@ jobs:
       with:
         node-version: '24'
 
+    - name: 📦 Install Dependencies
+      run: |
+        npm install
+        npm install archiver
+
     - name: 🔨 Run Build Script
       run: |
         node build-deploy.js
