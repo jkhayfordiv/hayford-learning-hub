@@ -55,7 +55,8 @@ const GRAMMAR_PRACTICE_SECTIONS = [
 
 const DEFAULT_ASSIGNMENT_FORM = {
   module_id: 1,
-  student_id: 'all',
+  assign_to_type: 'class',
+  student_id: '',
   class_id: '',
   assignment_type: 'writing',
   writing_task_type: '1',
@@ -402,16 +403,20 @@ export default function TeacherDashboard({ user, onLogout }) {
         payload.writing_task_type = null;
       }
       
-      // Clear out the mutually exclusive fields before sending to API 
-      if (payload.student_id && payload.student_id !== 'all' && !payload.student_id.startsWith('class_')) {
-        payload.class_id = null;
-      } else if (payload.student_id && payload.student_id.startsWith('class_')) {
-        payload.class_id = payload.student_id.split('_')[1];
-        payload.student_id = null;
-      } else if (payload.student_id === 'all') {
+      // Handle the new assign_to_type logic
+      if (payload.assign_to_type === 'all') {
         payload.class_id = null;
         payload.student_id = 'all';
+      } else if (payload.assign_to_type === 'class') {
+        if (!payload.class_id) throw new Error('Please select a class to assign this task to.');
+        payload.student_id = null;
+      } else if (payload.assign_to_type === 'individual') {
+        if (!payload.student_id) throw new Error('Please select an individual student.');
+        payload.class_id = null;
       }
+      
+      // Remove the frontend-only UI state before sending to API
+      delete payload.assign_to_type;
 
       const res = await fetch(`${apiBase}/api/assignments`, {
         method: 'POST',
@@ -1044,8 +1049,9 @@ export default function TeacherDashboard({ user, onLogout }) {
               // Pre-fill the assignment form with the class
               setAssignmentForm({
                 ...DEFAULT_ASSIGNMENT_FORM,
-                student_id: `class_${classId}`,
-                class_id: classId
+                assign_to_type: 'class',
+                class_id: classId,
+                student_id: ''
               });
             }}
             user={user}
@@ -1508,37 +1514,72 @@ export default function TeacherDashboard({ user, onLogout }) {
                       </div>
                     )}
 
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">
-                        Assign To
-                        {preselectedClassId && (
-                          <span className="ml-2 text-amber-600 font-black">(Pre-selected from Class Details)</span>
-                        )}
-                      </label>
-                      <select 
-                        value={assignmentForm.student_id} 
-                        onChange={e => {
-                          setAssignmentForm({...assignmentForm, student_id: e.target.value});
-                          // Clear preselected if user manually changes
-                          if (preselectedClassId) setPreselectedClassId(null);
-                        }}
-                        disabled={!!preselectedClassId}
-                        className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
-                          preselectedClassId 
-                            ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
-                            : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
-                        }`}
-                      >
-                        <option value="all">All Students</option>
-                        {classes.length > 0 && (
-                          <optgroup label="Classes">
-                            {classes.map(c => <option key={`class_${c.id}`} value={`class_${c.id}`}>{c.class_name}</option>)}
-                          </optgroup>
-                        )}
-                        <optgroup label="Individual Students">
-                          {students.map(s => <option key={s.id} value={s.id}>{s.first_name} {s.last_name}</option>)}
-                        </optgroup>
-                      </select>
+                    <div className="space-y-3">
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">
+                          Assign To
+                          {preselectedClassId && (
+                            <span className="ml-2 text-amber-600 font-black">(Pre-selected from Class Details)</span>
+                          )}
+                        </label>
+                        <select 
+                          value={assignmentForm.assign_to_type} 
+                          onChange={e => {
+                            setAssignmentForm({
+                              ...assignmentForm, 
+                              assign_to_type: e.target.value,
+                              class_id: '',
+                              student_id: ''
+                            });
+                            // Clear preselected if user manually changes type
+                            if (preselectedClassId) setPreselectedClassId(null);
+                          }}
+                          disabled={!!preselectedClassId}
+                          className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
+                            preselectedClassId 
+                              ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
+                              : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
+                          }`}
+                        >
+                          <option value="class">Assign to Class</option>
+                          <option value="individual">Assign to Individual Student</option>
+                          <option value="all">Assign to All Students</option>
+                        </select>
+                      </div>
+
+                      {assignmentForm.assign_to_type === 'class' && (
+                        <div className="space-y-1 animate-in slide-in-from-top-1">
+                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Select Class</label>
+                          <select
+                            value={assignmentForm.class_id}
+                            onChange={e => setAssignmentForm({...assignmentForm, class_id: e.target.value})}
+                            disabled={!!preselectedClassId}
+                            className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
+                              preselectedClassId 
+                                ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
+                                : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
+                            }`}
+                          >
+                            <option value="">-- Choose a class --</option>
+                            {classes.map(c => <option key={`class_${c.id}`} value={c.id}>{c.class_name}</option>)}
+                          </select>
+                        </div>
+                      )}
+
+                      {assignmentForm.assign_to_type === 'individual' && (
+                        <div className="space-y-1 animate-in slide-in-from-top-1">
+                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Select Student</label>
+                          <select
+                            value={assignmentForm.student_id}
+                            onChange={e => setAssignmentForm({...assignmentForm, student_id: e.target.value})}
+                            className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                          >
+                            <option value="">-- Choose a student --</option>
+                            {students.map(s => <option key={s.id} value={s.id}>{s.first_name} {s.last_name}</option>)}
+                          </select>
+                        </div>
+                      )}
+
                       {preselectedClassId && (
                         <div className="flex items-center justify-between bg-amber-50 border border-amber-200 rounded-lg p-3 mt-2">
                           <p className="text-xs font-bold text-amber-800">
@@ -1548,7 +1589,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                             type="button"
                             onClick={() => {
                               setPreselectedClassId(null);
-                              setAssignmentForm({...assignmentForm, student_id: 'all'});
+                              setAssignmentForm({...assignmentForm, assign_to_type: 'class', class_id: ''});
                             }}
                             className="text-xs font-bold text-amber-700 hover:text-amber-900 underline"
                           >
