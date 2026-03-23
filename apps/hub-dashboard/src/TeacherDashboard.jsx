@@ -97,6 +97,8 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [assignClassStatus, setAssignClassStatus] = useState({ loading: false, error: null, success: false });
   const [rosterSort, setRosterSort] = useState({ key: 'student', direction: 'asc' });
   const [studentSearch, setStudentSearch] = useState('');
+  const [classSearch, setClassSearch] = useState('');
+  const [showClassDropdown, setShowClassDropdown] = useState(false);
 
   const [activeTab, setActiveTab] = useState('overview');
   const [newTeacherForm, setNewTeacherForm] = useState({ first_name: '', last_name: '', email: '', password: '', institution_id: '' });
@@ -1451,7 +1453,11 @@ export default function TeacherDashboard({ user, onLogout }) {
                       <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assignment Type</label>
                       <select
                         value={assignmentForm.assignment_type}
-                        onChange={e => setAssignmentForm({...assignmentForm, assignment_type: e.target.value})}
+                        onChange={e => {
+                          setAssignmentForm({...assignmentForm, assignment_type: e.target.value});
+                          setClassSearch('');
+                          setShowClassDropdown(false);
+                        }}
                         className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
                       >
                         <option value="writing">IELTS Writing</option>
@@ -1548,21 +1554,51 @@ export default function TeacherDashboard({ user, onLogout }) {
                       </div>
 
                       {assignmentForm.assign_to_type === 'class' && (
-                        <div className="space-y-1 animate-in slide-in-from-top-1">
+                        <div className="space-y-1 animate-in slide-in-from-top-1 relative">
                           <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Select Class</label>
-                          <select
-                            value={assignmentForm.class_id}
-                            onChange={e => setAssignmentForm({...assignmentForm, class_id: e.target.value})}
-                            disabled={!!preselectedClassId}
-                            className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
-                              preselectedClassId 
-                                ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
-                                : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
-                            }`}
-                          >
-                            <option value="">-- Choose a class --</option>
-                            {classes.map(c => <option key={`class_${c.id}`} value={c.id}>{c.class_name}</option>)}
-                          </select>
+                          <div className="relative">
+                            <input
+                              type="text"
+                              placeholder="Search classes..."
+                              value={preselectedClassId ? (classes.find(c => c.id === parseInt(preselectedClassId))?.class_name || 'Loading...') : classSearch}
+                              onChange={e => {
+                                setClassSearch(e.target.value);
+                                setShowClassDropdown(true);
+                              }}
+                              onFocus={() => !preselectedClassId && setShowClassDropdown(true)}
+                              disabled={!!preselectedClassId}
+                              className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
+                                preselectedClassId 
+                                  ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
+                                  : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
+                              }`}
+                            />
+                            {!preselectedClassId && showClassDropdown && (
+                              <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
+                                {classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                                  classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                                    <button
+                                      key={`class_opt_${c.id}`}
+                                      type="button"
+                                      onClick={() => {
+                                        setAssignmentForm({...assignmentForm, class_id: c.id});
+                                        setClassSearch(c.class_name);
+                                        setShowClassDropdown(false);
+                                      }}
+                                      className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 transition-colors font-bold text-slate-700 border-b border-slate-50 last:border-0"
+                                    >
+                                      {c.class_name}
+                                    </button>
+                                  ))
+                                ) : (
+                                  <div className="px-4 py-3 text-sm text-slate-400 text-center">No classes found.</div>
+                                )}
+                              </div>
+                            )}
+                            {showClassDropdown && !preselectedClassId && (
+                              <div className="fixed inset-0 z-[90]" onClick={() => setShowClassDropdown(false)}></div>
+                            )}
+                          </div>
                         </div>
                       )}
 
@@ -2119,10 +2155,51 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Class</label>
-                <select value={assignClassForm.class_id} onChange={e => setAssignClassForm({ ...assignClassForm, class_id: e.target.value })} className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white">
-                  <option value="">No class (unassign)</option>
-                  {classes.map(c => <option key={c.id} value={c.id}>{c.class_name}</option>)}
-                </select>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search classes..."
+                    value={classSearch}
+                    onChange={e => {
+                      setClassSearch(e.target.value);
+                      setShowClassDropdown(true);
+                    }}
+                    onFocus={() => setShowClassDropdown(true)}
+                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white"
+                  />
+                  {showClassDropdown && (
+                    <div className="absolute z-[100] w-full mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl max-h-48 overflow-y-auto">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setAssignClassForm({ ...assignClassForm, class_id: '' });
+                          setClassSearch('');
+                          setShowClassDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors font-bold text-slate-500 border-b border-slate-100 dark:border-slate-700"
+                      >
+                        No class (unassign)
+                      </button>
+                      {classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                        <button
+                          key={`assign_class_opt_${c.id}`}
+                          type="button"
+                          onClick={() => {
+                            setAssignClassForm({ ...assignClassForm, class_id: c.id });
+                            setClassSearch(c.class_name);
+                            setShowClassDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors font-bold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-700 last:border-0"
+                        >
+                          {c.class_name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {showClassDropdown && (
+                    <div className="fixed inset-0 z-[90]" onClick={() => setShowClassDropdown(false)}></div>
+                  )}
+                </div>
               </div>
               <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
                 <button disabled={assignClassStatus.loading || assignClassStatus.success} type="submit" className="w-full bg-slate-900 text-white font-bold py-3 rounded-xl hover:bg-slate-950 transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
@@ -2170,10 +2247,51 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assign to Class (Optional)</label>
-                <select value={formData.class_id} onChange={e => setFormData({...formData, class_id: e.target.value})} className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none">
-                  <option value="">None (Unassigned)</option>
-                  {classes.map(c => <option key={c.id} value={c.id}>{c.class_name}</option>)}
-                </select>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search classes..."
+                    value={classSearch}
+                    onChange={e => {
+                      setClassSearch(e.target.value);
+                      setShowClassDropdown(true);
+                    }}
+                    onFocus={() => setShowClassDropdown(true)}
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                  />
+                  {showClassDropdown && (
+                    <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFormData({ ...formData, class_id: '' });
+                          setClassSearch('');
+                          setShowClassDropdown(false);
+                        }}
+                        className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 transition-colors font-bold text-slate-500 border-b border-slate-100"
+                      >
+                        None (Unassigned)
+                      </button>
+                      {classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                        <button
+                          key={`reg_class_opt_${c.id}`}
+                          type="button"
+                          onClick={() => {
+                            setFormData({ ...formData, class_id: c.id });
+                            setClassSearch(c.class_name);
+                            setShowClassDropdown(false);
+                          }}
+                          className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 transition-colors font-bold text-slate-700 border-b border-slate-100 last:border-0"
+                        >
+                          {c.class_name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {showClassDropdown && (
+                    <div className="fixed inset-0 z-[90]" onClick={() => setShowClassDropdown(false)}></div>
+                  )}
+                </div>
               </div>
               <div className="space-y-1">
                 <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Temporary Password</label>

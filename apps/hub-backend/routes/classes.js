@@ -108,27 +108,35 @@ router.get('/', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
-    if (role === 'teacher' || role === 'admin') {
+    if (role === 'teacher' || role === 'admin' || role === 'super_admin') {
       const includeArchived = String(req.query.include_archived || '').toLowerCase() === 'true';
 
-      // PHASE 2.2: Tenant isolation - admin sees all classes in their institution
       let query, params;
-      if (role === 'admin' && institution_id) {
-        query = includeArchived
-          ? 'SELECT * FROM classes WHERE institution_id = $1 ORDER BY created_at DESC'
-          : 'SELECT * FROM classes WHERE institution_id = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
-        params = [institution_id];
-      } else if (role === 'super_admin') {
-        // Super admin sees everything
+      if (role === 'super_admin') {
+        // Super admin sees all classes across all institutions
         query = includeArchived
           ? 'SELECT * FROM classes ORDER BY created_at DESC'
           : 'SELECT * FROM classes WHERE (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
         params = [];
-      } else {
-        // Teacher sees only their own classes
+      } else if (role === 'admin' && institution_id) {
+        // Admin sees all classes in their institution
         query = includeArchived
-          ? 'SELECT * FROM classes WHERE teacher_id = $1 ORDER BY created_at DESC'
-          : 'SELECT * FROM classes WHERE teacher_id = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
+          ? 'SELECT * FROM classes WHERE institution_id = $1 ORDER BY created_at DESC'
+          : 'SELECT * FROM classes WHERE institution_id = $1 AND (end_date IS NULL OR end_date >= CURRENT_DATE) ORDER BY created_at DESC';
+        params = [institution_id];
+      } else {
+        // Teacher sees classes they created (teacher_id) OR classes they are enrolled in as a user
+        // Using DISTINCT to avoid duplicates if a teacher is both the creator and enrolled (rare but possible)
+        query = includeArchived
+          ? `SELECT DISTINCT c.* FROM classes c 
+             LEFT JOIN class_enrollments ce ON c.id = ce.class_id 
+             WHERE c.teacher_id = $1 OR ce.user_id = $1 
+             ORDER BY c.created_at DESC`
+          : `SELECT DISTINCT c.* FROM classes c 
+             LEFT JOIN class_enrollments ce ON c.id = ce.class_id 
+             WHERE (c.teacher_id = $1 OR ce.user_id = $1) 
+             AND (c.end_date IS NULL OR c.end_date >= CURRENT_DATE) 
+             ORDER BY c.created_at DESC`;
         params = [user_id];
       }
 
@@ -260,7 +268,7 @@ router.put('/:id', requireTeacher, async (req, res) => {
     }
     
     // Check ownership or admin privileges
-    const isOwner = existing[0].teacher_id === teacher_id;
+    const isOwner = Number(existing[0].teacher_id) === Number(teacher_id);
     const isPrivileged = actor_role === 'admin' || actor_role === 'super_admin';
     
     if (!isOwner && !isPrivileged) {
@@ -269,7 +277,7 @@ router.put('/:id', requireTeacher, async (req, res) => {
     }
     
     // TENANT ISOLATION: Admin can only edit classes in their institution
-    if (actor_role === 'admin' && existing[0].institution_id !== actor_institution_id) {
+    if (actor_role === 'admin' && Number(existing[0].institution_id) !== Number(actor_institution_id)) {
       connection.release();
       return res.status(403).json({ error: 'Access denied: Class belongs to a different institution' });
     }
@@ -356,7 +364,7 @@ router.patch('/:id/teacher', requireTeacher, async (req, res) => {
     }
 
     // TENANT ISOLATION: For admins, ensure teacher is in the same institution
-    if (actor_role === 'admin' && teacher.institution_id !== actor_institution_id) {
+    if (actor_role === 'admin' && Number(teacher.institution_id) !== Number(actor_institution_id)) {
       connection.release();
       return res.status(403).json({ error: 'Cannot assign teachers from other institutions' });
     }
@@ -410,7 +418,7 @@ router.delete('/:id', requireTeacher, async (req, res) => {
       return res.status(404).json({ error: 'Class not found' });
     }
     
-    const isOwner = Number(existing[0].teacher_id) === teacher_id;
+    const isOwner = Number(existing[0].teacher_id) === Number(teacher_id);
     const isPrivileged = actor_role === 'admin' || actor_role === 'super_admin';
     
     if (!isOwner && !isPrivileged) {
@@ -419,7 +427,7 @@ router.delete('/:id', requireTeacher, async (req, res) => {
     }
     
     // TENANT ISOLATION: Admin can only delete classes in their institution
-    if (actor_role === 'admin' && existing[0].institution_id !== actor_institution_id) {
+    if (actor_role === 'admin' && Number(existing[0].institution_id) !== Number(actor_institution_id)) {
       connection.release();
       return res.status(403).json({ error: 'Access denied: Class belongs to a different institution' });
     }
@@ -480,8 +488,9 @@ router.get('/:id/details', requireTeacher, async (req, res) => {
     const classInfo = classRows[0];
     
     // Check access permissions
-    const isOwner = classInfo.teacher_id === actor_id;
-    const isAdmin = actor_role === 'admin' && classInfo.institution_id === actor_institution_id;
+    // Use Number() to coerce IDs — DB returns integers, JWT may provide strings
+    const isOwner = Number(classInfo.teacher_id) === Number(actor_id);
+    const isAdmin = actor_role === 'admin' && Number(classInfo.institution_id) === Number(actor_institution_id);
     const isSuperAdmin = actor_role === 'super_admin';
     
     if (!isOwner && !isAdmin && !isSuperAdmin) {
