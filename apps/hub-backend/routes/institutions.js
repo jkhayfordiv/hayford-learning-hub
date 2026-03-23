@@ -52,11 +52,12 @@ router.get('/', verifyAdminOrAbove, async (req, res) => {
         i.contact_email,
         i.created_at,
         (
-          (SELECT COUNT(*) FROM users u WHERE u.institution_id = i.id) +
-          (SELECT COUNT(DISTINCT ce.user_id) 
-           FROM class_enrollments ce 
-           JOIN classes c ON ce.class_id = c.id 
-           WHERE c.institution_id = i.id)
+          SELECT COUNT(DISTINCT u.id)
+          FROM users u
+          LEFT JOIN class_enrollments ce ON u.id = ce.user_id
+          LEFT JOIN classes c ON ce.class_id = c.id
+          WHERE (u.institution_id = i.id OR c.institution_id = i.id)
+            AND u.role = 'student'
         ) AS student_count
       FROM institutions i
       ORDER BY i.id ASC
