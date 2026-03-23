@@ -110,9 +110,23 @@ router.get('/', auth, async (req, res) => {
     
     if (role === 'teacher' || role === 'admin' || role === 'super_admin') {
       const includeArchived = String(req.query.include_archived || '').toLowerCase() === 'true';
+      const ownedOnly = String(req.query.owned_only || '').toLowerCase() === 'true';
 
       let query, params;
-      if (role === 'super_admin') {
+      if (ownedOnly) {
+        // Force personal view for ANY role: only classes where I am teacher_id OR enrolled
+        query = includeArchived
+          ? `SELECT DISTINCT c.* FROM classes c 
+             LEFT JOIN class_enrollments ce ON c.id = ce.class_id 
+             WHERE c.teacher_id = $1 OR ce.user_id = $1 
+             ORDER BY c.created_at DESC`
+          : `SELECT DISTINCT c.* FROM classes c 
+             LEFT JOIN class_enrollments ce ON c.id = ce.class_id 
+             WHERE (c.teacher_id = $1 OR ce.user_id = $1) 
+             AND (c.end_date IS NULL OR c.end_date >= CURRENT_DATE) 
+             ORDER BY c.created_at DESC`;
+        params = [user_id];
+      } else if (role === 'super_admin') {
         // Super admin sees all classes across all institutions
         query = includeArchived
           ? 'SELECT * FROM classes ORDER BY created_at DESC'

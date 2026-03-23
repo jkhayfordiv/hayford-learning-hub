@@ -78,6 +78,7 @@ export default function TeacherDashboard({ user, onLogout }) {
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState([]);
+  const [manageableClasses, setManageableClasses] = useState([]);
   const [activeClassId, setActiveClassId] = useState('all');
   const [recentActivity, setRecentActivity] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -298,11 +299,20 @@ export default function TeacherDashboard({ user, onLogout }) {
   const fetchClasses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`${apiBase}/api/classes?include_archived=true`, {
+      // 1. Fetch manageable classes (Full institutional/global view for Admins)
+      const resFull = await fetch(`${apiBase}/api/classes?include_archived=true`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      if (res.ok) {
-        setClasses(await res.json());
+      if (resFull.ok) {
+        setManageableClasses(await resFull.json());
+      }
+
+      // 2. Fetch owned classes (Personal view for ALL roles: Dashboard filter & Roster)
+      const resOwned = await fetch(`${apiBase}/api/classes?include_archived=true&owned_only=true`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (resOwned.ok) {
+        setClasses(await resOwned.json());
       }
     } catch (err) {
       console.error('Failed to fetch classes', err);
@@ -1064,7 +1074,7 @@ export default function TeacherDashboard({ user, onLogout }) {
             user={user}
             apiBase={apiBase}
             navigationView={navigationView}
-            classes={classes}
+            classes={manageableClasses}
             onInstitutionsLoad={setInstitutions}
             onViewClassDetails={(classId) => {
               setSelectedClassId(classId);
@@ -1560,7 +1570,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                             <input
                               type="text"
                               placeholder="Search classes..."
-                              value={preselectedClassId ? (classes.find(c => c.id === parseInt(preselectedClassId))?.class_name || 'Loading...') : classSearch}
+                              value={preselectedClassId ? (manageableClasses.find(c => c.id === parseInt(preselectedClassId))?.class_name || 'Loading...') : classSearch}
                               onChange={e => {
                                 setClassSearch(e.target.value);
                                 setShowClassDropdown(true);
@@ -1577,8 +1587,8 @@ export default function TeacherDashboard({ user, onLogout }) {
                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
                             {!preselectedClassId && showClassDropdown && (
                               <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
-                                {classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
-                                  classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                                {manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                                  manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
                                     <button
                                       key={`class_opt_${c.id}`}
                                       type="button"
@@ -2184,8 +2194,8 @@ export default function TeacherDashboard({ user, onLogout }) {
                       >
                         No class (unassign)
                       </button>
-                      {classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
-                        classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                      {manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                        manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
                           <button
                             key={`assign_class_opt_${c.id}`}
                             type="button"
@@ -2282,8 +2292,8 @@ export default function TeacherDashboard({ user, onLogout }) {
                       >
                         None (Unassigned)
                       </button>
-                      {classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
-                        classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                      {manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                        manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
                           <button
                             key={`reg_class_opt_${c.id}`}
                             type="button"
