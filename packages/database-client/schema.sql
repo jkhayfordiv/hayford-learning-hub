@@ -321,15 +321,14 @@ $$;
 -- CHECK CONSTRAINTS
 -- ============================================================================
 
--- Assigned Tasks: Must have either student_id OR class_id (not both, not neither)
+-- Assigned Tasks: Must have either student_id OR class_id (at least one)
 DO $$
 BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM pg_constraint WHERE conname = 'chk_student_or_class'
-    ) THEN
-        ALTER TABLE assigned_tasks
-        ADD CONSTRAINT chk_student_or_class
-        CHECK ((student_id IS NOT NULL AND class_id IS NULL) OR (student_id IS NULL AND class_id IS NOT NULL));
-    END IF;
+    ALTER TABLE assigned_tasks
+    DROP CONSTRAINT IF EXISTS chk_student_or_class;
+    
+    ALTER TABLE assigned_tasks
+    ADD CONSTRAINT chk_student_or_class
+    CHECK (student_id IS NOT NULL OR class_id IS NOT NULL);
 END
 $$;
