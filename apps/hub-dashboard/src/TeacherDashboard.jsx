@@ -1566,17 +1566,19 @@ export default function TeacherDashboard({ user, onLogout }) {
                                 setShowClassDropdown(true);
                               }}
                               onFocus={() => !preselectedClassId && setShowClassDropdown(true)}
+                              onClick={() => !preselectedClassId && setShowClassDropdown(true)}
                               disabled={!!preselectedClassId}
-                              className={`w-full border px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none ${
+                              className={`w-full border px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none relative z-[95] ${
                                 preselectedClassId 
                                   ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
                                   : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
                               }`}
                             />
+                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
                             {!preselectedClassId && showClassDropdown && (
                               <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
-                                {classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
-                                  classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                                {classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                                  classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
                                     <button
                                       key={`class_opt_${c.id}`}
                                       type="button"
@@ -2165,8 +2167,10 @@ export default function TeacherDashboard({ user, onLogout }) {
                       setShowClassDropdown(true);
                     }}
                     onFocus={() => setShowClassDropdown(true)}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white"
+                    onClick={() => setShowClassDropdown(true)}
+                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white relative z-[95]"
                   />
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
                   {showClassDropdown && (
                     <div className="absolute z-[100] w-full mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl max-h-48 overflow-y-auto">
                       <button
@@ -2180,20 +2184,24 @@ export default function TeacherDashboard({ user, onLogout }) {
                       >
                         No class (unassign)
                       </button>
-                      {classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).map(c => (
-                        <button
-                          key={`assign_class_opt_${c.id}`}
-                          type="button"
-                          onClick={() => {
-                            setAssignClassForm({ ...assignClassForm, class_id: c.id });
-                            setClassSearch(c.class_name);
-                            setShowClassDropdown(false);
-                          }}
-                          className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors font-bold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-700 last:border-0"
-                        >
-                          {c.class_name}
-                        </button>
-                      ))}
+                      {classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                        classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                          <button
+                            key={`assign_class_opt_${c.id}`}
+                            type="button"
+                            onClick={() => {
+                              setAssignClassForm({ ...assignClassForm, class_id: c.id });
+                              setClassSearch(c.class_name);
+                              setShowClassDropdown(false);
+                            }}
+                            className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors font-bold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-700 last:border-0"
+                          >
+                            {c.class_name}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="px-4 py-3 text-sm text-slate-400 text-center">No classes found.</div>
+                      )}
                     </div>
                   )}
                   {showClassDropdown && (
@@ -2257,8 +2265,10 @@ export default function TeacherDashboard({ user, onLogout }) {
                       setShowClassDropdown(true);
                     }}
                     onFocus={() => setShowClassDropdown(true)}
-                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                    onClick={() => setShowClassDropdown(true)}
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none relative z-[95]"
                   />
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
                   {showClassDropdown && (
                     <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
                       <button
@@ -2272,20 +2282,24 @@ export default function TeacherDashboard({ user, onLogout }) {
                       >
                         None (Unassigned)
                       </button>
-                      {classes.filter(c => c.class_name.toLowerCase().includes(classSearch.toLowerCase())).map(c => (
-                        <button
-                          key={`reg_class_opt_${c.id}`}
-                          type="button"
-                          onClick={() => {
-                            setFormData({ ...formData, class_id: c.id });
-                            setClassSearch(c.class_name);
-                            setShowClassDropdown(false);
-                          }}
-                          className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 transition-colors font-bold text-slate-700 border-b border-slate-100 last:border-0"
-                        >
-                          {c.class_name}
-                        </button>
-                      ))}
+                      {classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
+                        classes.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).map(c => (
+                          <button
+                            key={`reg_class_opt_${c.id}`}
+                            type="button"
+                            onClick={() => {
+                              setFormData({ ...formData, class_id: c.id });
+                              setClassSearch(c.class_name);
+                              setShowClassDropdown(false);
+                            }}
+                            className="w-full text-left px-4 py-3 text-sm hover:bg-slate-50 transition-colors font-bold text-slate-700 border-b border-slate-100 last:border-0"
+                          >
+                            {c.class_name}
+                          </button>
+                        ))
+                      ) : (
+                        <div className="px-4 py-3 text-sm text-slate-400 text-center">No classes found.</div>
+                      )}
                     </div>
                   )}
                   {showClassDropdown && (
