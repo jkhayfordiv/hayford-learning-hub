@@ -180,11 +180,14 @@ router.get('/my-tasks', auth, async (req, res) => {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
       `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
+              a.teacher_comment, a.teacher_comment_read, a.feedback_date,
               m.id as module_id, m.module_name, m.module_type,
-              u.first_name as teacher_first_name, u.last_name as teacher_last_name
+              u.first_name as teacher_first_name, u.last_name as teacher_last_name,
+              g.first_name as grader_first_name, g.last_name as grader_last_name
        FROM assigned_tasks a
        JOIN learning_modules m ON a.module_id = m.id
        JOIN users u ON a.teacher_id = u.id
+       LEFT JOIN users g ON a.grader_id = g.id
        WHERE a.student_id = $1
        ORDER BY CASE WHEN a.status = 'pending' THEN 0 ELSE 1 END, a.due_date ASC, a.created_at DESC`,
       [student_id]
@@ -199,58 +202,30 @@ router.get('/my-tasks', auth, async (req, res) => {
 });
 
 // @route   GET api/assignments
-// @desc    Get all tasks assigned by the logged-in teacher
+// @desc    Get all tasks assigned by the logged-in teacher (regardless of role)
 // @access  Private (Teacher/Admin only)
 router.get('/', requireTeacher, async (req, res) => {
   const actor = req.user;
   const teacher_id = actor.id;
-  const role = actor.role;
-  const institution_id = actor.institution_id;
 
   try {
     const connection = await pool.getConnection();
     
-    let query, params;
-    
-    if (role === 'super_admin') {
-      // SuperAdmin: see all assignments
-      query = `
-        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
-               m.module_name, m.module_type,
-               u.first_name as student_first_name, u.last_name as student_last_name
-        FROM assigned_tasks a
-        JOIN learning_modules m ON a.module_id = m.id
-        LEFT JOIN users u ON a.student_id = u.id
-        ORDER BY a.created_at DESC
-      `;
-      params = [];
-    } else if (role === 'admin' && institution_id) {
-      // Admin: see all assignments in their institution
-      query = `
-        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
-               m.module_name, m.module_type,
-               u.first_name as student_first_name, u.last_name as student_last_name
-        FROM assigned_tasks a
-        JOIN learning_modules m ON a.module_id = m.id
-        JOIN users u ON a.student_id = u.id
-        WHERE u.institution_id = $1
-        ORDER BY a.created_at DESC
-      `;
-      params = [institution_id];
-    } else {
-      // Teacher: see own assignments only
-      query = `
-        SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
-               m.module_name, m.module_type,
-               u.first_name as student_first_name, u.last_name as student_last_name
-        FROM assigned_tasks a
-        JOIN learning_modules m ON a.module_id = m.id
-        JOIN users u ON a.student_id = u.id
-        WHERE a.teacher_id = $1
-        ORDER BY a.created_at DESC
-      `;
-      params = [teacher_id];
-    }
+    // All users (Teacher, Admin, SuperAdmin) see their own assignments only
+    const query = `
+      SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
+             a.teacher_comment, a.teacher_comment_read, a.feedback_date,
+             m.module_name, m.module_type,
+             u.first_name as student_first_name, u.last_name as student_last_name,
+             g.first_name as grader_first_name, g.last_name as grader_last_name
+      FROM assigned_tasks a
+      JOIN learning_modules m ON a.module_id = m.id
+      LEFT JOIN users u ON a.student_id = u.id
+      LEFT JOIN users g ON a.grader_id = g.id
+      WHERE a.teacher_id = $1
+      ORDER BY a.created_at DESC
+    `;
+    const params = [teacher_id];
 
     const [tasks] = await connection.query(query, params);
     connection.release();
@@ -335,13 +310,34 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
-    // Update the assignment with the teacher's comment and set teacher_comment_read to FALSE
-    const [result] = await connection.query(
+    // Start a transaction to ensure both are updated if linked
+    await connection.query('START TRANSACTION');
+
+    // 1. Update the assigned_task
+    const [taskResult] = await connection.query(
       `UPDATE assigned_tasks 
-       SET teacher_comment = $1, teacher_comment_read = FALSE 
-       WHERE id = $2 AND teacher_id = $3`,
-      [teacher_comment, assignment_id, teacher_id]
+       SET teacher_comment = $1, 
+           grader_id = $2, 
+           feedback_date = CURRENT_TIMESTAMP,
+           teacher_comment_read = FALSE 
+       WHERE id = $3`,
+      [teacher_comment, teacher_id, assignment_id]
     );
+
+    // 2. Update the corresponding student_score if it exists
+    // We try to find it either by assignment_id OR if the target ID itself was a score ID
+    await connection.query(
+      `UPDATE student_scores 
+       SET teacher_comment = $1, 
+           teacher_comment_read = false,
+           grader_id = $2,
+           feedback_date = CURRENT_TIMESTAMP
+       WHERE assignment_id = $3 OR id = $3`,
+      [teacher_comment, teacher_id, assignment_id]
+    );
+
+    await connection.query('COMMIT');
+    connection.release();
 
     connection.release();
 

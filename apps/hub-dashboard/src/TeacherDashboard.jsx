@@ -1756,19 +1756,65 @@ export default function TeacherDashboard({ user, onLogout }) {
             {/* Task Queue Tab */}
             <div className="flex justify-between items-end mb-8">
               <div>
-                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Task Queue</h2>
-                <p className="text-slate-500 font-medium">View and manage all pending student tasks across your classes.</p>
+                <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight mb-2">Task Queue</h2>
+                <p className="text-slate-500 dark:text-slate-400 font-medium">View and manage individual student tasks, past and current.</p>
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-12 text-center">
-              <div className="w-16 h-16 bg-slate-100 rounded-2xl mx-auto flex items-center justify-center mb-6">
-                <FileText className="text-slate-400 w-8 h-8" />
+            <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
+                      <th className="px-6 py-4">Student</th>
+                      <th className="px-6 py-4">Task Type</th>
+                      <th className="px-6 py-4">Instructions</th>
+                      <th className="px-6 py-4">Due Date</th>
+                      <th className="px-6 py-4">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-700 text-sm font-medium text-slate-700 dark:text-slate-300">
+                    {(() => {
+                      const individualTasks = assignments.filter(a => a.student_first_name);
+                      if (individualTasks.length === 0) {
+                        return (
+                          <tr><td colSpan="5" className="px-6 py-12 text-center text-slate-400">No individual tasks found.</td></tr>
+                        );
+                      }
+                      
+                      const sortedTasks = [...individualTasks].sort((a, b) => {
+                        // Current/Pending at the top
+                        if (a.status === 'pending' && b.status !== 'pending') return -1;
+                        if (a.status !== 'pending' && b.status === 'pending') return 1;
+                        // Then by due date (closest first)
+                        if (a.due_date && b.due_date) return new Date(a.due_date) - new Date(b.due_date);
+                        if (a.due_date) return -1;
+                        if (b.due_date) return 1;
+                        // Defaults by creation desc
+                        return new Date(b.created_at) - new Date(a.created_at);
+                      });
+
+                      return sortedTasks.map(task => (
+                        <tr key={`task_${task.id}`} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group">
+                          <td className="px-6 py-4 font-bold text-slate-900 dark:text-white">{task.student_first_name} {task.student_last_name}</td>
+                          <td className="px-6 py-4">
+                            <span className="font-bold text-slate-700 dark:text-slate-300">{task.module_name || task.assignment_type}</span>
+                            <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest mt-0.5">{task.assignment_type}</div>
+                          </td>
+                          <td className="px-6 py-4 text-slate-500 dark:text-slate-400 max-w-[200px] truncate" title={task.instructions}>{task.instructions || 'N/A'}</td>
+                          <td className="px-6 py-4 font-bold text-slate-600 dark:text-slate-400">{task.due_date ? new Date(task.due_date).toLocaleDateString() : 'No Due Date'}</td>
+                          <td className="px-6 py-4">
+                            {task.status === 'completed' 
+                              ? <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-[10px] font-black uppercase tracking-widest rounded-lg border border-green-200 dark:border-green-800"><CheckCircle2 size={12} /> Done</span>
+                              : <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 text-[10px] font-black uppercase tracking-widest rounded-lg border border-amber-200 dark:border-amber-800">Pending</span>
+                            }
+                          </td>
+                        </tr>
+                      ));
+                    })()}
+                  </tbody>
+                </table>
               </div>
-              <h3 className="font-bold text-lg text-slate-900 mb-2">Task Queue View</h3>
-              <p className="text-slate-500 font-medium max-w-md mx-auto">
-                This view will display all pending assignments and tasks across your classes in a unified queue for easy monitoring and management.
-              </p>
             </div>
           </>
         ) : null}
