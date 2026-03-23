@@ -270,7 +270,7 @@ const TASK_2_PROMPTS = [
 
 const TASK_INSTRUCTIONS = {
   task1: 'Summarise the information by selecting and reporting the main features, and make comparisons where relevant. Write at least 150 words.',
-  task2: 'Write about the following topic... Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 250 words.'
+  task2: 'Write about the following topic... Give reasons for your answer and include any relevant examples from your own knowledge or experience. Write at least 100 words.'
 };
 
 const GRAMMAR_LAB_MAP = {
@@ -720,7 +720,7 @@ export default function App() {
   
   // Determine actual current task type for rendering
   const actualCurrentTask = writingTask === 'both' ? currentTaskInBothMode : writingTask;
-  const minWordTarget = actualCurrentTask === 'task2' ? 250 : 150;
+  const minWordTarget = actualCurrentTask === 'task2' ? 100 : 150;
 
   const getPromptPool = (taskType) => (taskType === 'task2' ? TASK_2_PROMPTS : TASK_1_PROMPTS);
   const getRandomPrompt = (taskType) => {
@@ -991,16 +991,16 @@ export default function App() {
         ) : (
           <div className="h-full flex flex-col lg:flex-row">
             {/* Visual Panel */}
-            <div className="w-full lg:w-1/2 p-6 overflow-y-auto border-r bg-white scrollbar-hide">
+            <div className="w-full lg:w-1/2 p-6 overflow-y-auto border-r bg-[#7a121f] text-white scrollbar-hide">
               <div className="max-w-xl mx-auto">
-                <div className="flex items-center gap-2 text-slate-900 mb-2">{getIcon(currentPrompt.type)}<span className="font-black uppercase tracking-widest text-[10px]">{currentPrompt.type}</span></div>
-                <h2 className="text-2xl font-black mb-4 text-slate-800 tracking-tight">{currentPrompt.title}</h2>
+                <div className="flex items-center gap-2 text-white/80 mb-2">{getIcon(currentPrompt.type)}<span className="font-black uppercase tracking-widest text-[10px]">{currentPrompt.type}</span></div>
+                <h2 className="text-2xl font-black mb-4 text-white tracking-tight">{currentPrompt.title}</h2>
                 {actualCurrentTask === 'task1' && (
-                  <div className="bg-slate-50 rounded-xl border border-slate-100 p-5 mb-8 text-slate-600 leading-relaxed font-medium italic">"{currentPrompt.instruction}"</div>
+                  <div className="bg-white/10 rounded-xl border border-white/20 p-5 mb-8 text-white/90 leading-relaxed font-medium italic">"{currentPrompt.instruction}"</div>
                 )}
                 {actualCurrentTask === 'task1' ? (
-                  <div className="bg-white border border-slate-200 shadow-sm rounded-2xl overflow-hidden mb-8 min-h-[350px] flex flex-col">
-                    <div className="bg-slate-50 px-4 py-2 border-b flex justify-between items-center"><span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Visual Data View</span><span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded font-bold">TASK 1</span></div>
+                  <div className="bg-white border border-white/20 shadow-sm rounded-2xl overflow-hidden mb-8 min-h-[350px] flex flex-col">
+                    <div className="bg-slate-50 px-4 py-2 border-b flex justify-between items-center"><span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Visual Data View</span><span className="text-[10px] bg-crimson-100 text-[#A51C30] px-2 py-0.5 rounded font-bold">TASK 1</span></div>
                     <div className="flex-1 flex items-center justify-center p-4">
                       <div className="bg-white text-slate-900 p-4 rounded-xl w-full">
                         <VisualRenderer prompt={currentPrompt} />
@@ -1009,12 +1009,12 @@ export default function App() {
                   </div>
                 ) : (
                   <div className="mb-8">
-                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-2xl p-8 mb-4 text-center">
-                      <div className="inline-block px-3 py-1 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Task 2 Essay Question</div>
-                      <p className="text-lg font-bold text-slate-800 leading-relaxed">{currentPrompt.instruction}</p>
+                    <div className="bg-white/10 border-2 border-white/20 rounded-2xl p-8 mb-4 text-center">
+                      <div className="inline-block px-3 py-1 bg-white text-[#7a121f] text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Task 2 Essay Question</div>
+                      <p className="text-lg font-bold text-white leading-relaxed">{currentPrompt.instruction}</p>
                     </div>
-                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-900">
-                      <p className="font-bold mb-1">Instructions:</p>
+                    <div className="bg-white/10 border border-white/20 rounded-xl p-4 text-sm text-white/90">
+                      <p className="font-bold mb-1 font-black uppercase tracking-tighter text-[10px] opacity-60">Instructions:</p>
                       <p>{TASK_INSTRUCTIONS[actualCurrentTask]}</p>
                     </div>
                   </div>

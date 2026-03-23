@@ -81,6 +81,16 @@ export default function SubmissionReviewModal({ submission, onClose, onSaveComme
             </div>
           </div>
 
+          {/* Submitted Text */}
+          <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+            <h3 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+              <MessageSquare size={16} /> Submitted Text
+            </h3>
+            <div className="text-slate-700 dark:text-slate-300 leading-relaxed font-serif text-lg whitespace-pre-wrap">
+              {submission.submitted_text}
+            </div>
+          </div>
+
           {/* AI Feedback */}
           {aiFeedback && (
             <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
@@ -161,6 +171,12 @@ export default function SubmissionReviewModal({ submission, onClose, onSaveComme
             <h3 className="font-black text-sm uppercase tracking-widest text-amber-600 dark:text-amber-500 mb-4 flex items-center gap-2">
               <MessageSquare size={16} /> Your Feedback to Student
             </h3>
+            <div className="mb-4 flex items-center gap-2 bg-amber-50 dark:bg-amber-900/10 p-2 rounded-lg border border-amber-100 dark:border-amber-800">
+               <User size={14} className="text-amber-600" />
+               <span className="text-xs font-bold text-amber-800 dark:text-amber-400">
+                 Grading as: {submission.grader_first_name || 'System'} (You)
+               </span>
+            </div>
             
             <textarea
               value={comment}

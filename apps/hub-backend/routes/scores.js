@@ -40,9 +40,9 @@ router.post('/', auth, async (req, res) => {
     // Insert score
     const [result] = await connection.query(
       `INSERT INTO student_scores 
-       (student_id, module_id, submitted_text, word_count, overall_score, ai_feedback, diagnostic_data) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
-      [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || [])]
+       (student_id, module_id, submitted_text, word_count, overall_score, ai_feedback, diagnostic_data, assignment_id) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
+      [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || []), taskIdNum]
     );
 
     // Increment grammar progress by actual error counts if provided
@@ -131,9 +131,12 @@ router.get('/my-scores', auth, async (req, res) => {
     const connection = await pool.getConnection();
     const [scores] = await connection.query(
       `SELECT s.id, s.submitted_text, s.word_count, s.overall_score, 
-              s.completed_at, s.diagnostic_data, m.module_name, m.module_type 
+              s.completed_at, s.diagnostic_data, s.teacher_comment, s.teacher_comment_read, s.feedback_date,
+              m.module_name, m.module_type,
+              g.first_name as grader_first_name, g.last_name as grader_last_name
        FROM student_scores s 
        JOIN learning_modules m ON s.module_id = m.id 
+       LEFT JOIN users g ON s.grader_id = g.id
        WHERE s.student_id = $1 
        ORDER BY s.completed_at DESC`,
       [student_id]
@@ -239,11 +242,14 @@ router.get('/recent', requireTeacher, async (req, res) => {
     if (actor_role === 'super_admin') {
       query = `
         SELECT s.id, s.completed_at, s.overall_score, s.module_id,
+               s.teacher_comment, s.teacher_comment_read, s.feedback_date,
                m.module_name, m.module_type,
-               u.first_name as student_first_name, u.last_name as student_last_name
+               u.first_name as student_first_name, u.last_name as student_last_name,
+               g.first_name as grader_first_name, g.last_name as grader_last_name
         FROM student_scores s
         JOIN users u ON s.student_id = u.id
         JOIN learning_modules m ON s.module_id = m.id
+        LEFT JOIN users g ON s.grader_id = g.id
         ORDER BY s.completed_at DESC LIMIT 10`;
       params = [];
     } else if (actor_role === 'admin' && actor_institution_id) {
@@ -334,10 +340,16 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
         s.ai_feedback, 
         s.diagnostic_data,
         s.completed_at,
+        s.teacher_comment,
+        s.teacher_comment_read,
+        s.feedback_date,
         m.module_name,
-        m.module_type
+        m.module_type,
+        g.first_name as grader_first_name,
+        g.last_name as grader_last_name
       FROM student_scores s
       JOIN learning_modules m ON s.module_id = m.id
+      LEFT JOIN users g ON s.grader_id = g.id
       WHERE s.student_id = $1
       ORDER BY s.completed_at DESC
     `, [student_id]);
@@ -362,6 +374,133 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Fetch student scores error:', error);
     res.status(500).json({ error: 'Server Error fetching student scores' });
+  }
+});
+
+// @route   GET api/scores/assignment/:taskId
+// @desc    Get detailed submission for a specific assignment ID
+// @access  Private (Teacher/Admin only)
+router.get('/assignment/:taskId', requireTeacher, async (req, res) => {
+  const actor_role = req.user.role;
+  const actor_id = req.user.id;
+  const actor_institution_id = req.user.institution_id;
+  const taskId = req.params.taskId;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    // Fetch the score linked to this assignment
+    const [scores] = await connection.query(`
+      SELECT 
+        s.*, 
+        u.first_name as student_first_name, u.last_name as student_last_name, u.email as student_email, u.institution_id as student_institution_id, u.class_id as student_class_id,
+        m.module_name, m.module_type,
+        g.first_name as grader_first_name, g.last_name as grader_last_name
+      FROM student_scores s
+      JOIN users u ON s.student_id = u.id
+      JOIN learning_modules m ON s.module_id = m.id
+      LEFT JOIN users g ON s.grader_id = g.id
+      WHERE s.assignment_id = $1
+    `, [taskId]);
+
+    if (scores.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'Submission not found for this assignment.' });
+    }
+
+    const submission = scores[0];
+
+    // Tenant isolation check
+    if (actor_role === 'admin' && submission.student_institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: student belongs to different institution' });
+    }
+    
+    if (actor_role === 'teacher') {
+      // Verify student is in a class taught by this teacher
+      const [classCheck] = await connection.query(
+        'SELECT id FROM classes WHERE id = $1 AND teacher_id = $2',
+        [submission.student_class_id, actor_id]
+      );
+      if (classCheck.length === 0) {
+        connection.release();
+        return res.status(403).json({ error: 'Access denied: student not in your class' });
+      }
+    }
+
+    connection.release();
+
+    res.json({
+      ...submission,
+      ai_feedback: typeof submission.ai_feedback === 'string' ? JSON.parse(submission.ai_feedback) : submission.ai_feedback,
+      diagnostic_data: typeof submission.diagnostic_data === 'string' ? JSON.parse(submission.diagnostic_data) : submission.diagnostic_data
+    });
+
+  } catch (error) {
+    console.error('Fetch assignment submission error:', error);
+    res.status(500).json({ error: 'Server Error fetching submission' });
+  }
+});
+
+// @route   PATCH api/scores/:id/comment
+// @desc    Update teacher comment/feedback for a submission
+// @access  Private (Teacher/Admin only)
+router.patch('/:id/comment', requireTeacher, async (req, res) => {
+  const scoreId = req.params.id;
+  const { teacher_comment } = req.body;
+  const grader_id = req.user.id;
+  const actor_role = req.user.role;
+  const actor_institution_id = req.user.institution_id;
+
+  try {
+    const connection = await pool.getConnection();
+
+    // Verify ownership/permissions before updating
+    const [scoreCheck] = await connection.query(`
+      SELECT s.id, u.institution_id, u.class_id
+      FROM student_scores s
+      JOIN users u ON s.student_id = u.id
+      WHERE s.id = $1
+    `, [scoreId]);
+
+    if (scoreCheck.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'Submission not found.' });
+    }
+
+    const scoreData = scoreCheck[0];
+
+    if (actor_role === 'admin' && scoreData.institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: student in different institution' });
+    }
+
+    if (actor_role === 'teacher') {
+      const [classCheck] = await connection.query(
+        'SELECT id FROM classes WHERE id = $1 AND teacher_id = $2',
+        [scoreData.class_id, grader_id]
+      );
+      if (classCheck.length === 0) {
+        connection.release();
+        return res.status(403).json({ error: 'Access denied: student not in your class' });
+      }
+    }
+
+    await connection.query(`
+      UPDATE student_scores 
+      SET teacher_comment = $1, 
+          grader_id = $2, 
+          feedback_date = CURRENT_TIMESTAMP,
+          teacher_comment_read = false
+      WHERE id = $3
+    `, [teacher_comment, grader_id, scoreId]);
+
+    connection.release();
+    res.json({ success: true, message: 'Feedback saved successfully.' });
+
+  } catch (error) {
+    console.error('Update teacher comment error:', error);
+    res.status(500).json({ error: 'Server Error saving feedback' });
   }
 });
 

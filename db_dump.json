@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "name": "Hayford Global Academy",
+    "address": null,
+    "contact_email": null,
+    "created_at": "2026-03-12T01:39:05.252Z",
+    "total_users": 4,
+    "student_count": 3,
+    "raw_total_users": "4",
+    "raw_student_count": "3"
+  },
+  {
+    "id": 4,
+    "name": "NIC International College",
+    "address": null,
+    "contact_email": "2@2",
+    "created_at": "2026-03-12T03:42:41.724Z",
+    "total_users": 24,
+    "student_count": 20,
+    "raw_total_users": "24",
+    "raw_student_count": "20"
+  },
+  {
+    "id": 5,
+    "name": "The Socialist Republic of Andy",
+    "address": null,
+    "contact_email": "naritalawson@gmail.com",
+    "created_at": "2026-03-19T17:03:00.646Z",
+    "total_users": 1,
+    "student_count": 1,
+    "raw_total_users": "1",
+    "raw_student_count": "1"
+  }
+]

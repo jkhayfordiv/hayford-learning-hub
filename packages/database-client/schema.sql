@@ -190,9 +190,10 @@ CREATE TABLE IF NOT EXISTS assigned_tasks (
     student_id INTEGER DEFAULT NULL,
     class_id INTEGER DEFAULT NULL,
     module_id INTEGER NOT NULL,
-    assignment_type VARCHAR(50) DEFAULT 'writing' CHECK(assignment_type IN ('writing', 'vocabulary', 'grammar-practice')),
+    assignment_type VARCHAR(50) DEFAULT 'writing',
     grammar_topic_id VARCHAR(100),
     writing_task_type VARCHAR(10) DEFAULT NULL,
+    speaking_task_part VARCHAR(10) DEFAULT NULL,
     instructions TEXT,
     due_date TIMESTAMP,
     status VARCHAR(20) DEFAULT 'pending' CHECK(status IN ('pending', 'completed')),
@@ -210,6 +211,16 @@ ADD COLUMN IF NOT EXISTS class_id INTEGER;
 -- Add writing_task_type column if it doesn't exist
 ALTER TABLE assigned_tasks
 ADD COLUMN IF NOT EXISTS writing_task_type VARCHAR(10) DEFAULT NULL;
+
+-- Add speaking_task_part column if it doesn't exist
+ALTER TABLE assigned_tasks
+ADD COLUMN IF NOT EXISTS speaking_task_part VARCHAR(10) DEFAULT NULL;
+
+-- Add unique index for assignment deduplication (supports ON CONFLICT)
+-- Note: NULL in grammar_topic_id will allow multiple assignments for writing,
+-- which is generally desired so students can do Task 1 multiple times.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_assigned_tasks_dedup 
+ON assigned_tasks (student_id, module_id, assignment_type, grammar_topic_id);
 
 -- ============================================================================
 -- GRAMMAR PROGRESS TABLE
@@ -330,5 +341,13 @@ BEGIN
     ALTER TABLE assigned_tasks
     ADD CONSTRAINT chk_student_or_class
     CHECK (student_id IS NOT NULL OR class_id IS NOT NULL);
+
+    -- Assigned Tasks: Valid assignment types
+    ALTER TABLE assigned_tasks
+    DROP CONSTRAINT IF EXISTS chk_assignment_type;
+    
+    ALTER TABLE assigned_tasks
+    ADD CONSTRAINT chk_assignment_type
+    CHECK (assignment_type IN ('writing', 'vocabulary', 'grammar-practice', 'speaking'));
 END
 $$;

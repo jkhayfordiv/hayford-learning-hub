@@ -184,7 +184,7 @@ export default function LoginPage() {
                   <input required name="password" type="password" value={formData.password} placeholder="••••••••" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
                 </div>
 
-                <button disabled={isLoading} type="submit" className={`w-full text-white font-black py-4 rounded-xl mt-4 shadow-soft transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide ${isTeacherMode ? 'bg-[#dc143c] hover:bg-slate-800 disabled:bg-slate-300 shadow-xl' : 'bg-[#dc143c] hover:bg-[#b01030] hover:shadow-glow disabled:bg-red-300'}`}>
+                <button disabled={isLoading} type="submit" className={`w-full text-white font-black py-4 rounded-xl mt-4 shadow-soft transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm tracking-wide ${isTeacherMode ? 'bg-[#A51C30] hover:bg-[#8B1829] disabled:bg-slate-300 shadow-xl' : 'bg-[#A51C30] hover:bg-[#8B1829] hover:shadow-glow disabled:bg-red-300'}`}>
                   {isLoading ? <Loader2 size={18} className="animate-spin" /> : isLogin ? 'Sign In' : 'Create Account'}
                   {!isLoading && <ArrowRight size={16} />}
                 </button>

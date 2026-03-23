@@ -67,9 +67,14 @@ export default function StudentFeedbackModal({ score, onClose, onMarkAsRead }) {
               <div className="flex items-center gap-2 mb-4">
                 <MessageSquare size={20} className="text-amber-600 dark:text-amber-500" />
                 <h3 className="font-black text-sm uppercase tracking-widest text-amber-700 dark:text-amber-500">
-                  Personal Feedback from Your Teacher
+                  Feedback from {score.grader_first_name ? `${score.grader_first_name} ${score.grader_last_name}` : 'Your Teacher'}
                 </h3>
               </div>
+              {score.feedback_date && (
+                <div className="mb-3 text-[10px] font-black uppercase tracking-widest text-amber-600/60 flex items-center gap-1.5">
+                   <Calendar size={12} /> Gradied on {new Date(score.feedback_date).toLocaleString()}
+                </div>
+              )}
               <div className="bg-white dark:bg-slate-800 rounded-xl p-5 border border-amber-200 dark:border-amber-800">
                 <p className="text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-wrap">
                   {score.teacher_comment}

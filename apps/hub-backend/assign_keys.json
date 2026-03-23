@@ -1,0 +1,17 @@
+{
+  "keys": [
+    "id",
+    "assignment_type",
+    "grammar_topic_id",
+    "writing_task_type",
+    "speaking_task_part",
+    "instructions",
+    "due_date",
+    "status",
+    "created_at",
+    "module_name",
+    "module_type",
+    "student_first_name",
+    "student_last_name"
+  ]
+}
