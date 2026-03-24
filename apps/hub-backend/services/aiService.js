@@ -209,6 +209,8 @@ Evaluate the student on ALL FOUR official IELTS speaking criteria by listening t
 3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures.
 4. Pronunciation (P): CRITICAL. Listen to actual sounds. Evaluate clarity, word stress, sentence rhythm, intonation, and intelligibility. Identify specific phoneme or stress errors if present.
 
+CRITICAL SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corrections, or pauses. Students in the 4.0-5.5 range hesitate as they search for vocabulary. If their meaning is clear and their vocabulary is appropriate, score them a realistic 5.0 or higher. Stop artificially lowering scores to 4.0 just for pacing. Evaluate fluency holistically - natural pauses while thinking are NORMAL and should not result in harsh penalties.
+
 Calculate Overall Band Score as average of all four, rounded to nearest 0.5.
 
 Return ONLY valid JSON (no markdown, no extra text) with this exact structure:

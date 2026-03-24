@@ -314,19 +314,41 @@ export default function App() {
 
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { label: 'Fluency', key: 'fluency', border: 'border-blue-100', bg: 'bg-blue-50/30' },
-                    { label: 'Lexical', key: 'lexical', border: 'border-indigo-100', bg: 'bg-indigo-50/30' },
-                    { label: 'Grammar', key: 'grammar', border: 'border-purple-100', bg: 'bg-purple-50/30' },
-                    { label: 'Pronunciation', key: 'pronunciation', border: 'border-amber-100', bg: 'bg-amber-50/30' },
-                  ].map(({ label, key, border, bg }) => (
-                    feedback.scores?.[key] !== undefined && (
-                      <div key={key} className={`bg-white border ${border} rounded-2xl p-6 text-center shadow-sm relative overflow-hidden`}>
-                        <div className={`absolute top-0 right-0 w-8 h-8 ${bg} rounded-bl-3xl`}></div>
-                        <p className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-400 mb-2">{label}</p>
-                        <p className="text-3xl font-black text-slate-900">{feedback.scores[key]}</p>
+                    { label: 'Fluency & Coherence', key: 'fluency', icon: 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z' },
+                    { label: 'Lexical Resource', key: 'lexical', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' },
+                    { label: 'Grammar Range', key: 'grammar', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
+                    { label: 'Pronunciation', key: 'pronunciation', icon: 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z' },
+                  ].map(({ label, key, icon }) => {
+                    const score = feedback.scores?.[key] ?? 0;
+                    const percentage = (score / 9) * 100;
+                    const getColorClasses = (s) => {
+                      if (s >= 6.5) return { bg: 'bg-green-500', text: 'text-green-600', border: 'border-green-200', lightBg: 'bg-green-50' };
+                      if (s >= 5.0) return { bg: 'bg-blue-500', text: 'text-blue-600', border: 'border-blue-200', lightBg: 'bg-blue-50' };
+                      return { bg: 'bg-amber-500', text: 'text-amber-600', border: 'border-amber-200', lightBg: 'bg-amber-50' };
+                    };
+                    const colors = getColorClasses(score);
+                    
+                    return feedback.scores?.[key] !== undefined && (
+                      <div key={key} className={`bg-white border-2 ${colors.border} rounded-2xl p-5 shadow-md hover:shadow-lg transition-all`}>
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className={`w-8 h-8 ${colors.lightBg} ${colors.text} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} /></svg>
+                          </div>
+                          <p className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500 leading-tight">{label}</p>
+                        </div>
+                        <div className="flex items-end justify-between mb-2">
+                          <p className="text-4xl font-black text-slate-900">{score}</p>
+                          <p className="text-xs font-bold text-slate-400 mb-1">/ 9.0</p>
+                        </div>
+                        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                          <div 
+                            className={`h-full ${colors.bg} rounded-full transition-all duration-700 ease-out`}
+                            style={{ width: `${percentage}%` }}
+                          ></div>
+                        </div>
                       </div>
                     )
-                  ))}
+                  })}
                 </div>
             </div>
 
