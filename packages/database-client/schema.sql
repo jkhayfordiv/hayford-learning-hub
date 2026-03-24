@@ -393,6 +393,6 @@ BEGIN
     
     ALTER TABLE assigned_tasks
     ADD CONSTRAINT chk_assignment_type
-    CHECK (assignment_type IN ('writing', 'vocabulary', 'grammar-practice', 'speaking'));
+    CHECK (assignment_type IN ('writing', 'vocabulary', 'grammar-practice', 'speaking', 'listening'));
 END
 $$;

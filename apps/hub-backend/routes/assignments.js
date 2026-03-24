@@ -46,6 +46,15 @@ router.post('/', requireTeacher, async (req, res) => {
     }
     const [resolvedSpeakingModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'speaking' LIMIT 1");
 
+    // Ensure listening module exists
+    const [listeningModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'listening' LIMIT 1");
+    if (listeningModules.length === 0) {
+      await connection.query(
+        "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('IELTS Listening', 'listening', 'Practice IELTS Listening tasks with AI feedback.')"
+      );
+    }
+    const [resolvedListeningModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'listening' LIMIT 1");
+
     if (aType === 'grammar-practice' && !grammar_topic_id) {
       return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
     }
@@ -55,7 +64,9 @@ router.post('/', requireTeacher, async (req, res) => {
       ? resolvedGrammarModule?.[0]?.id
       : aType === 'speaking'
         ? resolvedSpeakingModule?.[0]?.id
-        : module_id;
+        : aType === 'listening'
+          ? resolvedListeningModule?.[0]?.id
+          : module_id;
 
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
