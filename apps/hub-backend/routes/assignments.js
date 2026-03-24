@@ -11,9 +11,10 @@ router.post('/', requireTeacher, async (req, res) => {
   const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, writing_task_type, speaking_task_part } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
+  let connection;
   
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
 
     // Ensure learning modules exist since DB wipes could empty them
     const [modules] = await connection.query('SELECT id FROM learning_modules WHERE id = 1');
@@ -46,7 +47,6 @@ router.post('/', requireTeacher, async (req, res) => {
     const [resolvedSpeakingModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'speaking' LIMIT 1");
 
     if (aType === 'grammar-practice' && !grammar_topic_id) {
-      connection.release();
       return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
     }
 
@@ -65,7 +65,6 @@ router.post('/', requireTeacher, async (req, res) => {
         [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
       );
       
-      connection.release();
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
     } else if (class_id) {
       // Assign to an entire class: create template assignment with class_id
@@ -103,13 +102,10 @@ router.post('/', requireTeacher, async (req, res) => {
           );
           count++;
         } catch (dupError) {
-          console.error('Error inserting assignment for student:', enrollment.user_id);
-          console.error('Error details:', dupError.message);
-          console.error('Values:', { teacher_id, student_id: enrollment.user_id, class_id, module_id: resolvedModuleId, assignment_type: aType, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date });
+          console.error('Error inserting assignment for student:', enrollment.user_id, dupError.message);
         }
       }
       
-      connection.release();
       return res.status(201).json({ success: true, message: `Assignment created for ${count} existing students in class (template stored for late joiners).`, id: result.insertId });
     } else {
       // FIX #3: Assign to "all students" with multi-tenancy privacy walls
@@ -159,14 +155,13 @@ router.post('/', requireTeacher, async (req, res) => {
         }
       }
       
-      connection.release();
       return res.status(201).json({ success: true, message: `Assignment created for ${count} students.` });
     }
   } catch (error) {
     console.error('Create assignment error:', error);
-    console.error('Error stack:', error.stack);
-    console.error('Request body:', req.body);
     res.status(500).json({ error: 'Server Error saving assignment', details: error.message });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -307,14 +302,15 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
     return res.status(400).json({ error: 'teacher_comment is required.' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
     // Start a transaction to ensure both are updated if linked
     await connection.query('START TRANSACTION');
 
     // 1. Update the assigned_task
-    const [taskResult] = await connection.query(
+    await connection.query(
       `UPDATE assigned_tasks 
        SET teacher_comment = $1, 
            grader_id = $2, 
@@ -325,7 +321,6 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
     );
 
     // 2. Update the corresponding student_score if it exists
-    // We try to find it either by assignment_id OR if the target ID itself was a score ID
     await connection.query(
       `UPDATE student_scores 
        SET teacher_comment = $1, 
@@ -337,18 +332,13 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
     );
 
     await connection.query('COMMIT');
-    connection.release();
-
-    connection.release();
-
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: 'Assignment not found or you do not have permission to comment on it.' });
-    }
-
     res.json({ success: true, message: 'Teacher comment saved successfully.' });
   } catch (error) {
     console.error('Update teacher comment error:', error);
+    if (connection) await connection.query('ROLLBACK');
     res.status(500).json({ error: 'Server Error saving teacher comment' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
