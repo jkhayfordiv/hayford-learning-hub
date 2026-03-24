@@ -50,17 +50,32 @@ export default function App() {
     setAuthChecked(true)
   }, [])
 
-  // --- Question ---
-  const [currentQuestion, setCurrentQuestion] = useState(() => getRandomQuestion())
+  // --- Multi-Question Session ---
+  const [sessionQuestions, setSessionQuestions] = useState(() => {
+    const questions = []
+    const used = new Set()
+    while (questions.length < 4) {
+      const q = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)]
+      if (!used.has(q)) {
+        questions.push(q)
+        used.add(q)
+      }
+    }
+    return questions
+  })
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+  const currentQuestion = sessionQuestions[currentQuestionIndex]
 
   // --- Recording ---
   const [isRecording, setIsRecording] = useState(false)
   const [audioBlob, setAudioBlob] = useState(null)
   const [audioUrl, setAudioUrl] = useState(null)
   const [recordingSeconds, setRecordingSeconds] = useState(0)
+  const [sessionTimeRemaining, setSessionTimeRemaining] = useState(240) // 4 minutes = 240 seconds
   const mediaRecorderRef = useRef(null)
   const audioChunksRef = useRef([])
   const timerRef = useRef(null)
+  const sessionTimerRef = useRef(null)
 
   // --- Submission ---
   const [isLoading, setIsLoading] = useState(false)
@@ -108,6 +123,18 @@ export default function App() {
       timerRef.current = setInterval(() => {
         setRecordingSeconds((prev) => prev + 1)
       }, 1000)
+
+      // Start 4-minute countdown timer
+      sessionTimerRef.current = setInterval(() => {
+        setSessionTimeRemaining((prev) => {
+          if (prev <= 1) {
+            // Time's up - auto-stop recording
+            stopRecording()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
     } catch (err) {
       setError('Microphone access denied. Please allow microphone permissions and try again.')
     }
@@ -118,6 +145,7 @@ export default function App() {
       mediaRecorderRef.current.stop()
     }
     clearInterval(timerRef.current)
+    clearInterval(sessionTimerRef.current)
     setIsRecording(false)
   }
 
@@ -126,14 +154,40 @@ export default function App() {
     else startRecording()
   }
 
-  const handleNewQuestion = () => {
+  const handleNextQuestion = () => {
+    // Navigate to next question WITHOUT stopping recording
+    if (currentQuestionIndex < sessionQuestions.length - 1) {
+      setCurrentQuestionIndex(prev => prev + 1)
+    }
+  }
+
+  const handlePrevQuestion = () => {
+    // Navigate to previous question WITHOUT stopping recording
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(prev => prev - 1)
+    }
+  }
+
+  const handleNewSession = () => {
     if (isRecording) stopRecording()
-    setCurrentQuestion(getRandomQuestion(currentQuestion))
+    // Generate new set of 4 questions
+    const questions = []
+    const used = new Set()
+    while (questions.length < 4) {
+      const q = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)]
+      if (!used.has(q)) {
+        questions.push(q)
+        used.add(q)
+      }
+    }
+    setSessionQuestions(questions)
+    setCurrentQuestionIndex(0)
     setAudioBlob(null)
     setAudioUrl(null)
     setFeedback(null)
     setError('')
     setRecordingSeconds(0)
+    setSessionTimeRemaining(240)
   }
 
   const handleSubmit = async () => {
@@ -176,12 +230,24 @@ export default function App() {
   }
 
   const handleReset = () => {
+    // Generate new set of 4 questions
+    const questions = []
+    const used = new Set()
+    while (questions.length < 4) {
+      const q = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)]
+      if (!used.has(q)) {
+        questions.push(q)
+        used.add(q)
+      }
+    }
+    setSessionQuestions(questions)
+    setCurrentQuestionIndex(0)
     setAudioBlob(null)
     setAudioUrl(null)
     setFeedback(null)
     setError('')
     setRecordingSeconds(0)
-    setCurrentQuestion(getRandomQuestion(currentQuestion))
+    setSessionTimeRemaining(240)
   }
 
   if (!authChecked) return null
@@ -335,18 +401,69 @@ export default function App() {
             <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 md:p-14 shadow-sm relative overflow-hidden group transition-all">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-50/30 rounded-full blur-3xl -mr-20 -mt-20"></div>
                 
-                <div className="relative space-y-8">
-                    <p className="text-2xl md:text-4xl font-bold text-slate-900 leading-[1.15] tracking-tight">{currentQuestion}</p>
+                <div className="relative space-y-6">
+                    {/* Question Counter & Timer */}
+                    <div className="flex items-center justify-between">
+                        <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm">
+                            Question {currentQuestionIndex + 1} of {sessionQuestions.length}
+                        </span>
+                        <div className={`px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm ${
+                          sessionTimeRemaining <= 60 ? 'bg-red-50 text-red-600 animate-pulse' : 'bg-slate-100 text-slate-600'
+                        }`}>
+                            Time: {formatTime(sessionTimeRemaining)}
+                        </div>
+                    </div>
+
+                    {/* All Questions List */}
+                    <div className="space-y-3">
+                        {sessionQuestions.map((q, idx) => (
+                            <div
+                                key={idx}
+                                className={`p-4 rounded-2xl border-2 transition-all ${
+                                    idx === currentQuestionIndex
+                                        ? 'border-indigo-500 bg-indigo-50/50'
+                                        : 'border-slate-200 bg-slate-50/50 opacity-60'
+                                }`}
+                            >
+                                <div className="flex items-start gap-3">
+                                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
+                                        idx === currentQuestionIndex ? 'bg-indigo-600 text-white' : 'bg-slate-300 text-slate-600'
+                                    }`}>
+                                        {idx + 1}
+                                    </span>
+                                    <p className={`text-sm font-medium leading-relaxed ${
+                                        idx === currentQuestionIndex ? 'text-slate-900' : 'text-slate-500'
+                                    }`}>
+                                        {q}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                     
+                    {/* Navigation Buttons */}
                     <div className="flex flex-wrap gap-3 pt-4">
                         <button
-                            onClick={handleNewQuestion}
-                            disabled={isRecording}
+                            onClick={handlePrevQuestion}
+                            disabled={currentQuestionIndex === 0}
                             className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm"
                         >
-                            Next Question
+                            ← Previous
                         </button>
-                        <span className="bg-indigo-50 text-indigo-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest shadow-sm">Part 1: Introduction</span>
+                        <button
+                            onClick={handleNextQuestion}
+                            disabled={currentQuestionIndex === sessionQuestions.length - 1}
+                            className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm"
+                        >
+                            Next →
+                        </button>
+                        <button
+                            onClick={handleNewSession}
+                            disabled={isRecording}
+                            className="bg-amber-100 hover:bg-amber-200 text-amber-700 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm ml-auto"
+                        >
+                            New Session
+                        </button>
                     </div>
                 </div>
             </div>
@@ -364,14 +481,14 @@ export default function App() {
                         )}
                         <button
                             onClick={handleToggleRecording}
-                            className={`relative w-32 h-32 rounded-full border-8 border-slate-800 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
+                            className={`relative w-20 h-20 rounded-full border-4 border-slate-800 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
                                 isRecording ? 'bg-white' : 'bg-slate-800 hover:bg-slate-700 hover:border-slate-600'
                             }`}
                         >
                             {isRecording ? (
-                                <div className="w-8 h-8 bg-red-600 rounded-sm"></div>
+                                <div className="w-6 h-6 bg-red-600 rounded-sm"></div>
                             ) : (
-                                <svg className="w-12 h-12 text-indigo-400 group-hover:text-indigo-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-8 h-8 text-indigo-400 group-hover:text-indigo-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
                                     <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                                 </svg>
