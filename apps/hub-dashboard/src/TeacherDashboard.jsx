@@ -1645,84 +1645,122 @@ export default function TeacherDashboard({ user, onLogout }) {
                         return acc;
                       }, {});
 
-                      return Object.values(grouped).map((group, idx) => {
+                      const allGroups = Object.values(grouped);
+                      const activeGroups = allGroups.filter(g => g.completedCount < g.totalAssigned);
+                      const completedGroups = allGroups.filter(g => g.completedCount === g.totalAssigned);
+
+                      const renderGroup = (group, idx, section) => {
                         const groupAssignmentIds = group.students.map(s => s.id);
                         const allSelected = groupAssignmentIds.every(id => selectedAssignments.includes(id));
                         const someSelected = groupAssignmentIds.some(id => selectedAssignments.includes(id));
+                        const groupKey = `${section}-${idx}`;
 
                         return (
-                        <div key={idx} className="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
-                          <div 
-                            className="bg-white dark:bg-slate-800 p-3.5 flex items-center gap-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50"
-                            onClick={() => setExpandedAssignmentId(expandedAssignmentId === idx ? null : idx)}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={allSelected}
-                              ref={el => el && (el.indeterminate = someSelected && !allSelected)}
-                              onChange={(e) => {
-                                e.stopPropagation();
-                                if (allSelected) {
-                                  setSelectedAssignments(prev => prev.filter(id => !groupAssignmentIds.includes(id)));
-                                } else {
-                                  setSelectedAssignments(prev => [...new Set([...prev, ...groupAssignmentIds])]);
-                                }
-                              }}
-                              onClick={(e) => e.stopPropagation()}
-                              className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-amber-600 focus:ring-amber-500 shrink-0"
-                            />
-                            <div className="flex-1">
-                              <h4 className="font-bold text-slate-900 dark:text-white text-sm">
-                                {group.assignment_type === 'vocabulary' ? 'Vocabulary Builder' : group.module_name}
-                              </h4>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{group.instructions || 'No specific instructions provided.'}</p>
-                              <div className="mt-2 flex items-center gap-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                                <span className="flex items-center gap-1.5"><Calendar size={12} /> Due: {group.due_date ? new Date(group.due_date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }) : 'N/A'}</span>
-                                {group.assignment_type && (
-                                  <span className="flex items-center gap-1.5 px-1.5 py-0.5 bg-slate-100 dark:bg-slate-900/30 rounded-md border border-slate-200 dark:border-slate-700">
-                                    {group.assignment_type}
-                                  </span>
-                                )}
+                          <div key={groupKey} className="border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden hover:border-slate-400 dark:hover:border-slate-500 transition-colors">
+                            <div 
+                              className="bg-white dark:bg-slate-800 p-3.5 flex items-center gap-4 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50"
+                              onClick={() => setExpandedAssignmentId(expandedAssignmentId === groupKey ? null : groupKey)}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={allSelected}
+                                ref={el => el && (el.indeterminate = someSelected && !allSelected)}
+                                onChange={(e) => {
+                                  e.stopPropagation();
+                                  if (allSelected) {
+                                    setSelectedAssignments(prev => prev.filter(id => !groupAssignmentIds.includes(id)));
+                                  } else {
+                                    setSelectedAssignments(prev => [...new Set([...prev, ...groupAssignmentIds])]);
+                                  }
+                                }}
+                                onClick={(e) => e.stopPropagation()}
+                                className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-amber-600 focus:ring-amber-500 shrink-0"
+                              />
+                              <div className="flex-1">
+                                <h4 className="font-bold text-slate-900 dark:text-white text-sm">
+                                  {group.assignment_type === 'vocabulary' ? 'Vocabulary Builder' : group.module_name}
+                                </h4>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-1">{group.instructions || 'No specific instructions provided.'}</p>
+                                <div className="mt-2 flex items-center gap-4 text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">
+                                  <span className="flex items-center gap-1.5"><Calendar size={12} /> Due: {group.due_date ? new Date(group.due_date).toLocaleString([], { dateStyle: 'short', timeStyle: 'short' }) : 'N/A'}</span>
+                                  {group.assignment_type && (
+                                    <span className="flex items-center gap-1.5 px-1.5 py-0.5 bg-slate-100 dark:bg-slate-900/30 rounded-md border border-slate-200 dark:border-slate-700">
+                                      {group.assignment_type}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-6 shrink-0 ml-6">
+                                <div className="flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-900/50 px-3 py-1.5 rounded-xl border border-slate-100 dark:border-slate-700">
+                                   <span className="text-[8px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest mb-0.5">Completion</span>
+                                   <span className={`text-sm font-black ${group.completedCount === group.totalAssigned ? 'text-green-600' : 'text-slate-900 dark:text-white'}`}>
+                                     {group.completedCount} / {group.totalAssigned}
+                                   </span>
+                                </div>
+                                <div className="flex flex-col gap-1">
+                                  <button onClick={(e) => { e.stopPropagation(); setEditGroupData({...group, new_due_date: group.due_date || ''}); setIsEditModalOpen(true); }} className="p-1 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" title="Edit Due Date">
+                                    <Edit3 size={14} />
+                                  </button>
+                                  <button onClick={(e) => handleDeleteGroup(group, e)} className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete Assignment">
+                                    <Trash2 size={14} />
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                            <div className="flex items-center gap-6 shrink-0 ml-6">
-                              <div className="flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-900/50 px-3 py-1.5 rounded-xl border border-slate-100 dark:border-slate-700">
-                                 <span className="text-[8px] font-black uppercase text-slate-400 dark:text-slate-500 tracking-widest mb-0.5">Completion</span>
-                                 <span className={`text-sm font-black ${group.completedCount === group.totalAssigned ? 'text-green-600' : 'text-slate-900 dark:text-white'}`}>
-                                   {group.completedCount} / {group.totalAssigned}
-                                 </span>
+                            
+                            {/* Expanded Student List */}
+                            {expandedAssignmentId === groupKey && (
+                              <div className="bg-slate-50 border-t border-slate-200 p-4 animate-in slide-in-from-top-2">
+                                 <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-200 pb-1.5">Student Statuses</h5>
+                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                    {group.students.map(s => (
+                                      <div key={s.id} className="bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
+                                        <span className="font-bold text-[13px] text-slate-700">{s.student_first_name} {s.student_last_name}</span>
+                                        {s.status === 'completed' 
+                                          ? <button 
+                                              onClick={(e) => { e.stopPropagation(); openSubmissionViewer(s.id); }}
+                                              className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 text-green-700 hover:bg-green-100 transition-colors text-[9px] font-black uppercase tracking-widest rounded-lg border border-green-200"
+                                            >
+                                              <CheckCircle2 size={10} /> View Work
+                                            </button>
+                                          : <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-amber-50 text-amber-700 text-[9px] font-black uppercase tracking-widest rounded-lg border border-amber-200">Pending</span>
+                                        }
+                                      </div>
+                                    ))}
+                                 </div>
                               </div>
-                              <div className="flex flex-col gap-1">
-                                <button onClick={(e) => { e.stopPropagation(); setEditGroupData({...group, new_due_date: group.due_date || ''}); setIsEditModalOpen(true); }} className="p-1 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" title="Edit Due Date">
-                                  <Edit3 size={14} />
-                                </button>
-                                <button onClick={(e) => handleDeleteGroup(group, e)} className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete Assignment">
-                                  <Trash2 size={14} />
-                                </button>
-                              </div>
-                            </div>
+                            )}
                           </div>
-                          
-                          {/* Expanded Student List */}
-                          {expandedAssignmentId === idx && (
-                            <div className="bg-slate-50 border-t border-slate-200 p-4 animate-in slide-in-from-top-2">
-                               <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-200 pb-1.5">Student Statuses</h5>
-                               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                                  {group.students.map(s => (
-                                    <div key={s.id} className="bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
-                                      <span className="font-bold text-[13px] text-slate-700">{s.student_first_name} {s.student_last_name}</span>
-                                      {s.status === 'completed' 
-                                        ? <button 
-                                            onClick={(e) => { e.stopPropagation(); openSubmissionViewer(s.id); }}
-                                            className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 text-green-700 hover:bg-green-100 transition-colors text-[9px] font-black uppercase tracking-widest rounded-lg border border-green-200"
-                                          >
-                                            <CheckCircle2 size={10} /> View Work
-                                          </button>
-                                        : <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-amber-50 text-amber-700 text-[9px] font-black uppercase tracking-widest rounded-lg border border-amber-200">Pending</span>
-                                      }
-                                    </div>
-                                  ))}
-                               </div>
+                        );
+                      };
+
+                      return (
+                        <div className="space-y-8">
+                          {activeGroups.length > 0 && (
+                            <div className="space-y-3">
+                              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 flex items-center gap-3">
+                                <span className="w-8 h-[1px] bg-slate-200"></span>
+                                Current & Active Tasks
+                                <span className="flex-1 h-[1px] bg-slate-200"></span>
+                                <span className="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">{activeGroups.length}</span>
+                              </h4>
+                              <div className="space-y-3">
+                                {activeGroups.map((group, idx) => renderGroup(group, idx, 'active'))}
+                              </div>
+                            </div>
+                          )}
+
+                          {completedGroups.length > 0 && (
+                            <div className="space-y-3 pt-4">
+                              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-4 flex items-center gap-3">
+                                <span className="w-8 h-[1px] bg-slate-200"></span>
+                                Completed Assignments
+                                <span className="flex-1 h-[1px] bg-slate-200"></span>
+                                <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full">{completedGroups.length}</span>
+                              </h4>
+                              <div className="space-y-3 opacity-80 hover:opacity-100 transition-opacity">
+                                {completedGroups.map((group, idx) => renderGroup(group, idx, 'completed'))}
+                              </div>
                             </div>
                           )}
                         </div>
