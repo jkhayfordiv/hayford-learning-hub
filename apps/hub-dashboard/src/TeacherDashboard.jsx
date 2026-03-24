@@ -1772,7 +1772,6 @@ export default function TeacherDashboard({ user, onLogout }) {
                           )}
                         </div>
                       );
-                      });
                     })()}
                   </div>
                 </div>
