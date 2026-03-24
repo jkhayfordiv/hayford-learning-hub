@@ -67,21 +67,50 @@ router.post('/', requireTeacher, async (req, res) => {
       
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
     } else if (class_id) {
-      // Assign to an entire class: create template assignment with class_id
-      const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
-        [teacher_id, class_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
+      const classIdNum = parseInt(class_id, 10);
+      if (!Number.isInteger(classIdNum)) {
+        return res.status(400).json({ error: 'Invalid class_id.' });
+      }
+
+      const actor_role = req.user.role;
+      const actor_institution_id = req.user.institution_id;
+
+      const [classRows] = await connection.query(
+        `SELECT id, teacher_id, institution_id FROM classes WHERE id = $1`,
+        [classIdNum]
       );
-      
-      // Query class_enrollments table for all enrolled students
-      const [enrollments] = await connection.query(
-        `SELECT user_id FROM class_enrollments WHERE class_id = $1`,
-        [class_id]
-      );
-      
+      if (classRows.length === 0) {
+        return res.status(404).json({ error: 'Class not found.' });
+      }
+
+      const classInfo = classRows[0];
+      if (actor_role === 'teacher' && Number(classInfo.teacher_id) !== Number(teacher_id)) {
+        return res.status(403).json({ error: 'You can only assign to your own classes.' });
+      }
+      if (
+        actor_role === 'admin' &&
+        actor_institution_id &&
+        classInfo.institution_id &&
+        Number(classInfo.institution_id) !== Number(actor_institution_id)
+      ) {
+        return res.status(403).json({ error: 'You can only assign to classes in your institution.' });
+      }
+
+      let studentsQuery = `SELECT id FROM users WHERE role = 'student' AND class_id = $1`;
+      let studentsParams = [classIdNum];
+
+      if (actor_role === 'admin' && actor_institution_id) {
+        studentsQuery = `SELECT id FROM users WHERE role = 'student' AND class_id = $1 AND institution_id = $2`;
+        studentsParams = [classIdNum, actor_institution_id];
+      }
+
+      const [students] = await connection.query(studentsQuery, studentsParams);
+      if (students.length === 0) {
+        return res.status(400).json({ error: 'No students found in that class.' });
+      }
+
       let count = 0;
-      for (const enrollment of enrollments) {
+      for (const student of students) {
         try {
           await connection.query(
             `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
@@ -89,8 +118,8 @@ router.post('/', requireTeacher, async (req, res) => {
              ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
             [
               teacher_id,
-              enrollment.user_id,
-              class_id,
+              student.id,
+              classIdNum,
               resolvedModuleId,
               aType,
               grammar_topic_id || null,
@@ -102,11 +131,11 @@ router.post('/', requireTeacher, async (req, res) => {
           );
           count++;
         } catch (dupError) {
-          console.error('Error inserting assignment for student:', enrollment.user_id, dupError.message);
+          console.error('Error inserting assignment for student:', student.id, dupError.message);
         }
       }
-      
-      return res.status(201).json({ success: true, message: `Assignment created for ${count} existing students in class (template stored for late joiners).`, id: result.insertId });
+
+      return res.status(201).json({ success: true, message: `Assignment created for ${count} students in class.` });
     } else {
       // FIX #3: Assign to "all students" with multi-tenancy privacy walls
       const actor_role = req.user.role;

@@ -459,8 +459,15 @@ export default function TeacherDashboard({ user, onLogout }) {
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(payload)
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to create assignment');
+      const contentType = res.headers.get('content-type') || '';
+      const text = await res.text();
+      let data = {};
+      try {
+        data = text && contentType.includes('application/json') ? JSON.parse(text) : {};
+      } catch (_) {
+        throw new Error('Server returned an invalid response while creating assignment.');
+      }
+      if (!res.ok) throw new Error(data.error || data.details || 'Failed to create assignment');
       setAssignmentStatus({ loading: false, error: null, success: true });
       setAssignmentForm(DEFAULT_ASSIGNMENT_FORM);
       setPreselectedClassId(null); // Clear preselected class after successful creation
