@@ -116,11 +116,30 @@ JOIN users u ON ce.user_id = u.id
 JOIN classes c ON ce.class_id = c.id
 LIMIT 5;
 
+-- STEP 5: Add 'listening' to valid assignment types
+-- ============================================================================
+DO $$
+BEGIN
+    ALTER TABLE assigned_tasks
+    DROP CONSTRAINT IF EXISTS chk_assignment_type;
+    
+    ALTER TABLE assigned_tasks
+    ADD CONSTRAINT chk_assignment_type
+    CHECK (assignment_type IN ('writing', 'vocabulary', 'grammar-practice', 'speaking', 'listening'));
+END
+$$;
+
+-- Verify the constraint
+SELECT conname, pg_get_constraintdef(oid) 
+FROM pg_constraint 
+WHERE conname = 'chk_assignment_type';
+
 -- ============================================================================
 -- MIGRATION COMPLETE
 -- ============================================================================
 -- After running this script:
 -- 1. Verify the output shows no errors
 -- 2. Check that class_enrollments has records
--- 3. Redeploy your Render backend (it should auto-deploy from GitHub)
+-- 3. Check that assignment_type constraint includes 'listening'
+-- 4. Redeploy your Render backend (it should auto-deploy from GitHub)
 -- ============================================================================
