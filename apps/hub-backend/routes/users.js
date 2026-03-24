@@ -4,6 +4,38 @@ const requireTeacher = require('../middleware/requireTeacher');
 const auth = require('../middleware/auth');
 const { pool } = require('../db');
 
+// @route   GET api/users/:id/weaknesses
+// @desc    Get top weaknesses for a user (for dashboard display)
+// @access  Private
+router.get('/:id/weaknesses', auth, async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id, 10);
+    
+    // Security: Users can only view their own weaknesses (unless admin/teacher)
+    if (req.user.role === 'student' && req.user.id !== userId) {
+      return res.status(403).json({ error: 'Access denied' });
+    }
+    
+    const connection = await pool.getConnection();
+    
+    const [weaknesses] = await connection.query(
+      `SELECT category, error_count, last_updated
+       FROM user_weaknesses
+       WHERE user_id = $1
+       ORDER BY error_count DESC
+       LIMIT 5`,
+      [userId]
+    );
+    
+    connection.release();
+    
+    res.json(weaknesses);
+  } catch (error) {
+    console.error('Get user weaknesses error:', error);
+    res.status(500).json({ error: 'Failed to fetch weaknesses' });
+  }
+});
+
 // @route   GET api/users/me
 // @desc    Get current user's profile data
 // @access  Private

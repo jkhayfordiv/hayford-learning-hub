@@ -216,8 +216,20 @@ CRITICAL SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corr
 
 Calculate Overall Band Score as average of all four, rounded to nearest 0.5.
 
+CRITICAL ERROR TRACKING: You must identify specific error categories from the student's performance. Use ONLY these standardized categories:
+- "Subject-Verb Agreement"
+- "Verb Tense"
+- "Prepositions"
+- "Articles"
+- "Vocabulary/Word Choice"
+- "Pronunciation/Clarity"
+- "Sentence Structure"
+- "Cohesion/Linking Words"
+
+Do NOT invent new categories. Return an array of identified_errors containing ONLY the categories where the student made mistakes.
+
 Return ONLY valid JSON (no markdown, no extra text) with this exact structure:
-{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."}}`;
+{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."},"identified_errors":["Category1","Category2"]}`;
 
   const audioPart = {
     inlineData: {

@@ -98,6 +98,10 @@ export default function Dashboard() {
     localStorage.getItem('limboModalDismissed') === 'true'
   );
 
+  // PHASE 4: User Weaknesses Tracking
+  const [weaknesses, setWeaknesses] = useState([]);
+  const [isLoadingWeaknesses, setIsLoadingWeaknesses] = useState(true);
+
   useEffect(() => {
     // Show limbo modal if student has no class and hasn't dismissed it this session
     if (user.role === 'student' && !user.class_id && !limboModalDismissed) {
@@ -136,6 +140,26 @@ export default function Dashboard() {
       setJoinError(err.message);
     } finally {
       setIsJoining(false);
+    }
+  };
+
+  const fetchWeaknesses = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const res = await fetch(`${apiBase}/api/users/${user.id}/weaknesses`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setWeaknesses(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch weaknesses', err);
+    } finally {
+      setIsLoadingWeaknesses(false);
     }
   };
 
@@ -251,6 +275,7 @@ export default function Dashboard() {
     };
 
     refreshUserData();
+    fetchWeaknesses();
   }, [navigate, apiBase]);
 
   useEffect(() => {
@@ -617,6 +642,76 @@ export default function Dashboard() {
                   </button>
                 </div>
               ))
+            )}
+          </div>
+        </div>
+
+        {/* Targeted Weaknesses Card */}
+        <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            Targeted Weaknesses
+          </h3>
+          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-sm">
+            {isLoadingWeaknesses ? (
+              <div className="text-center text-slate-400 py-8">Loading weakness analysis...</div>
+            ) : weaknesses.length === 0 ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <h4 className="font-bold text-lg text-slate-900 dark:text-white mb-2">Excellent Work!</h4>
+                <p className="text-slate-500 dark:text-slate-400 font-medium max-w-md mx-auto">No consistent weaknesses detected yet. Keep practicing to maintain your strong performance!</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mb-6">Based on AI analysis of your submissions, here are areas that need attention:</p>
+                {weaknesses.map((weakness, idx) => {
+                  const maxCount = weaknesses[0]?.error_count || 1;
+                  const percentage = (weakness.error_count / maxCount) * 100;
+                  const getColorClasses = (count) => {
+                    if (count >= maxCount * 0.7) return { bg: 'bg-red-500', lightBg: 'bg-red-50 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-800' };
+                    if (count >= maxCount * 0.4) return { bg: 'bg-amber-500', lightBg: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800' };
+                    return { bg: 'bg-blue-500', lightBg: 'bg-blue-50 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400', border: 'border-blue-200 dark:border-blue-800' };
+                  };
+                  const colors = getColorClasses(weakness.error_count);
+                  
+                  return (
+                    <div key={idx} className={`p-4 rounded-2xl border-2 ${colors.border} ${colors.lightBg}`}>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center gap-3">
+                          <span className={`flex-shrink-0 w-8 h-8 rounded-full ${colors.bg} text-white font-black text-sm flex items-center justify-center`}>
+                            {idx + 1}
+                          </span>
+                          <div>
+                            <p className={`font-bold text-sm ${colors.text}`}>{weakness.category}</p>
+                            <p className="text-xs text-slate-500 dark:text-slate-400">
+                              {weakness.error_count} {weakness.error_count === 1 ? 'error' : 'errors'} detected
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => {
+                            const topicId = DIAGNOSTIC_TO_TOPIC_MAP[weakness.category];
+                            if (topicId) {
+                              window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(topicId)}`;
+                            }
+                          }}
+                          className={`px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors ${colors.bg} text-white hover:opacity-90`}
+                        >
+                          Practice
+                        </button>
+                      </div>
+                      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+                        <div 
+                          className={`h-full ${colors.bg} rounded-full transition-all duration-700 ease-out`}
+                          style={{ width: `${percentage}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             )}
           </div>
         </div>

@@ -37,6 +37,9 @@ router.post('/', auth, async (req, res) => {
       }
     }
 
+    // If a taskId was provided, mark the assignment as completed (parse to int for DB)
+    const taskIdNum = taskId != null ? parseInt(taskId, 10) : null;
+
     // Insert score
     const [result] = await connection.query(
       `INSERT INTO student_scores 
@@ -44,6 +47,34 @@ router.post('/', auth, async (req, res) => {
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
       [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || []), taskIdNum]
     );
+
+    // PHASE 4: Track identified errors in user_weaknesses table
+    if (ai_feedback && ai_feedback.identified_errors && Array.isArray(ai_feedback.identified_errors)) {
+      const validCategories = [
+        'Subject-Verb Agreement',
+        'Verb Tense',
+        'Prepositions',
+        'Articles',
+        'Vocabulary/Word Choice',
+        'Pronunciation/Clarity',
+        'Sentence Structure',
+        'Cohesion/Linking Words'
+      ];
+
+      for (const errorCategory of ai_feedback.identified_errors) {
+        if (validCategories.includes(errorCategory)) {
+          await connection.query(
+            `INSERT INTO user_weaknesses (user_id, category, error_count, last_updated)
+             VALUES ($1, $2, 1, CURRENT_TIMESTAMP)
+             ON CONFLICT (user_id, category)
+             DO UPDATE SET
+               error_count = user_weaknesses.error_count + 1,
+               last_updated = CURRENT_TIMESTAMP`,
+            [student_id, errorCategory]
+          );
+        }
+      }
+    }
 
     // Increment grammar progress by actual error counts if provided
     if (grammar_error_counts && typeof grammar_error_counts === 'object') {
@@ -88,8 +119,7 @@ router.post('/', auth, async (req, res) => {
       }
     }
 
-    // If a taskId was provided, mark the assignment as completed (parse to int for DB)
-    const taskIdNum = taskId != null ? parseInt(taskId, 10) : null;
+    // Mark assignment as completed if taskId was provided (already parsed above)
     if (taskIdNum && Number.isInteger(taskIdNum)) {
       try {
         const [updateResult] = await connection.query(
