@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
+// Part 1 Questions Pool
 const PART_1_QUESTIONS = [
   "Describe your hometown. What do you like most about it?",
   "Do you work or are you a student? Tell me about your work or studies.",
@@ -9,35 +10,62 @@ const PART_1_QUESTIONS = [
   "How do you usually spend your weekends?",
   "What is your favourite season of the year and why?",
   "Do you prefer living in a city or in the countryside?",
-  "How important is technology in your daily life? How much time do you spend online?",
-  "Do you think it is important to learn a foreign language? Why?",
-  "What are your future plans for your career or education?",
-  "Describe your typical daily routine. Which part of the day do you like best?",
-  "Do you enjoy travelling to new places? Where would you like to visit in the future?",
-  "What kind of food do you like to eat? Do you prefer eating at home or at restaurants?",
-  "Is it important to protect the environment? What can individuals do to help?",
-  "Do you use social media often? What are the advantages and disadvantages of it?",
-  "Tell me about a memorable event from your childhood. Why was it special?",
-  "What subjects did you enjoy most at school? Why?",
-  "Do you think life is better now than it was in the past? Why or why not?",
-  "Describe a person you admire. Who are they and why are they special to you?",
-  "Describe a piece of technology you find useful. How does it help you in your daily life?",
 ]
 
-function getRandomQuestion(exclude = '') {
-  const pool = PART_1_QUESTIONS.filter((q) => q !== exclude)
-  return pool[Math.floor(Math.random() * pool.length)]
+// Part 2 Cue Cards
+const PART_2_CUE_CARDS = [
+  {
+    prompt: "Describe a person who has had a significant influence on your life.",
+    points: [
+      "Who this person is",
+      "How you know them",
+      "What influence they have had on you",
+      "And explain why this person is important to you"
+    ]
+  },
+  {
+    prompt: "Describe a memorable journey you have taken.",
+    points: [
+      "Where you went",
+      "When you went there",
+      "What you did during the journey",
+      "And explain why this journey was memorable"
+    ]
+  },
+  {
+    prompt: "Describe a skill you would like to learn in the future.",
+    points: [
+      "What the skill is",
+      "Why you want to learn it",
+      "How you plan to learn it",
+      "And explain how this skill would benefit you"
+    ]
+  }
+]
+
+// Part 3 Discussion Questions
+const PART_3_QUESTIONS = [
+  "How has technology changed the way people communicate in your country?",
+  "Do you think traditional values are still important in modern society? Why or why not?",
+  "What role should governments play in protecting the environment?",
+  "How do you think education systems could be improved globally?"
+]
+
+function getRandomItems(array, count) {
+  const shuffled = [...array].sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, count)
 }
 
 export default function App() {
-  // --- Forced Light Theme ---
+  // Force light theme
   useEffect(() => {
     document.documentElement.classList.remove('dark')
   }, [])
 
-  // --- Auth ---
+  // Auth
   const [token, setToken] = useState(null)
   const [authChecked, setAuthChecked] = useState(false)
+  
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const urlToken = params.get('token')
@@ -50,50 +78,117 @@ export default function App() {
     setAuthChecked(true)
   }, [])
 
-  // --- Multi-Question Session ---
-  const [sessionQuestions, setSessionQuestions] = useState(() => {
-    const questions = []
-    const used = new Set()
-    while (questions.length < 4) {
-      const q = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)]
-      if (!used.has(q)) {
-        questions.push(q)
-        used.add(q)
+  // Assignment metadata (which parts to test)
+  const [assignedParts, setAssignedParts] = useState(['1']) // Default to Part 1 only
+  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const metaString = params.get('taskMeta')
+    if (metaString) {
+      try {
+        const meta = JSON.parse(decodeURIComponent(metaString))
+        if (meta.speaking_parts && Array.isArray(meta.speaking_parts)) {
+          setAssignedParts(meta.speaking_parts)
+        }
+      } catch (e) {
+        console.error('Error parsing taskMeta', e)
       }
     }
-    return questions
-  })
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const currentQuestion = sessionQuestions[currentQuestionIndex]
+  }, [])
 
-  // --- Recording ---
+  // Flow controller
+  const [currentPartIndex, setCurrentPartIndex] = useState(0)
+  const currentPart = assignedParts[currentPartIndex]
+  
+  // Part-specific content
+  const [part1Questions] = useState(() => getRandomItems(PART_1_QUESTIONS, 4))
+  const [part2CueCard] = useState(() => PART_2_CUE_CARDS[Math.floor(Math.random() * PART_2_CUE_CARDS.length)])
+  const [part3Questions] = useState(() => getRandomItems(PART_3_QUESTIONS, 3))
+  
+  // Part 1 state
+  const [part1QuestionIndex, setPart1QuestionIndex] = useState(0)
+  
+  // Part 2 state
+  const [part2PrepTime, setPart2PrepTime] = useState(60) // 1 minute prep
+  const [part2PrepComplete, setPart2PrepComplete] = useState(false)
+  const [part2RecordTime, setPart2RecordTime] = useState(120) // 2 minutes record
+  
+  // Part 3 state
+  const [part3QuestionIndex, setPart3QuestionIndex] = useState(0)
+  const [part3TimeRemaining, setPart3TimeRemaining] = useState(300) // 5 minutes
+  
+  // Recording state (per part)
   const [isRecording, setIsRecording] = useState(false)
-  const [audioBlob, setAudioBlob] = useState(null)
-  const [audioUrl, setAudioUrl] = useState(null)
   const [recordingSeconds, setRecordingSeconds] = useState(0)
-  const [sessionTimeRemaining, setSessionTimeRemaining] = useState(240) // 4 minutes = 240 seconds
   const mediaRecorderRef = useRef(null)
   const audioChunksRef = useRef([])
   const timerRef = useRef(null)
-  const sessionTimerRef = useRef(null)
-
-  // --- Submission ---
-  const [isLoading, setIsLoading] = useState(false)
+  const partTimerRef = useRef(null)
+  
+  // Completed parts storage
+  const [completedParts, setCompletedParts] = useState({})
+  
+  // Submission
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [feedback, setFeedback] = useState(null)
   const [error, setError] = useState('')
 
-  // Clean up audio URL on unmount
+  const formatTime = (seconds) => {
+    const m = String(Math.floor(seconds / 60)).padStart(2, '0')
+    const s = String(seconds % 60).padStart(2, '0')
+    return `${m}:${s}`
+  }
+
+  // Part 2 prep timer
   useEffect(() => {
-    return () => {
-      if (audioUrl) URL.revokeObjectURL(audioUrl)
+    if (currentPart === '2' && !part2PrepComplete && part2PrepTime > 0) {
+      const timer = setInterval(() => {
+        setPart2PrepTime(prev => {
+          if (prev <= 1) {
+            setPart2PrepComplete(true)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      return () => clearInterval(timer)
     }
-  }, [audioUrl])
+  }, [currentPart, part2PrepComplete, part2PrepTime])
+
+  // Part 2 record timer (auto-stop at 2 minutes)
+  useEffect(() => {
+    if (currentPart === '2' && isRecording && part2RecordTime > 0) {
+      const timer = setInterval(() => {
+        setPart2RecordTime(prev => {
+          if (prev <= 1) {
+            stopRecording()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      return () => clearInterval(timer)
+    }
+  }, [currentPart, isRecording, part2RecordTime])
+
+  // Part 3 timer
+  useEffect(() => {
+    if (currentPart === '3' && isRecording && part3TimeRemaining > 0) {
+      const timer = setInterval(() => {
+        setPart3TimeRemaining(prev => {
+          if (prev <= 1) {
+            stopRecording()
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      return () => clearInterval(timer)
+    }
+  }, [currentPart, isRecording, part3TimeRemaining])
 
   const startRecording = async () => {
     setError('')
-    setAudioBlob(null)
-    setAudioUrl(null)
-    setFeedback(null)
     audioChunksRef.current = []
 
     try {
@@ -109,9 +204,11 @@ export default function App() {
 
       recorder.onstop = () => {
         const blob = new Blob(audioChunksRef.current, { type: mimeType })
-        const url = URL.createObjectURL(blob)
-        setAudioBlob(blob)
-        setAudioUrl(url)
+        // Save this part's audio
+        setCompletedParts(prev => ({
+          ...prev,
+          [currentPart]: blob
+        }))
         stream.getTracks().forEach((track) => track.stop())
       }
 
@@ -123,18 +220,6 @@ export default function App() {
       timerRef.current = setInterval(() => {
         setRecordingSeconds((prev) => prev + 1)
       }, 1000)
-
-      // Start 4-minute countdown timer
-      sessionTimerRef.current = setInterval(() => {
-        setSessionTimeRemaining((prev) => {
-          if (prev <= 1) {
-            // Time's up - auto-stop recording
-            stopRecording()
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
     } catch (err) {
       setError('Microphone access denied. Please allow microphone permissions and try again.')
     }
@@ -145,7 +230,6 @@ export default function App() {
       mediaRecorderRef.current.stop()
     }
     clearInterval(timerRef.current)
-    clearInterval(sessionTimerRef.current)
     setIsRecording(false)
   }
 
@@ -154,58 +238,48 @@ export default function App() {
     else startRecording()
   }
 
-  const handleNextQuestion = () => {
-    // Navigate to next question WITHOUT stopping recording
-    if (currentQuestionIndex < sessionQuestions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1)
-    }
-  }
-
-  const handlePrevQuestion = () => {
-    // Navigate to previous question WITHOUT stopping recording
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(prev => prev - 1)
-    }
-  }
-
-  const handleNewSession = () => {
-    if (isRecording) stopRecording()
-    // Generate new set of 4 questions
-    const questions = []
-    const used = new Set()
-    while (questions.length < 4) {
-      const q = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)]
-      if (!used.has(q)) {
-        questions.push(q)
-        used.add(q)
+  const handleNextPart = () => {
+    if (currentPartIndex < assignedParts.length - 1) {
+      setCurrentPartIndex(prev => prev + 1)
+      setRecordingSeconds(0)
+      // Reset part-specific state
+      if (assignedParts[currentPartIndex + 1] === '1') {
+        setPart1QuestionIndex(0)
+      } else if (assignedParts[currentPartIndex + 1] === '2') {
+        setPart2PrepTime(60)
+        setPart2PrepComplete(false)
+        setPart2RecordTime(120)
+      } else if (assignedParts[currentPartIndex + 1] === '3') {
+        setPart3QuestionIndex(0)
+        setPart3TimeRemaining(300)
       }
     }
-    setSessionQuestions(questions)
-    setCurrentQuestionIndex(0)
-    setAudioBlob(null)
-    setAudioUrl(null)
-    setFeedback(null)
-    setError('')
-    setRecordingSeconds(0)
-    setSessionTimeRemaining(240)
   }
 
-  const handleSubmit = async () => {
-    if (!audioBlob) {
-      setError('Please record your response first before submitting.')
-      return
-    }
+  const handleSkipPrep = () => {
+    setPart2PrepComplete(true)
+    setPart2PrepTime(0)
+  }
 
-    setIsLoading(true)
+  const handleSubmitAll = async () => {
+    setIsSubmitting(true)
     setError('')
 
     try {
       const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com')
 
+      // Combine all parts into one submission
       const formData = new FormData()
-      formData.append('audio', audioBlob, 'response.webm')
-      formData.append('prompt', currentQuestion)
-      formData.append('part', '1')
+      
+      assignedParts.forEach(part => {
+        const blob = completedParts[part]
+        if (blob) {
+          formData.append('audio', blob, `part${part}.webm`)
+        }
+      })
+
+      formData.append('prompt', `IELTS Speaking Test - Parts: ${assignedParts.join(', ')}`)
+      formData.append('part', assignedParts.join(','))
 
       const response = await fetch(`${apiBase}/api/ielts/evaluate`, {
         method: 'POST',
@@ -225,29 +299,8 @@ export default function App() {
     } catch (err) {
       setError(err.message || 'Failed to evaluate your response. Please try again.')
     } finally {
-      setIsLoading(false)
+      setIsSubmitting(false)
     }
-  }
-
-  const handleReset = () => {
-    // Generate new set of 4 questions
-    const questions = []
-    const used = new Set()
-    while (questions.length < 4) {
-      const q = PART_1_QUESTIONS[Math.floor(Math.random() * PART_1_QUESTIONS.length)]
-      if (!used.has(q)) {
-        questions.push(q)
-        used.add(q)
-      }
-    }
-    setSessionQuestions(questions)
-    setCurrentQuestionIndex(0)
-    setAudioBlob(null)
-    setAudioUrl(null)
-    setFeedback(null)
-    setError('')
-    setRecordingSeconds(0)
-    setSessionTimeRemaining(240)
   }
 
   if (!authChecked) return null
@@ -278,21 +331,14 @@ export default function App() {
     )
   }
 
-  const formatTime = (seconds) => {
-    const m = String(Math.floor(seconds / 60)).padStart(2, '0')
-    const s = String(seconds % 60).padStart(2, '0')
-    return `${m}:${s}`
-  }
-
   if (feedback) {
     return (
       <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans">
         <div className="max-w-4xl mx-auto space-y-10">
-          {/* Header */}
           <div className="flex items-center justify-between border-b border-slate-200 pb-8">
             <div className="space-y-1">
               <h1 className="text-3xl font-black tracking-tight text-slate-900">Performance Report</h1>
-              <p className="text-sm font-medium text-slate-500 uppercase tracking-[0.2em]">Official AI Assessment Result</p>
+              <p className="text-sm font-medium text-slate-500 uppercase tracking-[0.2em]">Parts {assignedParts.join(', ')} Complete</p>
             </div>
             <button
                 onClick={() => { window.location.href = '/dashboard' }}
@@ -303,7 +349,6 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-            {/* Left Column: Scores */}
             <div className="lg:col-span-5 space-y-6">
                 <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-2xl relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent opacity-50"></div>
@@ -352,7 +397,6 @@ export default function App() {
                 </div>
             </div>
 
-            {/* Right Column: Feedback Details */}
             <div className="lg:col-span-7 space-y-6">
                 <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm space-y-8">
                     {[
@@ -375,20 +419,12 @@ export default function App() {
                     ))}
                 </div>
 
-                <div className="flex gap-4">
-                    <button
-                        onClick={handleReset}
-                        className="flex-1 px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-                    >
-                        New Assessment
-                    </button>
-                    <button
-                        onClick={() => { window.location.href = '/dashboard' }}
-                        className="px-8 py-5 bg-white border border-slate-200 text-slate-600 hover:text-slate-900 rounded-2xl font-bold uppercase tracking-widest text-xs shadow-md transition-all hover:bg-slate-50"
-                    >
-                        Finish
-                    </button>
-                </div>
+                <button
+                    onClick={() => { window.location.href = '/dashboard' }}
+                    className="w-full px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                >
+                    Return to Dashboard
+                </button>
             </div>
           </div>
         </div>
@@ -396,14 +432,17 @@ export default function App() {
     )
   }
 
+  // Main test interface
+  const allPartsComplete = assignedParts.every(part => completedParts[part])
+  const currentPartComplete = completedParts[currentPart]
+
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans overflow-x-hidden">
       <div className="max-w-3xl mx-auto space-y-12">
-        {/* Header Section */}
         <header className="flex items-center justify-between border-b border-slate-200 pb-8">
             <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-[0.25em] text-indigo-600">IELTS Master v2.0</p>
-                <h1 className="text-4xl font-black tracking-tighter text-slate-950">Speaking Simulator</h1>
+                <p className="text-xs font-black uppercase tracking-[0.25em] text-indigo-600">IELTS Speaking Test</p>
+                <h1 className="text-4xl font-black tracking-tighter text-slate-950">Part {currentPart} of {assignedParts.length}</h1>
             </div>
             <button
                 onClick={() => { window.location.href = '/dashboard' }}
@@ -413,86 +452,181 @@ export default function App() {
             </button>
         </header>
 
-        {/* Examiner Module */}
-        <section className="space-y-4">
-            <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-slate-900 text-white rounded-xl flex items-center justify-center font-bold text-xs ring-4 ring-slate-100 shadow-sm">AI</div>
-                <h2 className="text-sm font-black uppercase tracking-[0.15em] text-slate-500">Virtual Examiner</h2>
+        {/* Progress Indicator */}
+        <div className="flex items-center gap-3">
+          {assignedParts.map((part, idx) => (
+            <div key={part} className="flex items-center gap-3">
+              <div className={`flex items-center justify-center w-10 h-10 rounded-full font-black text-sm ${
+                completedParts[part] ? 'bg-green-500 text-white' :
+                idx === currentPartIndex ? 'bg-indigo-600 text-white' :
+                'bg-slate-200 text-slate-400'
+              }`}>
+                {completedParts[part] ? '✓' : part}
+              </div>
+              {idx < assignedParts.length - 1 && (
+                <div className={`h-1 w-12 rounded ${completedParts[part] ? 'bg-green-500' : 'bg-slate-200'}`}></div>
+              )}
             </div>
-            
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 md:p-14 shadow-sm relative overflow-hidden group transition-all">
-                <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-50/30 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                
-                <div className="relative space-y-6">
-                    {/* Question Counter & Timer */}
-                    <div className="flex items-center justify-between">
-                        <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm">
-                            Question {currentQuestionIndex + 1} of {sessionQuestions.length}
-                        </span>
-                        <div className={`px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-widest shadow-sm ${
-                          sessionTimeRemaining <= 60 ? 'bg-red-50 text-red-600 animate-pulse' : 'bg-slate-100 text-slate-600'
-                        }`}>
-                            Time: {formatTime(sessionTimeRemaining)}
-                        </div>
-                    </div>
+          ))}
+        </div>
 
-                    {/* All Questions List */}
-                    <div className="space-y-3">
-                        {sessionQuestions.map((q, idx) => (
-                            <div
-                                key={idx}
-                                className={`p-4 rounded-2xl border-2 transition-all ${
-                                    idx === currentQuestionIndex
-                                        ? 'border-indigo-500 bg-indigo-50/50'
-                                        : 'border-slate-200 bg-slate-50/50 opacity-60'
-                                }`}
-                            >
-                                <div className="flex items-start gap-3">
-                                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                                        idx === currentQuestionIndex ? 'bg-indigo-600 text-white' : 'bg-slate-300 text-slate-600'
-                                    }`}>
-                                        {idx + 1}
-                                    </span>
-                                    <p className={`text-sm font-medium leading-relaxed ${
-                                        idx === currentQuestionIndex ? 'text-slate-900' : 'text-slate-500'
-                                    }`}>
-                                        {q}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
+        {/* Part 1: Interview */}
+        {currentPart === '1' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 1: Introduction & Interview</h2>
+                <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-xl font-bold text-xs">
+                  Question {part1QuestionIndex + 1} of {part1Questions.length}
+                </span>
+              </div>
+              
+              <div className="space-y-4">
+                {part1Questions.map((q, idx) => (
+                  <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
+                    idx === part1QuestionIndex ? 'border-indigo-500 bg-indigo-50/50' : 'border-slate-200 bg-slate-50/50 opacity-60'
+                  }`}>
+                    <div className="flex items-start gap-3">
+                      <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
+                        idx === part1QuestionIndex ? 'bg-indigo-600 text-white' : 'bg-slate-300 text-slate-600'
+                      }`}>
+                        {idx + 1}
+                      </span>
+                      <p className={`text-sm font-medium leading-relaxed ${
+                        idx === part1QuestionIndex ? 'text-slate-900' : 'text-slate-500'
+                      }`}>
+                        {q}
+                      </p>
                     </div>
-                    
-                    {/* Navigation Buttons */}
-                    <div className="flex flex-wrap gap-3 pt-4">
-                        <button
-                            onClick={handlePrevQuestion}
-                            disabled={currentQuestionIndex === 0}
-                            className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm"
-                        >
-                            ← Previous
-                        </button>
-                        <button
-                            onClick={handleNextQuestion}
-                            disabled={currentQuestionIndex === sessionQuestions.length - 1}
-                            className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm"
-                        >
-                            Next →
-                        </button>
-                        <button
-                            onClick={handleNewSession}
-                            disabled={isRecording}
-                            className="bg-amber-100 hover:bg-amber-200 text-amber-700 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40 shadow-sm ml-auto"
-                        >
-                            New Session
-                        </button>
-                    </div>
-                </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  onClick={() => setPart1QuestionIndex(prev => Math.max(0, prev - 1))}
+                  disabled={part1QuestionIndex === 0}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
+                >
+                  ← Previous
+                </button>
+                <button
+                  onClick={() => setPart1QuestionIndex(prev => Math.min(part1Questions.length - 1, prev + 1))}
+                  disabled={part1QuestionIndex === part1Questions.length - 1}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
+                >
+                  Next →
+                </button>
+              </div>
             </div>
-        </section>
+          </section>
+        )}
+
+        {/* Part 2: Cue Card */}
+        {currentPart === '2' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
+              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-6">Part 2: Long Turn (Cue Card)</h2>
+              
+              {!part2PrepComplete ? (
+                <div className="text-center space-y-6">
+                  <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-indigo-600'}`}>
+                    {formatTime(part2PrepTime)}
+                  </div>
+                  <p className="text-lg font-bold text-slate-600">Preparation Time</p>
+                  <p className="text-sm text-slate-500">You have 1 minute to prepare. You may take notes.</p>
+                  <button
+                    onClick={handleSkipPrep}
+                    className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest"
+                  >
+                    Skip Preparation
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6">
+                    <p className="text-xl font-bold text-slate-900 mb-4">{part2CueCard.prompt}</p>
+                    <p className="text-sm font-bold text-slate-600 mb-3">You should say:</p>
+                    <ul className="space-y-2">
+                      {part2CueCard.points.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                          <span className="text-indigo-600 font-bold">•</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {isRecording && (
+                    <div className="text-center">
+                      <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-indigo-600'}`}>
+                        {formatTime(part2RecordTime)}
+                      </div>
+                      <p className="text-sm text-slate-500 mt-2">Recording Time Remaining</p>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Part 3: Discussion */}
+        {currentPart === '3' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 3: Two-Way Discussion</h2>
+                <div className={`px-4 py-2 rounded-xl font-bold text-xs ${
+                  part3TimeRemaining <= 60 ? 'bg-red-50 text-red-600 animate-pulse' : 'bg-slate-100 text-slate-600'
+                }`}>
+                  Time: {formatTime(part3TimeRemaining)}
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                {part3Questions.map((q, idx) => (
+                  <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
+                    idx === part3QuestionIndex ? 'border-purple-500 bg-purple-50/50' : 'border-slate-200 bg-slate-50/50 opacity-60'
+                  }`}>
+                    <div className="flex items-start gap-3">
+                      <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
+                        idx === part3QuestionIndex ? 'bg-purple-600 text-white' : 'bg-slate-300 text-slate-600'
+                      }`}>
+                        {idx + 1}
+                      </span>
+                      <p className={`text-sm font-medium leading-relaxed ${
+                        idx === part3QuestionIndex ? 'text-slate-900' : 'text-slate-500'
+                      }`}>
+                        {q}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  onClick={() => setPart3QuestionIndex(prev => Math.max(0, prev - 1))}
+                  disabled={part3QuestionIndex === 0}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
+                >
+                  ← Previous
+                </button>
+                <button
+                  onClick={() => setPart3QuestionIndex(prev => Math.min(part3Questions.length - 1, prev + 1))}
+                  disabled={part3QuestionIndex === part3Questions.length - 1}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
+                >
+                  Next →
+                </button>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Recording Interface */}
-        <section className="bg-slate-900 text-white rounded-[2.5rem] p-12 md:p-16 shadow-2xl relative overflow-hidden">
+        {(currentPart === '1' || currentPart === '3' || (currentPart === '2' && part2PrepComplete)) && (
+          <section className="bg-slate-900 text-white rounded-[2.5rem] p-12 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent"></div>
             
             <div className="relative flex flex-col items-center gap-10">
@@ -503,11 +637,14 @@ export default function App() {
                         )}
                         <button
                             onClick={handleToggleRecording}
+                            disabled={currentPartComplete}
                             className={`relative w-20 h-20 rounded-full border-4 border-slate-800 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
-                                isRecording ? 'bg-white' : 'bg-slate-800 hover:bg-slate-700 hover:border-slate-600'
+                                isRecording ? 'bg-white' : currentPartComplete ? 'bg-green-500' : 'bg-slate-800 hover:bg-slate-700 hover:border-slate-600'
                             }`}
                         >
-                            {isRecording ? (
+                            {currentPartComplete ? (
+                                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            ) : isRecording ? (
                                 <div className="w-6 h-6 bg-red-600 rounded-sm"></div>
                             ) : (
                                 <svg className="w-8 h-8 text-indigo-400 group-hover:text-indigo-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -519,8 +656,10 @@ export default function App() {
                     </div>
                     
                     <div className="text-center space-y-1">
-                        <p className={`text-sm font-black uppercase tracking-[0.2em] ${isRecording ? 'text-red-400' : 'text-slate-400'}`}>
-                            {isRecording ? 'Recording Live' : audioBlob ? 'Response Ready' : 'Standby'}
+                        <p className={`text-sm font-black uppercase tracking-[0.2em] ${
+                          currentPartComplete ? 'text-green-400' : isRecording ? 'text-red-400' : 'text-slate-400'
+                        }`}>
+                            {currentPartComplete ? 'Part Complete' : isRecording ? 'Recording Live' : 'Standby'}
                         </p>
                         <p className={`text-4xl font-black tabular-nums transition-all ${isRecording ? 'text-white' : 'text-slate-500'}`}>
                             {formatTime(recordingSeconds)}
@@ -528,52 +667,41 @@ export default function App() {
                     </div>
                 </div>
 
-                {audioUrl && !isRecording && (
-                    <div className="w-full max-w-sm space-y-4 animate-in slide-in-from-bottom-4 duration-500">
-                      <div className="bg-slate-800/80 p-5 rounded-2xl border border-slate-700/50 backdrop-blur-md">
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">Review Recording</p>
-                        <audio controls src={audioUrl} className="w-full h-8 brightness-110 filter invert contrast-150" />
-                      </div>
-                    </div>
+                {currentPartComplete && !allPartsComplete && (
+                  <button
+                      onClick={handleNextPart}
+                      className="w-full max-w-sm py-5 bg-white hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
+                  >
+                      Continue to Part {assignedParts[currentPartIndex + 1]}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </button>
                 )}
 
-                <button
-                    onClick={handleSubmit}
-                    disabled={isLoading || !audioBlob || isRecording}
-                    className="w-full max-w-sm py-5 bg-white hover:bg-slate-50 disabled:bg-slate-800/50 disabled:text-slate-600 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3 group"
-                >
-                    {isLoading ? (
-                        <>
-                            <div className="w-4 h-4 border-4 border-slate-200 border-t-indigo-600 rounded-full animate-spin"></div>
-                            Analyzing Audio...
-                        </>
-                    ) : (
-                        <>
-                            Evaluate Performance
-                            <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                        </>
-                    )}
-                </button>
+                {allPartsComplete && (
+                  <button
+                      onClick={handleSubmitAll}
+                      disabled={isSubmitting}
+                      className="w-full max-w-sm py-5 bg-white hover:bg-slate-50 disabled:bg-slate-800/50 disabled:text-slate-600 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
+                  >
+                      {isSubmitting ? (
+                          <>
+                              <div className="w-4 h-4 border-4 border-slate-200 border-t-indigo-600 rounded-full animate-spin"></div>
+                              Analyzing Audio...
+                          </>
+                      ) : (
+                          <>
+                              Submit for Evaluation
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                          </>
+                      )}
+                  </button>
+                )}
             </div>
         </section>
-
-        {/* Evaluation Criteria */}
-        <section className="bg-white border border-slate-200 rounded-[2rem] p-8 shadow-sm">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Assessment Criteria</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm font-medium text-slate-600">
-                <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <span className="text-indigo-500 font-bold text-lg">01</span>
-                    <p>Fluency & Coherence: Maintain a natural pace and use appropriate connectors.</p>
-                </div>
-                <div className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <span className="text-indigo-500 font-bold text-lg">02</span>
-                    <p>Lexical Resource: Demonstrate a wide range of academic vocabulary.</p>
-                </div>
-            </div>
-        </section>
+        )}
 
         {error && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm font-medium flex items-center gap-3 animate-in fade-in slide-in-from-top-2">
+          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm font-medium flex items-center gap-3">
             <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
             <span>{error}</span>
           </div>

@@ -8,7 +8,7 @@ const { pool } = require('../db');
 // @desc    Create a new assignment(s) for a specific student, entire class, or all students
 // @access  Private (Teacher/Admin only)
 router.post('/', requireTeacher, async (req, res) => {
-  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, writing_task_type, speaking_task_part } = req.body;
+  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
   let connection;
@@ -59,10 +59,11 @@ router.post('/', requireTeacher, async (req, res) => {
 
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
+      const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
-        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
+        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, speakingPartsJson, instructions || null, due_date || null]
       );
       
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
@@ -109,12 +110,13 @@ router.post('/', requireTeacher, async (req, res) => {
         return res.status(400).json({ error: 'No students found in that class.' });
       }
 
+      const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
       let count = 0;
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
              ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
             [
               teacher_id,
@@ -125,6 +127,7 @@ router.post('/', requireTeacher, async (req, res) => {
               grammar_topic_id || null,
               writing_task_type || null,
               speaking_task_part || null,
+              speakingPartsJson,
               instructions || null,
               due_date || null
             ]
@@ -169,14 +172,15 @@ router.post('/', requireTeacher, async (req, res) => {
         return res.status(400).json({ error: 'No students found to assign the task.' });
       }
 
+      const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
       let count = 0;
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
              ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
-            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, instructions || null, due_date || null]
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, speakingPartsJson, instructions || null, due_date || null]
           );
           count++;
         } catch (dupError) {

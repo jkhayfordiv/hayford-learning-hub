@@ -62,6 +62,7 @@ const DEFAULT_ASSIGNMENT_FORM = {
   writing_task_type: '1',
   grammar_topic_id: '',
   speaking_task_part: '1',
+  speaking_parts: ['1'],
   instructions: '',
   due_date: ''
 };
@@ -1430,17 +1431,37 @@ export default function TeacherDashboard({ user, onLogout }) {
                     )}
 
                     {assignmentForm.assignment_type === 'speaking' && (
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Speaking Part</label>
-                        <select
-                          value={assignmentForm.speaking_task_part}
-                          onChange={e => setAssignmentForm({ ...assignmentForm, speaking_task_part: e.target.value })}
-                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                        >
-                          <option value="1">Part 1 - Introduction & Interview</option>
-                          <option value="2">Part 2 - Long Turn (Cue Card)</option>
-                          <option value="3">Part 3 - Discussion</option>
-                        </select>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Speaking Parts (Select One or More)</label>
+                        <div className="space-y-2">
+                          {[
+                            { value: '1', label: 'Part 1 - Introduction & Interview', desc: '4-5 minutes' },
+                            { value: '2', label: 'Part 2 - Long Turn (Cue Card)', desc: '3-4 minutes (1 min prep + 2 min speak)' },
+                            { value: '3', label: 'Part 3 - Discussion', desc: '4-5 minutes' }
+                          ].map(part => (
+                            <label key={part.value} className="flex items-start gap-3 p-3 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 cursor-pointer transition-colors">
+                              <input
+                                type="checkbox"
+                                checked={(assignmentForm.speaking_parts || []).includes(part.value)}
+                                onChange={e => {
+                                  const currentParts = assignmentForm.speaking_parts || [];
+                                  const newParts = e.target.checked
+                                    ? [...currentParts, part.value].sort()
+                                    : currentParts.filter(p => p !== part.value);
+                                  setAssignmentForm({ ...assignmentForm, speaking_parts: newParts });
+                                }}
+                                className="mt-0.5 w-4 h-4 text-indigo-600 border-slate-300 rounded focus:ring-2 focus:ring-indigo-500"
+                              />
+                              <div className="flex-1">
+                                <p className="text-sm font-bold text-slate-900">{part.label}</p>
+                                <p className="text-xs text-slate-500">{part.desc}</p>
+                              </div>
+                            </label>
+                          ))}
+                        </div>
+                        {assignmentForm.speaking_parts && assignmentForm.speaking_parts.length === 0 && (
+                          <p className="text-xs text-amber-600 font-medium">⚠️ Please select at least one part</p>
+                        )}
                       </div>
                     )}
 

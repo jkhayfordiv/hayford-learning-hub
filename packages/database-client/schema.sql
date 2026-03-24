@@ -216,6 +216,10 @@ ADD COLUMN IF NOT EXISTS writing_task_type VARCHAR(10) DEFAULT NULL;
 ALTER TABLE assigned_tasks
 ADD COLUMN IF NOT EXISTS speaking_task_part VARCHAR(10) DEFAULT NULL;
 
+-- Add speaking_parts column for multi-part speaking assignments
+ALTER TABLE assigned_tasks
+ADD COLUMN IF NOT EXISTS speaking_parts JSONB DEFAULT '["1"]'::jsonb;
+
 -- Add unique index for assignment deduplication (supports ON CONFLICT)
 -- Note: NULL in grammar_topic_id will allow multiple assignments for writing,
 -- which is generally desired so students can do Task 1 multiple times.

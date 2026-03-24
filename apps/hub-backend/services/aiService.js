@@ -201,12 +201,15 @@ async function gradeIeltsSpeakingAudio({ audioBuffer, mimeType, questionPrompt, 
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-  const systemInstruction = `You are a strict, professional IELTS Speaking Examiner. You are listening to real audio of a student responding to an IELTS Part ${part} question.
+  const systemInstruction = `You are a strict, professional IELTS Speaking Examiner. You are listening to real audio of a student responding to an IELTS Speaking test.
+
+Test Part(s): ${part}
+${part.includes(',') ? 'NOTE: This is a multi-part test. Evaluate the student\'s overall performance across all parts.' : ''}
 
 Evaluate the student on ALL FOUR official IELTS speaking criteria by listening to the audio:
-1. Fluency and Coherence (FC): Listen for hesitations, self-corrections, speed, and connectors.
-2. Lexical Resource (LR): Assess vocabulary range and natural word choice.
-3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures.
+1. Fluency and Coherence (FC): Listen for hesitations, self-corrections, speed, and connectors. For Part 2, expect some preparation pauses. For Part 3, expect deeper thinking pauses.
+2. Lexical Resource (LR): Assess vocabulary range and natural word choice. Part 3 should demonstrate more sophisticated vocabulary than Part 1.
+3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures. Part 3 should show complex sentence structures.
 4. Pronunciation (P): CRITICAL. Listen to actual sounds. Evaluate clarity, word stress, sentence rhythm, intonation, and intelligibility. Identify specific phoneme or stress errors if present.
 
 CRITICAL SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corrections, or pauses. Students in the 4.0-5.5 range hesitate as they search for vocabulary. If their meaning is clear and their vocabulary is appropriate, score them a realistic 5.0 or higher. Stop artificially lowering scores to 4.0 just for pacing. Evaluate fluency holistically - natural pauses while thinking are NORMAL and should not result in harsh penalties.
