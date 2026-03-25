@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
+import { X, CheckCircle2, MessageSquare, Sparkles, Calendar } from 'lucide-react';
 
 export default function StudentFeedbackModal({ score, onClose, onMarkAsRead }) {
   React.useEffect(() => {

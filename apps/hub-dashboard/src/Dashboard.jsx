@@ -489,6 +489,50 @@ export default function Dashboard() {
 
       {/* Main Content Area */}
       <main className="max-w-7xl mx-auto px-8 py-12">
+        {/* New Teacher Feedback Notification Banner */}
+        {(() => {
+          const unreadFeedback = scores.filter(s => s.teacher_comment && !s.teacher_comment_read);
+          if (unreadFeedback.length > 0) {
+            return (
+              <div className="mb-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-2xl p-4 shadow-lg animate-in slide-in-from-top-4 fade-in">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-amber-500 dark:bg-amber-600 rounded-full flex items-center justify-center animate-pulse">
+                      <MessageSquare size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-black text-slate-900 dark:text-white text-sm">
+                        {unreadFeedback.length === 1 ? 'New Teacher Feedback!' : `${unreadFeedback.length} New Teacher Feedbacks!`}
+                      </h3>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
+                        Your teacher has reviewed your work
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setSelectedFeedbackScore(unreadFeedback[0]);
+                      setIsFeedbackModalOpen(true);
+                    }}
+                    className="bg-amber-600 hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600 text-white font-bold px-6 py-2.5 rounded-xl transition-colors shadow-md flex items-center gap-2 whitespace-nowrap"
+                  >
+                    <MessageSquare size={16} />
+                    View Feedback
+                  </button>
+                </div>
+                {unreadFeedback.length > 1 && (
+                  <div className="mt-3 pt-3 border-t border-amber-200 dark:border-amber-800">
+                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                      <span className="font-bold">{unreadFeedback.length} assignments</span> have new feedback. Scroll down to see all.
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          }
+          return null;
+        })()}
+
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-8">
           <div>
             {scores.length === 0 ? (
