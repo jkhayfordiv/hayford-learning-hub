@@ -161,22 +161,25 @@ AXIS 2 - SECONDARY GRAMMAR (Secondary):
 - This is helpful feedback but does NOT fail the vocabulary word itself
  
 CRITICAL PUNCTUATION RULES - READ CAREFULLY:
-1. DO NOT EVER mention "space before period" or "space before punctuation" in your feedback
-2. These are false positives that frustrate students - the student's text is transmitted correctly
-3. If you think you see spacing issues, IGNORE THEM - they are artifacts of text processing
-4. Focus ONLY on: capitalization, missing periods at the end, spelling errors, and word choice
-5. NEVER comment on spaces before periods, commas, or other punctuation marks
-6. If the sentence ends with a period, assume it's correctly formatted
-7. Only flag MISSING punctuation (e.g., "missing period at end"), never spacing issues
+1. COMPLETELY IGNORE end-of-sentence punctuation (periods, question marks, exclamation marks)
+2. DO NOT EVER mention missing periods, extra periods, or any end punctuation issues
+3. DO NOT EVER mention "space before period" or "space before punctuation" in your feedback
+4. These are false positives that frustrate students - the student's text is transmitted correctly
+5. If you think you see any punctuation or spacing issues, IGNORE THEM - they are artifacts of text processing
+6. Focus ONLY on: capitalization of first word, spelling of OTHER words (not target word), subject-verb agreement, and word choice
+7. NEVER comment on punctuation, periods, commas, spacing, or formatting issues
 
 WHAT TO CHECK FOR SECONDARY GRAMMAR:
-✓ Missing period at the end of sentence
 ✓ Capitalization of first word
 ✓ Spelling of non-target words
 ✓ Subject-verb agreement
 ✓ Basic grammar structure
+✓ Word choice and usage
 
 WHAT TO NEVER MENTION:
+✗ Missing period at end
+✗ Extra periods
+✗ Any punctuation issues
 ✗ Space before period
 ✗ Space before comma
 ✗ Space before any punctuation
@@ -187,8 +190,8 @@ Return ONLY a raw JSON object with these THREE keys:
 2. secondary_grammar_correct (boolean): Is the rest of the sentence grammatically correct (punctuation, capitalization, other spelling)?
 3. feedback (string): Helpful explanation of their errors, or praise if perfect. If target_word_correct is true but secondary_grammar_correct is false, acknowledge they used the word correctly but point out the grammar issues. Explicitly mention the text you are correcting.
 
-Example 1: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly to mean temporary! However, you're missing a period at the end of the sentence."}
-Example 2: {"target_word_correct": false, "secondary_grammar_correct": true, "feedback": "Your sentence is grammatically perfect, but 'ephemeral' means temporary, not eternal. Try using it to describe something brief."}
+Example 1: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly to mean temporary! However, you need to capitalize the first word of the sentence."}
+Example 2: {"target_word_correct": false, "secondary_grammar_correct": true, "feedback": "Your sentence structure is perfect, but 'ephemeral' means temporary, not eternal. Try using it to describe something brief."}
 Example 3: {"target_word_correct": true, "secondary_grammar_correct": true, "feedback": "Perfect! You used 'ephemeral' correctly and your sentence is grammatically sound."}
 
 No markdown wrapping. Return only the JSON object.
@@ -196,15 +199,20 @@ No markdown wrapping. Return only the JSON object.
 
   const result = await limiter.schedule(() => executeWithRetry(prompt, requestId));
   
-  // Post-processing filter: Remove any false positive "space before period" mentions
+  // Post-processing filter: Remove any punctuation-related feedback
   if (result && result.feedback) {
     const originalFeedback = result.feedback;
     
-    // Remove mentions of space before punctuation (case-insensitive)
+    // Remove all punctuation-related mentions (case-insensitive)
     result.feedback = result.feedback
       .replace(/\s*[,;]?\s*(?:but|however|also|and)?\s*(?:you\s+)?(?:should\s+)?(?:not\s+)?(?:have\s+)?(?:a\s+)?space\s+before\s+(?:the\s+)?(?:period|comma|punctuation|\.)[^.!?]*/gi, '')
       .replace(/\s*[,;]?\s*(?:avoid|remove|don't\s+(?:add|use|put)|shouldn't\s+(?:add|use|put))\s+(?:a\s+)?space\s+before\s+(?:the\s+)?(?:period|comma|punctuation|\.)[^.!?]*/gi, '')
       .replace(/\s*[,;]?\s*(?:no\s+)?space\s+before\s+(?:the\s+)?(?:period|comma|punctuation|\.)\s+(?:is\s+)?(?:not\s+)?(?:needed|required|necessary)[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:but|however|also|and)?\s*(?:you\s+)?(?:are\s+)?(?:missing|need|forgot)\s+(?:a\s+)?(?:period|punctuation|punctutation mark)[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:add|include|use)\s+(?:a\s+)?(?:period|punctuation|punctuation mark)\s+(?:at\s+)?(?:the\s+)?end[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:your\s+)?sentence\s+(?:needs|requires)\s+(?:a\s+)?(?:period|punctuation)[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:missing|no|without)\s+(?:a\s+)?(?:period|punctuation)[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:extra|additional|unnecessary)\s+(?:period|punctuation)[^.!?]*/gi, '')
       .trim();
     
     // Clean up any double spaces or punctuation issues from removal
