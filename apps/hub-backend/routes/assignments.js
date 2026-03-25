@@ -108,11 +108,21 @@ router.post('/', requireTeacher, async (req, res) => {
         return res.status(403).json({ error: 'You can only assign to classes in your institution.' });
       }
 
-      let studentsQuery = `SELECT id FROM users WHERE role = 'student' AND class_id = $1`;
+      let studentsQuery = `
+        SELECT u.id 
+        FROM users u
+        INNER JOIN class_enrollments ce ON u.id = ce.user_id
+        WHERE u.role = 'student' AND ce.class_id = $1
+      `;
       let studentsParams = [classIdNum];
 
       if (actor_role === 'admin' && actor_institution_id) {
-        studentsQuery = `SELECT id FROM users WHERE role = 'student' AND class_id = $1 AND institution_id = $2`;
+        studentsQuery = `
+          SELECT u.id 
+          FROM users u
+          INNER JOIN class_enrollments ce ON u.id = ce.user_id
+          WHERE u.role = 'student' AND ce.class_id = $1 AND u.institution_id = $2
+        `;
         studentsParams = [classIdNum, actor_institution_id];
       }
 
@@ -169,7 +179,8 @@ router.post('/', requireTeacher, async (req, res) => {
         studentsQuery = `
           SELECT DISTINCT u.id 
           FROM users u
-          INNER JOIN classes c ON u.class_id = c.id
+          INNER JOIN class_enrollments ce ON u.id = ce.user_id
+          INNER JOIN classes c ON ce.class_id = c.id
           WHERE u.role = 'student' AND c.teacher_id = $1
         `;
         studentsParams = [teacher_id];
@@ -178,7 +189,6 @@ router.post('/', requireTeacher, async (req, res) => {
       const [students] = await connection.query(studentsQuery, studentsParams);
       
       if (students.length === 0) {
-        connection.release();
         return res.status(400).json({ error: 'No students found to assign the task.' });
       }
 
