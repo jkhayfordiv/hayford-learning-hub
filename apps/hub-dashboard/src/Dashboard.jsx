@@ -695,7 +695,7 @@ export default function Dashboard() {
                       task.assignment_type === 'vocabulary' 
                         ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 hover:bg-amber-600 hover:text-white dark:hover:bg-amber-600' 
                         : task.assignment_type === 'grammar-practice'
-                          ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600'
+                          ? 'bg-brand-navy/10 dark:bg-brand-navy/30 text-brand-navy dark:text-blue-400 hover:bg-brand-navy hover:text-white dark:hover:bg-brand-navy'
                           : 'bg-slate-900 text-white hover:bg-slate-950 dark:bg-amber-600 dark:hover:bg-amber-700'
                     }`}
                   >
@@ -733,7 +733,7 @@ export default function Dashboard() {
                   const getColorClasses = (count) => {
                     if (count >= maxCount * 0.7) return { bg: 'bg-red-500', lightBg: 'bg-red-50 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-800' };
                     if (count >= maxCount * 0.4) return { bg: 'bg-amber-500', lightBg: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800' };
-                    return { bg: 'bg-blue-500', lightBg: 'bg-blue-50 dark:bg-blue-900/30', text: 'text-blue-700 dark:text-blue-400', border: 'border-blue-200 dark:border-blue-800' };
+                    return { bg: 'bg-brand-navy', lightBg: 'bg-brand-navy/10 dark:bg-brand-navy/30', text: 'text-brand-navy dark:text-blue-400', border: 'border-brand-navy/20 dark:border-brand-navy/50' };
                   };
                   const colors = getColorClasses(weakness.error_count);
                   
@@ -786,7 +786,7 @@ export default function Dashboard() {
            
            <button
               onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both`}
-              className="bg-gradient-to-br from-indigo-600 to-indigo-800 hover:from-indigo-700 hover:to-indigo-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+              className="bg-gradient-to-br from-brand-crimson to-[#8B1729] hover:from-[#8B1729] hover:to-[#6B1220] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">
                  <PenTool size={24} className="text-white/90 group-hover:text-white transition-colors" />
@@ -810,7 +810,7 @@ export default function Dashboard() {
 
            <button
               onClick={() => window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}`}
-              className="bg-gradient-to-br from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+              className="bg-gradient-to-br from-brand-navy to-slate-800 hover:from-slate-800 hover:to-slate-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">
                  <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />

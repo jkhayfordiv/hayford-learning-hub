@@ -534,7 +534,7 @@ export default function App() {
       <div className="max-w-3xl mx-auto space-y-12">
         <header className="flex items-center justify-between border-b border-slate-200 pb-8">
             <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-[0.25em] text-indigo-600">IELTS Speaking Test</p>
+                <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-crimson">IELTS Speaking Test</p>
                 <h1 className="text-4xl font-black tracking-tighter text-slate-950">Part {currentPart} of {assignedParts.length}</h1>
             </div>
             <button
@@ -551,7 +551,7 @@ export default function App() {
             <div key={part} className="flex items-center gap-3">
               <div className={`flex items-center justify-center w-10 h-10 rounded-full font-black text-sm ${
                 completedParts[part] ? 'bg-green-500 text-white' :
-                idx === currentPartIndex ? 'bg-indigo-600 text-white' :
+                idx === currentPartIndex ? 'bg-brand-crimson text-white' :
                 'bg-slate-200 text-slate-400'
               }`}>
                 {completedParts[part] ? '✓' : part}
@@ -572,7 +572,7 @@ export default function App() {
                   <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 1: Introduction & Interview</h2>
                   <p className="text-xs text-slate-400 mt-1">Topic: {part1Topic.topic}</p>
                 </div>
-                <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-xl font-bold text-xs">
+                <span className="bg-brand-crimson/10 text-brand-crimson px-4 py-2 rounded-xl font-bold text-xs">
                   Question {part1QuestionIndex + 1} of {part1Questions.length}
                 </span>
               </div>
@@ -580,11 +580,11 @@ export default function App() {
               <div className="space-y-4">
                 {part1Questions.map((q, idx) => (
                   <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
-                    idx === part1QuestionIndex ? 'border-indigo-500 bg-indigo-50/50' : 'border-slate-200 bg-slate-50/50 opacity-60'
+                    idx === part1QuestionIndex ? 'border-brand-crimson bg-brand-crimson/10' : 'border-slate-200 bg-slate-50/50 opacity-60'
                   }`}>
                     <div className="flex items-start gap-3">
                       <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                        idx === part1QuestionIndex ? 'bg-indigo-600 text-white' : 'bg-slate-300 text-slate-600'
+                        idx === part1QuestionIndex ? 'bg-brand-crimson text-white' : 'bg-slate-300 text-slate-600'
                       }`}>
                         {idx + 1}
                       </span>
@@ -626,7 +626,7 @@ export default function App() {
               
               {!part2PrepComplete ? (
                 <div className="text-center space-y-6">
-                  <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-indigo-600'}`}>
+                  <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-brand-crimson'}`}>
                     {formatTime(part2PrepTime)}
                   </div>
                   <p className="text-lg font-bold text-slate-600">Preparation Time</p>
@@ -640,13 +640,13 @@ export default function App() {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  <div className="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6">
+                  <div className="bg-brand-crimson/10 border-2 border-brand-crimson/20 rounded-2xl p-6">
                     <p className="text-xl font-bold text-slate-900 mb-4">{part2CueCard.prompt}</p>
                     <p className="text-sm font-bold text-slate-600 mb-3">You should say:</p>
                     <ul className="space-y-2">
                       {part2CueCard.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
-                          <span className="text-indigo-600 font-bold">•</span>
+                          <span className="text-brand-crimson font-bold">•</span>
                           {point}
                         </li>
                       ))}
@@ -654,7 +654,7 @@ export default function App() {
                   </div>
                   {isRecording && (
                     <div className="text-center">
-                      <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-indigo-600'}`}>
+                      <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-brand-crimson'}`}>
                         {formatTime(part2RecordTime)}
                       </div>
                       <p className="text-sm text-slate-500 mt-2">Recording Time Remaining</p>
@@ -682,11 +682,11 @@ export default function App() {
               <div className="space-y-4">
                 {part3Questions.map((q, idx) => (
                   <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
-                    idx === part3QuestionIndex ? 'border-purple-500 bg-purple-50/50' : 'border-slate-200 bg-slate-50/50 opacity-60'
+                    idx === part3QuestionIndex ? 'border-brand-navy bg-brand-navy/10' : 'border-slate-200 bg-slate-50/50 opacity-60'
                   }`}>
                     <div className="flex items-start gap-3">
                       <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                        idx === part3QuestionIndex ? 'bg-purple-600 text-white' : 'bg-slate-300 text-slate-600'
+                        idx === part3QuestionIndex ? 'bg-brand-navy text-white' : 'bg-slate-300 text-slate-600'
                       }`}>
                         {idx + 1}
                       </span>

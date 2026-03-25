@@ -279,7 +279,7 @@ export default function App() {
                    {res.feedback?.isPerfect ? (
                       <span className="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-md">✓ Mastered</span>
                    ) : res.feedback?.isPartialCredit ? (
-                      <span className="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">~ Partial Credit</span>
+                      <span className="text-xs font-bold text-brand-navy bg-brand-navy/10 px-2.5 py-1 rounded-md">~ Partial Credit</span>
                    ) : (
                       <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">✗ Needs Review</span>
                    )}
@@ -296,7 +296,7 @@ export default function App() {
           </div>
 
           {saveStatus.loading ? (
-            <div className="bg-blue-50 text-blue-800 p-6 rounded-2xl border border-blue-200 text-center space-y-4">
+            <div className="bg-brand-navy/10 text-brand-navy p-6 rounded-2xl border border-brand-navy/20 text-center space-y-4">
               <Loader2 size={32} className="animate-spin mx-auto text-blue-600" />
               <p className="font-bold text-lg">Syncing your progress...</p>
             </div>
