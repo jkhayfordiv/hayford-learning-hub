@@ -1541,13 +1541,13 @@ export default function TeacherDashboard({ user, onLogout }) {
                               onFocus={() => !preselectedClassId && setShowClassDropdown(true)}
                               onClick={() => !preselectedClassId && setShowClassDropdown(true)}
                               disabled={!!preselectedClassId}
-                              className={`w-full border px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none relative z-[95] ${
+                              className={`w-full border px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:outline-none relative ${
                                 preselectedClassId 
                                   ? 'bg-amber-50 border-amber-300 text-amber-900 font-bold cursor-not-allowed' 
                                   : 'bg-slate-50 border-slate-200 focus:ring-slate-900'
                               }`}
                             />
-                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
+                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
                             {!preselectedClassId && showClassDropdown && (
                               <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
                                 {manageableClasses.filter(c => (c.class_name || '').toLowerCase().includes(classSearch.toLowerCase())).length > 0 ? (
@@ -2200,9 +2200,9 @@ export default function TeacherDashboard({ user, onLogout }) {
                     }}
                     onFocus={() => setShowClassDropdown(true)}
                     onClick={() => setShowClassDropdown(true)}
-                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white relative z-[95]"
+                    className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none text-slate-900 dark:text-white relative"
                   />
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
                   {showClassDropdown && (
                     <div className="absolute z-[100] w-full mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl max-h-48 overflow-y-auto">
                       <button
@@ -2298,9 +2298,9 @@ export default function TeacherDashboard({ user, onLogout }) {
                     }}
                     onFocus={() => setShowClassDropdown(true)}
                     onClick={() => setShowClassDropdown(true)}
-                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none relative z-[95]"
+                    className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 pr-10 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none relative"
                   />
-                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none z-[95]" size={16} />
+                  <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
                   {showClassDropdown && (
                     <div className="absolute z-[100] w-full mt-1 bg-white border border-slate-200 rounded-xl shadow-xl max-h-48 overflow-y-auto">
                       <button
