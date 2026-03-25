@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, AlertCircle, MessageSquare } from 'lucide-react';
+import { X, CheckCircle2, AlertCircle, MessageSquare, User } from 'lucide-react';
 
 export default function SubmissionReviewModal({ submission, onClose, onSaveComment }) {
   const [comment, setComment] = useState(submission.teacher_comment || '');
