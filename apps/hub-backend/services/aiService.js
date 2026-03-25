@@ -185,14 +185,40 @@ WHAT TO NEVER MENTION:
 ✗ Space before any punctuation
 ✗ Formatting or spacing issues
 
-Return ONLY a raw JSON object with these THREE keys:
-1. target_word_correct (boolean): Did they use the target word correctly in meaning and form?
-2. secondary_grammar_correct (boolean): Is the rest of the sentence grammatically correct (punctuation, capitalization, other spelling)?
-3. feedback (string): Helpful explanation of their errors, or praise if perfect. If target_word_correct is true but secondary_grammar_correct is false, acknowledge they used the word correctly but point out the grammar issues. Explicitly mention the text you are correcting.
+CRITICAL ERROR TRACKING: You must identify specific error categories from the student's sentence. Use ONLY these standardized categories:
+- "Article Usage"
+- "Countability & Plurals"
+- "Pronoun Reference"
+- "Prepositional Accuracy"
+- "Word Forms"
+- "Subject-Verb Agreement"
+- "Tense Consistency"
+- "Present Perfect vs. Past Simple"
+- "Gerunds vs. Infinitives"
+- "Passive Voice Construction"
+- "Sentence Boundaries (Fragments/Comma Splices)"
+- "Relative Clauses"
+- "Subordination"
+- "Word Order"
+- "Parallel Structure"
+- "Transitional Devices"
+- "Collocations"
+- "Academic Register"
+- "Nominalization"
+- "Hedging"
 
-Example 1: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly to mean temporary! However, you need to capitalize the first word of the sentence."}
-Example 2: {"target_word_correct": false, "secondary_grammar_correct": true, "feedback": "Your sentence structure is perfect, but 'ephemeral' means temporary, not eternal. Try using it to describe something brief."}
-Example 3: {"target_word_correct": true, "secondary_grammar_correct": true, "feedback": "Perfect! You used 'ephemeral' correctly and your sentence is grammatically sound."}
+Do NOT invent new categories. Return an array of identified_errors containing ONLY the categories where the student made mistakes. If the sentence is perfect, return an empty array.
+
+Return ONLY a raw JSON object with these FOUR keys:
+1. target_word_correct (boolean): Did they use the target word correctly in meaning and form?
+2. secondary_grammar_correct (boolean): Is the rest of the sentence grammatically correct (capitalization, spelling of OTHER words)?
+3. feedback (string): Helpful explanation of their errors, or praise if perfect. If target_word_correct is true but secondary_grammar_correct is false, acknowledge they used the word correctly but point out the grammar issues. Explicitly mention the text you are correcting.
+4. identified_errors (array): Array of error category strings from the list above. Empty array if no errors.
+
+Example 1: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly to mean temporary! However, you need to capitalize the first word of the sentence.", "identified_errors": []}
+Example 2: {"target_word_correct": false, "secondary_grammar_correct": false, "feedback": "You need to capitalize the first word. Also, 'ephemeral' means temporary, not eternal. Try using it to describe something brief.", "identified_errors": ["Collocations"]}
+Example 3: {"target_word_correct": true, "secondary_grammar_correct": false, "feedback": "Great job using 'ephemeral' correctly! However, there's a subject-verb agreement error: 'The moments was' should be 'The moments were'.", "identified_errors": ["Subject-Verb Agreement"]}
+Example 4: {"target_word_correct": true, "secondary_grammar_correct": true, "feedback": "Perfect! You used 'ephemeral' correctly and your sentence is grammatically sound.", "identified_errors": []}
 
 No markdown wrapping. Return only the JSON object.
 `;
@@ -276,14 +302,26 @@ CRITICAL SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corr
 Calculate Overall Band Score as average of all four, rounded to nearest 0.5.
 
 CRITICAL ERROR TRACKING: You must identify specific error categories from the student's performance. Use ONLY these standardized categories:
+- "Article Usage"
+- "Countability & Plurals"
+- "Pronoun Reference"
+- "Prepositional Accuracy"
+- "Word Forms"
 - "Subject-Verb Agreement"
-- "Verb Tense"
-- "Prepositions"
-- "Articles"
-- "Vocabulary/Word Choice"
-- "Pronunciation/Clarity"
-- "Sentence Structure"
-- "Cohesion/Linking Words"
+- "Tense Consistency"
+- "Present Perfect vs. Past Simple"
+- "Gerunds vs. Infinitives"
+- "Passive Voice Construction"
+- "Sentence Boundaries (Fragments/Comma Splices)"
+- "Relative Clauses"
+- "Subordination"
+- "Word Order"
+- "Parallel Structure"
+- "Transitional Devices"
+- "Collocations"
+- "Academic Register"
+- "Nominalization"
+- "Hedging"
 
 Do NOT invent new categories. Return an array of identified_errors containing ONLY the categories where the student made mistakes.
 

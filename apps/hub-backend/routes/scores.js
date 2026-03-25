@@ -51,14 +51,26 @@ router.post('/', auth, async (req, res) => {
     // PHASE 4: Track identified errors in user_weaknesses table
     if (ai_feedback && ai_feedback.identified_errors && Array.isArray(ai_feedback.identified_errors)) {
       const validCategories = [
+        'Article Usage',
+        'Countability & Plurals',
+        'Pronoun Reference',
+        'Prepositional Accuracy',
+        'Word Forms',
         'Subject-Verb Agreement',
-        'Verb Tense',
-        'Prepositions',
-        'Articles',
-        'Vocabulary/Word Choice',
-        'Pronunciation/Clarity',
-        'Sentence Structure',
-        'Cohesion/Linking Words'
+        'Tense Consistency',
+        'Present Perfect vs. Past Simple',
+        'Gerunds vs. Infinitives',
+        'Passive Voice Construction',
+        'Sentence Boundaries (Fragments/Comma Splices)',
+        'Relative Clauses',
+        'Subordination',
+        'Word Order',
+        'Parallel Structure',
+        'Transitional Devices',
+        'Collocations',
+        'Academic Register',
+        'Nominalization',
+        'Hedging'
       ];
 
       for (const errorCategory of ai_feedback.identified_errors) {
