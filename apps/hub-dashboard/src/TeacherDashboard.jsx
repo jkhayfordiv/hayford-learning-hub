@@ -130,6 +130,9 @@ export default function TeacherDashboard({ user, onLogout }) {
   // Pagination for completed assignments
   const [showAllCompleted, setShowAllCompleted] = useState(false);
   
+  // Pagination for student roster
+  const [showAllRosterStudents, setShowAllRosterStudents] = useState(false);
+  
   // Submission Review Modal State
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -1271,7 +1274,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                 ) : filteredStudents.length === 0 ? (
                   <tr><td colSpan="7" className="px-8 py-12 text-center text-slate-400">No students found in this view.</td></tr>
                 ) : (
-                  sortedStudents.map((student) => (
+                  (showAllRosterStudents ? sortedStudents : sortedStudents.slice(0, 5)).map((student) => (
                     <tr 
                       key={student.id} 
                       className="hover:bg-slate-50 transition-colors group"
@@ -1347,6 +1350,16 @@ export default function TeacherDashboard({ user, onLogout }) {
                 )}
               </tbody>
             </table>
+            {filteredStudents.length > 5 && (
+              <div className="flex justify-center pt-4">
+                <button
+                  onClick={() => setShowAllRosterStudents(!showAllRosterStudents)}
+                  className="px-6 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
+                >
+                  {showAllRosterStudents ? 'Show Less' : `Show ${filteredStudents.length - 5} More`}
+                </button>
+              </div>
+            )}
           </div>
         </div>
         </>
