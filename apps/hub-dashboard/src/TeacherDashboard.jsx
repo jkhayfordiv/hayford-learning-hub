@@ -58,7 +58,7 @@ const DEFAULT_ASSIGNMENT_FORM = {
   assign_to_type: 'class',
   student_id: '',
   class_id: '',
-  assignment_type: 'writing',
+  assignment_type: '', // Require user to select type
   writing_task_type: '1',
   grammar_topic_id: '',
   speaking_task_part: '1',
@@ -1427,11 +1427,13 @@ export default function TeacherDashboard({ user, onLogout }) {
                           setShowClassDropdown(false);
                         }}
                         className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                        required
                       >
-                        <option value="writing">IELTS Writing</option>
-                        <option value="speaking">IELTS Speaking</option>
+                        <option value="" disabled>Choose Assignment Type</option>
+                        <option value="writing">IELTS Writing Practice</option>
+                        <option value="speaking">IELTS Speaking Practice</option>
                         <option value="vocabulary">Vocabulary Builder</option>
-                        <option value="grammar-practice">Grammar Practice</option>
+                        <option value="grammar-practice">Grammar Lab</option>
                       </select>
                     </div>
 

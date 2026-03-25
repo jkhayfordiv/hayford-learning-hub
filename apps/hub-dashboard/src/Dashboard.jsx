@@ -639,7 +639,7 @@ export default function Dashboard() {
                   <div className="flex-grow">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <div className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">
+                        <div className="text-xs font-black uppercase tracking-widest text-amber-600 mb-1">
                           {task.assignment_type === 'writing' 
                             ? task.writing_task_type === '1' 
                               ? 'IELTS Task 1 Academic' 

@@ -229,11 +229,12 @@ router.get('/my-tasks', auth, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.speaking_parts, a.instructions, a.due_date, a.status, a.created_at,
               a.teacher_comment, a.teacher_comment_read, a.feedback_date,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name,
-              g.first_name as grader_first_name, g.last_name as grader_last_name
+              g.first_name as grader_first_name, g.last_name as grader_last_name,
+              a.speaking_parts
        FROM assigned_tasks a
        JOIN learning_modules m ON a.module_id = m.id
        JOIN users u ON a.teacher_id = u.id
@@ -263,7 +264,7 @@ router.get('/', requireTeacher, async (req, res) => {
     
     // All users (Teacher, Admin, SuperAdmin) see their own assignments only
     const query = `
-      SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.instructions, a.due_date, a.status, a.created_at,
+      SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.speaking_parts, a.instructions, a.due_date, a.status, a.created_at,
              a.teacher_comment, a.teacher_comment_read, a.feedback_date,
              m.module_name, m.module_type,
              u.first_name as student_first_name, u.last_name as student_last_name,
