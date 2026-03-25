@@ -160,10 +160,27 @@ AXIS 2 - SECONDARY GRAMMAR (Secondary):
 - Consider: punctuation, capitalization, spelling of OTHER words (not the target word)
 - This is helpful feedback but does NOT fail the vocabulary word itself
  
-CRITICAL: Evaluate spelling and punctuation accurately based ONLY on the user's exact input. DO NOT hallucinate punctuation errors. If a word is misspelled, address the spelling. Never falsely claim there is a 'space before a period' or other formatting issues unless that exact formatting error actually exists in the student's text.
-- If you claim there is a punctuation or spacing error, you MUST quote the specific part of the student's text that is incorrect.
-- Example: If the student writes "Hello world.", there is NO space before the period. Do not report one.
-- Only report a "space before period" if you see a literal " ." sequence.
+CRITICAL PUNCTUATION RULES - READ CAREFULLY:
+1. DO NOT EVER mention "space before period" or "space before punctuation" in your feedback
+2. These are false positives that frustrate students - the student's text is transmitted correctly
+3. If you think you see spacing issues, IGNORE THEM - they are artifacts of text processing
+4. Focus ONLY on: capitalization, missing periods at the end, spelling errors, and word choice
+5. NEVER comment on spaces before periods, commas, or other punctuation marks
+6. If the sentence ends with a period, assume it's correctly formatted
+7. Only flag MISSING punctuation (e.g., "missing period at end"), never spacing issues
+
+WHAT TO CHECK FOR SECONDARY GRAMMAR:
+✓ Missing period at the end of sentence
+✓ Capitalization of first word
+✓ Spelling of non-target words
+✓ Subject-verb agreement
+✓ Basic grammar structure
+
+WHAT TO NEVER MENTION:
+✗ Space before period
+✗ Space before comma
+✗ Space before any punctuation
+✗ Formatting or spacing issues
 
 Return ONLY a raw JSON object with these THREE keys:
 1. target_word_correct (boolean): Did they use the target word correctly in meaning and form?
@@ -177,7 +194,41 @@ Example 3: {"target_word_correct": true, "secondary_grammar_correct": true, "fee
 No markdown wrapping. Return only the JSON object.
 `;
 
-  return limiter.schedule(() => executeWithRetry(prompt, requestId));
+  const result = await limiter.schedule(() => executeWithRetry(prompt, requestId));
+  
+  // Post-processing filter: Remove any false positive "space before period" mentions
+  if (result && result.feedback) {
+    const originalFeedback = result.feedback;
+    
+    // Remove mentions of space before punctuation (case-insensitive)
+    result.feedback = result.feedback
+      .replace(/\s*[,;]?\s*(?:but|however|also|and)?\s*(?:you\s+)?(?:should\s+)?(?:not\s+)?(?:have\s+)?(?:a\s+)?space\s+before\s+(?:the\s+)?(?:period|comma|punctuation|\.)[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:avoid|remove|don't\s+(?:add|use|put)|shouldn't\s+(?:add|use|put))\s+(?:a\s+)?space\s+before\s+(?:the\s+)?(?:period|comma|punctuation|\.)[^.!?]*/gi, '')
+      .replace(/\s*[,;]?\s*(?:no\s+)?space\s+before\s+(?:the\s+)?(?:period|comma|punctuation|\.)\s+(?:is\s+)?(?:not\s+)?(?:needed|required|necessary)[^.!?]*/gi, '')
+      .trim();
+    
+    // Clean up any double spaces or punctuation issues from removal
+    result.feedback = result.feedback
+      .replace(/\s+/g, ' ')
+      .replace(/\s+([.,!?])/g, '$1')
+      .replace(/([.,!?])\s*([.,!?])/g, '$1 ')
+      .trim();
+    
+    // If feedback became empty or too short after filtering, mark as perfect
+    if (!result.feedback || result.feedback.length < 10) {
+      if (result.target_word_correct) {
+        result.secondary_grammar_correct = true;
+        result.feedback = `Perfect! You used '${targetWord}' correctly and your sentence is grammatically sound.`;
+      }
+    }
+    
+    // Log if we filtered out false positives
+    if (originalFeedback !== result.feedback) {
+      console.log(`[Vocab Filter] Removed false positive space error. Original: "${originalFeedback}" -> Filtered: "${result.feedback}"`);
+    }
+  }
+  
+  return result;
 }
 
 async function gradeIeltsSpeaking({ transcript, questionPrompt, part, requestId }) {
