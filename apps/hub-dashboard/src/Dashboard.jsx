@@ -195,6 +195,15 @@ export default function Dashboard() {
 
   const handleMarkFeedbackAsRead = async (assignmentId) => {
     try {
+      // Immediately update local state to hide the banner
+      setScores(prevScores => 
+        prevScores.map(score => 
+          score.id === assignmentId 
+            ? { ...score, teacher_comment_read: true }
+            : score
+        )
+      );
+
       const token = localStorage.getItem('token');
       const res = await fetch(`${apiBase}/api/assignments/${assignmentId}/mark-read`, {
         method: 'PATCH',
@@ -213,10 +222,12 @@ export default function Dashboard() {
         return;
       }
       
-      // Refresh scores to update the badge
+      // Refresh scores to sync with server (in background)
       fetchScores();
     } catch (error) {
       console.error('Error marking feedback as read:', error);
+      // Revert the optimistic update on error
+      fetchScores();
     }
   };
 
