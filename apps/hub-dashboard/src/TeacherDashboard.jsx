@@ -1240,7 +1240,7 @@ export default function TeacherDashboard({ user, onLogout }) {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
-                  <th className="px-4 py-4 w-12">
+                  <th className="px-4 py-2 w-12">
                     <input
                       type="checkbox"
                       checked={selectedStudents.length === filteredStudents.length && filteredStudents.length > 0}
@@ -1248,21 +1248,21 @@ export default function TeacherDashboard({ user, onLogout }) {
                       className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-amber-600 focus:ring-amber-500"
                     />
                   </th>
-                  <th className="px-8 py-4">
+                  <th className="px-8 py-2">
                     <button onClick={() => handleRosterSort('student')} className="inline-flex items-center gap-1 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
                       Student <ArrowUpDown size={12} />
                     </button>
                   </th>
-                  <th className="px-8 py-4">
+                  <th className="px-8 py-2">
                     <button onClick={() => handleRosterSort('class')} className="inline-flex items-center gap-1 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
                       Class Name <ArrowUpDown size={12} />
                     </button>
                   </th>
-                  <th className="px-8 py-4 text-center">Tasks Completed</th>
-                  <th className="px-8 py-4 text-center">Average Score</th>
-                  <th className="px-8 py-4">Last Active</th>
-                  <th className="px-8 py-4">Status</th>
-                  <th className="px-8 py-4 text-right">Actions</th>
+                  <th className="px-8 py-2 text-center">Tasks Completed</th>
+                  <th className="px-8 py-2 text-center">Average Score</th>
+                  <th className="px-8 py-2">Last Active</th>
+                  <th className="px-8 py-2">Status</th>
+                  <th className="px-8 py-2 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
@@ -1276,7 +1276,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                       key={student.id} 
                       className="hover:bg-slate-50 transition-colors group"
                     >
-                      <td className="px-4 py-6">
+                      <td className="px-4 py-3">
                         <input
                           type="checkbox"
                           checked={selectedStudents.includes(student.id)}
@@ -1285,7 +1285,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                           onClick={(e) => e.stopPropagation()}
                         />
                       </td>
-                      <td className="px-8 py-6">
+                      <td className="px-8 py-3">
                         <button
                           type="button"
                           onClick={() => navigate(`/student/${student.id}`)}
@@ -1295,17 +1295,17 @@ export default function TeacherDashboard({ user, onLogout }) {
                         </button>
                         <div className="text-xs text-slate-500 mt-0.5">{student.email}</div>
                       </td>
-                      <td className="px-8 py-6 text-slate-600 text-sm font-semibold">{getClassName(student)}</td>
-                      <td className="px-8 py-6 text-center text-lg font-bold text-slate-900">{student.assignments_completed}</td>
-                      <td className="px-8 py-6 text-center">
+                      <td className="px-8 py-3 text-slate-600 text-sm font-semibold">{getClassName(student)}</td>
+                      <td className="px-8 py-3 text-center text-lg font-bold text-slate-900">{student.assignments_completed}</td>
+                      <td className="px-8 py-3 text-center">
                         <span className="font-black text-amber-700 bg-amber-50 px-3 py-1 rounded-lg border border-amber-100">
                           {student.average_band_score ? Number(student.average_band_score).toFixed(1) : '-'}
                         </span>
                       </td>
-                      <td className="px-8 py-6 text-slate-500 text-sm">
+                      <td className="px-8 py-3 text-slate-500 text-sm">
                         {student.last_active_date ? new Date(student.last_active_date).toLocaleDateString() : 'Never'}
                       </td>
-                      <td className="px-8 py-6">
+                      <td className="px-8 py-3">
                         {isInactive(student.last_active_date) ? (
                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-50 text-red-700 text-xs font-bold rounded-lg border border-red-200">
                              <AlertCircle size={14} /> Inactive
@@ -1316,7 +1316,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                            </span>
                         )}
                       </td>
-                      <td className="px-8 py-6 text-right">
+                      <td className="px-8 py-3 text-right">
                         <div className="inline-flex flex-col items-end gap-2">
                           <button
                             onClick={(e) => {
