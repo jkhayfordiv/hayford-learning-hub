@@ -127,6 +127,9 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [selectedAssignments, setSelectedAssignments] = useState([]);
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
   
+  // Pagination for completed assignments
+  const [showAllCompleted, setShowAllCompleted] = useState(false);
+  
   // Submission Review Modal State
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
@@ -1026,6 +1029,10 @@ export default function TeacherDashboard({ user, onLogout }) {
                 student_id: ''
               });
             }}
+            onOpenSubmissionReview={(submission) => {
+              setSelectedSubmission(submission);
+              setIsReviewModalOpen(true);
+            }}
             user={user}
             apiBase={apiBase}
           />
@@ -1779,8 +1786,18 @@ export default function TeacherDashboard({ user, onLogout }) {
                                 <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full">{completedGroups.length}</span>
                               </h4>
                               <div className="space-y-3 opacity-80 hover:opacity-100 transition-opacity">
-                                {completedGroups.map((group, idx) => renderGroup(group, idx, 'completed'))}
+                                {(showAllCompleted ? completedGroups : completedGroups.slice(0, 5)).map((group, idx) => renderGroup(group, idx, 'completed'))}
                               </div>
+                              {completedGroups.length > 5 && (
+                                <div className="flex justify-center pt-4">
+                                  <button
+                                    onClick={() => setShowAllCompleted(!showAllCompleted)}
+                                    className="px-6 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
+                                  >
+                                    {showAllCompleted ? 'Show Less' : `Show ${completedGroups.length - 5} More Completed`}
+                                  </button>
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
