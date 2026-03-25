@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User, Shield, ChevronLeft, Save, HelpCircle, Mail, Goal } from 'lucide-react';
+import { User, Shield, ChevronLeft, Save, HelpCircle, Mail, Goal, Lock, Eye, EyeOff } from 'lucide-react';
 
 export default function Profile({ user, onLogout }) {
   const navigate = useNavigate();
@@ -15,6 +15,19 @@ export default function Profile({ user, onLogout }) {
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
   const [deleteError, setDeleteError] = useState('');
+  
+  // Password reset state
+  const [passwordData, setPasswordData] = useState({
+    current_password: '',
+    new_password: '',
+    confirm_password: ''
+  });
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [passwordMessage, setPasswordMessage] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -62,6 +75,59 @@ export default function Profile({ user, onLogout }) {
       console.error('Delete account error:', err);
       setDeleteError(err.message || 'Failed to delete account');
       setIsDeletingAccount(false);
+    }
+  };
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    setPasswordError('');
+    setPasswordMessage('');
+
+    // Validation
+    if (passwordData.new_password !== passwordData.confirm_password) {
+      setPasswordError('New passwords do not match');
+      return;
+    }
+
+    if (passwordData.new_password.length < 6) {
+      setPasswordError('New password must be at least 6 characters long');
+      return;
+    }
+
+    setIsChangingPassword(true);
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/users/me/password`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          current_password: passwordData.current_password,
+          new_password: passwordData.new_password
+        })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to update password');
+      }
+
+      setPasswordMessage('Password updated successfully!');
+      setPasswordData({
+        current_password: '',
+        new_password: '',
+        confirm_password: ''
+      });
+      
+      setTimeout(() => setPasswordMessage(''), 5000);
+    } catch (err) {
+      setPasswordError(err.message);
+    } finally {
+      setIsChangingPassword(false);
     }
   };
 
@@ -169,10 +235,109 @@ export default function Profile({ user, onLogout }) {
             </form>
          </div>
 
+         {/* Password Reset Section */}
+         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+            <div className="px-8 py-6 border-b border-slate-100 bg-slate-50/50">
+               <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2">
+                  <Lock className="text-slate-400" /> Change Password
+               </h3>
+               <p className="text-slate-500 text-sm font-medium mt-1">Update your account password</p>
+            </div>
+
+            <form onSubmit={handlePasswordChange} className="p-8 space-y-6">
+               {passwordMessage && (
+                  <div className="p-4 bg-green-50 text-green-700 rounded-xl text-sm font-bold border border-green-200 flex items-center gap-2">
+                     <Save size={16} /> {passwordMessage}
+                  </div>
+               )}
+
+               {passwordError && (
+                  <div className="p-4 bg-red-50 text-red-700 rounded-xl text-sm font-bold border border-red-200">
+                     {passwordError}
+                  </div>
+               )}
+
+               <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Current Password</label>
+                  <div className="relative">
+                     <input
+                        type={showCurrentPassword ? 'text' : 'password'}
+                        value={passwordData.current_password}
+                        onChange={(e) => setPasswordData({ ...passwordData, current_password: e.target.value })}
+                        required
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 pr-12 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        placeholder="Enter your current password"
+                     />
+                     <button
+                        type="button"
+                        onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                     >
+                        {showCurrentPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                     </button>
+                  </div>
+               </div>
+
+               <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">New Password</label>
+                  <div className="relative">
+                     <input
+                        type={showNewPassword ? 'text' : 'password'}
+                        value={passwordData.new_password}
+                        onChange={(e) => setPasswordData({ ...passwordData, new_password: e.target.value })}
+                        required
+                        minLength={6}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 pr-12 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        placeholder="At least 6 characters"
+                     />
+                     <button
+                        type="button"
+                        onClick={() => setShowNewPassword(!showNewPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                     >
+                        {showNewPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                     </button>
+                  </div>
+               </div>
+
+               <div className="space-y-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Confirm New Password</label>
+                  <div className="relative">
+                     <input
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        value={passwordData.confirm_password}
+                        onChange={(e) => setPasswordData({ ...passwordData, confirm_password: e.target.value })}
+                        required
+                        minLength={6}
+                        className="w-full bg-slate-50 border border-slate-200 px-4 py-3 pr-12 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        placeholder="Re-enter new password"
+                     />
+                     <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                     >
+                        {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                     </button>
+                  </div>
+               </div>
+
+               <div className="pt-6 border-t border-slate-100 flex justify-end">
+                  <button
+                     type="submit"
+                     disabled={isChangingPassword}
+                     className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-xl flex items-center gap-2 transition-all shadow-soft disabled:opacity-50"
+                  >
+                     <Lock size={18} /> {isChangingPassword ? 'Updating Password...' : 'Update Password'}
+                  </button>
+               </div>
+            </form>
+         </div>
+
          <div className="bg-slate-100 rounded-3xl p-8 border border-slate-200">
             <h3 className="font-black text-lg text-slate-900 tracking-tight flex items-center gap-2 mb-4"><HelpCircle className="text-slate-400" /> Need Assistance?</h3>
             <p className="text-slate-600 text-sm font-medium leading-relaxed mb-6">
-              If you are encountering issues with your dashboard, require a password reset, or need technical support with the IELTS AI marking tool, please reach out to our administration team.
+              If you are encountering issues with your dashboard or need technical support with the IELTS AI marking tool, please reach out to our administration team.
             </p>
             <a href="mailto:support@hayfordglobal.com" className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-300 text-slate-700 font-bold text-sm rounded-xl shadow-sm hover:border-slate-400 hover:bg-slate-50 transition-all">
                <Mail size={16} /> Contact Support

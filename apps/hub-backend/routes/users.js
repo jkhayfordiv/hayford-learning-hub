@@ -306,6 +306,63 @@ router.delete('/:id/classes', auth, async (req, res) => {
   }
 });
 
+// @route   PATCH api/users/me/password
+// @desc    Update user's own password
+// @access  Private (All authenticated users)
+router.patch('/me/password', auth, async (req, res) => {
+  const { current_password, new_password } = req.body;
+
+  if (!current_password || !new_password) {
+    return res.status(400).json({ error: 'Current password and new password are required' });
+  }
+
+  if (new_password.length < 6) {
+    return res.status(400).json({ error: 'New password must be at least 6 characters long' });
+  }
+
+  try {
+    const bcrypt = require('bcryptjs');
+    const connection = await pool.getConnection();
+
+    // Get current user with password hash
+    const [users] = await connection.query(
+      'SELECT id, password FROM users WHERE id = $1',
+      [req.user.id]
+    );
+
+    if (users.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const user = users[0];
+
+    // Verify current password
+    const isMatch = await bcrypt.compare(current_password, user.password);
+    if (!isMatch) {
+      connection.release();
+      return res.status(401).json({ error: 'Current password is incorrect' });
+    }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(new_password, salt);
+
+    // Update password
+    await connection.query(
+      'UPDATE users SET password = $1 WHERE id = $2',
+      [hashedPassword, req.user.id]
+    );
+
+    connection.release();
+
+    res.json({ message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Password update error:', error);
+    res.status(500).json({ error: 'Server error updating password' });
+  }
+});
+
 // @route   GET api/users/search
 // @desc    Search users by name or email (with tenant isolation)
 // @access  Private (Teacher/Admin only)
