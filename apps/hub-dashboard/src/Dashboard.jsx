@@ -636,7 +636,9 @@ export default function Dashboard() {
                                 ? 'IELTS Task 2 Essay' 
                                 : 'IELTS Task 1 & 2'
                             : task.assignment_type === 'speaking'
-                              ? `IELTS Speaking Part ${task.speaking_task_part || '1'}`
+                              ? task.speaking_parts && task.speaking_parts.length > 1
+                                ? `IELTS Speaking Parts ${task.speaking_parts.join(', ')}`
+                                : `IELTS Speaking Part ${task.speaking_task_part || (task.speaking_parts && task.speaking_parts[0]) || '1'}`
                               : task.assignment_type === 'grammar-practice'
                                 ? `Grammar Lab: ${task.grammar_topic_id?.replace(/-/g, ' ') || 'Practice'}`
                                 : task.assignment_type === 'vocabulary'
@@ -662,7 +664,11 @@ export default function Dashboard() {
                         window.location.href = grammarUrl;
                         return;
                       }
-                      const instructionsObj = { assignment_id: task.id, instructions: task.instructions };
+                      const instructionsObj = { 
+                        assignment_id: task.id, 
+                        instructions: task.instructions,
+                        speaking_parts: task.speaking_parts 
+                      };
                       if (task.assignment_type === 'vocabulary') {
                         window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                       } else if (task.assignment_type === 'speaking') {
