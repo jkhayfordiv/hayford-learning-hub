@@ -1,15 +1,107 @@
 import { useState, useEffect, useRef } from 'react'
 
-// Part 1 Questions Pool
-const PART_1_QUESTIONS = [
-  "Describe your hometown. What do you like most about it?",
-  "Do you work or are you a student? Tell me about your work or studies.",
-  "What do you like to do in your free time?",
-  "Do you prefer to spend time with family or friends? Why?",
-  "What kind of music do you enjoy listening to?",
-  "How do you usually spend your weekends?",
-  "What is your favourite season of the year and why?",
-  "Do you prefer living in a city or in the countryside?",
+// Part 1 Questions Pool - Organized by Topic
+const PART_1_TOPICS = [
+  {
+    topic: "Hometown & Living",
+    questions: [
+      "Where are you from? Can you describe your hometown?",
+      "What do you like most about your hometown?",
+      "Has your hometown changed much since you were a child?",
+      "Would you like to live there in the future? Why or why not?",
+      "Do you prefer living in a city or in the countryside?"
+    ]
+  },
+  {
+    topic: "Work & Studies",
+    questions: [
+      "Do you work or are you a student?",
+      "What do you study? / What is your job?",
+      "Why did you choose this field of study / career?",
+      "What do you find most interesting about your work or studies?",
+      "What are your future career plans?"
+    ]
+  },
+  {
+    topic: "Hobbies & Free Time",
+    questions: [
+      "What do you like to do in your free time?",
+      "How do you usually spend your weekends?",
+      "Have your hobbies changed since you were a child?",
+      "Is there a hobby you would like to try in the future?",
+      "Do you prefer indoor or outdoor activities?"
+    ]
+  },
+  {
+    topic: "Family & Friends",
+    questions: [
+      "Do you have a large or small family?",
+      "How much time do you spend with your family?",
+      "Do you prefer to spend time with family or friends? Why?",
+      "What activities do you enjoy doing with your family?",
+      "Are you still in touch with friends from your childhood?"
+    ]
+  },
+  {
+    topic: "Music & Entertainment",
+    questions: [
+      "What kind of music do you enjoy listening to?",
+      "Do you play any musical instruments?",
+      "How often do you listen to music?",
+      "Have your music tastes changed over the years?",
+      "Do you prefer listening to music alone or with others?"
+    ]
+  },
+  {
+    topic: "Food & Cooking",
+    questions: [
+      "What is your favourite type of food?",
+      "Do you enjoy cooking? Why or why not?",
+      "What is a typical meal in your country?",
+      "Do you prefer eating at home or in restaurants?",
+      "Have your eating habits changed in recent years?"
+    ]
+  },
+  {
+    topic: "Technology & Internet",
+    questions: [
+      "How often do you use the internet?",
+      "What do you usually use the internet for?",
+      "Do you prefer using a computer or a smartphone?",
+      "How has technology changed your daily life?",
+      "Do you think people spend too much time online?"
+    ]
+  },
+  {
+    topic: "Travel & Holidays",
+    questions: [
+      "Do you enjoy traveling? Why or why not?",
+      "What was the last place you visited?",
+      "Do you prefer traveling alone or with others?",
+      "What type of holiday do you prefer - relaxing or adventurous?",
+      "Is there a place you would really like to visit?"
+    ]
+  },
+  {
+    topic: "Weather & Seasons",
+    questions: [
+      "What is the weather like in your country?",
+      "What is your favourite season of the year and why?",
+      "Does the weather affect your mood?",
+      "Do you prefer hot or cold weather?",
+      "How do you usually spend time in different seasons?"
+    ]
+  },
+  {
+    topic: "Shopping & Fashion",
+    questions: [
+      "Do you enjoy shopping? Why or why not?",
+      "How often do you go shopping?",
+      "Do you prefer shopping online or in physical stores?",
+      "Are you interested in fashion?",
+      "Do you think people spend too much money on clothes?"
+    ]
+  }
 ]
 
 // Part 2 Cue Cards
@@ -101,7 +193,8 @@ export default function App() {
   const currentPart = assignedParts[currentPartIndex]
   
   // Part-specific content
-  const [part1Questions] = useState(() => getRandomItems(PART_1_QUESTIONS, 4))
+  const [part1Topic] = useState(() => PART_1_TOPICS[Math.floor(Math.random() * PART_1_TOPICS.length)])
+  const [part1Questions] = useState(() => part1Topic.questions)
   const [part2CueCard] = useState(() => PART_2_CUE_CARDS[Math.floor(Math.random() * PART_2_CUE_CARDS.length)])
   const [part3Questions] = useState(() => getRandomItems(PART_3_QUESTIONS, 3))
   
@@ -475,7 +568,10 @@ export default function App() {
           <section className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 1: Introduction & Interview</h2>
+                <div>
+                  <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 1: Introduction & Interview</h2>
+                  <p className="text-xs text-slate-400 mt-1">Topic: {part1Topic.topic}</p>
+                </div>
                 <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-xl font-bold text-xs">
                   Question {part1QuestionIndex + 1} of {part1Questions.length}
                 </span>
