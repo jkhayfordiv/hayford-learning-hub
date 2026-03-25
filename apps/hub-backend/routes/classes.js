@@ -522,22 +522,57 @@ router.get('/:id/details', requireTeacher, async (req, res) => {
       [class_id]
     );
     
-    // Get unique assignments for this class
-    const [assignments] = await connection.query(
-      `SELECT DISTINCT ON (a.module_id, a.assignment_type, a.grammar_topic_id, a.instructions, a.due_date)
-         a.id, a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
-         a.instructions, a.due_date, a.created_at,
-         m.module_name, m.module_type,
+    // Get unique assignments for this class with aggregated counts
+    const [assignmentGroups] = await connection.query(
+      `SELECT 
+         MIN(a.id) as id,
+         a.module_id, 
+         a.assignment_type, 
+         a.grammar_topic_id, 
+         a.writing_task_type, 
+         a.instructions, 
+         a.due_date,
+         MIN(a.created_at) as created_at,
+         m.module_name, 
+         m.module_type,
          COUNT(CASE WHEN a.status = 'completed' THEN 1 END) as completed_count,
          COUNT(a.student_id) as total_assigned
        FROM assigned_tasks a
        JOIN learning_modules m ON a.module_id = m.id
-       WHERE a.class_id = $1
-       GROUP BY a.id, a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
-                a.instructions, a.due_date, a.created_at, m.module_name, m.module_type
-       ORDER BY a.module_id, a.assignment_type, a.grammar_topic_id, a.instructions, a.due_date, a.created_at DESC`,
+       WHERE a.class_id = $1 AND a.student_id IS NOT NULL
+       GROUP BY a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
+                a.instructions, a.due_date, m.module_name, m.module_type
+       ORDER BY MIN(a.created_at) DESC`,
       [class_id]
     );
+    
+    // For each assignment group, get the student submission details
+    const assignments = [];
+    for (const assignment of assignmentGroups) {
+      const [studentSubmissions] = await connection.query(
+        `SELECT 
+           a.id as assignment_id,
+           a.student_id,
+           a.status,
+           u.first_name as student_first_name,
+           u.last_name as student_last_name
+         FROM assigned_tasks a
+         JOIN users u ON a.student_id = u.id
+         WHERE a.class_id = $1 
+           AND a.module_id = $2 
+           AND a.assignment_type = $3
+           AND (a.grammar_topic_id = $4 OR (a.grammar_topic_id IS NULL AND $4 IS NULL))
+           AND (a.instructions = $5 OR (a.instructions IS NULL AND $5 IS NULL))
+           AND (a.due_date = $6 OR (a.due_date IS NULL AND $6 IS NULL))
+         ORDER BY u.last_name, u.first_name`,
+        [class_id, assignment.module_id, assignment.assignment_type, assignment.grammar_topic_id, assignment.instructions, assignment.due_date]
+      );
+      
+      assignments.push({
+        ...assignment,
+        student_submissions: studentSubmissions
+      });
+    }
     
     connection.release();
     
