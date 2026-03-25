@@ -12,7 +12,6 @@ export default {
       },
       colors: {
         brand: {
-          crimson: '#A51C30',
           navy: '#0A1930',
           copper: '#B87333',
           darkBg: '#0f172a',

@@ -106,7 +106,7 @@ export default function LoginPage() {
       )}
 
       {/* Left Side: Branding Panel */}
-      <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-[#A51C30] via-[#8B1729] to-[#6B1220]'}`}>
+      <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-copper via-[#A0632B] to-[#8B5526]'}`}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 flex items-center gap-4">
            <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-copper/60 bg-white/10 backdrop-blur shadow-glow p-1" />

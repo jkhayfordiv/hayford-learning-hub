@@ -786,7 +786,7 @@ export default function Dashboard() {
            
            <button
               onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both`}
-              className="bg-gradient-to-br from-brand-crimson to-[#8B1729] hover:from-[#8B1729] hover:to-[#6B1220] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+              className="bg-gradient-to-br from-brand-copper to-[#A0632B] hover:from-[#A0632B] hover:to-[#8B5526] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">
                  <PenTool size={24} className="text-white/90 group-hover:text-white transition-colors" />
