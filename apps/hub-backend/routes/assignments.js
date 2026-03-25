@@ -71,10 +71,11 @@ router.post('/', requireTeacher, async (req, res) => {
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
       const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
+      const speakingTaskPart = speaking_parts && speaking_parts.length > 0 ? speaking_parts[0] : (speaking_task_part || null);
       const [result] = await connection.query(
         `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
-        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, speakingPartsJson, instructions || null, due_date || null]
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
       );
       
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
@@ -132,6 +133,7 @@ router.post('/', requireTeacher, async (req, res) => {
       }
 
       const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
+      const speakingTaskPart = speaking_parts && speaking_parts.length > 0 ? speaking_parts[0] : (speaking_task_part || null);
       let count = 0;
       for (const student of students) {
         try {
@@ -146,7 +148,7 @@ router.post('/', requireTeacher, async (req, res) => {
               aType,
               grammar_topic_id || null,
               writing_task_type || null,
-              speaking_task_part || null,
+              speakingTaskPart,
               speakingPartsJson,
               instructions || null,
               due_date || null
@@ -193,13 +195,14 @@ router.post('/', requireTeacher, async (req, res) => {
       }
 
       const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
+      const speakingTaskPart = speaking_parts && speaking_parts.length > 0 ? speaking_parts[0] : (speaking_task_part || null);
       let count = 0;
       for (const student of students) {
         try {
           await connection.query(
             `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, speakingPartsJson, instructions || null, due_date || null]
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
           );
           count++;
         } catch (dupError) {

@@ -297,9 +297,16 @@ Evaluate the student on ALL FOUR official IELTS speaking criteria by listening t
 3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures. Part 3 should show complex sentence structures.
 4. Pronunciation (P): CRITICAL. Listen to actual sounds. Evaluate clarity, word stress, sentence rhythm, intonation, and intelligibility. Identify specific phoneme or stress errors if present.
 
-CRITICAL SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corrections, or pauses. Students in the 4.0-5.5 range hesitate as they search for vocabulary. If their meaning is clear and their vocabulary is appropriate, score them a realistic 5.0 or higher. Stop artificially lowering scores to 4.0 just for pacing. Evaluate fluency holistically - natural pauses while thinking are NORMAL and should not result in harsh penalties.
+CRITICAL DURATION & RELEVANCE REQUIREMENTS:
+- Part 1 responses: Expected 15-30 seconds per question. Responses under 15 seconds indicate insufficient development → cap overall score at 5.0 maximum.
+- Part 2 (Cue Card): Expected 90-120 seconds. Responses under 60 seconds indicate incomplete task → cap overall score at 4.5 maximum.
+- Part 3 responses: Expected 20-45 seconds per question. Responses under 20 seconds indicate insufficient depth → cap overall score at 5.0 maximum.
+- Question Relevance: CRITICAL. The response MUST directly address the question asked. Off-topic, tangential, or irrelevant responses → cap overall score at 4.0 maximum regardless of duration or fluency.
+- Content Depth: Responses must demonstrate idea development with examples, explanations, or elaboration. Single-sentence answers without development → penalize Fluency & Coherence and Lexical Resource scores.
 
-Calculate Overall Band Score as average of all four, rounded to nearest 0.5.
+BALANCED SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corrections, or thinking pauses - these are normal in authentic speech. However, DO enforce minimum duration and relevance requirements strictly. A fluent but brief or off-topic response deserves a low score. A hesitant but relevant and sufficiently developed response can score 5.0-6.0 if vocabulary and grammar are adequate.
+
+Calculate Overall Band Score as average of all four, rounded to nearest 0.5. Apply duration and relevance caps AFTER calculating the raw average.
 
 CRITICAL ERROR TRACKING: You must identify specific error categories from the student's performance. Use ONLY these standardized categories:
 - "Article Usage"
