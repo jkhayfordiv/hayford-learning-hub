@@ -140,6 +140,17 @@ WHERE conname = 'chk_assignment_type';
 -- assigning different speaking parts (Part 1, Part 2, Part 3) to same student
 DROP INDEX IF EXISTS idx_assigned_tasks_dedup;
 
+-- Clean up duplicate records before creating the new unique index
+-- Keep only the most recent assignment for each unique combination
+DELETE FROM assigned_tasks a
+USING assigned_tasks b
+WHERE a.id < b.id
+  AND a.student_id = b.student_id
+  AND a.module_id = b.module_id
+  AND a.assignment_type = b.assignment_type
+  AND COALESCE(a.grammar_topic_id, '') = COALESCE(b.grammar_topic_id, '')
+  AND COALESCE(a.speaking_parts::text, '') = COALESCE(b.speaking_parts::text, '');
+
 -- Create new index that includes speaking_parts to allow different speaking assignments
 CREATE UNIQUE INDEX idx_assigned_tasks_dedup 
 ON assigned_tasks (student_id, module_id, assignment_type, COALESCE(grammar_topic_id, ''), COALESCE(speaking_parts::text, ''));
