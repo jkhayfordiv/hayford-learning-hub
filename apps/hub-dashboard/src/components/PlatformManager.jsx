@@ -455,14 +455,14 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
-                        <th className="px-6 py-4">Class Name</th>
-                        <th className="px-6 py-4">Teacher</th>
-                        {user.role === 'super_admin' && <th className="px-6 py-4">Institution</th>}
-                        <th className="px-6 py-4">Students</th>
-                        <th className="px-6 py-4">Start Date</th>
-                        <th className="px-6 py-4">End Date</th>
-                        <th className="px-6 py-4">Class Code</th>
-                        <th className="px-6 py-4 text-right">Actions</th>
+                        <th className="px-6 py-2">Class Name</th>
+                        <th className="px-6 py-2">Teacher</th>
+                        {user.role === 'super_admin' && <th className="px-6 py-2">Institution</th>}
+                        <th className="px-6 py-2">Students</th>
+                        <th className="px-6 py-2">Start Date</th>
+                        <th className="px-6 py-2">End Date</th>
+                        <th className="px-6 py-2">Class Code</th>
+                        <th className="px-6 py-2 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
@@ -481,7 +481,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
                         return paginated.map((cls) => (
                           <tr key={cls.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                            <td className="px-6 py-4">
+                            <td className="px-6 py-3">
                               <button
                                 onClick={() => onViewClassDetails && onViewClassDetails(cls.id)}
                                 className="font-bold text-slate-900 dark:text-white hover:text-[#800000] dark:hover:text-[#a00000] transition-colors text-left"
@@ -489,29 +489,29 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                 {cls.class_name}
                               </button>
                             </td>
-                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">
+                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">
                               {cls.teacher_first_name} {cls.teacher_last_name}
                             </td>
                             {user.role === 'super_admin' && (
-                              <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{cls.institution_name || 'N/A'}</td>
+                              <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{cls.institution_name || 'N/A'}</td>
                             )}
-                            <td className="px-6 py-4 text-center">
+                            <td className="px-6 py-3 text-center">
                               <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-lg font-bold">
                                 {cls.student_count || 0}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">
+                            <td className="px-6 py-3 text-slate-500 dark:text-slate-400">
                               {cls.start_date ? new Date(cls.start_date).toLocaleDateString() : 'N/A'}
                             </td>
-                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">
+                            <td className="px-6 py-3 text-slate-500 dark:text-slate-400">
                               {cls.end_date ? new Date(cls.end_date).toLocaleDateString() : 'Ongoing'}
                             </td>
-                            <td className="px-6 py-4">
+                            <td className="px-6 py-3">
                               <code className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1 rounded font-mono text-xs font-bold">
                                 {cls.class_code}
                               </code>
                             </td>
-                            <td className="px-6 py-4 text-right">
+                            <td className="px-6 py-3 text-right">
                               <button
                                 onClick={() => {
                                   setSelectedClass(cls);
@@ -635,12 +635,12 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
-                        <th className="px-6 py-4">ID</th>
-                        <th className="px-6 py-4">Name</th>
-                        <th className="px-6 py-4">Contact Email</th>
-                        <th className="px-6 py-4 text-center">Student Count</th>
-                        <th className="px-6 py-4">Created</th>
-                        <th className="px-6 py-4 text-right">Actions</th>
+                        <th className="px-6 py-2">ID</th>
+                        <th className="px-6 py-2">Name</th>
+                        <th className="px-6 py-2">Contact Email</th>
+                        <th className="px-6 py-2 text-center">Student Count</th>
+                        <th className="px-6 py-2">Created</th>
+                        <th className="px-6 py-2 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
@@ -656,18 +656,18 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
                         return paginated.map((inst) => (
                           <tr key={inst.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                            <td className="px-6 py-4 font-bold text-[#800000] dark:text-[#a00000]">{inst.id}</td>
-                            <td className="px-6 py-4 font-bold text-slate-900 dark:text-white">{inst.name}</td>
-                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{inst.contact_email || 'N/A'}</td>
-                            <td className="px-6 py-4 text-center">
+                            <td className="px-6 py-3 font-bold text-[#800000] dark:text-[#a00000]">{inst.id}</td>
+                            <td className="px-6 py-3 font-bold text-slate-900 dark:text-white">{inst.name}</td>
+                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{inst.contact_email || 'N/A'}</td>
+                            <td className="px-6 py-3 text-center">
                               <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-3 py-1 rounded-lg font-bold">
                                 {inst.student_count || 0}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-500 dark:text-slate-400">
+                            <td className="px-6 py-3 text-slate-500 dark:text-slate-400">
                               {inst.created_at ? new Date(inst.created_at).toLocaleDateString() : 'N/A'}
                             </td>
-                            <td className="px-6 py-4 text-right">
+                            <td className="px-6 py-3 text-right">
                               <div className="flex gap-2 justify-end">
                                 <button
                                   onClick={() => {
@@ -796,7 +796,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
-                        <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                        <th className="px-6 py-2 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'id',
                             direction: prev.key === 'id' && prev.direction === 'asc' ? 'desc' : 'asc'
@@ -804,7 +804,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         }}>
                           ID {globalUsersSort.key === 'id' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
                         </th>
-                        <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                        <th className="px-6 py-2 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'name',
                             direction: prev.key === 'name' && prev.direction === 'asc' ? 'desc' : 'asc'
@@ -812,7 +812,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         }}>
                           Name {globalUsersSort.key === 'name' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
                         </th>
-                        <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                        <th className="px-6 py-2 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'email',
                             direction: prev.key === 'email' && prev.direction === 'asc' ? 'desc' : 'asc'
@@ -820,7 +820,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         }}>
                           Email {globalUsersSort.key === 'email' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
                         </th>
-                        <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                        <th className="px-6 py-2 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'role',
                             direction: prev.key === 'role' && prev.direction === 'asc' ? 'desc' : 'asc'
@@ -828,7 +828,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         }}>
                           Role {globalUsersSort.key === 'role' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
                         </th>
-                        <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                        <th className="px-6 py-2 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'institution',
                             direction: prev.key === 'institution' && prev.direction === 'asc' ? 'desc' : 'asc'
@@ -836,7 +836,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         }}>
                           Institution {globalUsersSort.key === 'institution' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
                         </th>
-                        <th className="px-6 py-4 cursor-pointer hover:bg-slate-100" onClick={() => {
+                        <th className="px-6 py-2 cursor-pointer hover:bg-slate-100" onClick={() => {
                           setGlobalUsersSort(prev => ({
                             key: 'class',
                             direction: prev.key === 'class' && prev.direction === 'asc' ? 'desc' : 'asc'
@@ -844,7 +844,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         }}>
                           Class {globalUsersSort.key === 'class' && (globalUsersSort.direction === 'asc' ? '↑' : '↓')}
                         </th>
-                        <th className="px-6 py-4 text-right">Actions</th>
+                        <th className="px-6 py-2 text-right">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="text-sm font-medium text-slate-700 divide-y divide-slate-100">
@@ -883,10 +883,10 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
                         return paginated.map((u) => (
                           <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                            <td className="px-6 py-4 font-bold text-[#800000] dark:text-[#a00000]">{u.id}</td>
-                            <td className="px-6 py-4 font-bold text-slate-900 dark:text-white">{u.first_name} {u.last_name}</td>
-                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{u.email}</td>
-                            <td className="px-6 py-4">
+                            <td className="px-6 py-3 font-bold text-[#800000] dark:text-[#a00000]">{u.id}</td>
+                            <td className="px-6 py-3 font-bold text-slate-900 dark:text-white">{u.first_name} {u.last_name}</td>
+                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{u.email}</td>
+                            <td className="px-6 py-3">
                               <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
                                 u.role === 'super_admin' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' :
                                 u.role === 'admin' ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' :
@@ -896,9 +896,9 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                 {u.role}
                               </span>
                             </td>
-                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{u.institution_name || 'None'}</td>
-                            <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{u.class_name || 'None'}</td>
-                            <td className="px-6 py-4 text-right">
+                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{u.institution_name || 'None'}</td>
+                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{u.class_name || 'None'}</td>
+                            <td className="px-6 py-3 text-right">
                               <div className="flex gap-2 justify-end">
                                 <button
                                   onClick={() => {
