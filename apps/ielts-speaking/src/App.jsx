@@ -135,12 +135,143 @@ const PART_2_CUE_CARDS = [
   }
 ]
 
-// Part 3 Discussion Questions
-const PART_3_QUESTIONS = [
-  "How has technology changed the way people communicate in your country?",
-  "Do you think traditional values are still important in modern society? Why or why not?",
-  "What role should governments play in protecting the environment?",
-  "How do you think education systems could be improved globally?"
+// Part 3 Discussion Questions - Organized by Topic
+const PART_3_TOPICS = [
+  {
+    topic: "Technology and Society",
+    questions: [
+      "How has technology changed the way people communicate in your country?",
+      "Do you think people rely too much on technology these days?",
+      "What are the potential dangers of artificial intelligence?",
+      "How might technology change education in the next 20 years?"
+    ]
+  },
+  {
+    topic: "Environmental Issues",
+    questions: [
+      "What role should governments play in protecting the environment?",
+      "Do you think individuals can make a real difference in fighting climate change?",
+      "Should companies be forced to reduce their carbon emissions?",
+      "How can we encourage people to adopt more sustainable lifestyles?"
+    ]
+  },
+  {
+    topic: "Education and Learning",
+    questions: [
+      "How do you think education systems could be improved globally?",
+      "Is university education necessary for success in modern society?",
+      "Should students be allowed to choose all their own subjects?",
+      "What is the role of teachers in the age of online learning?"
+    ]
+  },
+  {
+    topic: "Work and Career",
+    questions: [
+      "How has the concept of work-life balance changed in recent years?",
+      "Do you think people should stay in one career for their whole life?",
+      "What are the advantages and disadvantages of working from home?",
+      "Should there be a maximum working week of 40 hours?"
+    ]
+  },
+  {
+    topic: "Cultural Values and Traditions",
+    questions: [
+      "Do you think traditional values are still important in modern society?",
+      "How can countries preserve their cultural heritage?",
+      "Should young people be encouraged to follow traditional customs?",
+      "What happens when traditional culture conflicts with modern values?"
+    ]
+  },
+  {
+    topic: "Health and Lifestyle",
+    questions: [
+      "What can governments do to encourage healthier lifestyles?",
+      "Do you think people today are healthier than previous generations?",
+      "Should unhealthy foods be taxed more heavily?",
+      "How important is mental health compared to physical health?"
+    ]
+  },
+  {
+    topic: "Media and Information",
+    questions: [
+      "How has social media changed the way news is consumed?",
+      "Do you think there should be stricter controls on fake news?",
+      "What impact does celebrity culture have on young people?",
+      "Should journalists always remain completely neutral?"
+    ]
+  },
+  {
+    topic: "Globalization and Travel",
+    questions: [
+      "What are the main benefits of globalization?",
+      "Do you think tourism has more positive or negative effects?",
+      "Should there be limits on international travel to protect the environment?",
+      "How has globalization affected local cultures?"
+    ]
+  },
+  {
+    topic: "Urban Development",
+    questions: [
+      "What are the biggest challenges facing cities today?",
+      "Should governments prioritize public transportation over private cars?",
+      "Is it better to live in a city or in the countryside?",
+      "How can cities be made more sustainable?"
+    ]
+  },
+  {
+    topic: "Family and Relationships",
+    questions: [
+      "How have family structures changed in modern society?",
+      "Do you think extended families are still important today?",
+      "What is the ideal age to get married?",
+      "Should both parents share childcare responsibilities equally?"
+    ]
+  },
+  {
+    topic: "Crime and Justice",
+    questions: [
+      "What is the best way to reduce crime in society?",
+      "Should the focus of prisons be punishment or rehabilitation?",
+      "Do you think capital punishment is ever justified?",
+      "How can we prevent young people from becoming criminals?"
+    ]
+  },
+  {
+    topic: "Science and Innovation",
+    questions: [
+      "What scientific breakthrough would benefit humanity the most?",
+      "Should there be limits on scientific research?",
+      "How important is space exploration compared to solving Earth's problems?",
+      "Do the benefits of genetic engineering outweigh the risks?"
+    ]
+  },
+  {
+    topic: "Arts and Entertainment",
+    questions: [
+      "Should governments fund the arts?",
+      "Is traditional art still relevant in the digital age?",
+      "Do you think entertainment has become too commercialized?",
+      "What role does art play in society?"
+    ]
+  },
+  {
+    topic: "Economic Issues",
+    questions: [
+      "What is the best way to reduce income inequality?",
+      "Should wealthy people pay higher taxes?",
+      "Is economic growth always beneficial for society?",
+      "How can governments help people during economic crises?"
+    ]
+  },
+  {
+    topic: "Language and Communication",
+    questions: [
+      "Will English continue to be the dominant global language?",
+      "Should everyone learn a second language?",
+      "How important is it to preserve minority languages?",
+      "Has digital communication improved or damaged our ability to communicate?"
+    ]
+  }
 ]
 
 function getRandomItems(array, count) {
@@ -196,7 +327,8 @@ export default function App() {
   const [part1Topic] = useState(() => PART_1_TOPICS[Math.floor(Math.random() * PART_1_TOPICS.length)])
   const [part1Questions] = useState(() => part1Topic.questions)
   const [part2CueCard] = useState(() => PART_2_CUE_CARDS[Math.floor(Math.random() * PART_2_CUE_CARDS.length)])
-  const [part3Questions] = useState(() => getRandomItems(PART_3_QUESTIONS, 3))
+  const [part3Topic] = useState(() => PART_3_TOPICS[Math.floor(Math.random() * PART_3_TOPICS.length)])
+  const [part3Questions] = useState(() => part3Topic.questions)
   
   // Part 1 state
   const [part1QuestionIndex, setPart1QuestionIndex] = useState(0)
@@ -535,7 +667,7 @@ export default function App() {
         <header className="flex items-center justify-between border-b border-slate-200 pb-8">
             <div className="space-y-1">
                 <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-copper">IELTS Speaking Test</p>
-                <h1 className="text-4xl font-black tracking-tighter text-slate-950">Part {currentPart} of {assignedParts.length}</h1>
+                <h1 className="text-4xl font-black tracking-tighter text-slate-950">Part {currentPart}{assignedParts.length > 1 ? ` of ${assignedParts.length}` : ''}</h1>
             </div>
             <button
                 onClick={() => { window.location.href = '/dashboard' }}
@@ -671,7 +803,10 @@ export default function App() {
           <section className="space-y-6">
             <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 3: Two-Way Discussion</h2>
+                <div>
+                  <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 3: Two-Way Discussion</h2>
+                  <p className="text-xs text-slate-400 mt-1">Topic: {part3Topic.topic}</p>
+                </div>
                 <div className={`px-4 py-2 rounded-xl font-bold text-xs ${
                   part3TimeRemaining <= 60 ? 'bg-red-50 text-red-600 animate-pulse' : 'bg-slate-100 text-slate-600'
                 }`}>
@@ -722,11 +857,11 @@ export default function App() {
 
         {/* Recording Interface */}
         {(currentPart === '1' || currentPart === '3' || (currentPart === '2' && part2PrepComplete)) && (
-          <section className="bg-slate-900 text-white rounded-[2.5rem] p-12 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-transparent"></div>
+          <section className="bg-slate-900 text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-copper/10 to-transparent"></div>
             
-            <div className="relative flex flex-col items-center gap-10">
-                <div className="flex flex-col items-center gap-4">
+            <div className="relative flex flex-col items-center gap-6">
+                <div className="flex flex-col items-center gap-3">
                     <div className="relative">
                         {isRecording && (
                             <div className="absolute inset-0 bg-red-500/30 rounded-full animate-ping scale-150"></div>
@@ -734,16 +869,16 @@ export default function App() {
                         <button
                             onClick={handleToggleRecording}
                             disabled={currentPartComplete}
-                            className={`relative w-20 h-20 rounded-full border-4 border-slate-800 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
-                                isRecording ? 'bg-white' : currentPartComplete ? 'bg-green-500' : 'bg-slate-800 hover:bg-slate-700 hover:border-slate-600'
+                            className={`relative w-16 h-16 rounded-full border-4 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
+                                isRecording ? 'bg-white border-red-500' : currentPartComplete ? 'bg-green-500 border-green-600' : 'bg-brand-copper border-brand-copper/50 hover:bg-brand-copper/90 hover:border-brand-copper'
                             }`}
                         >
                             {currentPartComplete ? (
                                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                             ) : isRecording ? (
-                                <div className="w-6 h-6 bg-red-600 rounded-sm"></div>
+                                <div className="w-5 h-5 bg-red-600 rounded-sm"></div>
                             ) : (
-                                <svg className="w-8 h-8 text-indigo-400 group-hover:text-indigo-300 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-7 h-7 text-white group-hover:text-white/90 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
                                     <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
                                 </svg>
@@ -751,13 +886,13 @@ export default function App() {
                         </button>
                     </div>
                     
-                    <div className="text-center space-y-1">
-                        <p className={`text-sm font-black uppercase tracking-[0.2em] ${
-                          currentPartComplete ? 'text-green-400' : isRecording ? 'text-red-400' : 'text-slate-400'
+                    <div className="text-center space-y-0.5">
+                        <p className={`text-xs font-black uppercase tracking-[0.2em] ${
+                          currentPartComplete ? 'text-green-400' : isRecording ? 'text-red-400' : 'text-brand-copper/70'
                         }`}>
                             {currentPartComplete ? 'Part Complete' : isRecording ? 'Recording Live' : 'Standby'}
                         </p>
-                        <p className={`text-4xl font-black tabular-nums transition-all ${isRecording ? 'text-white' : 'text-slate-500'}`}>
+                        <p className={`text-3xl font-black tabular-nums transition-all ${isRecording ? 'text-white' : 'text-slate-500'}`}>
                             {formatTime(recordingSeconds)}
                         </p>
                     </div>
@@ -766,7 +901,7 @@ export default function App() {
                 {currentPartComplete && !allPartsComplete && (
                   <button
                       onClick={handleNextPart}
-                      className="w-full max-w-sm py-5 bg-white hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
+                      className="w-full max-w-sm py-4 bg-white hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
                   >
                       Continue to Part {assignedParts[currentPartIndex + 1]}
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -777,11 +912,11 @@ export default function App() {
                   <button
                       onClick={handleSubmitAll}
                       disabled={isSubmitting}
-                      className="w-full max-w-sm py-5 bg-white hover:bg-slate-50 disabled:bg-slate-800/50 disabled:text-slate-600 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
+                      className="w-full max-w-sm py-4 bg-white hover:bg-slate-50 disabled:bg-slate-800/50 disabled:text-slate-600 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
                   >
                       {isSubmitting ? (
                           <>
-                              <div className="w-4 h-4 border-4 border-slate-200 border-t-indigo-600 rounded-full animate-spin"></div>
+                              <div className="w-4 h-4 border-4 border-slate-200 border-t-brand-copper rounded-full animate-spin"></div>
                               Analyzing Audio...
                           </>
                       ) : (
