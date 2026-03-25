@@ -134,6 +134,21 @@ SELECT conname, pg_get_constraintdef(oid)
 FROM pg_constraint 
 WHERE conname = 'chk_assignment_type';
 
+-- STEP 6: Fix unique index for IELTS Speaking assignments
+-- ============================================================================
+-- The old index doesn't include speaking_parts, causing conflicts when
+-- assigning different speaking parts (Part 1, Part 2, Part 3) to same student
+DROP INDEX IF EXISTS idx_assigned_tasks_dedup;
+
+-- Create new index that includes speaking_parts to allow different speaking assignments
+CREATE UNIQUE INDEX idx_assigned_tasks_dedup 
+ON assigned_tasks (student_id, module_id, assignment_type, COALESCE(grammar_topic_id, ''), COALESCE(speaking_parts::text, ''));
+
+-- Verify the new index
+SELECT indexname, indexdef 
+FROM pg_indexes 
+WHERE indexname = 'idx_assigned_tasks_dedup';
+
 -- ============================================================================
 -- MIGRATION COMPLETE
 -- ============================================================================
@@ -141,5 +156,6 @@ WHERE conname = 'chk_assignment_type';
 -- 1. Verify the output shows no errors
 -- 2. Check that class_enrollments has records
 -- 3. Check that assignment_type constraint includes 'listening'
--- 4. Redeploy your Render backend (it should auto-deploy from GitHub)
+-- 4. Check that idx_assigned_tasks_dedup includes speaking_parts
+-- 5. Redeploy your Render backend (it should auto-deploy from GitHub)
 -- ============================================================================

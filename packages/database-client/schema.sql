@@ -223,8 +223,12 @@ ADD COLUMN IF NOT EXISTS speaking_parts JSONB DEFAULT '["1"]'::jsonb;
 -- Add unique index for assignment deduplication (supports ON CONFLICT)
 -- Note: NULL in grammar_topic_id will allow multiple assignments for writing,
 -- which is generally desired so students can do Task 1 multiple times.
-CREATE UNIQUE INDEX IF NOT EXISTS idx_assigned_tasks_dedup 
-ON assigned_tasks (student_id, module_id, assignment_type, grammar_topic_id);
+-- Drop old index if it exists
+DROP INDEX IF EXISTS idx_assigned_tasks_dedup;
+
+-- Create new index that includes speaking_parts to allow different speaking assignments
+CREATE UNIQUE INDEX idx_assigned_tasks_dedup 
+ON assigned_tasks (student_id, module_id, assignment_type, COALESCE(grammar_topic_id, ''), COALESCE(speaking_parts::text, ''));
 
 -- ============================================================================
 -- GRAMMAR PROGRESS TABLE
