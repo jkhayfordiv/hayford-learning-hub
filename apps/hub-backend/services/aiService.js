@@ -295,7 +295,7 @@ Evaluate the student on ALL FOUR official IELTS speaking criteria by listening t
 1. Fluency and Coherence (FC): Listen for hesitations, self-corrections, speed, and connectors. For Part 2, expect some preparation pauses. For Part 3, expect deeper thinking pauses.
 2. Lexical Resource (LR): Assess vocabulary range and natural word choice. Part 3 should demonstrate more sophisticated vocabulary than Part 1.
 3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures. Part 3 should show complex sentence structures.
-4. Pronunciation (P): CRITICAL. Listen to actual sounds. Evaluate clarity, word stress, sentence rhythm, intonation, and intelligibility. Identify specific phoneme or stress errors if present.
+4. Pronunciation (P): CRITICAL AUDIO DETECTION REQUIRED. First, verify that actual human speech is present in the audio. If the audio is silent, contains only background noise, or has no intelligible speech → score pronunciation as 1.0. Only evaluate pronunciation IF clear speech is detected. When speech is present, evaluate: individual sound clarity (consonants and vowels), word stress patterns, sentence-level intonation, rhythm and pacing, and overall intelligibility. A score above 3.0 requires clear, sustained speech with identifiable words.
 
 CRITICAL DURATION & RELEVANCE REQUIREMENTS:
 - Part 1 responses: Expected 15-30 seconds per question. Responses under 15 seconds indicate insufficient development → cap overall score at 5.0 maximum.
