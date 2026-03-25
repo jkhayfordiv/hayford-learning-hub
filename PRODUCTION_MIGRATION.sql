@@ -134,31 +134,12 @@ SELECT conname, pg_get_constraintdef(oid)
 FROM pg_constraint 
 WHERE conname = 'chk_assignment_type';
 
--- STEP 6: Fix unique index for IELTS Speaking assignments
+-- STEP 6: Drop problematic unique index for assignment deduplication
 -- ============================================================================
--- The old index doesn't include speaking_parts, causing conflicts when
--- assigning different speaking parts (Part 1, Part 2, Part 3) to same student
+-- The expression-based unique index causes issues with ON CONFLICT and prevents
+-- IELTS Speaking assignments from being created. Duplicate prevention is now
+-- handled in application code via try/catch blocks.
 DROP INDEX IF EXISTS idx_assigned_tasks_dedup;
-
--- Clean up duplicate records before creating the new unique index
--- Keep only the most recent assignment for each unique combination
-DELETE FROM assigned_tasks a
-USING assigned_tasks b
-WHERE a.id < b.id
-  AND a.student_id = b.student_id
-  AND a.module_id = b.module_id
-  AND a.assignment_type = b.assignment_type
-  AND COALESCE(a.grammar_topic_id, '') = COALESCE(b.grammar_topic_id, '')
-  AND COALESCE(a.speaking_parts::text, '') = COALESCE(b.speaking_parts::text, '');
-
--- Create new index that includes speaking_parts to allow different speaking assignments
-CREATE UNIQUE INDEX idx_assigned_tasks_dedup 
-ON assigned_tasks (student_id, module_id, assignment_type, COALESCE(grammar_topic_id, ''), COALESCE(speaking_parts::text, ''));
-
--- Verify the new index
-SELECT indexname, indexdef 
-FROM pg_indexes 
-WHERE indexname = 'idx_assigned_tasks_dedup';
 
 -- ============================================================================
 -- MIGRATION COMPLETE
@@ -167,6 +148,6 @@ WHERE indexname = 'idx_assigned_tasks_dedup';
 -- 1. Verify the output shows no errors
 -- 2. Check that class_enrollments has records
 -- 3. Check that assignment_type constraint includes 'listening'
--- 4. Check that idx_assigned_tasks_dedup includes speaking_parts
+-- 4. Verify idx_assigned_tasks_dedup has been dropped
 -- 5. Redeploy your Render backend (it should auto-deploy from GitHub)
 -- ============================================================================

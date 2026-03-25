@@ -230,8 +230,7 @@ router.post('/join', auth, async (req, res) => {
         try {
           await connection.query(
             `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7)
-             ON CONFLICT (student_id, module_id, assignment_type, grammar_topic_id) DO NOTHING`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7)`,
             [
               assignment.teacher_id,
               user_id,

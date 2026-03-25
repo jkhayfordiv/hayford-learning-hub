@@ -127,8 +127,7 @@ router.post('/', requireTeacher, async (req, res) => {
         try {
           await connection.query(
             `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-             ON CONFLICT (student_id, module_id, assignment_type, COALESCE(grammar_topic_id, ''), COALESCE(speaking_parts::text, '')) DO NOTHING`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
             [
               teacher_id,
               student.id,
@@ -189,8 +188,7 @@ router.post('/', requireTeacher, async (req, res) => {
         try {
           await connection.query(
             `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-             ON CONFLICT (student_id, module_id, assignment_type, COALESCE(grammar_topic_id, ''), COALESCE(speaking_parts::text, '')) DO NOTHING`,
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
             [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speaking_task_part || null, speakingPartsJson, instructions || null, due_date || null]
           );
           count++;
