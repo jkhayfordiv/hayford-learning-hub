@@ -1317,15 +1317,15 @@ export default function TeacherDashboard({ user, onLogout }) {
                         )}
                       </td>
                       <td className="px-8 py-3 text-right">
-                        <div className="inline-flex flex-col items-end gap-2">
+                        <div className="inline-flex flex-col items-end gap-1">
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               openGrammarAssignModal(student);
                             }}
-                            className="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-900 hover:text-white px-3 py-1.5 rounded-lg border border-slate-200 transition-colors"
+                            className="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-900 hover:text-white px-2 py-1 rounded border border-slate-200 transition-colors"
                           >
-                            Assign Grammar Practice
+                            Grammar Practice
                           </button>
                           {student.class_id ? (
                             <button
@@ -1333,9 +1333,9 @@ export default function TeacherDashboard({ user, onLogout }) {
                                 e.stopPropagation();
                                 handleRemoveStudentFromClass(student);
                               }}
-                              className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                              className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-50 px-2 py-1 rounded border border-red-200 transition-colors"
                             >
-                              Remove from Class
+                              Remove
                             </button>
                           ) : (
                             <span className="text-xs text-slate-400">Unassigned</span>
