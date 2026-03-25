@@ -1727,15 +1727,22 @@ export default function TeacherDashboard({ user, onLogout }) {
                                  <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2 border-b border-slate-200 pb-1.5">Student Statuses</h5>
                                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                                     {group.students.map(s => (
-                                      <div key={s.id} className="bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm">
-                                        <span className="font-bold text-[13px] text-slate-700">{s.student_first_name} {s.student_last_name}</span>
+                                      <div 
+                                        key={s.id} 
+                                        onClick={s.status === 'completed' ? () => openSubmissionViewer(s.id) : undefined}
+                                        className={`bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm transition-all ${
+                                          s.status === 'completed' 
+                                            ? 'cursor-pointer hover:bg-slate-50 hover:shadow-md hover:border-slate-300' 
+                                            : ''
+                                        }`}
+                                      >
+                                        <span className={`font-bold text-[13px] ${s.status === 'completed' ? 'text-slate-700' : 'text-slate-500'}`}>
+                                          {s.student_first_name} {s.student_last_name}
+                                        </span>
                                         {s.status === 'completed' 
-                                          ? <button 
-                                              onClick={(e) => { e.stopPropagation(); openSubmissionViewer(s.id); }}
-                                              className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 text-green-700 hover:bg-green-100 transition-colors text-[9px] font-black uppercase tracking-widest rounded-lg border border-green-200"
-                                            >
-                                              <CheckCircle2 size={10} /> View Work
-                                            </button>
+                                          ? <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-50 text-green-700 text-[9px] font-black uppercase tracking-widest rounded-lg border border-green-200">
+                                              <CheckCircle2 size={10} /> Complete
+                                            </span>
                                           : <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-amber-50 text-amber-700 text-[9px] font-black uppercase tracking-widest rounded-lg border border-amber-200">Pending</span>
                                         }
                                       </div>
