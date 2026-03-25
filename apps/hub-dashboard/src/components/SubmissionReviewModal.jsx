@@ -150,17 +150,32 @@ export default function SubmissionReviewModal({ submission, onClose, onSaveComme
               {/* Vocabulary Feedback */}
               {Array.isArray(aiFeedback) && (
                 <div className="space-y-3">
-                  {aiFeedback.map((item, i) => (
-                    <div key={i} className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
-                      <div className="font-bold text-indigo-900 dark:text-indigo-400">{item.word || 'Unknown Word'}</div>
-                      <div className="text-slate-600 dark:text-slate-300 italic text-sm mt-1">"{item.sentence || 'No sentence'}"</div>
-                      {item.feedback?.explanation && (
-                        <div className="text-slate-500 dark:text-slate-400 text-xs mt-2 pt-2 border-t border-slate-100 dark:border-slate-700">
-                          💡 {item.feedback.explanation}
+                  {aiFeedback.map((item, i) => {
+                    // Handle nested feedback structure
+                    const feedbackText = item.feedback?.feedback || item.feedback?.explanation || item.feedback;
+                    const isCorrect = item.feedback?.target_word_correct && item.feedback?.secondary_grammar_correct;
+                    
+                    return (
+                      <div key={i} className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="font-bold text-indigo-900 dark:text-indigo-400 text-base">{item.word || 'Unknown Word'}</div>
+                          {isCorrect && (
+                            <span className="text-xs px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded-full font-bold">
+                              ✓ Correct
+                            </span>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  ))}
+                        <div className="text-slate-600 dark:text-slate-300 italic text-sm mb-2 bg-slate-50 dark:bg-slate-900/50 p-2 rounded">
+                          "{item.sentence || 'No sentence'}"
+                        </div>
+                        {feedbackText && (
+                          <div className="text-slate-700 dark:text-slate-300 text-sm mt-2 pt-2 border-t border-slate-200 dark:border-slate-700">
+                            💡 {typeof feedbackText === 'string' ? feedbackText : JSON.stringify(feedbackText)}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>

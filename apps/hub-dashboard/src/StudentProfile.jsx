@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, AlertCircle, BarChart3, FileText, X, ChevronDown } from 'lucide-react';
+import { ArrowLeft, AlertCircle, BarChart3, FileText, ChevronDown } from 'lucide-react';
+import SubmissionReviewModal from './components/SubmissionReviewModal';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
   {
@@ -149,6 +150,7 @@ export default function StudentProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedSubmission, setSelectedSubmission] = useState(null);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [grammarProgress, setGrammarProgress] = useState([]);
   const [grammarProgressError, setGrammarProgressError] = useState('');
   const [isGrammarAssignModalOpen, setIsGrammarAssignModalOpen] = useState(false);
@@ -235,6 +237,31 @@ export default function StudentProfile() {
     setSelectedGrammarTopic(null);
     setGrammarAssignStatus({ loading: false, error: null, success: false });
     setIsGrammarAssignModalOpen(true);
+  };
+
+  const handleSaveTeacherComment = async (scoreId, comment) => {
+    const token = localStorage.getItem('token');
+    const res = await fetch(`${apiBase}/api/scores/${scoreId}/comment`, {
+      method: 'PATCH',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ teacher_comment: comment })
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to save comment');
+
+    // Update local state
+    setStudentData(prev => ({
+      ...prev,
+      submissions: prev.submissions.map(sub => 
+        sub.id === scoreId ? { ...sub, teacher_comment: comment, feedback_date: new Date().toISOString() } : sub
+      )
+    }));
+
+    return data;
   };
 
   const handleAssignGrammarPractice = async () => {
@@ -369,7 +396,10 @@ export default function StudentProfile() {
                 <button
                   key={submission.id}
                   type="button"
-                  onClick={() => setSelectedSubmission(submission)}
+                  onClick={() => {
+                    setSelectedSubmission(submission);
+                    setIsReviewModalOpen(true);
+                  }}
                   className="w-full text-left px-6 py-4 hover:bg-slate-50 transition-colors"
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -388,44 +418,20 @@ export default function StudentProfile() {
         </section>
       </main>
 
-      {selectedSubmission && (
-        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-4xl bg-white rounded-3xl border border-slate-200 shadow-2xl max-h-[90vh] overflow-hidden">
-            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-black text-slate-900">{selectedSubmission.module_name}</h3>
-                <p className="text-xs text-slate-500 mt-1">{new Date(selectedSubmission.completed_at).toLocaleString()}</p>
-              </div>
-              <button onClick={() => setSelectedSubmission(null)} className="w-9 h-9 rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-100 flex items-center justify-center">
-                <X size={16} />
-              </button>
-            </div>
-            <div className="p-6 space-y-6 overflow-y-auto max-h-[calc(90vh-78px)]">
-              <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Student Submission</h4>
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-700 whitespace-pre-wrap leading-relaxed">
-                  {selectedSubmission.submitted_text || 'No submission text available.'}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">AI Feedback</h4>
-                <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm text-slate-700 leading-relaxed space-y-4">
-                  {selectedSubmission.ai_feedback ? (
-                    formatFeedbackBlocks(selectedSubmission.ai_feedback).map((block, idx) => (
-                      <div key={`${block.label}-${idx}`}>
-                        <p className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-1">{block.label}</p>
-                        <p className="whitespace-pre-wrap">{block.text}</p>
-                      </div>
-                    ))
-                  ) : (
-                    'No AI feedback available.'
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      {isReviewModalOpen && selectedSubmission && (
+        <SubmissionReviewModal
+          submission={{
+            ...selectedSubmission,
+            student_first_name: studentData.student.first_name,
+            student_last_name: studentData.student.last_name,
+            grader_first_name: currentUser.first_name || 'Teacher'
+          }}
+          onClose={() => {
+            setIsReviewModalOpen(false);
+            setSelectedSubmission(null);
+          }}
+          onSaveComment={handleSaveTeacherComment}
+        />
       )}
 
       {isGrammarAssignModalOpen && canAssignGrammar && (
