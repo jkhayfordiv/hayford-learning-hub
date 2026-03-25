@@ -386,6 +386,10 @@ BEGIN
     CHECK (student_id IS NOT NULL OR class_id IS NOT NULL);
 
     -- Assigned Tasks: Valid assignment types
+    -- Drop BOTH possible constraint names (auto-generated and manual)
+    ALTER TABLE assigned_tasks
+    DROP CONSTRAINT IF EXISTS assigned_tasks_assignment_type_check;
+
     ALTER TABLE assigned_tasks
     DROP CONSTRAINT IF EXISTS chk_assignment_type;
     
