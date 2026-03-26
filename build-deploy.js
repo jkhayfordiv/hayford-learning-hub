@@ -8,10 +8,12 @@ const APPS = [
   { name: 'ielts-writing', distPath: 'apps/ielts-writing/dist', zipPath: 'ielts-writing' },
   { name: 'ielts-speaking', distPath: 'apps/ielts-speaking/dist', zipPath: 'ielts-speaking' },
   { name: 'vocab-tool', distPath: 'apps/vocab-tool/dist', zipPath: 'vocab-tool' },
-  { name: 'grammar-lab', distPath: 'apps/grammar-lab/dist', zipPath: 'grammar-lab' }
+  { name: 'grammar-lab', distPath: 'apps/grammar-lab/dist', zipPath: 'grammar-lab' },
+  { name: 'grammar-world', distPath: 'apps/grammar-world/dist', zipPath: 'grammar-world' }
 ];
 
 const OUTPUT_ZIP = 'hostinger-full-deploy.zip';
+const ROOT_FILES = ['.htaccess'];
 
 console.log('🚀 Starting Hostinger Full Deployment Build...\n');
 
@@ -59,6 +61,15 @@ archive.on('error', (err) => {
 });
 
 archive.pipe(output);
+
+for (const rootFile of ROOT_FILES) {
+  const rootFilePath = path.join(__dirname, rootFile);
+
+  if (fs.existsSync(rootFilePath)) {
+    console.log(`Adding ${rootFile} to root of zip...`);
+    archive.file(rootFilePath, { name: rootFile });
+  }
+}
 
 // Add each app's dist folder to the zip
 for (const app of APPS) {

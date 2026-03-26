@@ -579,26 +579,30 @@ router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin', 'supe
 
       // Get total mastery points earned globally
       const [masteryPoints] = await connection.query(`
-        SELECT COALESCE(SUM(mastery_points_earned), 0) as total_mastery_points
-        FROM grammar_activity_submissions
-        WHERE passed = true
+        SELECT COALESCE(SUM(mastery_points), 0) as total_mastery_points
+        FROM user_mastery_stats
       `);
 
       // Get medal distribution
-      const [medals] = await connection.query(`
+      const [medalTotals] = await connection.query(`
         SELECT 
-          medal_tier,
-          COUNT(*) as count
-        FROM grammar_activity_submissions
-        WHERE passed = true AND medal_tier IS NOT NULL
-        GROUP BY medal_tier
+          COALESCE(SUM(bronze_medals), 0) as bronze,
+          COALESCE(SUM(silver_medals), 0) as silver,
+          COALESCE(SUM(gold_medals), 0) as gold
+        FROM user_mastery_stats
       `);
 
+      const medals = [
+        { medal_tier: 'Bronze', count: Number(medalTotals[0]?.bronze || 0) },
+        { medal_tier: 'Silver', count: Number(medalTotals[0]?.silver || 0) },
+        { medal_tier: 'Gold', count: Number(medalTotals[0]?.gold || 0) },
+      ];
+
       res.json({
-        total_students: totalStudents[0]?.total || 0,
-        diagnostic_completed: diagnosticComplete[0]?.count || 0,
+        total_students: Number(totalStudents[0]?.total || 0),
+        diagnostic_completed: Number(diagnosticComplete[0]?.count || 0),
         region_progress: regionProgress,
-        total_mastery_points: masteryPoints[0]?.total_mastery_points || 0,
+        total_mastery_points: Number(masteryPoints[0]?.total_mastery_points || 0),
         medals: medals
       });
     } finally {
@@ -656,13 +660,13 @@ router.get('/admin/recent-submissions', auth, requireRole('teacher', 'admin', 's
         SELECT 
           gas.id,
           gas.user_id,
-          u.name as student_name,
+          TRIM(CONCAT(COALESCE(u.first_name, ''), ' ', COALESCE(u.last_name, ''))) as student_name,
           u.email as student_email,
           gas.node_id,
           gn.title as node_title,
           gn.region,
           gas.user_response,
-          gas.ai_feedback,
+          COALESCE(gas.ai_feedback->>'feedback', gas.ai_feedback::text) as ai_feedback,
           gas.score,
           gas.passed,
           gas.submitted_at

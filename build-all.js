@@ -9,6 +9,7 @@ console.log('🚀 Universal Build & Package Script for Hostinger Deployment\n');
 const APPS_DIR = path.join(__dirname, 'apps');
 const OUTPUT_ZIP = path.join(__dirname, 'hostinger-full-deploy.zip');
 const TEMP_DIR = path.join(__dirname, 'temp-deploy');
+const ROOT_FILES = ['.htaccess'];
 
 // Apps to skip (backend only)
 const SKIP_APPS = ['hub-backend'];
@@ -82,6 +83,16 @@ for (const app of apps) {
 console.log('\n📦 Packaging apps into hostinger-full-deploy.zip...\n');
 
 // Copy files to temp directory
+for (const rootFile of ROOT_FILES) {
+  const sourcePath = path.join(__dirname, rootFile);
+  const targetPath = path.join(TEMP_DIR, rootFile);
+
+  if (fs.existsSync(sourcePath)) {
+    console.log(`   📁 Copying ${rootFile} to ROOT of zip...`);
+    fs.copyFileSync(sourcePath, targetPath);
+  }
+}
+
 for (const { name, distPath } of builtApps) {
   if (name === MAIN_APP) {
     // Main app goes to root
