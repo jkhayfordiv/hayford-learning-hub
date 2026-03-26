@@ -38,7 +38,7 @@ jobs:
 
     - name: 📂 Unzip build package
       run: |
-        unzip hostinger-full-deploy.zip -d hostinger-dist
+        unzip -o hostinger-full-deploy.zip -d hostinger-dist
 
     - name: 🚀 Sync files to Hostinger
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
