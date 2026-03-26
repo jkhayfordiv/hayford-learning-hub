@@ -29,6 +29,30 @@ const ERROR_CATEGORY_TO_PATHWAY = {
   'Hedging': 'The Nuance'
 };
 
+// Error tag to region mapping for weakness-based recommendations
+const ERROR_TAG_TO_REGION = {
+  'tense_consistency': 'The Time Matrix',
+  'present_perfect_past_simple': 'The Time Matrix',
+  'passive_voice': 'The Time Matrix',
+  'sentence_boundaries': 'The Architecture',
+  'relative_clauses': 'The Architecture',
+  'subordination': 'The Architecture',
+  'word_order': 'The Architecture',
+  'parallel_structure': 'The Architecture',
+  'transitional_devices': 'The Connectors',
+  'prepositional_accuracy': 'The Connectors',
+  'article_usage': 'The Modifiers',
+  'subject_verb_agreement': 'The Modifiers',
+  'countability_and_plurals': 'The Modifiers',
+  'word_forms': 'The Modifiers',
+  'pronoun_reference': 'The Modifiers',
+  'hedging': 'The Nuance',
+  'academic_register': 'The Nuance',
+  'gerunds_infinitives': 'The Nuance',
+  'nominalization': 'The Nuance',
+  'collocations': 'The Nuance'
+};
+
 // GET /api/grammar/regions - Get all 5 macro-regions with node counts
 router.get('/regions', auth, async (req, res) => {
   try {
@@ -271,6 +295,36 @@ router.post('/submit', auth, async (req, res) => {
         passed = score >= 80;
         feedback = `You answered ${correct} out of ${questions.length} questions correctly.`;
 
+        // Track weaknesses for diagnostic
+        if (node_id === 'node-0-diagnostic') {
+          const wrongAnswers = [];
+          
+          for (let i = 0; i < questions.length; i++) {
+            if (user_response.answers[i] !== questions[i].correct_answer) {
+              wrongAnswers.push({
+                question_index: i,
+                error_tag: questions[i].error_tag,
+                category: questions[i].category
+              });
+            }
+          }
+          
+          // UPSERT into user_weaknesses table
+          for (const wrong of wrongAnswers) {
+            if (wrong.error_tag) {
+              await connection.query(`
+                INSERT INTO user_weaknesses (user_id, error_tag, error_count, last_failed_at)
+                VALUES ($1, $2, 1, CURRENT_TIMESTAMP)
+                ON CONFLICT (user_id, error_tag)
+                DO UPDATE SET
+                  error_count = user_weaknesses.error_count + 1,
+                  last_failed_at = CURRENT_TIMESTAMP,
+                  updated_at = CURRENT_TIMESTAMP
+              `, [req.user.id, wrong.error_tag]);
+            }
+          }
+        }
+
       } else if (activity_type === 'fill_in_the_blank') {
         // Grade fill in the blank with flexible validation
         const blanks = mastery_check.activity_data.blanks;
@@ -447,16 +501,12 @@ router.get('/recommendations', auth, async (req, res) => {
         });
       }
 
-      // Get user's grammar weaknesses from grammar_progress table
+      // Get user's grammar weaknesses from user_weaknesses table
       const [weaknesses] = await connection.query(`
-        SELECT 
-          error_category,
-          current_level,
-          exercises_completed
-        FROM grammar_progress
-        WHERE student_id = $1
-        ORDER BY current_level ASC, exercises_completed ASC
-        LIMIT 5
+        SELECT error_tag, error_count
+        FROM user_weaknesses
+        WHERE user_id = $1
+        ORDER BY error_count DESC
       `, [req.user.id]);
 
       if (weaknesses.length === 0) {
@@ -468,23 +518,23 @@ router.get('/recommendations', auth, async (req, res) => {
         });
       }
 
-      // Map weaknesses to pathways and count
-      const pathwayCounts = {};
-      weaknesses.forEach(weakness => {
-        const pathway = ERROR_CATEGORY_TO_PATHWAY[weakness.error_category];
-        if (pathway) {
-          pathwayCounts[pathway] = (pathwayCounts[pathway] || 0) + 1;
+      // Map error tags to regions and aggregate counts
+      const regionTotals = {};
+      weaknesses.forEach(w => {
+        const region = ERROR_TAG_TO_REGION[w.error_tag];
+        if (region) {
+          regionTotals[region] = (regionTotals[region] || 0) + parseInt(w.error_count);
         }
       });
 
-      // Find pathway with most weaknesses
+      // Find region with highest error count
       let recommendedRegion = 'The Time Matrix';
       let maxCount = 0;
       
-      for (const [pathway, count] of Object.entries(pathwayCounts)) {
+      for (const [region, count] of Object.entries(regionTotals)) {
         if (count > maxCount) {
           maxCount = count;
-          recommendedRegion = pathway;
+          recommendedRegion = region;
         }
       }
 
@@ -492,9 +542,10 @@ router.get('/recommendations', auth, async (req, res) => {
         recommended_region: recommendedRegion,
         reason: 'weakness_based',
         message: `Based on your grammar weaknesses, we recommend starting with ${recommendedRegion}.`,
-        weakness_details: weaknesses.map(w => ({
-          category: w.error_category,
-          level: w.current_level
+        weakness_details: weaknesses.slice(0, 5).map(w => ({
+          error_tag: w.error_tag,
+          error_count: w.error_count,
+          region: ERROR_TAG_TO_REGION[w.error_tag] || 'Unknown'
         }))
       });
     } finally {
@@ -598,12 +649,25 @@ router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin', 'supe
         { medal_tier: 'Gold', count: Number(medalTotals[0]?.gold || 0) },
       ];
 
+      // Get top class weaknesses
+      const [topWeaknesses] = await connection.query(`
+        SELECT 
+          error_tag,
+          SUM(error_count) as total_errors,
+          COUNT(DISTINCT user_id) as students_affected
+        FROM user_weaknesses
+        GROUP BY error_tag
+        ORDER BY total_errors DESC
+        LIMIT 5
+      `);
+
       res.json({
         total_students: Number(totalStudents[0]?.total || 0),
         diagnostic_completed: Number(diagnosticComplete[0]?.count || 0),
         region_progress: regionProgress,
         total_mastery_points: Number(masteryPoints[0]?.total_mastery_points || 0),
-        medals: medals
+        medals: medals,
+        top_class_weaknesses: topWeaknesses
       });
     } finally {
       connection.release();

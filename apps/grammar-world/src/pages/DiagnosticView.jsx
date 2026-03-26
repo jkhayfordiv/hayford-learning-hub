@@ -43,10 +43,10 @@ export default function DiagnosticView() {
     }
   };
 
-  const handleAnswerSelect = (questionIndex, optionIndex) => {
+  const handleAnswerSelect = (questionIndex, optionText) => {
     setSelectedAnswers({
       ...selectedAnswers,
-      [questionIndex]: optionIndex,
+      [questionIndex]: optionText,
     });
   };
 
@@ -176,11 +176,11 @@ export default function DiagnosticView() {
                   {question.options.map((option, oIdx) => (
                     <button
                       key={oIdx}
-                      onClick={() => handleAnswerSelect(qIdx, oIdx)}
+                      onClick={() => handleAnswerSelect(qIdx, option)}
                       className={`
                         w-full text-left px-4 py-3 rounded-lg border-2 transition-all
                         ${
-                          selectedAnswers[qIdx] === oIdx
+                          selectedAnswers[qIdx] === option
                             ? 'border-brand-sangria bg-brand-sangria bg-opacity-5 font-semibold'
                             : 'border-gray-200 hover:border-brand-sangria hover:bg-gray-50'
                         }

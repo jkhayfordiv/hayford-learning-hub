@@ -6,7 +6,7 @@
   "description": "A comprehensive diagnostic assessment to establish your baseline grammar proficiency across all five pathways.",
   "display_order": 0,
   "prerequisites": [],
-  "lesson_content_markdown": "# Welcome to the Grammar World Map\n\nBefore you begin your journey through the five pathways of academic grammar, we need to establish your current proficiency level.\n\nThis diagnostic will assess your understanding across:\n- **The Time Matrix**: Verb tenses and aspect\n- **The Architecture**: Sentence structure and clauses\n- **The Connectors**: Cohesion and transitions\n- **The Modifiers**: Articles, adjectives, and precision\n- **The Nuance**: Modals, conditionals, and hedging\n\n## Instructions\n\nComplete all 15 questions to the best of your ability. This assessment will help us recommend the most beneficial pathway for you to start with.\n\nThere is no time limit. Take your time and demonstrate your current knowledge.",
+  "lesson_content_markdown": "# Welcome to the Grammar World Map\n\nBefore you begin your journey through the five pathways of academic grammar, we need to establish your current proficiency level.\n\nThis diagnostic will assess your understanding across:\n- **The Time Matrix**: Verb tenses and aspect\n- **The Architecture**: Sentence structure and clauses\n- **The Connectors**: Cohesion and transitions\n- **The Modifiers**: Articles, adjectives, and precision\n- **The Nuance**: Modals, conditionals, and hedging\n\n## Instructions\n\nComplete all 25 questions to the best of your ability. This assessment will help us recommend the most beneficial pathway for you to start with.\n\nThere is no time limit. Take your time and demonstrate your current knowledge.",
   "mastery_check": {
     "type": "multiple_choice",
     "prompt_to_student": "Complete the diagnostic assessment below. Select the best answer for each question.",
@@ -15,92 +15,202 @@
         {
           "question": "The research team _____ the data for three months before publishing their findings.",
           "options": ["analyzes", "has analyzed", "had been analyzing", "will analyze"],
-          "correct_answer": 2,
-          "category": "Time Matrix"
+          "correct_answer": "had been analyzing",
+          "category": "The Time Matrix",
+          "difficulty": "Bronze",
+          "error_tag": "tense_consistency"
         },
         {
-          "question": "_____ the experiment was completed, the scientists discovered an unexpected result.",
-          "options": ["During", "While", "After", "Before"],
-          "correct_answer": 2,
-          "category": "Connectors"
-        },
-        {
-          "question": "The study, _____ was conducted over five years, revealed significant patterns.",
-          "options": ["that", "which", "who", "what"],
-          "correct_answer": 1,
-          "category": "Architecture"
-        },
-        {
-          "question": "There _____ several factors that contribute to climate change.",
-          "options": ["is", "are", "was", "been"],
-          "correct_answer": 1,
-          "category": "Modifiers"
-        },
-        {
-          "question": "If the government _____ more funding, the project would have succeeded.",
-          "options": ["provided", "had provided", "provides", "will provide"],
-          "correct_answer": 1,
-          "category": "Nuance"
-        },
-        {
-          "question": "The professor explained _____ the assignment was due.",
-          "options": ["when", "when was", "that when", "when that"],
-          "correct_answer": 0,
-          "category": "Architecture"
-        },
-        {
-          "question": "_____ information provided in the report is insufficient for drawing conclusions.",
-          "options": ["A", "An", "The", "No article needed"],
-          "correct_answer": 2,
-          "category": "Modifiers"
+          "question": "By the time the conference starts next month, the researchers _____ their paper.",
+          "options": ["will complete", "will have completed", "complete", "are completing"],
+          "correct_answer": "will have completed",
+          "category": "The Time Matrix",
+          "difficulty": "Bronze",
+          "error_tag": "present_perfect_past_simple"
         },
         {
           "question": "The results _____ by the committee next week.",
           "options": ["will be reviewed", "will review", "are reviewing", "have reviewed"],
-          "correct_answer": 0,
-          "category": "Time Matrix"
+          "correct_answer": "will be reviewed",
+          "category": "The Time Matrix",
+          "difficulty": "Silver",
+          "error_tag": "passive_voice"
+        },
+        {
+          "question": "Since 2010, the university _____ significant improvements in student retention rates.",
+          "options": ["made", "has made", "makes", "is making"],
+          "correct_answer": "has made",
+          "category": "The Time Matrix",
+          "difficulty": "Silver",
+          "error_tag": "tense_consistency"
+        },
+        {
+          "question": "Had the funding _____ approved earlier, the project would have been completed on schedule.",
+          "options": ["be", "being", "been", "was"],
+          "correct_answer": "been",
+          "category": "The Time Matrix",
+          "difficulty": "Gold",
+          "error_tag": "passive_voice"
+        },
+        {
+          "question": "The professor explained the theory. However, many students still struggled with the concepts.",
+          "options": ["Correct as written", "The professor explained the theory, however, many students still struggled with the concepts.", "The professor explained the theory however many students still struggled with the concepts.", "The professor explained the theory; however many students still struggled with the concepts."],
+          "correct_answer": "Correct as written",
+          "category": "The Architecture",
+          "difficulty": "Bronze",
+          "error_tag": "sentence_boundaries"
+        },
+        {
+          "question": "The study, _____ was conducted over five years, revealed significant patterns.",
+          "options": ["that", "which", "who", "what"],
+          "correct_answer": "which",
+          "category": "The Architecture",
+          "difficulty": "Bronze",
+          "error_tag": "relative_clauses"
+        },
+        {
+          "question": "_____ the experiment was completed, the scientists discovered an unexpected result.",
+          "options": ["During", "While", "After", "Before"],
+          "correct_answer": "After",
+          "category": "The Architecture",
+          "difficulty": "Silver",
+          "error_tag": "subordination"
+        },
+        {
+          "question": "Only after analyzing the data _____ the researchers realize the significance of their findings.",
+          "options": ["they did", "did they", "they", "do they"],
+          "correct_answer": "did they",
+          "category": "The Architecture",
+          "difficulty": "Silver",
+          "error_tag": "word_order"
+        },
+        {
+          "question": "The study examined student motivation, teacher effectiveness, and _____ curriculum design.",
+          "options": ["how to design", "designing", "the design of", "designed"],
+          "correct_answer": "the design of",
+          "category": "The Architecture",
+          "difficulty": "Gold",
+          "error_tag": "parallel_structure"
         },
         {
           "question": "The author argues that technology has improved education. _____, critics point to increased inequality.",
           "options": ["Therefore", "However", "Furthermore", "Similarly"],
-          "correct_answer": 1,
-          "category": "Connectors"
-        },
-        {
-          "question": "Students _____ complete the assignment by Friday.",
-          "options": ["must to", "must", "have must", "must be"],
-          "correct_answer": 1,
-          "category": "Nuance"
-        },
-        {
-          "question": "The data _____ that global temperatures are rising.",
-          "options": ["shows", "show", "showing", "is showing"],
-          "correct_answer": 1,
-          "category": "Time Matrix"
-        },
-        {
-          "question": "Walking to the laboratory, _____.",
-          "options": ["the experiment was ready", "I found the experiment ready", "the equipment was prepared", "there was preparation"],
-          "correct_answer": 1,
-          "category": "Architecture"
+          "correct_answer": "However",
+          "category": "The Connectors",
+          "difficulty": "Bronze",
+          "error_tag": "transitional_devices"
         },
         {
           "question": "The research depends _____ accurate data collection.",
           "options": ["of", "on", "at", "with"],
-          "correct_answer": 1,
-          "category": "Connectors"
+          "correct_answer": "on",
+          "category": "The Connectors",
+          "difficulty": "Bronze",
+          "error_tag": "prepositional_accuracy"
         },
         {
-          "question": "This phenomenon occurs _____ frequently in urban areas than in rural regions.",
-          "options": ["more", "most", "much", "many"],
-          "correct_answer": 0,
-          "category": "Modifiers"
+          "question": "The findings were inconclusive. _____, further research is necessary to validate the hypothesis.",
+          "options": ["Consequently", "In contrast", "For example", "Similarly"],
+          "correct_answer": "Consequently",
+          "category": "The Connectors",
+          "difficulty": "Silver",
+          "error_tag": "transitional_devices"
+        },
+        {
+          "question": "_____ the challenges posed by limited funding, the research team completed the study successfully.",
+          "options": ["Despite", "Although", "Because", "Since"],
+          "correct_answer": "Despite",
+          "category": "The Connectors",
+          "difficulty": "Silver",
+          "error_tag": "subordination"
+        },
+        {
+          "question": "The study's methodology was rigorous; _____, the sample size was insufficient for generalization.",
+          "options": ["moreover", "nevertheless", "therefore", "likewise"],
+          "correct_answer": "nevertheless",
+          "category": "The Connectors",
+          "difficulty": "Gold",
+          "error_tag": "prepositional_accuracy"
+        },
+        {
+          "question": "_____ information provided in the report is insufficient for drawing conclusions.",
+          "options": ["A", "An", "The", "Zero article (-)"],
+          "correct_answer": "The",
+          "category": "The Modifiers",
+          "difficulty": "Bronze",
+          "error_tag": "article_usage"
+        },
+        {
+          "question": "There _____ several factors that contribute to climate change.",
+          "options": ["is", "are", "was", "been"],
+          "correct_answer": "are",
+          "category": "The Modifiers",
+          "difficulty": "Bronze",
+          "error_tag": "subject_verb_agreement"
+        },
+        {
+          "question": "The committee reviewed _____ before making their decision.",
+          "options": ["many evidences", "much evidence", "many evidence", "much evidences"],
+          "correct_answer": "much evidence",
+          "category": "The Modifiers",
+          "difficulty": "Silver",
+          "error_tag": "countability_and_plurals"
         },
         {
           "question": "The findings _____ suggest that further research is needed.",
           "options": ["clear", "clearly", "clearness", "clearing"],
-          "correct_answer": 1,
-          "category": "Nuance"
+          "correct_answer": "clearly",
+          "category": "The Modifiers",
+          "difficulty": "Silver",
+          "error_tag": "word_forms"
+        },
+        {
+          "question": "Each student must submit _____ assignment by the deadline.",
+          "options": ["their", "his or her", "its", "they"],
+          "correct_answer": "his or her",
+          "category": "The Modifiers",
+          "difficulty": "Gold",
+          "error_tag": "pronoun_reference"
+        },
+        {
+          "question": "The results _____ indicate a correlation between the variables.",
+          "options": ["appear to", "definitely", "certainly", "absolutely"],
+          "correct_answer": "appear to",
+          "category": "The Nuance",
+          "difficulty": "Bronze",
+          "error_tag": "hedging"
+        },
+        {
+          "question": "The study _____ significant implications for educational policy.",
+          "options": ["has got", "possesses", "has", "is having"],
+          "correct_answer": "has",
+          "category": "The Nuance",
+          "difficulty": "Bronze",
+          "error_tag": "academic_register"
+        },
+        {
+          "question": "The researchers avoided _____ any definitive conclusions without further evidence.",
+          "options": ["to draw", "drawing", "draw", "drawn"],
+          "correct_answer": "drawing",
+          "category": "The Nuance",
+          "difficulty": "Silver",
+          "error_tag": "gerunds_infinitives"
+        },
+        {
+          "question": "The _____ of the data revealed unexpected patterns.",
+          "options": ["analyze", "analysis", "analyzing", "analytical"],
+          "correct_answer": "analysis",
+          "category": "The Nuance",
+          "difficulty": "Silver",
+          "error_tag": "nominalization"
+        },
+        {
+          "question": "The findings _____ with previous research in the field.",
+          "options": ["are consistent", "consist", "are consisting", "make consistency"],
+          "correct_answer": "are consistent",
+          "category": "The Nuance",
+          "difficulty": "Gold",
+          "error_tag": "collocations"
         }
       ]
     },

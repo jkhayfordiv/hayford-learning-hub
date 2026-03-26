@@ -71,6 +71,13 @@ export default function GrammarAnalytics() {
     }
   };
 
+  const formatErrorTag = (tag) => {
+    return tag
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* Header */}
@@ -89,6 +96,45 @@ export default function GrammarAnalytics() {
           Refresh
         </button>
       </div>
+
+      {/* Top Class Weaknesses Panel */}
+      {cohortData?.top_class_weaknesses && cohortData.top_class_weaknesses.length > 0 && (
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
+          <h3 className="font-black text-xl text-[#5E1914] tracking-tight mb-6 flex items-center gap-2" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <AlertTriangle size={24} />
+            Top Class Weaknesses
+          </h3>
+          <div className="space-y-3">
+            {cohortData.top_class_weaknesses.map((weakness, idx) => (
+              <div 
+                key={weakness.error_tag}
+                className={`
+                  rounded-xl p-4 flex items-center justify-between
+                  ${idx === 0 
+                    ? 'bg-[#5E1914] text-white' 
+                    : 'bg-slate-50 text-slate-900'
+                  }
+                `}
+              >
+                <div className="flex items-center gap-4">
+                  <span className="font-black text-2xl">#{idx + 1}</span>
+                  <span className="font-semibold text-lg">
+                    {formatErrorTag(weakness.error_tag)}
+                  </span>
+                </div>
+                <div className="text-right">
+                  <div className={`font-black text-2xl ${idx === 0 ? 'text-white' : 'text-[#5E1914]'}`}>
+                    {weakness.total_errors} errors
+                  </div>
+                  <div className={`text-sm ${idx === 0 ? 'text-white opacity-80' : 'text-slate-500'}`}>
+                    {weakness.students_affected} students affected
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Cohort Overview Panel */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8">
