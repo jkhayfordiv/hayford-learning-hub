@@ -5,6 +5,7 @@ import logo from './assets/logo.png';
 import PlatformManager from './components/PlatformManager';
 import ClassDetails from './components/ClassDetails';
 import SubmissionReviewModal from './components/SubmissionReviewModal';
+import GrammarAnalytics from './components/GrammarAnalytics';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
   {
@@ -1006,6 +1007,12 @@ export default function TeacherDashboard({ user, onLogout }) {
           >
             Task Queue
           </button>
+          <button 
+            onClick={() => setActiveTab('grammar-analytics')}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'grammar-analytics' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+          >
+            Grammar Analytics
+          </button>
 
         </div>
       )}
@@ -1889,6 +1896,8 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
             </div>
           </>
+        ) : activeTab === 'grammar-analytics' ? (
+          <GrammarAnalytics />
         ) : null}
 
       {isGrammarAssignModalOpen && grammarAssignTarget && (
