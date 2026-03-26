@@ -61,7 +61,7 @@ export default function GrammarHub() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-sangria border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading Grammar World Map...</p>
+          <p className="text-gray-600">Loading...</p>
         </div>
       </div>
     );
@@ -72,7 +72,7 @@ export default function GrammarHub() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft">
           <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Error Loading Data</h2>
+          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Cannot Load Page</h2>
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={loadData}
@@ -92,7 +92,7 @@ export default function GrammarHub() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="font-serif text-3xl md:text-4xl mb-1">Grammar World Map</h1>
+              <h1 className="font-serif text-3xl md:text-4xl mb-1">Grammar Lessons</h1>
               <p className="text-gray-200 text-sm">Welcome back, {user?.name || 'Student'}</p>
             </div>
             <div className="flex gap-6">
@@ -120,8 +120,8 @@ export default function GrammarHub() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h2 className="font-serif text-3xl text-brand-sangria mb-2">Choose Your Pathway</h2>
-          <p className="text-gray-600">Master academic grammar through five interconnected pathways</p>
+          <h2 className="font-serif text-3xl text-brand-sangria mb-2">Choose Your Path</h2>
+          <p className="text-gray-600">Learn grammar step by step</p>
         </div>
 
         {/* Regions Grid */}
@@ -145,30 +145,30 @@ export default function GrammarHub() {
               <div className="w-20 h-20 bg-brand-sangria bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="text-brand-sangria" size={40} />
               </div>
-              <h2 className="font-serif text-3xl text-brand-sangria mb-3">The Gatekeeper Assessment</h2>
+              <h2 className="font-serif text-3xl text-brand-sangria mb-3">Grammar Test</h2>
               <p className="text-gray-600 text-lg leading-relaxed">
-                Before you begin your journey through the Grammar World Map, we need to establish your current proficiency level.
+                First, take a test. We will find the best lessons for you.
               </p>
             </div>
 
             <div className="bg-gray-50 rounded-lg p-6 mb-6">
-              <h3 className="font-semibold text-brand-navy mb-3">What to Expect:</h3>
+              <h3 className="font-semibold text-brand-navy mb-3">What You Will Do:</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
                   <span className="text-brand-sangria mt-1">•</span>
-                  <span>15 diagnostic questions covering all five grammar pathways</span>
+                  <span>25 questions about grammar</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-brand-sangria mt-1">•</span>
-                  <span>Approximately 10-15 minutes to complete</span>
+                  <span>About 10-15 minutes</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-brand-sangria mt-1">•</span>
-                  <span>Personalized pathway recommendations based on your results</span>
+                  <span>We will show you the best lessons for you</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-brand-sangria mt-1">•</span>
-                  <span>No time limit—take your time and demonstrate your knowledge</span>
+                  <span>No time limit—take your time</span>
                 </li>
               </ul>
             </div>
@@ -177,7 +177,7 @@ export default function GrammarHub() {
               onClick={handleStartDiagnostic}
               className="w-full bg-brand-sangria text-white px-8 py-4 rounded-xl hover:bg-opacity-90 transition-all font-semibold text-lg shadow-lg hover:shadow-xl"
             >
-              Begin Diagnostic Assessment
+              Start Test
             </button>
           </div>
         </div>

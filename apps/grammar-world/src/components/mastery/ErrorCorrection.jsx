@@ -49,7 +49,7 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
 
       {activityData?.sentence && (
         <div className="bg-gray-50 rounded-xl p-6 mb-6">
-          <h3 className="font-semibold text-gray-800 mb-3">Passage to Correct:</h3>
+          <h3 className="font-semibold text-gray-800 mb-3">Find and Fix the Mistakes:</h3>
           <p className="text-gray-700 leading-relaxed font-mono text-sm whitespace-pre-line">
             {activityData.sentence}
           </p>
@@ -61,7 +61,7 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
           <div key={idx} className="border border-gray-200 rounded-xl p-4">
             <label className="block mb-2">
               <span className="font-semibold text-gray-800">
-                Error {idx + 1}: Correct "{error.incorrect_word}"
+                Mistake {idx + 1}: Fix "{error.incorrect_word}"
               </span>
             </label>
             <input
@@ -69,7 +69,7 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
               value={userCorrections[idx] || ''}
               onChange={(e) => handleCorrectionChange(idx, e.target.value)}
               disabled={isLoading}
-              placeholder="Type your correction here..."
+              placeholder="Write the correct word..."
               className={`
                 w-full px-4 py-3 rounded-xl border-2 transition-all
                 focus:outline-none focus:ring-2 focus:ring-brand-sangria focus:ring-opacity-50
@@ -107,7 +107,7 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
               Submitting...
             </span>
           ) : (
-            'Submit Corrections'
+            'Submit'
           )}
         </button>
       </div>

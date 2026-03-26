@@ -2,14 +2,14 @@
   "node_id": "node-0-diagnostic",
   "region": "Diagnostic",
   "tier": "Diagnostic",
-  "title": "Grammar Diagnostic Gateway",
-  "description": "A comprehensive diagnostic assessment to establish your baseline grammar proficiency across all five pathways.",
+  "title": "Grammar Test",
+  "description": "Take this test to find the best grammar lessons for you.",
   "display_order": 0,
   "prerequisites": [],
-  "lesson_content_markdown": "# Welcome to the Grammar World Map\n\nBefore you begin your journey through the five pathways of academic grammar, we need to establish your current proficiency level.\n\nThis diagnostic will assess your understanding across:\n- **The Time Matrix**: Verb tenses and aspect\n- **The Architecture**: Sentence structure and clauses\n- **The Connectors**: Cohesion and transitions\n- **The Modifiers**: Articles, adjectives, and precision\n- **The Nuance**: Modals, conditionals, and hedging\n\n## Instructions\n\nComplete all 25 questions to the best of your ability. This assessment will help us recommend the most beneficial pathway for you to start with.\n\nThere is no time limit. Take your time and demonstrate your current knowledge.",
+  "lesson_content_markdown": "# Welcome to Grammar Lessons\n\nFirst, take this test. We will find the best lessons for you.\n\nThis test has questions about:\n- **The Time Matrix**: Verb tenses (past, present, future)\n- **The Architecture**: How to make sentences\n- **The Connectors**: Words that connect ideas\n- **The Modifiers**: Articles (a, an, the) and describing words\n- **The Nuance**: Modal verbs and conditionals\n\n## What to Do\n\nAnswer all 25 questions. Do your best. We will help you find good lessons.\n\nYou have no time limit. Take your time.",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Complete the diagnostic assessment below. Select the best answer for each question.",
+    "prompt_to_student": "Choose the best answer for each question.",
     "activity_data": {
       "questions": [
         {

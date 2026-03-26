@@ -65,7 +65,7 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
               value={userAnswers[idx] || ''}
               onChange={(e) => handleAnswerChange(idx, e.target.value)}
               disabled={isLoading}
-              placeholder="Fill in the blank..."
+              placeholder="Write your answer here..."
               className={`
                 w-full px-4 py-3 rounded-xl border-2 transition-all
                 focus:outline-none focus:ring-2 focus:ring-brand-sangria focus:ring-opacity-50
@@ -103,7 +103,7 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
               Submitting...
             </span>
           ) : (
-            'Submit Answers'
+            'Submit'
           )}
         </button>
       </div>

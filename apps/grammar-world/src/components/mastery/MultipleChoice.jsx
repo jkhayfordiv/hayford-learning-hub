@@ -97,7 +97,7 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
               Submitting...
             </span>
           ) : (
-            'Submit Answers'
+            'Submit'
           )}
         </button>
       </div>

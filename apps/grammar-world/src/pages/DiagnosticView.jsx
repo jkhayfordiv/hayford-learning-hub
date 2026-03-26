@@ -57,7 +57,7 @@ export default function DiagnosticView() {
     const allAnswered = questions.every((_, idx) => selectedAnswers[idx] !== undefined);
 
     if (!allAnswered) {
-      alert('Please answer all questions before submitting.');
+      alert('Please answer all questions first.');
       return;
     }
 
@@ -72,7 +72,7 @@ export default function DiagnosticView() {
       setResult(response);
     } catch (err) {
       console.error('Error submitting diagnostic:', err);
-      alert('Failed to submit diagnostic. Please try again.');
+      alert('Could not send your answers. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -83,7 +83,7 @@ export default function DiagnosticView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-sangria border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading Diagnostic Assessment...</p>
+          <p className="text-gray-600">Loading test...</p>
         </div>
       </div>
     );
@@ -94,7 +94,7 @@ export default function DiagnosticView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft">
           <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Error Loading Diagnostic</h2>
+          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Cannot Load Test</h2>
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={loadDiagnostic}
@@ -112,15 +112,15 @@ export default function DiagnosticView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft text-center">
           <CheckCircle className="text-green-500 mx-auto mb-4" size={64} />
-          <h2 className="font-serif text-3xl text-brand-sangria mb-4">Diagnostic Complete!</h2>
+          <h2 className="font-serif text-3xl text-brand-sangria mb-4">Test Complete!</h2>
           <p className="text-gray-600 text-lg mb-2">
             Score: <strong>{result.score}%</strong>
           </p>
           <p className="text-gray-600 mb-6">
-            {result.passed ? 'You passed the diagnostic!' : 'Keep practicing!'}
+            {result.passed ? 'You passed!' : 'Keep trying!'}
           </p>
           <p className="text-sm text-gray-500">
-            Redirecting to your personalized pathway...
+            Taking you to your lessons...
           </p>
         </div>
       </div>
@@ -135,9 +135,9 @@ export default function DiagnosticView() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-3 mb-2">
             <BookOpen size={32} />
-            <h1 className="font-serif text-3xl md:text-4xl">The Gatekeeper Assessment</h1>
+            <h1 className="font-serif text-3xl md:text-4xl">Grammar Test</h1>
           </div>
-          <p className="text-gray-200">Diagnostic Evaluation</p>
+          <p className="text-gray-200">Check Your Level</p>
         </div>
       </header>
 
@@ -165,7 +165,7 @@ export default function DiagnosticView() {
 
         {/* Multiple Choice Questions */}
         <div className="bg-white rounded-xl p-8 shadow-soft mb-8">
-          <h2 className="font-serif text-2xl text-brand-sangria mb-6">Assessment Questions</h2>
+          <h2 className="font-serif text-2xl text-brand-sangria mb-6">Questions</h2>
           <div className="space-y-8">
             {questions.map((question, qIdx) => (
               <div key={qIdx} className="border-b border-gray-200 pb-6 last:border-b-0">
@@ -216,7 +216,7 @@ export default function DiagnosticView() {
                 Submitting...
               </span>
             ) : (
-              'Submit Diagnostic'
+              'Submit Answers'
             )}
           </button>
         </div>

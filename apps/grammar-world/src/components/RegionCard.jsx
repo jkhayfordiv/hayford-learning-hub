@@ -24,7 +24,7 @@ export default function RegionCard({ region, isRecommended, onClick }) {
         <h3 className="font-serif text-2xl text-brand-sangria mb-2">{regionName}</h3>
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <BookOpen size={16} />
-          <span>{completed_nodes} / {total_nodes} nodes completed</span>
+          <span>{completed_nodes} / {total_nodes} lessons done</span>
         </div>
       </div>
       

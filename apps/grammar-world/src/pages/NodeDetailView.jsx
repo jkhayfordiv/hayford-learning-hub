@@ -50,7 +50,7 @@ export default function NodeDetailView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-sangria border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading Lesson...</p>
+          <p className="text-gray-600">Loading...</p>
         </div>
       </div>
     );
@@ -61,7 +61,7 @@ export default function NodeDetailView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft">
           <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Error Loading Lesson</h2>
+          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Cannot Load Lesson</h2>
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={loadNode}
@@ -89,7 +89,7 @@ export default function NodeDetailView() {
             className="flex items-center gap-2 text-white hover:text-gray-200 transition-colors mb-4"
           >
             <ArrowLeft size={20} />
-            <span>Back to Map</span>
+            Back
           </button>
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
