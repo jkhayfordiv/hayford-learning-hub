@@ -17,6 +17,9 @@ export default function MasteryCheckEngine({ node, regionName }) {
   const rewards = node?.content_json?.rewards;
 
   const handleSubmit = async (userResponse, activityType) => {
+    // Hard guard: prevent double-submit if already processing
+    if (assessmentStatus === 'loading') return;
+
     try {
       setAssessmentStatus('loading');
       setFeedbackMessage('');

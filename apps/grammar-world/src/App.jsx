@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
+import DiagnosticGuard from './components/DiagnosticGuard';
 import GrammarHub from './pages/GrammarHub';
 import DiagnosticView from './pages/DiagnosticView';
 import RegionView from './pages/RegionView';
@@ -30,7 +31,9 @@ export default function App() {
           path="/region/:regionName"
           element={
             <ProtectedRoute>
-              <RegionView />
+              <DiagnosticGuard>
+                <RegionView />
+              </DiagnosticGuard>
             </ProtectedRoute>
           }
         />
@@ -38,7 +41,9 @@ export default function App() {
           path="/node/:nodeId"
           element={
             <ProtectedRoute>
-              <NodeDetailView />
+              <DiagnosticGuard>
+                <NodeDetailView />
+              </DiagnosticGuard>
             </ProtectedRoute>
           }
         />

@@ -17,6 +17,18 @@ export default function DiagnosticView() {
     loadDiagnostic();
   }, []);
 
+  useEffect(() => {
+    if (result) {
+      // Wait 3 seconds to show results, then navigate to hub
+      const timer = setTimeout(() => {
+        navigate('/hub');
+      }, 3000);
+
+      // Cleanup timer on unmount to prevent memory leak
+      return () => clearTimeout(timer);
+    }
+  }, [result, navigate]);
+
   const loadDiagnostic = async () => {
     try {
       setLoading(true);
@@ -58,11 +70,6 @@ export default function DiagnosticView() {
         diagnosticNode.content_json.mastery_check
       );
       setResult(response);
-
-      // Wait 3 seconds to show results, then navigate to hub
-      setTimeout(() => {
-        navigate('/hub');
-      }, 3000);
     } catch (err) {
       console.error('Error submitting diagnostic:', err);
       alert('Failed to submit diagnostic. Please try again.');
