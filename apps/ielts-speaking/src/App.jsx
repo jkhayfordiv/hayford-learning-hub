@@ -871,7 +871,7 @@ export default function App() {
                             disabled={currentPartComplete}
                             className={`relative w-16 h-16 rounded-full border-4 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
                                 isRecording ? 'bg-white border-red-500' : currentPartComplete ? 'bg-green-500 border-green-600' : 'bg-brand-sangria border-brand-sangria/50 hover:bg-brand-sangria/90 hover:border-brand-sangria'
-                            }`}>
+                            }`}
                         >
                             {currentPartComplete ? (
                                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
