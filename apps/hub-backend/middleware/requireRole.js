@@ -5,6 +5,12 @@ module.exports = function requireRole(...allowedRoles) {
     }
 
     const userRole = req.user.role;
+    
+    console.log('[requireRole Middleware]', {
+      allowedRoles,
+      userRole,
+      user: req.user
+    });
 
     if (!allowedRoles.includes(userRole)) {
       return res.status(403).json({ 

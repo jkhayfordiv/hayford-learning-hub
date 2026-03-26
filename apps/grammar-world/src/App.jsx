@@ -8,7 +8,7 @@ import NodeDetailView from './pages/NodeDetailView';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/grammar-world">
       <Routes>
         <Route path="/" element={<Navigate to="/hub" replace />} />
         <Route
