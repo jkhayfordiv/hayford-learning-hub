@@ -545,7 +545,7 @@ router.post('/diagnostic/complete', auth, async (req, res) => {
 // ==================== ADMIN/TEACHER ROUTES ====================
 
 // GET /api/grammar/admin/cohort-progress - Aggregate cohort completion data
-router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin'), async (req, res) => {
+router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin', 'super_admin'), async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
@@ -611,7 +611,7 @@ router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin'), asyn
 });
 
 // GET /api/grammar/admin/heat-map - Find bottleneck nodes
-router.get('/admin/heat-map', auth, requireRole('teacher', 'admin'), async (req, res) => {
+router.get('/admin/heat-map', auth, requireRole('teacher', 'admin', 'super_admin'), async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
@@ -647,7 +647,7 @@ router.get('/admin/heat-map', auth, requireRole('teacher', 'admin'), async (req,
 });
 
 // GET /api/grammar/admin/recent-submissions - Get recent AI-graded submissions
-router.get('/admin/recent-submissions', auth, requireRole('teacher', 'admin'), async (req, res) => {
+router.get('/admin/recent-submissions', auth, requireRole('teacher', 'admin', 'super_admin'), async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
