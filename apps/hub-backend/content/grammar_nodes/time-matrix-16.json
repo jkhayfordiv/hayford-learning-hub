@@ -1,0 +1,29 @@
+{
+  "node_id": "time-matrix-16",
+  "region": "The Time Matrix",
+  "tier": "Silver",
+  "title": "Past Perfect Continuous",
+  "description": "Explaining the cause of a past state.",
+  "display_order": 16,
+  "prerequisites": ["time-matrix-15"],
+  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the correct answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "She was tired because she _____ all night.",
+          "options": ["studied", "had studied", "had been studying", "has been studying"],
+          "correct_answer": 2,
+          "category": "Past Perfect Continuous"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Silver"
+  }
+}

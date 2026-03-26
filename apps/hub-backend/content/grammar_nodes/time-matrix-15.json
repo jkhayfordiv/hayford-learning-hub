@@ -1,0 +1,29 @@
+{
+  "node_id": "time-matrix-15",
+  "region": "The Time Matrix",
+  "tier": "Silver",
+  "title": "Past Perfect",
+  "description": "Sequencing two past events: By the time the study was published, the author had died.",
+  "display_order": 15,
+  "prerequisites": ["time-matrix-14"],
+  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the correct answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "By the time we arrived, the lecture _____ already _____.",
+          "options": ["has, started", "had, started", "was, starting", "is, starting"],
+          "correct_answer": 1,
+          "category": "Past Perfect"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Silver"
+  }
+}

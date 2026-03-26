@@ -12,6 +12,7 @@ export default defineConfig({
       // So "Start Assignment" and learning tools work when all apps run together (pnpm dev)
       '/ielts-writing': { target: 'http://localhost:5174', changeOrigin: true },
       '/vocab-tool': { target: 'http://localhost:5175', changeOrigin: true },
+      '/grammar-world': { target: 'http://localhost:5176', changeOrigin: true },
     },
   },
 })

@@ -1,0 +1,158 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Trophy, Award, Sparkles } from 'lucide-react';
+import { submitMasteryCheck } from '../services/api';
+import MultipleChoice from './mastery/MultipleChoice';
+import ErrorCorrection from './mastery/ErrorCorrection';
+import FillInTheBlank from './mastery/FillInTheBlank';
+import AIGradedTextInput from './mastery/AIGradedTextInput';
+
+export default function MasteryCheckEngine({ node, regionName }) {
+  const [assessmentStatus, setAssessmentStatus] = useState('idle'); // idle, loading, success, failed
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [result, setResult] = useState(null);
+  const navigate = useNavigate();
+
+  const masteryCheck = node?.content_json?.mastery_check;
+  const rewards = node?.content_json?.rewards;
+
+  const handleSubmit = async (userResponse, activityType) => {
+    try {
+      setAssessmentStatus('loading');
+      setFeedbackMessage('');
+
+      const response = await submitMasteryCheck(
+        node.node_id,
+        activityType,
+        userResponse,
+        masteryCheck
+      );
+
+      setResult(response);
+
+      if (response.passed) {
+        setAssessmentStatus('success');
+        setFeedbackMessage(response.feedback || 'Excellent work!');
+      } else {
+        setAssessmentStatus('failed');
+        setFeedbackMessage(response.feedback || 'Please review the material and try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting mastery check:', error);
+      setAssessmentStatus('failed');
+      setFeedbackMessage('An error occurred. Please try again.');
+    }
+  };
+
+  const handleReturnToMap = () => {
+    const slug = regionName || 'time-matrix';
+    navigate(`/region/${slug}`);
+  };
+
+  if (assessmentStatus === 'success') {
+    return (
+      <div className="bg-white rounded-xl p-8 shadow-soft border-4 border-brand-gold animate-fade-in">
+        <div className="text-center mb-8">
+          <div className="w-24 h-24 bg-brand-gold bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-subtle">
+            <Trophy className="text-brand-gold" size={48} />
+          </div>
+          <h2 className="font-serif text-4xl text-brand-sangria mb-3">Mastery Achieved!</h2>
+          <p className="text-xl text-gray-700 mb-2">
+            Score: <strong className="text-brand-gold">{result?.score}%</strong>
+          </p>
+        </div>
+
+        {/* Rewards Display */}
+        <div className="bg-gradient-to-br from-brand-gold from-opacity-10 to-transparent rounded-xl p-6 mb-6">
+          <div className="flex items-center justify-center gap-8">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Sparkles className="text-brand-gold" size={24} />
+                <span className="text-3xl font-bold text-brand-sangria">
+                  +{rewards?.mastery_points || 100}
+                </span>
+              </div>
+              <p className="text-sm text-gray-600">Mastery Points</p>
+            </div>
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Award className={`
+                  ${rewards?.medal_tier === 'Bronze' ? 'text-amber-600' : ''}
+                  ${rewards?.medal_tier === 'Silver' ? 'text-gray-400' : ''}
+                  ${rewards?.medal_tier === 'Gold' ? 'text-brand-gold' : ''}
+                `} size={32} />
+              </div>
+              <p className="text-sm text-gray-600">{rewards?.medal_tier} Medal</p>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Feedback (if provided) */}
+        {result?.feedback && (
+          <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6 mb-6">
+            <h3 className="font-semibold text-blue-900 mb-2">Instructor Feedback</h3>
+            <p className="text-blue-800 leading-relaxed whitespace-pre-line">{result.feedback}</p>
+          </div>
+        )}
+
+        {/* Return Button */}
+        <div className="flex justify-center">
+          <button
+            onClick={handleReturnToMap}
+            className="bg-brand-navy text-white px-10 py-4 rounded-xl hover:bg-opacity-90 transition-all font-semibold text-lg shadow-lg hover:shadow-xl flex items-center gap-3"
+          >
+            <Trophy size={24} />
+            Return to World Map
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!masteryCheck) {
+    return (
+      <div className="bg-white rounded-xl p-8 shadow-soft text-center">
+        <p className="text-gray-600">No mastery check available for this node.</p>
+      </div>
+    );
+  }
+
+  const renderAssessment = () => {
+    const { type, prompt_to_student, activity_data, ai_grading_rubric } = masteryCheck;
+
+    const commonProps = {
+      prompt: prompt_to_student,
+      activityData: activity_data,
+      onSubmit: handleSubmit,
+      assessmentStatus,
+      feedbackMessage,
+    };
+
+    switch (type) {
+      case 'multiple_choice':
+        return <MultipleChoice {...commonProps} />;
+      case 'error_correction':
+        return <ErrorCorrection {...commonProps} />;
+      case 'fill_in_the_blank':
+        return <FillInTheBlank {...commonProps} />;
+      case 'ai_graded_text_input':
+        return <AIGradedTextInput {...commonProps} aiRubric={ai_grading_rubric} />;
+      default:
+        return (
+          <div className="bg-white rounded-xl p-8 shadow-soft text-center">
+            <p className="text-gray-600">Unknown assessment type: {type}</p>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-xl p-8 shadow-soft">
+      <div className="mb-6">
+        <h2 className="font-serif text-3xl text-brand-sangria mb-2">Mastery Check</h2>
+        <p className="text-gray-600">Demonstrate your understanding to unlock the next node.</p>
+      </div>
+      {renderAssessment()}
+    </div>
+  );
+}

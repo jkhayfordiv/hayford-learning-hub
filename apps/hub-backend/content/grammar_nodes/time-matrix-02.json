@@ -1,0 +1,64 @@
+{
+  "node_id": "time-matrix-02",
+  "region": "The Time Matrix",
+  "tier": "Bronze",
+  "title": "Present Simple",
+  "description": "Master the present simple tense for expressing universal facts, habitual actions, and timeless academic truths.",
+  "display_order": 2,
+  "prerequisites": ["time-matrix-01"],
+  "lesson_content_markdown": "# Present Simple Tense\n\n## The Tense of Academic Truth\n\nThe **present simple** is the most frequently used tense in academic writing. It expresses facts, general truths, habitual actions, and permanent states—making it essential for literature reviews, methodology descriptions, and theoretical discussions.\n\n---\n\n## Core Functions in Academic Writing\n\n### 1. Universal Facts & Scientific Truths\n\nUse present simple to state facts that are always true, regardless of time.\n\n✅ **Examples:**\n- *Water boils at 100 degrees Celsius.*\n- *The Earth revolves around the Sun.*\n- *Photosynthesis converts light energy into chemical energy.*\n- *Supply and demand determine market prices.*\n\n---\n\n### 2. Describing Research & Theories\n\nWhen discussing what researchers argue, claim, or demonstrate in their published work, use present simple.\n\n✅ **Examples:**\n- *Smith (2020) argues that economic inequality drives social unrest.*\n- *The study demonstrates a correlation between sleep and productivity.*\n- *Chomsky's theory explains language acquisition in children.*\n- *The data show a significant increase in global temperatures.*\n\n❌ **Common Error:**  \n*Smith (2020) argued that...* (Use past simple only if you're narrating what happened during the research process, not the content of the findings.)\n\n---\n\n### 3. Habitual Actions & Routines\n\nDescribe regular, repeated actions or established procedures.\n\n✅ **Examples:**\n- *Students submit assignments every Friday.*\n- *The laboratory conducts safety inspections monthly.*\n- *Researchers collect data through surveys and interviews.*\n- *The university offers scholarships to international students.*\n\n---\n\n### 4. Describing Processes & Procedures\n\nWhen explaining how something works or how a process unfolds, use present simple.\n\n✅ **Examples:**\n- *The experiment follows a three-stage protocol.*\n- *Participants complete a pre-test, receive training, and then take a post-test.*\n- *The algorithm analyzes input data and generates predictions.*\n\n---\n\n## Form & Structure\n\n### Affirmative Statements\n\n| Subject | Verb Form | Example |\n|---------|-----------|----------|\n| I/You/We/They | base form | *Researchers analyze data.* |\n| He/She/It | base + **-s/-es** | *The study includes 500 participants.* |\n\n### Negative Statements\n\n| Subject | Auxiliary | Example |\n|---------|-----------|----------|\n| I/You/We/They | **do not** (don't) | *Students do not submit late work.* |\n| He/She/It | **does not** (doesn't) | *The theory does not account for outliers.* |\n\n### Questions\n\n| Question Type | Structure | Example |\n|---------------|-----------|----------|\n| Yes/No | **Do/Does** + subject + base verb? | *Does the study address ethical concerns?* |\n| Wh- | **Wh- + do/does** + subject + base verb? | *What does the research suggest?* |\n\n---\n\n## Critical Rules for Academic Writing\n\n### Rule 1: Third-Person Singular -s/-es\n\nThis is the **most common error** in student writing. Always add **-s** or **-es** to verbs when the subject is third-person singular (he, she, it, or singular nouns).\n\n✅ **Correct:**\n- *The government **regulates** financial markets.*\n- *This approach **focuses** on qualitative data.*\n- *The author **discusses** three main themes.*\n\n❌ **Incorrect:**\n- *The government regulate financial markets.*\n- *This approach focus on qualitative data.*\n\n### Rule 2: Spelling Changes\n\nSome verbs require spelling changes when adding **-s/-es**:\n\n| Rule | Base Form | Third-Person Singular |\n|------|-----------|------------------------|\n| Ends in -s, -sh, -ch, -x, -z | teach, wash | teaches, washes |\n| Ends in consonant + y | study, carry | studies, carries |\n| Ends in vowel + y | play, enjoy | plays, enjoys |\n| Irregular | have, go | has, goes |\n\n### Rule 3: Subject-Verb Agreement with Data\n\nIn academic writing, **data** is plural (the singular is **datum**, rarely used).\n\n✅ **Correct:** *The data **show** a clear trend.*  \n❌ **Incorrect:** *The data shows a clear trend.*\n\n---\n\n## Common Errors in Student Writing\n\n### Error 1: Missing Third-Person -s\n❌ *\"The study examine the impact of social media.\"*  \n✅ *\"The study **examines** the impact of social media.\"*\n\n### Error 2: Using Present Continuous for Facts\n❌ *\"Water is boiling at 100°C.\"*  \n✅ *\"Water **boils** at 100°C.\"*\n\n### Error 3: Incorrect Negative Form\n❌ *\"The theory not explains the phenomenon.\"*  \n✅ *\"The theory **does not explain** the phenomenon.\"*\n\n### Error 4: Double Negatives\n❌ *\"The research doesn't shows any correlation.\"*  \n✅ *\"The research **doesn't show** any correlation.\"* (No -s after doesn't!)\n\n---\n\n## Time Expressions with Present Simple\n\nCommon adverbs and phrases used with present simple:\n\n- **Frequency:** always, usually, often, sometimes, rarely, never, seldom\n- **Routine:** every day/week/month/year, daily, weekly, monthly, annually\n- **General:** generally, typically, normally, regularly\n\n✅ **Examples:**\n- *Researchers **often** collaborate across disciplines.*\n- *The university **annually** publishes a sustainability report.*\n- *Students **typically** complete the program in four years.*\n\n---\n\n## Academic Writing Applications\n\n### Literature Review:\n*\"Johnson (2019) **argues** that climate policy **requires** international cooperation. The study **examines** carbon emission trends and **concludes** that current measures **are** insufficient.\"*\n\n### Methodology:\n*\"The survey **consists** of 30 questions. Participants **complete** the questionnaire online. The data collection process **takes** approximately two weeks.\"*\n\n### Results:\n*\"Table 1 **shows** the demographic distribution. The findings **indicate** a strong correlation between education level and income.\"*\n\n---\n\n**Now test your understanding with the mastery check below.**",
+  "mastery_check": {
+    "type": "error_correction",
+    "prompt_to_student": "Each sentence below contains ONE grammatical error related to present simple tense. Identify the incorrect word and type the correction.",
+    "activity_data": {
+      "sentence": "The research examine how social media influence political opinions. The study include 2,000 participants who completes an online survey. The data shows that younger users is more likely to share political content. Smith (2021) argue that this trend have significant implications for democracy.",
+      "errors": [
+        {
+          "word_index": 2,
+          "incorrect_word": "examine",
+          "accepted_corrections": ["examines"]
+        },
+        {
+          "word_index": 7,
+          "incorrect_word": "influence",
+          "accepted_corrections": ["influences"]
+        },
+        {
+          "word_index": 11,
+          "incorrect_word": "include",
+          "accepted_corrections": ["includes"]
+        },
+        {
+          "word_index": 16,
+          "incorrect_word": "completes",
+          "accepted_corrections": ["complete"]
+        },
+        {
+          "word_index": 22,
+          "incorrect_word": "shows",
+          "accepted_corrections": ["show"]
+        },
+        {
+          "word_index": 27,
+          "incorrect_word": "is",
+          "accepted_corrections": ["are"]
+        },
+        {
+          "word_index": 38,
+          "incorrect_word": "argue",
+          "accepted_corrections": ["argues"]
+        },
+        {
+          "word_index": 42,
+          "incorrect_word": "have",
+          "accepted_corrections": ["has"]
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "node_id": "time-matrix-01",
+  "region": "The Time Matrix",
+  "tier": "Bronze",
+  "title": "State vs. Action Verbs",
+  "description": "Master the distinction between stative and dynamic verbs to avoid common continuous tense errors in academic writing.",
+  "display_order": 1,
+  "prerequisites": [],
+  "lesson_content_markdown": "# State vs. Action Verbs\n\n## The Foundation of Tense Selection\n\nIn English grammar, verbs are categorized into two fundamental types that determine whether they can be used in continuous (progressive) tenses. Understanding this distinction is critical for academic writing, where precision and grammatical accuracy directly impact your credibility.\n\n---\n\n## Action Verbs (Dynamic Verbs)\n\n**Action verbs** describe activities, processes, or events that have a clear beginning and end. These verbs can be used in both simple and continuous tenses.\n\n### Characteristics:\n- Describe **voluntary actions** or **observable processes**\n- Can answer the question: \"What is happening?\"\n- Compatible with continuous tenses\n\n### Common Academic Examples:\n\n| Verb | Simple Form | Continuous Form |\n|------|-------------|------------------|\n| analyze | The team analyzes the data. | The team is analyzing the data. |\n| conduct | Researchers conduct experiments. | Researchers are conducting experiments. |\n| develop | Scientists develop new theories. | Scientists are developing new theories. |\n| examine | The study examines social trends. | The study is examining social trends. |\n\n---\n\n## State Verbs (Stative Verbs)\n\n**State verbs** describe conditions, states of being, or mental/emotional states that are relatively permanent or unchanging. These verbs **cannot** be used in continuous tenses.\n\n### Categories of State Verbs:\n\n#### 1. Mental States & Cognition\n- **know**, understand, believe, think (opinion), suppose, doubt, recognize, realize\n- ❌ **Incorrect**: *The researcher is knowing the methodology.*\n- ✅ **Correct**: *The researcher knows the methodology.*\n\n#### 2. Emotions & Attitudes\n- love, hate, prefer, want, need, desire, appreciate\n- ❌ **Incorrect**: *Students are preferring online learning.*\n- ✅ **Correct**: *Students prefer online learning.*\n\n#### 3. Possession & Relationships\n- have (possession), own, belong, possess, contain, include\n- ❌ **Incorrect**: *This dataset is containing 10,000 entries.*\n- ✅ **Correct**: *This dataset contains 10,000 entries.*\n\n#### 4. Senses (Involuntary Perception)\n- see, hear, smell, taste (when involuntary)\n- ❌ **Incorrect**: *I am seeing the correlation.*\n- ✅ **Correct**: *I see the correlation.*\n\n#### 5. Measurement & Existence\n- weigh, measure, cost, seem, appear, exist, matter\n- ❌ **Incorrect**: *The sample is weighing 50 grams.*\n- ✅ **Correct**: *The sample weighs 50 grams.*\n\n---\n\n## Critical Academic Applications\n\n### In Literature Reviews:\n✅ \"Smith (2020) **argues** that climate change accelerates inequality.\"  \n❌ \"Smith (2020) **is arguing** that climate change accelerates inequality.\"\n\n### In Methodology Sections:\n✅ \"The survey **includes** demographic questions.\"  \n❌ \"The survey **is including** demographic questions.\"\n\n### In Results & Discussion:\n✅ \"The data **suggest** a strong correlation.\"  \n❌ \"The data **are suggesting** a strong correlation.\"\n\n---\n\n## The Exception: Context-Dependent Verbs\n\nSome verbs can function as **both** state and action verbs depending on context:\n\n| Verb | State (Involuntary) | Action (Voluntary) |\n|------|---------------------|--------------------|\n| **think** | I think this theory is valid. (opinion) | I am thinking about the problem. (mental process) |\n| **have** | The lab has new equipment. (possession) | The team is having a meeting. (activity) |\n| **see** | I see the issue. (understand) | The doctor is seeing patients. (meeting) |\n| **taste** | The solution tastes bitter. (quality) | The chef is tasting the sauce. (action) |\n\n---\n\n## Common Errors in Student Writing\n\n### Error 1: Using Continuous with Mental States\n❌ *\"Many scholars are believing that education reform is necessary.\"*  \n✅ *\"Many scholars believe that education reform is necessary.\"*\n\n### Error 2: Using Continuous with Possession\n❌ *\"The university is owning several research facilities.\"*  \n✅ *\"The university owns several research facilities.\"*\n\n### Error 3: Using Continuous with Measurement\n❌ *\"The building is costing $10 million to construct.\"*  \n✅ *\"The building costs $10 million to construct.\"*\n\n---\n\n## Mastery Checklist\n\nBefore proceeding, ensure you can:\n- ✓ Identify whether a verb describes a **state** or an **action**\n- ✓ Recognize the five categories of state verbs\n- ✓ Avoid using continuous tenses with stative verbs\n- ✓ Distinguish context-dependent verbs (think, have, see, taste)\n\n---\n\n**Now test your understanding with the mastery check below.**",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the grammatically correct sentence for each question. Pay close attention to whether the verb should be in simple or continuous form.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "The research team _____ that climate change is accelerating.",
+          "options": [
+            "is believing",
+            "believes",
+            "are believing",
+            "believe"
+          ],
+          "correct_answer": 1,
+          "category": "Mental States"
+        },
+        {
+          "question": "This laboratory equipment _____ to the Department of Chemistry.",
+          "options": [
+            "is belonging",
+            "belongs",
+            "are belonging",
+            "belong"
+          ],
+          "correct_answer": 1,
+          "category": "Possession"
+        },
+        {
+          "question": "I _____ the methodology used in this study.",
+          "options": [
+            "am not understanding",
+            "don't understand",
+            "am not understand",
+            "doesn't understand"
+          ],
+          "correct_answer": 1,
+          "category": "Mental States"
+        },
+        {
+          "question": "The professor _____ a large collection of rare manuscripts.",
+          "options": [
+            "is owning",
+            "owns",
+            "are owning",
+            "own"
+          ],
+          "correct_answer": 1,
+          "category": "Possession"
+        },
+        {
+          "question": "The dataset _____ information from over 5,000 participants.",
+          "options": [
+            "is containing",
+            "contains",
+            "are containing",
+            "contain"
+          ],
+          "correct_answer": 1,
+          "category": "Possession"
+        },
+        {
+          "question": "Many economists _____ that inflation will rise next quarter.",
+          "options": [
+            "are supposing",
+            "suppose",
+            "is supposing",
+            "supposes"
+          ],
+          "correct_answer": 1,
+          "category": "Mental States"
+        },
+        {
+          "question": "The sample _____ approximately 250 grams.",
+          "options": [
+            "is weighing",
+            "weighs",
+            "are weighing",
+            "weigh"
+          ],
+          "correct_answer": 1,
+          "category": "Measurement"
+        },
+        {
+          "question": "Students _____ online learning to traditional classroom instruction.",
+          "options": [
+            "are preferring",
+            "prefer",
+            "is preferring",
+            "prefers"
+          ],
+          "correct_answer": 1,
+          "category": "Emotions"
+        },
+        {
+          "question": "The theory _____ to explain the observed phenomenon.",
+          "options": [
+            "is seeming",
+            "seems",
+            "are seeming",
+            "seem"
+          ],
+          "correct_answer": 1,
+          "category": "Measurement"
+        },
+        {
+          "question": "I _____ the correlation between these two variables.",
+          "options": [
+            "am seeing",
+            "see",
+            "am see",
+            "sees"
+          ],
+          "correct_answer": 1,
+          "category": "Senses (Understanding)"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

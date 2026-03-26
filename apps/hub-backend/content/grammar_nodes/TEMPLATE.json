@@ -1,0 +1,53 @@
+{
+  "node_id": "time-matrix-01",
+  "region": "The Time Matrix",
+  "tier": "Bronze",
+  "title": "State vs. Action Verbs",
+  "description": "Learn to identify verbs that cannot be used in continuous tenses: know, believe, belong.",
+  "display_order": 1,
+  "prerequisites": [],
+  "lesson_content_markdown": "# State vs. Action Verbs\n\n## Introduction\n\nIn English grammar, verbs are categorized into two main types:\n\n### Action Verbs (Dynamic Verbs)\nThese verbs describe actions that can be performed and can be used in continuous tenses.\n- Examples: *run, write, study, analyze*\n- ✅ Correct: \"I am studying grammar.\"\n\n### State Verbs (Stative Verbs)\nThese verbs describe states, conditions, or situations that are relatively permanent. They **cannot** be used in continuous tenses.\n- Examples: *know, believe, belong, understand, own*\n- ❌ Incorrect: \"I am knowing the answer.\"\n- ✅ Correct: \"I know the answer.\"\n\n## Common State Verbs in Academic Writing\n\n### Mental States\n- know, understand, believe, think (opinion), suppose, doubt\n\n### Emotions\n- love, hate, prefer, want, need, desire\n\n### Possession\n- have (possession), own, belong, possess\n\n### Senses\n- see, hear, smell, taste (involuntary)\n\n### Measurement\n- weigh, measure, cost, contain\n\n## Academic Examples\n\n1. \"The research **indicates** a strong correlation.\" (not \"is indicating\")\n2. \"This theory **belongs** to the field of sociology.\" (not \"is belonging\")\n3. \"The data **suggests** a different conclusion.\" (not \"is suggesting\")\n\n## Practice Tip\n\nWhen writing academic papers, avoid using continuous tenses with verbs that describe:\n- Knowledge or belief\n- Ownership or possession\n- Permanent characteristics\n\n---\n\nNow test your understanding with the mastery check below.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the correct form of the verb for each sentence.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "The research team _____ that climate change is accelerating.",
+          "options": ["is believing", "believes", "are believing", "believe"],
+          "correct_answer": 1,
+          "category": "State vs. Action"
+        },
+        {
+          "question": "This equipment _____ to the university's chemistry department.",
+          "options": ["is belonging", "belongs", "are belonging", "belong"],
+          "correct_answer": 1,
+          "category": "State vs. Action"
+        },
+        {
+          "question": "I _____ the methodology used in this study.",
+          "options": ["am not understanding", "don't understand", "am not understand", "doesn't understand"],
+          "correct_answer": 1,
+          "category": "State vs. Action"
+        },
+        {
+          "question": "The professor _____ a large collection of rare manuscripts.",
+          "options": ["is owning", "owns", "are owning", "own"],
+          "correct_answer": 1,
+          "category": "State vs. Action"
+        },
+        {
+          "question": "The data _____ several important variables.",
+          "options": ["is containing", "contains", "are containing", "contain"],
+          "correct_answer": 1,
+          "category": "State vs. Action"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

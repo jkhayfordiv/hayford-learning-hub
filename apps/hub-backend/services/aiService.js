@@ -381,9 +381,85 @@ Return ONLY valid JSON (no markdown, no extra text) with this exact structure:
   throw lastError || new AiRequestError('Audio grading failed after retries.');
 }
 
+/**
+ * Grade a grammar activity using AI
+ * @param {string} userResponse - The student's text response
+ * @param {string} rubric - The grading rubric/criteria
+ * @param {string} activityType - Type of activity being graded
+ * @returns {Promise<{passed: boolean, score: number, feedback: string}>}
+ */
+async function gradeGrammarActivity(userResponse, rubric, activityType) {
+  const requestId = `grammar-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
+  return limiter.schedule(async () => {
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    
+    const systemInstruction = `You are an expert EAP (English for Academic Purposes) grammar instructor. 
+Your task is to evaluate a student's grammar exercise response and provide constructive feedback.
+
+Grading Criteria:
+${rubric}
+
+Respond with a JSON object containing:
+{
+  "passed": boolean (true if score >= 80%, false otherwise),
+  "score": number (0-100),
+  "feedback": string (2-3 sentences of specific, actionable feedback)
+}
+
+Be strict but fair. Focus on grammar accuracy, not content.`;
+
+    const prompt = `Student's Response:
+${userResponse}
+
+Please evaluate this response according to the grading criteria and provide your assessment.`;
+
+    let lastError;
+    for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+      try {
+        console.log(`[Grammar][${requestId}] Calling Gemini — attempt ${attempt}`);
+
+        const result = await Promise.race([
+          model.generateContent({
+            systemInstruction: { parts: [{ text: systemInstruction }] },
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
+            generationConfig: { temperature: 0.3 },
+          }),
+          new Promise((_, reject) =>
+            setTimeout(
+              () => reject(new AiRequestError(`Gemini timed out after ${REQUEST_TIMEOUT_MS}ms`, { isTimeout: true })),
+              REQUEST_TIMEOUT_MS
+            )
+          ),
+        ]);
+
+        const rawText = result.response.text();
+        const cleaned = rawText.replace(/```json|```/g, '').trim();
+        const parsed = JSON.parse(cleaned);
+        
+        return {
+          passed: parsed.passed || false,
+          score: parsed.score || 0,
+          feedback: parsed.feedback || 'No feedback provided.'
+        };
+      } catch (err) {
+        lastError = err;
+        const isRetryable = err.statusCode && RETRYABLE_STATUS_CODES.has(err.statusCode);
+        if (!isRetryable || attempt === MAX_RETRIES) break;
+        const waitMs = BASE_BACKOFF_MS * (2 ** (attempt - 1));
+        console.warn(`[Grammar][${requestId}] Retrying in ${waitMs}ms...`);
+        await sleep(waitMs);
+      }
+    }
+
+    throw lastError || new AiRequestError('Grammar grading failed after retries.');
+  });
+}
+
 module.exports = {
   getVocabularyFeedback,
   gradeIeltsSpeaking,
   gradeIeltsSpeakingAudio,
+  gradeGrammarActivity,
   AiRequestError
 };

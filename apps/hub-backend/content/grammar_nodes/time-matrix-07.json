@@ -1,0 +1,29 @@
+{
+  "node_id": "time-matrix-07",
+  "region": "The Time Matrix",
+  "tier": "Bronze",
+  "title": "Future Forms",
+  "description": "Will for sudden decisions/predictions vs. Going to for concrete plans.",
+  "display_order": 7,
+  "prerequisites": ["time-matrix-06"],
+  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the correct answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "Based on current trends, the population _____ by 2050.",
+          "options": ["will increase", "is going to increase", "increases", "increased"],
+          "correct_answer": 0,
+          "category": "Future Forms"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "node_id": "node-0-diagnostic",
+  "region": "Diagnostic",
+  "tier": "Diagnostic",
+  "title": "Grammar Diagnostic Gateway",
+  "description": "A comprehensive diagnostic assessment to establish your baseline grammar proficiency across all five pathways.",
+  "display_order": 0,
+  "prerequisites": [],
+  "lesson_content_markdown": "# Welcome to the Grammar World Map\n\nBefore you begin your journey through the five pathways of academic grammar, we need to establish your current proficiency level.\n\nThis diagnostic will assess your understanding across:\n- **The Time Matrix**: Verb tenses and aspect\n- **The Architecture**: Sentence structure and clauses\n- **The Connectors**: Cohesion and transitions\n- **The Modifiers**: Articles, adjectives, and precision\n- **The Nuance**: Modals, conditionals, and hedging\n\n## Instructions\n\nComplete all 15 questions to the best of your ability. This assessment will help us recommend the most beneficial pathway for you to start with.\n\nThere is no time limit. Take your time and demonstrate your current knowledge.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Complete the diagnostic assessment below. Select the best answer for each question.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "The research team _____ the data for three months before publishing their findings.",
+          "options": ["analyzes", "has analyzed", "had been analyzing", "will analyze"],
+          "correct_answer": 2,
+          "category": "Time Matrix"
+        },
+        {
+          "question": "_____ the experiment was completed, the scientists discovered an unexpected result.",
+          "options": ["During", "While", "After", "Before"],
+          "correct_answer": 2,
+          "category": "Connectors"
+        },
+        {
+          "question": "The study, _____ was conducted over five years, revealed significant patterns.",
+          "options": ["that", "which", "who", "what"],
+          "correct_answer": 1,
+          "category": "Architecture"
+        },
+        {
+          "question": "There _____ several factors that contribute to climate change.",
+          "options": ["is", "are", "was", "been"],
+          "correct_answer": 1,
+          "category": "Modifiers"
+        },
+        {
+          "question": "If the government _____ more funding, the project would have succeeded.",
+          "options": ["provided", "had provided", "provides", "will provide"],
+          "correct_answer": 1,
+          "category": "Nuance"
+        },
+        {
+          "question": "The professor explained _____ the assignment was due.",
+          "options": ["when", "when was", "that when", "when that"],
+          "correct_answer": 0,
+          "category": "Architecture"
+        },
+        {
+          "question": "_____ information provided in the report is insufficient for drawing conclusions.",
+          "options": ["A", "An", "The", "No article needed"],
+          "correct_answer": 2,
+          "category": "Modifiers"
+        },
+        {
+          "question": "The results _____ by the committee next week.",
+          "options": ["will be reviewed", "will review", "are reviewing", "have reviewed"],
+          "correct_answer": 0,
+          "category": "Time Matrix"
+        },
+        {
+          "question": "The author argues that technology has improved education. _____, critics point to increased inequality.",
+          "options": ["Therefore", "However", "Furthermore", "Similarly"],
+          "correct_answer": 1,
+          "category": "Connectors"
+        },
+        {
+          "question": "Students _____ complete the assignment by Friday.",
+          "options": ["must to", "must", "have must", "must be"],
+          "correct_answer": 1,
+          "category": "Nuance"
+        },
+        {
+          "question": "The data _____ that global temperatures are rising.",
+          "options": ["shows", "show", "showing", "is showing"],
+          "correct_answer": 1,
+          "category": "Time Matrix"
+        },
+        {
+          "question": "Walking to the laboratory, _____.",
+          "options": ["the experiment was ready", "I found the experiment ready", "the equipment was prepared", "there was preparation"],
+          "correct_answer": 1,
+          "category": "Architecture"
+        },
+        {
+          "question": "The research depends _____ accurate data collection.",
+          "options": ["of", "on", "at", "with"],
+          "correct_answer": 1,
+          "category": "Connectors"
+        },
+        {
+          "question": "This phenomenon occurs _____ frequently in urban areas than in rural regions.",
+          "options": ["more", "most", "much", "many"],
+          "correct_answer": 0,
+          "category": "Modifiers"
+        },
+        {
+          "question": "The findings _____ suggest that further research is needed.",
+          "options": ["clear", "clearly", "clearness", "clearing"],
+          "correct_answer": 1,
+          "category": "Nuance"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 0,
+    "medal_tier": "Diagnostic"
+  }
+}
