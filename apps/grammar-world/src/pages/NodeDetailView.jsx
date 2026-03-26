@@ -97,7 +97,7 @@ export default function NodeDetailView() {
                 <BookOpen size={32} />
                 <h1 className="font-serif text-3xl md:text-4xl">{nodeData?.title}</h1>
               </div>
-              <p className="text-gray-200">{nodeData?.content_json?.description || ''}</p>
+              <p className="text-gray-200">{nodeData?.description || ''}</p>
             </div>
             <div className={`${getTierBadgeColor(nodeData?.tier)} text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2`}>
               <Award size={16} />
@@ -144,7 +144,7 @@ export default function NodeDetailView() {
                 hr: () => <hr className="my-8 border-t-2 border-gray-200" />,
               }}
             >
-              {nodeData?.content_json?.lesson_content_markdown || ''}
+              {nodeData?.lesson_content_markdown || ''}
             </ReactMarkdown>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default function NodeDetailView() {
         {/* Mastery Check Engine */}
         <MasteryCheckEngine 
           node={nodeData} 
-          regionName={nodeData?.content_json?.region?.toLowerCase().replace(/\s+/g, '-') || 'time-matrix'}
+          regionName={nodeData?.region?.toLowerCase().replace(/\s+/g, '-') || 'time-matrix'}
         />
       </main>
     </div>

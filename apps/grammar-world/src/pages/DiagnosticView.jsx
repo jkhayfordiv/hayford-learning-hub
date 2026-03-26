@@ -53,7 +53,7 @@ export default function DiagnosticView() {
   const handleSubmit = async () => {
     if (!diagnosticNode) return;
 
-    const questions = diagnosticNode.content_json.mastery_check.activity_data.questions;
+    const questions = diagnosticNode.mastery_check.activity_data.questions;
     const allAnswered = questions.every((_, idx) => selectedAnswers[idx] !== undefined);
 
     if (!allAnswered) {
@@ -67,7 +67,7 @@ export default function DiagnosticView() {
         'node-0-diagnostic',
         'multiple_choice',
         selectedAnswers,
-        diagnosticNode.content_json.mastery_check
+        diagnosticNode.mastery_check
       );
       setResult(response);
     } catch (err) {
@@ -127,7 +127,7 @@ export default function DiagnosticView() {
     );
   }
 
-  const questions = diagnosticNode?.content_json?.mastery_check?.activity_data?.questions || [];
+  const questions = diagnosticNode?.mastery_check?.activity_data?.questions || [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -158,7 +158,7 @@ export default function DiagnosticView() {
                 em: ({ children }) => <em className="italic">{children}</em>,
               }}
             >
-              {diagnosticNode?.content_json?.lesson_content_markdown || ''}
+              {diagnosticNode?.lesson_content_markdown || ''}
             </ReactMarkdown>
           </div>
         </div>

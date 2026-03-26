@@ -13,8 +13,8 @@ export default function MasteryCheckEngine({ node, regionName }) {
   const [result, setResult] = useState(null);
   const navigate = useNavigate();
 
-  const masteryCheck = node?.content_json?.mastery_check;
-  const rewards = node?.content_json?.rewards;
+  const masteryCheck = node?.mastery_check;
+  const rewards = node?.rewards;
 
   const handleSubmit = async (userResponse, activityType) => {
     // Hard guard: prevent double-submit if already processing
