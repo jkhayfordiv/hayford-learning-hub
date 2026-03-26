@@ -63,15 +63,16 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           u.created_at,
           COALESCE(
             json_agg(
-              json_build_object('class_id', c.id, 'class_name', c.class_name)
-              ORDER BY ce.joined_at DESC
-            ) FILTER (WHERE c.id IS NOT NULL),
+              DISTINCT json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
+              ORDER BY json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
+            ) FILTER (WHERE c1.id IS NOT NULL OR c2.id IS NOT NULL),
             '[]'::json
           ) as classes
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
         LEFT JOIN class_enrollments ce ON u.id = ce.user_id
-        LEFT JOIN classes c ON ce.class_id = c.id
+        LEFT JOIN classes c1 ON ce.class_id = c1.id
+        LEFT JOIN classes c2 ON u.id = c2.teacher_id
         GROUP BY u.id, i.name
         ORDER BY u.id ASC
       `;
@@ -90,15 +91,16 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           u.created_at,
           COALESCE(
             json_agg(
-              json_build_object('class_id', c.id, 'class_name', c.class_name)
-              ORDER BY ce.joined_at DESC
-            ) FILTER (WHERE c.id IS NOT NULL),
+              DISTINCT json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
+              ORDER BY json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
+            ) FILTER (WHERE c1.id IS NOT NULL OR c2.id IS NOT NULL),
             '[]'::json
           ) as classes
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
         LEFT JOIN class_enrollments ce ON u.id = ce.user_id
-        LEFT JOIN classes c ON ce.class_id = c.id
+        LEFT JOIN classes c1 ON ce.class_id = c1.id
+        LEFT JOIN classes c2 ON u.id = c2.teacher_id
         WHERE u.institution_id = $1
         GROUP BY u.id, i.name
         ORDER BY u.id ASC

@@ -213,7 +213,12 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
       // Super admin sees all students
       query = `
         SELECT 
-          u.id, u.first_name, u.last_name, u.email, u.class_id, u.institution_id,
+          u.id, u.first_name, u.last_name, u.email, 
+          COALESCE(
+            (SELECT ce.class_id FROM class_enrollments ce WHERE ce.user_id = u.id ORDER BY ce.joined_at DESC LIMIT 1),
+            NULL
+          ) as class_id,
+          u.institution_id,
           COUNT(s.id) as assignments_completed,
           MAX(s.completed_at) as last_active_date,
           AVG(s.overall_score) as average_band_score,
@@ -221,14 +226,19 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
         FROM users u
         LEFT JOIN student_scores s ON u.id = s.student_id
         WHERE u.role = 'student'
-        GROUP BY u.id, u.class_id, u.institution_id
+        GROUP BY u.id, u.institution_id
         ORDER BY last_active_date DESC`;
       params = [];
     } else if (actor_role === 'admin' && actor_institution_id) {
       // Admin sees all students in their institution
       query = `
         SELECT 
-          u.id, u.first_name, u.last_name, u.email, u.class_id, u.institution_id,
+          u.id, u.first_name, u.last_name, u.email,
+          COALESCE(
+            (SELECT ce.class_id FROM class_enrollments ce WHERE ce.user_id = u.id ORDER BY ce.joined_at DESC LIMIT 1),
+            NULL
+          ) as class_id,
+          u.institution_id,
           COUNT(s.id) as assignments_completed,
           MAX(s.completed_at) as last_active_date,
           AVG(s.overall_score) as average_band_score,
@@ -236,23 +246,29 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
         FROM users u
         LEFT JOIN student_scores s ON u.id = s.student_id
         WHERE u.role = 'student' AND u.institution_id = $1
-        GROUP BY u.id, u.class_id, u.institution_id
+        GROUP BY u.id, u.institution_id
         ORDER BY last_active_date DESC`;
       params = [actor_institution_id];
     } else {
       // Teacher sees only students in classes they created
       query = `
         SELECT 
-          u.id, u.first_name, u.last_name, u.email, u.class_id, u.institution_id,
+          u.id, u.first_name, u.last_name, u.email,
+          COALESCE(
+            (SELECT ce.class_id FROM class_enrollments ce WHERE ce.user_id = u.id ORDER BY ce.joined_at DESC LIMIT 1),
+            NULL
+          ) as class_id,
+          u.institution_id,
           COUNT(s.id) as assignments_completed,
           MAX(s.completed_at) as last_active_date,
           AVG(s.overall_score) as average_band_score,
           STRING_AGG(CAST(s.diagnostic_data AS TEXT), '||') as all_diagnostic_data
         FROM users u
         LEFT JOIN student_scores s ON u.id = s.student_id
-        JOIN classes c ON u.class_id = c.id
+        JOIN class_enrollments ce ON u.id = ce.user_id
+        JOIN classes c ON ce.class_id = c.id
         WHERE u.role = 'student' AND c.teacher_id = $1
-        GROUP BY u.id, u.class_id, u.institution_id
+        GROUP BY u.id, u.institution_id
         ORDER BY last_active_date DESC`;
       params = [actor_id];
     }

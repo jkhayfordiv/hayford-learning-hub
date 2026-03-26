@@ -104,13 +104,13 @@ router.post('/enroll-class', requireTeacher, async (req, res) => {
     const connection = await pool.getConnection();
 
     const [users] = await connection.query(
-      'SELECT id, first_name, last_name FROM users WHERE LOWER(TRIM(email)) = LOWER($1) AND role = $2',
-      [email.trim(), 'student']
+      'SELECT id, first_name, last_name, role FROM users WHERE LOWER(TRIM(email)) = LOWER($1)',
+      [email.trim()]
     );
 
     if (users.length === 0) {
       connection.release();
-      return res.status(404).json({ error: 'No student found with that email address.' });
+      return res.status(404).json({ error: 'No user found with that email address.' });
     }
 
     // TENANT ISOLATION: Verify class exists and check institution access
@@ -148,6 +148,7 @@ router.post('/enroll-class', requireTeacher, async (req, res) => {
       success: true,
       message: `${users[0].first_name} ${users[0].last_name} has been enrolled in the class.`,
       user_id: users[0].id,
+      user_role: users[0].role,
       class_id: class_id
     });
   } catch (error) {
