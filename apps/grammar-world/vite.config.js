@@ -5,7 +5,7 @@ export default defineConfig({
   base: '/grammar-world/',
   plugins: [react()],
   server: {
-    port: 5176,
+    port: 5177,
     strictPort: true,
     proxy: {
       '/api': {
