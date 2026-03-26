@@ -1001,12 +1001,14 @@ export default function TeacherDashboard({ user, onLogout }) {
           >
             Assignments
           </button>
-          <button 
-            onClick={() => setActiveTab('tasks')}
-            className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'tasks' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-          >
-            Task Queue
-          </button>
+          {user.role === 'teacher' && (
+            <button 
+              onClick={() => setActiveTab('tasks')}
+              className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'tasks' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+            >
+              Task Queue
+            </button>
+          )}
           <button 
             onClick={() => setActiveTab('grammar-analytics')}
             className={`py-4 font-bold text-sm border-b-2 transition-colors ${activeTab === 'grammar-analytics' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}

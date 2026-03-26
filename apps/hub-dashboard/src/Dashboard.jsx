@@ -102,6 +102,10 @@ export default function Dashboard() {
   const [weaknesses, setWeaknesses] = useState([]);
   const [isLoadingWeaknesses, setIsLoadingWeaknesses] = useState(true);
 
+  // Show more state for recent activities
+  const [showAllRecentActivities, setShowAllRecentActivities] = useState(false);
+  const [showAllCompletedWork, setShowAllCompletedWork] = useState(false);
+
   useEffect(() => {
     // Show limbo modal if student has no class and hasn't dismissed it this session
     if (user.role === 'student' && !user.class_id && !limboModalDismissed) {
@@ -856,7 +860,7 @@ export default function Dashboard() {
                 ) : scores.length === 0 ? (
                   <tr><td colSpan="5" className="px-8 py-12 text-center text-slate-400">No recent submissions found. Start practicing!</td></tr>
                 ) : (
-                  scores.map((score) => (
+                  (showAllRecentActivities ? scores : scores.slice(0, 4)).map((score) => (
                     <tr 
                       key={score.id} 
                       onClick={() => {
@@ -897,6 +901,16 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
+          {!isLoading && scores.length > 4 && (
+            <div className="px-8 py-4 border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50">
+              <button
+                onClick={() => setShowAllRecentActivities(!showAllRecentActivities)}
+                className="w-full py-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+              >
+                {showAllRecentActivities ? 'Show Less' : `Show More (${scores.length - 4} more)`}
+              </button>
+            </div>
+          )}
         </div>
         </>
         ) : activeTab === 'progress' ? (
@@ -952,7 +966,7 @@ export default function Dashboard() {
                   </div>
                 </div>
               ) : (
-                scores.map((score) => (
+                (showAllCompletedWork ? scores : scores.slice(0, 4)).map((score) => (
                   <div key={score.id} className={`bg-white dark:bg-slate-800 border rounded-2xl overflow-hidden shadow-sm ${
                     score.teacher_comment && !score.teacher_comment_read 
                       ? 'border-amber-400 dark:border-amber-600 ring-2 ring-amber-200 dark:ring-amber-900/50' 
@@ -1047,6 +1061,16 @@ export default function Dashboard() {
                     )}
                   </div>
                 ))
+              )}
+              {!isLoading && scores.length > 4 && (
+                <div className="mt-4">
+                  <button
+                    onClick={() => setShowAllCompletedWork(!showAllCompletedWork)}
+                    className="w-full py-3 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl"
+                  >
+                    {showAllCompletedWork ? 'Show Less' : `Show More (${scores.length - 4} more)`}
+                  </button>
+                </div>
               )}
             </div>
           </div>
