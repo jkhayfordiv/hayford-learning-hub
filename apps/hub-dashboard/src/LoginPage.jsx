@@ -98,7 +98,7 @@ export default function LoginPage() {
         <div className="absolute top-8 right-8 z-50">
           <button 
             onClick={() => setIsTeacherMode(!isTeacherMode)}
-            className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all ${isTeacherMode ? 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-brand-navy' : 'border-brand-copper text-brand-copper hover:bg-brand-copper hover:text-white'}`}
+            className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-all ${isTeacherMode ? 'border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-brand-navy' : 'border-brand-sangria text-brand-sangria hover:bg-brand-sangria hover:text-white'}`}
           >
             {isTeacherMode ? 'Student Login →' : 'Teacher Login →'}
           </button>
@@ -106,15 +106,15 @@ export default function LoginPage() {
       )}
 
       {/* Left Side: Branding Panel */}
-      <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-copper via-[#A0632B] to-[#8B5526]'}`}>
+      <div className={`hidden lg:flex flex-col justify-between p-12 text-white relative transition-colors duration-500 ${isTeacherMode ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900' : 'bg-gradient-to-br from-brand-sangria via-[#4A1410] to-[#3A0F0C]'}`}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div className="relative z-10 flex items-center gap-4">
-           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-copper/60 bg-white/10 backdrop-blur shadow-glow p-1" />
+           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-12 h-12 object-contain rounded-xl border-2 border-brand-sangria/60 bg-white/10 backdrop-blur shadow-glow p-1" />
            <span className="font-extrabold text-2xl tracking-tight">Hayford Hub {isTeacherMode && <span className="opacity-50 font-normal">| Faculty</span>}</span>
         </div>
 
         <div className="relative z-10 max-w-lg">
-          <h1 className={`text-5xl font-black tracking-tighter mb-6 leading-[1.1] text-transparent bg-clip-text drop-shadow-sm ${isTeacherMode ? 'bg-gradient-to-r from-white to-slate-400' : 'bg-gradient-to-r from-white to-brand-copper'}`}>
+          <h1 className={`text-5xl font-black tracking-tighter mb-6 leading-[1.1] text-transparent bg-clip-text drop-shadow-sm ${isTeacherMode ? 'bg-gradient-to-r from-white to-slate-400' : 'bg-gradient-to-r from-white to-brand-sangria'}`}>
             {isTeacherMode ? 'Manage your institution seamlessly.' : "Let's Level up your English."}
           </h1>
           <p className={`${isTeacherMode ? 'text-slate-300' : 'text-indigo-200'} text-lg font-medium leading-relaxed max-w-md`}>

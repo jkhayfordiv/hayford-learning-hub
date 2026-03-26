@@ -666,7 +666,7 @@ export default function App() {
       <div className="max-w-3xl mx-auto space-y-12">
         <header className="flex items-center justify-between border-b border-slate-200 pb-8">
             <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-copper">IELTS Speaking Test</p>
+                <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-sangria">IELTS Speaking Test</p>
                 <h1 className="text-4xl font-black tracking-tighter text-slate-950">Part {currentPart}{assignedParts.length > 1 ? ` of ${assignedParts.length}` : ''}</h1>
             </div>
             <button
@@ -683,7 +683,7 @@ export default function App() {
             <div key={part} className="flex items-center gap-3">
               <div className={`flex items-center justify-center w-10 h-10 rounded-full font-black text-sm ${
                 completedParts[part] ? 'bg-green-500 text-white' :
-                idx === currentPartIndex ? 'bg-brand-copper text-white' :
+                idx === currentPartIndex ? 'bg-brand-sangria text-white' :
                 'bg-slate-200 text-slate-400'
               }`}>
                 {completedParts[part] ? '✓' : part}
@@ -704,7 +704,7 @@ export default function App() {
                   <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 1: Introduction & Interview</h2>
                   <p className="text-xs text-slate-400 mt-1">Topic: {part1Topic.topic}</p>
                 </div>
-                <span className="bg-brand-copper/10 text-brand-copper px-4 py-2 rounded-xl font-bold text-xs">
+                <span className="bg-brand-sangria/10 text-brand-sangria px-4 py-2 rounded-xl font-bold text-xs">
                   Question {part1QuestionIndex + 1} of {part1Questions.length}
                 </span>
               </div>
@@ -712,11 +712,11 @@ export default function App() {
               <div className="space-y-4">
                 {part1Questions.map((q, idx) => (
                   <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
-                    idx === part1QuestionIndex ? 'border-brand-copper bg-brand-copper/10' : 'border-slate-200 bg-slate-50/50 opacity-60'
+                    idx === part1QuestionIndex ? 'border-brand-sangria bg-brand-sangria/10' : 'border-slate-200 bg-slate-50/50 opacity-60'
                   }`}>
                     <div className="flex items-start gap-3">
                       <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                        idx === part1QuestionIndex ? 'bg-brand-copper text-white' : 'bg-slate-300 text-slate-600'
+                        idx === part1QuestionIndex ? 'bg-brand-sangria text-white' : 'bg-slate-300 text-slate-600'
                       }`}>
                         {idx + 1}
                       </span>
@@ -758,7 +758,7 @@ export default function App() {
               
               {!part2PrepComplete ? (
                 <div className="text-center space-y-6">
-                  <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-brand-copper'}`}>
+                  <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-brand-sangria'}`}>
                     {formatTime(part2PrepTime)}
                   </div>
                   <p className="text-lg font-bold text-slate-600">Preparation Time</p>
@@ -772,13 +772,13 @@ export default function App() {
                 </div>
               ) : (
                 <div className="space-y-6">
-                  <div className="bg-brand-copper/10 border-2 border-brand-copper/20 rounded-2xl p-6">
+                  <div className="bg-brand-sangria/10 border-2 border-brand-sangria/20 rounded-2xl p-6">
                     <p className="text-xl font-bold text-slate-900 mb-4">{part2CueCard.prompt}</p>
                     <p className="text-sm font-bold text-slate-600 mb-3">You should say:</p>
                     <ul className="space-y-2">
                       {part2CueCard.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
-                          <span className="text-brand-copper font-bold">•</span>
+                          <span className="text-brand-sangria font-bold">•</span>
                           {point}
                         </li>
                       ))}
@@ -786,7 +786,7 @@ export default function App() {
                   </div>
                   {isRecording && (
                     <div className="text-center">
-                      <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-brand-copper'}`}>
+                      <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-brand-sangria'}`}>
                         {formatTime(part2RecordTime)}
                       </div>
                       <p className="text-sm text-slate-500 mt-2">Recording Time Remaining</p>
@@ -858,7 +858,7 @@ export default function App() {
         {/* Recording Interface */}
         {(currentPart === '1' || currentPart === '3' || (currentPart === '2' && part2PrepComplete)) && (
           <section className="bg-slate-900 text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-copper/10 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-sangria/10 to-transparent"></div>
             
             <div className="relative flex flex-col items-center gap-6">
                 <div className="flex flex-col items-center gap-3">
@@ -870,8 +870,8 @@ export default function App() {
                             onClick={handleToggleRecording}
                             disabled={currentPartComplete}
                             className={`relative w-16 h-16 rounded-full border-4 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
-                                isRecording ? 'bg-white border-red-500' : currentPartComplete ? 'bg-green-500 border-green-600' : 'bg-brand-copper border-brand-copper/50 hover:bg-brand-copper/90 hover:border-brand-copper'
-                            }`}
+                                isRecording ? 'bg-white border-red-500' : currentPartComplete ? 'bg-green-500 border-green-600' : 'bg-brand-sangria border-brand-sangria/50 hover:bg-brand-sangria/90 hover:border-brand-sangria'
+                            }`}>
                         >
                             {currentPartComplete ? (
                                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -888,7 +888,7 @@ export default function App() {
                     
                     <div className="text-center space-y-0.5">
                         <p className={`text-xs font-black uppercase tracking-[0.2em] ${
-                          currentPartComplete ? 'text-green-400' : isRecording ? 'text-red-400' : 'text-brand-copper/70'
+                          currentPartComplete ? 'text-green-400' : isRecording ? 'text-red-400' : 'text-brand-sangria/70'
                         }`}>
                             {currentPartComplete ? 'Part Complete' : isRecording ? 'Recording Live' : 'Standby'}
                         </p>
@@ -916,7 +916,7 @@ export default function App() {
                   >
                       {isSubmitting ? (
                           <>
-                              <div className="w-4 h-4 border-4 border-slate-200 border-t-brand-copper rounded-full animate-spin"></div>
+                              <div className="w-4 h-4 border-4 border-slate-200 border-t-brand-sangria rounded-full animate-spin"></div>
                               Analyzing Audio...
                           </>
                       ) : (

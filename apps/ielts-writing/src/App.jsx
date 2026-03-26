@@ -961,11 +961,11 @@ export default function App() {
       </header>
 
       <div className="px-6 pt-4 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-md mx-auto bg-brand-copper/10 border border-brand-copper/20 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-copper text-center">
+        <div className="max-w-md mx-auto bg-brand-sangria/10 border border-brand-sangria/20 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-sangria text-center">
           {writingTask === 'both' ? (
             <div className="flex items-center justify-center gap-2">
               <span>Assignment: IELTS Both Tasks</span>
-              <span className="bg-brand-copper text-white px-2 py-0.5 rounded text-[10px]">
+              <span className="bg-brand-sangria text-white px-2 py-0.5 rounded text-[10px]">
                 {currentTaskInBothMode === 'task1' ? 'Task 1 Active' : 'Task 2 Active'}
               </span>
             </div>
@@ -991,7 +991,7 @@ export default function App() {
         ) : (
           <div className="h-full flex flex-col lg:flex-row">
             {/* Visual Panel */}
-            <div className="w-full lg:w-1/2 p-6 overflow-y-auto border-r bg-gradient-to-br from-brand-copper to-[#A0632B] text-white scrollbar-hide">
+            <div className="w-full lg:w-1/2 p-6 overflow-y-auto border-r bg-gradient-to-br from-brand-sangria to-[#4A1410] text-white scrollbar-hide">
               <div className="max-w-xl mx-auto">
                 <div className="flex items-center gap-2 text-white/80 mb-2">{getIcon(currentPrompt.type)}<span className="font-black uppercase tracking-widest text-[10px]">{currentPrompt.type}</span></div>
                 <h2 className="text-2xl font-black mb-4 text-white tracking-tight">{currentPrompt.title}</h2>

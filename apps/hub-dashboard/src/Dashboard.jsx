@@ -434,34 +434,34 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
-      <header className="bg-white dark:bg-[#0F1C2E] border-b border-slate-200 dark:border-slate-700 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
+      <header className="bg-brand-sangria dark:bg-brand-sangria border-b border-[#4A1410] dark:border-[#4A1410] px-8 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
            <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
           <div>
-            <h1 className="font-bold text-slate-900 dark:text-white tracking-tight leading-none text-lg group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+            <h1 className="font-bold text-white tracking-tight leading-none text-lg group-hover:text-white/80 transition-colors">
               Hayford Global Learning Hub
             </h1>
-            <span className="text-[10px] uppercase font-black tracking-widest text-slate-500 dark:text-slate-400">
+            <span className="text-[10px] uppercase font-black tracking-widest text-white/70">
               Student Dashboard
             </span>
           </div>
         </div>
 
         <div className="flex items-center gap-4 relative" ref={dropdownRef}>
-          <button onClick={handleRefresh} className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors" title="Refresh scores and tasks">
+          <button onClick={handleRefresh} className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors" title="Refresh scores and tasks">
             <RefreshCw size={18} />
           </button>
-          <button onClick={() => setIsTourOpen(true)} className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors hidden md:block" title="Quick Tour">
+          <button onClick={() => setIsTourOpen(true)} className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors hidden md:block" title="Quick Tour">
             <HelpIcon size={18} />
           </button>
-          <div className="h-6 w-px bg-slate-200 dark:bg-slate-700 hidden md:block"></div>
+          <div className="h-6 w-px bg-white/20 hidden md:block"></div>
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors rounded-full border border-slate-200 dark:border-slate-600 cursor-pointer"
+            className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 transition-colors rounded-full border border-white/20 cursor-pointer"
           >
-             <User size={14} className="text-slate-500 dark:text-slate-400" />
-             <span className="text-xs font-bold text-slate-700 dark:text-slate-200">{user.first_name || 'Guest'}</span>
-             <ChevronDown size={14} className={`text-slate-400 dark:text-slate-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+             <User size={14} className="text-white/70" />
+             <span className="text-xs font-bold text-white">{user.first_name || 'Guest'}</span>
+             <ChevronDown size={14} className={`text-white/70 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
           
            {isDropdownOpen && (
@@ -786,7 +786,7 @@ export default function Dashboard() {
            
            <button
               onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both`}
-              className="bg-gradient-to-br from-brand-copper to-[#A0632B] hover:from-[#A0632B] hover:to-[#8B5526] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+              className="bg-gradient-to-br from-brand-sangria to-[#4A1410] hover:from-[#4A1410] hover:to-[#3A0F0C] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
            >
               <div className="flex items-center justify-between mb-2">
                  <PenTool size={24} className="text-white/90 group-hover:text-white transition-colors" />

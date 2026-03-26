@@ -13,7 +13,7 @@ export default {
       colors: {
         brand: {
           navy: '#0A1930',
-          copper: '#B87333',
+          sangria: '#5E1914',
           darkBg: '#0f172a',
           darkCard: '#1e293b',
         },
