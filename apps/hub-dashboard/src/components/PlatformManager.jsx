@@ -44,6 +44,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [studentSearchQuery, setStudentSearchQuery] = useState('');
   const [studentSearchResults, setStudentSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [expandedUserClasses, setExpandedUserClasses] = useState({});
 
   // Fetch functions
   const fetchInstitutions = async () => {
@@ -897,7 +898,43 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                               </span>
                             </td>
                             <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{u.institution_name || 'None'}</td>
-                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{u.class_name || 'None'}</td>
+                            <td className="px-6 py-3 text-slate-600 dark:text-slate-400">
+                              {(() => {
+                                const userClasses = u.classes || [];
+                                if (userClasses.length === 0) return 'None';
+                                if (userClasses.length === 1) return userClasses[0].class_name;
+                                
+                                const isExpanded = expandedUserClasses[u.id];
+                                return (
+                                  <div className="flex items-center gap-2">
+                                    <span>{userClasses[0].class_name}</span>
+                                    {!isExpanded && (
+                                      <button
+                                        onClick={() => setExpandedUserClasses({...expandedUserClasses, [u.id]: true})}
+                                        className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-2 py-0.5 rounded border border-blue-200"
+                                      >
+                                        +{userClasses.length - 1}
+                                      </button>
+                                    )}
+                                    {isExpanded && (
+                                      <div className="inline-flex flex-col gap-1">
+                                        {userClasses.slice(1).map((cls, idx) => (
+                                          <span key={idx} className="text-xs bg-slate-100 px-2 py-0.5 rounded">
+                                            {cls.class_name}
+                                          </span>
+                                        ))}
+                                        <button
+                                          onClick={() => setExpandedUserClasses({...expandedUserClasses, [u.id]: false})}
+                                          className="text-xs text-slate-500 hover:text-slate-700"
+                                        >
+                                          Show less
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
+                                );
+                              })()}
+                            </td>
                             <td className="px-6 py-3 text-right">
                               <div className="flex gap-2 justify-end">
                                 <button
