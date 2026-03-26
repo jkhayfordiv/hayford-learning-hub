@@ -3,9 +3,13 @@ import { X, CheckCircle2, MessageSquare, Sparkles, Calendar } from 'lucide-react
 
 export default function StudentFeedbackModal({ score, onClose, onMarkAsRead }) {
   React.useEffect(() => {
-    // Mark as read when modal opens
+    // Mark as read when modal opens (only if not already marked from banner click)
     if (score.teacher_comment && !score.teacher_comment_read) {
-      onMarkAsRead(score.id);
+      // Small delay to avoid race condition with banner button click
+      const timer = setTimeout(() => {
+        onMarkAsRead(score.id);
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [score.id, score.teacher_comment, score.teacher_comment_read, onMarkAsRead]);
 

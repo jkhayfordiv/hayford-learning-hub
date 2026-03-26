@@ -526,8 +526,11 @@ export default function Dashboard() {
                   </div>
                   <button
                     onClick={() => {
-                      setSelectedFeedbackScore(unreadFeedback[0]);
+                      const firstUnread = unreadFeedback[0];
+                      setSelectedFeedbackScore(firstUnread);
                       setIsFeedbackModalOpen(true);
+                      // Immediately mark as read to prevent banner from reappearing
+                      handleMarkFeedbackAsRead(firstUnread.id);
                     }}
                     className="bg-amber-600 hover:bg-amber-700 dark:bg-amber-500 dark:hover:bg-amber-600 text-white font-bold px-6 py-2.5 rounded-xl transition-colors shadow-md flex items-center gap-2 whitespace-nowrap"
                   >
