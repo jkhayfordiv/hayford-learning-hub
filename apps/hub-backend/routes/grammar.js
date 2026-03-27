@@ -395,7 +395,7 @@ router.post('/submit', auth, async (req, res) => {
             completed_at = CASE WHEN $2 = 'completed' THEN CURRENT_TIMESTAMP ELSE completed_at END,
             updated_at = CURRENT_TIMESTAMP
           WHERE user_id = $3 AND node_id = $4
-        `, [score, passed ? 'completed' : 'in_progress', req.user.id, node_id]);
+        `, [score, (node_id === 'node-0-diagnostic' || passed) ? 'completed' : 'in_progress', req.user.id, node_id]);
       } else {
         // Create new progress record
         await connection.query(`
@@ -405,9 +405,9 @@ router.post('/submit', auth, async (req, res) => {
         `, [
           req.user.id,
           node_id,
-          passed ? 'completed' : 'in_progress',
+          (node_id === 'node-0-diagnostic' || passed) ? 'completed' : 'in_progress',
           score,
-          passed ? new Date() : null
+          (node_id === 'node-0-diagnostic' || passed) ? new Date() : null
         ]);
       }
 

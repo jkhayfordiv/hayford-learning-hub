@@ -117,7 +117,7 @@ export default function DiagnosticView() {
             Score: <strong>{result.score}%</strong>
           </p>
           <p className="text-gray-600 mb-6">
-            {result.passed ? 'You passed!' : 'Keep trying!'}
+            Your lessons are ready!
           </p>
           <p className="text-sm text-gray-500">
             Taking you to your lessons...
