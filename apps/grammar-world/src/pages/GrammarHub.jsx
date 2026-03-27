@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Award, BookOpen, Trophy, AlertCircle } from 'lucide-react';
+import { Award, BookOpen, Trophy, AlertCircle, ArrowLeft } from 'lucide-react';
 import { fetchUserProgress, fetchRegions, fetchRecommendation } from '../services/api';
 import { getUser } from '../utils/auth';
 import RegionCard from '../components/RegionCard';
@@ -90,6 +90,13 @@ export default function GrammarHub() {
       {/* Header */}
       <header className="bg-gradient-to-r from-brand-sangria to-brand-navy text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <button
+            onClick={() => window.location.href = '/'}
+            className="flex items-center gap-2 text-white hover:text-gray-200 transition-colors mb-4 opacity-80 hover:opacity-100"
+          >
+            <ArrowLeft size={18} />
+            <span className="text-sm font-medium">Back to Hub</span>
+          </button>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h1 className="font-serif text-3xl md:text-4xl mb-1">Grammar Lessons</h1>

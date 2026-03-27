@@ -178,7 +178,8 @@ export default function RegionView() {
         </div>
       </header>
 
-      <main className="flex-1 relative" style={{ height: 'calc(100vh - 140px)' }}>
+      <main className="flex-1 relative" style={{ height: 'calc(100vh - 140px)', minHeight: '400px' }}>
+        <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
         <ReactFlowProvider>
           <ReactFlow
             nodes={nodes}
@@ -217,6 +218,7 @@ export default function RegionView() {
             />
           </ReactFlow>
         </ReactFlowProvider>
+        </div>
       </main>
     </div>
   );
