@@ -125,8 +125,11 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
   } catch (err) {
     console.error('DB Error in GET /api/users/all:', err.message);
     console.error('Full error:', err);
+    console.error('Error stack:', err.stack);
     if (err.query) console.error('Failed query:', err.query);
-    res.status(500).json({ error: 'Failed to fetch users' });
+    if (err.code) console.error('Error code:', err.code);
+    if (err.detail) console.error('Error detail:', err.detail);
+    res.status(500).json({ error: 'Failed to fetch users', details: err.message });
   }
 });
 
