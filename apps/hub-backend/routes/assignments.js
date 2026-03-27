@@ -405,10 +405,14 @@ router.patch('/:id/mark-read', auth, async (req, res) => {
   const assignment_id = req.params.id;
   const student_id = req.user.id;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
-    // Update teacher_comment_read to TRUE for this student's assignment
+    // Start transaction to update both tables
+    await connection.query('START TRANSACTION');
+    
+    // 1. Update teacher_comment_read to TRUE for this student's assignment
     const [result] = await connection.query(
       `UPDATE assigned_tasks 
        SET teacher_comment_read = TRUE 
@@ -416,7 +420,15 @@ router.patch('/:id/mark-read', auth, async (req, res) => {
       [assignment_id, student_id]
     );
 
-    connection.release();
+    // 2. Also update student_scores table (the score ID might match assignment ID or be linked via assignment_id)
+    await connection.query(
+      `UPDATE student_scores 
+       SET teacher_comment_read = TRUE 
+       WHERE (id = $1 OR assignment_id = $1) AND student_id = $2`,
+      [assignment_id, student_id]
+    );
+
+    await connection.query('COMMIT');
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Assignment not found or you do not have permission to access it.' });
@@ -425,7 +437,10 @@ router.patch('/:id/mark-read', auth, async (req, res) => {
     res.json({ success: true, message: 'Feedback marked as read.' });
   } catch (error) {
     console.error('Mark feedback as read error:', error);
+    if (connection) await connection.query('ROLLBACK');
     res.status(500).json({ error: 'Server Error marking feedback as read' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
