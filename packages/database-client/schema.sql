@@ -343,6 +343,38 @@ CREATE TABLE IF NOT EXISTS user_weaknesses (
     UNIQUE(user_id, category)
 );
 
+-- Ensure legacy schemas match current column names
+DO $$
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = 'public' AND table_name = 'user_weaknesses' AND column_name = 'error_tag'
+    ) THEN
+        ALTER TABLE user_weaknesses RENAME COLUMN error_tag TO category;
+    END IF;
+
+    IF EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = 'public' AND table_name = 'user_weaknesses' AND column_name = 'last_failed_at'
+    ) THEN
+        ALTER TABLE user_weaknesses RENAME COLUMN last_failed_at TO last_updated;
+    END IF;
+
+    IF EXISTS (
+        SELECT 1 FROM information_schema.columns
+        WHERE table_schema = 'public' AND table_name = 'user_weaknesses' AND column_name = 'updated_at'
+    ) THEN
+        ALTER TABLE user_weaknesses DROP COLUMN updated_at;
+    END IF;
+END
+$$;
+
+ALTER TABLE user_weaknesses
+    ADD COLUMN IF NOT EXISTS category VARCHAR(100) NOT NULL;
+
+ALTER TABLE user_weaknesses
+    ADD COLUMN IF NOT EXISTS last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
 -- Create indexes for faster queries
 CREATE INDEX IF NOT EXISTS idx_user_weaknesses_user_id ON user_weaknesses(user_id);
 CREATE INDEX IF NOT EXISTS idx_user_weaknesses_error_count ON user_weaknesses(error_count DESC);
