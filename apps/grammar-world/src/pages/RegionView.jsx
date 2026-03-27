@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ReactFlow, Background, Controls, MiniMap } from '@xyflow/react';
+import { ReactFlow, ReactFlowProvider, Background, Controls, MiniMap } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { fetchRegionNodes, fetchUserProgress } from '../services/api';
@@ -178,43 +178,45 @@ export default function RegionView() {
         </div>
       </header>
 
-      <main className="flex-1 relative">
-        <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          nodeTypes={nodeTypes}
-          fitView
-          minZoom={0.5}
-          maxZoom={1.5}
-          defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
-          className="bg-gradient-to-br from-gray-50 to-gray-100"
-        >
-          <Background
-            color="#5E1914"
-            gap={20}
-            size={1}
-            variant="dots"
-            className="opacity-20"
-          />
-          <Controls
-            className="bg-white rounded-lg shadow-lg border border-gray-200"
-          />
-          <MiniMap
-            nodeColor={(node) => {
-              switch (node.data.state) {
-                case 'locked':
-                  return '#9ca3af';
-                case 'actionable':
-                  return '#5E1914';
-                case 'cleared':
-                  return '#0A1930';
-                default:
-                  return '#e5e7eb';
-              }
-            }}
-            className="bg-white rounded-lg shadow-lg border border-gray-200"
-          />
-        </ReactFlow>
+      <main className="flex-1 relative" style={{ height: 'calc(100vh - 140px)' }}>
+        <ReactFlowProvider>
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            nodeTypes={nodeTypes}
+            fitView
+            minZoom={0.5}
+            maxZoom={1.5}
+            defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
+            className="bg-gradient-to-br from-gray-50 to-gray-100"
+          >
+            <Background
+              color="#5E1914"
+              gap={20}
+              size={1}
+              variant="dots"
+              className="opacity-20"
+            />
+            <Controls
+              className="bg-white rounded-lg shadow-lg border border-gray-200"
+            />
+            <MiniMap
+              nodeColor={(node) => {
+                switch (node.data.state) {
+                  case 'locked':
+                    return '#9ca3af';
+                  case 'actionable':
+                    return '#5E1914';
+                  case 'cleared':
+                    return '#0A1930';
+                  default:
+                    return '#e5e7eb';
+                }
+              }}
+              className="bg-white rounded-lg shadow-lg border border-gray-200"
+            />
+          </ReactFlow>
+        </ReactFlowProvider>
       </main>
     </div>
   );
