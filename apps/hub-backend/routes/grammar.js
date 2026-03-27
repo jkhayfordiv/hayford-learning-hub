@@ -564,9 +564,9 @@ router.get('/recommendations', auth, async (req, res) => {
         reason: 'weakness_based',
         message: `Based on your grammar weaknesses, we recommend starting with ${recommendedRegion}.`,
         weakness_details: weaknesses.slice(0, 5).map(w => ({
-          error_tag: w.error_tag,
+          error_tag: w.category,
           error_count: w.error_count,
-          region: ERROR_TAG_TO_REGION[w.error_tag] || 'Unknown'
+          region: ERROR_TAG_TO_REGION[w.category] || 'Unknown'
         }))
       });
     } finally {
@@ -673,11 +673,11 @@ router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin', 'supe
       // Get top class weaknesses
       const [topWeaknesses] = await connection.query(`
         SELECT 
-          error_tag,
+          category as error_tag,
           SUM(error_count) as total_errors,
           COUNT(DISTINCT user_id) as students_affected
         FROM user_weaknesses
-        GROUP BY error_tag
+        GROUP BY category
         ORDER BY total_errors DESC
         LIMIT 5
       `);
