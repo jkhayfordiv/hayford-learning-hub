@@ -226,8 +226,8 @@ export default function Dashboard() {
         return;
       }
       
-      // Refresh scores to sync with server (in background)
-      fetchScores();
+      // Don't refresh scores - the optimistic update is sufficient
+      // fetchScores(); // REMOVED: This was overwriting the optimistic update
     } catch (error) {
       console.error('Error marking feedback as read:', error);
       // Revert the optimistic update on error
