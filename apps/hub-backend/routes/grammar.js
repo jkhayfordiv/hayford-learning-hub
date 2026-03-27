@@ -120,6 +120,12 @@ router.get('/regions/:regionName', auth, async (req, res) => {
       // Use case-insensitive comparison with hyphens replaced by spaces
       const regionSearch = regionName.replace(/-/g, ' ');
 
+      // Debug: log what regions exist in the database
+      const [allRegions] = await connection.query(`SELECT DISTINCT region FROM grammar_nodes`);
+      console.log('[DEBUG] regionName param:', regionName);
+      console.log('[DEBUG] regionSearch:', regionSearch);
+      console.log('[DEBUG] All regions in DB:', allRegions.map(r => r.region));
+
       // Get all nodes for the region
       const [nodes] = await connection.query(`
         SELECT 
