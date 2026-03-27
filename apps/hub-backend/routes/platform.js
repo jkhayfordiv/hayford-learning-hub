@@ -62,10 +62,10 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           i.name as institution_name,
           u.created_at,
           COALESCE(
-            json_agg(
-              DISTINCT json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
+            jsonb_agg(
+              DISTINCT jsonb_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
             ) FILTER (WHERE c1.id IS NOT NULL OR c2.id IS NOT NULL),
-            '[]'::json
+            '[]'::jsonb
           ) as classes
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
@@ -89,10 +89,10 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           i.name as institution_name,
           u.created_at,
           COALESCE(
-            json_agg(
-              DISTINCT json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
+            jsonb_agg(
+              DISTINCT jsonb_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
             ) FILTER (WHERE c1.id IS NOT NULL OR c2.id IS NOT NULL),
-            '[]'::json
+            '[]'::jsonb
           ) as classes
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
