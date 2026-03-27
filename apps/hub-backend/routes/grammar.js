@@ -391,7 +391,7 @@ router.post('/submit', auth, async (req, res) => {
             last_score = $1,
             last_attempt_at = CURRENT_TIMESTAMP,
             status = $2,
-            completed_at = CASE WHEN $2 = 'completed' THEN CURRENT_TIMESTAMP ELSE completed_at END,
+            completed_at = CASE WHEN $2::varchar = 'completed' THEN CURRENT_TIMESTAMP ELSE completed_at END,
             updated_at = CURRENT_TIMESTAMP
           WHERE user_id = $3 AND node_id = $4
         `, [score, (node_id === 'node-0-diagnostic' || passed) ? 'completed' : 'in_progress', req.user.id, node_id]);
