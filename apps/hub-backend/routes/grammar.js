@@ -502,7 +502,7 @@ router.get('/recommendations', auth, async (req, res) => {
 
       // Get user's grammar weaknesses from user_weaknesses table
       const [weaknesses] = await connection.query(`
-        SELECT error_tag, error_count
+        SELECT category, error_count
         FROM user_weaknesses
         WHERE user_id = $1
         ORDER BY error_count DESC
@@ -520,7 +520,7 @@ router.get('/recommendations', auth, async (req, res) => {
       // Map error tags to regions and aggregate counts
       const regionTotals = {};
       weaknesses.forEach(w => {
-        const region = ERROR_TAG_TO_REGION[w.error_tag];
+        const region = ERROR_TAG_TO_REGION[w.category];
         if (region) {
           regionTotals[region] = (regionTotals[region] || 0) + parseInt(w.error_count);
         }
