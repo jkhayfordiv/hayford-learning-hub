@@ -64,7 +64,6 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           COALESCE(
             json_agg(
               DISTINCT json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
-              ORDER BY json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
             ) FILTER (WHERE c1.id IS NOT NULL OR c2.id IS NOT NULL),
             '[]'::json
           ) as classes
@@ -92,7 +91,6 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           COALESCE(
             json_agg(
               DISTINCT json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
-              ORDER BY json_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
             ) FILTER (WHERE c1.id IS NOT NULL OR c2.id IS NOT NULL),
             '[]'::json
           ) as classes
