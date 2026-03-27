@@ -392,8 +392,8 @@ router.post('/submit', auth, async (req, res) => {
         req.user.id,
         node_id,
         activity_type,
-        JSON.stringify(user_response),
-        JSON.stringify({ feedback }),
+        user_response,
+        { feedback },
         score,
         passed
       ]);
@@ -497,8 +497,11 @@ router.post('/submit', auth, async (req, res) => {
       connection.release();
     }
   } catch (error) {
-    console.error('Error submitting mastery check:', error);
-    res.status(500).json({ error: 'Failed to submit mastery check' });
+    console.error(`[ERROR] Grammar submit failed for user ${req.user?.id}, node ${req.body?.node_id}:`, error);
+    res.status(500).json({ 
+      error: 'Failed to submit mastery check',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 });
 

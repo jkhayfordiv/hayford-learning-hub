@@ -230,28 +230,7 @@ DROP INDEX IF EXISTS idx_assigned_tasks_dedup;
 CREATE TABLE IF NOT EXISTS grammar_progress (
     id SERIAL PRIMARY KEY,
     student_id INTEGER NOT NULL,
-    error_category VARCHAR(100) NOT NULL CHECK(error_category IN (
-        'Article Usage',
-        'Countability & Plurals',
-        'Pronoun Reference',
-        'Prepositional Accuracy',
-        'Word Forms',
-        'Subject-Verb Agreement',
-        'Tense Consistency',
-        'Present Perfect vs. Past Simple',
-        'Gerunds vs. Infinitives',
-        'Passive Voice Construction',
-        'Sentence Boundaries (Fragments/Comma Splices)',
-        'Relative Clauses',
-        'Subordination',
-        'Word Order',
-        'Parallel Structure',
-        'Transitional Devices',
-        'Collocations',
-        'Academic Register',
-        'Nominalization',
-        'Hedging'
-    )),
+    error_category VARCHAR(100) NOT NULL,
     current_level INTEGER NOT NULL DEFAULT 1 CHECK(current_level BETWEEN 1 AND 4),
     exercises_completed INTEGER NOT NULL DEFAULT 0 CHECK(exercises_completed >= 0),
     passed_levels JSONB NOT NULL DEFAULT '[]'::jsonb,
@@ -379,29 +358,8 @@ ALTER TABLE user_weaknesses
 CREATE INDEX IF NOT EXISTS idx_user_weaknesses_user_id ON user_weaknesses(user_id);
 CREATE INDEX IF NOT EXISTS idx_user_weaknesses_error_count ON user_weaknesses(error_count DESC);
 
--- Add constraint to ensure only valid categories
-DO $$
-BEGIN
-    ALTER TABLE user_weaknesses
-    DROP CONSTRAINT IF EXISTS chk_valid_category;
-    
-    ALTER TABLE user_weaknesses
-    ADD CONSTRAINT chk_valid_category
-    CHECK (category IN (
-        'Subject-Verb Agreement',
-        'Verb Tense',
-        'Prepositions',
-        'Articles',
-        'Vocabulary/Word Choice',
-        'Pronunciation/Clarity',
-        'Sentence Structure',
-        'Cohesion/Linking Words'
-    ));
-EXCEPTION
-    WHEN OTHERS THEN
-        NULL;
-END
-$$;
+-- Removed chk_valid_category to allow dynamic error tags
+
 
 -- ============================================================================
 -- CHECK CONSTRAINTS
