@@ -66,7 +66,7 @@ export default function DiagnosticView() {
       const response = await submitMasteryCheck(
         'node-0-diagnostic',
         'multiple_choice',
-        selectedAnswers,
+        { answers: selectedAnswers },
         diagnosticNode.mastery_check
       );
       setResult(response);
