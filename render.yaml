@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: hayford-learning-hub
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd apps/hub-backend && npm install
+    startCommand: cd apps/hub-backend && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+    autoDeploy: true
+    
+    # Run database seeding after each deployment
+    preDeployCommand: cd apps/hub-backend && node scripts/seed_production.js
