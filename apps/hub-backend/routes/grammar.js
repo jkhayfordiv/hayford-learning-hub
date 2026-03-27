@@ -313,13 +313,12 @@ router.post('/submit', auth, async (req, res) => {
           for (const wrong of wrongAnswers) {
             if (wrong.error_tag) {
               await connection.query(`
-                INSERT INTO user_weaknesses (user_id, error_tag, error_count, last_failed_at)
+                INSERT INTO user_weaknesses (user_id, category, error_count, last_updated)
                 VALUES ($1, $2, 1, CURRENT_TIMESTAMP)
-                ON CONFLICT (user_id, error_tag)
+                ON CONFLICT (user_id, category)
                 DO UPDATE SET
                   error_count = user_weaknesses.error_count + 1,
-                  last_failed_at = CURRENT_TIMESTAMP,
-                  updated_at = CURRENT_TIMESTAMP
+                  last_updated = CURRENT_TIMESTAMP
               `, [req.user.id, wrong.error_tag]);
             }
           }
