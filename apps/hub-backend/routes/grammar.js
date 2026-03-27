@@ -146,6 +146,18 @@ router.get('/regions/:regionName', auth, async (req, res) => {
         ORDER BY gn.display_order, gn.node_id
       `, [req.user.id, regionSearch]);
 
+      console.log('[DEBUG] Nodes found:', nodes.length);
+      if (nodes.length > 0) {
+        console.log('[DEBUG] First node:', nodes[0].node_id, nodes[0].region);
+      }
+
+      // Also try a direct count query to rule out JOIN issues
+      const [countResult] = await connection.query(
+        `SELECT COUNT(*) as cnt FROM grammar_nodes WHERE LOWER(region) = LOWER($1)`,
+        [regionSearch]
+      );
+      console.log('[DEBUG] Direct count (no JOIN):', countResult[0]?.cnt);
+
       // Parse prerequisites and determine unlocked status
       const nodesWithStatus = nodes.map(node => ({
         ...node,
