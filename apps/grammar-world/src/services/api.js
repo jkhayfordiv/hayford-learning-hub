@@ -1,7 +1,7 @@
 import { getToken } from '../utils/auth';
 
-// Use environment variable for API URL, fallback to localhost for development
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// Use environment variable for API URL, fallback based on environment
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
 const getHeaders = () => {
   const token = getToken();
