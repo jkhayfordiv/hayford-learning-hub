@@ -116,6 +116,10 @@ router.get('/regions/:regionName', auth, async (req, res) => {
     const connection = await pool.getConnection();
     
     try {
+      // Convert URL slug (e.g. "the-time-matrix") to match DB region name (e.g. "The Time Matrix")
+      // Use case-insensitive comparison with hyphens replaced by spaces
+      const regionSearch = regionName.replace(/-/g, ' ');
+
       // Get all nodes for the region
       const [nodes] = await connection.query(`
         SELECT 
@@ -132,9 +136,9 @@ router.get('/regions/:regionName', auth, async (req, res) => {
           ugp.completed_at
         FROM grammar_nodes gn
         LEFT JOIN user_grammar_progress ugp ON gn.node_id = ugp.node_id AND ugp.user_id = $1
-        WHERE gn.region = $2
+        WHERE LOWER(gn.region) = LOWER($2)
         ORDER BY gn.display_order, gn.node_id
-      `, [req.user.id, regionName]);
+      `, [req.user.id, regionSearch]);
 
       // Parse prerequisites and determine unlocked status
       const nodesWithStatus = nodes.map(node => ({
