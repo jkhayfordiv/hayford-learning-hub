@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ReactFlow, ReactFlowProvider, Background, Controls, MiniMap } from '@xyflow/react';
+import { ReactFlow, ReactFlowProvider, Background, Controls, MiniMap, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { fetchRegionNodes, fetchUserProgress } from '../services/api';
@@ -9,6 +9,69 @@ import GrammarNode from '../components/GrammarNode';
 const nodeTypes = {
   grammarNode: GrammarNode,
 };
+
+// Inner component so we can use the useReactFlow hook
+function RegionFlowMap({ nodes, edges }) {
+  const { fitView, setCenter } = useReactFlow();
+  const hasCenteredRef = useRef(false);
+
+  useEffect(() => {
+    if (!nodes.length || hasCenteredRef.current) return;
+
+    // Find the first 'actionable' (current) node to focus on
+    const currentNode = nodes.find(n => n.data.state === 'actionable');
+    
+    if (currentNode) {
+      hasCenteredRef.current = true;
+      // Short delay to allow ReactFlow to complete its initial layout
+      setTimeout(() => {
+        setCenter(currentNode.position.x + 80, currentNode.position.y + 40, {
+          zoom: 1.2,
+          duration: 800,
+        });
+      }, 150);
+    } else {
+      // Fallback: fit all nodes if none are actionable
+      hasCenteredRef.current = true;
+      setTimeout(() => {
+        fitView({ padding: 0.2, duration: 600 });
+      }, 150);
+    }
+  }, [nodes, setCenter, fitView]);
+
+  return (
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      nodeTypes={nodeTypes}
+      minZoom={0.3}
+      maxZoom={1.5}
+      className="bg-gradient-to-br from-gray-50 to-gray-100"
+    >
+      <Background
+        color="#5E1914"
+        gap={20}
+        size={1}
+        variant="dots"
+        className="opacity-20"
+      />
+      <Controls
+        className="bg-white rounded-lg shadow-lg border border-gray-200"
+      />
+      <MiniMap
+        nodeColor={(node) => {
+          switch (node.data.state) {
+            case 'locked':    return '#9ca3af';
+            case 'actionable': return '#5E1914';
+            case 'cleared':   return '#0A1930';
+            default:          return '#e5e7eb';
+          }
+        }}
+        className="bg-white rounded-lg shadow-lg border border-gray-200"
+      />
+    </ReactFlow>
+  );
+}
 
 export default function RegionView() {
   const { regionName } = useParams();
@@ -98,7 +161,6 @@ export default function RegionView() {
     const verticalSpacing = 250;
     const waveAmplitude = 80;
     
-    // Base position
     let x = col * horizontalSpacing + 100;
     let y = row * verticalSpacing + 100;
     
@@ -110,15 +172,9 @@ export default function RegionView() {
   };
 
   const getNodeState = (node, completedNodes, allNodes) => {
-    // Check if node is completed
-    if (completedNodes.has(node.node_id)) {
-      return 'cleared';
-    }
+    if (completedNodes.has(node.node_id)) return 'cleared';
 
-    // Check if prerequisites are met
-    if (!node.prerequisites || node.prerequisites.length === 0) {
-      return 'actionable';
-    }
+    if (!node.prerequisites || node.prerequisites.length === 0) return 'actionable';
 
     const allPrereqsMet = node.prerequisites.every(prereqId => 
       completedNodes.has(prereqId)
@@ -174,52 +230,20 @@ export default function RegionView() {
             <span>Back to Hub</span>
           </button>
           <h1 className="font-serif text-3xl md:text-4xl">{displayName}</h1>
-          <p className="text-gray-200 text-sm mt-1">Interactive Pathway Map</p>
+          <p className="text-gray-200 text-sm mt-1">Interactive Pathway Map — zoomed to your current node</p>
         </div>
       </header>
 
       <main className="flex-1 relative" style={{ height: 'calc(100vh - 140px)', minHeight: '400px' }}>
         <div style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
-        <ReactFlowProvider>
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            nodeTypes={nodeTypes}
-            fitView
-            minZoom={0.5}
-            maxZoom={1.5}
-            defaultViewport={{ x: 0, y: 0, zoom: 0.8 }}
-            className="bg-gradient-to-br from-gray-50 to-gray-100"
-          >
-            <Background
-              color="#5E1914"
-              gap={20}
-              size={1}
-              variant="dots"
-              className="opacity-20"
-            />
-            <Controls
-              className="bg-white rounded-lg shadow-lg border border-gray-200"
-            />
-            <MiniMap
-              nodeColor={(node) => {
-                switch (node.data.state) {
-                  case 'locked':
-                    return '#9ca3af';
-                  case 'actionable':
-                    return '#5E1914';
-                  case 'cleared':
-                    return '#0A1930';
-                  default:
-                    return '#e5e7eb';
-                }
-              }}
-              className="bg-white rounded-lg shadow-lg border border-gray-200"
-            />
-          </ReactFlow>
-        </ReactFlowProvider>
+          <ReactFlowProvider>
+            <RegionFlowMap nodes={nodes} edges={edges} />
+          </ReactFlowProvider>
         </div>
       </main>
     </div>
   );
 }
+
+
+

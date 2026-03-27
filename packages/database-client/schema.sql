@@ -358,7 +358,9 @@ ALTER TABLE user_weaknesses
 CREATE INDEX IF NOT EXISTS idx_user_weaknesses_user_id ON user_weaknesses(user_id);
 CREATE INDEX IF NOT EXISTS idx_user_weaknesses_error_count ON user_weaknesses(error_count DESC);
 
--- Removed chk_valid_category to allow dynamic error tags
+-- Drop any restrictive category constraints from the old IELTS-era schema
+-- This runs on every startup to ensure production databases are fixed.
+ALTER TABLE user_weaknesses DROP CONSTRAINT IF EXISTS chk_valid_category;
 
 
 -- ============================================================================
