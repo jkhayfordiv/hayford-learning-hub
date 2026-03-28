@@ -1,7 +1,13 @@
 const { Resend } = require('resend');
 
 // Initialize Resend with API key from environment
-const resend = new Resend(process.env.RESEND_API_KEY);
+// If API key is missing, create a null instance and log warning
+let resend = null;
+if (process.env.RESEND_API_KEY) {
+  resend = new Resend(process.env.RESEND_API_KEY);
+} else {
+  console.warn('⚠️  RESEND_API_KEY not found in environment variables. Email functionality will be disabled.');
+}
 
 /**
  * Send a welcome email to a new user
@@ -11,6 +17,11 @@ const resend = new Resend(process.env.RESEND_API_KEY);
  * @returns {Promise<object>} - Resend API response
  */
 async function sendWelcomeEmail(toEmail, name, institutionName = 'Hayford Global Learning Hub') {
+  if (!resend) {
+    console.warn('⚠️  Skipping welcome email - Resend not initialized');
+    return { success: false, message: 'Email service not configured' };
+  }
+  
   try {
     const { data, error } = await resend.emails.send({
       from: 'Hayford Hub <onboarding@hayfordacademy.com>',
@@ -122,6 +133,11 @@ async function sendWelcomeEmail(toEmail, name, institutionName = 'Hayford Global
  * @returns {Promise<object>} - Resend API response
  */
 async function sendPasswordResetEmail(toEmail, resetLink) {
+  if (!resend) {
+    console.warn('⚠️  Skipping password reset email - Resend not initialized');
+    return { success: false, message: 'Email service not configured' };
+  }
+  
   try {
     const { data, error } = await resend.emails.send({
       from: 'Hayford Hub <security@hayfordacademy.com>',
