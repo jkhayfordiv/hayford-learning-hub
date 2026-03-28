@@ -61,10 +61,10 @@ const apiLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-// Rate Limiting: Auth protection (prevent brute-force but allow normal use)
+// Rate Limiting: Strict auth protection (prevent brute-force)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 20, // 20 attempts per 15 min — enough for normal use, blocks real brute-force
+  max: 20, // Limit each IP to 20 login/signup attempts per windowMs
   message: {
     error: 'Too many authentication attempts from this IP, please try again later.',
     retryAfter: '15 minutes'
