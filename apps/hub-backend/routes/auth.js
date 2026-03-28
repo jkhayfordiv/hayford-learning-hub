@@ -122,15 +122,29 @@ router.post('/login', async (req, res) => {
     const connection = await pool.getConnection();
     
     // Query by BOTH email AND role to support multiple profiles per email
-    // Allow teacher/admin/super_admin to login with 'teacher' role selection
+    // JOIN institutions to get feature flags and timezone
     let query, params;
     if (role === 'teacher') {
       // Use ANY with array for PostgreSQL IN clause
-      query = 'SELECT * FROM users WHERE email = $1 AND role = ANY($2)';
+      query = `
+        SELECT u.*, 
+               i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
+               i.subscription_tier, i.subscription_status
+        FROM users u
+        LEFT JOIN institutions i ON u.institution_id = i.id
+        WHERE u.email = $1 AND u.role = ANY($2)
+      `;
       params = [email, ['teacher', 'admin', 'super_admin']];
     } else {
       // Exact role match for students
-      query = 'SELECT * FROM users WHERE email = $1 AND role = $2';
+      query = `
+        SELECT u.*, 
+               i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
+               i.subscription_tier, i.subscription_status
+        FROM users u
+        LEFT JOIN institutions i ON u.institution_id = i.id
+        WHERE u.email = $1 AND u.role = $2
+      `;
       params = [email, role];
     }
     
@@ -149,6 +163,12 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
+    // Update last_login_at timestamp
+    await connection.query(
+      'UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = $1',
+      [user.id]
+    );
+
     // Fetch enrolled classes for the user (supports multiple enrollments)
     let classes = [];
     const [enrollmentRows] = await connection.query(
@@ -166,7 +186,7 @@ router.post('/login', async (req, res) => {
 
     connection.release();
 
-    // Generate JWT with institution_id for tenant isolation
+    // Generate JWT with institution_id and feature flags for tenant isolation
     const payload = {
       user: {
         id: user.id,
@@ -177,7 +197,14 @@ router.post('/login', async (req, res) => {
         email: user.email,
         classes: classes, // Array of enrolled classes
         class_id: classes.length > 0 ? classes[0].id : null, // Backwards compatibility: first class
-        class_name: classes.length > 0 ? classes[0].class_name : null // Backwards compatibility
+        class_name: classes.length > 0 ? classes[0].class_name : null, // Backwards compatibility
+        // Institution feature flags and settings
+        subdomain: user.subdomain,
+        timezone: user.timezone || 'Asia/Tokyo',
+        has_grammar_world: user.has_grammar_world !== false, // Default to true if null
+        has_ielts_speaking: user.has_ielts_speaking !== false, // Default to true if null
+        subscription_tier: user.subscription_tier || 'free',
+        subscription_status: user.subscription_status || 'active'
       }
     };
 

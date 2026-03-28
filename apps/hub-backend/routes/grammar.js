@@ -629,47 +629,126 @@ router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin', 'supe
     const connection = await pool.getConnection();
     
     try {
-      // Get total students who have started grammar world
-      const [totalStudents] = await connection.query(`
-        SELECT COUNT(DISTINCT user_id) as total
-        FROM user_grammar_progress
-      `);
+      const actorInstitutionId = req.user.institution_id;
+      const isSuperAdmin = req.user.role === 'super_admin';
+      
+      // Get total students who have started grammar world (tenant-isolated)
+      let totalStudentsQuery, totalStudentsParams;
+      if (isSuperAdmin) {
+        totalStudentsQuery = `
+          SELECT COUNT(DISTINCT ugp.user_id) as total
+          FROM user_grammar_progress ugp
+        `;
+        totalStudentsParams = [];
+      } else {
+        totalStudentsQuery = `
+          SELECT COUNT(DISTINCT ugp.user_id) as total
+          FROM user_grammar_progress ugp
+          JOIN users u ON ugp.user_id = u.id
+          WHERE u.institution_id = $1
+        `;
+        totalStudentsParams = [actorInstitutionId];
+      }
+      const [totalStudents] = await connection.query(totalStudentsQuery, totalStudentsParams);
 
-      // Get diagnostic completion count
-      const [diagnosticComplete] = await connection.query(`
-        SELECT COUNT(DISTINCT user_id) as count
-        FROM user_grammar_progress
-        WHERE node_id = 'node-0-diagnostic' AND status = 'completed'
-      `);
+      // Get diagnostic completion count (tenant-isolated)
+      let diagnosticQuery, diagnosticParams;
+      if (isSuperAdmin) {
+        diagnosticQuery = `
+          SELECT COUNT(DISTINCT ugp.user_id) as count
+          FROM user_grammar_progress ugp
+          WHERE ugp.node_id = 'node-0-diagnostic' AND ugp.status = 'completed'
+        `;
+        diagnosticParams = [];
+      } else {
+        diagnosticQuery = `
+          SELECT COUNT(DISTINCT ugp.user_id) as count
+          FROM user_grammar_progress ugp
+          JOIN users u ON ugp.user_id = u.id
+          WHERE ugp.node_id = 'node-0-diagnostic' AND ugp.status = 'completed'
+            AND u.institution_id = $1
+        `;
+        diagnosticParams = [actorInstitutionId];
+      }
+      const [diagnosticComplete] = await connection.query(diagnosticQuery, diagnosticParams);
 
-      // Get completion rates by region
-      const [regionProgress] = await connection.query(`
-        SELECT 
-          gn.region,
-          COUNT(DISTINCT gn.node_id) as total_nodes,
-          COUNT(DISTINCT ugp.node_id) as completed_nodes,
-          ROUND(COUNT(DISTINCT ugp.node_id) * 100.0 / COUNT(DISTINCT gn.node_id), 2) as completion_rate
-        FROM grammar_nodes gn
-        LEFT JOIN user_grammar_progress ugp ON gn.node_id = ugp.node_id AND ugp.status = 'completed'
-        WHERE gn.tier != 'Diagnostic'
-        GROUP BY gn.region
-        ORDER BY gn.region
-      `);
+      // Get completion rates by region (tenant-isolated)
+      let regionQuery, regionParams;
+      if (isSuperAdmin) {
+        regionQuery = `
+          SELECT 
+            gn.region,
+            COUNT(DISTINCT gn.node_id) as total_nodes,
+            COUNT(DISTINCT ugp.node_id) as completed_nodes,
+            ROUND(COUNT(DISTINCT ugp.node_id) * 100.0 / COUNT(DISTINCT gn.node_id), 2) as completion_rate
+          FROM grammar_nodes gn
+          LEFT JOIN user_grammar_progress ugp ON gn.node_id = ugp.node_id AND ugp.status = 'completed'
+          WHERE gn.tier != 'Diagnostic'
+          GROUP BY gn.region
+          ORDER BY gn.region
+        `;
+        regionParams = [];
+      } else {
+        regionQuery = `
+          SELECT 
+            gn.region,
+            COUNT(DISTINCT gn.node_id) as total_nodes,
+            COUNT(DISTINCT CASE WHEN u.institution_id = $1 THEN ugp.node_id END) as completed_nodes,
+            ROUND(COUNT(DISTINCT CASE WHEN u.institution_id = $1 THEN ugp.node_id END) * 100.0 / COUNT(DISTINCT gn.node_id), 2) as completion_rate
+          FROM grammar_nodes gn
+          LEFT JOIN user_grammar_progress ugp ON gn.node_id = ugp.node_id AND ugp.status = 'completed'
+          LEFT JOIN users u ON ugp.user_id = u.id
+          WHERE gn.tier != 'Diagnostic'
+          GROUP BY gn.region
+          ORDER BY gn.region
+        `;
+        regionParams = [actorInstitutionId];
+      }
+      const [regionProgress] = await connection.query(regionQuery, regionParams);
 
-      // Get total mastery points earned globally
-      const [masteryPoints] = await connection.query(`
-        SELECT COALESCE(SUM(mastery_points), 0) as total_mastery_points
-        FROM user_mastery_stats
-      `);
+      // Get total mastery points earned (tenant-isolated)
+      let masteryQuery, masteryParams;
+      if (isSuperAdmin) {
+        masteryQuery = `
+          SELECT COALESCE(SUM(mastery_points), 0) as total_mastery_points
+          FROM user_mastery_stats
+        `;
+        masteryParams = [];
+      } else {
+        masteryQuery = `
+          SELECT COALESCE(SUM(ums.mastery_points), 0) as total_mastery_points
+          FROM user_mastery_stats ums
+          JOIN users u ON ums.user_id = u.id
+          WHERE u.institution_id = $1
+        `;
+        masteryParams = [actorInstitutionId];
+      }
+      const [masteryPoints] = await connection.query(masteryQuery, masteryParams);
 
-      // Get medal distribution
-      const [medalTotals] = await connection.query(`
-        SELECT 
-          COALESCE(SUM(bronze_medals), 0) as bronze,
-          COALESCE(SUM(silver_medals), 0) as silver,
-          COALESCE(SUM(gold_medals), 0) as gold
-        FROM user_mastery_stats
-      `);
+      // Get medal distribution (tenant-isolated)
+      let medalQuery, medalParams;
+      if (isSuperAdmin) {
+        medalQuery = `
+          SELECT 
+            COALESCE(SUM(bronze_medals), 0) as bronze,
+            COALESCE(SUM(silver_medals), 0) as silver,
+            COALESCE(SUM(gold_medals), 0) as gold
+          FROM user_mastery_stats
+        `;
+        medalParams = [];
+      } else {
+        medalQuery = `
+          SELECT 
+            COALESCE(SUM(ums.bronze_medals), 0) as bronze,
+            COALESCE(SUM(ums.silver_medals), 0) as silver,
+            COALESCE(SUM(ums.gold_medals), 0) as gold
+          FROM user_mastery_stats ums
+          JOIN users u ON ums.user_id = u.id
+          WHERE u.institution_id = $1
+        `;
+        medalParams = [actorInstitutionId];
+      }
+      const [medalTotals] = await connection.query(medalQuery, medalParams);
 
       const medals = [
         { medal_tier: 'Bronze', count: Number(medalTotals[0]?.bronze || 0) },
@@ -677,17 +756,36 @@ router.get('/admin/cohort-progress', auth, requireRole('teacher', 'admin', 'supe
         { medal_tier: 'Gold', count: Number(medalTotals[0]?.gold || 0) },
       ];
 
-      // Get top class weaknesses
-      const [topWeaknesses] = await connection.query(`
-        SELECT 
-          category as error_tag,
-          SUM(error_count) as total_errors,
-          COUNT(DISTINCT user_id) as students_affected
-        FROM user_weaknesses
-        GROUP BY category
-        ORDER BY total_errors DESC
-        LIMIT 5
-      `);
+      // Get top class weaknesses (tenant-isolated)
+      let weaknessQuery, weaknessParams;
+      if (isSuperAdmin) {
+        weaknessQuery = `
+          SELECT 
+            category as error_tag,
+            SUM(error_count) as total_errors,
+            COUNT(DISTINCT user_id) as students_affected
+          FROM user_weaknesses
+          GROUP BY category
+          ORDER BY total_errors DESC
+          LIMIT 5
+        `;
+        weaknessParams = [];
+      } else {
+        weaknessQuery = `
+          SELECT 
+            uw.category as error_tag,
+            SUM(uw.error_count) as total_errors,
+            COUNT(DISTINCT uw.user_id) as students_affected
+          FROM user_weaknesses uw
+          JOIN users u ON uw.user_id = u.id
+          WHERE u.institution_id = $1
+          GROUP BY uw.category
+          ORDER BY total_errors DESC
+          LIMIT 5
+        `;
+        weaknessParams = [actorInstitutionId];
+      }
+      const [topWeaknesses] = await connection.query(weaknessQuery, weaknessParams);
 
       res.json({
         total_students: Number(totalStudents[0]?.total || 0),

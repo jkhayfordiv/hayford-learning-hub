@@ -803,29 +803,33 @@ export default function Dashboard() {
               <p className="text-[10px] text-white/80 mt-1">Get instant band scores</p>
            </button>
 
-           <button
-              onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
-              className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
-           >
-              <div className="flex items-center justify-between mb-2">
-                 <MessageSquare size={24} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>
-              </div>
-              <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Speaking</h3>
-              <p className="text-[10px] text-white/80 mt-1">AI examiner simulation</p>
-           </button>
+           {user.has_ielts_speaking !== false && (
+             <button
+                onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
+                className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+             >
+                <div className="flex items-center justify-between mb-2">
+                   <MessageSquare size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                   <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>
+                </div>
+                <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Speaking</h3>
+                <p className="text-[10px] text-white/80 mt-1">AI examiner simulation</p>
+             </button>
+           )}
 
-           <button
-              onClick={() => window.location.href = `/grammar-world/?token=${localStorage.getItem('token')}`}
-              className="bg-gradient-to-br from-brand-navy to-slate-800 hover:from-slate-800 hover:to-slate-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
-           >
-              <div className="flex items-center justify-between mb-2">
-                 <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Adventure</span>
-              </div>
-              <h3 className="text-lg font-black tracking-tight leading-tight">Grammar World Map</h3>
-              <p className="text-[10px] text-white/80 mt-1">Explore the grammar universe</p>
-           </button>
+           {user.has_grammar_world !== false && (
+             <button
+                onClick={() => window.location.href = `/grammar-world/?token=${localStorage.getItem('token')}`}
+                className="bg-gradient-to-br from-brand-navy to-slate-800 hover:from-slate-800 hover:to-slate-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+             >
+                <div className="flex items-center justify-between mb-2">
+                   <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                   <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Adventure</span>
+                </div>
+                <h3 className="text-lg font-black tracking-tight leading-tight">Grammar World Map</h3>
+                <p className="text-[10px] text-white/80 mt-1">Explore the grammar universe</p>
+             </button>
+           )}
 
            <button
               onClick={() => setActiveTab('wordbank')}
