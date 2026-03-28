@@ -80,7 +80,14 @@ app.use('/api/', apiLimiter);
 // Apply strict rate limiter to auth routes
 app.use('/api/auth/', authLimiter);
 
-// Body parser
+// ============================================================================
+// STRIPE WEBHOOK RAW BODY PARSER
+// ============================================================================
+// CRITICAL: Stripe webhooks require raw body for signature verification
+// This MUST come BEFORE express.json() to intercept the webhook route
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
+
+// Body parser (for all other routes)
 app.use(express.json());
 
 // ============================================================================

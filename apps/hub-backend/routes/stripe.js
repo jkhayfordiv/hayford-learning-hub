@@ -108,4 +108,115 @@ router.post('/create-portal-session', auth, async (req, res) => {
   }
 });
 
+// @route   POST /api/stripe/webhook
+// @desc    Stripe webhook endpoint for payment events
+// @access  Public (verified by Stripe signature)
+// NOTE: This route MUST use raw body parser, configured in server.js
+router.post('/webhook', async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+
+  let event;
+
+  try {
+    // Verify the event came from Stripe using the signature
+    event = stripe.webhooks.constructEvent(req.body, sig, webhookSecret);
+  } catch (err) {
+    console.error('❌ Webhook signature verification failed:', err.message);
+    return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Handle the event
+  try {
+    switch (event.type) {
+      case 'checkout.session.completed': {
+        const session = event.data.object;
+        
+        console.log('✅ Checkout session completed:', session.id);
+        console.log('   Customer:', session.customer);
+        console.log('   Metadata:', session.metadata);
+
+        // Extract user_id from metadata (set during checkout session creation)
+        const userId = session.metadata?.user_id;
+        const stripeCustomerId = session.customer;
+
+        if (!userId) {
+          console.error('❌ No user_id in session metadata');
+          return res.status(400).json({ error: 'Missing user_id in metadata' });
+        }
+
+        // Import pool here to avoid circular dependency
+        const { pool } = require('../db');
+        const connection = await pool.getConnection();
+
+        try {
+          // Update user's subscription tier and save Stripe customer ID
+          const [result] = await connection.query(
+            'UPDATE users SET subscription_tier = $1, stripe_customer_id = $2 WHERE id = $3',
+            ['premium', stripeCustomerId, userId]
+          );
+
+          console.log(`✅ User ${userId} upgraded to premium (Stripe Customer: ${stripeCustomerId})`);
+
+          // Verify the update
+          const [users] = await connection.query(
+            'SELECT id, email, first_name, last_name, subscription_tier, stripe_customer_id FROM users WHERE id = $1',
+            [userId]
+          );
+
+          if (users.length > 0) {
+            const user = users[0];
+            console.log(`✅ Verified: ${user.first_name} ${user.last_name} (${user.email}) is now ${user.subscription_tier}`);
+          }
+
+          connection.release();
+        } catch (dbError) {
+          console.error('❌ Database error during webhook processing:', dbError);
+          if (connection) connection.release();
+          throw dbError;
+        }
+
+        break;
+      }
+
+      case 'customer.subscription.deleted': {
+        const subscription = event.data.object;
+        const stripeCustomerId = subscription.customer;
+
+        console.log('⚠️  Subscription cancelled for customer:', stripeCustomerId);
+
+        const { pool } = require('../db');
+        const connection = await pool.getConnection();
+
+        try {
+          // Downgrade user back to free tier
+          await connection.query(
+            'UPDATE users SET subscription_tier = $1 WHERE stripe_customer_id = $2',
+            ['free', stripeCustomerId]
+          );
+
+          console.log(`✅ User with Stripe customer ${stripeCustomerId} downgraded to free`);
+          connection.release();
+        } catch (dbError) {
+          console.error('❌ Database error during subscription cancellation:', dbError);
+          if (connection) connection.release();
+          throw dbError;
+        }
+
+        break;
+      }
+
+      default:
+        console.log(`ℹ️  Unhandled event type: ${event.type}`);
+    }
+
+    // Return a 200 response to acknowledge receipt of the event
+    res.json({ received: true });
+
+  } catch (err) {
+    console.error('❌ Error processing webhook event:', err);
+    res.status(500).json({ error: 'Webhook processing failed' });
+  }
+});
+
 module.exports = router;

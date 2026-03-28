@@ -135,7 +135,9 @@ router.post('/login', async (req, res) => {
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
-               i.subscription_tier, i.subscription_status, i.allow_b2c_payments,
+               i.subscription_tier AS institution_subscription_tier, 
+               i.subscription_status AS institution_subscription_status, 
+               i.allow_b2c_payments,
                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
@@ -146,7 +148,9 @@ router.post('/login', async (req, res) => {
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
-               i.subscription_tier, i.subscription_status, i.allow_b2c_payments,
+               i.subscription_tier AS institution_subscription_tier, 
+               i.subscription_status AS institution_subscription_status, 
+               i.allow_b2c_payments,
                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
@@ -225,9 +229,10 @@ router.post('/login', async (req, res) => {
         timezone: user.timezone || 'Asia/Tokyo',
         has_grammar_world: user.has_grammar_world !== false,
         has_ielts_speaking: user.has_ielts_speaking !== false,
-        subscription_tier: user.subscription_tier || 'free',
-        subscription_status: user.subscription_status || 'active',
+        subscription_tier: user.subscription_tier || user.institution_subscription_tier || 'free',
+        subscription_status: user.institution_subscription_status || 'active',
         allow_b2c_payments: user.allow_b2c_payments || false,
+        stripe_customer_id: user.stripe_customer_id || null,
         avatar_url: user.avatar_url
       }
     };
