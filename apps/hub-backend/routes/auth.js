@@ -135,7 +135,7 @@ router.post('/login', async (req, res) => {
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
-               i.subscription_tier, i.subscription_status,
+               i.subscription_tier, i.subscription_status, i.allow_b2c_payments,
                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
@@ -146,7 +146,7 @@ router.post('/login', async (req, res) => {
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
-               i.subscription_tier, i.subscription_status,
+               i.subscription_tier, i.subscription_status, i.allow_b2c_payments,
                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
@@ -227,6 +227,7 @@ router.post('/login', async (req, res) => {
         has_ielts_speaking: user.has_ielts_speaking !== false,
         subscription_tier: user.subscription_tier || 'free',
         subscription_status: user.subscription_status || 'active',
+        allow_b2c_payments: user.allow_b2c_payments || false,
         avatar_url: user.avatar_url
       }
     };

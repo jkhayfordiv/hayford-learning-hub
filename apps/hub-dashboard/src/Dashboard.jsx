@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare } from 'lucide-react';
+import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2 } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 import WordBank from './components/WordBank';
 import StudentFeedbackModal from './components/StudentFeedbackModal';
@@ -87,6 +87,7 @@ export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('overview');
   const [expandedScoreId, setExpandedScoreId] = useState(null);
   const [isTourOpen, setIsTourOpen] = useState(false);
+  const [isUpgrading, setIsUpgrading] = useState(false);
   const dropdownRef = useRef(null);
 
   // New Features: Dark Mode & Join Class
@@ -437,6 +438,34 @@ export default function Dashboard() {
     ...area,
     displayTag: DIAGNOSTIC_DICTIONARY[area.tag] || area.tag
   }));
+
+  // Handle Stripe checkout for premium upgrade
+  const handleUpgradeToPremium = async () => {
+    setIsUpgrading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/stripe/create-checkout-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to create checkout session');
+      }
+
+      // Redirect to Stripe Checkout
+      window.location.href = data.url;
+    } catch (err) {
+      console.error('Upgrade error:', err);
+      alert(err.message || 'Failed to start upgrade process. Please try again.');
+      setIsUpgrading(false);
+    }
+  };
 
   if (user.role === 'teacher' || user.role === 'admin' || user.role === 'super_admin') {
     return <TeacherDashboard user={user} onLogout={handleLogout} />;
@@ -857,6 +886,28 @@ export default function Dashboard() {
               <h3 className="text-lg font-black tracking-tight leading-tight">Vocab Builder</h3>
               <p className="text-[10px] text-white/80 mt-1">Academic Word Bank</p>
            </button>
+
+           {/* Conditional Upgrade to Premium Button - Only for B2C institutions on free tier */}
+           {user.allow_b2c_payments && user.subscription_tier === 'free' && (
+             <button
+                onClick={handleUpgradeToPremium}
+                disabled={isUpgrading}
+                className="bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-500 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+             >
+                <div className="flex items-center justify-between mb-2">
+                   {isUpgrading ? (
+                     <Loader2 size={24} className="text-white/90 animate-spin" />
+                   ) : (
+                     <CreditCard size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                   )}
+                   <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Premium</span>
+                </div>
+                <h3 className="text-lg font-black tracking-tight leading-tight">
+                  {isUpgrading ? 'Loading...' : 'Upgrade to Premium'}
+                </h3>
+                <p className="text-[10px] text-white/80 mt-1">$9.99/month - Unlock all features</p>
+             </button>
+           )}
         </div>
 
         {/* Scores Table */}

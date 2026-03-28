@@ -140,6 +140,10 @@ app.use('/api/grammar-progress', grammarProgressRoutes);
 const aiRoutes = require('./routes/ai');
 app.use('/api/ai', aiRoutes);
 
+// Stripe payment routes
+const stripeRoutes = require('./routes/stripe');
+app.use('/api/stripe', stripeRoutes);
+
 // Bulk action routes (Multi-Tenant SaaS)
 const bulkRoutes = require('./routes/bulk');
 app.use('/api/bulk', bulkRoutes);
