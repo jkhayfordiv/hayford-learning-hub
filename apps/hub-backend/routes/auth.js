@@ -133,7 +133,8 @@ router.post('/login', async (req, res) => {
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
-               i.subscription_tier, i.subscription_status
+               i.subscription_tier, i.subscription_status,
+               i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
         WHERE u.email = $1 AND u.role = ANY($2)
@@ -143,7 +144,8 @@ router.post('/login', async (req, res) => {
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
-               i.subscription_tier, i.subscription_status
+               i.subscription_tier, i.subscription_status,
+               i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
         WHERE u.email = $1 AND u.role = $2
@@ -196,6 +198,15 @@ router.post('/login', async (req, res) => {
 
     connection.release();
 
+    // Build branding object (sent separately from JWT to keep token small)
+    const branding = {
+      primary_color:   user.primary_color   || '#800020',
+      secondary_color: user.secondary_color || '#F7E7CE',
+      logo_url:        user.logo_url        || '/logos/default-logo.png',
+      favicon_url:     user.favicon_url     || '/favicon.ico',
+      welcome_text:    user.welcome_text    || 'Welcome to Hayford Hub'
+    };
+
     // Generate JWT
     const payload = {
       user: {
@@ -220,7 +231,7 @@ router.post('/login', async (req, res) => {
 
     jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
       if (err) throw err;
-      res.json({ token, user: payload.user });
+      res.json({ token, user: payload.user, branding });
     });
 
   } catch (err) {
@@ -269,7 +280,8 @@ router.get('/google/callback', async (req, res) => {
 
     // Find user by google_id or email
     let [users] = await connection.query(
-      `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status
+      `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status,
+              i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
        FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
        WHERE u.google_id = $1`,
       [profile.sub]
@@ -279,7 +291,8 @@ router.get('/google/callback', async (req, res) => {
     if (users.length === 0) {
       // Try by email to link existing account
       const [emailUsers] = await connection.query(
-        `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status
+        `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status,
+                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
          FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
          WHERE u.email = $1 AND u.role = 'student'`,
         [profile.email]
@@ -299,9 +312,10 @@ router.get('/google/callback', async (req, res) => {
           [profile.given_name || 'Student', profile.family_name || '', profile.email, profile.sub, profile.picture, 'student', 1]
         );
 
-        // Fetch new user with joins
+        // Fetch new user with joins (including branding)
         const [reFetched] = await connection.query(
-          `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status
+          `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status,
+                  i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
            FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
            WHERE u.id = $1`,
           [result.insertId]
@@ -320,6 +334,16 @@ router.get('/google/callback', async (req, res) => {
     );
 
     connection.release();
+
+    // Build branding object for SSO redirect
+    const googleBranding = {
+      primary_color:   user.primary_color   || '#800020',
+      secondary_color: user.secondary_color || '#F7E7CE',
+      logo_url:        user.logo_url        || '/logos/default-logo.png',
+      favicon_url:     user.favicon_url     || '/favicon.ico',
+      welcome_text:    user.welcome_text    || 'Welcome to Hayford Hub'
+    };
+    const brandingParam = Buffer.from(JSON.stringify(googleBranding)).toString('base64');
 
     const payload = {
       user: {
@@ -344,7 +368,7 @@ router.get('/google/callback', async (req, res) => {
 
     jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
       if (err) throw err;
-      res.redirect(`${FRONTEND_URL}/auth/success?token=${token}`);
+      res.redirect(`${FRONTEND_URL}/auth/success?token=${token}&branding=${brandingParam}`);
     });
   } catch (err) {
     console.error('Google Callback Error:', err);

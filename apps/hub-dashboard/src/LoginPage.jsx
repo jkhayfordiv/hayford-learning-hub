@@ -56,6 +56,7 @@ export default function LoginPage() {
       if (isLogin) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
+        if (data.branding) localStorage.setItem('branding', JSON.stringify(data.branding));
         navigate('/dashboard');
       } else {
         // Log them right in after successful registration
@@ -76,6 +77,7 @@ export default function LoginPage() {
           }
           localStorage.setItem('token', loginData.token);
           localStorage.setItem('user', JSON.stringify(loginData.user));
+          if (loginData.branding) localStorage.setItem('branding', JSON.stringify(loginData.branding));
           navigate('/dashboard');
         } else {
           setError('Registration successful. Please log in.');

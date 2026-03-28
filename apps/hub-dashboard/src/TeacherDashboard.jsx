@@ -78,6 +78,14 @@ const GRAMMAR_TOPIC_LOOKUP = GRAMMAR_PRACTICE_SECTIONS.reduce((acc, section) => 
 export default function TeacherDashboard({ user, onLogout }) {
   const navigate = useNavigate();
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
+  
+  // Read branding from localStorage (set at login time)
+  let branding = {};
+  try { branding = JSON.parse(localStorage.getItem('branding') || '{}'); } catch (e) {}
+  const brandPrimary    = branding.primary_color   || '#800020';
+  const brandLogoUrl    = branding.logo_url        || null;
+  const brandWelcome    = branding.welcome_text    || 'Hayford Global Learning Hub';
+
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState([]);
   const [manageableClasses, setManageableClasses] = useState([]);
@@ -866,14 +874,22 @@ export default function TeacherDashboard({ user, onLogout }) {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
-      <header className="bg-white dark:bg-[#0F1C2E] border-b border-slate-200 dark:border-slate-700 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
+      <header 
+        className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40"
+        style={{ backgroundColor: brandPrimary }}
+      >
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
-           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain mx-auto" />
+           <img 
+             src={brandLogoUrl || logo} 
+             alt="Institution Logo" 
+             onError={(e) => { e.target.onerror = null; e.target.src = logo; }} 
+             className="w-10 h-10 object-contain mx-auto" 
+           />
           <div>
-            <h1 className="font-bold text-slate-900 dark:text-white tracking-tight leading-none text-lg group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
-              Hayford Global Learning Hub
+            <h1 className="font-bold text-white tracking-tight leading-none text-lg group-hover:text-white/80 transition-colors">
+              {brandWelcome}
             </h1>
-            <span className="text-[10px] uppercase font-black tracking-widest text-slate-500 dark:text-slate-400">
+            <span className="text-[10px] uppercase font-black tracking-widest text-white/70">
               Instructor Portal
             </span>
           </div>

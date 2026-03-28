@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
@@ -6,6 +6,36 @@ import StudentProfile from './StudentProfile';
 import MyStats from './MyStats';
 import Profile from './Profile';
 import AuthSuccess from './AuthSuccess';
+
+// Injects institution branding (colors, favicon, title) from localStorage into CSS custom properties
+function BrandingInjector() {
+  useEffect(() => {
+    try {
+      const branding = JSON.parse(localStorage.getItem('branding') || '{}');
+      const root = document.documentElement;
+
+      root.style.setProperty('--brand-primary',   branding.primary_color   || '#800020');
+      root.style.setProperty('--brand-secondary', branding.secondary_color || '#F7E7CE');
+
+      if (branding.welcome_text) {
+        document.title = branding.welcome_text;
+      }
+
+      // Dynamically update favicon
+      const faviconHref = branding.favicon_url || '/favicon.ico';
+      let link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.href = faviconHref;
+    } catch (e) {
+      // Silently fail - branding is cosmetic, not critical
+    }
+  }, []);
+  return null;
+}
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -16,6 +46,7 @@ const ProtectedRoute = ({ children }) => {
 export default function App() {
   return (
     <BrowserRouter>
+      <BrandingInjector />
       <div className="min-h-screen bg-white">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />

@@ -72,6 +72,13 @@ export default function Dashboard() {
 
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
+  // Read branding from localStorage (set at login time)
+  let branding = {};
+  try { branding = JSON.parse(localStorage.getItem('branding') || '{}'); } catch (e) {}
+  const brandPrimary    = branding.primary_color   || '#800020';
+  const brandLogoUrl    = branding.logo_url        || null;
+  const brandWelcome    = branding.welcome_text    || 'Hayford Global Learning Hub';
+
   const [scores, setScores] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [tasks, setTasks] = useState([]);
@@ -438,12 +445,20 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
-      <header className="bg-brand-sangria dark:bg-brand-sangria border-b border-[#4A1410] dark:border-[#4A1410] px-8 py-4 flex items-center justify-between sticky top-0 z-40">
+      <header
+        className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40"
+        style={{ backgroundColor: brandPrimary }}
+      >
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
-           <img src={logo} alt="Hayford Logo" onError={(e) => { e.target.onerror = null; e.target.src = '/logo.svg'; }} className="w-10 h-10 object-contain" />
+           <img
+             src={brandLogoUrl || logo}
+             alt="Institution Logo"
+             onError={(e) => { e.target.onerror = null; e.target.src = logo; }}
+             className="w-10 h-10 object-contain"
+           />
           <div>
             <h1 className="font-bold text-white tracking-tight leading-none text-lg group-hover:text-white/80 transition-colors">
-              Hayford Global Learning Hub
+              {brandWelcome}
             </h1>
             <span className="text-[10px] uppercase font-black tracking-widest text-white/70">
               Student Dashboard

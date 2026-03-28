@@ -18,6 +18,7 @@ export default function AuthSuccess() {
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token');
     const error = params.get('error');
+    const brandingParam = params.get('branding');
 
     if (error || !token) {
       console.error('Google Auth Failed:', error);
@@ -33,6 +34,16 @@ export default function AuthSuccess() {
 
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(decoded.user));
+
+      // Decode and store branding if present
+      if (brandingParam) {
+        try {
+          const branding = JSON.parse(atob(brandingParam));
+          localStorage.setItem('branding', JSON.stringify(branding));
+        } catch (brandingErr) {
+          console.warn('AuthSuccess: failed to decode branding param', brandingErr);
+        }
+      }
 
       navigate('/dashboard', { replace: true });
     } catch (err) {

@@ -24,6 +24,31 @@ ALTER TABLE institutions
 ADD COLUMN IF NOT EXISTS contact_email VARCHAR(100);
 
 -- ============================================================================
+-- BRANDING COLUMNS - Phase 4: Dynamic White-Labeling
+-- ============================================================================
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS primary_color VARCHAR(20) DEFAULT '#800020';
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS secondary_color VARCHAR(20) DEFAULT '#F7E7CE';
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS logo_url VARCHAR(500) DEFAULT '/logos/default-logo.png';
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS favicon_url VARCHAR(500) DEFAULT '/favicon.ico';
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS welcome_text VARCHAR(200) DEFAULT 'Welcome to Hayford Hub';
+
+-- Set NIC College branding (runs idempotently on every boot)
+UPDATE institutions SET
+  primary_color   = '#110b65',
+  secondary_color = '#ffffff',
+  logo_url        = '/logos/nic-logo.png',
+  welcome_text    = 'Welcome to the NIC Student Portal'
+WHERE subdomain = 'nic';
+
+-- Ensure Hayford default institution has explicit branding set
+UPDATE institutions SET
+  primary_color   = '#800020',
+  secondary_color = '#F7E7CE',
+  logo_url        = '/logos/default-logo.png',
+  welcome_text    = 'Welcome to Hayford Hub'
+WHERE id = 1 AND primary_color = '#800020';
+
+-- ============================================================================
 -- USERS TABLE - Multi-Tenant with Institution Hierarchy
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS users (
