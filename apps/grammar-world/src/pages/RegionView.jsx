@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ReactFlow, ReactFlowProvider, Background, Controls } from '@xyflow/react';
+import { ReactFlow, ReactFlowProvider, Background, Controls, useReactFlow } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { fetchRegionNodes, fetchUserProgress } from '../services/api';
