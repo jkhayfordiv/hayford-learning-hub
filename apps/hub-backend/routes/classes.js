@@ -521,29 +521,41 @@ router.get('/:id/details', requireTeacher, async (req, res) => {
       [class_id]
     );
     
-    // Get unique assignments for this class with aggregated counts
-    const [assignmentGroups] = await connection.query(
-      `SELECT 
-         MIN(a.id) as id,
-         a.module_id, 
-         a.assignment_type, 
-         a.grammar_topic_id, 
-         a.writing_task_type, 
-         a.instructions, 
-         a.due_date,
-         MIN(a.created_at) as created_at,
-         m.module_name, 
-         m.module_type,
-         COUNT(CASE WHEN a.status = 'completed' THEN 1 END) as completed_count,
-         COUNT(a.student_id) as total_assigned
-       FROM assigned_tasks a
-       JOIN learning_modules m ON a.module_id = m.id
-       WHERE a.class_id = $1 AND a.student_id IS NOT NULL
-       GROUP BY a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
-                a.instructions, a.due_date, m.module_name, m.module_type
-       ORDER BY MIN(a.created_at) DESC`,
-      [class_id]
-    );
+    // Get unique assignments for this class with aggregated counts.
+    // We look for assignments where the student is enrolled in this class,
+    // covering both: (a) class-level assignments with class_id set, and
+    // (b) individual student assignments that happen to be for enrolled students.
+    const enrolledStudentIds = students.map(s => s.id);
+
+    let assignmentGroups = [];
+    if (enrolledStudentIds.length > 0) {
+      const placeholders = enrolledStudentIds.map((_, i) => `$${i + 2}`).join(', ');
+      const [rows] = await connection.query(
+        `SELECT 
+           MIN(a.id) as id,
+           a.module_id, 
+           a.assignment_type, 
+           a.grammar_topic_id, 
+           a.writing_task_type, 
+           a.instructions, 
+           a.due_date,
+           MIN(a.created_at) as created_at,
+           m.module_name, 
+           m.module_type,
+           COUNT(CASE WHEN a.status = 'completed' THEN 1 END) as completed_count,
+           COUNT(a.student_id) as total_assigned
+         FROM assigned_tasks a
+         JOIN learning_modules m ON a.module_id = m.id
+         WHERE a.student_id IN (${placeholders})
+           AND (a.class_id = $1 OR a.class_id IS NULL)
+         GROUP BY a.module_id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, 
+                  a.instructions, a.due_date, m.module_name, m.module_type
+         ORDER BY MIN(a.created_at) DESC`,
+        [class_id, ...enrolledStudentIds]
+      );
+      assignmentGroups = rows;
+    }
+
     
     // For each assignment group, get the student submission details
     const assignments = [];
@@ -557,14 +569,15 @@ router.get('/:id/details', requireTeacher, async (req, res) => {
            u.last_name as student_last_name
          FROM assigned_tasks a
          JOIN users u ON a.student_id = u.id
-         WHERE a.class_id = $1 
+         WHERE a.student_id IN (${enrolledStudentIds.map((_, i) => `$${i + 7}`).join(', ')})
+           AND (a.class_id = $1 OR a.class_id IS NULL)
            AND a.module_id = $2 
            AND a.assignment_type = $3
            AND (a.grammar_topic_id = $4 OR (a.grammar_topic_id IS NULL AND $4 IS NULL))
            AND (a.instructions = $5 OR (a.instructions IS NULL AND $5 IS NULL))
            AND (a.due_date = $6 OR (a.due_date IS NULL AND $6 IS NULL))
          ORDER BY u.last_name, u.first_name`,
-        [class_id, assignment.module_id, assignment.assignment_type, assignment.grammar_topic_id, assignment.instructions, assignment.due_date]
+        [class_id, assignment.module_id, assignment.assignment_type, assignment.grammar_topic_id, assignment.instructions, assignment.due_date, ...enrolledStudentIds]
       );
       
       assignments.push({
