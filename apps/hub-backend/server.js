@@ -1,36 +1,93 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const { bootstrapDatabase, pool } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
+// ============================================================================
+// SECURITY MIDDLEWARE
+// ============================================================================
+
+// Helmet: Sets various HTTP headers for security
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP for API-only backend
+  crossOriginEmbedderPolicy: false // Allow embedding if needed
+}));
+
+// CORS: Dynamic origin validation for multi-tenant subdomains
 const allowedOrigins = [
   'http://localhost:5173', // Local Vite development
   'http://localhost:3001', // Local backend (for some tools)
   'https://hayford-learning-hub.onrender.com', // Current deployment fallback
-  'https://hub.hayfordacademy.com', // Production frontend (Hostinger)
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // allow requests with no origin (like mobile apps or curl requests)
+    // Allow requests with no origin (mobile apps, curl, Postman)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    
+    // Check exact matches from allowedOrigins
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
     }
-    return callback(null, true);
+    
+    // Allow any subdomain of hayfordacademy.com (e.g., hub.hayfordacademy.com, nic.hayfordacademy.com)
+    if (origin.match(/^https:\/\/[a-z0-9-]+\.hayfordacademy\.com$/)) {
+      return callback(null, true);
+    }
+    
+    // Reject all other origins
+    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    return callback(new Error(msg), false);
   },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
+
+// Rate Limiting: General API protection
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    error: 'Too many requests from this IP, please try again later.',
+    retryAfter: '15 minutes'
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+
+// Rate Limiting: Strict auth protection (prevent brute-force)
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // Limit each IP to 5 login/signup attempts per windowMs
+  message: {
+    error: 'Too many authentication attempts from this IP, please try again later.',
+    retryAfter: '15 minutes'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+  skipSuccessfulRequests: false // Count all requests, even successful ones
+});
+
+// Apply general rate limiter to all /api routes
+app.use('/api/', apiLimiter);
+
+// Apply strict rate limiter to auth routes
+app.use('/api/auth/', authLimiter);
+
+// Body parser
 app.use(express.json());
 
-// Health Check Endpoint
+// ============================================================================
+// ROUTES
+// ============================================================================
+
+// Health Check Endpoint (excluded from rate limiting for monitoring)
 app.get('/api/health', async (req, res) => {
   try {
     // Optional: Test the DB connection
