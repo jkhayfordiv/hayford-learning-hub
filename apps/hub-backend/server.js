@@ -52,7 +52,7 @@ app.use(cors({
 // Rate Limiting: General API protection
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  max: 300, // Limit each IP to 300 requests per windowMs (permissive for normal app use)
   message: {
     error: 'Too many requests from this IP, please try again later.',
     retryAfter: '15 minutes'
@@ -61,17 +61,17 @@ const apiLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-// Rate Limiting: Strict auth protection (prevent brute-force)
+// Rate Limiting: Auth protection (prevent brute-force but allow normal use)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 login/signup attempts per windowMs
+  max: 20, // 20 attempts per 15 min — enough for normal use, blocks real brute-force
   message: {
     error: 'Too many authentication attempts from this IP, please try again later.',
     retryAfter: '15 minutes'
   },
   standardHeaders: true,
   legacyHeaders: false,
-  skipSuccessfulRequests: false // Count all requests, even successful ones
+  skipSuccessfulRequests: true // Don't count successful logins against the limit
 });
 
 // Apply general rate limiter to all /api routes
