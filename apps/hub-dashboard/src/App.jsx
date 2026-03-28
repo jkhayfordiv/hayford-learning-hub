@@ -6,6 +6,8 @@ import StudentProfile from './StudentProfile';
 import MyStats from './MyStats';
 import Profile from './Profile';
 import AuthSuccess from './AuthSuccess';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 // Injects institution branding (colors, favicon, title) from localStorage into CSS custom properties
 function BrandingInjector() {
@@ -51,6 +53,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/auth/success" element={<AuthSuccess />} />
           <Route 
             path="/dashboard/*" 

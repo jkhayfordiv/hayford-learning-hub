@@ -204,7 +204,7 @@ export default function LoginPage() {
                 <div className="space-y-1">
                   <div className="flex justify-between items-center ml-1">
                      <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Password</label>
-                     {isLogin && <a href="#" className="text-[10px] font-black text-brand-copper hover:text-brand-navy transition-colors">Forgot password?</a>}
+                     {isLogin && <button type="button" onClick={() => navigate('/forgot-password')} className="text-[10px] font-black text-brand-copper hover:text-brand-navy transition-colors">Forgot password?</button>}
                   </div>
                   <input required name="password" type="password" value={formData.password} placeholder="••••••••" onChange={handleInputChange} className="w-full bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:bg-white dark:focus:bg-slate-900 transition-all font-medium text-sm placeholder:text-slate-400" />
                 </div>
