@@ -387,13 +387,13 @@ router.post('/submit', auth, async (req, res) => {
       await connection.query(`
         INSERT INTO grammar_activity_submissions (
           user_id, node_id, activity_type, user_response, ai_feedback, score, passed
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ) VALUES ($1, $2, $3, $4::jsonb, $5::jsonb, $6, $7)
       `, [
         req.user.id,
         node_id,
         activity_type,
-        user_response,
-        { feedback },
+        JSON.stringify(user_response),
+        JSON.stringify({ feedback }),
         score,
         passed
       ]);
