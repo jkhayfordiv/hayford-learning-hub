@@ -8,14 +8,15 @@ const { OAuth2Client } = require('google-auth-library');
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) { console.error('FATAL: JWT_SECRET is not defined'); process.exit(1); }
 
-// Google OAuth Client Setup
-const googleClient = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  process.env.GOOGLE_CALLBACK_URL
-);
+// Configuration for Google OAuth and Frontend
+const googleClient = new OAuth2Client({
+  clientId: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  redirectUri: process.env.GOOGLE_CALLBACK_URL
+});
 
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+
 
 // Register User - STUDENTS ONLY (Multi-Tenant SaaS) OR Teacher/Admin creation by authorized users
 router.post('/register', async (req, res) => {
@@ -228,13 +229,24 @@ router.post('/login', async (req, res) => {
   }
 });
 
+
 // @route   GET api/auth/google
 // @desc    Redirect to Google OAuth consent screen
 router.get('/google', (req, res) => {
+  // Use explicit redirect_uri from env to ensure it matches Console
   const url = googleClient.generateAuthUrl({
     access_type: 'offline',
-    scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
+    scope: [
+      'openid',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email'
+    ],
+    redirect_uri: process.env.GOOGLE_CALLBACK_URL,
+    // Include state for security (here simple random string, ideally session-based)
+    state: Math.random().toString(36).substring(7)
   });
+  
+  console.log('Redirecting to Google with URI:', process.env.GOOGLE_CALLBACK_URL);
   res.redirect(url);
 });
 
