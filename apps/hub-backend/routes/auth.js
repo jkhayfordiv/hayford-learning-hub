@@ -3,9 +3,19 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { pool } = require('../db');
+const { OAuth2Client } = require('google-auth-library');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) { console.error('FATAL: JWT_SECRET is not defined'); process.exit(1); }
+
+// Google OAuth Client Setup
+const googleClient = new OAuth2Client(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.GOOGLE_CALLBACK_URL
+);
+
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // Register User - STUDENTS ONLY (Multi-Tenant SaaS) OR Teacher/Admin creation by authorized users
 router.post('/register', async (req, res) => {
@@ -69,8 +79,6 @@ router.post('/register', async (req, res) => {
         return res.status(401).json({ error: 'Invalid token' });
       }
       console.error('DB Error in POST /api/auth/register (privileged creation):', err.message);
-      console.error('Full error:', err);
-      if (err.query) console.error('Failed query:', err.query);
       return res.status(500).json({ error: 'Internal server error' });
     }
   }
@@ -105,8 +113,6 @@ router.post('/register', async (req, res) => {
     
   } catch (err) {
     console.error('DB Error in POST /api/auth/register (student self-registration):', err.message);
-    console.error('Full error:', err);
-    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -121,11 +127,8 @@ router.post('/login', async (req, res) => {
   try {
     const connection = await pool.getConnection();
     
-    // Query by BOTH email AND role to support multiple profiles per email
-    // JOIN institutions to get feature flags and timezone
     let query, params;
     if (role === 'teacher') {
-      // Use ANY with array for PostgreSQL IN clause
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
@@ -136,7 +139,6 @@ router.post('/login', async (req, res) => {
       `;
       params = [email, ['teacher', 'admin', 'super_admin']];
     } else {
-      // Exact role match for students
       query = `
         SELECT u.*, 
                i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
@@ -156,6 +158,13 @@ router.post('/login', async (req, res) => {
     }
 
     const user = users[0];
+
+    // SECURITY GUARD: If user signed up with Google, they won't have a password hash
+    if (!user.password_hash) {
+      connection.release();
+      return res.status(401).json({ error: 'This account uses Google Login. Please click "Continue with Google".' });
+    }
+
     const isMatch = await bcrypt.compare(password, user.password_hash);
 
     if (!isMatch) {
@@ -169,7 +178,7 @@ router.post('/login', async (req, res) => {
       [user.id]
     );
 
-    // Fetch enrolled classes for the user (supports multiple enrollments)
+    // Fetch enrolled classes for the user
     let classes = [];
     const [enrollmentRows] = await connection.query(
       `SELECT c.id, c.class_name, c.class_code, ce.joined_at
@@ -186,7 +195,7 @@ router.post('/login', async (req, res) => {
 
     connection.release();
 
-    // Generate JWT with institution_id and feature flags for tenant isolation
+    // Generate JWT
     const payload = {
       user: {
         id: user.id,
@@ -195,16 +204,16 @@ router.post('/login', async (req, res) => {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
-        classes: classes, // Array of enrolled classes
-        class_id: classes.length > 0 ? classes[0].id : null, // Backwards compatibility: first class
-        class_name: classes.length > 0 ? classes[0].class_name : null, // Backwards compatibility
-        // Institution feature flags and settings
+        classes: classes,
+        class_id: classes.length > 0 ? classes[0].id : null,
+        class_name: classes.length > 0 ? classes[0].class_name : null,
         subdomain: user.subdomain,
         timezone: user.timezone || 'Asia/Tokyo',
-        has_grammar_world: user.has_grammar_world !== false, // Default to true if null
-        has_ielts_speaking: user.has_ielts_speaking !== false, // Default to true if null
+        has_grammar_world: user.has_grammar_world !== false,
+        has_ielts_speaking: user.has_ielts_speaking !== false,
         subscription_tier: user.subscription_tier || 'free',
-        subscription_status: user.subscription_status || 'active'
+        subscription_status: user.subscription_status || 'active',
+        avatar_url: user.avatar_url
       }
     };
 
@@ -215,10 +224,122 @@ router.post('/login', async (req, res) => {
 
   } catch (err) {
     console.error('DB Error in POST /api/auth/login:', err.message);
-    console.error('Full error:', err);
-    if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+// @route   GET api/auth/google
+// @desc    Redirect to Google OAuth consent screen
+router.get('/google', (req, res) => {
+  const url = googleClient.generateAuthUrl({
+    access_type: 'offline',
+    scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email'],
+  });
+  res.redirect(url);
+});
+
+// @route   GET api/auth/google/callback
+// @desc    Google OAuth callback - exchange code for user profile and generate JWT
+router.get('/google/callback', async (req, res) => {
+  const { code } = req.query;
+  if (!code) return res.redirect(`${FRONTEND_URL}/login?error=no_code`);
+
+  let connection;
+  try {
+    const { tokens } = await googleClient.getToken(code);
+    const ticket = await googleClient.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const profile = ticket.getPayload();
+
+    connection = await pool.getConnection();
+
+    // Find user by google_id or email
+    let [users] = await connection.query(
+      `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status
+       FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
+       WHERE u.google_id = $1`,
+      [profile.sub]
+    );
+
+    let user;
+    if (users.length === 0) {
+      // Try by email to link existing account
+      const [emailUsers] = await connection.query(
+        `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status
+         FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
+         WHERE u.email = $1 AND u.role = 'student'`,
+        [profile.email]
+      );
+
+      if (emailUsers.length > 0) {
+        // Link account
+        await connection.query(
+          'UPDATE users SET google_id = $1, avatar_url = $2, last_login_at = CURRENT_TIMESTAMP WHERE id = $3',
+          [profile.sub, profile.picture, emailUsers[0].id]
+        );
+        user = { ...emailUsers[0], google_id: profile.sub, avatar_url: profile.picture };
+      } else {
+        // Create new user (Tenant 1 = Hayford B2C)
+        const [result] = await connection.query(
+          'INSERT INTO users (first_name, last_name, email, google_id, avatar_url, role, institution_id, last_login_at) VALUES ($1, $2, $3, $4, $5, $6, $7, CURRENT_TIMESTAMP) RETURNING id',
+          [profile.given_name || 'Student', profile.family_name || '', profile.email, profile.sub, profile.picture, 'student', 1]
+        );
+
+        // Fetch new user with joins
+        const [reFetched] = await connection.query(
+          `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status
+           FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
+           WHERE u.id = $1`,
+          [result.insertId]
+        );
+        user = reFetched[0];
+      }
+    } else {
+      user = users[0];
+      await connection.query('UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = $1', [user.id]);
+    }
+
+    // Fetch classes
+    const [classes] = await connection.query(
+      `SELECT c.id, c.class_name, c.class_code FROM class_enrollments ce JOIN classes c ON ce.class_id = c.id WHERE ce.user_id = $1 ORDER BY ce.joined_at DESC`,
+      [user.id]
+    );
+
+    connection.release();
+
+    const payload = {
+      user: {
+        id: user.id,
+        role: user.role,
+        institution_id: user.institution_id,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        classes: classes,
+        class_id: classes.length > 0 ? classes[0].id : null,
+        class_name: classes.length > 0 ? classes[0].class_name : null,
+        subdomain: user.subdomain,
+        timezone: user.timezone || 'Asia/Tokyo',
+        has_grammar_world: user.has_grammar_world !== false,
+        has_ielts_speaking: user.has_ielts_speaking !== false,
+        subscription_tier: user.subscription_tier || 'free',
+        subscription_status: user.subscription_status || 'active',
+        avatar_url: user.avatar_url
+      }
+    };
+
+    jwt.sign(payload, JWT_SECRET, { expiresIn: '24h' }, (err, token) => {
+      if (err) throw err;
+      res.redirect(`${FRONTEND_URL}/auth/success?token=${token}`);
+    });
+  } catch (err) {
+    console.error('Google Callback Error:', err);
+    if (connection) connection.release();
+    res.redirect(`${FRONTEND_URL}/login?error=google_failed`);
+  }
+});
+
 module.exports = router;
+

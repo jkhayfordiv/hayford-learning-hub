@@ -25,10 +25,10 @@
           "type": "multiple_choice",
           "question": "Identify the verb form: 'We need to ___ the process.'",
           "options": [
-            "Simple",
-            "Simplicity",
-            "Simplify",
-            "Simply"
+            "simple",
+            "simplicity",
+            "simplify",
+            "simply"
           ],
           "correctAnswer": "Simplify",
           "explanation": "The suffix '-ify' is used to turn an adjective or noun into a verb (to make simple)."
@@ -51,10 +51,10 @@
           "type": "multiple_choice",
           "question": "Choose the correct adverb: 'The car moved ___.'",
           "options": [
-            "Slow",
-            "Slowness",
-            "Slowly",
-            "Slowing"
+            "slow",
+            "slowness",
+            "slowly",
+            "slowing"
           ],
           "correctAnswer": "Slowly",
           "explanation": "The suffix '-ly' turns an adjective into an adverb describing how an action is done."
@@ -90,10 +90,10 @@
           "type": "multiple_choice",
           "question": "Choose the correct noun: 'The ___ was very difficult.'",
           "options": [
-            "Decide",
-            "Decision",
-            "Decisive",
-            "Decisively"
+            "decide",
+            "decision",
+            "decisive",
+            "decisively"
           ],
           "correctAnswer": "Decision",
           "explanation": "'-ion/sion' forms a noun from the verb 'decide'."
@@ -142,10 +142,10 @@
           "type": "multiple_choice",
           "question": "Complete the sentence with the correct verb: 'Please ___ your seatbelts.'",
           "options": [
-            "Fast",
-            "Faster",
-            "Fasten",
-            "Fastness"
+            "fast",
+            "faster",
+            "fasten",
+            "fastness"
           ],
           "correctAnswer": "Fasten",
           "explanation": "The suffix '-en' can turn an adjective into a verb (to make fast/tight)."
@@ -155,10 +155,10 @@
           "type": "multiple_choice",
           "question": "Identify the adjective: 'She gave a very ___ presentation.'",
           "options": [
-            "Profession",
-            "Professional",
-            "Professionally",
-            "Professor"
+            "profession",
+            "professional",
+            "professionally",
+            "professor"
           ],
           "correctAnswer": "Professional",
           "explanation": "'-al' is a common adjective suffix."
@@ -233,10 +233,10 @@
           "type": "multiple_choice",
           "question": "Select the noun: 'We made an ___ today.'",
           "options": [
-            "Agree",
-            "Agreement",
-            "Agreeable",
-            "Agreeably"
+            "agree",
+            "agreement",
+            "agreeable",
+            "agreeably"
           ],
           "correctAnswer": "Agreement",
           "explanation": "'-ment' indicates a noun."
@@ -246,10 +246,10 @@
           "type": "multiple_choice",
           "question": "Identify the verb: 'You should ___ the data.'",
           "options": [
-            "Analysis",
-            "Analytical",
-            "Analyze",
-            "Analytically"
+            "analysis",
+            "analytical",
+            "analyze",
+            "analytically"
           ],
           "correctAnswer": "Analyze",
           "explanation": "'-yze' or '-ize' is the verb ending."
@@ -283,7 +283,7 @@
         {
           "id": "q1_22",
           "type": "multiple_choice",
-          "question": "Choose the correct part of speech: 'Beauty' is a ___.",
+          "question": "Choose the correct part of speech: 'Beauty' is a(n) ___.",
           "options": [
             "Noun",
             "Verb",
@@ -298,10 +298,10 @@
           "type": "multiple_choice",
           "question": "Identify the verb form: 'We want to ___ our business.'",
           "options": [
-            "Modern",
-            "Modernize",
-            "Modernity",
-            "Modernly"
+            "modern",
+            "modernize",
+            "modernity",
+            "modernly"
           ],
           "correctAnswer": "Modernize",
           "explanation": "'-ize' is the verb suffix."
@@ -1229,10 +1229,10 @@
           "type": "multiple_choice",
           "question": "Choose the correct adjective for a global context: 'The country is facing an ___ crisis.'",
           "options": [
-            "Economy",
-            "Economic",
-            "Economical",
-            "Economically"
+            "economy",
+            "economic",
+            "economical",
+            "economically"
           ],
           "correctAnswer": "Economic",
           "explanation": "'Economic' refers to the economy of a country. 'Economical' means 'cheap' or 'saving money'."
@@ -1268,10 +1268,10 @@
           "type": "multiple_choice",
           "question": "Choose the best academic noun: 'The ___ of fossil fuels is a major environmental issue.'",
           "options": [
-            "Consume",
-            "Consuming",
-            "Consumption",
-            "Consumptive"
+            "consume",
+            "consuming",
+            "consumption",
+            "consumptive"
           ],
           "correctAnswer": "Consumption",
           "explanation": "Formal noun form for the act of using something."
@@ -1294,10 +1294,10 @@
           "type": "multiple_choice",
           "question": "Identify the correct adjective: 'The government needs to take ___ action.'",
           "options": [
-            "Decide",
-            "Decision",
-            "Decisive",
-            "Decisively"
+            "decide",
+            "decision",
+            "decisive",
+            "decisively"
           ],
           "correctAnswer": "Decisive",
           "explanation": "'Decisive' is the adjective meaning 'firm' or 'conclusive'."
@@ -1320,10 +1320,10 @@
           "type": "multiple_choice",
           "question": "Choose the best verb: 'We must ___ the importance of education.'",
           "options": [
-            "Emphasis",
-            "Emphasize",
-            "Emphatic",
-            "Emphatically"
+            "emphasis",
+            "emphasize",
+            "emphatic",
+            "emphatically"
           ],
           "correctAnswer": "Emphasize",
           "explanation": "Verb form needed after 'must'."
@@ -1372,10 +1372,10 @@
           "type": "multiple_choice",
           "question": "Complete the academic sentence: 'There is a high ___ that the plan will succeed.'",
           "options": [
-            "Probable",
-            "Probably",
-            "Probability",
-            "Probabilize"
+            "probable",
+            "probably",
+            "probability",
+            "probabilize"
           ],
           "correctAnswer": "Probability",
           "explanation": "Noun form needed after 'a high'."
@@ -1424,10 +1424,10 @@
           "type": "multiple_choice",
           "question": "Choose the best academic verb: 'We need to ___ our findings.'",
           "options": [
-            "Summary",
-            "Summarize",
-            "Summative",
-            "Summarily"
+            "summary",
+            "summarize",
+            "summative",
+            "summarily"
           ],
           "correctAnswer": "Summarize",
           "explanation": "Verb form of 'summary'."
@@ -1476,10 +1476,10 @@
           "type": "multiple_choice",
           "question": "Choose the best noun for a conclusion: 'The ___ of the study is clear.'",
           "options": [
-            "Signify",
-            "Significant",
-            "Significance",
-            "Significantly"
+            "signify",
+            "significant",
+            "significance",
+            "significantly"
           ],
           "correctAnswer": "Significance",
           "explanation": "Noun form of 'significant'."
@@ -1554,10 +1554,10 @@
           "type": "multiple_choice",
           "question": "Choose the best academic adjective: 'This is a ___ issue.'",
           "options": [
-            "Complexity",
-            "Complex",
-            "Complexly",
-            "Complexed"
+            "complexity",
+            "complex",
+            "complexly",
+            "complexed"
           ],
           "correctAnswer": "Complex",
           "explanation": "Standard adjective form."

@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import StudentProfile from './StudentProfile';
 import MyStats from './MyStats';
 import Profile from './Profile';
+import AuthSuccess from './AuthSuccess';
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth/success" element={<AuthSuccess />} />
           <Route 
             path="/dashboard/*" 
             element={

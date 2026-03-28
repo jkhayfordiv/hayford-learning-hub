@@ -90,6 +90,35 @@ $$;
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 
 -- ============================================================================
+-- GOOGLE SSO MIGRATION: Passwordless / OAuth accounts
+-- These are idempotent and run safely on every server boot.
+-- ============================================================================
+
+-- Allow Google users who have no password hash
+ALTER TABLE users ALTER COLUMN password_hash DROP NOT NULL;
+
+-- Google OAuth identity columns
+ALTER TABLE users ADD COLUMN IF NOT EXISTS google_id VARCHAR(255);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar_url VARCHAR(500);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login_at TIMESTAMP;
+
+-- Unique constraint on google_id (multiple NULLs are allowed in PostgreSQL UNIQUE)
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_constraint WHERE conname = 'users_google_id_key'
+    ) THEN
+        ALTER TABLE users ADD CONSTRAINT users_google_id_key UNIQUE(google_id);
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN NULL;
+END
+$$;
+
+-- Partial index: fast lookup by google_id, ignores NULL rows
+CREATE INDEX IF NOT EXISTS idx_users_google_id ON users(google_id) WHERE google_id IS NOT NULL;
+
+-- ============================================================================
 -- CLASSES TABLE - Institution-Scoped
 -- ============================================================================
 CREATE TABLE IF NOT EXISTS classes (
