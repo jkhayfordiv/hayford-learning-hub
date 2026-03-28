@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ReactFlow, ReactFlowProvider, Background, Controls, MiniMap, useReactFlow } from '@xyflow/react';
+import { ReactFlow, ReactFlowProvider, Background, Controls } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { fetchRegionNodes, fetchUserProgress } from '../services/api';
@@ -56,17 +56,6 @@ function RegionFlowMap({ nodes, edges }) {
         className="opacity-20"
       />
       <Controls
-        className="bg-white rounded-lg shadow-lg border border-gray-200"
-      />
-      <MiniMap
-        nodeColor={(node) => {
-          switch (node.data.state) {
-            case 'locked':    return '#9ca3af';
-            case 'actionable': return '#5E1914';
-            case 'cleared':   return '#0A1930';
-            default:          return '#e5e7eb';
-          }
-        }}
         className="bg-white rounded-lg shadow-lg border border-gray-200"
       />
     </ReactFlow>

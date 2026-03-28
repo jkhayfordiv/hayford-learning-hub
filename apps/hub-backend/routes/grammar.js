@@ -498,9 +498,13 @@ router.post('/submit', auth, async (req, res) => {
     }
   } catch (error) {
     console.error(`[ERROR] Grammar submit failed for user ${req.user?.id}, node ${req.body?.node_id}:`, error);
+    console.error('Error stack:', error.stack);
+    console.error('Error code:', error.code);
+    console.error('Error detail:', error.detail);
+    if (error.query) console.error('Failed query:', error.query);
     res.status(500).json({ 
       error: 'Failed to submit mastery check',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      details: error.message
     });
   }
 });
