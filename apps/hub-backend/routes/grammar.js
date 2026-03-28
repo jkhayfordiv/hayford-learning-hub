@@ -439,7 +439,7 @@ router.post('/submit', auth, async (req, res) => {
           SELECT region, tier FROM grammar_nodes WHERE node_id = $1
         `, [node_id]);
 
-        if (nodeDetails.length > 0) {
+        if (nodeDetails && nodeDetails.length > 0) {
           const { region, tier } = nodeDetails[0];
           
           // Update or create mastery stats
