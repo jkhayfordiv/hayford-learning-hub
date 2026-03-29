@@ -5,10 +5,10 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const questions = activityData?.questions || [];
 
-  const handleAnswerSelect = (questionIndex, optionText) => {
+  const handleAnswerSelect = (questionIndex, optionIndex) => {
     setSelectedAnswers({
       ...selectedAnswers,
-      [questionIndex]: optionText,
+      [questionIndex]: optionIndex,
     });
   };
 
@@ -53,12 +53,12 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
               {question.options.map((option, oIdx) => (
                 <button
                   key={oIdx}
-                  onClick={() => handleAnswerSelect(qIdx, option)}
+                  onClick={() => handleAnswerSelect(qIdx, oIdx)}
                   disabled={isLoading}
                   className={`
                     w-full text-left px-4 py-3 rounded-xl border-2 transition-all
                     ${
-                      selectedAnswers[qIdx] === option
+                      selectedAnswers[qIdx] === oIdx
                         ? 'border-brand-sangria bg-brand-sangria bg-opacity-5 font-semibold'
                         : 'border-gray-200 hover:border-brand-sangria hover:bg-gray-50'
                     }
