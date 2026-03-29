@@ -24,8 +24,11 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
     const score = Math.round((correctCount / questions.length) * 100);
     const passed = score >= 80;
 
+    // Convert selectedAnswers object to array for backend
+    const answers = questions.map((_, idx) => selectedAnswers[idx]);
+
     // Submit to backend
-    onSubmit({ selectedAnswers, score, passed }, 'multiple_choice');
+    onSubmit({ answers, score, passed }, 'multiple_choice');
   };
 
   const allAnswered = questions.every((_, idx) => selectedAnswers[idx] !== undefined);

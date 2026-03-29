@@ -31,8 +31,11 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
     const score = Math.round((correctCount / errors.length) * 100);
     const passed = score >= 80;
 
+    // Convert userCorrections object to array for backend
+    const corrections = errors.map((_, idx) => userCorrections[idx] || '');
+
     // Submit to backend
-    onSubmit({ userCorrections, score, passed }, 'error_correction');
+    onSubmit({ corrections, score, passed }, 'error_correction');
   };
 
   const allAnswered = errors.every((_, idx) => userCorrections[idx]?.trim());

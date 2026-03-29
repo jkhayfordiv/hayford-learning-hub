@@ -31,8 +31,11 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
     const score = Math.round((correctCount / blanks.length) * 100);
     const passed = score >= 80;
 
+    // Convert userAnswers object to array for backend
+    const answers = blanks.map((_, idx) => userAnswers[idx] || '');
+
     // Submit to backend
-    onSubmit({ userAnswers, score, passed }, 'fill_in_the_blank');
+    onSubmit({ answers, score, passed }, 'fill_in_the_blank');
   };
 
   const allAnswered = blanks.every((_, idx) => userAnswers[idx]?.trim());
