@@ -76,6 +76,7 @@ export default function Dashboard() {
   let branding = {};
   try { branding = JSON.parse(localStorage.getItem('branding') || '{}'); } catch (e) {}
   const brandPrimary    = branding.primary_color   || '#800020';
+  const brandSecondary  = branding.secondary_color || '#600000';
   const brandLogoUrl    = branding.logo_url        || null;
   const brandWelcome    = branding.welcome_text    || 'Hayford Global Learning Hub';
 
@@ -476,7 +477,7 @@ export default function Dashboard() {
       {/* Top Navbar */}
       <header
         className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40"
-        style={{ backgroundColor: brandPrimary }}
+        style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandSecondary})` }}
       >
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
            <img

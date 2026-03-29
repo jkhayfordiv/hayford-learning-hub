@@ -875,7 +875,7 @@ export default function TeacherDashboard({ user, onLogout }) {
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
       <header 
-        className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40 bg-[#800000]"
+        className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40 bg-gradient-to-r from-[#800000] to-[#600000]"
       >
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
            <img 
