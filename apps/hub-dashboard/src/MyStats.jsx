@@ -24,7 +24,7 @@ function aggregateWeaknesses(scores) {
 
   return Object.entries(counts)
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 8)
+    .slice(0, 5)
     .map(([tag, count]) => ({ tag, count }));
 }
 
@@ -212,16 +212,16 @@ export default function MyStats() {
           </section>
         </div>
 
-        <section className="lg:col-span-2 bg-white border border-slate-200 rounded-3xl overflow-hidden">
+        <section className="lg:col-span-2 bg-white border border-slate-200 rounded-3xl overflow-hidden h-fit">
           <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/70 flex items-center justify-between">
             <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 flex items-center gap-2"><FileText size={15} /> Submission History</h2>
             <span className="text-xs font-bold text-slate-500">{scores.length} submissions</span>
           </div>
-          <div className="divide-y divide-slate-100 max-h-[68vh] overflow-y-auto">
+          <div className="divide-y divide-slate-100">
             {scores.length === 0 ? (
               <div className="p-8 text-sm text-slate-500">No submissions yet. Start practicing to build your progress history.</div>
             ) : (
-              scores.map((score) => (
+              scores.slice(0, 10).map((score) => (
                 <div key={score.id} className="px-6 py-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>

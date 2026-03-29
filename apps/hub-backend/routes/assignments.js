@@ -244,10 +244,35 @@ router.get('/my-tasks', auth, async (req, res) => {
       [student_id]
     );
 
-    // TODO: Re-enable grammar completion check after migration is confirmed on Render
-    // Temporarily disabled to fix student assignments loading
+    // Filter out completed grammar-practice assignments based on grammar_progress
+    const filteredTasks = [];
+    for (const task of tasks) {
+      if (task.assignment_type === 'grammar-practice' && task.grammar_topic_id) {
+        try {
+          // Check if student has completed at least level 1 for this topic
+          const [progressRows] = await connection.query(
+            `SELECT passed_levels FROM grammar_progress WHERE user_id = $1 AND error_category = $2`,
+            [student_id, task.grammar_topic_id]
+          );
+          
+          if (progressRows.length > 0 && progressRows[0].passed_levels && progressRows[0].passed_levels.length > 0) {
+            // Student has passed at least one level - mark as completed
+            await connection.query(
+              `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1 AND status != 'completed'`,
+              [task.id]
+            );
+            continue; // Don't add to filtered tasks (remove from to-do list)
+          }
+        } catch (grammarCheckError) {
+          console.error('Grammar completion check failed for task', task.id, grammarCheckError.message);
+        }
+      }
+      
+      filteredTasks.push(task);
+    }
+
     connection.release();
-    res.json(tasks);
+    res.json(filteredTasks);
   } catch (error) {
     console.error('Fetch my-tasks error:', error);
     res.status(500).json({ error: 'Server Error fetching assigned tasks' });
