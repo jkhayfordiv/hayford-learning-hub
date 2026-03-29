@@ -8,7 +8,7 @@ const { pool } = require('../db');
 // @desc    Create a new assignment(s) for a specific student, entire class, or all students
 // @access  Private (Teacher/Admin only)
 router.post('/', requireTeacher, async (req, res) => {
-  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts } = req.body;
+  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
   let connection;
@@ -73,9 +73,9 @@ router.post('/', requireTeacher, async (req, res) => {
       const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
       const speakingTaskPart = speaking_parts && speaking_parts.length > 0 ? speaking_parts[0] : (speaking_task_part || null);
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
-        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
+        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`,
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
       );
       
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
@@ -138,8 +138,8 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
             [
               teacher_id,
               student.id,
@@ -147,6 +147,7 @@ router.post('/', requireTeacher, async (req, res) => {
               resolvedModuleId,
               aType,
               grammar_topic_id || null,
+              level_range || null,
               writing_task_type || null,
               speakingTaskPart,
               speakingPartsJson,
@@ -200,9 +201,9 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
           );
           count++;
         } catch (dupError) {
@@ -220,6 +221,42 @@ router.post('/', requireTeacher, async (req, res) => {
   }
 });
 
+// Maps grammar_topic_id (stored in assigned_tasks) -> error_category (stored in grammar_progress)
+const TOPIC_ID_TO_CATEGORY = {
+  '01_article_usage': 'Article Usage',
+  '02_countability_and_plurals': 'Countability & Plurals',
+  '03_pronoun_reference': 'Pronoun Reference',
+  '04_prepositional_accuracy': 'Prepositional Accuracy',
+  '05_word_forms': 'Word Forms',
+  '06_subject_verb_agreement': 'Subject-Verb Agreement',
+  '07_tense_consistency': 'Tense Consistency',
+  '08_present_perfect_past_simple': 'Present Perfect vs. Past Simple',
+  '09_gerunds_infinitives': 'Gerunds vs. Infinitives',
+  '10_passive_voice': 'Passive Voice Construction',
+  '11_sentence_boundaries': 'Sentence Boundaries (Fragments/Comma Splices)',
+  '12_relative_clauses': 'Relative Clauses',
+  '13_subordination': 'Subordination',
+  '14_word_order': 'Word Order',
+  '15_parallel_structure': 'Parallel Structure',
+  '16_transitional_devices': 'Transitional Devices',
+  '17_collocations': 'Collocations',
+  '18_academic_register': 'Academic Register',
+  '19_nominalization': 'Nominalization',
+  '20_hedging': 'Hedging'
+};
+
+// Parse level_range string (e.g. "1", "1-2", "1-4") into array of required level numbers
+function parseRequiredLevels(levelRange) {
+  if (!levelRange) return [1]; // Default: only level 1 required
+  if (levelRange.includes('-')) {
+    const [start, end] = levelRange.split('-').map(Number);
+    const levels = [];
+    for (let i = start; i <= end; i++) levels.push(i);
+    return levels;
+  }
+  return [Number(levelRange)];
+}
+
 // @route   GET api/assignments/my-tasks
 // @desc    Get pending and completed tasks assigned to the logged-in student
 // @access  Private (Student)
@@ -228,13 +265,15 @@ router.get('/my-tasks', auth, async (req, res) => {
 
   try {
     const connection = await pool.getConnection();
+
+    // Fetch all tasks for this student
     const [tasks] = await connection.query(
-      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.speaking_parts, a.instructions, a.due_date, a.status, a.created_at,
+      `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.level_range, a.writing_task_type,
+              a.speaking_task_part, a.speaking_parts, a.instructions, a.due_date, a.status, a.created_at,
               a.teacher_comment, a.teacher_comment_read, a.feedback_date,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name,
-              g.first_name as grader_first_name, g.last_name as grader_last_name,
-              a.speaking_parts
+              g.first_name as grader_first_name, g.last_name as grader_last_name
        FROM assigned_tasks a
        JOIN learning_modules m ON a.module_id = m.id
        JOIN users u ON a.teacher_id = u.id
@@ -244,31 +283,54 @@ router.get('/my-tasks', auth, async (req, res) => {
       [student_id]
     );
 
-    // Filter out completed grammar-practice assignments based on grammar_progress
+    // Check if any tasks are grammar-practice so we can batch-fetch progress
+    const grammarTasks = tasks.filter(t => t.assignment_type === 'grammar-practice' && t.grammar_topic_id);
+    let progressByCategory = {};
+
+    if (grammarTasks.length > 0) {
+      try {
+        // Single batched query for ALL grammar progress - fixes N+1 performance issue
+        const [progressRows] = await connection.query(
+          `SELECT error_category, passed_levels FROM grammar_progress WHERE student_id = $1`,
+          [student_id]
+        );
+        // Build a lookup map: error_category -> passed_levels array
+        for (const row of progressRows) {
+          const levels = Array.isArray(row.passed_levels) ? row.passed_levels : [];
+          progressByCategory[row.error_category] = levels.map(Number);
+        }
+      } catch (progressFetchError) {
+        console.error('Grammar progress batch fetch failed:', progressFetchError.message);
+      }
+    }
+
+    // Filter and update completion status
     const filteredTasks = [];
+    const completionUpdates = [];
+
     for (const task of tasks) {
       if (task.assignment_type === 'grammar-practice' && task.grammar_topic_id) {
-        try {
-          // Check if student has completed at least level 1 for this topic
-          const [progressRows] = await connection.query(
-            `SELECT passed_levels FROM grammar_progress WHERE user_id = $1 AND error_category = $2`,
-            [student_id, task.grammar_topic_id]
-          );
-          
-          if (progressRows.length > 0 && progressRows[0].passed_levels && progressRows[0].passed_levels.length > 0) {
-            // Student has passed at least one level - mark as completed
-            await connection.query(
-              `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1 AND status != 'completed'`,
-              [task.id]
-            );
-            continue; // Don't add to filtered tasks (remove from to-do list)
+        const errorCategory = TOPIC_ID_TO_CATEGORY[task.grammar_topic_id];
+        if (errorCategory) {
+          const passedLevels = progressByCategory[errorCategory] || [];
+          const requiredLevels = parseRequiredLevels(task.level_range);
+          const allComplete = requiredLevels.every(level => passedLevels.includes(level));
+
+          if (allComplete && passedLevels.length > 0) {
+            completionUpdates.push(task.id);
+            continue; // Remove from to-do list
           }
-        } catch (grammarCheckError) {
-          console.error('Grammar completion check failed for task', task.id, grammarCheckError.message);
         }
       }
-      
       filteredTasks.push(task);
+    }
+
+    // Batch-update completed tasks
+    for (const taskId of completionUpdates) {
+      await connection.query(
+        `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1 AND status != 'completed'`,
+        [taskId]
+      );
     }
 
     connection.release();
@@ -278,24 +340,6 @@ router.get('/my-tasks', auth, async (req, res) => {
     res.status(500).json({ error: 'Server Error fetching assigned tasks' });
   }
 });
-
-// Helper function to parse level_range string into array of required levels
-function parseRequiredLevels(levelRange) {
-  if (!levelRange) return [1, 2, 3, 4]; // Default to all levels
-  
-  if (levelRange.includes('-')) {
-    // e.g., "1-3" means levels 1, 2, 3
-    const [start, end] = levelRange.split('-').map(Number);
-    const levels = [];
-    for (let i = start; i <= end; i++) {
-      levels.push(i);
-    }
-    return levels;
-  } else {
-    // e.g., "1" means just level 1
-    return [Number(levelRange)];
-  }
-}
 
 // @route   GET api/assignments
 // @desc    Get all tasks assigned by the logged-in teacher (regardless of role)

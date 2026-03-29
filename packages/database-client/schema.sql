@@ -35,7 +35,7 @@ ALTER TABLE institutions ADD COLUMN IF NOT EXISTS welcome_text VARCHAR(200) DEFA
 -- Set NIC College branding (runs idempotently on every boot)
 UPDATE institutions SET
   primary_color   = '#110b65',
-  secondary_color = '#ffffff',
+  secondary_color = '#1a1575',
   logo_url        = '/logos/nic-logo.png',
   welcome_text    = 'Welcome to the NIC Student Portal'
 WHERE subdomain = 'nic';
@@ -273,6 +273,10 @@ ADD COLUMN IF NOT EXISTS speaking_task_part VARCHAR(10) DEFAULT NULL;
 -- Add speaking_parts column for multi-part speaking assignments
 ALTER TABLE assigned_tasks
 ADD COLUMN IF NOT EXISTS speaking_parts JSONB DEFAULT '["1"]'::jsonb;
+
+-- Add level_range for grammar level-based assignments
+ALTER TABLE assigned_tasks
+ADD COLUMN IF NOT EXISTS level_range VARCHAR(10) DEFAULT NULL;
 
 -- Drop the expression-based unique index (causes issues with ON CONFLICT)
 -- Duplicate prevention is handled in application code via try/catch
