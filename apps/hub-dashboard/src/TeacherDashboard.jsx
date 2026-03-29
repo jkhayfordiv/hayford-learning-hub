@@ -1497,42 +1497,25 @@ export default function TeacherDashboard({ user, onLogout }) {
                     )}
 
                     {assignmentForm.assignment_type === 'grammar-practice' && (
-                      <div className="space-y-3">
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Grammar Topic</label>
-                          <select
-                            required
-                            value={assignmentForm.grammar_topic_id}
-                            onChange={e => setAssignmentForm({ ...assignmentForm, grammar_topic_id: e.target.value })}
-                            className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                          >
-                            <option value="">Select a grammar topic</option>
-                            {GRAMMAR_PRACTICE_SECTIONS.map((section) => (
-                              <optgroup key={section.id} label={section.title}>
-                                {section.topics.map((topic) => (
-                                  <option key={topic.topicId} value={topic.topicId}>
-                                    {topic.label}
-                                  </option>
-                                ))}
-                              </optgroup>
-                            ))}
-                          </select>
-                        </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Level Range</label>
-                          <select
-                            required
-                            value={assignmentForm.level_range || '1-4'}
-                            onChange={e => setAssignmentForm({ ...assignmentForm, level_range: e.target.value })}
-                            className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
-                          >
-                            <option value="1">Level 1 Only</option>
-                            <option value="1-2">Levels 1-2</option>
-                            <option value="1-3">Levels 1-3</option>
-                            <option value="1-4">Levels 1-4 (All Levels)</option>
-                          </select>
-                          <p className="text-xs text-slate-500 mt-1">Students must complete all assigned levels for the assignment to be marked as complete.</p>
-                        </div>
+                      <div className="space-y-1">
+                        <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Grammar Topic</label>
+                        <select
+                          required
+                          value={assignmentForm.grammar_topic_id}
+                          onChange={e => setAssignmentForm({ ...assignmentForm, grammar_topic_id: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                        >
+                          <option value="">Select a grammar topic</option>
+                          {GRAMMAR_PRACTICE_SECTIONS.map((section) => (
+                            <optgroup key={section.id} label={section.title}>
+                              {section.topics.map((topic) => (
+                                <option key={topic.topicId} value={topic.topicId}>
+                                  {topic.label}
+                                </option>
+                              ))}
+                            </optgroup>
+                          ))}
+                        </select>
                       </div>
                     )}
 
