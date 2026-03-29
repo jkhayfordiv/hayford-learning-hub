@@ -248,26 +248,32 @@ router.get('/my-tasks', auth, async (req, res) => {
     // Filter out completed grammar-practice assignments based on grammar_progress
     const filteredTasks = [];
     for (const task of tasks) {
+      // Only check grammar completion if it's a grammar assignment with level_range
       if (task.assignment_type === 'grammar-practice' && task.grammar_topic_id && task.level_range) {
-        // Check if student has completed the assigned levels for this topic
-        const [progressRows] = await connection.query(
-          `SELECT passed_levels FROM grammar_progress WHERE user_id = $1 AND error_category = $2`,
-          [student_id, task.grammar_topic_id]
-        );
-        
-        if (progressRows.length > 0 && progressRows[0].passed_levels) {
-          const passedLevels = progressRows[0].passed_levels;
-          const requiredLevels = parseRequiredLevels(task.level_range);
-          const allLevelsCompleted = requiredLevels.every(level => passedLevels.includes(level));
+        try {
+          // Check if student has completed the assigned levels for this topic
+          const [progressRows] = await connection.query(
+            `SELECT passed_levels FROM grammar_progress WHERE user_id = $1 AND error_category = $2`,
+            [student_id, task.grammar_topic_id]
+          );
           
-          if (allLevelsCompleted) {
-            // Mark as completed and skip adding to filtered tasks (remove from to-do list)
-            await connection.query(
-              `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1`,
-              [task.id]
-            );
-            continue; // Don't add to filtered tasks
+          if (progressRows.length > 0 && progressRows[0].passed_levels) {
+            const passedLevels = progressRows[0].passed_levels;
+            const requiredLevels = parseRequiredLevels(task.level_range);
+            const allLevelsCompleted = requiredLevels.every(level => passedLevels.includes(level));
+            
+            if (allLevelsCompleted) {
+              // Mark as completed and skip adding to filtered tasks (remove from to-do list)
+              await connection.query(
+                `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1`,
+                [task.id]
+              );
+              continue; // Don't add to filtered tasks
+            }
           }
+        } catch (grammarCheckError) {
+          // If grammar progress check fails, just include the task anyway
+          console.error('Grammar completion check failed for task', task.id, grammarCheckError.message);
         }
       }
       
