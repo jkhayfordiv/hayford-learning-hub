@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, AlertCircle, BarChart3, FileText } from 'lucide-react';
+import { ArrowLeft, AlertCircle, BarChart3, FileText, BookOpen } from 'lucide-react';
 
 function parseMaybeJson(value) {
   if (!value) return null;
@@ -56,6 +56,7 @@ export default function MyStats() {
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
   const [scores, setScores] = useState([]);
+  const [grammarProgress, setGrammarProgress] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -78,7 +79,23 @@ export default function MyStats() {
       }
     };
 
+    const fetchGrammarProgress = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${apiBase}/api/grammar-progress/my-progress`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (res.ok && data.progress) {
+          setGrammarProgress(data.progress);
+        }
+      } catch (err) {
+        console.error('Failed to fetch grammar progress:', err);
+      }
+    };
+
     fetchMyScores();
+    fetchGrammarProgress();
   }, [apiBase]);
 
   const topWeaknesses = useMemo(() => aggregateWeaknesses(scores), [scores]);
@@ -115,43 +132,85 @@ export default function MyStats() {
       </header>
 
       <main className="max-w-6xl mx-auto px-8 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <section className="lg:col-span-1 bg-white border border-slate-200 rounded-3xl p-6 h-fit">
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2"><BarChart3 size={16} /> Top Weaknesses</h2>
-          {topWeaknesses.length === 0 ? (
-            <p className="text-sm text-slate-500">No diagnostic data yet. Complete more submissions to unlock insights.</p>
-          ) : (
-            <div className="space-y-3">
-              {topWeaknesses.map((item) => {
-                const maxCount = topWeaknesses[0]?.count || 1;
-                const width = Math.max(15, (item.count / maxCount) * 100);
-                return (
-                  <div key={item.tag} className="group">
-                    <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
-                      <div className="flex items-center gap-2">
-                        <span>{item.tag}</span>
-                        {DIAGNOSTIC_TO_TOPIC_MAP[item.tag] && (
-                          <button
-                            onClick={() => {
-                              const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
-                              window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
-                            }}
-                            className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-indigo-100"
-                          >
-                            Practice
-                          </button>
-                        )}
+        <div className="lg:col-span-1 space-y-6">
+          <section className="bg-white border border-slate-200 rounded-3xl p-6">
+            <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2"><BarChart3 size={16} /> Top Weaknesses</h2>
+            {topWeaknesses.length === 0 ? (
+              <p className="text-sm text-slate-500">No diagnostic data yet. Complete more submissions to unlock insights.</p>
+            ) : (
+              <div className="space-y-3">
+                {topWeaknesses.map((item) => {
+                  const maxCount = topWeaknesses[0]?.count || 1;
+                  const width = Math.max(15, (item.count / maxCount) * 100);
+                  return (
+                    <div key={item.tag} className="group">
+                      <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
+                        <div className="flex items-center gap-2">
+                          <span>{item.tag}</span>
+                          {DIAGNOSTIC_TO_TOPIC_MAP[item.tag] && (
+                            <button
+                              onClick={() => {
+                                const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
+                                window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                              }}
+                              className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-indigo-100"
+                            >
+                              Practice
+                            </button>
+                          )}
+                        </div>
+                        <span>{item.count}</span>
                       </div>
-                      <span>{item.count}</span>
+                      <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
+                        <div className="h-full bg-indigo-600" style={{ width: `${width}%` }} />
+                      </div>
                     </div>
-                    <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
-                      <div className="h-full bg-indigo-600" style={{ width: `${width}%` }} />
+                  );
+                })}
+              </div>
+            )}
+          </section>
+
+          <section className="bg-white border border-slate-200 rounded-3xl p-6">
+            <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-4 flex items-center gap-2">
+              <BookOpen size={16} /> Grammar Progress
+            </h2>
+            {grammarProgress.length === 0 ? (
+              <p className="text-sm text-slate-500">No grammar practice yet. Start with Grammar Lab to track your progress.</p>
+            ) : (
+              <div className="space-y-3 max-h-96 overflow-y-auto">
+                {grammarProgress.map((topic) => (
+                  <div key={topic.error_category} className="border border-slate-200 rounded-lg p-3">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-xs font-bold text-slate-900">{topic.error_category}</h3>
+                      <span className="text-[10px] font-black px-2 py-0.5 rounded bg-green-50 text-green-700 border border-green-200">
+                        Level {topic.current_level}
+                      </span>
                     </div>
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4].map((level) => (
+                        <div
+                          key={level}
+                          className={`h-1.5 flex-1 rounded-full ${
+                            topic.passed_levels && topic.passed_levels.includes(level)
+                              ? 'bg-green-500'
+                              : 'bg-slate-200'
+                          }`}
+                          title={`Level ${level}${topic.passed_levels && topic.passed_levels.includes(level) ? ' - Completed' : ''}`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-1">
+                      {topic.passed_levels && topic.passed_levels.length > 0
+                        ? `Completed: Levels ${topic.passed_levels.join(', ')}`
+                        : 'No levels completed yet'}
+                    </p>
                   </div>
-                );
-              })}
-            </div>
-          )}
-        </section>
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
 
         <section className="lg:col-span-2 bg-white border border-slate-200 rounded-3xl overflow-hidden">
           <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/70 flex items-center justify-between">
