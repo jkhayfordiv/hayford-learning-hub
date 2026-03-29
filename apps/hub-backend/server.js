@@ -8,6 +8,10 @@ const { bootstrapDatabase, pool } = require('./db');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// Trust Render's proxy so rate limiting and IP detection work correctly
+// Without this, express-rate-limit throws ERR_ERL_UNEXPECTED_X_FORWARDED_FOR
+app.set('trust proxy', 1);
+
 // ============================================================================
 // SECURITY MIDDLEWARE
 // ============================================================================

@@ -62,6 +62,7 @@ const DEFAULT_ASSIGNMENT_FORM = {
   assignment_type: '', // Require user to select type
   writing_task_type: '1',
   grammar_topic_id: '',
+  level_range: '1',
   speaking_task_part: '1',
   speaking_parts: ['1'],
   instructions: '',
