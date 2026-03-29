@@ -307,6 +307,11 @@ router.post('/submit', auth, async (req, res) => {
         const questions = mastery_check.activity_data.questions;
         let correct = 0;
         
+        // Validate user_response.answers exists and is an array
+        if (!user_response.answers || !Array.isArray(user_response.answers)) {
+          throw new Error('Invalid user_response: answers array is missing or invalid');
+        }
+        
         for (let i = 0; i < questions.length; i++) {
           if (user_response.answers[i] === questions[i].correct_answer) {
             correct++;
@@ -351,6 +356,11 @@ router.post('/submit', auth, async (req, res) => {
         const blanks = mastery_check.activity_data.blanks;
         let correct = 0;
         
+        // Validate user_response.answers exists and is an array
+        if (!user_response.answers || !Array.isArray(user_response.answers)) {
+          throw new Error('Invalid user_response: answers array is missing or invalid');
+        }
+        
         for (let i = 0; i < blanks.length; i++) {
           const userAnswer = (user_response.answers[i] || '').trim().toLowerCase();
           const acceptedAnswers = blanks[i].accepted_answers.map(a => a.toLowerCase());
@@ -368,6 +378,11 @@ router.post('/submit', auth, async (req, res) => {
         // Grade error correction with flexible validation
         const errors = mastery_check.activity_data.errors;
         let correct = 0;
+        
+        // Validate user_response.corrections exists and is an array
+        if (!user_response.corrections || !Array.isArray(user_response.corrections)) {
+          throw new Error('Invalid user_response: corrections array is missing or invalid');
+        }
         
         for (let i = 0; i < errors.length; i++) {
           const userAnswer = (user_response.corrections[i] || '').trim().toLowerCase();
