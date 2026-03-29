@@ -6,11 +6,11 @@
 -- The Socialist Republic (ID 5): Red gradient with black/white/red theme
 -- ============================================================================
 
--- Update NIC International College (ID 4) with blue gradient
+-- Update NIC International College (ID 4) with blue gradient (darker, not white)
 UPDATE institutions 
 SET 
-  primary_color = '#1e3a8a',      -- Deep blue
-  secondary_color = '#1e40af',    -- Slightly lighter blue for gradient
+  primary_color = '#110b65',      -- NIC primary blue (darker)
+  secondary_color = '#0c0847',    -- Even darker blue for gradient (no white)
   logo_url = '/logos/nic-logo.png',
   favicon_url = '/logos/nic-favicon.ico',
   welcome_text = 'NIC International College'
@@ -37,8 +37,8 @@ INSERT INTO institutions (
   'The Socialist Republic',
   'socialist-republic',
   'UTC',
-  '#dc2626',              -- Red (primary)
-  '#991b1b',              -- Darker red for gradient (secondary)
+  '#A91B0D',              -- Apple Red (primary)
+  '#7A1309',              -- Darker Apple Red for gradient (secondary)
   '/logos/ej-logo.png',
   '/logos/ej-logo.png',
   'The Socialist Republic',
