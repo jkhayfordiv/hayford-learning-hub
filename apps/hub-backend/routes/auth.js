@@ -212,6 +212,8 @@ router.post('/login', async (req, res) => {
       favicon_url:     user.favicon_url     || '/favicon.ico',
       welcome_text:    user.welcome_text    || 'Welcome to Hayford Hub'
     };
+    
+    console.log('[DEBUG] Login branding for user', user.email, ':', branding);
 
     // Generate JWT
     const payload = {
