@@ -283,6 +283,7 @@ router.get('/progress', auth, async (req, res) => {
 router.post('/submit', auth, async (req, res) => {
   try {
     const { node_id, activity_type, user_response, mastery_check } = req.body;
+    console.log('[DEBUG] Submit received:', { node_id, activity_type, user_response });
     const connection = await pool.getConnection();
     
     try {
@@ -312,8 +313,16 @@ router.post('/submit', auth, async (req, res) => {
           throw new Error('Invalid user_response: answers array is missing or invalid');
         }
         
+        console.log('[DEBUG] Grading multiple choice:', {
+          totalQuestions: questions.length,
+          userAnswers: user_response.answers,
+          correctAnswers: questions.map(q => q.correct_answer)
+        });
+        
         for (let i = 0; i < questions.length; i++) {
-          if (user_response.answers[i] === questions[i].correct_answer) {
+          const match = user_response.answers[i] === questions[i].correct_answer;
+          console.log(`[DEBUG] Q${i}: "${user_response.answers[i]}" === "${questions[i].correct_answer}" = ${match}`);
+          if (match) {
             correct++;
           }
         }
@@ -321,6 +330,7 @@ router.post('/submit', auth, async (req, res) => {
         score = Math.round((correct / questions.length) * 100);
         passed = score >= 80;
         feedback = `You answered ${correct} out of ${questions.length} questions correctly.`;
+        console.log('[DEBUG] Final score:', { correct, total: questions.length, score, passed });
 
         // Track weaknesses for diagnostic
         if (node_id === 'node-0-diagnostic') {
