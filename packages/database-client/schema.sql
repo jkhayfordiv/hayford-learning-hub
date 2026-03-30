@@ -235,6 +235,17 @@ CREATE TABLE IF NOT EXISTS student_scores (
 ALTER TABLE student_scores
 ADD COLUMN IF NOT EXISTS diagnostic_data JSONB DEFAULT '[]'::jsonb;
 
+-- Freemium: session tracking for monthly writing limit
+ALTER TABLE student_scores
+ADD COLUMN IF NOT EXISTS writing_session_id VARCHAR(64);
+
+CREATE INDEX IF NOT EXISTS idx_student_scores_writing_session
+  ON student_scores (student_id, writing_session_id);
+
+-- Ensure Hayford Academy B2C payments flag is enabled (freemium system)
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS allow_b2c_payments BOOLEAN DEFAULT false;
+UPDATE institutions SET allow_b2c_payments = true WHERE id = 1;
+
 -- ============================================================================
 -- ASSIGNED TASKS TABLE - Institution-Scoped via Class/Student
 -- ============================================================================

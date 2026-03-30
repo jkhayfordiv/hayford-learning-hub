@@ -9,7 +9,8 @@ import {
 const urlParams = new URLSearchParams(window.location.search);
 const tokenFromUrl = urlParams.get('token');
 const taskFromUrl = urlParams.get('task');
-const writingTaskFromUrl = urlParams.get('writingTask'); // New parameter: 'task1', 'task2', or 'both'
+const writingTaskFromUrl = urlParams.get('writingTask');
+const sessionIdFromUrl = urlParams.get('sessionId') || sessionStorage.getItem('writingSessionId') || null; // New parameter: 'task1', 'task2', or 'both'
 const forcedWritingTask = writingTaskFromUrl === 'both' ? 'both' 
   : writingTaskFromUrl === 'task2' ? 'task2' 
   : writingTaskFromUrl === 'task1' ? 'task1'
@@ -871,7 +872,8 @@ export default function App() {
           diagnostic_tags: normalizedFeedback.diagnostic_tags || [],
           grammar_error_counts: normalizedFeedback.grammar_error_counts || {},
           module_type: 'writing',
-          taskId: Number.isInteger(taskIdNum) ? taskIdNum : undefined
+          taskId: Number.isInteger(taskIdNum) ? taskIdNum : undefined,
+          writingSessionId: sessionIdFromUrl
         };
 
         const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
@@ -887,6 +889,15 @@ export default function App() {
         if (saveRes.ok) {
           setSaveMessage("Score Saved to Dashboard!");
           setTimeout(() => setSaveMessage(""), 4000);
+        } else if (saveRes.status === 403) {
+          const errData = await saveRes.json().catch(() => ({}));
+          if (errData.error === 'upgrade_required') {
+            setSaveMessage("");
+            setErrorMessage("You've used your 1 free Writing test this month. Return to the dashboard to upgrade to Premium for unlimited access.");
+          } else {
+            setSaveMessage("");
+            setErrorMessage(errData.message || "Access denied.");
+          }
         } else {
           const contentType = saveRes.headers.get("content-type") || "";
           const errText = await saveRes.text();

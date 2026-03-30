@@ -7,7 +7,7 @@ const { pool } = require('../db');
 // @desc    Submit a new score and AI feedback for a student
 // @access  Private
 router.post('/', auth, async (req, res) => {
-  const { submitted_text, word_count, overall_score, ai_feedback, diagnostic_tags, grammar_error_counts, taskId, module_type } = req.body;
+  const { submitted_text, word_count, overall_score, ai_feedback, diagnostic_tags, grammar_error_counts, taskId, module_type, writingSessionId } = req.body;
   const student_id = req.user.id;
   const type = module_type || 'writing';
 
@@ -37,15 +37,43 @@ router.post('/', auth, async (req, res) => {
       }
     }
 
+    // Free-tier B2C writing limit: 1 session per calendar month
+    const isFreeB2C = req.user.subscription_tier === 'free' && req.user.allow_b2c_payments === true;
+    if (isFreeB2C && type === 'writing') {
+      const [existing] = await connection.query(
+        `SELECT DISTINCT writing_session_id FROM student_scores
+         WHERE student_id = $1
+           AND writing_session_id IS NOT NULL
+           AND DATE_TRUNC('month', completed_at) = DATE_TRUNC('month', CURRENT_DATE)`,
+        [student_id]
+      );
+
+      const existingIds = existing.map(r => r.writing_session_id);
+      const incomingId = writingSessionId || null;
+
+      // Allow if: no sessions yet this month, OR the incoming session is already recorded (same session)
+      const isNewSession = incomingId && !existingIds.includes(incomingId);
+      const hasExistingSession = existingIds.length > 0;
+
+      if (hasExistingSession && isNewSession) {
+        connection.release();
+        return res.status(403).json({
+          error: 'upgrade_required',
+          message: 'You have used your 1 free IELTS Writing test for this month. Upgrade to Premium for unlimited access.'
+        });
+      }
+    }
+
     // If a taskId was provided, mark the assignment as completed (parse to int for DB)
     const taskIdNum = taskId != null ? parseInt(taskId, 10) : null;
 
     // Insert score
+    const sessionIdToStore = (type === 'writing' && writingSessionId) ? writingSessionId : null;
     const [result] = await connection.query(
       `INSERT INTO student_scores 
-       (student_id, module_id, submitted_text, word_count, overall_score, ai_feedback, diagnostic_data, assignment_id) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-      [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || []), taskIdNum]
+       (student_id, module_id, submitted_text, word_count, overall_score, ai_feedback, diagnostic_data, assignment_id, writing_session_id) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+      [student_id, module_id, submitted_text, word_count, overall_score, JSON.stringify(ai_feedback), JSON.stringify(diagnostic_tags || []), taskIdNum, sessionIdToStore]
     );
 
     // PHASE 4: Track identified errors in user_weaknesses table
@@ -160,6 +188,29 @@ router.post('/', auth, async (req, res) => {
   } catch (error) {
     console.error('Save score error:', error);
     res.status(500).json({ error: 'Server Error writing to database', details: error.message });
+  }
+});
+
+// @route   GET api/scores/monthly-usage
+// @desc    Return how many distinct writing sessions the current user has used this calendar month
+// @access  Private
+router.get('/monthly-usage', auth, async (req, res) => {
+  const student_id = req.user.id;
+  try {
+    const connection = await pool.getConnection();
+    const [rows] = await connection.query(
+      `SELECT COUNT(DISTINCT writing_session_id) AS writing_sessions
+       FROM student_scores
+       WHERE student_id = $1
+         AND writing_session_id IS NOT NULL
+         AND DATE_TRUNC('month', completed_at) = DATE_TRUNC('month', CURRENT_DATE)`,
+      [student_id]
+    );
+    connection.release();
+    res.json({ writing_sessions_this_month: parseInt(rows[0]?.writing_sessions || 0, 10) });
+  } catch (error) {
+    console.error('Monthly usage error:', error);
+    res.status(500).json({ error: 'Server Error fetching usage' });
   }
 });
 

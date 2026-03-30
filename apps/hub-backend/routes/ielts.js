@@ -25,6 +25,14 @@ router.post('/evaluate', authenticateToken, upload.array('audio', 3), async (req
   const requestId = `speak-audio-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
 
   try {
+    // Free-tier B2C users cannot access IELTS Speaking
+    if (req.user.subscription_tier === 'free' && req.user.allow_b2c_payments === true) {
+      return res.status(403).json({
+        error: 'upgrade_required',
+        message: 'IELTS Speaking requires a Premium subscription. Upgrade to unlock unlimited Speaking practice.'
+      });
+    }
+
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: 'No audio file uploaded. Send the audio as "audio" field(s) in multipart/form-data.' });
     }

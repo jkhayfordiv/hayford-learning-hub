@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2 } from 'lucide-react';
+import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2, Lock, Star } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 import WordBank from './components/WordBank';
 import StudentFeedbackModal from './components/StudentFeedbackModal';
@@ -89,7 +89,12 @@ export default function Dashboard() {
   const [expandedScoreId, setExpandedScoreId] = useState(null);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
+  const [monthlyWritingUsed, setMonthlyWritingUsed] = useState(false);
+  const [showUpgradeModal, setShowUpgradeModal] = useState(false);
+  const [upgradeModalContext, setUpgradeModalContext] = useState('speaking');
   const dropdownRef = useRef(null);
+
+  const isFreeB2C = (user.subscription_tier === 'free') && (user.allow_b2c_payments === true || user.institution_id === 1);
 
   // New Features: Dark Mode & Join Class
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -153,6 +158,22 @@ export default function Dashboard() {
       setJoinError(err.message);
     } finally {
       setIsJoining(false);
+    }
+  };
+
+  const fetchMonthlyUsage = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      const res = await fetch(`${apiBase}/api/scores/monthly-usage`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setMonthlyWritingUsed(data.writing_sessions_this_month >= 1);
+      }
+    } catch (err) {
+      console.error('Failed to fetch monthly usage', err);
     }
   };
 
@@ -340,6 +361,7 @@ export default function Dashboard() {
 
     fetchScores();
     fetchTasks();
+    if (isFreeB2C) fetchMonthlyUsage();
 
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -836,30 +858,63 @@ export default function Dashboard() {
               <span className="font-black text-slate-900 dark:text-white tracking-tighter text-3xl">{scores.length}</span>
            </div>
            
-           <button
-              onClick={() => window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both`}
-              className="bg-gradient-to-br from-brand-sangria to-[#4A1410] hover:from-[#4A1410] hover:to-[#3A0F0C] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
-           >
-              <div className="flex items-center justify-between mb-2">
+           {isFreeB2C && monthlyWritingUsed ? (
+             <button
+               onClick={() => { setUpgradeModalContext('writing'); setShowUpgradeModal(true); }}
+               className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1 relative overflow-hidden"
+             >
+               <div className="flex items-center justify-between mb-2">
+                 <PenTool size={24} className="text-white/60" />
+                 <span className="flex items-center gap-1 bg-amber-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider"><Lock size={10} /> Premium</span>
+               </div>
+               <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Writing</h3>
+               <p className="text-[10px] text-white/60 mt-1">1 free test used this month</p>
+             </button>
+           ) : (
+             <button
+               onClick={() => {
+                 const sessionId = crypto.randomUUID();
+                 sessionStorage.setItem('writingSessionId', sessionId);
+                 window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both&sessionId=${sessionId}`;
+               }}
+               className="bg-gradient-to-br from-brand-sangria to-[#4A1410] hover:from-[#4A1410] hover:to-[#3A0F0C] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+             >
+               <div className="flex items-center justify-between mb-2">
                  <PenTool size={24} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>
-              </div>
-              <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Writing</h3>
-              <p className="text-[10px] text-white/80 mt-1">Get instant band scores</p>
-           </button>
+                 {isFreeB2C && <span className="text-[10px] font-black text-white/70 tracking-widest uppercase">1 free/month</span>}
+                 {!isFreeB2C && <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>}
+               </div>
+               <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Writing</h3>
+               <p className="text-[10px] text-white/80 mt-1">Get instant band scores</p>
+             </button>
+           )}
 
            {user.has_ielts_speaking !== false && (
-             <button
-                onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
-                className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
-             >
-                <div className="flex items-center justify-between mb-2">
+             isFreeB2C ? (
+               <button
+                 onClick={() => { setUpgradeModalContext('speaking'); setShowUpgradeModal(true); }}
+                 className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+               >
+                 <div className="flex items-center justify-between mb-2">
+                   <MessageSquare size={24} className="text-white/60" />
+                   <span className="flex items-center gap-1 bg-amber-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider"><Lock size={10} /> Premium</span>
+                 </div>
+                 <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Speaking</h3>
+                 <p className="text-[10px] text-white/60 mt-1">Upgrade to unlock</p>
+               </button>
+             ) : (
+               <button
+                 onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
+                 className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+               >
+                 <div className="flex items-center justify-between mb-2">
                    <MessageSquare size={24} className="text-white/90 group-hover:text-white transition-colors" />
                    <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Practice</span>
-                </div>
-                <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Speaking</h3>
-                <p className="text-[10px] text-white/80 mt-1">AI examiner simulation</p>
-             </button>
+                 </div>
+                 <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Speaking</h3>
+                 <p className="text-[10px] text-white/80 mt-1">AI examiner simulation</p>
+               </button>
+             )
            )}
 
            {user.has_grammar_world !== false && (
@@ -889,7 +944,7 @@ export default function Dashboard() {
            </button>
 
            {/* Conditional Upgrade to Premium Button - Only for B2C institutions on free tier */}
-           {user.allow_b2c_payments && user.subscription_tier === 'free' && (
+           {isFreeB2C && (
              <button
                 onClick={handleUpgradeToPremium}
                 disabled={isUpgrading}
@@ -1293,6 +1348,72 @@ export default function Dashboard() {
           onMarkAsRead={handleMarkFeedbackAsRead}
         />
       )}
+
+      {/* Premium Upgrade Modal */}
+      {showUpgradeModal && (
+        <PremiumUpgradeModal
+          context={upgradeModalContext}
+          isUpgrading={isUpgrading}
+          onUpgrade={handleUpgradeToPremium}
+          onClose={() => setShowUpgradeModal(false)}
+        />
+      )}
+    </div>
+  );
+}
+
+function PremiumUpgradeModal({ context, isUpgrading, onUpgrade, onClose }) {
+  const isSpeaking = context === 'speaking';
+  return (
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-white dark:bg-slate-900 border dark:border-slate-800 rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+        <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 text-center text-white relative overflow-hidden">
+          <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/30">
+            <Star size={32} className="text-white" />
+          </div>
+          <h3 className="text-2xl font-black tracking-tight mb-1">Upgrade to Premium</h3>
+          <p className="text-white/80 text-sm font-medium">Unlock your full IELTS potential</p>
+        </div>
+        <div className="p-8">
+          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 mb-6">
+            <p className="text-sm font-bold text-amber-900 dark:text-amber-300 text-center">
+              {isSpeaking
+                ? 'IELTS Speaking is a Premium feature.'
+                : 'You\'ve used your 1 free Writing test this month.'}
+            </p>
+          </div>
+          <ul className="space-y-3 mb-6">
+            {[
+              'Unlimited IELTS Writing tests every month',
+              'Full IELTS Speaking simulator with AI examiner',
+              'Detailed band score breakdowns',
+              'Grammar & error diagnostics',
+            ].map((item) => (
+              <li key={item} className="flex items-center gap-3 text-sm font-medium text-slate-700 dark:text-slate-300">
+                <CheckCircle2 size={16} className="text-green-500 shrink-0" />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <button
+            onClick={onUpgrade}
+            disabled={isUpgrading}
+            className="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-500 text-white font-black py-4 rounded-2xl transition-all shadow-lg flex items-center justify-center gap-2 mb-3"
+          >
+            {isUpgrading ? (
+              <><Loader2 size={18} className="animate-spin" /> Processing...</>
+            ) : (
+              <><CreditCard size={18} /> Upgrade for $9.99/month</>
+            )}
+          </button>
+          <button
+            onClick={onClose}
+            className="w-full text-slate-500 dark:text-slate-400 font-bold py-2 text-sm hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
+          >
+            Maybe Later
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
