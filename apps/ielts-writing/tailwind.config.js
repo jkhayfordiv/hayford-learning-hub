@@ -23,6 +23,10 @@ export default {
           900: '#134e4a',
           950: '#042f2e',
           sangria: '#800020',
+          primary: ({ opacityValue }) =>
+            opacityValue !== undefined
+              ? `rgba(var(--brand-primary-rgb), ${opacityValue})`
+              : `rgb(var(--brand-primary-rgb))`,
         },
         crimson: {
           50:  '#fff0f0',

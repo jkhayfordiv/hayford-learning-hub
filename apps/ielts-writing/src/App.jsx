@@ -33,6 +33,25 @@ if (tokenFromUrl || taskMetaFromUrl) {
   window.history.replaceState({}, document.title, window.location.pathname);
 }
 
+// ── Institution Branding ──────────────────────────────────────────────────────
+const _hexToRgb = (hex) => {
+  const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return r ? `${parseInt(r[1],16)}, ${parseInt(r[2],16)}, ${parseInt(r[3],16)}` : '128, 0, 32';
+};
+const _darkenHex = (hex, amt = 50) => {
+  const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!r) return '#1a0008';
+  return `#${[parseInt(r[1],16),parseInt(r[2],16),parseInt(r[3],16)].map(v=>Math.max(0,v-amt).toString(16).padStart(2,'0')).join('')}`;
+};
+const _branding = (() => { try { return JSON.parse(localStorage.getItem('branding') || '{}'); } catch { return {}; } })();
+const BRAND_PRIMARY   = _branding.primary_color   || '#800020';
+const BRAND_SECONDARY = _branding.secondary_color || '#F7E7CE';
+const BRAND_DARK      = _darkenHex(BRAND_PRIMARY);
+document.documentElement.style.setProperty('--brand-primary-rgb', _hexToRgb(BRAND_PRIMARY));
+document.documentElement.style.setProperty('--brand-primary',     BRAND_PRIMARY);
+document.documentElement.style.setProperty('--brand-secondary',   BRAND_SECONDARY);
+// ─────────────────────────────────────────────────────────────────────────────
+
 const TASK_1_PROMPTS = [
   {
     id: 1,
@@ -138,18 +157,19 @@ const TASK_1_PROMPTS = [
     title: "Global Temperatures",
     instruction: "The graph shows changes in global surface temperatures relative to the average from 1880 to 2020.",
     data: [
-      { year: '1880', v1: -0.1, v2: -0.2, v3: -0.15 },
-      { year: '1920', v1: -0.15, v2: -0.1, v3: -0.12 },
-      { year: '1960', v1: 0.05, v2: 0.0, v3: 0.02 },
-      { year: '2000', v1: 0.4, v2: 0.35, v3: 0.38 },
-      { year: '2020', v1: 0.9, v2: 0.85, v3: 0.88 }
+      { year: '1880', v1: -0.15, v2: -0.20, v3: -0.18 },
+      { year: '1920', v1: -0.10, v2: -0.05, v3: -0.08 },
+      { year: '1960', v1: 0.10, v2: -0.10, v3: 0.00 },
+      { year: '1980', v1: 0.30, v2: 0.08, v3: 0.20 },
+      { year: '2000', v1: 0.60, v2: 0.35, v3: 0.50 },
+      { year: '2020', v1: 1.10, v2: 0.70, v3: 0.90 }
     ],
-    labels: { l1: "Land", l2: "Ocean", l3: "Average", yUnit: "Temperature (°C)" },
+    labels: { l1: "Land", l2: "Ocean", l3: "Global Avg", yUnit: "Temp. anomaly (°C)" },
     graphic: "line"
   },
   { id: 8, type: "Mixed Charts", title: "Global Energy Consumption by Fuel Type", instruction: "The pie charts compare the world's energy consumption by fuel type in 1998 and 2018.", graphic: "mixed", panels: [{ title: "1998", graphic: "pie", data: [{ label: 'Oil', value: 38, color: '#3366cc' }, { label: 'Coal', value: 23, color: '#dc3912' }, { label: 'Gas', value: 22, color: '#ff9900' }, { label: 'Nuclear', value: 6, color: '#109618' }, { label: 'Renewables', value: 11, color: '#990099' }] }, { title: "2018", graphic: "pie", data: [{ label: 'Oil', value: 33, color: '#3366cc' }, { label: 'Coal', value: 27, color: '#dc3912' }, { label: 'Gas', value: 24, color: '#ff9900' }, { label: 'Nuclear', value: 4, color: '#109618' }, { label: 'Renewables', value: 12, color: '#990099' }] }] },
   { id: 9, type: "Table", title: "Mobile Phone Ownership", instruction: "The table shows the percentage of people owning a mobile phone in five countries in 2005, 2010, and 2015.", data: [{ country: 'USA', y1: 74, y2: 85, y3: 92 }, { country: 'UK', y1: 70, y2: 82, y3: 90 }, { country: 'China', y1: 32, y2: 65, y3: 88 }, { country: 'India', y1: 12, y2: 40, y3: 72 }, { country: 'Brazil', y1: 28, y2: 55, y3: 80 }], headers: ["Country", "2005 (%)", "2010 (%)", "2015 (%)"], graphic: "table" },
-  { id: 10, type: "Line Graph", title: "Unemployment Rates", instruction: "The graph shows unemployment rates in the US and Japan between 2000 and 2010.", data: [{ year: '2000', v1: 4.0, v2: 4.8 }, { year: '2002', v1: 5.8, v2: 5.4 }, { year: '2004', v1: 5.5, v2: 4.7 }, { year: '2006', v1: 4.6, v2: 4.1 }, { year: '2008', v1: 5.8, v2: 4.0 }, { year: '2010', v1: 9.6, v2: 5.1 }], labels: { l1: "USA", l2: "Japan", l3: "", yUnit: "Unemployment Rate (%)" }, graphic: "line" },
+  { id: 10, type: "Line Graph", title: "Unemployment Rates", instruction: "The graph shows unemployment rates in the USA, Japan, and Germany between 2000 and 2010.", data: [{ year: '2000', v1: 4.0, v2: 4.8, v3: 7.9 }, { year: '2002', v1: 5.8, v2: 5.4, v3: 8.7 }, { year: '2004', v1: 5.5, v2: 4.7, v3: 10.5 }, { year: '2006', v1: 4.6, v2: 4.1, v3: 9.8 }, { year: '2008', v1: 5.8, v2: 4.0, v3: 7.5 }, { year: '2010', v1: 9.6, v2: 5.1, v3: 7.0 }], labels: { l1: "USA", l2: "Japan", l3: "Germany", yUnit: "Unemployment Rate (%)" }, graphic: "line" },
   { id: 11, type: "Process", title: "Drinking Water Purification", instruction: "The diagram shows how river water is treated and distributed as safe drinking water to households.", data: ["River Intake", "Screening (Remove Debris)", "Sedimentation Tank", "Chemical Treatment", "Sand & Carbon Filtration", "Chlorine Disinfection", "Storage Reservoir", "Household Supply"], graphic: "process" },
   { id: 12, type: "Bar Chart", title: "Cinema Attendance by Age Group", instruction: "The bar chart shows the percentage of people who attended the cinema at least once a month in five age groups in 2007, 2012, and 2017.", data: [{ label: '14-24', v1: 55, v2: 50, v3: 42 }, { label: '25-34', v1: 28, v2: 32, v3: 36 }, { label: '35-44', v1: 18, v2: 20, v3: 26 }, { label: '45-54', v1: 12, v2: 14, v3: 18 }, { label: '55+', v1: 7, v2: 9, v3: 13 }], labels: { legend1: "2007", legend2: "2012", legend3: "2017", yUnit: "% attending monthly" }, graphic: "bar" },
   { id: 13, type: "Table", title: "International Student Numbers", instruction: "The table shows the number of international students (thousands) in four countries in 1990, 2000, and 2010.", data: [{ country: 'USA', y1: 300, y2: 450, y3: 600 }, { country: 'UK', y1: 150, y2: 270, y3: 400 }, { country: 'Australia', y1: 50, y2: 130, y3: 250 }, { country: 'Canada', y1: 40, y2: 110, y3: 200 }], headers: ["Country", "1990 (000s)", "2000 (000s)", "2010 (000s)"], graphic: "table" },
@@ -913,6 +933,7 @@ export default function App() {
     setShowWarning(false);
     setErrorMessage("");
     setSaveMessage("");
+    setShowFocusMenu(true);
   };
 
   const handleTextChange = (e) => {
@@ -1079,11 +1100,11 @@ export default function App() {
       </header>
 
       <div className="px-6 pt-4 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-md mx-auto bg-brand-sangria/10 border border-brand-sangria/20 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-sangria text-center">
+        <div className="max-w-md mx-auto bg-brand-primary/10 border border-brand-primary/20 rounded-xl px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-primary text-center">
           {writingTask === 'both' ? (
             <div className="flex items-center justify-center gap-2">
               <span>Assignment: IELTS Both Tasks</span>
-              <span className="bg-brand-sangria text-white px-2 py-0.5 rounded text-[10px]">
+              <span className="bg-brand-primary text-white px-2 py-0.5 rounded text-[10px]">
                 {currentTaskInBothMode === 'task1' ? 'Task 1 Active' : 'Task 2 Active'}
               </span>
             </div>
@@ -1111,7 +1132,7 @@ export default function App() {
         ) : (
           <div className="h-full flex flex-col lg:flex-row">
             {/* Visual Panel */}
-            <div className="w-full lg:w-1/2 p-6 overflow-y-auto border-r bg-gradient-to-br from-brand-sangria to-[#4A1410] text-white scrollbar-hide">
+            <div className="w-full lg:w-1/2 p-6 overflow-y-auto border-r text-white scrollbar-hide" style={{ background: `linear-gradient(to bottom right, ${BRAND_PRIMARY}, ${BRAND_DARK})` }}>
               <div className="max-w-xl mx-auto">
                 <div className="flex items-center gap-2 text-white/80 mb-2">{getIcon(currentPrompt.type)}<span className="font-black uppercase tracking-widest text-[10px]">{currentPrompt.type}</span></div>
                 <h2 className="text-2xl font-black mb-4 text-white tracking-tight">{currentPrompt.title}</h2>
@@ -1120,11 +1141,11 @@ export default function App() {
                 )}
                 {actualCurrentTask === 'task1' ? (
                   <div className="bg-white border border-white/20 shadow-sm rounded-2xl overflow-hidden mb-8 min-h-[350px] flex flex-col">
-                    <div className="bg-brand-sangria/15 border-b border-brand-sangria/25 px-4 py-2 flex justify-between items-center">
-                      <span className="text-[10px] font-black text-brand-sangria/70 tracking-widest uppercase">Visual Data View</span>
+                    <div className="bg-brand-primary/15 border-b border-brand-primary/25 px-4 py-2 flex justify-between items-center">
+                      <span className="text-[10px] font-black text-brand-primary/70 tracking-widest uppercase">Visual Data View</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] bg-crimson-100 text-[#A51C30] px-2 py-0.5 rounded font-bold">TASK 1</span>
-                        <button onClick={() => setExpandedChart(true)} className="text-brand-sangria/50 hover:text-brand-sangria transition-colors" title="Expand chart"><Maximize2 size={14} /></button>
+                        <span className="text-[10px] bg-crimson-100 text-brand-primary px-2 py-0.5 rounded font-bold">TASK 1</span>
+                        <button onClick={() => setExpandedChart(true)} className="text-brand-primary/50 hover:text-brand-primary transition-colors" title="Expand chart"><Maximize2 size={14} /></button>
                       </div>
                     </div>
                     <div className="flex-1 flex items-center justify-center p-4 cursor-zoom-in" onClick={() => setExpandedChart(true)}>
@@ -1136,7 +1157,7 @@ export default function App() {
                 ) : (
                   <div className="mb-8">
                     <div className="bg-white/10 border-2 border-white/20 rounded-2xl p-8 mb-4 text-center">
-                      <div className="inline-block px-3 py-1 bg-white text-[#7a121f] text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Task 2 Essay Question</div>
+                      <div className="inline-block px-3 py-1 bg-white text-brand-primary text-[10px] font-black uppercase tracking-widest rounded-full mb-4">Task 2 Essay Question</div>
                       <p className="text-lg font-bold text-white leading-relaxed">{currentPrompt.instruction}</p>
                     </div>
                     <div className="bg-white/10 border border-white/20 rounded-xl p-4 text-sm text-white/90">
@@ -1174,9 +1195,9 @@ export default function App() {
       {expandedChart && (
         <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[150] flex items-center justify-center p-6" onClick={() => setExpandedChart(false)}>
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden" onClick={e => e.stopPropagation()}>
-            <div className="bg-brand-sangria/10 border-b border-brand-sangria/20 px-6 py-4 flex justify-between items-center">
+            <div className="bg-brand-primary/10 border-b border-brand-primary/20 px-6 py-4 flex justify-between items-center">
               <div>
-                <p className="text-[10px] font-black text-brand-sangria/70 uppercase tracking-widest mb-0.5">{currentPrompt.type}</p>
+                <p className="text-[10px] font-black text-brand-primary/70 uppercase tracking-widest mb-0.5">{currentPrompt.type}</p>
                 <h3 className="font-black text-slate-900 text-lg">{currentPrompt.title}</h3>
               </div>
               <button onClick={() => setExpandedChart(false)} className="text-slate-400 hover:text-slate-900 transition-colors"><XCircle size={24} /></button>
@@ -1226,70 +1247,241 @@ function PromptList({ onSelect, prompts, writingTask }) {
 
 const FOCUS_DATA = {
   task1: [
-    { title: "The Magic Overview", lesson: "Never just list data. Your second paragraph must be 2 sentences summarising the biggest main trend and the most obvious difference. No numbers in the overview!", icon: <Eye size={22} /> },
-    { title: "Grouping Data", lesson: "Don't write about every single year. Put the things that went UP in one paragraph, and the things that went DOWN in another.", icon: <Layout size={22} /> },
-    { title: "Vocabulary of Change", lesson: "Stop using 'went up' and 'went down'. Use advanced verbs: plummeted, surged, plateaued, or fluctuated.", icon: <BookOpen size={22} /> },
-    { title: "Comparing", lesson: "Use contrasting words. Connect two ideas using 'while', 'whereas', or 'in contrast to' for a stronger response.", icon: <BarIcon size={22} /> },
-    { title: "Tense & Time", lesson: "Look at the dates! Past years = Past Tense. Future years = Future Passive (e.g., 'is projected to increase').", icon: <Clock size={22} /> },
+    {
+      title: "The Magic Overview",
+      teaser: "The #1 reason students lose Task Achievement marks.",
+      icon: <Eye size={22} />,
+      body: [
+        "Your overview is the most important part of your response. Examiners look for it immediately. Without a clear overview, your Task Achievement score cannot exceed Band 5.",
+        "Your overview should be a short paragraph (2 sentences) placed after your introduction. It must capture the BIGGEST overall trend and the MOST STRIKING feature — without using specific numbers. Numbers belong in your body paragraphs.",
+        "Ask yourself: What is the main direction? (rising, falling, stable?) What is the biggest difference? (highest vs. lowest category?) Is there anything unusual? (a sudden drop, one category behaving differently?)"
+      ],
+      before: "The chart shows that in 2000, Sales were 500, and by 2020, they had increased to 1,200 while Region B stayed low.",
+      after: "Overall, it is clear that sales figures rose significantly across all three regions, with Region A consistently recording the highest values throughout the period.",
+    },
+    {
+      title: "Grouping Data",
+      teaser: "Stop writing year by year — write by trend instead.",
+      icon: <Layout size={22} />,
+      body: [
+        "Most students describe charts year by year: '...in 2000 it was X, in 2005 it was Y, in 2010 it was Z...' This produces a list, not an analysis — and keeps your score at Band 5.",
+        "Instead, group your data by TREND. Ask: What went up? What went down? What stayed the same? Write one paragraph for each group. This shows the examiner you can analyze data, not just copy it.",
+        "For tables, group by size (high countries vs. low countries). For bar charts, group by direction of change. For line graphs, group by which lines rose together and which diverged. Always support each group with specific figures as evidence."
+      ],
+      before: "In 2000, Country A was 45%. In 2005 it was 50%. In 2010 it rose to 60%. Country B was 30% in 2000...",
+      after: "Countries A and B showed a steady upward trend over the period, rising from 45% and 30% respectively in 2000 to 60% and 48% by 2010.",
+    },
+    {
+      title: "Vocabulary of Change",
+      teaser: "Ban 'went up' and 'went down' from your writing forever.",
+      icon: <BookOpen size={22} />,
+      body: [
+        "Lexical Resource is 25% of your score. Using the same two verbs repeatedly signals limited vocabulary. You need to demonstrate a range of language for movement and change.",
+        "Rapid increase: surged, skyrocketed, shot up, soared. Gradual increase: rose steadily, climbed, edged upward. Rapid decrease: plummeted, dropped sharply, collapsed. Gradual decrease: declined gradually, dipped slightly, eased downward. No change: remained stable, plateaued, levelled off.",
+        "You can also use nouns for variety: 'there was a sharp rise in...' / 'a gradual decline was observed in...' / 'the figure experienced a significant surge.' Mixing verbs and noun phrases makes your writing more sophisticated and earns higher marks."
+      ],
+      before: "The number went up quickly from 2000 to 2010, then went down slowly after that.",
+      after: "The figure surged between 2000 and 2010, before declining gradually over the following decade.",
+    },
+    {
+      title: "Comparing & Contrasting",
+      teaser: "One linking word can lift your Coherence score by a full band.",
+      icon: <BarIcon size={22} />,
+      body: [
+        "Task 1 is fundamentally about comparison. Examiners reward students who connect data points clearly within a single sentence rather than listing them separately.",
+        "Key contrast connectors: while, whereas, in contrast, by comparison, on the other hand, however. Key similarity connectors: similarly, likewise, in the same way. Use these to link two data points in one sentence.",
+        "The strongest comparison structure is: [Trend A + data] + contrast word + [Trend B + data]. You can also use 'compared to X, Y was significantly higher/lower.' Aim to have at least one clear comparison sentence in every body paragraph."
+      ],
+      before: "Country A's rate was 80%. Country B's rate was 20%. They were very different.",
+      after: "Country A's rate reached 80%, whereas Country B remained considerably lower at just 20%, representing a four-fold difference.",
+    },
+    {
+      title: "Tense & Time",
+      teaser: "Mixing up tenses is an instant Band 5 ceiling — easy to fix.",
+      icon: <Clock size={22} />,
+      body: [
+        "Many students mix tenses when describing charts. This is penalized under Grammatical Range and Accuracy. The rule is simple: look at the dates on the chart and follow them exactly.",
+        "Past dates only (e.g. 2000–2020): use past simple throughout — 'Sales increased.' Past + present data: use past simple for old data and present perfect for recent — 'Sales grew steadily and have now reached...' Future projections (e.g. 'forecast to 2030'): use future passive — 'Sales are projected to rise / are expected to increase.'",
+        "For static charts showing a single point in time (e.g. a pie chart for 2023): use present simple — 'Agriculture accounts for 40%.' Never write 'accounted' for a present-day pie chart."
+      ],
+      before: "In 2010, the rate increases to 5% and is projected to increase in 2025 because it was rising.",
+      after: "In 2010, the rate rose to 5% and is projected to reach 8% by 2025, continuing its upward trajectory.",
+    },
   ],
   task2: [
-    { title: "Deconstructing", lesson: "Read the question twice. Are they asking for your opinion, or just advantages and disadvantages? Answer exactly what is asked.", icon: <BookOpen size={22} /> },
-    { title: "The 4-Sentence Intro", lesson: "1. Hook. 2. Paraphrase prompt. 3. State your thesis. 4. Outline your two main points.", icon: <FileText size={22} /> },
-    { title: "The PEEL Paragraph", lesson: "Point (Topic sentence), Evidence (Example), Explain (Why it matters), Link (Back to the question).", icon: <Layout size={22} /> },
-    { title: "Academic Tone", lesson: "Instead of 'I think pollution is bad,' write 'It is widely recognized that pollution has severe consequences.'", icon: <Trophy size={22} /> },
-    { title: "The 2-Min Conclusion", lesson: "Never introduce new ideas at the end. Simply paraphrase your thesis and summarize your main points.", icon: <CheckCircle2 size={22} /> },
+    {
+      title: "Deconstruct the Question",
+      teaser: "Answering the wrong question type will cap you at Band 5 — no matter how good your English is.",
+      icon: <BookOpen size={22} />,
+      body: [
+        "Every mark in Task Achievement depends on identifying and answering the correct question TYPE. There are three main types, each requiring a different approach.",
+        "Opinion essay ('Do you agree or disagree?'): You MUST give a clear personal opinion in your introduction AND conclusion. Sitting on the fence loses marks. Discussion essay ('Discuss both views and give your opinion'): Write one paragraph for EACH side, then state your view clearly. Problem/Solution or Advantage/Disadvantage: Do NOT give your personal opinion unless the question specifically asks for it.",
+        "Before writing, underline the key instruction words. Then ask: Am I being asked for MY view, or to DESCRIBE both sides? This 30-second check can prevent a major structural error that no amount of good vocabulary can fix."
+      ],
+      before: "'Do you agree or disagree?' → Student writes: 'There are many advantages and disadvantages of social media...' (wrong structure — that's a discussion format).",
+      after: "'Do you agree or disagree?' → 'I strongly agree that the negative effects of social media outweigh the positives, primarily due to its impact on mental health and social behavior.'",
+    },
+    {
+      title: "The 4-Sentence Introduction",
+      teaser: "A perfect introduction takes under 5 minutes and follows the same formula every time.",
+      icon: <FileText size={22} />,
+      body: [
+        "A strong Task 2 introduction contains exactly four sentences. Its purpose is to show the examiner you understand the topic and have a clear position — not to impress with complex vocabulary.",
+        "Sentence 1 — Hook: A broad, general statement about the topic. Do NOT copy the question word-for-word. Sentence 2 — Paraphrase: Restate the question in your own words using synonyms. Sentence 3 — Thesis: State your clear opinion or position directly. Sentence 4 — Outline: Briefly signal your two main body paragraph ideas.",
+        "Common mistake: Students spend 10+ minutes on the introduction trying to write something 'perfect.' Keep it structured and move on. The body paragraphs are where you earn the majority of your marks."
+      ],
+      before: "Technology is everywhere. Many people think technology is making people less social. I think this is true. I will talk about this.",
+      after: "The rapid growth of digital technology has fundamentally altered the way people communicate. It is widely debated whether this shift has reduced meaningful face-to-face interaction. While technology limits some social behaviors, I believe it primarily creates new forms of connection. This essay will examine its impact on traditional socializing and the rise of digital communities.",
+    },
+    {
+      title: "The PEEL Paragraph",
+      teaser: "Every body paragraph should follow the same four-part structure — every single time.",
+      icon: <Layout size={22} />,
+      body: [
+        "PEEL gives your body paragraphs a clear, logical structure that examiners reward. Without it, paragraphs often lack development or feel like a list of unconnected points.",
+        "P — Point: Your topic sentence. State ONE clear idea only. (1 sentence). E — Evidence: A specific example, statistic, or scenario to support it. (1–2 sentences). E — Explain: WHY this evidence supports your argument. This is the most important step — many students skip it. (1–2 sentences). L — Link: A short sentence connecting back to the overall question or your thesis. (1 sentence).",
+        "Aim for 5–7 sentences per body paragraph. Two well-developed PEEL paragraphs score much higher than three short, underdeveloped ones."
+      ],
+      before: "Technology makes people less social. People use phones all the time. This is bad for society.",
+      after: "One significant consequence of widespread technology use is a reduction in face-to-face communication. Studies suggest that average household conversation time has dropped as screen use has increased. This matters because strong social bonds are typically formed through direct interaction — their erosion may lead to increased isolation. It is therefore evident that technology poses a genuine threat to traditional social behavior.",
+    },
+    {
+      title: "Academic Tone",
+      teaser: "Writing the way you speak is the fastest way to stay at Band 5.",
+      icon: <Trophy size={22} />,
+      body: [
+        "Academic register is assessed under Lexical Resource. Informal expressions signal to the examiner that you are not ready for academic writing. The fix is straightforward: replace casual phrases with formal equivalents.",
+        "'I think...' → 'It could be argued that...' / 'It is widely held that...'. 'A lot of people...' → 'A significant proportion of the population...'. 'Bad for society' → 'detrimental to society' / 'has adverse effects on...'. 'Get better' → 'improve significantly'. 'Because of this' → 'As a result' / 'Consequently'. 'I will talk about...' → 'This essay will examine...'.",
+        "The test: read each sentence and ask — 'Would I write this in a formal report?' If no, rewrite it. You do not need rare vocabulary. Clear, precise, formal language scores higher than complex words used incorrectly."
+      ],
+      before: "I think a lot of young people are bad at saving money because they buy lots of things they don't need.",
+      after: "It could be argued that a considerable proportion of young adults struggle with financial management as a result of impulsive consumer behavior.",
+    },
+    {
+      title: "The 2-Minute Conclusion",
+      teaser: "Your conclusion should take 2 minutes and contain absolutely nothing new.",
+      icon: <CheckCircle2 size={22} />,
+      body: [
+        "The conclusion is the most frequently mishandled section of a Task 2 essay. Two common mistakes: (1) introducing a brand new idea or statistic, and (2) skipping the conclusion entirely due to time pressure. Both significantly lower your score.",
+        "A strong conclusion has two sentences maximum. Sentence 1: Restate your thesis in NEW words — do not copy your introduction. Sentence 2: Briefly summarize your two main supporting points. That is all.",
+        "Never start with 'In conclusion, I have discussed...' — this is weak and wastes words. Use: 'In conclusion,' / 'To summarize,' / 'Overall,' / 'In summary,' — then go directly to your point. Practice writing your conclusion in under 2 minutes so you never run out of time."
+      ],
+      before: "In conclusion, I have discussed technology and social media. I think technology is bad. It makes people lonely. Also, we should limit screen time for young people.",
+      after: "In conclusion, while technology offers undeniable benefits, it is my firm view that its negative impact on social behavior outweighs these advantages. By eroding face-to-face communication and fostering screen dependency, it poses a long-term risk to meaningful human connection.",
+    },
   ],
 };
 
-function FocusCard({ title, lesson, icon }) {
-  const [revealed, setRevealed] = useState(false);
+function FocusCard({ title, teaser, icon, onSelect }) {
   return (
-    <div
-      className={`cursor-pointer rounded-2xl border-2 p-6 transition-all duration-300 select-none ${
-        revealed
-          ? 'bg-brand-sangria border-brand-sangria shadow-xl scale-[1.02]'
-          : 'bg-white border-slate-200 hover:border-brand-sangria/40 hover:shadow-lg'
-      }`}
-      onMouseEnter={() => setRevealed(true)}
-      onMouseLeave={() => setRevealed(false)}
-      onClick={() => setRevealed(r => !r)}
+    <button
+      onClick={onSelect}
+      className="w-full text-left cursor-pointer rounded-2xl border-2 p-6 bg-white border-slate-200 hover:border-brand-primary/50 hover:shadow-xl transition-all duration-200 group active:scale-[0.98]"
     >
-      <div className={`mb-4 transition-colors ${revealed ? 'text-white/80' : 'text-brand-sangria'}`}>{icon}</div>
-      <h3 className={`font-black text-sm mb-2 uppercase tracking-tight ${revealed ? 'text-white' : 'text-slate-900'}`}>{title}</h3>
-      {revealed
-        ? <p className="text-sm text-white/90 leading-relaxed">{lesson}</p>
-        : <p className="text-xs text-slate-400 font-medium">Hover to reveal tip →</p>
-      }
+      <div className="mb-4 text-brand-primary transition-colors">{icon}</div>
+      <h3 className="font-black text-sm mb-2 uppercase tracking-tight text-slate-900 group-hover:text-brand-primary transition-colors">{title}</h3>
+      <p className="text-xs text-slate-500 leading-relaxed">{teaser}</p>
+      <div className="mt-4 flex items-center gap-1 text-brand-primary/70 text-xs font-bold">
+        <BookOpen size={12} /> Read lesson →
+      </div>
+    </button>
+  );
+}
+
+function FocusLessonModal({ lesson, onClose, onStartWriting }) {
+  return (
+    <div className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-[300] flex items-center justify-center p-4 sm:p-8" onClick={onClose}>
+      <div
+        className="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="sticky top-0 bg-white border-b border-slate-100 px-8 py-5 flex justify-between items-center rounded-t-3xl z-10">
+          <div className="flex items-center gap-3">
+            <div className="text-brand-primary">{lesson.icon}</div>
+            <h3 className="font-black text-slate-900 text-lg tracking-tight">{lesson.title}</h3>
+          </div>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition-colors font-bold text-sm flex items-center gap-1">
+            <XCircle size={20} />
+          </button>
+        </div>
+        <div className="px-8 py-6 space-y-4">
+          {lesson.body.map((para, i) => (
+            <p key={i} className="text-sm text-slate-700 leading-relaxed">{para}</p>
+          ))}
+          <div className="mt-6 rounded-2xl overflow-hidden border border-slate-200">
+            <div className="bg-red-50 px-5 py-4 border-b border-slate-200">
+              <p className="text-[10px] font-black uppercase tracking-widest text-red-500 mb-1">✕ Weak Example</p>
+              <p className="text-sm text-red-800 italic leading-relaxed">"{lesson.before}"</p>
+            </div>
+            <div className="bg-green-50 px-5 py-4">
+              <p className="text-[10px] font-black uppercase tracking-widest text-green-600 mb-1">✓ Strong Example</p>
+              <p className="text-sm text-green-800 leading-relaxed">"{lesson.after}"</p>
+            </div>
+          </div>
+        </div>
+        <div className="px-8 pb-8 flex flex-col sm:flex-row gap-3 items-center justify-between">
+          <button onClick={onClose} className="text-slate-500 hover:text-slate-700 text-sm font-bold flex items-center gap-2 transition-colors">
+            <ArrowLeft size={16} /> Back to strategies
+          </button>
+          <button
+            onClick={onStartWriting}
+            className="bg-slate-900 hover:bg-black text-white px-8 py-3.5 rounded-xl font-black text-sm uppercase tracking-widest flex items-center gap-2 shadow-lg transition-all transform hover:scale-105 active:scale-95"
+          >
+            <Send size={16} /> Got it — Start Writing
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
 function PreTaskFocusMenu({ taskType, onStartWriting }) {
+  const [activeIndex, setActiveIndex] = useState(null);
   const cards = FOCUS_DATA[taskType] || FOCUS_DATA.task1;
+  const activeLesson = activeIndex !== null ? cards[activeIndex] : null;
+
   return (
     <div className="flex-1 overflow-y-auto bg-slate-50">
-      <div className="max-w-4xl mx-auto p-10">
-        <div className="text-center mb-10">
-          <div className="inline-block px-4 py-1.5 bg-brand-sangria text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4">
+      <div className="max-w-4xl mx-auto px-6 py-10">
+
+        <div className="text-center mb-3">
+          <div className="inline-block px-4 py-1.5 bg-brand-primary text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4">
             {taskType === 'task1' ? 'Task 1 Academic Report' : 'Task 2 Essay'}
           </div>
-          <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Choose Your Focus</h2>
-          <p className="text-slate-500 text-sm">Review these quick strategies before you start writing. Hover a card to reveal the mini-lesson.</p>
+          <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Pre-Writing Focus</h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl px-6 py-4 mb-8 flex items-start gap-4">
+          <AlertTriangle size={20} className="text-amber-600 shrink-0 mt-0.5" />
+          <div>
+            <p className="font-black text-sm text-amber-900 mb-1">Choose ONE strategy to focus on — not all five.</p>
+            <p className="text-xs text-amber-700 leading-relaxed">Trying to think about everything at once hurts your writing. Pick the one area you struggle with most, read the lesson, then start writing with that single goal in mind.</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {cards.map((card, i) => (
-            <FocusCard key={i} title={card.title} lesson={card.lesson} icon={card.icon} />
+            <FocusCard key={i} title={card.title} teaser={card.teaser} icon={card.icon} onSelect={() => setActiveIndex(i)} />
           ))}
         </div>
+
         <div className="flex justify-center">
           <button
             onClick={onStartWriting}
-            className="bg-slate-900 hover:bg-black text-white px-14 py-4 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center gap-3 shadow-xl transition-all transform hover:scale-105 active:scale-95"
+            className="text-slate-500 hover:text-slate-800 text-sm font-bold flex items-center gap-2 border border-slate-300 hover:border-slate-500 px-6 py-3 rounded-xl transition-all"
           >
-            <Send size={18} /> Skip &amp; Start Writing
+            Skip focus &amp; start writing now →
           </button>
         </div>
       </div>
+
+      {activeLesson && (
+        <FocusLessonModal
+          lesson={activeLesson}
+          onClose={() => setActiveIndex(null)}
+          onStartWriting={onStartWriting}
+        />
+      )}
     </div>
   );
 }
