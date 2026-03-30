@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   BarChart as BarIcon, LineChart as LineIcon, Table as TableIcon, PieChart as PieIcon, Map as MapIcon, 
-  Settings, Send, Clock, AlertTriangle, BookOpen, 
+  Settings, Send, Clock, AlertTriangle, BookOpen, Eye, Maximize2,
   CheckCircle2, ChevronRight, RefreshCw, Trophy, FileText, Layout, ArrowRight, XCircle, ArrowLeft, LogOut
 } from 'lucide-react';
 
@@ -421,11 +421,11 @@ const VisualRenderer = ({ prompt }) => {
       <div className="w-full p-4 overflow-x-auto">
         <table className="min-w-full border-collapse rounded-lg overflow-hidden border border-slate-200">
           <thead>
-            <tr className="bg-slate-800 text-white text-xs">
+            <tr className="bg-slate-800 text-white text-sm">
               {prompt.headers.map((h, i) => <th key={i} className={`p-2 uppercase tracking-tighter whitespace-nowrap ${i === 0 ? 'text-left' : 'text-right'}`}>{h}</th>)}
             </tr>
           </thead>
-          <tbody className="text-xs">
+          <tbody className="text-sm">
             {prompt.data.length === 0 ? (
               <tr><td colSpan={prompt.headers.length} className="p-4 text-center text-slate-400 italic">No data available</td></tr>
             ) : (
@@ -619,6 +619,45 @@ const normalizeBandScore = (rawBandScore, wordCount) => {
   return Math.round(adjusted * 2) / 2;
 };
 
+function CustomTooltip({ error, children }) {
+  const [visible, setVisible] = useState(false);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  return (
+    <span
+      className="relative inline"
+      onMouseEnter={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        setPos({ x: r.left + r.width / 2, y: r.top });
+        setVisible(true);
+      }}
+      onMouseLeave={() => setVisible(false)}
+    >
+      {children}
+      {visible && (
+        <div
+          className="fixed z-[200] w-72 bg-slate-900 rounded-xl shadow-lg p-4 pointer-events-none text-left"
+          style={{ left: pos.x, top: pos.y, transform: 'translate(-50%, calc(-100% - 12px))' }}
+        >
+          <p className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">Error Analysis</p>
+          <div className="mb-2">
+            <span className="text-[10px] font-black text-red-400 uppercase">✕ Original</span>
+            <p className="text-sm text-red-300 italic mt-0.5">"{error.original_snippet}"</p>
+          </div>
+          <div className="mb-2">
+            <span className="text-[10px] font-black text-green-400 uppercase">✓ Correction</span>
+            <p className="text-sm text-green-300 mt-0.5">"{error.correction}"</p>
+          </div>
+          <div>
+            <span className="text-[10px] font-black text-slate-400 uppercase">Why</span>
+            <p className="text-xs text-slate-300 mt-0.5 leading-relaxed">{error.explanation}</p>
+          </div>
+          <div className="absolute bottom-0 left-1/2 translate-y-full -translate-x-1/2 border-[6px] border-transparent border-t-slate-900" />
+        </div>
+      )}
+    </span>
+  );
+}
+
 const renderHighlightedSubmission = (text, majorErrors = []) => {
   if (!text) return null;
 
@@ -666,15 +705,12 @@ const renderHighlightedSubmission = (text, majorErrors = []) => {
   return segments.map((segment, idx) => {
     if (!segment.error) return <React.Fragment key={idx}>{segment.text}</React.Fragment>;
 
-    const tooltip = `Correction: ${segment.error.correction || 'See examiner suggestion'}\nWhy: ${segment.error.explanation || 'This pattern may lower your band score.'}`;
     return (
-      <span
-        key={idx}
-        title={tooltip}
-        className="text-red-700 underline decoration-red-500 decoration-2 underline-offset-2 font-semibold cursor-help"
-      >
-        {segment.text}
-      </span>
+      <CustomTooltip key={idx} error={segment.error}>
+        <span className="text-red-700 underline decoration-red-500 decoration-2 underline-offset-2 font-semibold cursor-help">
+          {segment.text}
+        </span>
+      </CustomTooltip>
     );
   });
 };
@@ -786,6 +822,8 @@ export default function App() {
   // For 'both' mode: track which task student is currently working on
   const [currentTaskInBothMode, setCurrentTaskInBothMode] = useState('task1'); // task1 or task2
   const [task1Completed, setTask1Completed] = useState(false);
+  const [showFocusMenu, setShowFocusMenu] = useState(true);
+  const [expandedChart, setExpandedChart] = useState(false);
   
   // Determine actual current task type for rendering
   const actualCurrentTask = writingTask === 'both' ? currentTaskInBothMode : writingTask;
@@ -853,6 +891,7 @@ export default function App() {
     setIsTimerRunning(false); 
     setShowWarning(false);
     setErrorMessage("");
+    setShowFocusMenu(true);
   };
 
   const handleProceedToTask2 = () => {
@@ -1054,7 +1093,7 @@ export default function App() {
         </div>
       </div>
       
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1 overflow-hidden flex flex-col">
         {view === "feedback" ? (
           <FeedbackView 
             feedback={feedback} 
@@ -1067,6 +1106,8 @@ export default function App() {
             currentTaskInBothMode={currentTaskInBothMode}
             onProceedToTask2={handleProceedToTask2}
           />
+        ) : showFocusMenu ? (
+          <PreTaskFocusMenu taskType={actualCurrentTask} onStartWriting={() => setShowFocusMenu(false)} />
         ) : (
           <div className="h-full flex flex-col lg:flex-row">
             {/* Visual Panel */}
@@ -1079,8 +1120,14 @@ export default function App() {
                 )}
                 {actualCurrentTask === 'task1' ? (
                   <div className="bg-white border border-white/20 shadow-sm rounded-2xl overflow-hidden mb-8 min-h-[350px] flex flex-col">
-                    <div className="bg-slate-50 px-4 py-2 border-b flex justify-between items-center"><span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">Visual Data View</span><span className="text-[10px] bg-crimson-100 text-[#A51C30] px-2 py-0.5 rounded font-bold">TASK 1</span></div>
-                    <div className="flex-1 flex items-center justify-center p-4">
+                    <div className="bg-brand-sangria/15 border-b border-brand-sangria/25 px-4 py-2 flex justify-between items-center">
+                      <span className="text-[10px] font-black text-brand-sangria/70 tracking-widest uppercase">Visual Data View</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] bg-crimson-100 text-[#A51C30] px-2 py-0.5 rounded font-bold">TASK 1</span>
+                        <button onClick={() => setExpandedChart(true)} className="text-brand-sangria/50 hover:text-brand-sangria transition-colors" title="Expand chart"><Maximize2 size={14} /></button>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex items-center justify-center p-4 cursor-zoom-in" onClick={() => setExpandedChart(true)}>
                       <div className="bg-white text-slate-900 p-4 rounded-xl w-full">
                         <VisualRenderer prompt={currentPrompt} />
                       </div>
@@ -1124,6 +1171,22 @@ export default function App() {
         )}
       </main>
 
+      {expandedChart && (
+        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[150] flex items-center justify-center p-6" onClick={() => setExpandedChart(false)}>
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden" onClick={e => e.stopPropagation()}>
+            <div className="bg-brand-sangria/10 border-b border-brand-sangria/20 px-6 py-4 flex justify-between items-center">
+              <div>
+                <p className="text-[10px] font-black text-brand-sangria/70 uppercase tracking-widest mb-0.5">{currentPrompt.type}</p>
+                <h3 className="font-black text-slate-900 text-lg">{currentPrompt.title}</h3>
+              </div>
+              <button onClick={() => setExpandedChart(false)} className="text-slate-400 hover:text-slate-900 transition-colors"><XCircle size={24} /></button>
+            </div>
+            <div className="p-8">
+              <VisualRenderer prompt={currentPrompt} />
+            </div>
+          </div>
+        </div>
+      )}
       {showWarning && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
           <div className="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full text-center">
@@ -1156,6 +1219,76 @@ function PromptList({ onSelect, prompts, writingTask }) {
             <div className="mt-auto pt-4 flex items-center justify-between"><span className="text-[10px] font-bold text-slate-300 uppercase">20 min target</span><div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all transform group-hover:translate-x-1"><ChevronRight size={18} /></div></div>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+const FOCUS_DATA = {
+  task1: [
+    { title: "The Magic Overview", lesson: "Never just list data. Your second paragraph must be 2 sentences summarising the biggest main trend and the most obvious difference. No numbers in the overview!", icon: <Eye size={22} /> },
+    { title: "Grouping Data", lesson: "Don't write about every single year. Put the things that went UP in one paragraph, and the things that went DOWN in another.", icon: <Layout size={22} /> },
+    { title: "Vocabulary of Change", lesson: "Stop using 'went up' and 'went down'. Use advanced verbs: plummeted, surged, plateaued, or fluctuated.", icon: <BookOpen size={22} /> },
+    { title: "Comparing", lesson: "Use contrasting words. Connect two ideas using 'while', 'whereas', or 'in contrast to' for a stronger response.", icon: <BarIcon size={22} /> },
+    { title: "Tense & Time", lesson: "Look at the dates! Past years = Past Tense. Future years = Future Passive (e.g., 'is projected to increase').", icon: <Clock size={22} /> },
+  ],
+  task2: [
+    { title: "Deconstructing", lesson: "Read the question twice. Are they asking for your opinion, or just advantages and disadvantages? Answer exactly what is asked.", icon: <BookOpen size={22} /> },
+    { title: "The 4-Sentence Intro", lesson: "1. Hook. 2. Paraphrase prompt. 3. State your thesis. 4. Outline your two main points.", icon: <FileText size={22} /> },
+    { title: "The PEEL Paragraph", lesson: "Point (Topic sentence), Evidence (Example), Explain (Why it matters), Link (Back to the question).", icon: <Layout size={22} /> },
+    { title: "Academic Tone", lesson: "Instead of 'I think pollution is bad,' write 'It is widely recognized that pollution has severe consequences.'", icon: <Trophy size={22} /> },
+    { title: "The 2-Min Conclusion", lesson: "Never introduce new ideas at the end. Simply paraphrase your thesis and summarize your main points.", icon: <CheckCircle2 size={22} /> },
+  ],
+};
+
+function FocusCard({ title, lesson, icon }) {
+  const [revealed, setRevealed] = useState(false);
+  return (
+    <div
+      className={`cursor-pointer rounded-2xl border-2 p-6 transition-all duration-300 select-none ${
+        revealed
+          ? 'bg-brand-sangria border-brand-sangria shadow-xl scale-[1.02]'
+          : 'bg-white border-slate-200 hover:border-brand-sangria/40 hover:shadow-lg'
+      }`}
+      onMouseEnter={() => setRevealed(true)}
+      onMouseLeave={() => setRevealed(false)}
+      onClick={() => setRevealed(r => !r)}
+    >
+      <div className={`mb-4 transition-colors ${revealed ? 'text-white/80' : 'text-brand-sangria'}`}>{icon}</div>
+      <h3 className={`font-black text-sm mb-2 uppercase tracking-tight ${revealed ? 'text-white' : 'text-slate-900'}`}>{title}</h3>
+      {revealed
+        ? <p className="text-sm text-white/90 leading-relaxed">{lesson}</p>
+        : <p className="text-xs text-slate-400 font-medium">Hover to reveal tip →</p>
+      }
+    </div>
+  );
+}
+
+function PreTaskFocusMenu({ taskType, onStartWriting }) {
+  const cards = FOCUS_DATA[taskType] || FOCUS_DATA.task1;
+  return (
+    <div className="flex-1 overflow-y-auto bg-slate-50">
+      <div className="max-w-4xl mx-auto p-10">
+        <div className="text-center mb-10">
+          <div className="inline-block px-4 py-1.5 bg-brand-sangria text-white text-[10px] font-black uppercase tracking-widest rounded-full mb-4">
+            {taskType === 'task1' ? 'Task 1 Academic Report' : 'Task 2 Essay'}
+          </div>
+          <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Choose Your Focus</h2>
+          <p className="text-slate-500 text-sm">Review these quick strategies before you start writing. Hover a card to reveal the mini-lesson.</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+          {cards.map((card, i) => (
+            <FocusCard key={i} title={card.title} lesson={card.lesson} icon={card.icon} />
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <button
+            onClick={onStartWriting}
+            className="bg-slate-900 hover:bg-black text-white px-14 py-4 rounded-2xl font-black text-sm uppercase tracking-widest flex items-center gap-3 shadow-xl transition-all transform hover:scale-105 active:scale-95"
+          >
+            <Send size={18} /> Skip &amp; Start Writing
+          </button>
+        </div>
       </div>
     </div>
   );
