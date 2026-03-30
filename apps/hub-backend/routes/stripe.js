@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Stripe = require('stripe');
 const auth = require('../middleware/auth');
+const { pool } = require('../db');
 
 // Initialize Stripe with secret key
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -15,15 +16,42 @@ router.post('/create-checkout-session', auth, async (req, res) => {
   try {
     const user = req.user;
 
+    // Always fetch fresh institution data — JWT may pre-date allow_b2c_payments being set
+    let allow_b2c_payments = user.allow_b2c_payments || false;
+    let current_subscription_tier = user.subscription_tier || 'free';
+
+    if (user.institution_id) {
+      const conn = await pool.getConnection();
+      try {
+        const [rows] = await conn.query(
+          'SELECT allow_b2c_payments, subscription_tier FROM institutions WHERE id = $1',
+          [user.institution_id]
+        );
+        if (rows.length > 0) {
+          allow_b2c_payments = rows[0].allow_b2c_payments || false;
+        }
+        // Also get fresh user tier
+        const [userRows] = await conn.query(
+          'SELECT subscription_tier FROM users WHERE id = $1',
+          [user.id]
+        );
+        if (userRows.length > 0 && userRows[0].subscription_tier) {
+          current_subscription_tier = userRows[0].subscription_tier;
+        }
+      } finally {
+        conn.release();
+      }
+    }
+
     // Verify user has B2C payments enabled for their institution
-    if (!user.allow_b2c_payments) {
+    if (!allow_b2c_payments) {
       return res.status(403).json({ 
         error: 'B2C payments are not enabled for your institution. Please contact your administrator for enterprise billing.' 
       });
     }
 
     // Verify user is on free tier
-    if (user.subscription_tier !== 'free') {
+    if (current_subscription_tier !== 'free') {
       return res.status(400).json({ 
         error: 'You already have an active subscription.' 
       });

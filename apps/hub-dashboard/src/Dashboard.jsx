@@ -638,7 +638,17 @@ export default function Dashboard() {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap justify-end">
+            {isFreeB2C && (
+              <button
+                onClick={handleUpgradeToPremium}
+                disabled={isUpgrading}
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 disabled:opacity-50 text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 transition-colors shadow-sm"
+              >
+                {isUpgrading ? <Loader2 size={16} className="animate-spin" /> : <CreditCard size={16} />}
+                {isUpgrading ? 'Loading...' : 'Upgrade to Premium'}
+              </button>
+            )}
             <button
               onClick={() => navigate('/my-stats')}
               className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
@@ -686,7 +696,7 @@ export default function Dashboard() {
                   <div className="flex-grow">
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <div className="text-xs font-black uppercase tracking-widest text-amber-600 mb-1">
+                        <div className="text-sm font-black uppercase tracking-wider mb-1" style={{ color: brandPrimary }}>
                           {task.assignment_type === 'writing' 
                             ? task.writing_task_type === '1' 
                               ? 'IELTS Task 1 Academic' 
@@ -840,26 +850,6 @@ export default function Dashboard() {
               <p className="text-[10px] text-white/80 mt-1">Academic Word Bank</p>
            </button>
 
-           {isFreeB2C && (
-             <button
-                onClick={handleUpgradeToPremium}
-                disabled={isUpgrading}
-                className="bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-500 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
-             >
-                <div className="flex items-center justify-between mb-2">
-                   {isUpgrading ? (
-                     <Loader2 size={24} className="text-white/90 animate-spin" />
-                   ) : (
-                     <CreditCard size={24} className="text-white/90 group-hover:text-white transition-colors" />
-                   )}
-                   <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Premium</span>
-                </div>
-                <h3 className="text-lg font-black tracking-tight leading-tight">
-                  {isUpgrading ? 'Loading...' : 'Upgrade to Premium'}
-                </h3>
-                <p className="text-[10px] text-white/80 mt-1">$9.99/month - Unlock all features</p>
-             </button>
-           )}
         </div>
 
         {/* Targeted Weaknesses Section */}
