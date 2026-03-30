@@ -1,0 +1,28 @@
+{
+  "node_id": "connectors-21-advanced-concession",
+  "region": "The Connectors",
+  "tier": "Gold",
+  "title": "Advanced Concession",
+  "description": "Use despite, in spite of, notwithstanding, and admittedly to acknowledge limitations and counterarguments with academic sophistication.",
+  "display_order": 21,
+  "prerequisites": ["connectors-20-correlative-paired-conjunctions"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 200,
+    "medal_tier": "Gold"
+  }
+}

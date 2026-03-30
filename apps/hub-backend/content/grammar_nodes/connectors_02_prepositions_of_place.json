@@ -1,0 +1,48 @@
+{
+  "node_id": "connectors-02-prepositions-of-place",
+  "region": "The Connectors",
+  "tier": "Bronze",
+  "title": "Prepositions of Place",
+  "description": "Use at, on, in and precision prepositions to describe spatial relationships in academic contexts with accuracy.",
+  "display_order": 2,
+  "prerequisites": ["connectors-01-prepositions-of-time"],
+  "lesson_content_markdown": "# Prepositions of Place\n\n## Locating Ideas in Space\n\nPrepositions of place describe the position of one entity relative to another. In academic writing, they appear in methodology sections describing experimental setups, in literature reviews discussing institutional contexts, and in data descriptions identifying spatial distributions. Using them with precision strengthens the clarity and credibility of your writing.\n\n---\n\n## Core Three: AT, ON, IN\n\n| Preposition | Used for | Academic Example |\n|---|---|---|\n| **at** | A specific point or institution | *The team met **at** the reception desk. / She studied **at** Oxford.* |\n| **on** | Surfaces; floors; digital platforms; pages | *The variable is marked **on** Figure 3. / The data is stored **on** the server.* |\n| **in** | Enclosed spaces; cities; countries; fields of study | *Samples were processed **in** the laboratory. / Researchers **in** the field of economics...* |\n\n---\n\n## Precision Prepositions for Academic Contexts\n\n- **between** — separating exactly two entities: *A discrepancy exists **between** the two datasets.*\n- **among** — distributed across three or more: *Agreement was found **among** all three research groups.*\n- **above / below** — spatial or hierarchical position: *Scores **above** the mean indicate strong performance.*\n- **adjacent to** — immediately next to: *The control room is **adjacent to** the main laboratory.*\n- **throughout** — across an entire space or body of text: *Inconsistencies were found **throughout** the manuscript.*\n- **within** — inside defined boundaries: *All results remained **within** the acceptable range.*\n\n---\n\n## Academic Writing Tip\n\nAvoid the informal *inside of*; prefer **within** or simply **inside** in formal academic prose. When describing digital storage, use **on** (a server, a platform, a drive), not *in*.",
+  "mastery_check": {
+    "type": "fill_in_the_blank",
+    "prompt_to_student": "Complete each academic sentence with the most appropriate preposition of place.",
+    "activity_data": {
+      "blanks": [
+        {
+          "sentence_with_blank": "The university's central archive is housed ___ the basement of the main administrative building.",
+          "accepted_answers": ["in"],
+          "hint": "Use the preposition for enclosed interior spaces."
+        },
+        {
+          "sentence_with_blank": "All experimental sessions took place ___ the third floor of the Psychology Research Centre.",
+          "accepted_answers": ["on"],
+          "hint": "Use the preposition for floors and levels of a building."
+        },
+        {
+          "sentence_with_blank": "A statistically significant difference was identified ___ the treatment group and the control group.",
+          "accepted_answers": ["between"],
+          "hint": "Use the preposition for a spatial or logical relationship between exactly two entities."
+        },
+        {
+          "sentence_with_blank": "The research team held their planning meetings ___ the conference room adjacent to the laboratory.",
+          "accepted_answers": ["in", "at"],
+          "hint": "Use the preposition for a specific enclosed meeting place."
+        },
+        {
+          "sentence_with_blank": "All research outputs are stored ___ the institution's cloud-based data management system.",
+          "accepted_answers": ["on"],
+          "hint": "Use the preposition for digital platforms, servers, and systems."
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

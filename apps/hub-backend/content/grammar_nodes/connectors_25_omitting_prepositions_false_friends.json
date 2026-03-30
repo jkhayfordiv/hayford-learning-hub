@@ -1,0 +1,28 @@
+{
+  "node_id": "connectors-25-omitting-prepositions-false-friends",
+  "region": "The Connectors",
+  "tier": "Gold",
+  "title": "Omitting Prepositions (The \"False Friends\" Node)",
+  "description": "Identify and eliminate redundant or intrusive prepositions that commonly appear due to L1 transfer in academic writing.",
+  "display_order": 25,
+  "prerequisites": ["connectors-24-advanced-dependent-prepositions"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 200,
+    "medal_tier": "Gold"
+  }
+}

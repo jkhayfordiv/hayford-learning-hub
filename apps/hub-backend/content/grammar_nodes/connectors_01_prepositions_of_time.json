@@ -1,0 +1,53 @@
+{
+  "node_id": "connectors-01-prepositions-of-time",
+  "region": "The Connectors",
+  "tier": "Bronze",
+  "title": "Prepositions of Time",
+  "description": "Master at, on, in and key duration prepositions to anchor academic events and processes precisely in time.",
+  "display_order": 1,
+  "prerequisites": [],
+  "lesson_content_markdown": "# Prepositions of Time\n\n## Connecting Ideas to Time\n\nPrepositions of time are among the most frequently used connectors in academic writing. They anchor events, research processes, and arguments to specific temporal points or periods. Using them precisely signals academic control and avoids ambiguity.\n\n---\n\n## Core Three: AT, ON, IN\n\n| Preposition | Used for | Academic Example |\n|---|---|---|\n| **at** | Clock times; precise moments | *The lecture begins **at** 9 a.m.* |\n| **on** | Specific days and dates | *The study was published **on** 14 March.* |\n| **in** | Months, years, decades, centuries; longer periods | *Data was collected **in** 2021.* |\n\n---\n\n## Expressing Duration, Sequence, and Deadlines\n\n- **for** — a length of time: *The experiment ran **for** six weeks.*\n- **during** — within a defined period or event: *Errors increased **during** the final phase.*\n- **since** — from a past point continuing to the present: *The framework has been used **since** 1998.*\n- **until / till** — up to a specific point in time: *Registration remains open **until** Friday.*\n- **by** — no later than a given deadline: *All submissions must be completed **by** midnight.*\n- **before / after** — expressing temporal sequence: *Data was cleaned **before** analysis began.*\n- **within** — inside a time boundary: *Responses were received **within** 48 hours.*\n\n---\n\n## Academic Writing Tips\n\nPrefer **by** over *before the end of* when specifying deadlines. Use **during** rather than *in the time of* to situate events within a defined period. Avoid using **since** with a simple past tense — it requires the present perfect.\n\n❌ *The field has grown significantly since researchers discovered the link.*\n✅ *The field **has grown** significantly since researchers discovered the link.*",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the most appropriate preposition of time for each academic sentence.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "The research team met ___ 9:00 a.m. to discuss the preliminary findings.",
+          "options": ["at", "in", "on", "by"],
+          "correct_answer": "at",
+          "category": "Clock Time"
+        },
+        {
+          "question": "The landmark paper was published ___ March 2022.",
+          "options": ["in", "on", "at", "during"],
+          "correct_answer": "in",
+          "category": "Month and Year"
+        },
+        {
+          "question": "All data must be submitted ___ the end of the academic year.",
+          "options": ["by", "at", "on", "for"],
+          "correct_answer": "by",
+          "category": "Deadlines"
+        },
+        {
+          "question": "Participant engagement declined significantly ___ the final stage of the experiment.",
+          "options": ["during", "for", "at", "on"],
+          "correct_answer": "during",
+          "category": "Defined Period"
+        },
+        {
+          "question": "The institution has maintained this accreditation ___ 2005.",
+          "options": ["since", "for", "during", "from"],
+          "correct_answer": "since",
+          "category": "Duration from a Point"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

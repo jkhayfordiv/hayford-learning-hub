@@ -1,0 +1,44 @@
+{
+  "node_id": "connectors-03-prepositions-of-movement",
+  "region": "The Connectors",
+  "tier": "Bronze",
+  "title": "Prepositions of Movement",
+  "description": "Use directional prepositions accurately to describe processes, transitions, and physical movement in academic writing.",
+  "display_order": 3,
+  "prerequisites": ["connectors-02-prepositions-of-place"],
+  "lesson_content_markdown": "# Prepositions of Movement\n\n## Expressing Motion in Academic Prose\n\nPrepositions of movement describe the direction or path of an action. In academic English, they appear in methodology sections, case narratives, and process descriptions. Using them accurately eliminates a category of error that immediately signals non-native proficiency to academic readers.\n\n---\n\n## Core Movement Prepositions\n\n| Preposition | Function | Academic Example |\n|---|---|---|\n| **to** | Direction toward a destination | *Data was transferred **to** the central server.* |\n| **from** | Point of origin | *Participants were drawn **from** three institutions.* |\n| **into** | Movement entering an enclosed space | *The sample was placed **into** the incubator.* |\n| **out of** | Movement exiting an enclosed space | *The team moved **out of** the temporary facility.* |\n| **through** | Passage within or along a path | *The current passes **through** the circuit.* |\n| **across** | Movement over a surface or wide expanse | *The study extended **across** four continents.* |\n| **along** | Movement following a line or established path | *Data flows **along** the network pathway.* |\n| **towards** | Movement in the general direction of | *The sector is moving **towards** full digitisation.* |\n\n---\n\n## Three Classic Errors to Eliminate\n\nThese are among the most common preposition errors in EAP student writing:\n\n❌ *The delegates arrived **to** the venue.* → ✅ *arrived **at** the venue*\n\n❌ *Students must enter **into** the hall.* → ✅ *enter **the** hall* *(no preposition for physical entry into a room)*\n\n❌ *Participants exited **from** the building.* → ✅ *exited **the** building* *(exit does not take 'from')*\n\n---\n\nLearning these three substitution patterns is a fast, high-impact route to improved academic writing accuracy.",
+  "mastery_check": {
+    "type": "error_correction",
+    "prompt_to_student": "The passage below contains five preposition-of-movement errors. Identify each incorrect word and type the correct replacement.",
+    "activity_data": {
+      "sentence": "The research team was required to relocate across a different building at short notice. Upon arriving onto the new facility, team members were assigned workstations by the laboratory coordinator. Students needed to enter into the seminar room before the session commenced, and any latecomers were refused entry. After the assessment concluded, all candidates exited from the examination hall under the supervision of the invigilators. The field specimens were subsequently transported until the main laboratory for further analysis.",
+      "errors": [
+        {
+          "incorrect_word": "across",
+          "accepted_corrections": ["to"]
+        },
+        {
+          "incorrect_word": "onto",
+          "accepted_corrections": ["at"]
+        },
+        {
+          "incorrect_word": "into",
+          "accepted_corrections": ["the"]
+        },
+        {
+          "incorrect_word": "from",
+          "accepted_corrections": ["the"]
+        },
+        {
+          "incorrect_word": "until",
+          "accepted_corrections": ["to"]
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

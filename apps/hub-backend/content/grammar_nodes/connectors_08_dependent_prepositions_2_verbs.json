@@ -1,0 +1,28 @@
+{
+  "node_id": "connectors-08-dependent-prepositions-2-verbs",
+  "region": "The Connectors",
+  "tier": "Bronze",
+  "title": "Dependent Prepositions 2 (Verbs)",
+  "description": "Master the fixed prepositions that follow common academic verbs such as consist of, contribute to, and result in.",
+  "display_order": 8,
+  "prerequisites": ["connectors-07-dependent-prepositions-1-adjectives"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}
