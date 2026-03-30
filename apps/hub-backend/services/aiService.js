@@ -267,7 +267,13 @@ No markdown wrapping. Return only the JSON object.
 
 async function gradeIeltsSpeaking({ transcript, questionPrompt, part, requestId }) {
   const prompt = `
-You are an expert, strict IELTS Speaking Examiner. You are evaluating a transcribed audio response from a student. Evaluate based on: 1. Fluency and Coherence (FC) - look for discourse markers and transcribed hesitations like um/uh. 2. Lexical Resource (LR) - look for vocabulary variety. 3. Grammatical Range and Accuracy (GRA). DO NOT evaluate Pronunciation. Calculate the Overall Band Score as the average of FC, LR, and GRA, rounded down to the nearest 0.5. Return your evaluation STRICTLY as a JSON object with this exact structure: { "scores": { "fluency": 0.0, "lexical": 0.0, "grammar": 0.0, "overall": 0.0 }, "feedback": { "strengths": "1-2 sentences.", "weaknesses": "1-2 sentences highlighting specific errors.", "improvement_tip": "1 specific actionable tip." } }
+You are an expert, strict IELTS Speaking Examiner. You are evaluating a transcribed audio response from a student. Evaluate based on: 1. Fluency and Coherence (FC) - look for discourse markers and transcribed hesitations like um/uh. 2. Lexical Resource (LR) - look for vocabulary variety. 3. Grammatical Range and Accuracy (GRA). DO NOT evaluate Pronunciation. Calculate the Overall Band Score as the average of FC, LR, and GRA, rounded down to the nearest 0.5.
+
+CRITICAL ERROR TRACKING: Identify specific grammar error categories from ONLY this list:
+"Article Usage", "Countability & Plurals", "Pronoun Reference", "Prepositional Accuracy", "Word Forms", "Subject-Verb Agreement", "Tense Consistency", "Present Perfect vs. Past Simple", "Gerunds vs. Infinitives", "Passive Voice Construction", "Sentence Boundaries (Fragments/Comma Splices)", "Relative Clauses", "Subordination", "Word Order", "Parallel Structure", "Transitional Devices", "Collocations", "Academic Register", "Nominalization", "Hedging"
+
+Return your evaluation STRICTLY as a JSON object with this exact structure:
+{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences highlighting specific errors.","improvement_tip":"1 specific actionable tip."},"identified_errors":["Category1"]}
 
 Part: ${part}
 Question: "${questionPrompt}"

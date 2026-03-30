@@ -3,6 +3,36 @@ const multer = require('multer');
 const router = express.Router();
 const { gradeIeltsSpeaking, gradeIeltsSpeakingAudio } = require('../services/aiService');
 const authenticateToken = require('../middleware/auth');
+const { pool } = require('../db');
+
+const VALID_WEAKNESS_CATEGORIES = [
+  'Article Usage', 'Countability & Plurals', 'Pronoun Reference', 'Prepositional Accuracy',
+  'Word Forms', 'Subject-Verb Agreement', 'Tense Consistency', 'Present Perfect vs. Past Simple',
+  'Gerunds vs. Infinitives', 'Passive Voice Construction', 'Sentence Boundaries (Fragments/Comma Splices)',
+  'Relative Clauses', 'Subordination', 'Word Order', 'Parallel Structure', 'Transitional Devices',
+  'Collocations', 'Academic Register', 'Nominalization', 'Hedging'
+];
+
+async function persistSpeakingWeaknesses(userId, identifiedErrors) {
+  if (!userId || !Array.isArray(identifiedErrors) || identifiedErrors.length === 0) return;
+  try {
+    const connection = await pool.getConnection();
+    for (const category of identifiedErrors) {
+      if (VALID_WEAKNESS_CATEGORIES.includes(category)) {
+        await connection.query(
+          `INSERT INTO user_weaknesses (user_id, category, error_count, last_updated)
+           VALUES ($1, $2, 1, CURRENT_TIMESTAMP)
+           ON CONFLICT (user_id, category)
+           DO UPDATE SET error_count = user_weaknesses.error_count + 1, last_updated = CURRENT_TIMESTAMP`,
+          [userId, category]
+        );
+      }
+    }
+    connection.release();
+  } catch (err) {
+    console.error('[IELTS] Failed to persist weaknesses:', err.message);
+  }
+}
 
 // Use memory storage — audio buffer is passed directly to Gemini without touching disk
 const upload = multer({
@@ -60,6 +90,12 @@ router.post('/evaluate', authenticateToken, upload.array('audio', 3), async (req
     });
 
     console.log(`[IELTS Evaluate] Successfully graded ${requestId}`);
+
+    // Persist grammar weaknesses asynchronously (fire-and-forget)
+    if (result.identified_errors) {
+      persistSpeakingWeaknesses(req.user.id, result.identified_errors);
+    }
+
     res.json(result);
   } catch (error) {
     console.error(`[IELTS Evaluate] Error ${requestId}:`, error);
@@ -105,7 +141,12 @@ router.post('/speak/grade', authenticateToken, async (req, res) => {
     });
 
     console.log(`[IELTS Speaking] Successfully graded ${requestId}`);
-    
+
+    // Persist grammar weaknesses asynchronously (fire-and-forget)
+    if (result.identified_errors) {
+      persistSpeakingWeaknesses(req.user.id, result.identified_errors);
+    }
+
     res.json(result);
   } catch (error) {
     console.error(`[IELTS Speaking] Error grading ${requestId}:`, error);

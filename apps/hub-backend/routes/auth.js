@@ -108,7 +108,7 @@ router.post('/register', async (req, res) => {
     
     const [result] = await connection.query(
       'INSERT INTO users (first_name, last_name, email, password_hash, role, institution_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
-      [first_name, last_name, email, password_hash, 'student', null]
+      [first_name, last_name, email, password_hash, 'student', 1]
     );
     
     connection.release();
