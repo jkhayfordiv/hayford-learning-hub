@@ -703,7 +703,6 @@ export default function Dashboard() {
                                   ? 'Vocabulary Builder'
                                   : task.module_name}
                         </div>
-                        <h4 className="font-bold text-slate-900 dark:text-white leading-tight line-clamp-2" title={task.instructions}>{task.instructions || 'General Practice Task'}</h4>
                       </div>
                     </div>
                     {task.due_date && (
@@ -904,17 +903,16 @@ export default function Dashboard() {
                         style={{ width: `${percentage}%` }}
                       ></div>
                     </div>
-                    <button
-                      onClick={() => {
-                        if (topicId) {
-                          window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
-                        }
-                      }}
-                      disabled={!topicId}
-                      className="w-full px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                    >
-                      Practice
-                    </button>
+                    {topicId && (
+                      <div className="flex justify-end">
+                        <button
+                          onClick={() => window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`}
+                          className="px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors"
+                        >
+                          Practice →
+                        </button>
+                      </div>
+                    )}
                   </div>
                 );
               })}
