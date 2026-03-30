@@ -13,7 +13,12 @@ function initDb() {
 
     poolInstance = new Pool({
       connectionString: process.env.DATABASE_URL,
-      ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false }
+      ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false },
+      max: 10,                      // max simultaneous clients
+      idleTimeoutMillis: 30000,     // close idle clients after 30s
+      connectionTimeoutMillis: 15000, // fail fast if Neon is cold-starting
+      keepAlive: true,              // prevent idle TCP drops on Render
+      keepAliveInitialDelayMillis: 10000
     });
     console.log('📦 Postgres database (Neon) initialized');
   }

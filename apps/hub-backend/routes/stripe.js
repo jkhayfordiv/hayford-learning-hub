@@ -173,8 +173,6 @@ router.post('/webhook', async (req, res) => {
           return res.status(400).json({ error: 'Missing user_id in metadata' });
         }
 
-        // Import pool here to avoid circular dependency
-        const { pool } = require('../db');
         const connection = await pool.getConnection();
 
         try {
@@ -213,7 +211,6 @@ router.post('/webhook', async (req, res) => {
 
         console.log('⚠️  Subscription cancelled for customer:', stripeCustomerId);
 
-        const { pool } = require('../db');
         const connection = await pool.getConnection();
 
         try {
