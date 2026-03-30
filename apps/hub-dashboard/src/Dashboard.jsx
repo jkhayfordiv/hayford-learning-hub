@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2, Lock, Star } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
@@ -58,6 +58,28 @@ const DIAGNOSTIC_TO_TOPIC_MAP = {
   'Hedging': '20_hedging'
 };
 
+function parseMaybeJson(val) {
+  if (!val) return null;
+  if (typeof val === 'object') return val;
+  try { return JSON.parse(val); } catch { return null; }
+}
+
+function aggregateWeaknesses(scores) {
+  const counts = {};
+  scores.forEach((score) => {
+    const tags = parseMaybeJson(score.diagnostic_data);
+    if (!Array.isArray(tags)) return;
+    tags.forEach((tag) => {
+      if (!tag) return;
+      counts[tag] = (counts[tag] || 0) + 1;
+    });
+  });
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6)
+    .map(([tag, count]) => ({ tag, count }));
+}
+
 export default function Dashboard() {
   const navigate = useNavigate();
   let user = {};
@@ -110,9 +132,8 @@ export default function Dashboard() {
     localStorage.getItem('limboModalDismissed') === 'true'
   );
 
-  // PHASE 4: User Weaknesses Tracking
-  const [weaknesses, setWeaknesses] = useState([]);
-  const [isLoadingWeaknesses, setIsLoadingWeaknesses] = useState(true);
+  // PHASE 4: User Weaknesses Tracking (computed client-side from scores, same source as My Stats)
+  const weaknesses = useMemo(() => aggregateWeaknesses(scores), [scores]);
 
   // Show more state for recent activities
   const [showAllRecentActivities, setShowAllRecentActivities] = useState(false);
@@ -174,25 +195,6 @@ export default function Dashboard() {
     }
   };
 
-  const fetchWeaknesses = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-
-      const res = await fetch(`${apiBase}/api/users/${user.id}/weaknesses`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        setWeaknesses(data);
-      }
-    } catch (err) {
-      console.error('Failed to fetch weaknesses', err);
-    } finally {
-      setIsLoadingWeaknesses(false);
-    }
-  };
 
   const fetchScores = async () => {
     try {
@@ -317,7 +319,6 @@ export default function Dashboard() {
     };
 
     refreshUserData();
-    fetchWeaknesses();
   }, [navigate, apiBase]);
 
   useEffect(() => {
@@ -868,9 +869,7 @@ export default function Dashboard() {
             <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
             Targeted Weaknesses
           </h3>
-          {isLoadingWeaknesses ? (
-            <div className="text-center text-slate-400 py-8">Loading weakness analysis...</div>
-          ) : weaknesses.length === 0 ? (
+          {weaknesses.length === 0 && !isLoading ? (
             <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-sm text-center">
               <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -880,42 +879,39 @@ export default function Dashboard() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {weaknesses.map((weakness, idx) => {
-                const maxCount = weaknesses[0]?.error_count || 1;
-                const percentage = (weakness.error_count / maxCount) * 100;
-                const getColorClasses = (count) => {
-                  if (count >= maxCount * 0.7) return { bg: 'bg-red-500', lightBg: 'bg-red-50 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-800' };
-                  if (count >= maxCount * 0.4) return { bg: 'bg-amber-500', lightBg: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800' };
-                  return { bg: 'bg-brand-navy', lightBg: 'bg-brand-navy/10 dark:bg-brand-navy/30', text: 'text-brand-navy dark:text-blue-400', border: 'border-brand-navy/20 dark:border-brand-navy/50' };
-                };
-                const colors = getColorClasses(weakness.error_count);
+              {weaknesses.map((item, idx) => {
+                const maxCount = weaknesses[0]?.count || 1;
+                const percentage = Math.max(15, (item.count / maxCount) * 100);
+                const severityDot = item.count >= maxCount * 0.7 ? 'bg-red-500' : item.count >= maxCount * 0.4 ? 'bg-amber-500' : 'bg-emerald-500';
+                const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
                 return (
-                  <div key={idx} className={`p-4 rounded-2xl border-2 ${colors.border} ${colors.lightBg} flex flex-col gap-3`}>
+                  <div key={idx} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
                     <div className="flex items-center gap-3">
-                      <span className={`flex-shrink-0 w-8 h-8 rounded-full ${colors.bg} text-white font-black text-sm flex items-center justify-center`}>
+                      <span className="flex-shrink-0 w-7 h-7 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-black text-xs flex items-center justify-center">
                         {idx + 1}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className={`font-bold text-sm ${colors.text}`}>{weakness.category}</p>
+                        <p className="font-bold text-sm text-slate-900 dark:text-white leading-snug">{item.tag}</p>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
-                          {weakness.error_count} {weakness.error_count === 1 ? 'error' : 'errors'} detected
+                          {item.count} {item.count === 1 ? 'error' : 'errors'} detected
                         </p>
                       </div>
+                      <span className={`flex-shrink-0 w-2.5 h-2.5 rounded-full ${severityDot}`} />
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-1.5 overflow-hidden">
                       <div
-                        className={`h-full ${colors.bg} rounded-full transition-all duration-700 ease-out`}
+                        className="h-full bg-slate-800 dark:bg-slate-300 rounded-full transition-all duration-700 ease-out"
                         style={{ width: `${percentage}%` }}
                       ></div>
                     </div>
                     <button
                       onClick={() => {
-                        const topicId = DIAGNOSTIC_TO_TOPIC_MAP[weakness.category];
                         if (topicId) {
-                          window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(topicId)}`;
+                          window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
                         }
                       }}
-                      className={`w-full px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors ${colors.bg} text-white hover:opacity-90`}
+                      disabled={!topicId}
+                      className="w-full px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       Practice
                     </button>
