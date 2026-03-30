@@ -33,7 +33,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [institutionsPage, setInstitutionsPage] = useState(1);
   const [selectedInstitution, setSelectedInstitution] = useState(null);
   const [isEditInstitutionModalOpen, setIsEditInstitutionModalOpen] = useState(false);
-  const [editInstitutionForm, setEditInstitutionForm] = useState({ name: '', address: '', contact_email: '' });
+  const [editInstitutionForm, setEditInstitutionForm] = useState({ name: '', address: '', contact_email: '', primary_color: '#800020', secondary_color: '#F7E7CE', welcome_text: '', logo_url: '' });
   const [allClasses, setAllClasses] = useState([]);
   const [classesSearch, setClassesSearch] = useState('');
   const [classesPage, setClassesPage] = useState(1);
@@ -657,7 +657,12 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
 
                         return paginated.map((inst) => (
                           <tr key={inst.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                            <td className="px-6 py-3 font-bold text-[#800000] dark:text-[#a00000]">{inst.id}</td>
+                            <td className="px-6 py-3 font-bold text-[#800000] dark:text-[#a00000]">
+                              <div className="flex items-center gap-2">
+                                <span className="w-3 h-3 rounded-full border border-slate-300 inline-block flex-shrink-0" style={{ background: inst.primary_color || '#800020' }} />
+                                {inst.id}
+                              </div>
+                            </td>
                             <td className="px-6 py-3 font-bold text-slate-900 dark:text-white">{inst.name}</td>
                             <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{inst.contact_email || 'N/A'}</td>
                             <td className="px-6 py-3 text-center">
@@ -676,7 +681,11 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                     setEditInstitutionForm({
                                       name: inst.name || '',
                                       address: inst.address || '',
-                                      contact_email: inst.contact_email || ''
+                                      contact_email: inst.contact_email || '',
+                                      primary_color: inst.primary_color || '#800020',
+                                      secondary_color: inst.secondary_color || '#F7E7CE',
+                                      welcome_text: inst.welcome_text || '',
+                                      logo_url: inst.logo_url || ''
                                     });
                                     setIsEditInstitutionModalOpen(true);
                                   }}
@@ -1573,6 +1582,60 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   onChange={e => setEditInstitutionForm({...editInstitutionForm, contact_email: e.target.value})}
                   className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
                 />
+              </div>
+              <div className="border-t border-slate-200 dark:border-slate-700 pt-4 space-y-4">
+                <p className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Branding</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Primary Colour</label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="color"
+                        value={editInstitutionForm.primary_color}
+                        onChange={e => setEditInstitutionForm({...editInstitutionForm, primary_color: e.target.value})}
+                        className="w-10 h-10 rounded-lg border border-slate-200 cursor-pointer p-0.5"
+                      />
+                      <input
+                        type="text"
+                        value={editInstitutionForm.primary_color}
+                        onChange={e => setEditInstitutionForm({...editInstitutionForm, primary_color: e.target.value})}
+                        className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-3 py-2 rounded-xl text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                        placeholder="#800020"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Secondary Colour</label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="color"
+                        value={editInstitutionForm.secondary_color}
+                        onChange={e => setEditInstitutionForm({...editInstitutionForm, secondary_color: e.target.value})}
+                        className="w-10 h-10 rounded-lg border border-slate-200 cursor-pointer p-0.5"
+                      />
+                      <input
+                        type="text"
+                        value={editInstitutionForm.secondary_color}
+                        onChange={e => setEditInstitutionForm({...editInstitutionForm, secondary_color: e.target.value})}
+                        className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-3 py-2 rounded-xl text-xs font-mono focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                        placeholder="#F7E7CE"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-slate-200" style={{ background: `linear-gradient(to right, ${editInstitutionForm.primary_color}, ${editInstitutionForm.secondary_color})` }}>
+                  <p className="text-center text-white text-xs font-bold py-2 drop-shadow">Header preview</p>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Welcome Text</label>
+                  <input
+                    type="text"
+                    value={editInstitutionForm.welcome_text}
+                    onChange={e => setEditInstitutionForm({...editInstitutionForm, welcome_text: e.target.value})}
+                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-3 py-2 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                    placeholder="Welcome to Hayford Hub"
+                  />
+                </div>
               </div>
               <div className="flex gap-3 pt-4">
                 <button

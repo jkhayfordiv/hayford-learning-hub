@@ -38,10 +38,10 @@ const _hexToRgb = (hex) => {
   const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return r ? `${parseInt(r[1],16)}, ${parseInt(r[2],16)}, ${parseInt(r[3],16)}` : '128, 0, 32';
 };
-const _darkenHex = (hex, amt = 50) => {
+const _darkenHex = (hex, pct = 0.4) => {
   const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   if (!r) return '#1a0008';
-  return `#${[parseInt(r[1],16),parseInt(r[2],16),parseInt(r[3],16)].map(v=>Math.max(0,v-amt).toString(16).padStart(2,'0')).join('')}`;
+  return `#${[parseInt(r[1],16),parseInt(r[2],16),parseInt(r[3],16)].map(v=>Math.round(v*(1-pct)).toString(16).padStart(2,'0')).join('')}`;
 };
 const _branding = (() => { try { return JSON.parse(localStorage.getItem('branding') || '{}'); } catch { return {}; } })();
 const BRAND_PRIMARY   = _branding.primary_color   || '#800020';

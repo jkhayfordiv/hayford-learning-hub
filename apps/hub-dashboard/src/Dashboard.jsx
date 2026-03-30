@@ -137,6 +137,7 @@ export default function Dashboard() {
 
   // Show more state for recent activities
   const [showAllRecentActivities, setShowAllRecentActivities] = useState(false);
+  const [showAllWeaknesses, setShowAllWeaknesses] = useState(false);
 
   useEffect(() => {
     // Show limbo modal if student has no class and hasn't dismissed it this session
@@ -867,8 +868,9 @@ export default function Dashboard() {
               <p className="text-slate-500 dark:text-slate-400 font-medium max-w-md mx-auto">No consistent weaknesses detected yet. Keep practicing to maintain your strong performance!</p>
             </div>
           ) : (
+            <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {weaknesses.map((item, idx) => {
+              {(showAllWeaknesses ? weaknesses : weaknesses.slice(0, 3)).map((item, idx) => {
                 const maxCount = weaknesses[0]?.count || 1;
                 const percentage = Math.max(15, (item.count / maxCount) * 100);
                 const severityDot = item.count >= maxCount * 0.7 ? 'bg-red-500' : item.count >= maxCount * 0.4 ? 'bg-amber-500' : 'bg-emerald-500';
@@ -907,6 +909,17 @@ export default function Dashboard() {
                 );
               })}
             </div>
+            {weaknesses.length > 3 && (
+              <div className="flex justify-center mt-4">
+                <button
+                  onClick={() => setShowAllWeaknesses(v => !v)}
+                  className="text-sm font-bold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center gap-2 px-5 py-2 border border-slate-300 dark:border-slate-600 rounded-xl transition-all hover:border-slate-500"
+                >
+                  {showAllWeaknesses ? '↑ Show fewer' : `↓ View all ${weaknesses.length} weaknesses`}
+                </button>
+              </div>
+            )}
+            </>
           )}
         </div>
 

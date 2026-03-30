@@ -51,6 +51,10 @@ router.get('/', verifyAdminOrAbove, async (req, res) => {
         i.address,
         i.contact_email,
         i.created_at,
+        i.primary_color,
+        i.secondary_color,
+        i.welcome_text,
+        i.logo_url,
         (
           SELECT COUNT(DISTINCT u.id)
           FROM users u
@@ -106,7 +110,7 @@ router.post('/', verifySuperAdmin, async (req, res) => {
 // PUT update institution
 router.put('/:id', verifySuperAdmin, async (req, res) => {
   const { id } = req.params;
-  const { name, address, contact_email } = req.body;
+  const { name, address, contact_email, primary_color, secondary_color, welcome_text, logo_url } = req.body;
 
   if (!name) {
     return res.status(400).json({ error: 'Institution name is required' });
@@ -115,8 +119,16 @@ router.put('/:id', verifySuperAdmin, async (req, res) => {
   try {
     const connection = await pool.getConnection();
     const [result] = await connection.query(
-      'UPDATE institutions SET name = $1, address = $2, contact_email = $3 WHERE id = $4',
-      [name, address || null, contact_email || null, id]
+      `UPDATE institutions SET
+        name = $1, address = $2, contact_email = $3,
+        primary_color = COALESCE($4, primary_color),
+        secondary_color = COALESCE($5, secondary_color),
+        welcome_text = COALESCE($6, welcome_text),
+        logo_url = COALESCE($7, logo_url)
+       WHERE id = $8`,
+      [name, address || null, contact_email || null,
+       primary_color || null, secondary_color || null,
+       welcome_text || null, logo_url || null, id]
     );
     connection.release();
     const updated = result?.affectedRows ?? result?.rowCount ?? 0;

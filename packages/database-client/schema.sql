@@ -40,6 +40,14 @@ UPDATE institutions SET
   welcome_text    = 'Welcome to the NIC Student Portal'
 WHERE subdomain = 'nic';
 
+-- Fallback: also target NIC by ID in case subdomain is not yet set
+UPDATE institutions SET
+  primary_color   = '#110b65',
+  secondary_color = '#1a1575',
+  logo_url        = '/logos/nic-logo.png',
+  welcome_text    = 'Welcome to the NIC Student Portal'
+WHERE id = 4 AND (primary_color IS NULL OR primary_color = '#800020');
+
 -- Ensure Hayford default institution has explicit branding set
 UPDATE institutions SET
   primary_color   = '#800020',

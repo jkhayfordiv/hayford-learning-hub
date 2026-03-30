@@ -84,8 +84,14 @@ export default function TeacherDashboard({ user, onLogout }) {
   let branding = {};
   try { branding = JSON.parse(localStorage.getItem('branding') || '{}'); } catch (e) {}
   const brandPrimary    = branding.primary_color   || '#800020';
+  const brandSecondary  = branding.secondary_color || '#600000';
   const brandLogoUrl    = branding.logo_url        || null;
   const brandWelcome    = branding.welcome_text    || 'Hayford Global Learning Hub';
+  const brandDark = (() => {
+    const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(brandPrimary);
+    if (!r) return '#1a0008';
+    return `#${[parseInt(r[1],16),parseInt(r[2],16),parseInt(r[3],16)].map(v=>Math.round(v*0.6).toString(16).padStart(2,'0')).join('')}`;
+  })();
 
   const [students, setStudents] = useState([]);
   const [classes, setClasses] = useState([]);
@@ -876,7 +882,8 @@ export default function TeacherDashboard({ user, onLogout }) {
     <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
       {/* Top Navbar */}
       <header 
-        className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40 bg-gradient-to-r from-[#800000] to-[#600000]"
+        className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40"
+        style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
       >
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
            <img 
@@ -950,7 +957,7 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Admin Level Navigation Bar (Crimson) - Platform Management */}
       {(user.role === 'admin' || user.role === 'super_admin') && (
-        <div className="bg-gradient-to-r from-[#800000] to-[#600000] border-b border-[#700000] px-8 py-3 flex gap-6 sticky top-[73px] z-30">
+        <div className="border-b px-8 py-3 flex gap-6 sticky top-[73px] z-30" style={{ background: `linear-gradient(to right, ${brandDark}, ${brandPrimary})`, borderColor: `${brandDark}` }}>
           <button
             onClick={() => {
               setNavigationView('dashboard');
@@ -1084,7 +1091,8 @@ export default function TeacherDashboard({ user, onLogout }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <button
               onClick={() => { const s = crypto.randomUUID(); window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both&sessionId=${s}`; }}
-              className="bg-gradient-to-br from-brand-sangria to-[#4A1410] hover:from-[#4A1410] hover:to-[#3A0F0C] p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+              className="p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+              style={{ background: `linear-gradient(to bottom right, ${brandPrimary}, ${brandDark})` }}
             >
               <PenTool size={22} className="text-white/90 mb-3" />
               <div>
@@ -1094,7 +1102,7 @@ export default function TeacherDashboard({ user, onLogout }) {
             </button>
             <button
               onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
-              className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+              className="bg-gradient-to-br from-rose-700 to-rose-900 hover:from-rose-800 hover:to-rose-950 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
             >
               <MessageSquare size={22} className="text-white/90 mb-3" />
               <div>
@@ -1114,7 +1122,7 @@ export default function TeacherDashboard({ user, onLogout }) {
             </button>
             <button
               onClick={() => window.location.href = `/vocab/?token=${localStorage.getItem('token')}`}
-              className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+              className="bg-gradient-to-br from-emerald-700 to-green-900 hover:from-emerald-800 hover:to-green-950 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
             >
               <RefreshCw size={22} className="text-white/90 mb-3" />
               <div>
