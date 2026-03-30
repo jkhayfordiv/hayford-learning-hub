@@ -63,10 +63,11 @@ export default function DiagnosticView() {
 
     try {
       setSubmitting(true);
+      const answersArray = questions.map((_, idx) => selectedAnswers[idx]);
       const response = await submitMasteryCheck(
         'node-0-diagnostic',
         'multiple_choice',
-        { answers: selectedAnswers },
+        { answers: answersArray },
         diagnosticNode.mastery_check
       );
       setResult(response);
