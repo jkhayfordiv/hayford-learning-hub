@@ -389,12 +389,12 @@
           "type": "multiple_choice",
           "question": "Final Check: In a Passive sentence, the subject ___ the action.",
           "options": [
-            "Performs",
-            "Receives",
-            "Ignores",
-            "Changes"
+            "performs",
+            "receives",
+            "ignores",
+            "changes"
           ],
-          "correctAnswer": "Receives",
+          "correctAnswer": "receives",
           "explanation": "The passive voice shifts focus from the 'doer' to the 'receiver'."
         }
       ]

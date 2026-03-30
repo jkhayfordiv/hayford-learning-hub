@@ -1183,12 +1183,12 @@
           "type": "multiple_choice",
           "question": "Final Check: A semicolon is used to connect two ___.",
           "options": [
-            "Words",
-            "Phrases",
-            "Independent Clauses",
-            "Dependent Clauses"
+            "words",
+            "phrases",
+            "independent clauses",
+            "dependent clauses"
           ],
-          "correctAnswer": "Independent Clauses",
+          "correctAnswer": "independent clauses",
           "explanation": "A semicolon is a 'soft stop' between two complete, related sentences."
         }
       ]

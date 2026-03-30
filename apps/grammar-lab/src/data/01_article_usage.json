@@ -309,7 +309,7 @@
         {
           "id": "q1_24",
           "type": "multiple_choice",
-          "question": "It is considered an honor to win ___ Nobel Prize.",
+          "question": "Reading about ___ Nobel Prize in Chemistry inspired her to become a scientist.",
           "options": [
             "a",
             "an",
@@ -317,7 +317,7 @@
             "no article"
           ],
           "correctAnswer": "the",
-          "explanation": "Specific, unique awards take 'the'."
+          "explanation": "Named, specific awards are unique institutions and always take 'the'. As there is only one Nobel Prize in Chemistry, it is treated as a unique, singular entity requiring the definite article."
         },
         {
           "id": "q1_25",

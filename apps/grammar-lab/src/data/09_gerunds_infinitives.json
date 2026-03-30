@@ -389,12 +389,12 @@
           "type": "multiple_choice",
           "question": "Final Check: A Gerund is a verb that acts like a ___.",
           "options": [
-            "Adjective",
-            "Noun",
-            "Adverb",
-            "Preposition"
+            "adjective",
+            "noun",
+            "adverb",
+            "preposition"
           ],
-          "correctAnswer": "Noun",
+          "correctAnswer": "noun",
           "explanation": "Gerunds (-ing) function as nouns in a sentence."
         }
       ]

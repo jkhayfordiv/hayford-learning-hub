@@ -7,6 +7,11 @@ export default defineConfig({
   server: {
     port: 5177,
     strictPort: true,
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/grammar-world\/.*$/, to: '/grammar-world/index.html' },
+      ],
+    },
     proxy: {
       '/api': {
         target: process.env.VITE_API_URL || 'http://localhost:3001',

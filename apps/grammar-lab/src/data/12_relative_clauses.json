@@ -1183,12 +1183,12 @@
           "type": "multiple_choice",
           "question": "Final Check: Non-defining clauses ___ the meaning of the noun.",
           "options": [
-            "Limit",
-            "Add extra detail to",
-            "Define",
-            "Change"
+            "limit",
+            "add extra detail to",
+            "define",
+            "change"
           ],
-          "correctAnswer": "Add extra detail to",
+          "correctAnswer": "add extra detail to",
           "explanation": "Defining clauses limit/define; non-defining clauses just add extra info."
         }
       ]

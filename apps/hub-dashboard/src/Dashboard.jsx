@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2, Lock, Star } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
-import WordBank from './components/WordBank';
 import StudentFeedbackModal from './components/StudentFeedbackModal';
 import logo from './assets/logo.png';
 
@@ -85,7 +84,6 @@ export default function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [isLoadingTasks, setIsLoadingTasks] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('overview');
   const [expandedScoreId, setExpandedScoreId] = useState(null);
   const [isTourOpen, setIsTourOpen] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
@@ -118,7 +116,6 @@ export default function Dashboard() {
 
   // Show more state for recent activities
   const [showAllRecentActivities, setShowAllRecentActivities] = useState(false);
-  const [showAllCompletedWork, setShowAllCompletedWork] = useState(false);
 
   useEffect(() => {
     // Show limbo modal if student has no class and hasn't dismissed it this session
@@ -666,32 +663,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="flex gap-4 border-b border-slate-200 dark:border-slate-700 mb-8 pb-4">
-          <button 
-            onClick={() => setActiveTab('overview')}
-            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'overview' ? 'border-amber-600 text-amber-700 dark:text-amber-500' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'}`}
-            style={{ marginBottom: '-17px' }}
-          >
-            Overview
-          </button>
-          <button 
-            onClick={() => setActiveTab('progress')}
-            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'progress' ? 'border-amber-600 text-amber-700 dark:text-amber-500' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'}`}
-            style={{ marginBottom: '-17px' }}
-          >
-            My Progress
-          </button>
-          <button 
-            onClick={() => setActiveTab('wordbank')}
-            className={`font-bold pb-4 border-b-2 transition-colors ${activeTab === 'wordbank' ? 'border-amber-600 text-amber-700 dark:text-amber-500' : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300'}`}
-            style={{ marginBottom: '-17px' }}
-          >
-            My Word Bank
-          </button>
-        </div>
 
-        {activeTab === 'overview' ? (
-          <>
         {/* Your To-Do List Section */}
         <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2"><CheckCircle2 className="text-amber-600" /> Your To-Do List</h3>
@@ -725,7 +697,7 @@ export default function Dashboard() {
                                 ? `IELTS Speaking Parts ${task.speaking_parts.join(', ')}`
                                 : `IELTS Speaking Part ${task.speaking_task_part || (task.speaking_parts && task.speaking_parts[0]) || '1'}`
                               : task.assignment_type === 'grammar-practice'
-                                ? `Grammar Lab: ${task.grammar_topic_id?.replace(/-/g, ' ') || 'Practice'}`
+                                ? `Grammar Lab: ${task.grammar_topic_id?.replace(/[-_]/g, ' ') || 'Practice'}`
                                 : task.assignment_type === 'vocabulary'
                                   ? 'Vocabulary Builder'
                                   : task.module_name}
@@ -781,87 +753,12 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Targeted Weaknesses Card */}
-        <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2">
-            <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-            Targeted Weaknesses
-          </h3>
-          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-sm">
-            {isLoadingWeaknesses ? (
-              <div className="text-center text-slate-400 py-8">Loading weakness analysis...</div>
-            ) : weaknesses.length === 0 ? (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                </div>
-                <h4 className="font-bold text-lg text-slate-900 dark:text-white mb-2">Excellent Work!</h4>
-                <p className="text-slate-500 dark:text-slate-400 font-medium max-w-md mx-auto">No consistent weaknesses detected yet. Keep practicing to maintain your strong performance!</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium mb-6">Based on AI analysis of your submissions, here are areas that need attention:</p>
-                {weaknesses.map((weakness, idx) => {
-                  const maxCount = weaknesses[0]?.error_count || 1;
-                  const percentage = (weakness.error_count / maxCount) * 100;
-                  const getColorClasses = (count) => {
-                    if (count >= maxCount * 0.7) return { bg: 'bg-red-500', lightBg: 'bg-red-50 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-800' };
-                    if (count >= maxCount * 0.4) return { bg: 'bg-amber-500', lightBg: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800' };
-                    return { bg: 'bg-brand-navy', lightBg: 'bg-brand-navy/10 dark:bg-brand-navy/30', text: 'text-brand-navy dark:text-blue-400', border: 'border-brand-navy/20 dark:border-brand-navy/50' };
-                  };
-                  const colors = getColorClasses(weakness.error_count);
-                  
-                  return (
-                    <div key={idx} className={`p-4 rounded-2xl border-2 ${colors.border} ${colors.lightBg}`}>
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-3">
-                          <span className={`flex-shrink-0 w-8 h-8 rounded-full ${colors.bg} text-white font-black text-sm flex items-center justify-center`}>
-                            {idx + 1}
-                          </span>
-                          <div>
-                            <p className={`font-bold text-sm ${colors.text}`}>{weakness.category}</p>
-                            <p className="text-xs text-slate-500 dark:text-slate-400">
-                              {weakness.error_count} {weakness.error_count === 1 ? 'error' : 'errors'} detected
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          onClick={() => {
-                            const topicId = DIAGNOSTIC_TO_TOPIC_MAP[weakness.category];
-                            if (topicId) {
-                              window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(topicId)}`;
-                            }
-                          }}
-                          className={`px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors ${colors.bg} text-white hover:opacity-90`}
-                        >
-                          Practice
-                        </button>
-                      </div>
-                      <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
-                        <div 
-                          className={`h-full ${colors.bg} rounded-full transition-all duration-700 ease-out`}
-                          style={{ width: `${percentage}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Metrics Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-           <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-2 lg:col-span-1">
-              <span className="text-xs font-black uppercase text-slate-400 tracking-widest">Completed Submissions</span>
-              <span className="font-black text-slate-900 dark:text-white tracking-tighter text-3xl">{scores.length}</span>
-           </div>
-           
+        {/* App Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
            {isFreeB2C && monthlyWritingUsed ? (
              <button
                onClick={() => { setUpgradeModalContext('writing'); setShowUpgradeModal(true); }}
-               className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1 relative overflow-hidden"
+               className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
              >
                <div className="flex items-center justify-between mb-2">
                  <PenTool size={24} className="text-white/60" />
@@ -877,7 +774,7 @@ export default function Dashboard() {
                  sessionStorage.setItem('writingSessionId', sessionId);
                  window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both&sessionId=${sessionId}`;
                }}
-               className="bg-gradient-to-br from-brand-sangria to-[#4A1410] hover:from-[#4A1410] hover:to-[#3A0F0C] p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+               className="bg-gradient-to-br from-gray-900 to-slate-950 hover:from-slate-950 hover:to-black p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
              >
                <div className="flex items-center justify-between mb-2">
                  <PenTool size={24} className="text-white/90 group-hover:text-white transition-colors" />
@@ -893,7 +790,7 @@ export default function Dashboard() {
              isFreeB2C ? (
                <button
                  onClick={() => { setUpgradeModalContext('speaking'); setShowUpgradeModal(true); }}
-                 className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+                 className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
                >
                  <div className="flex items-center justify-between mb-2">
                    <MessageSquare size={24} className="text-white/60" />
@@ -905,7 +802,7 @@ export default function Dashboard() {
              ) : (
                <button
                  onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
-                 className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+                 className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
                >
                  <div className="flex items-center justify-between mb-2">
                    <MessageSquare size={24} className="text-white/90 group-hover:text-white transition-colors" />
@@ -920,7 +817,7 @@ export default function Dashboard() {
            {user.has_grammar_world !== false && (
              <button
                 onClick={() => window.location.href = `/grammar-world/?token=${localStorage.getItem('token')}`}
-                className="bg-gradient-to-br from-brand-navy to-slate-800 hover:from-slate-800 hover:to-slate-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+                className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
              >
                 <div className="flex items-center justify-between mb-2">
                    <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />
@@ -932,8 +829,8 @@ export default function Dashboard() {
            )}
 
            <button
-              onClick={() => setActiveTab('wordbank')}
-              className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+              onClick={() => window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-amber-800 to-stone-800 hover:from-amber-900 hover:to-stone-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
            >
               <div className="flex items-center justify-between mb-2">
                  <RefreshCw size={24} className="text-white/90 group-hover:text-white transition-colors" />
@@ -943,12 +840,11 @@ export default function Dashboard() {
               <p className="text-[10px] text-white/80 mt-1">Academic Word Bank</p>
            </button>
 
-           {/* Conditional Upgrade to Premium Button - Only for B2C institutions on free tier */}
            {isFreeB2C && (
              <button
                 onClick={handleUpgradeToPremium}
                 disabled={isUpgrading}
-                className="bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-500 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group lg:col-span-1"
+                className="bg-gradient-to-br from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 disabled:from-slate-400 disabled:to-slate-500 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
              >
                 <div className="flex items-center justify-between mb-2">
                    {isUpgrading ? (
@@ -964,6 +860,70 @@ export default function Dashboard() {
                 <p className="text-[10px] text-white/80 mt-1">$9.99/month - Unlock all features</p>
              </button>
            )}
+        </div>
+
+        {/* Targeted Weaknesses Section */}
+        <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+            Targeted Weaknesses
+          </h3>
+          {isLoadingWeaknesses ? (
+            <div className="text-center text-slate-400 py-8">Loading weakness analysis...</div>
+          ) : weaknesses.length === 0 ? (
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-sm text-center">
+              <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <h4 className="font-bold text-lg text-slate-900 dark:text-white mb-2">Excellent Work!</h4>
+              <p className="text-slate-500 dark:text-slate-400 font-medium max-w-md mx-auto">No consistent weaknesses detected yet. Keep practicing to maintain your strong performance!</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {weaknesses.map((weakness, idx) => {
+                const maxCount = weaknesses[0]?.error_count || 1;
+                const percentage = (weakness.error_count / maxCount) * 100;
+                const getColorClasses = (count) => {
+                  if (count >= maxCount * 0.7) return { bg: 'bg-red-500', lightBg: 'bg-red-50 dark:bg-red-900/30', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-800' };
+                  if (count >= maxCount * 0.4) return { bg: 'bg-amber-500', lightBg: 'bg-amber-50 dark:bg-amber-900/30', text: 'text-amber-700 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800' };
+                  return { bg: 'bg-brand-navy', lightBg: 'bg-brand-navy/10 dark:bg-brand-navy/30', text: 'text-brand-navy dark:text-blue-400', border: 'border-brand-navy/20 dark:border-brand-navy/50' };
+                };
+                const colors = getColorClasses(weakness.error_count);
+                return (
+                  <div key={idx} className={`p-4 rounded-2xl border-2 ${colors.border} ${colors.lightBg} flex flex-col gap-3`}>
+                    <div className="flex items-center gap-3">
+                      <span className={`flex-shrink-0 w-8 h-8 rounded-full ${colors.bg} text-white font-black text-sm flex items-center justify-center`}>
+                        {idx + 1}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className={`font-bold text-sm ${colors.text}`}>{weakness.category}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          {weakness.error_count} {weakness.error_count === 1 ? 'error' : 'errors'} detected
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 overflow-hidden">
+                      <div
+                        className={`h-full ${colors.bg} rounded-full transition-all duration-700 ease-out`}
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        const topicId = DIAGNOSTIC_TO_TOPIC_MAP[weakness.category];
+                        if (topicId) {
+                          window.location.href = `/grammar-lab/?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(topicId)}`;
+                        }
+                      }}
+                      className={`w-full px-4 py-2 rounded-xl font-bold text-xs uppercase tracking-wider transition-colors ${colors.bg} text-white hover:opacity-90`}
+                    >
+                      Practice
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Scores Table */}
@@ -1041,171 +1001,6 @@ export default function Dashboard() {
             </div>
           )}
         </div>
-        </>
-        ) : activeTab === 'progress' ? (
-          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            {/* Top 3 Focus Areas */}
-            {topFocusAreas.length > 0 && (
-              <div className="mb-12">
-                <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2">
-                  <Shield className="text-amber-600" /> DRA: Top 3 Focus Areas
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {topFocusAreas.map((area, idx) => (
-                    <div key={idx} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="w-10 h-10 rounded-full bg-rose-50 dark:bg-rose-900/30 flex items-center justify-center text-rose-600 dark:text-rose-400 font-black border border-rose-100 dark:border-rose-800">
-                          #{idx + 1}
-                        </div>
-                        <span className="text-[10px] font-black uppercase tracking-widest bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 px-2 py-1 rounded">
-                          {area.count} {area.count === 1 ? 'Error' : 'Errors'}
-                        </span>
-                      </div>
-                      <h4 className="font-bold text-slate-900 dark:text-white text-lg leading-tight">{area.displayTag}</h4>
-                      <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-2">
-                        Review this area before your next submission to improve your band score.
-                      </p>
-                      {DIAGNOSTIC_TO_TOPIC_MAP[area.tag] && (
-                        <button 
-                          onClick={() => {
-                            const topicId = DIAGNOSTIC_TO_TOPIC_MAP[area.tag];
-                            window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
-                          }}
-                          className="mt-4 w-full bg-slate-900 dark:bg-amber-600 hover:bg-slate-950 dark:hover:bg-amber-700 text-white font-bold py-2 rounded-xl transition-colors text-sm flex items-center justify-center gap-2 shadow-sm"
-                        >
-                          Practice Now ⚡
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2"><CheckCircle2 className="text-amber-600" /> My Completed Work</h3>
-            <div className="space-y-4">
-              {isLoading ? (
-                <div className="border border-slate-200 dark:border-slate-700 rounded-2xl p-8 bg-white dark:bg-slate-800 text-center text-slate-400">Loading history...</div>
-              ) : scores.length === 0 ? (
-                <div className="border border-dashed border-slate-300 dark:border-slate-700 rounded-3xl p-10 bg-slate-50 dark:bg-slate-800/50 text-center flex flex-col items-center justify-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><CheckCircle2 size={32} className="text-slate-400" /></div>
-                  <div>
-                    <h4 className="font-bold text-lg text-slate-900 dark:text-white">No submissions yet</h4>
-                    <p className="text-slate-500 dark:text-slate-400 font-medium max-w-sm mx-auto">Complete an assignment or practice task to see your progress here.</p>
-                  </div>
-                </div>
-              ) : (
-                (showAllCompletedWork ? scores : scores.slice(0, 4)).map((score) => (
-                  <div key={score.id} className={`bg-white dark:bg-slate-800 border rounded-2xl overflow-hidden shadow-sm ${
-                    score.teacher_comment && !score.teacher_comment_read 
-                      ? 'border-amber-400 dark:border-amber-600 ring-2 ring-amber-200 dark:ring-amber-900/50' 
-                      : 'border-slate-200 dark:border-slate-700'
-                  }`}>
-                    <div 
-                      className="px-6 py-4 flex items-center justify-between cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
-                      onClick={() => {
-                        if (score.teacher_comment) {
-                          setSelectedFeedbackScore(score);
-                          setIsFeedbackModalOpen(true);
-                        } else {
-                          setExpandedScoreId(expandedScoreId === score.id ? null : score.id);
-                        }
-                      }}
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-xl flex flex-col items-center justify-center border border-amber-100 dark:border-amber-700">
-                          <span className="text-sm font-black">{Number(score.overall_score).toFixed(1)}</span>
-                          <span className="text-[8px] uppercase font-bold tracking-widest">Score</span>
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <h4 className="font-bold text-slate-900 dark:text-white">{score.module_name}</h4>
-                            {score.teacher_comment && !score.teacher_comment_read && (
-                              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-[10px] font-black uppercase tracking-wider rounded-full border border-amber-300 dark:border-amber-700 animate-pulse">
-                                <MessageSquare size={10} /> New Feedback
-                              </span>
-                            )}
-                          </div>
-                          <span className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-widest">{score.module_type}</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-6">
-                        <div className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                          <Calendar size={14} />
-                          {new Date(score.completed_at).toLocaleDateString()}
-                        </div>
-                        {score.teacher_comment ? (
-                          <MessageSquare className="w-5 h-5 text-amber-600 dark:text-amber-500" />
-                        ) : (
-                          <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${expandedScoreId === score.id ? 'rotate-180 text-amber-600' : ''}`} />
-                        )}
-                      </div>
-                    </div>
-                    
-                    {expandedScoreId === score.id && (
-                      <div className="p-6 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-700 text-sm animate-in slide-in-from-top-2">
-                        <h5 className="font-black text-slate-900 dark:text-white uppercase tracking-widest text-xs mb-3">AI Feedback</h5>
-                        {score.ai_feedback ? (
-                          <div className="space-y-4">
-                            {score.module_type === 'vocabulary' && Array.isArray(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback) ? (
-                              (typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback).map((f, i) => (
-                                <div key={i} className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700">
-                                  <div className="font-bold text-indigo-900 dark:text-indigo-400 mb-1">{f?.word || 'Unknown Word'}</div>
-                                  <div className="text-slate-600 dark:text-slate-300 italic mb-2">"{f?.sentence || 'No sentence provided'}"</div>
-                                  <div className="text-slate-500 dark:text-slate-400 text-xs mt-2 pt-2 border-t border-slate-100 dark:border-slate-700">
-                                    💡 {f?.feedback?.explanation || "No explanation"}
-                                  </div>
-                                </div>
-                              ))
-                            ) : (typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.bandScore ? (
-                              <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
-                                <p className="text-slate-700 dark:text-slate-300 italic border-l-4 border-indigo-200 dark:border-indigo-700 pl-4 mb-4">"{(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.modelHighlights}"</p>
-                                <div className="grid grid-cols-2 gap-4 text-xs font-medium text-slate-600 dark:text-slate-300">
-                                  <div><span className="font-bold text-slate-900 dark:text-white">Task Achievement:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.taskAchievement}</div>
-                                  <div><span className="font-bold text-slate-900 dark:text-white">Coherence:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.coherenceCohesion}</div>
-                                  <div><span className="font-bold text-slate-900 dark:text-white">Lexical:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.lexicalResource}</div>
-                                  <div><span className="font-bold text-slate-900 dark:text-white">Grammar:</span> {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.grammarAccuracy}</div>
-                                </div>
-                                <div className="mt-4">
-                                  <span className="font-bold text-slate-900 dark:text-white text-xs">Improvement Tips:</span>
-                                  <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-600 dark:text-slate-300">
-                                    {(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback)?.improvementTips?.map((tip, i) => <li key={i}>{tip}</li>)}
-                                  </ul>
-                                </div>
-                              </div>
-                            ) : (
-                              <pre className="whitespace-pre-wrap bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 font-mono text-xs text-slate-600 dark:text-slate-300 overflow-x-auto">
-                                {JSON.stringify(typeof score.ai_feedback === 'string' ? JSON.parse(score.ai_feedback) : score.ai_feedback, null, 2)}
-                              </pre>
-                            )}
-                          </div>
-                        ) : (
-                          <div className="text-slate-500 text-sm">No detailed feedback available for this submission.</div>
-                        )}
-                        <h5 className="font-black text-slate-900 dark:text-white uppercase tracking-widest text-xs mt-6 mb-3">Your Answer</h5>
-                        <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 whitespace-pre-wrap font-serif leading-relaxed italic">
-                          "{score.submitted_text}"
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))
-              )}
-              {!isLoading && scores.length > 4 && (
-                <div className="mt-4">
-                  <button
-                    onClick={() => setShowAllCompletedWork(!showAllCompletedWork)}
-                    className="w-full py-3 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl"
-                  >
-                    {showAllCompletedWork ? 'Show Less' : `Show More (${scores.length - 4} more)`}
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        ) : activeTab === 'wordbank' ? (
-          <WordBank user={user} />
-        ) : null}
 
       </main>
 

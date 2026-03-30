@@ -30,7 +30,7 @@
             "simplify",
             "simply"
           ],
-          "correctAnswer": "Simplify",
+          "correctAnswer": "simplify",
           "explanation": "The suffix '-ify' is used to turn an adjective or noun into a verb (to make simple)."
         },
         {
@@ -56,7 +56,7 @@
             "slowly",
             "slowing"
           ],
-          "correctAnswer": "Slowly",
+          "correctAnswer": "slowly",
           "explanation": "The suffix '-ly' turns an adjective into an adverb describing how an action is done."
         },
         {
@@ -95,7 +95,7 @@
             "decisive",
             "decisively"
           ],
-          "correctAnswer": "Decision",
+          "correctAnswer": "decision",
           "explanation": "'-ion/sion' forms a noun from the verb 'decide'."
         },
         {
@@ -147,7 +147,7 @@
             "fasten",
             "fastness"
           ],
-          "correctAnswer": "Fasten",
+          "correctAnswer": "fasten",
           "explanation": "The suffix '-en' can turn an adjective into a verb (to make fast/tight)."
         },
         {
@@ -160,7 +160,7 @@
             "professionally",
             "professor"
           ],
-          "correctAnswer": "Professional",
+          "correctAnswer": "professional",
           "explanation": "'-al' is a common adjective suffix."
         },
         {
@@ -181,12 +181,12 @@
           "type": "multiple_choice",
           "question": "Choose the correct part of speech: 'Information' is a ___.",
           "options": [
-            "Noun",
-            "Verb",
-            "Adjective",
-            "Adverb"
+            "noun",
+            "verb",
+            "adjective",
+            "adverb"
           ],
-          "correctAnswer": "Noun",
+          "correctAnswer": "noun",
           "explanation": "The ending '-tion' marks it as a noun."
         },
         {
@@ -238,7 +238,7 @@
             "agreeable",
             "agreeably"
           ],
-          "correctAnswer": "Agreement",
+          "correctAnswer": "agreement",
           "explanation": "'-ment' indicates a noun."
         },
         {
@@ -251,7 +251,7 @@
             "analyze",
             "analytically"
           ],
-          "correctAnswer": "Analyze",
+          "correctAnswer": "analyze",
           "explanation": "'-yze' or '-ize' is the verb ending."
         },
         {
@@ -285,12 +285,12 @@
           "type": "multiple_choice",
           "question": "Choose the correct part of speech: 'Beauty' is a(n) ___.",
           "options": [
-            "Noun",
-            "Verb",
-            "Adjective",
-            "Adverb"
+            "noun",
+            "verb",
+            "adjective",
+            "adverb"
           ],
-          "correctAnswer": "Noun",
+          "correctAnswer": "noun",
           "explanation": "It is an abstract noun (the concept of being beautiful)."
         },
         {
@@ -303,7 +303,7 @@
             "modernity",
             "modernly"
           ],
-          "correctAnswer": "Modernize",
+          "correctAnswer": "modernize",
           "explanation": "'-ize' is the verb suffix."
         },
         {
@@ -324,12 +324,12 @@
           "type": "multiple_choice",
           "question": "Choose the correct noun: 'The ___ of the building took years.'",
           "options": [
-            "Construct",
-            "Construction",
-            "Constructive",
-            "Constructor"
+            "construct",
+            "construction",
+            "constructive",
+            "constructor"
           ],
-          "correctAnswer": "Construction",
+          "correctAnswer": "construction",
           "explanation": "'-tion' describes the process or the result of constructing."
         },
         {
@@ -350,12 +350,12 @@
           "type": "multiple_choice",
           "question": "Identify the noun: 'The ___ of the internet is huge.'",
           "options": [
-            "Important",
-            "Importantly",
-            "Importance",
-            "Import"
+            "important",
+            "importantly",
+            "importance",
+            "import"
           ],
-          "correctAnswer": "Importance",
+          "correctAnswer": "importance",
           "explanation": "'-ance' is a noun suffix."
         },
         {
@@ -376,12 +376,12 @@
           "type": "multiple_choice",
           "question": "Select the adjective: 'The task was ___.'",
           "options": [
-            "Possible",
-            "Possibility",
-            "Possibly",
-            "Possess"
+            "possible",
+            "possibility",
+            "possibly",
+            "possess"
           ],
-          "correctAnswer": "Possible",
+          "correctAnswer": "possible",
           "explanation": "'-ible' is an adjective ending."
         },
         {
@@ -1234,7 +1234,7 @@
             "economical",
             "economically"
           ],
-          "correctAnswer": "Economic",
+          "correctAnswer": "economic",
           "explanation": "'Economic' refers to the economy of a country. 'Economical' means 'cheap' or 'saving money'."
         },
         {
@@ -1273,7 +1273,7 @@
             "consumption",
             "consumptive"
           ],
-          "correctAnswer": "Consumption",
+          "correctAnswer": "consumption",
           "explanation": "Formal noun form for the act of using something."
         },
         {
@@ -1299,7 +1299,7 @@
             "decisive",
             "decisively"
           ],
-          "correctAnswer": "Decisive",
+          "correctAnswer": "decisive",
           "explanation": "'Decisive' is the adjective meaning 'firm' or 'conclusive'."
         },
         {
@@ -1325,7 +1325,7 @@
             "emphatic",
             "emphatically"
           ],
-          "correctAnswer": "Emphasize",
+          "correctAnswer": "emphasize",
           "explanation": "Verb form needed after 'must'."
         },
         {
@@ -1377,7 +1377,7 @@
             "probability",
             "probabilize"
           ],
-          "correctAnswer": "Probability",
+          "correctAnswer": "probability",
           "explanation": "Noun form needed after 'a high'."
         },
         {
@@ -1429,7 +1429,7 @@
             "summative",
             "summarily"
           ],
-          "correctAnswer": "Summarize",
+          "correctAnswer": "summarize",
           "explanation": "Verb form of 'summary'."
         },
         {
@@ -1481,7 +1481,7 @@
             "significance",
             "significantly"
           ],
-          "correctAnswer": "Significance",
+          "correctAnswer": "significance",
           "explanation": "Noun form of 'significant'."
         },
         {
@@ -1559,7 +1559,7 @@
             "complexly",
             "complexed"
           ],
-          "correctAnswer": "Complex",
+          "correctAnswer": "complex",
           "explanation": "Standard adjective form."
         },
         {
