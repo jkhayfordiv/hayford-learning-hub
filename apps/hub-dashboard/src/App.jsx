@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
 import StudentProfile from './StudentProfile';
@@ -9,19 +9,25 @@ import AuthSuccess from './AuthSuccess';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 
+const AUTH_PAGES = ['/login', '/forgot-password', '/reset-password', '/auth/success'];
+
 // Injects institution branding (colors, favicon, title) from localStorage into CSS custom properties
+// Re-runs on every route change so branding is always in sync
 function BrandingInjector() {
+  const location = useLocation();
+
   useEffect(() => {
+    const isAuthPage = AUTH_PAGES.some(p => location.pathname.startsWith(p));
+
     try {
-      const branding = JSON.parse(localStorage.getItem('branding') || '{}');
+      // On auth/sign-in pages always use the Hayford default — never a stale institution brand
+      const branding = isAuthPage ? {} : JSON.parse(localStorage.getItem('branding') || '{}');
       const root = document.documentElement;
 
       root.style.setProperty('--brand-primary',   branding.primary_color   || '#800020');
       root.style.setProperty('--brand-secondary', branding.secondary_color || '#F7E7CE');
 
-      if (branding.welcome_text) {
-        document.title = branding.welcome_text;
-      }
+      document.title = branding.welcome_text || 'Hayford Hub';
 
       // Dynamically update favicon
       const faviconHref = branding.favicon_url || '/favicon.ico';
@@ -35,7 +41,7 @@ function BrandingInjector() {
     } catch (e) {
       // Silently fail - branding is cosmetic, not critical
     }
-  }, []);
+  }, [location.pathname]);
   return null;
 }
 
@@ -84,7 +90,7 @@ export default function App() {
             path="/profile" 
             element={
               <ProtectedRoute>
-                <Profile user={JSON.parse(localStorage.getItem('user') || '{}')} onLogout={() => { localStorage.removeItem('token'); localStorage.removeItem('user'); window.location.href = '/login'; }} />
+                <Profile user={JSON.parse(localStorage.getItem('user') || '{}')} onLogout={() => { localStorage.removeItem('token'); localStorage.removeItem('user'); localStorage.removeItem('branding'); window.location.href = '/login'; }} />
               </ProtectedRoute>
             } 
           />
