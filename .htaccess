@@ -1,6 +1,34 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Sub-app SPA fallbacks — each deep route serves that app's index.html
+  RewriteRule ^grammar-world/index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^grammar-world/(.*)$ /grammar-world/index.html [L]
+
+  RewriteRule ^ielts-writing/index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ielts-writing/(.*)$ /ielts-writing/index.html [L]
+
+  RewriteRule ^ielts-speaking/index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ielts-speaking/(.*)$ /ielts-speaking/index.html [L]
+
+  RewriteRule ^vocab-tool/index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^vocab-tool/(.*)$ /vocab-tool/index.html [L]
+
+  RewriteRule ^grammar-lab/index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^grammar-lab/(.*)$ /grammar-lab/index.html [L]
+
+  # Root hub-dashboard SPA fallback (must come last)
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
