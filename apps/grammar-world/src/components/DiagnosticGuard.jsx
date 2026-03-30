@@ -6,32 +6,27 @@ import { isAuthenticated, getUser } from '../utils/auth';
 const STAFF_ROLES = ['teacher', 'admin', 'super_admin'];
 
 export default function DiagnosticGuard({ children }) {
-  const [loading, setLoading] = useState(true);
-  const [diagnosticCompleted, setDiagnosticCompleted] = useState(false);
-
-  // Staff bypass: teachers and admins skip the diagnostic requirement
   const user = getUser();
-  if (user && STAFF_ROLES.includes(user.role)) {
-    return children;
-  }
+  const isStaff = !!(user && STAFF_ROLES.includes(user.role));
+
+  const [loading, setLoading] = useState(!isStaff);
+  const [diagnosticCompleted, setDiagnosticCompleted] = useState(isStaff);
 
   useEffect(() => {
+    if (isStaff) return;
     checkDiagnosticStatus();
   }, []);
 
   const checkDiagnosticStatus = async () => {
     if (!isAuthenticated()) {
-      // Let ProtectedRoute handle auth redirect
       setLoading(false);
       return;
     }
-
     try {
       const progress = await fetchUserProgress();
       setDiagnosticCompleted(progress.diagnostic_completed || false);
     } catch (error) {
       console.error('Error checking diagnostic status:', error);
-      // On error, assume diagnostic not completed to be safe
       setDiagnosticCompleted(false);
     } finally {
       setLoading(false);

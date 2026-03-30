@@ -89,16 +89,11 @@ export default function RegionView() {
       ]);
 
       const regionNodes = regionData.nodes || [];
-      const completedNodes = new Set(
-        progressData.by_region
-          ?.find(r => r.region.toLowerCase().replace(/\s+/g, '-') === regionName)
-          ?.completed_nodes || []
-      );
 
       // Calculate node positions using a mathematical layout
       const flowNodes = regionNodes.map((node, index) => {
         const position = calculateNodePosition(index, regionNodes.length);
-        const state = getNodeState(node, completedNodes, regionNodes);
+        const state = getNodeState(node, regionNodes);
 
         return {
           id: node.node_id,
@@ -160,15 +155,17 @@ export default function RegionView() {
     return { x, y };
   };
 
-  const getNodeState = (node, completedNodes, allNodes) => {
-    if (completedNodes.has(node.node_id)) return 'cleared';
+  const getNodeState = (node, allNodes) => {
+    // Use the status field returned directly from the backend per-node
+    if (node.status === 'completed') return 'cleared';
+    if (node.status === 'unlocked' || node.status === 'in_progress') return 'actionable';
 
+    // Fallback: if no DB progress row yet, check prerequisites using allNodes statuses
     if (!node.prerequisites || node.prerequisites.length === 0) return 'actionable';
-
-    const allPrereqsMet = node.prerequisites.every(prereqId => 
-      completedNodes.has(prereqId)
+    const nodeStatusMap = Object.fromEntries(allNodes.map(n => [n.node_id, n.status]));
+    const allPrereqsMet = node.prerequisites.every(prereqId =>
+      nodeStatusMap[prereqId] === 'completed'
     );
-
     return allPrereqsMet ? 'actionable' : 'locked';
   };
 

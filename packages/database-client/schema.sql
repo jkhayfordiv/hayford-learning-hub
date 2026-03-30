@@ -143,6 +143,11 @@ $$;
 -- Partial index: fast lookup by google_id, ignores NULL rows
 CREATE INDEX IF NOT EXISTS idx_users_google_id ON users(google_id) WHERE google_id IS NOT NULL;
 
+-- B2C freemium: user-level subscription tier and Stripe customer ID
+ALTER TABLE users ADD COLUMN IF NOT EXISTS subscription_tier VARCHAR(50) DEFAULT 'free';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS stripe_customer_id VARCHAR(255);
+CREATE INDEX IF NOT EXISTS idx_users_stripe_customer_id ON users(stripe_customer_id) WHERE stripe_customer_id IS NOT NULL;
+
 -- ============================================================================
 -- CLASSES TABLE - Institution-Scoped
 -- ============================================================================
