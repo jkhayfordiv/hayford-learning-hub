@@ -1,0 +1,44 @@
+{
+  "node_id": "architecture-02-identifying-the-predicate",
+  "region": "The Architecture",
+  "tier": "Bronze",
+  "title": "Identifying the Predicate",
+  "description": "Learn to identify and construct accurate predicates — the engine that drives meaning in every academic sentence.",
+  "display_order": 2,
+  "prerequisites": ["architecture-01-svo-core-mechanics"],
+  "lesson_content_markdown": "# Identifying the Predicate\n\n## The Engine of Every Sentence\n\nIf the subject names **who** or **what** a sentence is about, the **predicate** expresses **what that subject does, is, or experiences**. The predicate is the engine of the sentence — without it, no meaning can be conveyed.\n\nThe predicate includes the **main verb** and all elements that complete or modify it: objects, complements, and adverbials.\n\n**Structure:** Subject | **Predicate**\n\n- *The research team* | **has published three peer-reviewed articles this year.**\n- *This methodology* | **enables a more rigorous comparison across variables.**\n\n---\n\n## Components of a Predicate\n\n### 1. The Head Verb (Required)\nEvery predicate must contain a **finite verb** — one that is marked for tense, number, and person. This is the non-negotiable core of the predicate.\n\n- *The committee* **approved** the amendment. *(past tense, singular)*\n- *The data* **suggest** a strong correlation. *(present tense, plural)*\n\n### 2. Verb Phrases with Auxiliaries\nAcademic writing frequently uses auxiliary verbs to express tense, aspect, voice, or modality.\n\n- *The experiment* **has been replicated** four times.\n- *Participants* **were randomly assigned** to control and experimental groups.\n\n### 3. Predicate Complements\nLinking verbs connect the subject to a complement that describes or identifies it. The complement is part of the predicate.\n\n- *The results* **were inconclusive**.\n- *This framework* **remains the most widely adopted** in the discipline.\n\n---\n\n## Subject-Verb Agreement in the Predicate\n\nThe predicate verb must agree with its subject in **number** and **person**. This is especially challenging in academic writing, where subjects are often separated from their verbs by long noun phrases.\n\n❌ *The findings from the three-year longitudinal study **suggests** further investigation.*\n✅ *The findings from the three-year longitudinal study **suggest** further investigation.*\n\n---\n\nPrecision in the predicate is the single most reliable marker of grammatical control in academic writing.",
+  "mastery_check": {
+    "type": "error_correction",
+    "prompt_to_student": "The passage below contains five predicate errors (incorrect verb form or subject-verb agreement). Identify each incorrect word and type the correct form.",
+    "activity_data": {
+      "sentence": "The research team has investigate three major themes in applied linguistics. The first theme, which relate to language acquisition in bilingual contexts, was examined using a longitudinal methodology. The second and third themes involve the role of input frequency and the effect of formal instruction respectively. Collectively, these findings suggests that both environmental and instructional factors are significant. The committee of senior reviewers have determined that the study warrants further replication.",
+      "errors": [
+        {
+          "incorrect_word": "investigate",
+          "accepted_corrections": ["investigated"]
+        },
+        {
+          "incorrect_word": "relate",
+          "accepted_corrections": ["relates"]
+        },
+        {
+          "incorrect_word": "suggests",
+          "accepted_corrections": ["suggest"]
+        },
+        {
+          "incorrect_word": "have",
+          "accepted_corrections": ["has"]
+        },
+        {
+          "incorrect_word": "involve",
+          "accepted_corrections": ["involves"]
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

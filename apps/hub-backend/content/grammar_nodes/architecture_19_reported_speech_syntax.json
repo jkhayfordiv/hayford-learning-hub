@@ -1,0 +1,28 @@
+{
+  "node_id": "architecture-19-reported-speech-syntax",
+  "region": "The Architecture",
+  "tier": "Silver",
+  "title": "Reported Speech Syntax",
+  "description": "Transform direct speech into accurate indirect speech using the correct tense backshift and pronoun changes.",
+  "display_order": 19,
+  "prerequisites": ["architecture-18-parallel-structure"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 150,
+    "medal_tier": "Silver"
+  }
+}

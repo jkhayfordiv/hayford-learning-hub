@@ -1,0 +1,78 @@
+{
+  "node_id": "architecture-01-svo-core-mechanics",
+  "region": "The Architecture",
+  "tier": "Bronze",
+  "title": "S-V-O Core Mechanics",
+  "description": "Master the Subject-Verb-Object structure that underpins every clear and complete academic sentence.",
+  "display_order": 1,
+  "prerequisites": [],
+  "lesson_content_markdown": "# S-V-O Core Mechanics\n\n## The Blueprint of Every English Sentence\n\nEvery grammatically complete English sentence is built on a three-part core: **Subject (S) → Verb (V) → Object (O)**. Mastering this fundamental structure is the essential first step toward writing precise, professional academic prose.\n\n---\n\n## The Three Core Elements\n\n### Subject (S)\nThe subject identifies **who** or **what** performs the action or is described. In academic writing, subjects are typically noun phrases — often complex, but clearly identifiable.\n\n- *The research team* analyzed the results.\n- *This study* investigates three hypotheses.\n- *A systematic review of the literature* reveals several key gaps.\n\n### Verb (V)\nThe verb expresses the **action** or **state** linked to the subject. Academic writing demands precise, formal verbs that carry the core meaning of the sentence.\n\n- The committee **approved** the revised protocol.\n- The data **indicate** a statistically significant difference.\n\n### Object (O)\nThe object names **who** or **what** receives the action of a transitive verb. Many academic verbs require an object to complete their meaning.\n\n- The authors *critique* **the prevailing methodology**.\n- Participants *completed* **a standardised questionnaire**.\n\n---\n\n## Common Errors to Avoid\n\n| Error Type | Incorrect | Correct |\n|---|---|---|\n| Missing verb | *The results from the experiment.* | *The results **show** a clear pattern.* |\n| Inverted order | *Analyzed the team the data.* | *The team **analyzed** the data.* |\n| Detached predicate | *The study, which was extensive, examined.* | *The study **examined** socioeconomic factors.* |\n\n---\n\nMaintaining a clean S-V-O chain is a hallmark of syntactic precision in academic writing. When the subject and verb are separated by excessive embedded phrases, meaning collapses. Train your eye to locate the core three elements in every sentence you write.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Identify the S-V-O elements and sentence structure in each of the following academic sentences.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "In the sentence 'The committee rejected the funding proposal,' what is the object?",
+          "options": [
+            "The committee",
+            "rejected",
+            "the funding proposal",
+            "The committee rejected"
+          ],
+          "correct_answer": "the funding proposal",
+          "category": "Object Identification"
+        },
+        {
+          "question": "Which sentence demonstrates correct S-V-O word order in academic prose?",
+          "options": [
+            "Analyzed the data the research team carefully.",
+            "The research team carefully analyzed the data.",
+            "The data the research team analyzed carefully.",
+            "Carefully analyzed the research team the data."
+          ],
+          "correct_answer": "The research team carefully analyzed the data.",
+          "category": "Word Order"
+        },
+        {
+          "question": "In the sentence 'Participants completed a structured questionnaire,' what is the subject?",
+          "options": [
+            "completed",
+            "a structured questionnaire",
+            "Participants",
+            "structured questionnaire"
+          ],
+          "correct_answer": "Participants",
+          "category": "Subject Identification"
+        },
+        {
+          "question": "Which sentence correctly maintains an S-V-O structure without a dangling predicate?",
+          "options": [
+            "The findings, which were gathered over two academic years, revealed.",
+            "The findings revealed a significant correlation between workload and performance.",
+            "A significant correlation the findings revealed between workload and performance.",
+            "Revealed the findings a significant correlation."
+          ],
+          "correct_answer": "The findings revealed a significant correlation between workload and performance.",
+          "category": "Sentence Completeness"
+        },
+        {
+          "question": "In the sentence 'This methodology examines causal relationships between variables,' what is the verb?",
+          "options": [
+            "This methodology",
+            "causal relationships",
+            "examines",
+            "between variables"
+          ],
+          "correct_answer": "examines",
+          "category": "Verb Identification"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

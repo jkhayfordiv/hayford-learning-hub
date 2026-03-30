@@ -1,0 +1,28 @@
+{
+  "node_id": "architecture-14-defining-vs-non-defining-relative-clauses",
+  "region": "The Architecture",
+  "tier": "Silver",
+  "title": "Defining vs. Non-Defining Relative Clauses",
+  "description": "Use commas correctly to distinguish essential (defining) from supplementary (non-defining) relative clauses.",
+  "display_order": 14,
+  "prerequisites": ["architecture-13-relative-pronouns"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 150,
+    "medal_tier": "Silver"
+  }
+}

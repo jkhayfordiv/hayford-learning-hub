@@ -1,0 +1,48 @@
+{
+  "node_id": "architecture-03-the-fragment-fixer",
+  "region": "The Architecture",
+  "tier": "Bronze",
+  "title": "The Fragment Fixer",
+  "description": "Recognize and repair sentence fragments to ensure every academic sentence is structurally complete and syntactically sound.",
+  "display_order": 3,
+  "prerequisites": ["architecture-02-identifying-the-predicate"],
+  "lesson_content_markdown": "# The Fragment Fixer\n\n## What Is a Sentence Fragment?\n\nA **sentence fragment** is a group of words punctuated as a complete sentence but missing one or more essential elements. Fragments are common in informal speech, but in academic writing they signal a critical lack of grammatical control.\n\nA grammatically complete sentence requires three conditions:\n1. A **subject** (who or what the sentence is about)\n2. A **finite verb** (expressing action or state in a tense)\n3. A **complete thought** (not subordinated without a main clause)\n\n---\n\n## The Four Fragment Types\n\n### 1. Missing-Predicate Fragments\nThe noun phrase exists, but no finite verb follows.\n\n❌ *The methodology chapter, which describes the entire research design in detail.*\n✅ *The methodology chapter **outlines** the entire research design in detail.*\n\n### 2. Dependent-Clause Fragments\nA subordinating conjunction creates a clause that cannot stand alone.\n\n❌ *Although the sample size was sufficiently large.*\n✅ *Although the sample size was sufficiently large, **the margin of error remained significant**.*\n\n### 3. Infinitive-Phrase Fragments\nAn infinitive phrase without a main clause to anchor it.\n\n❌ *To ensure the validity and reliability of the findings.*\n✅ *The researchers conducted peer review **to ensure the validity and reliability of the findings**.*\n\n### 4. Participial-Phrase Fragments\nA participial phrase left unattached to a main clause.\n\n❌ *Having reviewed the existing literature extensively.*\n✅ *Having reviewed the existing literature extensively, **the authors identified three key theoretical gaps**.*\n\n---\n\n## The Two-Step Fix\n\n**Step 1 — Diagnose:** Ask: Does this group of words have a subject AND a finite verb AND a complete thought?\n\n**Step 2 — Repair:** Either *add* the missing element or *attach* the fragment to an adjacent sentence.\n\n---\n\nEliminating fragments is one of the fastest ways to raise the grammatical register of your academic writing.",
+  "mastery_check": {
+    "type": "fill_in_the_blank",
+    "prompt_to_student": "Each sentence below contains a blank representing the missing element that repairs the fragment. Type the most appropriate word or phrase to complete each sentence.",
+    "activity_data": {
+      "blanks": [
+        {
+          "sentence_with_blank": "The survey data from all three cohorts ___ a consistent pattern of declining engagement across the academic year.",
+          "accepted_answers": ["revealed", "showed", "demonstrated", "indicated", "uncovered", "displayed"],
+          "hint": "The subject is 'The survey data'. Supply the missing past tense main verb."
+        },
+        {
+          "sentence_with_blank": "Although the researchers controlled for socioeconomic variables, they ___ unable to eliminate observer bias entirely.",
+          "accepted_answers": ["were", "remained", "proved"],
+          "hint": "The dependent clause needs a main clause. Supply the finite verb for 'they'."
+        },
+        {
+          "sentence_with_blank": "A methodology that integrates both quantitative and qualitative approaches ___ a more comprehensive picture of the research problem.",
+          "accepted_answers": ["provides", "offers", "yields", "presents", "gives"],
+          "hint": "The relative clause is an expansion of the subject, not the verb. Supply the present tense main verb."
+        },
+        {
+          "sentence_with_blank": "The review panel conducted a formal audit ___ the accuracy of the submitted data.",
+          "accepted_answers": ["to verify", "to confirm", "to validate", "to ensure", "to check", "to establish"],
+          "hint": "Supply an infinitive phrase expressing purpose."
+        },
+        {
+          "sentence_with_blank": "Having reviewed the existing theoretical frameworks, the research team ___ three significant gaps in the current literature.",
+          "accepted_answers": ["identified", "found", "discovered", "noted", "observed", "pinpointed"],
+          "hint": "The participial phrase needs a main clause. Supply the past tense verb."
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

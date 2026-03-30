@@ -442,7 +442,7 @@ ALTER TABLE user_weaknesses DROP CONSTRAINT IF EXISTS chk_valid_category;
 -- ============================================================================
 
 CREATE TABLE IF NOT EXISTS grammar_nodes (
-    node_id VARCHAR(50) PRIMARY KEY,
+    node_id VARCHAR(100) PRIMARY KEY,
     region VARCHAR(100) NOT NULL,
     tier VARCHAR(20) CHECK (tier IN ('Bronze', 'Silver', 'Gold', 'Diagnostic')),
     title VARCHAR(255) NOT NULL,
@@ -456,10 +456,13 @@ CREATE TABLE IF NOT EXISTS grammar_nodes (
 CREATE INDEX IF NOT EXISTS idx_grammar_nodes_region ON grammar_nodes(region);
 CREATE INDEX IF NOT EXISTS idx_grammar_nodes_tier ON grammar_nodes(tier);
 
+-- Widen node_id for long pathway node IDs (idempotent)
+ALTER TABLE grammar_nodes ALTER COLUMN node_id TYPE VARCHAR(100);
+
 CREATE TABLE IF NOT EXISTS user_grammar_progress (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    node_id VARCHAR(50) NOT NULL REFERENCES grammar_nodes(node_id) ON DELETE CASCADE,
+    node_id VARCHAR(100) NOT NULL REFERENCES grammar_nodes(node_id) ON DELETE CASCADE,
     status VARCHAR(20) CHECK (status IN ('locked', 'unlocked', 'in_progress', 'completed')) DEFAULT 'locked',
     attempts INTEGER DEFAULT 0,
     last_score INTEGER,

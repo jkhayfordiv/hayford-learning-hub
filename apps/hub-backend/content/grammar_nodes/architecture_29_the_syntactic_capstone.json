@@ -1,0 +1,28 @@
+{
+  "node_id": "architecture-29-the-syntactic-capstone",
+  "region": "The Architecture",
+  "tier": "Gold",
+  "title": "The Syntactic Capstone",
+  "description": "Integrate all sentence architecture skills to produce complex, varied, and cohesive academic paragraphs at C2 level.",
+  "display_order": 29,
+  "prerequisites": ["architecture-28-fronting-for-cohesion"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 200,
+    "medal_tier": "Gold"
+  }
+}
