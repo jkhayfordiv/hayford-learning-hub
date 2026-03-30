@@ -1,0 +1,44 @@
+{
+  "node_id": "nuance-03-necessity-vs-obligation",
+  "region": "The Nuance",
+  "tier": "Bronze",
+  "title": "Necessity vs. Obligation",
+  "description": "Distinguish must, have to, need to, mustn't, and don't have to to express necessity, obligation, prohibition, and freedom from obligation accurately.",
+  "display_order": 3,
+  "prerequisites": ["nuance-02-modals-of-advice"],
+  "lesson_content_markdown": "# Necessity vs. Obligation\n\n## The Most Dangerous Modal Pair in Academic English\n\nThe contrast between **mustn't** and **don't have to** is one of the most consequential modal distinctions in English. Confusing them can reverse the meaning of an academic claim entirely.\n\n---\n\n## The Core Distinctions\n\n| Modal | Meaning | Academic Example |\n|---|---|---|\n| **must** | Strong internal necessity; logical deduction | *All data **must** be anonymised before analysis.* |\n| **have to** | External obligation (rule, law, institution) | *Students **have to** submit a signed ethics form.* |\n| **need to** | Practical necessity | *Researchers **need to** obtain written consent.* |\n| **mustn't** | **Prohibition** — it is forbidden | *Participants **mustn't** be identified in the published findings.* |\n| **don't have to** | **Absence of obligation** — it is not required | *Supervisors **don't have to** attend every session.* |\n\n---\n\n## The Critical Contrast\n\n❌ *Participants mustn't sign a consent form* = Participants are **forbidden** from signing.\n✅ *Participants **don't have to** sign a consent form* = Signing is not required.\n\nThe difference is not stylistic — it is a complete **reversal of meaning**.\n\n---\n\n## Common Form Errors\n\n❌ *Researchers will must obtain approval* → ✅ *Researchers **must** obtain approval* (modals cannot be chained)\n❌ *Students don't needs to register* → ✅ *Students **don't need to** register* (base form after auxiliary)\n❌ *Supervisors ought to reviewed drafts* → ✅ *Supervisors **ought to review** drafts* (base form after *ought to*)",
+  "mastery_check": {
+    "type": "error_correction",
+    "prompt_to_student": "The passage below contains five modal errors. Identify each incorrect word and type the correct replacement.",
+    "activity_data": {
+      "sentence": "All researchers will must obtain ethical approval before beginning data collection. Graduate students don't needs to attend all research seminars; participation is optional. Lead investigators should ensures that all co-authors have reviewed the final manuscript. Supervisors ought to reviewed draft chapters within ten working days of receiving them. Participants mustn't provide informed consent; it is a mandatory legal and ethical requirement.",
+      "errors": [
+        {
+          "incorrect_word": "will",
+          "accepted_corrections": ["must"]
+        },
+        {
+          "incorrect_word": "needs",
+          "accepted_corrections": ["need"]
+        },
+        {
+          "incorrect_word": "ensures",
+          "accepted_corrections": ["ensure"]
+        },
+        {
+          "incorrect_word": "reviewed",
+          "accepted_corrections": ["review"]
+        },
+        {
+          "incorrect_word": "mustn't",
+          "accepted_corrections": ["must"]
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

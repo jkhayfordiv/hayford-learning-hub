@@ -1,0 +1,28 @@
+{
+  "node_id": "nuance-08-modal-placement-and-form",
+  "region": "The Nuance",
+  "tier": "Bronze",
+  "title": "Modal Placement & Form",
+  "description": "Apply the rules governing modal verb position, invariable form, and the bare infinitive complement to avoid the most common modal form errors.",
+  "display_order": 8,
+  "prerequisites": ["nuance-07-direct-vs-softened-claims"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

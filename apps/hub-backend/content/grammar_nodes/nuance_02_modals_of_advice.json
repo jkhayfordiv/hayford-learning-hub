@@ -1,0 +1,48 @@
+{
+  "node_id": "nuance-02-modals-of-advice",
+  "region": "The Nuance",
+  "tier": "Bronze",
+  "title": "Modals of Advice",
+  "description": "Use should, ought to, had better, and could to give recommendations of varying strength in academic and professional contexts.",
+  "display_order": 2,
+  "prerequisites": ["nuance-01-modals-of-ability"],
+  "lesson_content_markdown": "# Modals of Advice\n\n## Calibrating the Strength of Recommendations\n\nAcademic writing frequently requires giving guidance — to readers, to future researchers, or to institutions. The modal you choose communicates not just *what* is advised, but *how strongly* you are advising it. Selecting the appropriate strength is as important as the advice itself.\n\n---\n\n## The Advice Scale\n\n| Modal | Strength | Academic Example |\n|---|---|---|\n| **could / might want to** | Gentle suggestion | *Researchers **could** consider a mixed-methods approach.* |\n| **should** | Standard recommendation | *Authors **should** disclose all conflicts of interest.* |\n| **ought to** | Formal/moral obligation | *Institutions **ought to** invest in researcher wellbeing.* |\n| **had better** | Urgent advice (with implied consequence) | *The committee **had better** address these gaps before the next review.* |\n\n---\n\n## Should vs. Ought To\n\nBoth **should** and **ought to** express advice, but **ought to** carries a slightly stronger sense of moral or professional duty. In practice, **should** is far more common in academic writing and is rarely wrong.\n\n❌ *You had better include a literature review* (too informal/threatening for academic prose)\n✅ *The authors **should** include a more comprehensive literature review.*\n\n---\n\n## Using Could for Polite Suggestions\n\nIn academic recommendations sections, **could** softens a suggestion without implying weakness:\n\n*Future studies **could** examine the effect of socioeconomic status as a moderating variable.*\n\nThis is preferable to an unhedged imperative (*examine the effect...*), which sounds inappropriately prescriptive in academic writing.",
+  "mastery_check": {
+    "type": "fill_in_the_blank",
+    "prompt_to_student": "Complete each academic sentence with the most appropriate modal of advice. More than one answer may be accepted.",
+    "activity_data": {
+      "blanks": [
+        {
+          "sentence_with_blank": "Researchers ___ disclose any potential conflicts of interest before a study is submitted for publication.",
+          "accepted_answers": ["should", "ought to"],
+          "hint": "Use the standard academic modal for professional recommendations."
+        },
+        {
+          "sentence_with_blank": "If the sample size proves insufficient, the authors ___ reconsider their statistical approach before final submission.",
+          "accepted_answers": ["should", "ought to", "might want to", "could"],
+          "hint": "A clear recommendation in a conditional context — several modals of advice apply here."
+        },
+        {
+          "sentence_with_blank": "The department ___ address the funding shortfall before the next academic year; the consequences of further inaction are serious.",
+          "accepted_answers": ["had better", "should"],
+          "hint": "The mention of serious consequences suggests a stronger, more urgent advisory form."
+        },
+        {
+          "sentence_with_blank": "Graduate students ___ consult their supervisors before making any major revisions to their approved research design.",
+          "accepted_answers": ["should", "ought to"],
+          "hint": "A formal recommendation about professional academic practice."
+        },
+        {
+          "sentence_with_blank": "Future investigations ___ explore the role of institutional culture as a potential mediating variable.",
+          "accepted_answers": ["could", "should", "might", "might want to"],
+          "hint": "In a recommendations section, a softened suggestion is often preferred to a direct obligation."
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

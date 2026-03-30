@@ -1,0 +1,53 @@
+{
+  "node_id": "nuance-01-modals-of-ability",
+  "region": "The Nuance",
+  "tier": "Bronze",
+  "title": "Modals of Ability",
+  "description": "Use can, could, and be able to accurately to express present, past, and positional ability in academic writing.",
+  "display_order": 1,
+  "prerequisites": [],
+  "lesson_content_markdown": "# Modals of Ability\n\n## Expressing Capability in Academic Writing\n\nModals of ability allow writers to describe what researchers, models, systems, and participants **can do** at different points in time. Selecting the correct form — **can**, **could**, or **be able to** — is determined by tense, grammatical position, and whether the ability refers to a general capacity or a specific successful achievement.\n\n---\n\n## Core Forms\n\n| Modal | Use | Academic Example |\n|---|---|---|\n| **can** | Present ability; general truths | *Statistical software **can** detect patterns invisible to the human eye.* |\n| **could** | Past ability (general capacity) | *Early models **could** process only limited datasets.* |\n| **was/were able to** | Specific past achievement (success on one occasion) | *The team **was able to** complete data collection ahead of schedule.* |\n| **be able to** | Infinitive & perfect forms; passive voice | *Researchers hope **to be able to** replicate these results.* |\n\n---\n\n## The Could vs. Was Able To Distinction\n\nIn **positive statements**, this distinction is subtle but significant:\n\n- **Could** = general past capacity: *The original algorithm could analyse 1,000 records per second.*\n- **Was/were able to** = a specific successful instance: *Despite the hardware failure, the team was able to recover all data.*\n\nIn **negative statements**, both are broadly interchangeable: *The model couldn't / wasn't able to generalise beyond the training set.*\n\n---\n\n## Grammatical Positions Requiring Be Able To\n\nUse **be able to** (not *can*) after:\n- another modal: *The system should **be able to** self-correct.*\n- the infinitive particle: *Researchers hope **to be able to** replicate the findings.*\n- perfect auxiliaries: *The team has not yet **been able to** secure funding.*",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the most appropriate modal of ability for each academic sentence.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "Before the advent of high-performance computing, researchers ___ process only relatively small datasets within a reasonable timeframe.",
+          "options": ["could", "can", "must", "should"],
+          "correct_answer": "could",
+          "category": "Past Ability (General)"
+        },
+        {
+          "question": "Despite significant logistical challenges, the field research team ___ complete all 240 interviews within the allocated six-week period.",
+          "options": ["were able to", "could", "can", "had to"],
+          "correct_answer": "were able to",
+          "category": "Specific Past Achievement"
+        },
+        {
+          "question": "Modern neuroimaging technology ___ detect structural differences in the brain that were previously undetectable using standard clinical methods.",
+          "options": ["can", "could", "must", "ought to"],
+          "correct_answer": "can",
+          "category": "Present Ability"
+        },
+        {
+          "question": "The research consortium hopes to ___ expand the longitudinal study into additional demographic cohorts in the coming years.",
+          "options": ["be able to", "can", "could", "will can"],
+          "correct_answer": "be able to",
+          "category": "Ability in Infinitive Position"
+        },
+        {
+          "question": "The institution has not yet ___ secure the external funding required for the third phase of the project.",
+          "options": ["been able to", "could", "can", "being able to"],
+          "correct_answer": "been able to",
+          "category": "Ability in Perfect Form"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

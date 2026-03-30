@@ -1,0 +1,28 @@
+{
+  "node_id": "nuance-14-introductory-hedging-verbs",
+  "region": "The Nuance",
+  "tier": "Silver",
+  "title": "Introductory Hedging Verbs",
+  "description": "Use epistemic verbs — suggest, indicate, appear, seem, tend — to introduce findings and claims with calibrated academic caution.",
+  "display_order": 14,
+  "prerequisites": ["nuance-13-wish-and-if-only"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 150,
+    "medal_tier": "Silver"
+  }
+}

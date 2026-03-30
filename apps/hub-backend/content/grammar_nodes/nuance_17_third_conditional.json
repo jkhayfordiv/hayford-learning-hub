@@ -1,0 +1,28 @@
+{
+  "node_id": "nuance-17-third-conditional",
+  "region": "The Nuance",
+  "tier": "Gold",
+  "title": "Third Conditional",
+  "description": "Use the third conditional (if + past perfect, would have + past participle) to analyse counterfactual academic scenarios and evaluate past decisions.",
+  "display_order": 17,
+  "prerequisites": ["nuance-16-softening-negative-criticism"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 200,
+    "medal_tier": "Gold"
+  }
+}

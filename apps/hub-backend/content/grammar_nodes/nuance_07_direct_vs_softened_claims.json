@@ -1,0 +1,28 @@
+{
+  "node_id": "nuance-07-direct-vs-softened-claims",
+  "region": "The Nuance",
+  "tier": "Bronze",
+  "title": "Direct vs. Softened Claims",
+  "description": "Distinguish between direct assertions and hedged claims, and apply basic modal hedging to avoid overgeneralisation in academic writing.",
+  "display_order": 7,
+  "prerequisites": ["nuance-06-zero-conditional"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}
