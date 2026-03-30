@@ -38,15 +38,15 @@ const TASK_1_PROMPTS = [
     id: 1,
     type: "Bar Chart",
     title: "University Enrollment by Faculty",
-    instruction: "The bar chart below shows the number of students enrolled in five different faculties at a UK university in 2015 and 2020.",
+    instruction: "The bar chart below shows the number of students enrolled in five different faculties at a UK university in 2010, 2015, and 2020.",
     data: [
-      { label: 'Arts', v1: 4000, v2: 3800 },
-      { label: 'Science', v1: 3000, v2: 5500 },
-      { label: 'Law', v1: 1200, v2: 1500 },
-      { label: 'Business', v1: 5000, v2: 4800 },
-      { label: 'Eng.', v1: 2500, v2: 4200 }
+      { label: 'Arts', v1: 4200, v2: 3800, v3: 3400 },
+      { label: 'Science', v1: 2800, v2: 4100, v3: 5500 },
+      { label: 'Law', v1: 1100, v2: 1350, v3: 1800 },
+      { label: 'Business', v1: 4500, v2: 5000, v3: 4800 },
+      { label: 'Eng.', v1: 1900, v2: 3100, v3: 4200 }
     ],
-    labels: { legend1: "2015", legend2: "2020", yUnit: "Students" },
+    labels: { legend1: "2010", legend2: "2015", legend3: "2020", yUnit: "Students" },
     graphic: "bar"
   },
   {
@@ -68,14 +68,14 @@ const TASK_1_PROMPTS = [
     id: 3,
     type: "Table",
     title: "World Coffee Production",
-    instruction: "The table shows the amount of coffee produced (in millions of tonnes) in four different countries between 2010 and 2020.",
+    instruction: "The table shows the amount of coffee produced (in millions of tonnes) in four different countries in 2005, 2010, and 2020.",
     data: [
-      { country: 'Brazil', y1: 2.5, y2: 3.8 },
-      { country: 'Vietnam', y1: 1.2, y2: 1.8 },
-      { country: 'Colombia', y1: 0.8, y2: 0.9 },
-      { country: 'Indonesia', y1: 0.6, y2: 0.7 }
+      { country: 'Brazil', y1: 1.9, y2: 2.5, y3: 3.8 },
+      { country: 'Vietnam', y1: 0.7, y2: 1.2, y3: 1.8 },
+      { country: 'Colombia', y1: 0.7, y2: 0.8, y3: 0.9 },
+      { country: 'Indonesia', y1: 0.5, y2: 0.6, y3: 0.7 }
     ],
-    headers: ["Country", "2010 (m/t)", "2020 (m/t)"],
+    headers: ["Country", "2005 (m/t)", "2010 (m/t)", "2020 (m/t)"],
     graphic: "table"
   },
   {
@@ -105,15 +105,15 @@ const TASK_1_PROMPTS = [
     id: 6,
     type: "Bar Chart",
     title: "Internet Access in Schools by Region",
-    instruction: "The bar chart compares the number of internet-connected computers per 1,000 students in five regions in 2005 and 2015.",
+    instruction: "The bar chart compares the number of internet-connected computers per 1,000 students in five regions in 2000, 2010, and 2020.",
     data: [
-      { label: 'Europe', v1: 120, v2: 280 },
-      { label: 'N. America', v1: 180, v2: 320 },
-      { label: 'Asia', v1: 60, v2: 210 },
-      { label: 'S. America', v1: 75, v2: 190 },
-      { label: 'Africa', v1: 25, v2: 110 }
+      { label: 'Europe', v1: 80, v2: 200, v3: 340 },
+      { label: 'N.Am.', v1: 120, v2: 260, v3: 380 },
+      { label: 'Asia', v1: 30, v2: 140, v3: 280 },
+      { label: 'S.Am.', v1: 45, v2: 155, v3: 240 },
+      { label: 'Africa', v1: 10, v2: 70, v3: 140 }
     ],
-    labels: { legend1: "2005", legend2: "2015", yUnit: "Computers per 1,000 students" },
+    labels: { legend1: "2000", legend2: "2010", legend3: "2020", yUnit: "Computers per 1,000" },
     graphic: "bar"
   },
   {
@@ -132,11 +132,11 @@ const TASK_1_PROMPTS = [
     graphic: "line"
   },
   { id: 8, type: "Pie Chart", title: "Global Energy Consumption", instruction: "The chart below shows the world's energy consumption by fuel type in 2018.", data: [{ label: 'Oil', value: 33, color: '#3366cc' }, { label: 'Coal', value: 27, color: '#dc3912' }, { label: 'Gas', value: 24, color: '#ff9900' }, { label: 'Nuclear', value: 4, color: '#109618' }, { label: 'Renewables', value: 12, color: '#990099' }], graphic: "pie" },
-  { id: 9, type: "Table", title: "Mobile Phone Ownership", instruction: "The table shows the percentage of people owning a mobile phone in seven different countries in 2010 and 2015.", data: [{ country: 'USA', y1: 85, y2: 92 }, { country: 'UK', y1: 82, y2: 90 }, { country: 'China', y1: 65, y2: 88 }, { country: 'India', y1: 40, y2: 72 }, { country: 'Brazil', y1: 55, y2: 80 }], headers: ["Country", "2010 (%)", "2015 (%)"], graphic: "table" },
+  { id: 9, type: "Table", title: "Mobile Phone Ownership", instruction: "The table shows the percentage of people owning a mobile phone in five countries in 2005, 2010, and 2015.", data: [{ country: 'USA', y1: 74, y2: 85, y3: 92 }, { country: 'UK', y1: 70, y2: 82, y3: 90 }, { country: 'China', y1: 32, y2: 65, y3: 88 }, { country: 'India', y1: 12, y2: 40, y3: 72 }, { country: 'Brazil', y1: 28, y2: 55, y3: 80 }], headers: ["Country", "2005 (%)", "2010 (%)", "2015 (%)"], graphic: "table" },
   { id: 10, type: "Line Graph", title: "Unemployment Rates", instruction: "The graph shows unemployment rates in the US and Japan between 2000 and 2010.", data: [{ year: '2000', v1: 4.0, v2: 4.8 }, { year: '2002', v1: 5.8, v2: 5.4 }, { year: '2004', v1: 5.5, v2: 4.7 }, { year: '2006', v1: 4.6, v2: 4.1 }, { year: '2008', v1: 5.8, v2: 4.0 }, { year: '2010', v1: 9.6, v2: 5.1 }], labels: { l1: "USA", l2: "Japan", l3: "", yUnit: "Unemployment Rate (%)" }, graphic: "line" },
   { id: 11, type: "Process", title: "Electricity Production", instruction: "The diagram shows how electricity is produced in a coal-fired power station.", data: ["Coal Mining", "Furnace Burning", "Steam Production", "Turbine Rotation", "Generator", "Grid Distribution"], graphic: "process" },
-  { id: 12, type: "Bar Chart", title: "Cinema Attendance", instruction: "The chart shows the frequency of cinema attendance by age group in a specific country in 2017.", data: [{ label: '14-24', v1: 45, v2: 50 }, { label: '25-34', v1: 30, v2: 35 }, { label: '35-44', v1: 15, v2: 20 }, { label: '45-54', v1: 10, v2: 12 }, { label: '55+', v1: 5, v2: 8 }], labels: { legend1: "Once/Month", legend2: "Weekly", yUnit: "%" }, graphic: "bar" },
-  { id: 13, type: "Table", title: "International Student Numbers", instruction: "The table shows the number of international students in four countries over three decades.", data: [{ country: 'USA', y1: 300, y2: 600 }, { country: 'UK', y1: 150, y2: 400 }, { country: 'Australia', y1: 50, y2: 250 }, { country: 'Canada', y1: 40, y2: 200 }], headers: ["Country", "1990 (000s)", "2010 (000s)"], graphic: "table" },
+  { id: 12, type: "Bar Chart", title: "Cinema Attendance by Age Group", instruction: "The bar chart shows the percentage of people who attended the cinema at least once a month in five age groups in 2007, 2012, and 2017.", data: [{ label: '14-24', v1: 55, v2: 50, v3: 42 }, { label: '25-34', v1: 28, v2: 32, v3: 36 }, { label: '35-44', v1: 18, v2: 20, v3: 26 }, { label: '45-54', v1: 12, v2: 14, v3: 18 }, { label: '55+', v1: 7, v2: 9, v3: 13 }], labels: { legend1: "2007", legend2: "2012", legend3: "2017", yUnit: "% attending monthly" }, graphic: "bar" },
+  { id: 13, type: "Table", title: "International Student Numbers", instruction: "The table shows the number of international students (thousands) in four countries in 1990, 2000, and 2010.", data: [{ country: 'USA', y1: 300, y2: 450, y3: 600 }, { country: 'UK', y1: 150, y2: 270, y3: 400 }, { country: 'Australia', y1: 50, y2: 130, y3: 250 }, { country: 'Canada', y1: 40, y2: 110, y3: 200 }], headers: ["Country", "1990 (000s)", "2000 (000s)", "2010 (000s)"], graphic: "table" },
   { id: 14, type: "Pie Chart", title: "Water Consumption by Sector", instruction: "The pie chart shows how total water consumption was distributed across five sectors in a developed country in 2022.", data: [{ label: 'Agriculture', value: 42, color: '#22c55e' }, { label: 'Industry', value: 23, color: '#3b82f6' }, { label: 'Domestic', value: 18, color: '#ef4444' }, { label: 'Energy', value: 9, color: '#f59e0b' }, { label: 'Public Services', value: 8, color: '#8b5cf6' }], graphic: "pie" },
   { id: 15, type: "Line Graph", title: "Metals Prices in Global Markets", instruction: "The line graph compares average monthly prices of gold, silver and copper between 2020 and 2024.", data: [{ year: '2020', v1: 2300, v2: 16, v3: 3.1 }, { year: '2021', v1: 2050, v2: 24, v3: 4.6 }, { year: '2022', v1: 1680, v2: 41, v3: 2.9 }, { year: '2023', v1: 1210, v2: 19, v3: 5.4 }, { year: '2024', v1: 980, v2: 47, v3: 3.3 }], labels: { l1: "Gold (USD/oz)", l2: "Silver (USD/oz)", l3: "Copper (USD/lb)", yUnit: "Price (USD)" }, graphic: "line" },
   { id: 16, type: "Process", title: "Paper Recycling", instruction: "The diagram shows the process of recycling paper.", data: ["Waste Collection", "De-inking", "Pulping", "Rolling", "Drying", "New Paper"], graphic: "process" },
@@ -317,23 +317,33 @@ const VisualRenderer = ({ prompt }) => {
           <text x="35" y="163" fontSize="9" textAnchor="end" fill="#64748b">0</text>
           
           {prompt.data.map((d, s) => {
+            const has3 = d.v3 !== undefined;
+            const bw = has3 ? 9 : 14;
+            const gap = has3 ? 3 : 4;
             const barX = 60 + s * (240 / prompt.data.length);
             const h1 = (d.v1 / maxVal) * 140;
             const h2 = (d.v2 / maxVal) * 140;
+            const h3 = has3 ? (d.v3 / maxVal) * 140 : 0;
+            const center = barX + (has3 ? bw + gap : bw / 2);
             return (
               <g key={s}>
-                <rect x={barX} y={160 - h1} width="14" height={h1} fill="#3b82f6" rx="1" />
-                <rect x={barX + 16} y={160 - h2} width="14" height={h2} fill="#f87171" rx="1" />
-                <text x={barX + 15} y="175" fontSize="9" textAnchor="middle" fill="#1e293b" fontWeight="bold">{d.label}</text>
+                <rect x={barX} y={160 - h1} width={bw} height={h1} fill="#3b82f6" rx="1" />
+                <rect x={barX + bw + gap} y={160 - h2} width={bw} height={h2} fill="#f87171" rx="1" />
+                {has3 && <rect x={barX + (bw + gap) * 2} y={160 - h3} width={bw} height={h3} fill="#22c55e" rx="1" />}
+                <text x={center} y="175" fontSize="9" textAnchor="middle" fill="#1e293b" fontWeight="bold">{d.label}</text>
               </g>
             );
           })}
           
           {/* Legend */}
-          <rect x="240" y="190" width="12" height="8" fill="#3b82f6" />
-          <text x="255" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend1 || "Series 1"}</text>
-          <rect x="310" y="190" width="12" height="8" fill="#f87171" />
-          <text x="325" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend2 || "Series 2"}</text>
+          <rect x="170" y="190" width="12" height="8" fill="#3b82f6" />
+          <text x="185" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend1 || "Series 1"}</text>
+          <rect x="230" y="190" width="12" height="8" fill="#f87171" />
+          <text x="245" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend2 || "Series 2"}</text>
+          {prompt.data[0]?.v3 !== undefined && <>
+            <rect x="290" y="190" width="12" height="8" fill="#22c55e" />
+            <text x="305" y="197" fontSize="9" fill="#1e293b">{prompt.labels?.legend3 || "Series 3"}</text>
+          </>}
         </svg>
       </div>
     );
@@ -390,22 +400,28 @@ const VisualRenderer = ({ prompt }) => {
   }
 
   if (prompt.graphic === 'table') {
+    const hasY3 = prompt.data.some(r => r.y3 !== undefined);
     return (
-      <div className="w-full p-6">
-        <table className="w-full border-collapse rounded-lg overflow-hidden border border-slate-200">
+      <div className="w-full p-4 overflow-x-auto">
+        <table className="min-w-full border-collapse rounded-lg overflow-hidden border border-slate-200">
           <thead>
             <tr className="bg-slate-800 text-white text-xs">
-              {prompt.headers.map((h, i) => <th key={i} className="p-2 text-left uppercase tracking-tighter">{h}</th>)}
+              {prompt.headers.map((h, i) => <th key={i} className="p-2 text-left uppercase tracking-tighter whitespace-nowrap">{h}</th>)}
             </tr>
           </thead>
           <tbody className="text-xs">
-            {prompt.data.map((row, i) => (
-              <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-                <td className="p-2 font-bold border-b text-slate-700">{row.country || row.region}</td>
-                <td className="p-2 border-b text-slate-600">{row.y1}</td>
-                <td className="p-2 border-b text-slate-600">{row.y2}</td>
-              </tr>
-            ))}
+            {prompt.data.length === 0 ? (
+              <tr><td colSpan={prompt.headers.length} className="p-4 text-center text-slate-400 italic">No data available</td></tr>
+            ) : (
+              prompt.data.map((row, i) => (
+                <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                  <td className="p-2 font-bold border-b text-slate-700 whitespace-nowrap">{row.country || row.region}</td>
+                  <td className="p-2 border-b text-slate-600 text-right">{row.y1}</td>
+                  <td className="p-2 border-b text-slate-600 text-right">{row.y2}</td>
+                  {hasY3 && <td className="p-2 border-b text-slate-600 text-right">{row.y3 ?? '—'}</td>}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
@@ -451,6 +467,19 @@ const VisualRenderer = ({ prompt }) => {
       </div>
     );
   }
+  if (prompt.graphic === 'mixed' && Array.isArray(prompt.panels)) {
+    return (
+      <div className="w-full flex flex-col gap-4">
+        {prompt.panels.map((panel, pi) => (
+          <div key={pi} className="w-full">
+            <p className="text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1 text-center">{panel.title}</p>
+            <VisualRenderer prompt={{ ...panel }} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return null;
 };
 
@@ -500,41 +529,63 @@ const getSystemPrompt = (writingTask, prompt) => {
     Include only major errors that most affect band score clarity or accuracy.`;
   }
 
-  return `You are a helpful IELTS Writing Examiner and expert EAP evaluator for beginner and intermediate students.
-    Mark this Academic Task 1 response accurately, but explain your feedback using very simple, clear language.
-    Prompt: ${prompt.instruction}.
-    Data Points: ${JSON.stringify(prompt.data)}.
-    Evaluate Task Achievement, Coherence & Cohesion, Lexical Resource, and Grammatical Range and Accuracy.
-    Assign a Band Score between 0 and 9.
+  return `You are a Senior IELTS Academic Examiner and EAP Specialist.
+    Target audience: Japanese students (ages 16-22) preparing for study abroad.
+    Tone: Direct, honest, and strictly academic. Avoid filler praise.
+    Task 1 Prompt: ${prompt.instruction}.
+    Chart Data: ${JSON.stringify(prompt.data)}.
 
-    CRITICAL FEEDBACK LENGTH INSTRUCTION:
-    Your explanations for the four criteria (Task Achievement, Coherence, Lexical, Grammar) MUST be extremely short. Limit each explanation to exactly 1 or 2 simple sentences maximum. Students need to be able to scan your feedback quickly. Avoid complex examiner jargon.
+    Evaluate the response on the four official IELTS Task 1 criteria. Assign each a Band Score (0-9.0, in 0.5 increments):
 
-    Your tips must also be short and punchy.
+    1. Task Achievement (TA):
+       CRITICAL: If a clear Overview statement summarising the main trend or key feature is absent, TA cannot exceed 5.0.
+       Penalise hallucinated units (e.g., % symbols applied to years) or misquoted figures from the chart data.
+       Penalise mechanical listing of all numbers without identifying key comparisons or overall patterns.
+
+    2. Coherence & Cohesion (CC):
+       Look for logical grouping of related data points and effective use of transitional phrases.
+
+    3. Lexical Resource (LR):
+       Reward accurate academic reporting vocabulary adapted to chart type: trend words for graphs (rose sharply, plateaued), comparative language for bar charts and tables, sequencing language for processes.
+
+    4. Grammatical Range & Accuracy (GRA):
+       Credit variety of complex structures. Minor punctuation errors alone should not heavily penalise this criterion.
+
+    Overall Band Score: Average of the four criteria scores, rounded to nearest 0.5. Apply the Overview cap to TA before averaging.
+
+    FEEDBACK RULES:
+    - Write in simple, clear English appropriate for intermediate learners.
+    - Per criterion: 1 sentence explaining why the score was given + 1 sentence with a specific, actionable fix.
+    - If overall band < 5.0: prioritise overview structure and basic data coverage in tips.
+    - If overall band > 6.5: focus on precise data selection, paraphrasing, and hedging language.
 
     CRITICAL INSTRUCTION FOR DIAGNOSTIC TAGS (TOP 3 FOCUS AREAS):
-    Return only the 3 most important focus areas in "diagnostic_tags" (maximum 3 tags).
-    Prioritize higher-order Task 1 performance first: Task Achievement quality, clear comparisons, coherence, and academic expression.
-    Do NOT let minor grammar dominate. If Article Usage and Prepositional Accuracy are both minor issues, include at most one of them unless these errors are frequent and meaning-changing.
-    In addition to your written feedback, analyze the text using ONLY the exact 20 tags below. Do not create new tags.
+    Return the 3 most critical areas for improvement in "diagnostic_tags" (maximum 3 tags).
+    Prioritise higher-order issues first: missing overview, poor data grouping, weak academic expression — then grammar.
+    Do NOT let minor grammar dominate unless errors are frequent and affect meaning.
+    Use ONLY the exact 20 tags below. Do not invent new tags.
     Nouns & Mechanics: Article Usage, Countability & Plurals, Pronoun Reference, Prepositional Accuracy, Word Forms
     Verbs & Time: Subject-Verb Agreement, Tense Consistency, Present Perfect vs. Past Simple, Gerunds vs. Infinitives, Passive Voice Construction
     Sentence Architecture: Sentence Boundaries (Fragments/Comma Splices), Relative Clauses, Subordination, Word Order, Parallel Structure
     Academic Discourse: Transitional Devices, Collocations, Academic Register, Nominalization, Hedging
 
     CRITICAL INSTRUCTION FOR GRAMMAR ERROR COUNTS:
-    Return a "grammar_error_counts" object with exact counts for each grammar category found in the text.
-    Use ONLY the exact 20 category keys below. Count ALL instances of each error type, not just presence/absence.
-    If no errors of a type are found, do not include that key in the object.
+    Return a "grammar_error_counts" object with counts for each error category found. Count ALL clear instances.
+    If no errors of a type are found, omit that key.
     Category keys: "01_article_usage", "02_countability_and_plurals", "03_pronoun_reference", "04_prepositional_accuracy", "05_word_forms", "06_subject_verb_agreement", "07_tense_consistency", "08_present_perfect_vs_past_simple", "09_gerunds_vs_infinitives", "10_passive_voice_construction", "11_sentence_boundaries", "12_relative_clauses", "13_subordination", "14_word_order", "15_parallel_structure", "16_transitional_devices", "17_collocations", "18_academic_register", "19_nominalization", "20_hedging"
 
     CRITICAL INSTRUCTION FOR INLINE MAJOR ERRORS:
-    Return a "major_errors" array with up to 5 items.
-    Each item must include:
-    - original_snippet: exact quote copied from the student's response (character-for-character)
+    Return a "major_errors" array with up to 5 items. Each must include:
+    - original_snippet: exact quote copied character-for-character from the student's response
     - correction: improved wording
-    - explanation: one short reason in simple language
-    Include only major errors that most affect band score clarity or accuracy.`;
+    - explanation: one brief sentence
+    Include only errors that most affect clarity or band score.
+
+    PRIORITY NEXT STEP:
+    Return "priority_next_step": a single, direct command — the one most important thing this student must fix next.
+    Examples: "Write a clear overview sentence stating the main trend before describing specific figures."
+              "Group related data together instead of listing every number separately."
+              "Use more precise trend vocabulary: replace 'went up' with 'rose sharply' or 'increased steadily'."`;
 };
 
 const normalizeBandScore = (rawBandScore, wordCount) => {
@@ -673,9 +724,10 @@ const callGeminiWithRetry = async (payload, systemPrompt, retries = 5) => {
                   },
                   required: ["original_snippet", "correction", "explanation"]
                 }
-              }
+              },
+              priority_next_step: { type: "STRING" }
             },
-            required: ["bandScore", "taskAchievement", "coherenceCohesion", "lexicalResource", "grammarAccuracy", "improvementTips", "modelHighlights", "diagnostic_tags", "grammar_error_counts", "major_errors"]
+            required: ["bandScore", "taskAchievement", "coherenceCohesion", "lexicalResource", "grammarAccuracy", "improvementTips", "modelHighlights", "diagnostic_tags", "grammar_error_counts", "major_errors", "priority_next_step"]
           }
         })
       });
@@ -1122,9 +1174,19 @@ function FeedbackView({ feedback, writingTask, originalText, saveMessage, onRese
               <Criterion label="Lexical Resource" text={feedback.lexicalResource} />
               <Criterion label="Grammatical Range & Accuracy" text={feedback.grammarAccuracy} />
             </div>
-            <div className="bg-amber-50/50 rounded-2xl p-8 border border-amber-100 h-fit">
-              <h3 className="text-sm font-black mb-6 flex items-center gap-2 text-amber-900 uppercase"><Settings size={18} /> Examiner Advice</h3>
-              <div className="space-y-4">{feedback.improvementTips.map((tip, idx) => (<div key={idx} className="flex gap-4 items-start"><div className="w-6 h-6 rounded bg-amber-600 text-white flex items-center justify-center shrink-0 text-[10px] font-black">{idx + 1}</div><p className="text-sm text-amber-900 leading-relaxed font-medium">{tip}</p></div>))}</div>
+            <div className="space-y-4">
+              {feedback.priority_next_step && (
+                <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-5">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-red-500 mb-2 flex items-center gap-1">
+                    <AlertTriangle size={12} /> Priority Next Step
+                  </p>
+                  <p className="text-sm font-bold text-red-900 leading-relaxed">{feedback.priority_next_step}</p>
+                </div>
+              )}
+              <div className="bg-amber-50/50 rounded-2xl p-8 border border-amber-100">
+                <h3 className="text-sm font-black mb-6 flex items-center gap-2 text-amber-900 uppercase"><Settings size={18} /> Examiner Advice</h3>
+                <div className="space-y-4">{feedback.improvementTips.map((tip, idx) => (<div key={idx} className="flex gap-4 items-start"><div className="w-6 h-6 rounded bg-amber-600 text-white flex items-center justify-center shrink-0 text-[10px] font-black">{idx + 1}</div><p className="text-sm text-amber-900 leading-relaxed font-medium">{tip}</p></div>))}</div>
+              </div>
             </div>
           </div>
           <div className="mb-12">
