@@ -11,16 +11,24 @@ function initDb() {
       throw new Error('DATABASE_URL is required to connect to PostgreSQL.');
     }
 
+    // Prefer Neon pooler endpoint to avoid cold-start DNS issues
+    const dbUrl = process.env.DATABASE_URL;
+    if (!dbUrl.includes('-pooler.')) {
+      console.warn('⚠️  DATABASE_URL does not use Neon pooler endpoint. Consider using the -pooler URL for better reliability.');
+    }
+
     poolInstance = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: dbUrl,
       ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false },
       max: 10,                      // max simultaneous clients
       idleTimeoutMillis: 30000,     // close idle clients after 30s
       connectionTimeoutMillis: 15000, // fail fast if Neon is cold-starting
       keepAlive: true,              // prevent idle TCP drops on Render
-      keepAliveInitialDelayMillis: 10000
+      keepAliveInitialDelayMillis: 10000,
+      // Force IPv4 to avoid ENETUNREACH on Render
+      family: 4
     });
-    console.log('📦 Postgres database (Neon) initialized');
+    console.log('📦 Postgres database (Neon) initialized (IPv4-first)');
   }
   return poolInstance;
 }
