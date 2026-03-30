@@ -45,7 +45,8 @@ router.get('/me', auth, async (req, res) => {
     
     const [users] = await connection.query(
       `SELECT u.id, u.first_name, u.last_name, u.email, u.role, u.institution_id,
-              u.subscription_tier AS user_tier, u.stripe_customer_id, u.avatar_url,
+              u.subscription_tier AS user_tier, u.stripe_customer_id,
+              u.stripe_subscription_id, u.current_period_end, u.avatar_url,
               i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
               i.subscription_tier AS inst_tier, i.subscription_status,
               i.allow_b2c_payments,
@@ -86,6 +87,8 @@ router.get('/me', auth, async (req, res) => {
       subscription_status: user.subscription_status || 'active',
       allow_b2c_payments: user.allow_b2c_payments || false,
       stripe_customer_id: user.stripe_customer_id || null,
+      stripe_subscription_id: user.stripe_subscription_id || null,
+      current_period_end: user.current_period_end || null,
       avatar_url: user.avatar_url || null,
       subdomain: user.subdomain,
       timezone: user.timezone || 'Asia/Tokyo',

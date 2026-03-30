@@ -148,6 +148,12 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS subscription_tier VARCHAR(50) DEFAULT
 ALTER TABLE users ADD COLUMN IF NOT EXISTS stripe_customer_id VARCHAR(255);
 CREATE INDEX IF NOT EXISTS idx_users_stripe_customer_id ON users(stripe_customer_id) WHERE stripe_customer_id IS NOT NULL;
 
+-- Monthly subscription tracking: subscription ID and period end date
+ALTER TABLE users ADD COLUMN IF NOT EXISTS stripe_subscription_id VARCHAR(255);
+ALTER TABLE users ADD COLUMN IF NOT EXISTS current_period_end TIMESTAMP;
+CREATE INDEX IF NOT EXISTS idx_users_stripe_subscription_id ON users(stripe_subscription_id) WHERE stripe_subscription_id IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_users_current_period_end ON users(current_period_end) WHERE current_period_end IS NOT NULL;
+
 -- ============================================================================
 -- CLASSES TABLE - Institution-Scoped
 -- ============================================================================

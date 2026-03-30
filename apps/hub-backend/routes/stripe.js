@@ -59,7 +59,7 @@ router.post('/create-checkout-session', auth, async (req, res) => {
 
     // Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      automatic_payment_methods: { enabled: true }, // Support JCB and international cards
       line_items: [
         {
           price_data: {
@@ -173,13 +173,33 @@ router.post('/webhook', async (req, res) => {
           return res.status(400).json({ error: 'Missing user_id in metadata' });
         }
 
+        // For subscriptions, fetch the subscription object to get current_period_end
+        let subscriptionId = null;
+        let currentPeriodEnd = null;
+        if (session.mode === 'subscription' && session.subscription) {
+          try {
+            const subscription = await stripe.subscriptions.retrieve(session.subscription);
+            subscriptionId = subscription.id;
+            currentPeriodEnd = new Date(subscription.current_period_end * 1000); // Unix timestamp → JS Date
+            console.log(`📅 Subscription ${subscriptionId} renews on ${currentPeriodEnd.toISOString()}`);
+          } catch (subErr) {
+            console.error('❌ Failed to retrieve subscription object:', subErr.message);
+            // Continue without subscription details; user still gets premium
+          }
+        }
+
         const connection = await pool.getConnection();
 
         try {
-          // Update user's subscription tier and save Stripe customer ID
+          // Update user's subscription tier and save Stripe customer ID + subscription details
           const [result] = await connection.query(
-            'UPDATE users SET subscription_tier = $1, stripe_customer_id = $2 WHERE id = $3',
-            ['premium', stripeCustomerId, userId]
+            `UPDATE users SET 
+               subscription_tier = $1, 
+               stripe_customer_id = $2, 
+               stripe_subscription_id = $3, 
+               current_period_end = $4 
+             WHERE id = $5`,
+            ['premium', stripeCustomerId, subscriptionId, currentPeriodEnd, userId]
           );
 
           console.log(`✅ User ${userId} upgraded to premium (Stripe Customer: ${stripeCustomerId})`);
@@ -205,6 +225,33 @@ router.post('/webhook', async (req, res) => {
         break;
       }
 
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object;
+        const subscriptionId = invoice.subscription;
+        if (subscriptionId) {
+          try {
+            const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+            const newPeriodEnd = new Date(subscription.current_period_end * 1000);
+            const connection = await pool.getConnection();
+            try {
+              await connection.query(
+                'UPDATE users SET current_period_end = $1 WHERE stripe_subscription_id = $2',
+                [newPeriodEnd, subscriptionId]
+              );
+              console.log(`📅 Renewed subscription ${subscriptionId} until ${newPeriodEnd.toISOString()}`);
+              connection.release();
+            } catch (dbError) {
+              console.error('❌ DB error updating current_period_end:', dbError);
+              if (connection) connection.release();
+              throw dbError;
+            }
+          } catch (subErr) {
+            console.error('❌ Failed to retrieve subscription for invoice.payment_succeeded:', subErr.message);
+          }
+        }
+        break;
+      }
+
       case 'customer.subscription.deleted': {
         const subscription = event.data.object;
         const stripeCustomerId = subscription.customer;
@@ -214,9 +261,13 @@ router.post('/webhook', async (req, res) => {
         const connection = await pool.getConnection();
 
         try {
-          // Downgrade user back to free tier
+          // Downgrade user back to free tier and clear subscription fields
           await connection.query(
-            'UPDATE users SET subscription_tier = $1 WHERE stripe_customer_id = $2',
+            `UPDATE users SET 
+               subscription_tier = $1, 
+               stripe_subscription_id = NULL, 
+               current_period_end = NULL 
+             WHERE stripe_customer_id = $2`,
             ['free', stripeCustomerId]
           );
 
