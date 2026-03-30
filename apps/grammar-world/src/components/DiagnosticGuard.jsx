@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { fetchUserProgress } from '../services/api';
-import { isAuthenticated } from '../utils/auth';
+import { isAuthenticated, getUser } from '../utils/auth';
+
+const STAFF_ROLES = ['teacher', 'admin', 'super_admin'];
 
 export default function DiagnosticGuard({ children }) {
   const [loading, setLoading] = useState(true);
   const [diagnosticCompleted, setDiagnosticCompleted] = useState(false);
+
+  // Staff bypass: teachers and admins skip the diagnostic requirement
+  const user = getUser();
+  if (user && STAFF_ROLES.includes(user.role)) {
+    return children;
+  }
 
   useEffect(() => {
     checkDiagnosticStatus();

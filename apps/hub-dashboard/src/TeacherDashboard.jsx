@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown, Shield, Building2, UserCog, Moon, Sun } from 'lucide-react';
+import { LogOut, BookOpen, Users, AlertCircle, PlusCircle, Calendar, X, Loader2, FileText, CheckCircle2, ChevronDown, User, Settings, HelpCircle, Trash2, Edit3, Copy, RefreshCw, UserPlus, ArrowUpDown, Shield, Building2, UserCog, Moon, Sun, PenTool, MessageSquare } from 'lucide-react';
 import logo from './assets/logo.png';
 import PlatformManager from './components/PlatformManager';
 import ClassDetails from './components/ClassDetails';
@@ -1078,6 +1078,53 @@ export default function TeacherDashboard({ user, onLogout }) {
           />
         ) : activeTab === 'overview' ? (
           <>
+        {/* Learning Apps */}
+        <div className="mb-10">
+          <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight mb-4">Learning Apps</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <button
+              onClick={() => { const s = crypto.randomUUID(); window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both&sessionId=${s}`; }}
+              className="bg-gradient-to-br from-brand-sangria to-[#4A1410] hover:from-[#4A1410] hover:to-[#3A0F0C] p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+            >
+              <PenTool size={22} className="text-white/90 mb-3" />
+              <div>
+                <h3 className="text-sm font-black tracking-tight leading-tight">IELTS Writing</h3>
+                <p className="text-[10px] text-white/70 mt-0.5">AI band score feedback</p>
+              </div>
+            </button>
+            <button
+              onClick={() => window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-rose-500 to-rose-700 hover:from-rose-600 hover:to-rose-800 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+            >
+              <MessageSquare size={22} className="text-white/90 mb-3" />
+              <div>
+                <h3 className="text-sm font-black tracking-tight leading-tight">IELTS Speaking</h3>
+                <p className="text-[10px] text-white/70 mt-0.5">AI examiner simulation</p>
+              </div>
+            </button>
+            <button
+              onClick={() => window.location.href = `/grammar-world/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-brand-navy to-slate-800 hover:from-slate-800 hover:to-slate-900 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+            >
+              <BookOpen size={22} className="text-white/90 mb-3" />
+              <div>
+                <h3 className="text-sm font-black tracking-tight leading-tight">Grammar World</h3>
+                <p className="text-[10px] text-white/70 mt-0.5">All nodes unlocked</p>
+              </div>
+            </button>
+            <button
+              onClick={() => window.location.href = `/vocab/?token=${localStorage.getItem('token')}`}
+              className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+            >
+              <RefreshCw size={22} className="text-white/90 mb-3" />
+              <div>
+                <h3 className="text-sm font-black tracking-tight leading-tight">Vocab Builder</h3>
+                <p className="text-[10px] text-white/70 mt-0.5">Academic Word Bank</p>
+              </div>
+            </button>
+          </div>
+        </div>
+
         <div className="flex justify-between items-end mb-8">
           <div>
             <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Class Overview</h2>

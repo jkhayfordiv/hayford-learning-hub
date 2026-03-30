@@ -158,12 +158,14 @@ router.get('/regions/:regionName', auth, async (req, res) => {
       );
       console.log('[DEBUG] Direct count (no JOIN):', countResult[0]?.cnt);
 
+      const isStaffUser = ['teacher', 'admin', 'super_admin'].includes(req.user.role);
       // Parse prerequisites and determine unlocked status
       const nodesWithStatus = nodes.map(node => ({
         ...node,
         prerequisites: node.prerequisites ? JSON.parse(node.prerequisites) : [],
         attempts: parseInt(node.attempts) || 0,
-        last_score: parseInt(node.last_score) || null
+        last_score: parseInt(node.last_score) || null,
+        status: isStaffUser ? 'unlocked' : node.status
       }));
 
       res.json({ nodes: nodesWithStatus });
@@ -208,6 +210,7 @@ router.get('/nodes/:nodeId', auth, async (req, res) => {
         ? JSON.parse(node.content_json) 
         : node.content_json;
 
+      const isStaffViewer = ['teacher', 'admin', 'super_admin'].includes(req.user.role);
       res.json({
         node_id: node.node_id,
         region: node.region,
@@ -219,7 +222,7 @@ router.get('/nodes/:nodeId', auth, async (req, res) => {
         lesson_content_markdown: content.lesson_content_markdown || '',
         mastery_check: content.mastery_check || {},
         rewards: content.rewards || {},
-        user_status: node.user_status,
+        user_status: isStaffViewer ? 'unlocked' : node.user_status,
         attempts: parseInt(node.attempts) || 0,
         last_score: parseInt(node.last_score) || null,
         last_attempt_at: node.last_attempt_at,
@@ -265,10 +268,11 @@ router.get('/progress', auth, async (req, res) => {
         WHERE user_id = $1 AND node_id = 'node-0-diagnostic'
       `, [req.user.id]);
 
+      const isStaff = ['teacher', 'admin', 'super_admin'].includes(req.user.role);
       res.json({
         overall: progress[0],
         by_region: stats,
-        diagnostic_completed: diagnostic.length > 0 && diagnostic[0].status === 'completed'
+        diagnostic_completed: isStaff ? true : (diagnostic.length > 0 && diagnostic[0].status === 'completed')
       });
     } finally {
       connection.release();
@@ -319,9 +323,15 @@ router.post('/submit', auth, async (req, res) => {
           correctAnswers: questions.map(q => q.correct_answer)
         });
         
+        // Resolve correct_answer: may be an integer index or the answer string itself
+        const resolveAnswer = (q) => typeof q.correct_answer === 'number'
+          ? q.options[q.correct_answer]
+          : q.correct_answer;
+
         for (let i = 0; i < questions.length; i++) {
-          const match = user_response.answers[i] === questions[i].correct_answer;
-          console.log(`[DEBUG] Q${i}: "${user_response.answers[i]}" === "${questions[i].correct_answer}" = ${match}`);
+          const correctAnswer = resolveAnswer(questions[i]);
+          const match = user_response.answers[i] === correctAnswer;
+          console.log(`[DEBUG] Q${i}: "${user_response.answers[i]}" === "${correctAnswer}" = ${match}`);
           if (match) {
             correct++;
           }
@@ -337,7 +347,8 @@ router.post('/submit', auth, async (req, res) => {
           const wrongAnswers = [];
           
           for (let i = 0; i < questions.length; i++) {
-            if (user_response.answers[i] !== questions[i].correct_answer) {
+            const correctAnswer = resolveAnswer(questions[i]);
+            if (user_response.answers[i] !== correctAnswer) {
               wrongAnswers.push({
                 question_index: i,
                 error_tag: questions[i].error_tag,
@@ -455,6 +466,22 @@ router.post('/submit', auth, async (req, res) => {
           score,
           (node_id === 'node-0-diagnostic' || passed) ? new Date() : null
         ]);
+      }
+
+      // If diagnostic just completed, unlock all entry-level nodes (no prerequisites)
+      if (node_id === 'node-0-diagnostic') {
+        const [entryNodes] = await connection.query(`
+          SELECT node_id FROM grammar_nodes
+          WHERE content_json->'prerequisites' = '[]'::jsonb
+          AND tier != 'Diagnostic'
+        `);
+        for (const entryNode of entryNodes) {
+          await connection.query(`
+            INSERT INTO user_grammar_progress (user_id, node_id, status)
+            VALUES ($1, $2, 'unlocked')
+            ON CONFLICT (user_id, node_id) DO NOTHING
+          `, [req.user.id, entryNode.node_id]);
+        }
       }
 
       // If passed, unlock dependent nodes and update mastery stats
