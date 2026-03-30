@@ -55,11 +55,11 @@ const TASK_1_PROMPTS = [
     title: "Household Energy Consumption",
     instruction: "The graph shows the average weekly energy consumption (in kWh) of a typical household in Australia between 2000 and 2020.",
     data: [
-      { year: '2000', v1: 40, v2: 10, v3: 15 },
-      { year: '2005', v1: 50, v2: 20, v3: 15 },
-      { year: '2010', v1: 60, v2: 35, v3: 15 },
-      { year: '2015', v1: 45, v2: 42, v3: 15 },
-      { year: '2020', v1: 30, v2: 50, v3: 15 }
+      { year: '2000', v1: 40, v2: 10, v3: 20 },
+      { year: '2005', v1: 50, v2: 20, v3: 18 },
+      { year: '2010', v1: 50, v2: 30, v3: 15 },
+      { year: '2015', v1: 45, v2: 42, v3: 10 },
+      { year: '2020', v1: 30, v2: 50, v3: 6 }
     ],
     labels: { l1: "Heating", l2: "Cooling", l3: "Lighting", yUnit: "Energy (kWh)" },
     graphic: "line"
@@ -80,16 +80,32 @@ const TASK_1_PROMPTS = [
   },
   {
     id: 4,
-    type: "Pie Chart",
-    title: "Leisure Activities in Japan (2014)",
-    instruction: "The pie chart shows the distribution of time spent on various leisure activities by young adults in Japan in 2014.",
-    data: [
-      { label: 'Video Games', value: 65, color: '#3b82f6' },
-      { label: 'Socializing', value: 15, color: '#ef4444' },
-      { label: 'Reading', value: 5, color: '#10b981' },
-      { label: 'Sports', value: 15, color: '#f59e0b' }
-    ],
-    graphic: "pie"
+    type: "Mixed Charts",
+    title: "Leisure Activities in Japan",
+    instruction: "The pie charts compare how young adults in Japan distributed their leisure time in 2004 and 2019.",
+    graphic: "mixed",
+    panels: [
+      {
+        title: "2004",
+        graphic: "pie",
+        data: [
+          { label: 'Video Games', value: 45, color: '#3b82f6' },
+          { label: 'Socializing', value: 25, color: '#ef4444' },
+          { label: 'Sports', value: 20, color: '#10b981' },
+          { label: 'Reading', value: 10, color: '#f59e0b' }
+        ]
+      },
+      {
+        title: "2019",
+        graphic: "pie",
+        data: [
+          { label: 'Video Games', value: 65, color: '#3b82f6' },
+          { label: 'Socializing', value: 15, color: '#ef4444' },
+          { label: 'Sports', value: 15, color: '#10b981' },
+          { label: 'Reading', value: 5, color: '#f59e0b' }
+        ]
+      }
+    ]
   },
   {
     id: 5,
@@ -131,19 +147,19 @@ const TASK_1_PROMPTS = [
     labels: { l1: "Land", l2: "Ocean", l3: "Average", yUnit: "Temperature (°C)" },
     graphic: "line"
   },
-  { id: 8, type: "Pie Chart", title: "Global Energy Consumption", instruction: "The chart below shows the world's energy consumption by fuel type in 2018.", data: [{ label: 'Oil', value: 33, color: '#3366cc' }, { label: 'Coal', value: 27, color: '#dc3912' }, { label: 'Gas', value: 24, color: '#ff9900' }, { label: 'Nuclear', value: 4, color: '#109618' }, { label: 'Renewables', value: 12, color: '#990099' }], graphic: "pie" },
+  { id: 8, type: "Mixed Charts", title: "Global Energy Consumption by Fuel Type", instruction: "The pie charts compare the world's energy consumption by fuel type in 1998 and 2018.", graphic: "mixed", panels: [{ title: "1998", graphic: "pie", data: [{ label: 'Oil', value: 38, color: '#3366cc' }, { label: 'Coal', value: 23, color: '#dc3912' }, { label: 'Gas', value: 22, color: '#ff9900' }, { label: 'Nuclear', value: 6, color: '#109618' }, { label: 'Renewables', value: 11, color: '#990099' }] }, { title: "2018", graphic: "pie", data: [{ label: 'Oil', value: 33, color: '#3366cc' }, { label: 'Coal', value: 27, color: '#dc3912' }, { label: 'Gas', value: 24, color: '#ff9900' }, { label: 'Nuclear', value: 4, color: '#109618' }, { label: 'Renewables', value: 12, color: '#990099' }] }] },
   { id: 9, type: "Table", title: "Mobile Phone Ownership", instruction: "The table shows the percentage of people owning a mobile phone in five countries in 2005, 2010, and 2015.", data: [{ country: 'USA', y1: 74, y2: 85, y3: 92 }, { country: 'UK', y1: 70, y2: 82, y3: 90 }, { country: 'China', y1: 32, y2: 65, y3: 88 }, { country: 'India', y1: 12, y2: 40, y3: 72 }, { country: 'Brazil', y1: 28, y2: 55, y3: 80 }], headers: ["Country", "2005 (%)", "2010 (%)", "2015 (%)"], graphic: "table" },
   { id: 10, type: "Line Graph", title: "Unemployment Rates", instruction: "The graph shows unemployment rates in the US and Japan between 2000 and 2010.", data: [{ year: '2000', v1: 4.0, v2: 4.8 }, { year: '2002', v1: 5.8, v2: 5.4 }, { year: '2004', v1: 5.5, v2: 4.7 }, { year: '2006', v1: 4.6, v2: 4.1 }, { year: '2008', v1: 5.8, v2: 4.0 }, { year: '2010', v1: 9.6, v2: 5.1 }], labels: { l1: "USA", l2: "Japan", l3: "", yUnit: "Unemployment Rate (%)" }, graphic: "line" },
-  { id: 11, type: "Process", title: "Electricity Production", instruction: "The diagram shows how electricity is produced in a coal-fired power station.", data: ["Coal Mining", "Furnace Burning", "Steam Production", "Turbine Rotation", "Generator", "Grid Distribution"], graphic: "process" },
+  { id: 11, type: "Process", title: "Drinking Water Purification", instruction: "The diagram shows how river water is treated and distributed as safe drinking water to households.", data: ["River Intake", "Screening (Remove Debris)", "Sedimentation Tank", "Chemical Treatment", "Sand & Carbon Filtration", "Chlorine Disinfection", "Storage Reservoir", "Household Supply"], graphic: "process" },
   { id: 12, type: "Bar Chart", title: "Cinema Attendance by Age Group", instruction: "The bar chart shows the percentage of people who attended the cinema at least once a month in five age groups in 2007, 2012, and 2017.", data: [{ label: '14-24', v1: 55, v2: 50, v3: 42 }, { label: '25-34', v1: 28, v2: 32, v3: 36 }, { label: '35-44', v1: 18, v2: 20, v3: 26 }, { label: '45-54', v1: 12, v2: 14, v3: 18 }, { label: '55+', v1: 7, v2: 9, v3: 13 }], labels: { legend1: "2007", legend2: "2012", legend3: "2017", yUnit: "% attending monthly" }, graphic: "bar" },
   { id: 13, type: "Table", title: "International Student Numbers", instruction: "The table shows the number of international students (thousands) in four countries in 1990, 2000, and 2010.", data: [{ country: 'USA', y1: 300, y2: 450, y3: 600 }, { country: 'UK', y1: 150, y2: 270, y3: 400 }, { country: 'Australia', y1: 50, y2: 130, y3: 250 }, { country: 'Canada', y1: 40, y2: 110, y3: 200 }], headers: ["Country", "1990 (000s)", "2000 (000s)", "2010 (000s)"], graphic: "table" },
-  { id: 14, type: "Pie Chart", title: "Water Consumption by Sector", instruction: "The pie chart shows how total water consumption was distributed across five sectors in a developed country in 2022.", data: [{ label: 'Agriculture', value: 42, color: '#22c55e' }, { label: 'Industry', value: 23, color: '#3b82f6' }, { label: 'Domestic', value: 18, color: '#ef4444' }, { label: 'Energy', value: 9, color: '#f59e0b' }, { label: 'Public Services', value: 8, color: '#8b5cf6' }], graphic: "pie" },
+  { id: 14, type: "Mixed Charts", title: "Water Consumption by Sector", instruction: "The pie charts compare how total water consumption was distributed across five sectors in a developed country in 2002 and 2022.", graphic: "mixed", panels: [{ title: "2002", graphic: "pie", data: [{ label: 'Agriculture', value: 53, color: '#22c55e' }, { label: 'Industry', value: 20, color: '#3b82f6' }, { label: 'Domestic', value: 15, color: '#ef4444' }, { label: 'Energy', value: 8, color: '#f59e0b' }, { label: 'Public Svcs', value: 4, color: '#8b5cf6' }] }, { title: "2022", graphic: "pie", data: [{ label: 'Agriculture', value: 42, color: '#22c55e' }, { label: 'Industry', value: 23, color: '#3b82f6' }, { label: 'Domestic', value: 18, color: '#ef4444' }, { label: 'Energy', value: 9, color: '#f59e0b' }, { label: 'Public Svcs', value: 8, color: '#8b5cf6' }] }] },
   { id: 15, type: "Line Graph", title: "Metals Prices in Global Markets", instruction: "The line graph compares average monthly prices of gold, silver and copper between 2020 and 2024.", data: [{ year: '2020', v1: 2300, v2: 16, v3: 3.1 }, { year: '2021', v1: 2050, v2: 24, v3: 4.6 }, { year: '2022', v1: 1680, v2: 41, v3: 2.9 }, { year: '2023', v1: 1210, v2: 19, v3: 5.4 }, { year: '2024', v1: 980, v2: 47, v3: 3.3 }], labels: { l1: "Gold (USD/oz)", l2: "Silver (USD/oz)", l3: "Copper (USD/lb)", yUnit: "Price (USD)" }, graphic: "line" },
   { id: 16, type: "Process", title: "Paper Recycling", instruction: "The diagram shows the process of recycling paper.", data: ["Waste Collection", "De-inking", "Pulping", "Rolling", "Drying", "New Paper"], graphic: "process" },
   { id: 17, type: "Bar Chart", title: "Fruit Consumption", instruction: "The chart shows the average daily fruit consumption of adults in five different cities.", data: [{ label: 'City A', v1: 1.2, v2: 1.5 }, { label: 'City B', v1: 0.8, v2: 1.1 }, { label: 'City C', v1: 2.1, v2: 2.3 }, { label: 'City D', v1: 1.5, v2: 1.8 }, { label: 'City E', v1: 1.0, v2: 1.2 }], labels: { legend1: "Male", legend2: "Female", yUnit: "Portions" }, graphic: "bar" },
-  { id: 18, type: "Table", title: "Urbanization Rates", instruction: "The table shows the percentage of the population living in urban areas in four regions.", data: [{ country: 'Africa', y1: 30, y2: 45 }, { country: 'Asia', y1: 40, y2: 55 }, { country: 'Europe', y1: 70, y2: 78 }, { country: 'N. America', y1: 75, y2: 82 }], headers: ["Region", "2000 (%)", "2020 (%)"], graphic: "table" },
-  { id: 19, type: "Pie Chart", title: "Student Accommodation", instruction: "The pie chart illustrates the preferred housing options of international students in a UK city in 2023.", data: [{ label: 'University Halls', value: 34, color: '#6366f1' }, { label: 'Private Rental', value: 29, color: '#ec4899' }, { label: 'Shared Flat', value: 19, color: '#06b6d4' }, { label: 'Homestay', value: 12, color: '#f59e0b' }, { label: 'Other', value: 6, color: '#94a3b8' }], graphic: "pie" },
-  { id: 20, type: "Line Graph", title: "Software Subscriptions", instruction: "The graph shows the growth of subscribers for three software services.", data: [{ year: '2019', v1: 10, v2: 5, v3: 2 }, { year: '2020', v1: 15, v2: 8, v3: 5 }, { year: '2021', v1: 22, v2: 14, v3: 12 }, { year: '2022', v1: 30, v2: 25, v3: 20 }, { year: '2023', v1: 45, v2: 40, v3: 35 }], labels: { l1: "Cloud", l2: "Design", l3: "CRM", yUnit: "Subscribers (millions)" }, graphic: "line" },
+  { id: 18, type: "Table", title: "Urbanization Rates", instruction: "The table shows the percentage of the population living in urban areas in four world regions in 1990, 2000, and 2020.", data: [{ country: 'Africa', y1: 28, y2: 36, y3: 44 }, { country: 'Asia', y1: 32, y2: 40, y3: 52 }, { country: 'Europe', y1: 68, y2: 71, y3: 76 }, { country: 'N. America', y1: 73, y2: 77, y3: 83 }], headers: ["Region", "1990 (%)", "2000 (%)", "2020 (%)"], graphic: "table" },
+  { id: 19, type: "Mixed Charts", title: "Student Accommodation Preferences", instruction: "The pie charts compare the preferred housing options of international students in a UK city in 2013 and 2023.", graphic: "mixed", panels: [{ title: "2013", graphic: "pie", data: [{ label: 'Uni Halls', value: 48, color: '#6366f1' }, { label: 'Private Rental', value: 22, color: '#ec4899' }, { label: 'Shared Flat', value: 14, color: '#06b6d4' }, { label: 'Homestay', value: 11, color: '#f59e0b' }, { label: 'Other', value: 5, color: '#94a3b8' }] }, { title: "2023", graphic: "pie", data: [{ label: 'Uni Halls', value: 34, color: '#6366f1' }, { label: 'Private Rental', value: 29, color: '#ec4899' }, { label: 'Shared Flat', value: 19, color: '#06b6d4' }, { label: 'Homestay', value: 12, color: '#f59e0b' }, { label: 'Other', value: 6, color: '#94a3b8' }] }] },
+  { id: 20, type: "Line Graph", title: "Average Life Expectancy", instruction: "The line graph shows changes in average life expectancy (in years) in Japan, Brazil, and Nigeria between 1960 and 2020.", data: [{ year: '1960', v1: 67, v2: 54, v3: 40 }, { year: '1975', v1: 73, v2: 59, v3: 43 }, { year: '1990', v1: 79, v2: 66, v3: 46 }, { year: '2000', v1: 81, v2: 70, v3: 50 }, { year: '2010', v1: 83, v2: 73, v3: 54 }, { year: '2020', v1: 84, v2: 75, v3: 63 }], labels: { l1: "Japan", l2: "Brazil", l3: "Nigeria", yUnit: "Life Expectancy (years)" }, graphic: "line" },
   {
     id: 21,
     type: "Mixed Charts",
@@ -365,7 +381,7 @@ const VisualRenderer = ({ prompt }) => {
         <div className="flex gap-4 mb-3 text-[11px] font-bold">
           {prompt.labels.l1 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-blue-500"></div> {prompt.labels.l1}</div>}
           {prompt.labels.l2 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-green-500"></div> {prompt.labels.l2}</div>}
-          {prompt.labels.l3 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-slate-400"></div> {prompt.labels.l3}</div>}
+          {prompt.labels.l3 && <div className="flex items-center gap-1"><div className="w-4 h-1 bg-orange-500"></div> {prompt.labels.l3}</div>}
         </div>
         <svg viewBox="0 0 420 220" className="w-full h-full max-h-[320px]">
           {/* Grid lines */}
@@ -382,7 +398,7 @@ const VisualRenderer = ({ prompt }) => {
           {/* Data lines */}
           <path d={`M ${pathData("v1")}`} fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" />
           {prompt.labels.l2 && <path d={`M ${pathData("v2")}`} fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" />}
-          {prompt.labels.l3 && <path d={`M ${pathData("v3")}`} fill="none" stroke="#94a3b8" strokeWidth="2" strokeDasharray="5" />}
+          {prompt.labels.l3 && <path d={`M ${pathData("v3")}`} fill="none" stroke="#f97316" strokeWidth="2.5" strokeLinecap="round" />}
           
           {/* X-axis labels */}
           {prompt.data.map((d, idx) => <text key={idx} x={60 + idx * (320 / (prompt.data.length - 1))} y="195" fontSize="10" textAnchor="middle" fill="#1e293b" fontWeight="bold">{d.year}</text>)}
@@ -406,7 +422,7 @@ const VisualRenderer = ({ prompt }) => {
         <table className="min-w-full border-collapse rounded-lg overflow-hidden border border-slate-200">
           <thead>
             <tr className="bg-slate-800 text-white text-xs">
-              {prompt.headers.map((h, i) => <th key={i} className="p-2 text-left uppercase tracking-tighter whitespace-nowrap">{h}</th>)}
+              {prompt.headers.map((h, i) => <th key={i} className={`p-2 uppercase tracking-tighter whitespace-nowrap ${i === 0 ? 'text-left' : 'text-right'}`}>{h}</th>)}
             </tr>
           </thead>
           <tbody className="text-xs">
@@ -431,7 +447,7 @@ const VisualRenderer = ({ prompt }) => {
   if (prompt.graphic === 'pie') {
     let currentAngle = 0;
     return (
-      <div className="w-full h-full flex flex-col md:flex-row items-center justify-center p-6 gap-6">
+      <div className="w-full h-full flex flex-col items-center justify-center p-2 gap-3">
         <svg viewBox="0 0 100 100" className="w-32 h-32 drop-shadow">
           {prompt.data.map((slice, i) => {
             const startAngle = currentAngle;
@@ -469,9 +485,9 @@ const VisualRenderer = ({ prompt }) => {
   }
   if (prompt.graphic === 'mixed' && Array.isArray(prompt.panels)) {
     return (
-      <div className="w-full flex flex-col gap-4">
+      <div className="w-full flex flex-row flex-wrap gap-2 justify-center">
         {prompt.panels.map((panel, pi) => (
-          <div key={pi} className="w-full">
+          <div key={pi} className="flex-1 min-w-[150px]">
             <p className="text-[10px] font-black text-slate-500 uppercase tracking-wider mb-1 text-center">{panel.title}</p>
             <VisualRenderer prompt={{ ...panel }} />
           </div>
@@ -533,7 +549,7 @@ const getSystemPrompt = (writingTask, prompt) => {
     Target audience: Japanese students (ages 16-22) preparing for study abroad.
     Tone: Direct, honest, and strictly academic. Avoid filler praise.
     Task 1 Prompt: ${prompt.instruction}.
-    Chart Data: ${JSON.stringify(prompt.data)}.
+    Chart Data: ${JSON.stringify(prompt.data || prompt.panels)}.
 
     Evaluate the response on the four official IELTS Task 1 criteria. Assign each a Band Score (0-9.0, in 0.5 increments):
 
