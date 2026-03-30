@@ -1,0 +1,28 @@
+{
+  "node_id": "modifiers-23-limiting-adverbs",
+  "region": "The Modifiers",
+  "tier": "Gold",
+  "title": "Limiting Adverbs",
+  "description": "Position limiting adverbs (only, merely, simply, exclusively, solely) precisely to avoid scope ambiguity in academic argumentation.",
+  "display_order": 23,
+  "prerequisites": ["modifiers-22-noun-adjuncts"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 200,
+    "medal_tier": "Gold"
+  }
+}

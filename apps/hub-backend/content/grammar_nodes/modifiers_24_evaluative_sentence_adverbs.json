@@ -1,0 +1,28 @@
+{
+  "node_id": "modifiers-24-evaluative-sentence-adverbs",
+  "region": "The Modifiers",
+  "tier": "Gold",
+  "title": "Evaluative Sentence Adverbs",
+  "description": "Use sentence-level adverbs (notably, crucially, surprisingly, alarmingly, importantly) to guide reader interpretation in academic discourse.",
+  "display_order": 24,
+  "prerequisites": ["modifiers-23-limiting-adverbs"],
+  "lesson_content_markdown": "### Coming Soon\nThis module is currently locked.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Choose the best answer.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "This module is coming soon. Select the placeholder option to continue.",
+          "options": ["Option A", "Option B", "Option C", "Option D"],
+          "correct_answer": "Option A"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 200,
+    "medal_tier": "Gold"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "node_id": "modifiers-03-irregular-pluralization",
+  "region": "The Modifiers",
+  "tier": "Bronze",
+  "title": "Irregular Pluralization",
+  "description": "Master the Latin and Greek plural forms of high-frequency academic nouns to eliminate common errors in scholarly writing.",
+  "display_order": 3,
+  "prerequisites": ["modifiers-02-definite-vs-indefinite-articles"],
+  "lesson_content_markdown": "# Irregular Pluralization\n\n## Academic Vocabulary and Latin/Greek Plurals\n\nAcademic English has inherited a large number of nouns from Latin and Greek. These nouns follow irregular plural patterns that differ from the standard English **-s/-es** suffix. Misusing these forms is one of the most conspicuous errors in formal academic writing.\n\n---\n\n## High-Frequency Academic Irregular Plurals\n\n| Singular | Plural | Field of Use |\n|---|---|---|\n| **datum** | **data** | Research, Statistics |\n| **criterion** | **criteria** | Evaluation, Methodology |\n| **phenomenon** | **phenomena** | Science, Social Science |\n| **hypothesis** | **hypotheses** | Research |\n| **thesis** | **theses** | Academia |\n| **analysis** | **analyses** | Statistics, Research |\n| **curriculum** | **curricula** | Education |\n| **medium** | **media** | Communication |\n| **index** | **indices** | Mathematics, Economics |\n| **appendix** | **appendices** | Academic Writing |\n| **alumnus/alumna** | **alumni/alumnae** | Higher Education |\n| **symposium** | **symposia** | Academia |\n\n---\n\n## The Most Common Errors\n\n❌ *three criterias* → ✅ *three **criteria***\n❌ *two phenomenons* → ✅ *two **phenomena***\n❌ *the hypothesises* → ✅ *the **hypotheses***\n❌ *all curriculums* → ✅ *all **curricula***\n\n---\n\n## Academic Writing Tip\n\nNote that **criteria** and **data** are already plural. Avoid writing *a criteria* or *this criteria* — the correct singular forms are **a criterion** and **a datum** (or *a data point*).",
+  "mastery_check": {
+    "type": "error_correction",
+    "prompt_to_student": "The passage below contains five irregular pluralization errors. Identify each incorrect word and type the correct academic plural form.",
+    "activity_data": {
+      "sentence": "The study examined three phenomenons that are common in multilingual classrooms. Each criterias was evaluated independently by two trained assessors. The collected datas were subsequently entered into a statistical software program. The board reviewed the thesises submitted by the doctoral candidates. The curriculums of all participating institutions were compared to identify common patterns in language instruction.",
+      "errors": [
+        {
+          "incorrect_word": "phenomenons",
+          "accepted_corrections": ["phenomena"]
+        },
+        {
+          "incorrect_word": "criterias",
+          "accepted_corrections": ["criteria"]
+        },
+        {
+          "incorrect_word": "datas",
+          "accepted_corrections": ["data"]
+        },
+        {
+          "incorrect_word": "thesises",
+          "accepted_corrections": ["theses"]
+        },
+        {
+          "incorrect_word": "curriculums",
+          "accepted_corrections": ["curricula"]
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

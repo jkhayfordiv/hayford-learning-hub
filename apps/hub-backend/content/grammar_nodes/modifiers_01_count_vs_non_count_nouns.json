@@ -1,0 +1,53 @@
+{
+  "node_id": "modifiers-01-count-vs-non-count-nouns",
+  "region": "The Modifiers",
+  "tier": "Bronze",
+  "title": "Count vs. Non-Count Nouns",
+  "description": "Distinguish count from non-count nouns and apply correct article and quantifier use in academic writing.",
+  "display_order": 1,
+  "prerequisites": [],
+  "lesson_content_markdown": "# Count vs. Non-Count Nouns\n\n## A Foundational Distinction in Academic Grammar\n\nOne of the most persistent sources of error in academic writing is the misclassification of nouns as count or non-count (also called **mass nouns**). This distinction governs article use, plural formation, and which quantifiers are grammatically acceptable.\n\n---\n\n## Count Nouns\n\nCount nouns refer to individual, discrete entities that can be counted and pluralized.\n\n- *one hypothesis, two hypotheses*\n- *a research proposal, three research proposals*\n- *a methodology, various methodologies*\n\n**Use a/an with singular count nouns:** *The team developed **a** new framework.*\n\n---\n\n## Non-Count (Mass) Nouns\n\nNon-count nouns refer to substances, abstract concepts, or undifferentiated quantities. They **cannot** take *a/an* or a simple plural **-s**.\n\n| Common Academic Non-Count Nouns |\n|---|\n| research, evidence, information, feedback, knowledge |\n| data (formal), literature (body of), advice, progress |\n\n❌ *The researcher gathered **evidences**.* → ✅ *gathered **evidence**.*\n❌ *She received **a feedback** on her draft.* → ✅ *received **feedback**.*\n\n---\n\n## The Data Problem\n\nIn formal academic writing, **data** is treated as the plural of *datum*:\n✅ *The data **were** analysed using SPSS.*\n\nIn general academic use, *data is* is widely accepted, but **data are/were** signals formal precision.\n\n---\n\n## Academic Writing Tip\n\nWhen in doubt, use a noun phrase to quantify non-count nouns: *a **piece** of evidence*, *a **body** of research*, *a **unit** of data*.",
+  "mastery_check": {
+    "type": "multiple_choice",
+    "prompt_to_student": "Select the grammatically correct option for each academic sentence.",
+    "activity_data": {
+      "questions": [
+        {
+          "question": "The researcher gathered ___ to support the central argument.",
+          "options": ["many evidences", "significant evidence", "an evidence", "several evidences"],
+          "correct_answer": "significant evidence",
+          "category": "Non-Count Noun"
+        },
+        {
+          "question": "The final report was based on ___ collected over a two-year period.",
+          "options": ["informations", "information", "an information", "many informations"],
+          "correct_answer": "information",
+          "category": "Non-Count Noun"
+        },
+        {
+          "question": "The research team submitted three ___ to the funding committee.",
+          "options": ["proposal", "proposals", "a proposals", "proposaling"],
+          "correct_answer": "proposals",
+          "category": "Count Noun Plural"
+        },
+        {
+          "question": "In formal academic writing, which sentence is preferred?",
+          "options": ["The data shows a clear trend.", "The data show a clear trend.", "The datas show a clear trend.", "A data shows a clear trend."],
+          "correct_answer": "The data show a clear trend.",
+          "category": "Formal Academic Usage"
+        },
+        {
+          "question": "The professor's ___ on the draft methodology was invaluable to the research team.",
+          "options": ["feedbacks", "feedback", "a feedback", "many feedbacks"],
+          "correct_answer": "feedback",
+          "category": "Non-Count Noun"
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}

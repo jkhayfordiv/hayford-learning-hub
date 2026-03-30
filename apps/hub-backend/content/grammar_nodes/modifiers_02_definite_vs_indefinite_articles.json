@@ -1,0 +1,48 @@
+{
+  "node_id": "modifiers-02-definite-vs-indefinite-articles",
+  "region": "The Modifiers",
+  "tier": "Bronze",
+  "title": "Definite vs. Indefinite Articles",
+  "description": "Apply the, a, an, and the zero article correctly to signal specificity, first mention, and generic reference in academic writing.",
+  "display_order": 2,
+  "prerequisites": ["modifiers-01-count-vs-non-count-nouns"],
+  "lesson_content_markdown": "# Definite vs. Indefinite Articles\n\n## Article Use in Academic English\n\nCorrect article use is one of the clearest markers distinguishing proficient academic writers. The English article system — **a/an**, **the**, and the **zero article** — is governed by rules of specificity, reference tracking, and generalization.\n\n---\n\n## The Indefinite Article: A / AN\n\nUse **a** or **an** for:\n- The **first mention** of a singular count noun: *The committee received **a** proposal.*\n- **Non-specific** reference: *The study employed **an** experimental design.*\n\n**A** before consonant sounds; **an** before vowel sounds:\n*a **u**niversity* (consonant sound /j/), ***an** unprecedented result* (vowel sound /ʌ/)\n\n---\n\n## The Definite Article: THE\n\nUse **the** for:\n- **Specific or previously mentioned** nouns: *The proposal was accepted.*\n- **Uniquely identifiable** references: *the methodology, the results, the abstract*\n- **Superlatives and ordinals**: *the first study, the most significant finding*\n- **Shared knowledge**: *the internet, the environment*\n\n---\n\n## The Zero Article\n\n**No article** is used for:\n- Academic fields as subjects: *She specialises in **economics**.*\n- General plural count nouns (generic): ***Researchers** must declare conflicts of interest.*\n- Non-count nouns in general statements: ***Evidence** supports this conclusion.*\n\n---\n\n## Common Academic Errors\n\n❌ *A methodology used was qualitative.* → ✅ ***The** methodology used was qualitative.*\n❌ *She provided **a** feedback.* → ✅ *She provided **feedback**.*",
+  "mastery_check": {
+    "type": "fill_in_the_blank",
+    "prompt_to_student": "Complete each academic sentence with the correct article: a, an, or the. If no article is needed, write 'zero'.",
+    "activity_data": {
+      "blanks": [
+        {
+          "sentence_with_blank": "During ___ first phase of the study, participants completed a baseline assessment.",
+          "accepted_answers": ["the"],
+          "hint": "The phrase 'first phase of the study' refers to a specific, uniquely identifiable phase."
+        },
+        {
+          "sentence_with_blank": "The research team developed ___ innovative methodology for measuring academic engagement.",
+          "accepted_answers": ["an"],
+          "hint": "First mention of a non-specific singular count noun beginning with a vowel sound."
+        },
+        {
+          "sentence_with_blank": "___ literature on second language acquisition has expanded significantly in recent decades.",
+          "accepted_answers": ["The"],
+          "hint": "This refers to a specific, well-defined body of academic literature."
+        },
+        {
+          "sentence_with_blank": "The participants were asked to complete ___ questionnaire before the intervention began.",
+          "accepted_answers": ["a"],
+          "hint": "First mention of a non-specific singular count noun beginning with a consonant sound."
+        },
+        {
+          "sentence_with_blank": "All participants signed ___ informed consent form prior to data collection.",
+          "accepted_answers": ["an"],
+          "hint": "The noun phrase begins with a vowel sound, so the indefinite article changes form."
+        }
+      ]
+    },
+    "ai_grading_rubric": null
+  },
+  "rewards": {
+    "mastery_points": 100,
+    "medal_tier": "Bronze"
+  }
+}
