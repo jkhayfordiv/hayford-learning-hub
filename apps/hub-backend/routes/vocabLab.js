@@ -253,21 +253,46 @@ router.post('/add', auth, async (req, res) => {
         global_word: globalWord,
       });
     } catch (insertErr) {
-      connection.release();
-
       // Unique constraint violation — word already in user's list
       if (insertErr.code === '23505') {
+        connection.release();
         return res.status(200).json({
           message: `"${globalWord.word}" is already in your Vocab Lab`,
           duplicate: true,
         });
       }
-      throw insertErr;
+      throw insertErr; // outer catch will release
     }
   } catch (err) {
     connection.release();
     console.error('Error in POST /api/vocab-lab/add:', err.message);
     res.status(500).json({ error: 'Failed to add word to Vocab Lab' });
+  }
+});
+
+// ============================================================================
+// PATCH /api/vocab-lab/words/:id/star
+// Toggles is_starred on a user_vocabulary entry
+// ============================================================================
+router.patch('/words/:id/star', auth, async (req, res) => {
+  const user_id = req.user.id;
+  const { id } = req.params;
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query(
+      `UPDATE user_vocabulary
+       SET is_starred = NOT is_starred
+       WHERE id = $1 AND user_id = $2
+       RETURNING id, is_starred`,
+      [id, user_id]
+    );
+    connection.release();
+    if (!rows.length) return res.status(404).json({ error: 'Word not found' });
+    return res.json({ id: rows[0].id, is_starred: rows[0].is_starred });
+  } catch (err) {
+    connection.release();
+    console.error('Error in PATCH /api/vocab-lab/words/:id/star:', err.message);
+    res.status(500).json({ error: 'Failed to toggle star' });
   }
 });
 

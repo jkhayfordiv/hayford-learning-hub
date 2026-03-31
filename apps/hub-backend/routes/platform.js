@@ -61,6 +61,7 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           u.institution_id,
           i.name as institution_name,
           u.created_at,
+          u.last_login_at,
           COALESCE(
             jsonb_agg(
               DISTINCT jsonb_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))
@@ -88,6 +89,7 @@ router.get('/users/all', verifyAdminOrSuperAdmin, async (req, res) => {
           u.institution_id,
           i.name as institution_name,
           u.created_at,
+          u.last_login_at,
           COALESCE(
             jsonb_agg(
               DISTINCT jsonb_build_object('class_id', COALESCE(c1.id, c2.id), 'class_name', COALESCE(c1.class_name, c2.class_name))

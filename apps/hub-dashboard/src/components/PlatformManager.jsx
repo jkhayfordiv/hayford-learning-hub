@@ -1758,8 +1758,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                     <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 text-center">
                       <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Last Login</p>
                       <p className="font-bold text-slate-800 dark:text-white text-sm">
-                        {profileData._user.last_active_date
-                          ? new Date(profileData._user.last_active_date).toLocaleDateString([], { dateStyle: 'medium' })
+                        {profileData._user.last_login_at
+                          ? new Date(profileData._user.last_login_at).toLocaleDateString([], { dateStyle: 'medium' })
                           : 'Never'}
                       </p>
                     </div>

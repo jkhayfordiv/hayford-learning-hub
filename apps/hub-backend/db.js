@@ -49,14 +49,15 @@ const pool = {
       query: async (sql, params = []) => {
         const queryUpper = sql.trim().toUpperCase();
         const isInsert = queryUpper.startsWith('INSERT');
+        const hasReturning = queryUpper.includes('RETURNING');
 
         const result = await client.query(sql, params);
-        
-        if (queryUpper.startsWith('SELECT') || queryUpper.startsWith('PRAGMA')) {
-           return [result.rows];
+
+        if (queryUpper.startsWith('SELECT') || queryUpper.startsWith('PRAGMA') || hasReturning) {
+          return [result.rows];
         } else {
-           const insertId = isInsert && result.rows.length > 0 ? result.rows[0].id : null;
-           return [{ insertId, affectedRows: result.rowCount }];
+          const insertId = isInsert && result.rows.length > 0 ? result.rows[0].id : null;
+          return [{ insertId, affectedRows: result.rowCount }];
         }
       },
       release: () => {
