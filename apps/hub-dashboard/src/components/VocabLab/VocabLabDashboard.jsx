@@ -4,10 +4,11 @@ import {
   PenTool, GitBranch, Mic, Plus, Star, BookOpen, Trophy,
   BarChart3, Loader2, X, CheckCircle, AlertCircle, ArrowLeft,
   Sparkles, Zap, ChevronRight, FlaskConical, User, LogOut,
-  Search, Library,
+  Search, RotateCcw, Trash2,
 } from 'lucide-react';
 import logo from '../../assets/logo.png';
 import StudySession from './StudySession';
+import FlashcardSandbox from './FlashcardSandbox';
 
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
@@ -80,7 +81,7 @@ export default function VocabLabDashboard() {
   const [sandboxWords,    setSandboxWords]    = useState([]);
   const [isSandboxMode,   setIsSandboxMode]   = useState(false);
   const [isFamilyMode,    setIsFamilyMode]    = useState(false);
-  const [isVocabListOpen, setIsVocabListOpen] = useState(false);
+  const [isSandboxOpen, setIsSandboxOpen] = useState(false);
 
   // My Lists modal + Word Family overlay
   const [listModal,       setListModal]       = useState(null); // { title, words }
@@ -187,6 +188,36 @@ export default function VocabLabDashboard() {
     window.location.href = '/login';
   };
 
+  // ── Word remove / reset ──────────────────────────────────────────
+  const handleResetWord = async (userWordId) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/vocab-lab/words/${userWordId}/reset`, {
+        method: 'PATCH',
+        headers: authHeaders(),
+      });
+      if (!res.ok) throw new Error('Failed');
+      const data = await res.json();
+      const update = w => w.user_word_id === userWordId ? { ...w, srs_level: data.srs_level } : w;
+      setAllWords(prev => prev.map(update));
+      setListModal(prev => prev ? { ...prev, words: prev.words.map(update) } : null);
+    } catch (_) { showToast('error', 'Could not reset word'); }
+  };
+
+  const handleDeleteWord = async (userWordId) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/vocab-lab/words/${userWordId}`, {
+        method: 'DELETE',
+        headers: authHeaders(),
+      });
+      if (!res.ok) throw new Error('Failed');
+      const remove = arr => arr.filter(w => w.user_word_id !== userWordId);
+      setAllWords(prev => remove(prev));
+      setListModal(prev => prev ? { ...prev, words: remove(prev.words) } : null);
+      if (wordFamilyWord?.user_word_id === userWordId) setWordFamilyWord(null);
+      fetchDashboard();
+    } catch (_) { showToast('error', 'Could not delete word'); }
+  };
+
   // ── Star toggle ──────────────────────────────────────────────────
   const handleToggleStar = async (userWordId) => {
     try {
@@ -218,11 +249,7 @@ export default function VocabLabDashboard() {
       title: 'Flashcards',
       desc: 'Fill-in-the-blank practice',
       color: 'from-indigo-600 to-violet-700',
-      onClick: () => {
-        const words = allWords.filter(w => w.srs_level <= 2);
-        if (words.length === 0) { showToast('error', 'No learning words yet — add some words first!'); return; }
-        setSandboxWords(words); setIsSandboxMode(true); setIsFamilyMode(false); setIsMasteredReview(false); setIsStudying(true);
-      },
+      onClick: () => setIsSandboxOpen(true),
     },
     {
       id: 'sentence',
@@ -416,31 +443,6 @@ export default function VocabLabDashboard() {
                 </div>
               </div>
 
-              {/* Due Words Preview (if any) */}
-              {dueToday.length > 0 && (
-                <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
-                  <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Due Today</h4>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {dueToday.slice(0, 6).map(w => {
-                      const badge = srsLabel(w.srs_level);
-                      return (
-                        <div key={w.user_word_id} className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 border border-slate-100 dark:border-slate-700">
-                          <div className="flex items-start justify-between mb-2">
-                            <p className="font-black text-slate-900 dark:text-white capitalize">{w.word}</p>
-                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badge.color}`}>{badge.label}</span>
-                          </div>
-                          <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">{w.part_of_speech}</p>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">{w.primary_definition}</p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  {dueToday.length > 6 && (
-                    <p className="text-xs text-slate-400 text-center mt-3">+{dueToday.length - 6} more words due</p>
-                  )}
-                </div>
-              )}
-
               {/* 2×2 Practice Tiles */}
               <div>
                 <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Practice Modes</h4>
@@ -532,38 +534,30 @@ export default function VocabLabDashboard() {
                 ) : (
                   <div className="space-y-1.5">
                     {allWords.filter(w => w.is_starred).map(w => (
-                      <button
+                      <div
                         key={w.user_word_id}
-                        onClick={() => setWordFamilyWord(w)}
-                        className="w-full flex items-center justify-between py-2.5 px-3 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-500 hover:bg-white dark:hover:bg-slate-800 transition-all text-left group"
+                        className="flex items-center gap-2 py-2 px-3 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700"
                       >
-                        <div>
+                        <button
+                          onClick={() => setWordFamilyWord(w)}
+                          className="flex-1 text-left hover:opacity-80 transition-opacity"
+                        >
                           <p className="font-bold text-sm text-slate-900 dark:text-white capitalize">{w.word}</p>
                           <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">{w.part_of_speech}</p>
-                        </div>
-                        <ChevronRight size={14} className="text-slate-300 group-hover:text-slate-500 dark:group-hover:text-slate-300 transition-colors flex-shrink-0" />
-                      </button>
+                        </button>
+                        <button
+                          onClick={() => handleToggleStar(w.user_word_id)}
+                          title="Unstar"
+                          className="w-7 h-7 flex items-center justify-center rounded-full text-amber-400 hover:text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors flex-shrink-0"
+                        >
+                          <Star size={14} className="fill-amber-400" />
+                        </button>
+                      </div>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Vocab List Button */}
-              <button
-                onClick={() => setIsVocabListOpen(true)}
-                className="w-full flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
-                    <Library size={17} className="text-slate-600 dark:text-slate-300" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-bold text-sm text-slate-900 dark:text-white">View My Vocab List</p>
-                    <p className="text-[10px] text-slate-400">{allWords.length} word{allWords.length !== 1 ? 's' : ''} in your library</p>
-                  </div>
-                </div>
-                <ChevronRight size={16} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200 transition-colors" />
-              </button>
             </div>
           </div>
         )}
@@ -669,7 +663,7 @@ export default function VocabLabDashboard() {
                   {listModal.words.map(w => {
                     const badge = srsLabel(w.srs_level);
                     return (
-                      <div key={w.user_word_id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+                      <div key={w.user_word_id} className="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <p className="font-bold text-sm text-slate-900 dark:text-white capitalize">{w.word}</p>
@@ -679,14 +673,28 @@ export default function VocabLabDashboard() {
                         </div>
                         <button
                           onClick={() => handleToggleStar(w.user_word_id)}
-                          className={`w-8 h-8 flex items-center justify-center rounded-full transition-colors flex-shrink-0 ${
+                          className={`w-7 h-7 flex items-center justify-center rounded-full transition-colors flex-shrink-0 ${
                             w.is_starred
-                              ? 'text-amber-400 bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100 dark:hover:bg-amber-900/40'
+                              ? 'text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-900/40'
                               : 'text-slate-300 hover:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20'
                           }`}
-                          title={w.is_starred ? 'Unstar' : 'Star this word'}
+                          title={w.is_starred ? 'Unstar' : 'Star'}
                         >
-                          <Star size={15} className={w.is_starred ? 'fill-amber-400' : ''} />
+                          <Star size={13} className={w.is_starred ? 'fill-amber-400' : ''} />
+                        </button>
+                        <button
+                          onClick={() => handleResetWord(w.user_word_id)}
+                          className="w-7 h-7 flex items-center justify-center rounded-full text-slate-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors flex-shrink-0"
+                          title="Reset to New"
+                        >
+                          <RotateCcw size={13} />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteWord(w.user_word_id)}
+                          className="w-7 h-7 flex items-center justify-center rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex-shrink-0"
+                          title="Remove from vocab"
+                        >
+                          <Trash2 size={13} />
                         </button>
                       </div>
                     );
@@ -761,10 +769,18 @@ export default function VocabLabDashboard() {
                 )}
               </div>
 
-              <div className="px-6 pb-5 pt-3 flex-shrink-0 border-t border-slate-100 dark:border-slate-700">
+              <div className="px-6 pb-5 pt-3 flex-shrink-0 border-t border-slate-100 dark:border-slate-700 flex gap-3">
+                {wordFamilyWord.is_starred && (
+                  <button
+                    onClick={() => { handleToggleStar(wordFamilyWord.user_word_id); setWordFamilyWord(prev => ({ ...prev, is_starred: false })); }}
+                    className="flex-1 py-3 rounded-2xl font-bold text-sm text-amber-600 border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100 dark:hover:bg-amber-900/30 transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Star size={14} className="fill-amber-500" /> Unstar
+                  </button>
+                )}
                 <button
                   onClick={() => setWordFamilyWord(null)}
-                  className="w-full py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+                  className="flex-1 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
                 >
                   Close
                 </button>
@@ -774,71 +790,14 @@ export default function VocabLabDashboard() {
         );
       })()}
 
-      {/* ══════════════ VOCAB LIST MODAL ══════════════ */}
-      {isVocabListOpen && (
-        <div
-          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setIsVocabListOpen(false)}
-        >
-          <div
-            className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-2xl flex flex-col max-h-[90vh] overflow-hidden"
-            onClick={e => e.stopPropagation()}
-          >
-            <div
-              className="px-8 py-6 flex items-center justify-between flex-shrink-0"
-              style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
-            >
-              <div>
-                <h3 className="font-black text-xl text-white">My Vocab List</h3>
-                <p className="text-xs text-white/70 mt-0.5">{allWords.length} word{allWords.length !== 1 ? 's' : ''} in your library</p>
-              </div>
-              <button onClick={() => setIsVocabListOpen(false)} className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
-                <X size={20} />
-              </button>
-            </div>
-
-            <div className="overflow-y-auto flex-1 p-6">
-              {allWords.length === 0 ? (
-                <div className="text-center py-12">
-                  <BookOpen size={36} className="text-slate-200 dark:text-slate-700 mx-auto mb-3" />
-                  <p className="text-slate-400 font-medium">No words yet — add some to get started</p>
-                </div>
-              ) : (
-                <div className="space-y-1">
-                  <div className="grid grid-cols-12 gap-3 px-3 pb-3 border-b border-slate-100 dark:border-slate-700">
-                    <p className="col-span-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Word</p>
-                    <p className="col-span-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Definition</p>
-                    <p className="col-span-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Level</p>
-                  </div>
-                  {allWords.map(w => {
-                    const badge = srsLabel(w.srs_level);
-                    return (
-                      <div key={w.user_word_id} className="grid grid-cols-12 gap-3 items-center px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
-                        <div className="col-span-5">
-                          <p className="font-bold text-sm text-slate-900 dark:text-white capitalize">{w.word}</p>
-                          <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">{w.part_of_speech}</p>
-                        </div>
-                        <p className="col-span-4 text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{w.primary_definition}</p>
-                        <div className="col-span-3">
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badge.color}`}>{badge.label}</span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <div className="px-6 pb-6 pt-3 flex-shrink-0 border-t border-slate-100 dark:border-slate-700">
-              <button
-                onClick={() => setIsVocabListOpen(false)}
-                className="w-full py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
+      {/* ══════════════ FLASHCARD SANDBOX ══════════════ */}
+      {isSandboxOpen && (
+        <FlashcardSandbox
+          words={allWords}
+          brandPrimary={brandPrimary}
+          brandDark={brandDark}
+          onClose={() => setIsSandboxOpen(false)}
+        />
       )}
 
       {/* ══════════════ STUDY SESSION ══════════════ */}

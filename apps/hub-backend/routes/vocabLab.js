@@ -297,6 +297,57 @@ router.patch('/words/:id/star', auth, async (req, res) => {
 });
 
 // ============================================================================
+// PATCH /api/vocab-lab/words/:id/reset
+// Resets a word's SRS level back to 0 (re-queues for learning)
+// ============================================================================
+router.patch('/words/:id/reset', auth, async (req, res) => {
+  const user_id = req.user.id;
+  const { id } = req.params;
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query(
+      `UPDATE user_vocabulary
+       SET srs_level = 0, next_review_date = CURRENT_TIMESTAMP
+       WHERE id = $1 AND user_id = $2
+       RETURNING id, srs_level, next_review_date`,
+      [id, user_id]
+    );
+    connection.release();
+    if (!rows.length) return res.status(404).json({ error: 'Word not found' });
+    return res.json({ id: rows[0].id, srs_level: rows[0].srs_level });
+  } catch (err) {
+    connection.release();
+    console.error('Error in PATCH /api/vocab-lab/words/:id/reset:', err.message);
+    res.status(500).json({ error: 'Failed to reset word' });
+  }
+});
+
+// ============================================================================
+// DELETE /api/vocab-lab/words/:id
+// Removes a word entirely from the user's vocabulary
+// ============================================================================
+router.delete('/words/:id', auth, async (req, res) => {
+  const user_id = req.user.id;
+  const { id } = req.params;
+  const connection = await pool.getConnection();
+  try {
+    const [rows] = await connection.query(
+      `DELETE FROM user_vocabulary
+       WHERE id = $1 AND user_id = $2
+       RETURNING id`,
+      [id, user_id]
+    );
+    connection.release();
+    if (!rows.length) return res.status(404).json({ error: 'Word not found' });
+    return res.json({ deleted: true, id: rows[0].id });
+  } catch (err) {
+    connection.release();
+    console.error('Error in DELETE /api/vocab-lab/words/:id:', err.message);
+    res.status(500).json({ error: 'Failed to delete word' });
+  }
+});
+
+// ============================================================================
 // POST /api/vocab-lab/review
 // Updates SRS level after a student reviews a word
 // ============================================================================
