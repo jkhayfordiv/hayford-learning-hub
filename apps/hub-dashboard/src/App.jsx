@@ -8,6 +8,7 @@ import Profile from './Profile';
 import AuthSuccess from './AuthSuccess';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
+import WordBank from './components/WordBank';
 
 const AUTH_PAGES = ['/login', '/forgot-password', '/reset-password', '/auth/success'];
 
@@ -83,6 +84,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <MyStats />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vocab"
+            element={
+              <ProtectedRoute>
+                <WordBank user={JSON.parse(localStorage.getItem('user') || '{}')} />
               </ProtectedRoute>
             }
           />
