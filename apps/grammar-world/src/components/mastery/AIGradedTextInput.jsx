@@ -34,9 +34,9 @@ export default function AIGradedTextInput({ prompt, activityData, aiRubric, onSu
           rows={12}
           className={`
             w-full px-4 py-3 rounded-xl border-2 transition-all
-            focus:outline-none focus:ring-2 focus:ring-brand-sangria focus:ring-opacity-50
+            focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50
             ${isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
-            border-gray-300 focus:border-brand-sangria
+            border-gray-300 focus:border-brand-primary
             font-sans text-gray-800 leading-relaxed
           `}
         />
@@ -46,11 +46,11 @@ export default function AIGradedTextInput({ prompt, activityData, aiRubric, onSu
       </div>
 
       {isLoading && (
-        <div className="bg-brand-sangria bg-opacity-5 border-2 border-brand-sangria rounded-xl p-6 mb-6">
+        <div className="border-2 border-brand-primary rounded-xl p-6 mb-6" style={{ background: 'rgba(var(--gw-brand-primary-rgb, 94,25,20), 0.05)' }}>
           <div className="flex items-center justify-center gap-3">
-            <Loader className="animate-spin text-brand-sangria" size={24} />
+            <Loader className="animate-spin text-brand-primary" size={24} />
             <div>
-              <p className="font-semibold text-brand-sangria flex items-center gap-2">
+              <p className="font-semibold text-brand-primary flex items-center gap-2">
                 <Sparkles size={18} />
                 Evaluating academic syntax...
               </p>
@@ -81,9 +81,10 @@ export default function AIGradedTextInput({ prompt, activityData, aiRubric, onSu
             ${
               !hasText || isLoading
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-brand-sangria text-white hover:bg-opacity-90 hover:shadow-xl'
+                : 'text-white hover:shadow-xl'
             }
           `}
+          style={(!hasText || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
         >
           {isLoading ? (
             <span className="flex items-center gap-2">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, X, User, AlertCircle } from 'lucide-react';
 
 const USERS_PER_PAGE = 15;
 const INSTITUTIONS_PER_PAGE = 5;
@@ -45,6 +45,12 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [studentSearchResults, setStudentSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedUserClasses, setExpandedUserClasses] = useState({});
+
+  // Student profile quick-view modal
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [profileData, setProfileData] = useState(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+  const [profileError, setProfileError] = useState('');
 
   // Fetch functions
   const fetchInstitutions = async () => {
@@ -399,6 +405,42 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       await fetchAllClasses();
     } catch (err) {
       alert(err.message || 'Failed to add student to class');
+    }
+  };
+
+  // Student profile helpers
+  const _aggregateWeaknesses = (submissions) => {
+    const counts = {};
+    (submissions || []).forEach(s => {
+      let tags = s.diagnostic_data;
+      if (typeof tags === 'string') { try { tags = JSON.parse(tags); } catch { return; } }
+      if (!Array.isArray(tags)) return;
+      tags.forEach(tag => { if (tag) counts[tag] = (counts[tag] || 0) + 1; });
+    });
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([tag, count]) => ({ tag, count }));
+  };
+
+  const openUserProfile = async (u) => {
+    setProfileData({ _user: u });
+    setProfileError('');
+    setProfileLoading(true);
+    setIsProfileModalOpen(true);
+    if (u.role !== 'student') {
+      setProfileLoading(false);
+      return;
+    }
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/scores/student/${u.id}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to load profile');
+      setProfileData({ _user: u, ...data });
+    } catch (err) {
+      setProfileError(err.message || 'Failed to load profile');
+    } finally {
+      setProfileLoading(false);
     }
   };
 
@@ -894,7 +936,14 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         return paginated.map((u) => (
                           <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                             <td className="px-6 py-3 font-bold text-[#800000] dark:text-[#a00000]">{u.id}</td>
-                            <td className="px-6 py-3 font-bold text-slate-900 dark:text-white">{u.first_name} {u.last_name}</td>
+                            <td className="px-6 py-3">
+                              <button
+                                onClick={() => openUserProfile(u)}
+                                className="font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 hover:underline transition-colors text-left"
+                              >
+                                {u.first_name} {u.last_name}
+                              </button>
+                            </td>
                             <td className="px-6 py-3 text-slate-600 dark:text-slate-400">{u.email}</td>
                             <td className="px-6 py-3">
                               <span className={`px-2 py-1 rounded-lg text-xs font-bold ${
@@ -1653,6 +1702,156 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Student / User Profile Quick-View Modal */}
+      {isProfileModalOpen && profileData && (
+        <div
+          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsProfileModalOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-hidden flex flex-col"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="px-8 py-6 border-b border-slate-200 dark:border-slate-700 flex items-start justify-between bg-gradient-to-r from-blue-600 to-indigo-600">
+              <div>
+                <h3 className="font-black text-2xl text-white tracking-tight">
+                  {profileData._user.first_name} {profileData._user.last_name}
+                </h3>
+                <p className="text-sm text-blue-100 mt-1">{profileData._user.email}</p>
+                <div className="flex items-center gap-3 mt-2">
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider ${
+                    profileData._user.role === 'student' ? 'bg-white/20 text-white' :
+                    profileData._user.role === 'teacher' ? 'bg-green-300/30 text-green-100' :
+                    profileData._user.role === 'admin' ? 'bg-blue-200/30 text-blue-100' :
+                    'bg-purple-300/30 text-purple-100'
+                  }`}>
+                    {profileData._user.role}
+                  </span>
+                  <span className="text-blue-200 text-xs">{profileData._user.institution_name || 'No institution'}</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsProfileModalOpen(false)}
+                className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-8 space-y-6">
+              {profileLoading ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="animate-spin rounded-full h-10 w-10 border-4 border-blue-500 border-t-transparent" />
+                </div>
+              ) : profileError && !profileData.submissions ? (
+                <div className="text-center py-12 text-slate-400">{profileError}</div>
+              ) : (
+                <>
+                  {/* Stats Row */}
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 text-center">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Last Login</p>
+                      <p className="font-bold text-slate-800 dark:text-white text-sm">
+                        {profileData._user.last_active_date
+                          ? new Date(profileData._user.last_active_date).toLocaleDateString([], { dateStyle: 'medium' })
+                          : 'Never'}
+                      </p>
+                    </div>
+                    <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 text-center">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Submissions</p>
+                      <p className="font-bold text-slate-800 dark:text-white text-2xl">
+                        {profileData.submissions?.length ?? '—'}
+                      </p>
+                    </div>
+                    <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-4 text-center">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Avg Band</p>
+                      <p className="font-bold text-amber-600 text-2xl">
+                        {(() => {
+                          const scored = (profileData.submissions || []).filter(s => s.overall_score);
+                          if (!scored.length) return '—';
+                          return (scored.reduce((sum, s) => sum + Number(s.overall_score), 0) / scored.length).toFixed(1);
+                        })()}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Top Weaknesses */}
+                  {profileData.submissions?.length > 0 && (() => {
+                    const weaknesses = _aggregateWeaknesses(profileData.submissions);
+                    if (!weaknesses.length) return null;
+                    return (
+                      <div>
+                        <h4 className="font-black text-slate-900 dark:text-white text-xs uppercase tracking-widest mb-3">Top Weaknesses</h4>
+                        <div className="grid grid-cols-2 gap-2">
+                          {weaknesses.map((item, idx) => (
+                            <div key={idx} className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 rounded-xl px-4 py-2.5">
+                              <span className="w-5 h-5 rounded-full bg-slate-800 dark:bg-white text-white dark:text-slate-900 font-black text-[10px] flex items-center justify-center flex-shrink-0">{idx + 1}</span>
+                              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 leading-tight">{item.tag}</span>
+                              <span className="ml-auto text-[10px] font-bold text-slate-400">{item.count}×</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
+
+                  {/* Recent Submissions */}
+                  {profileData.submissions?.length > 0 && (
+                    <div>
+                      <h4 className="font-black text-slate-900 dark:text-white text-xs uppercase tracking-widest mb-3">Recent Submissions</h4>
+                      <div className="space-y-2">
+                        {profileData.submissions.slice(0, 5).map((s, idx) => (
+                          <div key={idx} className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 rounded-xl px-4 py-3">
+                            <div>
+                              <p className="text-sm font-bold text-slate-800 dark:text-white">{s.module_name || 'Submission'}</p>
+                              <p className="text-xs text-slate-500">{new Date(s.completed_at).toLocaleDateString()}</p>
+                            </div>
+                            {s.overall_score && (
+                              <span className="font-black text-amber-600 bg-amber-50 dark:bg-amber-900/30 px-3 py-1 rounded-lg text-sm border border-amber-100 dark:border-amber-800">
+                                {Number(s.overall_score).toFixed(1)}
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {profileData._user.role === 'student' && !profileLoading && !profileData.submissions?.length && (
+                    <p className="text-center text-slate-400 py-8 text-sm">No submission data found for this student.</p>
+                  )}
+                  {profileData._user.role !== 'student' && (
+                    <p className="text-center text-slate-400 py-4 text-sm">Detailed submission history is only available for students.</p>
+                  )}
+                </>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="px-8 py-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900/50">
+              {profileData._user.role === 'student' ? (
+                <button
+                  onClick={() => window.open(`/student/${profileData._user.id}`, '_blank')}
+                  className="text-sm font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 transition-colors"
+                >
+                  Open Full Profile →
+                </button>
+              ) : (
+                <span />
+              )}
+              <button
+                onClick={() => setIsProfileModalOpen(false)}
+                className="px-5 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold text-sm rounded-xl transition-colors"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

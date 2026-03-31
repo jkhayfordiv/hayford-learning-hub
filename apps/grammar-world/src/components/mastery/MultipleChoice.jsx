@@ -59,8 +59,8 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
                     w-full text-left px-4 py-3 rounded-xl border-2 transition-all
                     ${
                       selectedAnswers[qIdx] === oIdx
-                        ? 'border-brand-sangria bg-brand-sangria bg-opacity-5 font-semibold'
-                        : 'border-gray-200 hover:border-brand-sangria hover:bg-gray-50'
+                        ? 'border-brand-primary bg-brand-primary/5 font-semibold'
+                        : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50'
                     }
                     ${isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                   `}
@@ -90,9 +90,10 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
             ${
               !allAnswered || isLoading
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-brand-sangria text-white hover:bg-opacity-90 hover:shadow-xl'
+                : 'text-white hover:shadow-xl'
             }
           `}
+          style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
         >
           {isLoading ? (
             <span className="flex items-center gap-2">

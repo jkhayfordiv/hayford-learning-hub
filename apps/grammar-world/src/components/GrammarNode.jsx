@@ -15,7 +15,7 @@ const GrammarNode = memo(({ data }) => {
         };
       case 'actionable':
         return {
-          container: 'bg-brand-sangria border-brand-sangria shadow-lg hover:shadow-xl cursor-pointer animate-pulse-subtle',
+          container: 'bg-brand-primary border-brand-primary shadow-lg hover:shadow-xl cursor-pointer animate-pulse-subtle',
           text: 'text-white',
           icon: <Sparkles size={20} className="text-white" />,
         };
@@ -64,7 +64,7 @@ const GrammarNode = memo(({ data }) => {
       <Handle
         type="target"
         position={Position.Top}
-        className="w-3 h-3 !bg-brand-sangria border-2 border-white"
+        className="w-3 h-3 !bg-brand-primary border-2 border-white"
       />
 
       {/* Tier Badge */}
@@ -88,7 +88,7 @@ const GrammarNode = memo(({ data }) => {
       <Handle
         type="source"
         position={Position.Bottom}
-        className="w-3 h-3 !bg-brand-sangria border-2 border-white"
+        className="w-3 h-3 !bg-brand-primary border-2 border-white"
       />
     </div>
   );

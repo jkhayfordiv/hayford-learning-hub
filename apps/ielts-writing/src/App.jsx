@@ -47,6 +47,8 @@ const _branding = (() => { try { return JSON.parse(localStorage.getItem('brandin
 const BRAND_PRIMARY   = _branding.primary_color   || '#800020';
 const BRAND_SECONDARY = _branding.secondary_color || '#F7E7CE';
 const BRAND_DARK      = _darkenHex(BRAND_PRIMARY);
+const BRAND_LOGO_URL  = _branding.logo_url || null;
+const BRAND_WELCOME   = _branding.welcome_text || 'IELTS Master';
 document.documentElement.style.setProperty('--brand-primary-rgb', _hexToRgb(BRAND_PRIMARY));
 document.documentElement.style.setProperty('--brand-primary',     BRAND_PRIMARY);
 document.documentElement.style.setProperty('--brand-secondary',   BRAND_SECONDARY);
@@ -1086,7 +1088,7 @@ export default function App() {
           </button>
           <div className="h-6 w-px bg-slate-200 hidden md:block"></div>
           <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.location.href = '/dashboard'}>
-            <img src="/logo.png" alt="Hayford Logo" className="w-10 h-10 object-contain mx-auto" />
+            <img src={BRAND_LOGO_URL || '/logo.png'} alt="Institution Logo" onError={e => { e.target.onerror=null; e.target.src='/logo.png'; }} className="w-10 h-10 object-contain mx-auto" />
             <div><h1 className="font-bold text-lg leading-none text-slate-900 group-hover:text-slate-700 transition-colors">IELTS Master</h1><p className="text-[10px] text-slate-500 uppercase tracking-widest font-black">Marking Suite</p></div>
           </div>
         </div>
@@ -1252,9 +1254,14 @@ const FOCUS_DATA = {
       teaser: "The #1 reason students lose Task Achievement marks.",
       icon: <Eye size={22} />,
       body: [
-        "Your overview is the most important part of your response. Examiners look for it immediately. Without a clear overview, your Task Achievement score cannot exceed Band 5.",
-        "Your overview should be a short paragraph (2 sentences) placed after your introduction. It must capture the BIGGEST overall trend and the MOST STRIKING feature — without using specific numbers. Numbers belong in your body paragraphs.",
-        "Ask yourself: What is the main direction? (rising, falling, stable?) What is the biggest difference? (highest vs. lowest category?) Is there anything unusual? (a sudden drop, one category behaving differently?)"
+        { type: 'paragraph', text: "Your overview is the most important paragraph in your response. Examiners look for it immediately — without one, Task Achievement cannot exceed Band 5." },
+        { type: 'rule', label: "The Rule", text: "Write a 2-sentence overview directly after your introduction. Capture the BIGGEST overall trend and MOST STRIKING feature — no specific numbers." },
+        { type: 'list', label: "Three questions to guide your overview:", items: [
+          "What is the main direction? (rising / falling / stable?)",
+          "What is the biggest difference? (highest vs. lowest?)",
+          "Is anything unusual? (a sudden drop, one category behaving differently?)",
+        ]},
+        { type: 'tip', text: "Numbers belong in your body paragraphs only — never in your overview." },
       ],
       before: "The chart shows that in 2000, Sales were 500, and by 2020, they had increased to 1,200 while Region B stayed low.",
       after: "Overall, it is clear that sales figures rose significantly across all three regions, with Region A consistently recording the highest values throughout the period.",
@@ -1264,9 +1271,15 @@ const FOCUS_DATA = {
       teaser: "Stop writing year by year — write by trend instead.",
       icon: <Layout size={22} />,
       body: [
-        "Most students describe charts year by year: '...in 2000 it was X, in 2005 it was Y, in 2010 it was Z...' This produces a list, not an analysis — and keeps your score at Band 5.",
-        "Instead, group your data by TREND. Ask: What went up? What went down? What stayed the same? Write one paragraph for each group. This shows the examiner you can analyze data, not just copy it.",
-        "For tables, group by size (high countries vs. low countries). For bar charts, group by direction of change. For line graphs, group by which lines rose together and which diverged. Always support each group with specific figures as evidence."
+        { type: 'paragraph', text: "Most students describe charts year by year: '...in 2000 it was X, in 2005 it was Y...' This produces a list, not an analysis — and keeps your score at Band 5." },
+        { type: 'rule', label: "The Rule", text: "Group data by TREND: what went up? what went down? what stayed the same? Write one paragraph per group." },
+        { type: 'table', headers: ["Chart Type", "How to Group"], rows: [
+          ["Line Graph", "Lines that rose together vs. lines that fell or diverged"],
+          ["Bar Chart", "Bars that increased vs. bars that decreased"],
+          ["Table", "Countries/items with high values vs. low values"],
+          ["Pie Chart", "Largest segments vs. smallest segments"],
+        ]},
+        { type: 'tip', text: "Always support each group with specific figures as evidence." },
       ],
       before: "In 2000, Country A was 45%. In 2005 it was 50%. In 2010 it rose to 60%. Country B was 30% in 2000...",
       after: "Countries A and B showed a steady upward trend over the period, rising from 45% and 30% respectively in 2000 to 60% and 48% by 2010.",
@@ -1276,9 +1289,14 @@ const FOCUS_DATA = {
       teaser: "Ban 'went up' and 'went down' from your writing forever.",
       icon: <BookOpen size={22} />,
       body: [
-        "Lexical Resource is 25% of your score. Using the same two verbs repeatedly signals limited vocabulary. You need to demonstrate a range of language for movement and change.",
-        "Rapid increase: surged, skyrocketed, shot up, soared. Gradual increase: rose steadily, climbed, edged upward. Rapid decrease: plummeted, dropped sharply, collapsed. Gradual decrease: declined gradually, dipped slightly, eased downward. No change: remained stable, plateaued, levelled off.",
-        "You can also use nouns for variety: 'there was a sharp rise in...' / 'a gradual decline was observed in...' / 'the figure experienced a significant surge.' Mixing verbs and noun phrases makes your writing more sophisticated and earns higher marks."
+        { type: 'paragraph', text: "Lexical Resource accounts for 25% of your score. Using the same two verbs repeatedly signals limited vocabulary. You need a range of language for movement and change." },
+        { type: 'table', headers: ["Speed", "Increase ↑", "Decrease ↓"], rows: [
+          ["Rapid",    "surged · skyrocketed · shot up · soared",    "plummeted · dropped sharply · collapsed"],
+          ["Gradual",  "rose steadily · climbed · edged upward",     "declined · dipped slightly · eased downward"],
+          ["No change","—",                                           "remained stable · plateaued · levelled off"],
+        ]},
+        { type: 'rule', label: "Also use nouns for variety", text: "'there was a sharp rise...' / 'a gradual decline was observed...' / 'the figure experienced a significant surge.'" },
+        { type: 'tip', text: "Mixing verbs and noun phrases signals sophistication — and earns higher marks." },
       ],
       before: "The number went up quickly from 2000 to 2010, then went down slowly after that.",
       after: "The figure surged between 2000 and 2010, before declining gradually over the following decade.",
@@ -1288,9 +1306,18 @@ const FOCUS_DATA = {
       teaser: "One linking word can lift your Coherence score by a full band.",
       icon: <BarIcon size={22} />,
       body: [
-        "Task 1 is fundamentally about comparison. Examiners reward students who connect data points clearly within a single sentence rather than listing them separately.",
-        "Key contrast connectors: while, whereas, in contrast, by comparison, on the other hand, however. Key similarity connectors: similarly, likewise, in the same way. Use these to link two data points in one sentence.",
-        "The strongest comparison structure is: [Trend A + data] + contrast word + [Trend B + data]. You can also use 'compared to X, Y was significantly higher/lower.' Aim to have at least one clear comparison sentence in every body paragraph."
+        { type: 'paragraph', text: "Task 1 is fundamentally about comparison. Examiners reward students who connect data points clearly within a single sentence rather than listing them separately." },
+        { type: 'list', label: "Contrast connectors:", items: [
+          "while · whereas",
+          "in contrast · by comparison",
+          "on the other hand · however",
+        ]},
+        { type: 'list', label: "Similarity connectors:", items: [
+          "similarly · likewise",
+          "in the same way · equally",
+        ]},
+        { type: 'rule', label: "Strongest structure", text: "[Trend A + data]  +  contrast word  +  [Trend B + data]" },
+        { type: 'tip', text: "Aim for at least one clear comparison sentence in every body paragraph." },
       ],
       before: "Country A's rate was 80%. Country B's rate was 20%. They were very different.",
       after: "Country A's rate reached 80%, whereas Country B remained considerably lower at just 20%, representing a four-fold difference.",
@@ -1300,9 +1327,14 @@ const FOCUS_DATA = {
       teaser: "Mixing up tenses is an instant Band 5 ceiling — easy to fix.",
       icon: <Clock size={22} />,
       body: [
-        "Many students mix tenses when describing charts. This is penalized under Grammatical Range and Accuracy. The rule is simple: look at the dates on the chart and follow them exactly.",
-        "Past dates only (e.g. 2000–2020): use past simple throughout — 'Sales increased.' Past + present data: use past simple for old data and present perfect for recent — 'Sales grew steadily and have now reached...' Future projections (e.g. 'forecast to 2030'): use future passive — 'Sales are projected to rise / are expected to increase.'",
-        "For static charts showing a single point in time (e.g. a pie chart for 2023): use present simple — 'Agriculture accounts for 40%.' Never write 'accounted' for a present-day pie chart."
+        { type: 'paragraph', text: "Many students mix tenses when describing charts. This is penalized under Grammatical Range and Accuracy. The rule is simple: look at the dates on the chart and follow them exactly." },
+        { type: 'table', headers: ["Chart Dates", "Tense to Use", "Example"], rows: [
+          ["Past only (e.g. 2000–2020)",  "Past simple",                       "Sales increased steadily."],
+          ["Past + present data",          "Past simple + present perfect",     "Sales grew and have now reached..."],
+          ["Future projection",            "Future passive",                    "Sales are projected to rise."],
+          ["Single present year",          "Present simple",                    "Agriculture accounts for 40%."],
+        ]},
+        { type: 'tip', text: "Never write 'accounted' for a present-day pie chart — if the date is now, use present tense." },
       ],
       before: "In 2010, the rate increases to 5% and is projected to increase in 2025 because it was rising.",
       after: "In 2010, the rate rose to 5% and is projected to reach 8% by 2025, continuing its upward trajectory.",
@@ -1314,9 +1346,14 @@ const FOCUS_DATA = {
       teaser: "Answering the wrong question type will cap you at Band 5 — no matter how good your English is.",
       icon: <BookOpen size={22} />,
       body: [
-        "Every mark in Task Achievement depends on identifying and answering the correct question TYPE. There are three main types, each requiring a different approach.",
-        "Opinion essay ('Do you agree or disagree?'): You MUST give a clear personal opinion in your introduction AND conclusion. Sitting on the fence loses marks. Discussion essay ('Discuss both views and give your opinion'): Write one paragraph for EACH side, then state your view clearly. Problem/Solution or Advantage/Disadvantage: Do NOT give your personal opinion unless the question specifically asks for it.",
-        "Before writing, underline the key instruction words. Then ask: Am I being asked for MY view, or to DESCRIBE both sides? This 30-second check can prevent a major structural error that no amount of good vocabulary can fix."
+        { type: 'paragraph', text: "Every mark in Task Achievement depends on identifying and answering the correct question TYPE. Many students write beautifully — in the wrong structure." },
+        { type: 'table', headers: ["Question Type", "Key Words", "What You Must Do"], rows: [
+          ["Opinion Essay",       "Do you agree or disagree?",              "Give a clear personal opinion in intro AND conclusion."],
+          ["Discussion Essay",    "Discuss both views + give your opinion", "One paragraph per side, then state your view clearly."],
+          ["Problem / Solution",  "What problems? What solutions?",         "Describe problems AND suggest practical solutions."],
+          ["Adv / Disadv",        "Do advantages outweigh disadvantages?",  "Cover both sides. Give opinion only if explicitly asked."],
+        ]},
+        { type: 'tip', text: "30-second check: underline the instruction words. Ask — am I giving MY view, or DESCRIBING both sides?" },
       ],
       before: "'Do you agree or disagree?' → Student writes: 'There are many advantages and disadvantages of social media...' (wrong structure — that's a discussion format).",
       after: "'Do you agree or disagree?' → 'I strongly agree that the negative effects of social media outweigh the positives, primarily due to its impact on mental health and social behavior.'",
@@ -1326,9 +1363,14 @@ const FOCUS_DATA = {
       teaser: "A perfect introduction takes under 5 minutes and follows the same formula every time.",
       icon: <FileText size={22} />,
       body: [
-        "A strong Task 2 introduction contains exactly four sentences. Its purpose is to show the examiner you understand the topic and have a clear position — not to impress with complex vocabulary.",
-        "Sentence 1 — Hook: A broad, general statement about the topic. Do NOT copy the question word-for-word. Sentence 2 — Paraphrase: Restate the question in your own words using synonyms. Sentence 3 — Thesis: State your clear opinion or position directly. Sentence 4 — Outline: Briefly signal your two main body paragraph ideas.",
-        "Common mistake: Students spend 10+ minutes on the introduction trying to write something 'perfect.' Keep it structured and move on. The body paragraphs are where you earn the majority of your marks."
+        { type: 'paragraph', text: "A strong Task 2 introduction contains exactly four sentences. Its purpose is to show the examiner you understand the topic and have a clear position — not to impress with rare vocabulary." },
+        { type: 'list', label: "The formula — 4 sentences, in order:", items: [
+          "1.  Hook — A broad general statement about the topic. Do NOT copy the question word-for-word.",
+          "2.  Paraphrase — Restate the question in your own words using synonyms.",
+          "3.  Thesis — State your clear opinion or position directly.",
+          "4.  Outline — Briefly signal your two main body paragraph ideas.",
+        ]},
+        { type: 'tip', text: "Common mistake: spending 10+ minutes on the intro trying to write something 'perfect.' Keep it structured and move on — body paragraphs earn the majority of marks." },
       ],
       before: "Technology is everywhere. Many people think technology is making people less social. I think this is true. I will talk about this.",
       after: "The rapid growth of digital technology has fundamentally altered the way people communicate. It is widely debated whether this shift has reduced meaningful face-to-face interaction. While technology limits some social behaviors, I believe it primarily creates new forms of connection. This essay will examine its impact on traditional socializing and the rise of digital communities.",
@@ -1338,21 +1380,33 @@ const FOCUS_DATA = {
       teaser: "Every body paragraph should follow the same four-part structure — every single time.",
       icon: <Layout size={22} />,
       body: [
-        "PEEL gives your body paragraphs a clear, logical structure that examiners reward. Without it, paragraphs often lack development or feel like a list of unconnected points.",
-        "P — Point: Your topic sentence. State ONE clear idea only. (1 sentence). E — Evidence: A specific example, statistic, or scenario to support it. (1–2 sentences). E — Explain: WHY this evidence supports your argument. This is the most important step — many students skip it. (1–2 sentences). L — Link: A short sentence connecting back to the overall question or your thesis. (1 sentence).",
-        "Aim for 5–7 sentences per body paragraph. Two well-developed PEEL paragraphs score much higher than three short, underdeveloped ones."
+        { type: 'paragraph', text: "PEEL gives your body paragraphs a clear, logical structure that examiners reward. Without it, paragraphs often feel like a list of unconnected points." },
+        { type: 'table', headers: ["Letter", "Part", "Role", "Length"], rows: [
+          ["P", "Point",   "One clear topic sentence — one idea only",                              "1 sentence"],
+          ["E", "Evidence","Specific example, statistic, or scenario",                              "1–2 sentences"],
+          ["E", "Explain", "WHY the evidence supports your argument — the most important step",     "1–2 sentences"],
+          ["L", "Link",    "Connect back to the question or your thesis",                           "1 sentence"],
+        ]},
+        { type: 'tip', text: "Aim for 5–7 sentences per paragraph. Two strong PEEL paragraphs score much higher than three short, underdeveloped ones." },
       ],
       before: "Technology makes people less social. People use phones all the time. This is bad for society.",
-      after: "One significant consequence of widespread technology use is a reduction in face-to-face communication. Studies suggest that average household conversation time has dropped as screen use has increased. This matters because strong social bonds are typically formed through direct interaction — their erosion may lead to increased isolation. It is therefore evident that technology poses a genuine threat to traditional social behavior.",
+      after: "One significant consequence of widespread technology use is a reduction in face-to-face communication. Studies suggest that average household conversation time has dropped as screen use has increased. This matters because strong social bonds are formed through direct interaction — their erosion may lead to increased isolation. It is therefore evident that technology poses a genuine threat to traditional social behavior.",
     },
     {
       title: "Academic Tone",
       teaser: "Writing the way you speak is the fastest way to stay at Band 5.",
       icon: <Trophy size={22} />,
       body: [
-        "Academic register is assessed under Lexical Resource. Informal expressions signal to the examiner that you are not ready for academic writing. The fix is straightforward: replace casual phrases with formal equivalents.",
-        "'I think...' → 'It could be argued that...' / 'It is widely held that...'. 'A lot of people...' → 'A significant proportion of the population...'. 'Bad for society' → 'detrimental to society' / 'has adverse effects on...'. 'Get better' → 'improve significantly'. 'Because of this' → 'As a result' / 'Consequently'. 'I will talk about...' → 'This essay will examine...'.",
-        "The test: read each sentence and ask — 'Would I write this in a formal report?' If no, rewrite it. You do not need rare vocabulary. Clear, precise, formal language scores higher than complex words used incorrectly."
+        { type: 'paragraph', text: "Academic register is assessed under Lexical Resource. Informal expressions signal to the examiner you are not ready for academic writing. The fix: replace casual phrases with formal equivalents." },
+        { type: 'table', headers: ["❌  Informal — Avoid", "✓  Academic — Use Instead"], rows: [
+          ["I think...",            "It could be argued that... / It is widely held that..."],
+          ["A lot of people...",    "A significant proportion of the population..."],
+          ["Bad for society",       "detrimental to society / has adverse effects on..."],
+          ["Get better",            "improve significantly"],
+          ["Because of this",       "As a result / Consequently"],
+          ["I will talk about...",  "This essay will examine..."],
+        ]},
+        { type: 'tip', text: "The test: read each sentence and ask — 'Would I write this in a formal report?' If no, rewrite it. Precise and formal beats rare vocabulary used incorrectly." },
       ],
       before: "I think a lot of young people are bad at saving money because they buy lots of things they don't need.",
       after: "It could be argued that a considerable proportion of young adults struggle with financial management as a result of impulsive consumer behavior.",
@@ -1362,9 +1416,18 @@ const FOCUS_DATA = {
       teaser: "Your conclusion should take 2 minutes and contain absolutely nothing new.",
       icon: <CheckCircle2 size={22} />,
       body: [
-        "The conclusion is the most frequently mishandled section of a Task 2 essay. Two common mistakes: (1) introducing a brand new idea or statistic, and (2) skipping the conclusion entirely due to time pressure. Both significantly lower your score.",
-        "A strong conclusion has two sentences maximum. Sentence 1: Restate your thesis in NEW words — do not copy your introduction. Sentence 2: Briefly summarize your two main supporting points. That is all.",
-        "Never start with 'In conclusion, I have discussed...' — this is weak and wastes words. Use: 'In conclusion,' / 'To summarize,' / 'Overall,' / 'In summary,' — then go directly to your point. Practice writing your conclusion in under 2 minutes so you never run out of time."
+        { type: 'paragraph', text: "The conclusion is the most frequently mishandled section. Two common mistakes: (1) introducing a new idea, and (2) skipping it due to time pressure. Both significantly lower your score." },
+        { type: 'list', label: "A strong conclusion has exactly 2 sentences:", items: [
+          "Sentence 1: Restate your thesis in NEW words — do not copy your introduction.",
+          "Sentence 2: Briefly summarize your two main supporting points. Nothing more.",
+        ]},
+        { type: 'list', label: "Strong opening phrases:", items: [
+          "'In conclusion, ...'",
+          "'To summarize, ...'",
+          "'Overall, ...'",
+          "'In summary, ...'",
+        ]},
+        { type: 'tip', text: "Never start with 'In conclusion, I have discussed...' — this is weak and wastes words. Go directly to your restated thesis. Practice writing conclusions in under 2 minutes." },
       ],
       before: "In conclusion, I have discussed technology and social media. I think technology is bad. It makes people lonely. Also, we should limit screen time for young people.",
       after: "In conclusion, while technology offers undeniable benefits, it is my firm view that its negative impact on social behavior outweighs these advantages. By eroding face-to-face communication and fostering screen dependency, it poses a long-term risk to meaningful human connection.",
@@ -1405,9 +1468,59 @@ function FocusLessonModal({ lesson, onClose, onStartWriting }) {
           </button>
         </div>
         <div className="px-8 py-6 space-y-4">
-          {lesson.body.map((para, i) => (
-            <p key={i} className="text-sm text-slate-700 leading-relaxed">{para}</p>
-          ))}
+          {lesson.body.map((item, i) => {
+            if (item.type === 'paragraph') return (
+              <p key={i} className="text-sm text-slate-700 leading-relaxed">{item.text}</p>
+            );
+            if (item.type === 'rule') return (
+              <div key={i} className="bg-slate-50 border-l-4 border-slate-700 rounded-r-xl px-5 py-3">
+                {item.label && <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">{item.label}</p>}
+                <p className="text-sm text-slate-800 font-semibold leading-relaxed">{item.text}</p>
+              </div>
+            );
+            if (item.type === 'list') return (
+              <div key={i} className="space-y-1">
+                {item.label && <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{item.label}</p>}
+                <ul className="space-y-1.5 ml-1">
+                  {item.items.map((it, j) => (
+                    <li key={j} className="flex items-start gap-2.5 text-sm text-slate-700">
+                      <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-brand-primary flex-shrink-0" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+            if (item.type === 'table') return (
+              <div key={i} className="overflow-hidden rounded-xl border border-slate-200">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-brand-primary text-white">
+                      {item.headers.map((h, j) => (
+                        <th key={j} className="px-4 py-2.5 font-black text-[11px] uppercase tracking-wider">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {item.rows.map((row, j) => (
+                      <tr key={j} className={j % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                        {row.map((cell, k) => (
+                          <td key={k} className="px-4 py-2.5 text-slate-700 border-t border-slate-100 text-xs leading-snug">{cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+            if (item.type === 'tip') return (
+              <div key={i} className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-3 flex gap-3">
+                <span className="text-amber-500 font-black text-sm shrink-0">💡</span>
+                <p className="text-sm text-amber-800 leading-relaxed">{item.text}</p>
+              </div>
+            );
+            return null;
+          })}
           <div className="mt-6 rounded-2xl overflow-hidden border border-slate-200">
             <div className="bg-red-50 px-5 py-4 border-b border-slate-200">
               <p className="text-[10px] font-black uppercase tracking-widest text-red-500 mb-1">✕ Weak Example</p>
@@ -1470,7 +1583,7 @@ function PreTaskFocusMenu({ taskType, onStartWriting }) {
             onClick={onStartWriting}
             className="text-slate-500 hover:text-slate-800 text-sm font-bold flex items-center gap-2 border border-slate-300 hover:border-slate-500 px-6 py-3 rounded-xl transition-all"
           >
-            Skip focus &amp; start writing now →
+            Start writing now →
           </button>
         </div>
       </div>

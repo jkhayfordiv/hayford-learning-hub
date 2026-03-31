@@ -21,7 +21,7 @@ export default function RegionCard({ region, isRecommended, onClick }) {
       )}
       
       <div className="mb-4">
-        <h3 className="font-serif text-2xl text-brand-sangria mb-2">{regionName}</h3>
+        <h3 className="font-serif text-2xl text-brand-primary mb-2">{regionName}</h3>
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <BookOpen size={16} />
           <span>{completed_nodes} / {total_nodes} lessons done</span>
@@ -31,12 +31,12 @@ export default function RegionCard({ region, isRecommended, onClick }) {
       <div className="mb-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-600">Progress</span>
-          <span className="text-sm font-semibold text-brand-sangria">{progressPercentage}%</span>
+          <span className="text-sm font-semibold text-brand-primary">{progressPercentage}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div 
-            className="bg-brand-sangria rounded-full h-2 transition-all duration-500"
-            style={{ width: `${progressPercentage}%` }}
+            className="rounded-full h-2 transition-all duration-500"
+            style={{ background: 'var(--gw-brand-primary, #5E1914)', width: `${progressPercentage}%` }}
           />
         </div>
       </div>

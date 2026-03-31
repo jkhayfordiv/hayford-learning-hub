@@ -98,6 +98,11 @@ export default function Dashboard() {
   try { branding = JSON.parse(localStorage.getItem('branding') || '{}'); } catch (e) {}
   const brandPrimary    = branding.primary_color   || '#800020';
   const brandSecondary  = branding.secondary_color || '#600000';
+  const brandDark = (() => {
+    const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(brandPrimary);
+    if (!r) return '#1a0008';
+    return `#${[parseInt(r[1],16),parseInt(r[2],16),parseInt(r[3],16)].map(v=>Math.round(v*0.6).toString(16).padStart(2,'0')).join('')}`;
+  })();
   const brandLogoUrl    = branding.logo_url        || null;
   const brandWelcome    = branding.welcome_text    || 'Hayford Global Learning Hub';
 
@@ -498,7 +503,7 @@ export default function Dashboard() {
       {/* Top Navbar */}
       <header
         className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40"
-        style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandSecondary})` }}
+        style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
       >
         <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
            <img

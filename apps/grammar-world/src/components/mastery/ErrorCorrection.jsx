@@ -75,9 +75,9 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
               placeholder="Write the correct word..."
               className={`
                 w-full px-4 py-3 rounded-xl border-2 transition-all
-                focus:outline-none focus:ring-2 focus:ring-brand-sangria focus:ring-opacity-50
+                focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50
                 ${isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
-                border-gray-300 focus:border-brand-sangria
+                border-gray-300 focus:border-brand-primary
               `}
             />
           </div>
@@ -100,9 +100,10 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
             ${
               !allAnswered || isLoading
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-brand-sangria text-white hover:bg-opacity-90 hover:shadow-xl'
+                : 'text-white hover:shadow-xl'
             }
           `}
+          style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
         >
           {isLoading ? (
             <span className="flex items-center gap-2">

@@ -6,6 +6,10 @@ import { ArrowLeft, AlertCircle } from 'lucide-react';
 import { fetchRegionNodes, fetchUserProgress } from '../services/api';
 import GrammarNode from '../components/GrammarNode';
 
+const _gwBranding = (() => { try { return JSON.parse(localStorage.getItem('branding') || '{}'); } catch { return {}; } })();
+const GW_BRAND_PRIMARY = _gwBranding.primary_color || '#5E1914';
+const GW_BRAND_SECONDARY = _gwBranding.secondary_color || '#0A1930';
+
 const nodeTypes = {
   grammarNode: GrammarNode,
 };
@@ -49,7 +53,7 @@ function RegionFlowMap({ nodes, edges }) {
       className="bg-gradient-to-br from-gray-50 to-gray-100"
     >
       <Background
-        color="#5E1914"
+        color={GW_BRAND_PRIMARY}
         gap={20}
         size={1}
         variant="dots"
@@ -118,7 +122,7 @@ export default function RegionView() {
               source: prereqId,
               target: node.node_id,
               animated: true,
-              style: { stroke: '#5E1914', strokeWidth: 2 },
+              style: { stroke: GW_BRAND_PRIMARY, strokeWidth: 2 },
               type: 'smoothstep',
             });
           });
@@ -179,7 +183,7 @@ export default function RegionView() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-sangria border-t-transparent mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-primary border-t-transparent mx-auto mb-4"></div>
           <p className="text-gray-600">Loading Pathway Map...</p>
         </div>
       </div>
@@ -191,11 +195,11 @@ export default function RegionView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft">
           <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Error Loading Map</h2>
+          <h2 className="font-serif text-2xl text-brand-primary mb-2 text-center">Error Loading Map</h2>
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={loadRegionData}
-            className="w-full bg-brand-sangria text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all"
+            className="w-full text-white px-6 py-3 rounded-xl transition-all" style={{ background: 'var(--gw-brand-primary, #5E1914)' }}
           >
             Retry
           </button>
@@ -206,7 +210,7 @@ export default function RegionView() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col">
-      <header className="bg-gradient-to-r from-brand-sangria to-brand-navy text-white shadow-lg z-10">
+      <header className="text-white shadow-lg z-10" style={{ background: `linear-gradient(to right, ${GW_BRAND_PRIMARY}, ${GW_BRAND_SECONDARY})` }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <button
             onClick={() => navigate('/hub')}

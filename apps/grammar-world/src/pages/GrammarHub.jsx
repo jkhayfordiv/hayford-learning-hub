@@ -60,7 +60,7 @@ export default function GrammarHub() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-sangria border-t-transparent mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-primary border-t-transparent mx-auto mb-4"></div>
           <p className="text-gray-600">Loading...</p>
         </div>
       </div>
@@ -72,11 +72,11 @@ export default function GrammarHub() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft">
           <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Cannot Load Page</h2>
+          <h2 className="font-serif text-2xl text-brand-primary mb-2 text-center">Cannot Load Page</h2>
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={loadData}
-            className="w-full bg-brand-sangria text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all"
+            className="w-full text-white px-6 py-3 rounded-xl transition-all" style={{ background: 'var(--gw-brand-primary, #5E1914)' }}
           >
             Retry
           </button>
@@ -88,7 +88,7 @@ export default function GrammarHub() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      <header className="bg-gradient-to-r from-brand-sangria to-brand-navy text-white shadow-lg">
+      <header className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <button
             onClick={() => window.location.href = '/'}
@@ -127,7 +127,7 @@ export default function GrammarHub() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h2 className="font-serif text-3xl text-brand-sangria mb-2">Choose Your Path</h2>
+          <h2 className="font-serif text-3xl text-brand-primary mb-2">Choose Your Path</h2>
           <p className="text-gray-600">Learn grammar step by step</p>
         </div>
 
@@ -149,10 +149,10 @@ export default function GrammarHub() {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl p-8 max-w-2xl w-full shadow-2xl animate-fade-in">
             <div className="text-center mb-6">
-              <div className="w-20 h-20 bg-brand-sangria bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="text-brand-sangria" size={40} />
+              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(var(--gw-brand-primary-rgb, 94,25,20), 0.1)' }}>
+                <BookOpen className="text-brand-primary" size={40} />
               </div>
-              <h2 className="font-serif text-3xl text-brand-sangria mb-3">Grammar Test</h2>
+              <h2 className="font-serif text-3xl text-brand-primary mb-3">Grammar Test</h2>
               <p className="text-gray-600 text-lg leading-relaxed">
                 First, take a test. We will find the best lessons for you.
               </p>
@@ -162,19 +162,19 @@ export default function GrammarHub() {
               <h3 className="font-semibold text-brand-navy mb-3">What You Will Do:</h3>
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start gap-2">
-                  <span className="text-brand-sangria mt-1">•</span>
+                  <span className="text-brand-primary mt-1">•</span>
                   <span>25 questions about grammar</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-brand-sangria mt-1">•</span>
+                  <span className="text-brand-primary mt-1">•</span>
                   <span>About 10-15 minutes</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-brand-sangria mt-1">•</span>
+                  <span className="text-brand-primary mt-1">•</span>
                   <span>We will show you the best lessons for you</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-brand-sangria mt-1">•</span>
+                  <span className="text-brand-primary mt-1">•</span>
                   <span>No time limit—take your time</span>
                 </li>
               </ul>
@@ -182,7 +182,7 @@ export default function GrammarHub() {
 
             <button
               onClick={handleStartDiagnostic}
-              className="w-full bg-brand-sangria text-white px-8 py-4 rounded-xl hover:bg-opacity-90 transition-all font-semibold text-lg shadow-lg hover:shadow-xl"
+              className="w-full text-white px-8 py-4 rounded-xl transition-all font-semibold text-lg shadow-lg hover:shadow-xl" style={{ background: 'var(--gw-brand-primary, #5E1914)' }}
             >
               Start Test
             </button>

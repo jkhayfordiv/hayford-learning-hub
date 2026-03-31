@@ -59,7 +59,7 @@ export default function MasteryCheckEngine({ node, regionName }) {
           <div className="w-24 h-24 bg-brand-gold bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse-subtle">
             <Trophy className="text-brand-gold" size={48} />
           </div>
-          <h2 className="font-serif text-4xl text-brand-sangria mb-3">Mastery Achieved!</h2>
+          <h2 className="font-serif text-4xl text-brand-primary mb-3">Mastery Achieved!</h2>
           <p className="text-xl text-gray-700 mb-2">
             Score: <strong className="text-brand-gold">{result?.score}%</strong>
           </p>
@@ -71,7 +71,7 @@ export default function MasteryCheckEngine({ node, regionName }) {
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Sparkles className="text-brand-gold" size={24} />
-                <span className="text-3xl font-bold text-brand-sangria">
+                <span className="text-3xl font-bold text-brand-primary">
                   +{rewards?.mastery_points || 100}
                 </span>
               </div>
@@ -152,7 +152,7 @@ export default function MasteryCheckEngine({ node, regionName }) {
   return (
     <div className="bg-white rounded-xl p-8 shadow-soft">
       <div className="mb-6">
-        <h2 className="font-serif text-3xl text-brand-sangria mb-2">Mastery Check</h2>
+        <h2 className="font-serif text-3xl text-brand-primary mb-2">Mastery Check</h2>
         <p className="text-gray-600">Demonstrate your understanding to unlock the next node.</p>
       </div>
       {renderAssessment()}

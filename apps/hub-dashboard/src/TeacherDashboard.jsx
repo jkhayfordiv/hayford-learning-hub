@@ -957,7 +957,7 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       {/* Admin Level Navigation Bar (Crimson) - Platform Management */}
       {(user.role === 'admin' || user.role === 'super_admin') && (
-        <div className="border-b px-8 py-3 flex gap-6 sticky top-[73px] z-30" style={{ background: `linear-gradient(to right, ${brandDark}, ${brandPrimary})`, borderColor: `${brandDark}` }}>
+        <div className="border-b px-8 py-3 flex gap-6 sticky top-[73px] z-30" style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})`, borderColor: `${brandDark}`, borderTop: '2px solid rgba(255,255,255,0.25)' }}>
           <button
             onClick={() => {
               setNavigationView('dashboard');

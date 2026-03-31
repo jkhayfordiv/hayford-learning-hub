@@ -83,7 +83,7 @@ export default function DiagnosticView() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-sangria border-t-transparent mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-brand-primary border-t-transparent mx-auto mb-4"></div>
           <p className="text-gray-600">Loading test...</p>
         </div>
       </div>
@@ -95,11 +95,11 @@ export default function DiagnosticView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft">
           <AlertCircle className="text-red-500 mx-auto mb-4" size={48} />
-          <h2 className="font-serif text-2xl text-brand-sangria mb-2 text-center">Cannot Load Test</h2>
+          <h2 className="font-serif text-2xl text-brand-primary mb-2 text-center">Cannot Load Test</h2>
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={loadDiagnostic}
-            className="w-full bg-brand-sangria text-white px-6 py-3 rounded-xl hover:bg-opacity-90 transition-all"
+            className="w-full text-white px-6 py-3 rounded-xl transition-all" style={{ background: 'var(--gw-brand-primary, #5E1914)' }}
           >
             Retry
           </button>
@@ -113,7 +113,7 @@ export default function DiagnosticView() {
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-xl p-8 max-w-md shadow-soft text-center">
           <CheckCircle className="text-green-500 mx-auto mb-4" size={64} />
-          <h2 className="font-serif text-3xl text-brand-sangria mb-4">Test Complete!</h2>
+          <h2 className="font-serif text-3xl text-brand-primary mb-4">Test Complete!</h2>
           <p className="text-gray-600 text-lg mb-2">
             Score: <strong>{result.score}%</strong>
           </p>
@@ -132,7 +132,7 @@ export default function DiagnosticView() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-      <header className="bg-gradient-to-r from-brand-sangria to-brand-navy text-white shadow-lg">
+      <header className="bg-gradient-to-r from-brand-primary to-brand-secondary text-white shadow-lg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-3 mb-2">
             <BookOpen size={32} />
@@ -148,14 +148,14 @@ export default function DiagnosticView() {
           <div className="prose prose-lg max-w-none">
             <ReactMarkdown
               components={{
-                h1: ({ children }) => <h1 className="font-serif text-4xl text-brand-sangria mb-4">{children}</h1>,
-                h2: ({ children }) => <h2 className="font-serif text-3xl text-brand-sangria mb-3 mt-6">{children}</h2>,
+                h1: ({ children }) => <h1 className="font-serif text-4xl text-brand-primary mb-4">{children}</h1>,
+                h2: ({ children }) => <h2 className="font-serif text-3xl text-brand-primary mb-3 mt-6">{children}</h2>,
                 h3: ({ children }) => <h3 className="font-serif text-2xl text-brand-navy mb-2 mt-4">{children}</h3>,
                 p: ({ children }) => <p className="font-sans text-gray-700 mb-4 leading-relaxed">{children}</p>,
                 ul: ({ children }) => <ul className="font-sans text-gray-700 mb-4 ml-6 list-disc">{children}</ul>,
                 ol: ({ children }) => <ol className="font-sans text-gray-700 mb-4 ml-6 list-decimal">{children}</ol>,
                 li: ({ children }) => <li className="mb-2">{children}</li>,
-                strong: ({ children }) => <strong className="font-semibold text-brand-sangria">{children}</strong>,
+                strong: ({ children }) => <strong className="font-semibold text-brand-primary">{children}</strong>,
                 em: ({ children }) => <em className="italic">{children}</em>,
               }}
             >
@@ -166,7 +166,7 @@ export default function DiagnosticView() {
 
         {/* Multiple Choice Questions */}
         <div className="bg-white rounded-xl p-8 shadow-soft mb-8">
-          <h2 className="font-serif text-2xl text-brand-sangria mb-6">Questions</h2>
+          <h2 className="font-serif text-2xl text-brand-primary mb-6">Questions</h2>
           <div className="space-y-8">
             {questions.map((question, qIdx) => (
               <div key={qIdx} className="border-b border-gray-200 pb-6 last:border-b-0">
@@ -182,8 +182,8 @@ export default function DiagnosticView() {
                         w-full text-left px-4 py-3 rounded-lg border-2 transition-all
                         ${
                           selectedAnswers[qIdx] === option
-                            ? 'border-brand-sangria bg-brand-sangria bg-opacity-5 font-semibold'
-                            : 'border-gray-200 hover:border-brand-sangria hover:bg-gray-50'
+                            ? 'border-brand-primary bg-brand-primary/5 font-semibold'
+                            : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50'
                         }
                       `}
                     >
@@ -207,9 +207,10 @@ export default function DiagnosticView() {
               ${
                 submitting || Object.keys(selectedAnswers).length !== questions.length
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-brand-sangria text-white hover:bg-opacity-90 hover:shadow-xl'
+                  : 'text-white hover:shadow-xl'
               }
             `}
+            style={(submitting || Object.keys(selectedAnswers).length !== questions.length) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
           >
             {submitting ? (
               <span className="flex items-center gap-2">

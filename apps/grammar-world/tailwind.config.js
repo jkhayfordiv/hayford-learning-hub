@@ -15,6 +15,8 @@ export default {
           sangria: '#5E1914',
           navy: '#0A1930',
           gold: '#D4AF37',
+          primary: 'var(--gw-brand-primary, #5E1914)',
+          secondary: 'var(--gw-brand-secondary, #0A1930)',
         },
       },
       boxShadow: {
