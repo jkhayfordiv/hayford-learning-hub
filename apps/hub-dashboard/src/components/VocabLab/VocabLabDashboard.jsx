@@ -4,6 +4,7 @@ import {
   PenTool, GitBranch, Mic, Plus, Star, BookOpen, Trophy,
   BarChart3, Loader2, X, CheckCircle, AlertCircle, ArrowLeft,
   Sparkles, Zap, ChevronRight, FlaskConical, User, LogOut,
+  Search, Library,
 } from 'lucide-react';
 import logo from '../../assets/logo.png';
 import StudySession from './StudySession';
@@ -74,6 +75,13 @@ export default function VocabLabDashboard() {
   const [disambigOptions, setDisambigOptions] = useState(null);
   const [disambigLoading, setDisambigLoading] = useState(false);
 
+  // Sandbox / all-words
+  const [allWords,        setAllWords]        = useState([]);
+  const [sandboxWords,    setSandboxWords]    = useState([]);
+  const [isSandboxMode,   setIsSandboxMode]   = useState(false);
+  const [isFamilyMode,    setIsFamilyMode]    = useState(false);
+  const [isVocabListOpen, setIsVocabListOpen] = useState(false);
+
   // ── Helpers ────────────────────────────────────────────────────────────────
   const authHeaders = () => ({
     'Content-Type': 'application/json',
@@ -94,6 +102,7 @@ export default function VocabLabDashboard() {
       const data = await res.json();
       setDueToday(data.due_today || []);
       setStarredWords(data.starred_words || []);
+      setAllWords(data.all_words || []);
       setMasteredWords(data.mastered_words || []);
       setStats(data.stats || { total_mastered: 0, total_learning: 0, total_words: 0 });
     } catch (err) {
@@ -121,7 +130,6 @@ export default function VocabLabDashboard() {
       const data = await res.json();
 
       if (res.status === 201) {
-        setIsAddModalOpen(false);
         setAddWordInput('');
         showToast('success', `"${data.global_word?.word}" added to your Vocab Lab!`);
         fetchDashboard();
@@ -130,7 +138,6 @@ export default function VocabLabDashboard() {
         setDisambigOptions(data.options);
       } else if (res.status === 200 && data.duplicate) {
         showToast('success', data.message);
-        setIsAddModalOpen(false);
         setAddWordInput('');
       } else if (res.status === 404) {
         setAddWordError(data.error || 'Word not found in the dictionary');
@@ -156,7 +163,6 @@ export default function VocabLabDashboard() {
 
       if (res.status === 201 || (res.status === 200 && data.duplicate)) {
         setDisambigOptions(null);
-        setIsAddModalOpen(false);
         setAddWordInput('');
         showToast('success', data.duplicate ? data.message : `"${wordLabel}" added to your Vocab Lab!`);
         if (!data.duplicate) fetchDashboard();
@@ -177,23 +183,31 @@ export default function VocabLabDashboard() {
     window.location.href = '/login';
   };
 
-  // ── Practice tile config ───────────────────────────────────────────────────
+  // ── Practice tile config ─────────────────────────────────────────────
   const practiceTiles = [
+    {
+      id: 'flashcard',
+      icon: BookOpen,
+      title: 'Flashcards',
+      desc: 'Fill-in-the-blank practice',
+      color: 'from-indigo-600 to-violet-700',
+      onClick: () => {
+        const words = allWords.filter(w => w.srs_level <= 2);
+        if (words.length === 0) { showToast('error', 'No learning words yet — add some words first!'); return; }
+        setSandboxWords(words); setIsSandboxMode(true); setIsFamilyMode(false); setIsMasteredReview(false); setIsStudying(true);
+      },
+    },
     {
       id: 'sentence',
       icon: PenTool,
       title: 'Sentence Builder',
       desc: 'Use words in context',
       color: 'from-violet-600 to-purple-700',
-      onClick: () => showToast('success', 'Sentence Builder coming in Phase 4!'),
-    },
-    {
-      id: 'families',
-      icon: GitBranch,
-      title: 'Word Families',
-      desc: 'Explore related forms',
-      color: 'from-sky-600 to-blue-700',
-      onClick: () => showToast('success', 'Word Families coming in Phase 4!'),
+      onClick: () => {
+        const words = allWords.filter(w => w.srs_level >= 3 && w.srs_level <= 4);
+        if (words.length === 0) { showToast('error', 'No reviewing words yet — keep practicing to level up!'); return; }
+        setSandboxWords(words); setIsSandboxMode(true); setIsFamilyMode(false); setIsMasteredReview(false); setIsStudying(true);
+      },
     },
     {
       id: 'speak',
@@ -202,21 +216,20 @@ export default function VocabLabDashboard() {
       desc: 'Pronunciation practice',
       color: 'from-rose-600 to-pink-700',
       onClick: () => {
-        if (masteredWords.length > 0) {
-          setIsMasteredReview(true);
-          setIsStudying(true);
-        } else {
-          showToast('error', 'You need to master at least one word first! Keep reviewing to level up.');
-        }
+        if (masteredWords.length === 0) { showToast('error', 'Master at least one word first — keep reviewing to level up!'); return; }
+        setSandboxWords(masteredWords); setIsSandboxMode(false); setIsFamilyMode(false); setIsMasteredReview(true); setIsStudying(true);
       },
     },
     {
-      id: 'add',
-      icon: Plus,
-      title: 'Add New Word',
-      desc: 'Expand your lexicon',
-      color: 'from-emerald-600 to-teal-700',
-      onClick: () => { setAddWordInput(''); setAddWordError(''); setIsAddModalOpen(true); },
+      id: 'families',
+      icon: GitBranch,
+      title: 'Word Families',
+      desc: 'Explore related forms',
+      color: 'from-sky-600 to-blue-700',
+      onClick: () => {
+        if (allWords.length === 0) { showToast('error', 'No words in your Vocab Lab yet — add some first!'); return; }
+        setSandboxWords(allWords); setIsSandboxMode(true); setIsFamilyMode(true); setIsMasteredReview(false); setIsStudying(true);
+      },
     },
   ];
 
@@ -290,6 +303,37 @@ export default function VocabLabDashboard() {
 
             {/* ══════════════ LEFT COLUMN ══════════════ */}
             <div className="md:col-span-8 flex flex-col gap-6">
+
+              {/* Add Word Search Bar */}
+              <div className="space-y-1.5">
+                <form onSubmit={handleAddWord} className="flex gap-3">
+                  <div className="relative flex-1">
+                    <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                    <input
+                      type="text"
+                      value={addWordInput}
+                      onChange={e => { setAddWordInput(e.target.value); setAddWordError(''); }}
+                      placeholder="Search or add a word to your Vocab Lab..."
+                      className="w-full pl-11 pr-5 py-3.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:border-transparent shadow-sm transition-all"
+                      style={{ '--tw-ring-color': brandPrimary }}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={addWordLoading || !addWordInput.trim()}
+                    className="flex items-center gap-2 px-5 py-3.5 rounded-2xl font-black text-white shadow-sm hover:shadow-md transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
+                  >
+                    {addWordLoading ? <Loader2 size={16} className="animate-spin" /> : <Plus size={16} />}
+                    Add
+                  </button>
+                </form>
+                {addWordError && (
+                  <p className="flex items-center gap-1.5 text-xs text-red-600 font-semibold px-1">
+                    <AlertCircle size={13} /> {addWordError}
+                  </p>
+                )}
+              </div>
 
               {/* Hero Card */}
               <div
@@ -472,18 +516,18 @@ export default function VocabLabDashboard() {
                 )}
               </div>
 
-              {/* Library Button */}
+              {/* Vocab List Button */}
               <button
-                onClick={() => navigate('/vocab')}
+                onClick={() => setIsVocabListOpen(true)}
                 className="w-full flex items-center justify-between px-6 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center">
-                    <BookOpen size={17} className="text-slate-600 dark:text-slate-300" />
+                    <Library size={17} className="text-slate-600 dark:text-slate-300" />
                   </div>
                   <div className="text-left">
-                    <p className="font-bold text-sm text-slate-900 dark:text-white">View Full Lexicon</p>
-                    <p className="text-[10px] text-slate-400">Word Bank &amp; custom lists</p>
+                    <p className="font-bold text-sm text-slate-900 dark:text-white">View My Vocab List</p>
+                    <p className="text-[10px] text-slate-400">{allWords.length} word{allWords.length !== 1 ? 's' : ''} in your library</p>
                   </div>
                 </div>
                 <ChevronRight size={16} className="text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-200 transition-colors" />
@@ -493,74 +537,6 @@ export default function VocabLabDashboard() {
         )}
       </main>
 
-      {/* ══════════════ ADD WORD MODAL ══════════════ */}
-      {isAddModalOpen && !disambigOptions && (
-        <div
-          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => { setIsAddModalOpen(false); setAddWordError(''); }}
-        >
-          <div
-            className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden"
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="px-8 py-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between"
-              style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}>
-              <div>
-                <h3 className="font-black text-xl text-white">Add a Word</h3>
-                <p className="text-xs text-white/70 mt-0.5">Search the Academic Word Dictionary</p>
-              </div>
-              <button
-                onClick={() => { setIsAddModalOpen(false); setAddWordError(''); }}
-                className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Modal Body */}
-            <form onSubmit={handleAddWord} className="p-8 space-y-4">
-              <div>
-                <label className="block text-xs font-black uppercase tracking-widest text-slate-400 mb-2">
-                  Enter a vocabulary word
-                </label>
-                <input
-                  type="text"
-                  value={addWordInput}
-                  onChange={e => { setAddWordInput(e.target.value); setAddWordError(''); }}
-                  placeholder="e.g. analyze, concept, assess..."
-                  autoFocus
-                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl px-5 py-3.5 text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:border-transparent transition-all"
-                  style={{ '--tw-ring-color': brandPrimary }}
-                />
-                {addWordError && (
-                  <p className="flex items-center gap-1.5 text-xs text-red-600 mt-2 font-semibold">
-                    <AlertCircle size={13} /> {addWordError}
-                  </p>
-                )}
-              </div>
-
-              <div className="flex gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => { setIsAddModalOpen(false); setAddWordError(''); }}
-                  className="flex-1 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={addWordLoading || !addWordInput.trim()}
-                  className="flex-1 py-3 rounded-2xl text-white font-black text-sm shadow-lg hover:shadow-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
-                >
-                  {addWordLoading ? <><Loader2 size={16} className="animate-spin" /> Searching...</> : <><Plus size={16} /> Add to Lab</>}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* ══════════════ DISAMBIGUATION MODAL ══════════════ */}
       {disambigOptions && (
@@ -627,15 +603,84 @@ export default function VocabLabDashboard() {
         </div>
       )}
 
+      {/* ══════════════ VOCAB LIST MODAL ══════════════ */}
+      {isVocabListOpen && (
+        <div
+          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setIsVocabListOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-2xl flex flex-col max-h-[90vh] overflow-hidden"
+            onClick={e => e.stopPropagation()}
+          >
+            <div
+              className="px-8 py-6 flex items-center justify-between flex-shrink-0"
+              style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
+            >
+              <div>
+                <h3 className="font-black text-xl text-white">My Vocab List</h3>
+                <p className="text-xs text-white/70 mt-0.5">{allWords.length} word{allWords.length !== 1 ? 's' : ''} in your library</p>
+              </div>
+              <button onClick={() => setIsVocabListOpen(false)} className="text-white/70 hover:text-white p-1.5 rounded-full hover:bg-white/10 transition-colors">
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto flex-1 p-6">
+              {allWords.length === 0 ? (
+                <div className="text-center py-12">
+                  <BookOpen size={36} className="text-slate-200 dark:text-slate-700 mx-auto mb-3" />
+                  <p className="text-slate-400 font-medium">No words yet — add some to get started</p>
+                </div>
+              ) : (
+                <div className="space-y-1">
+                  <div className="grid grid-cols-12 gap-3 px-3 pb-3 border-b border-slate-100 dark:border-slate-700">
+                    <p className="col-span-5 text-[10px] font-black uppercase tracking-widest text-slate-400">Word</p>
+                    <p className="col-span-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Definition</p>
+                    <p className="col-span-3 text-[10px] font-black uppercase tracking-widest text-slate-400">Level</p>
+                  </div>
+                  {allWords.map(w => {
+                    const badge = srsLabel(w.srs_level);
+                    return (
+                      <div key={w.user_word_id} className="grid grid-cols-12 gap-3 items-center px-3 py-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+                        <div className="col-span-5">
+                          <p className="font-bold text-sm text-slate-900 dark:text-white capitalize">{w.word}</p>
+                          <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">{w.part_of_speech}</p>
+                        </div>
+                        <p className="col-span-4 text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{w.primary_definition}</p>
+                        <div className="col-span-3">
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${badge.color}`}>{badge.label}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            <div className="px-6 pb-6 pt-3 flex-shrink-0 border-t border-slate-100 dark:border-slate-700">
+              <button
+                onClick={() => setIsVocabListOpen(false)}
+                className="w-full py-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ══════════════ STUDY SESSION ══════════════ */}
       {isStudying && (
         <StudySession
-          words={isMasteredReview ? masteredWords : dueToday}
+          words={isMasteredReview ? masteredWords : (isSandboxMode || isFamilyMode ? sandboxWords : dueToday)}
           isMasteredReview={isMasteredReview}
+          isSandboxMode={isSandboxMode}
+          isFamilyMode={isFamilyMode}
           brandPrimary={brandPrimary}
           brandDark={brandDark}
-          onClose={() => { setIsStudying(false); setIsMasteredReview(false); }}
-          onComplete={() => { setIsStudying(false); setIsMasteredReview(false); fetchDashboard(); }}
+          onClose={() => { setIsStudying(false); setIsMasteredReview(false); setIsSandboxMode(false); setIsFamilyMode(false); }}
+          onComplete={() => { setIsStudying(false); setIsMasteredReview(false); setIsSandboxMode(false); setIsFamilyMode(false); fetchDashboard(); }}
         />
       )}
 

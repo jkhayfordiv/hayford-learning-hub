@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   X, CheckCircle, XCircle, Loader2, ArrowRight, ChevronRight,
-  AlertCircle, Sparkles, BookOpen, RotateCcw, Brain, Mic,
+  AlertCircle, Sparkles, BookOpen, RotateCcw, Brain, Mic, Plus,
 } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
@@ -98,7 +98,7 @@ function SessionComplete({ results, onComplete, brandPrimary, brandDark }) {
 }
 
 // ─── Main StudySession Component ──────────────────────────────────────────────
-export default function StudySession({ words, onComplete, onClose, brandPrimary, brandDark, isMasteredReview = false }) {
+export default function StudySession({ words, onComplete, onClose, brandPrimary, brandDark, isMasteredReview = false, isSandboxMode = false, isFamilyMode = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [phase, setPhase] = useState('question');
   // phases: 'question' | 'correct' | 'wrong' | 'grading' | 'ai_feedback' | 'complete'
@@ -108,8 +108,9 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
   const [aiFeedback,    setAiFeedback]    = useState(null);
   const [inputError,    setInputError]    = useState('');
   const [results,       setResults]       = useState([]);
-  const [isListening,   setIsListening]   = useState(false);
-  const [speechError,   setSpeechError]   = useState('');
+  const [isListening,      setIsListening]      = useState(false);
+  const [speechError,      setSpeechError]      = useState('');
+  const [quickAddMessage,  setQuickAddMessage]  = useState('');
 
   const mainInputRef    = useRef(null);
   const confirmInputRef = useRef(null);
@@ -117,11 +118,18 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
 
   const currentWord = words[currentIndex];
   const mode        = currentWord
-    ? (isMasteredReview ? 'speak' : getMode(currentWord.srs_level))
+    ? (isMasteredReview ? 'speak' : isFamilyMode ? 'family' : getMode(currentWord.srs_level))
     : null;
   const showHints   = currentWord ? shouldShowHints(currentWord.srs_level) : true;
   const collocations = Array.isArray(currentWord?.collocations) ? currentWord.collocations : [];
   const blanked      = currentWord ? blankSentence(currentWord.context_sentence, currentWord.word) : '';
+
+  const wordFamily = typeof currentWord?.word_family === 'string'
+    ? JSON.parse(currentWord?.word_family || '{}')
+    : (currentWord?.word_family || {});
+  const wordFamilyEntries = Object.entries(wordFamily)
+    .filter(([, v]) => v && typeof v === 'string' && v.trim()
+      && v.toLowerCase() !== currentWord?.word?.toLowerCase());
 
   const authHeaders = () => ({
     'Content-Type': 'application/json',
@@ -148,8 +156,10 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
     setConfirmInput('');
     setAiFeedback(null);
     setInputError('');
+    setQuickAddMessage('');
     const next = currentIndex + 1;
     if (next >= words.length) {
+      if (isFamilyMode) { onComplete(); return; }
       setPhase('complete');
     } else {
       setCurrentIndex(next);
@@ -203,13 +213,38 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
 
   // ── Fire-and-forget SRS update (skipped in mastered review mode) ──────────
   const submitReview = useCallback((userWordId, isCorrect) => {
-    if (isMasteredReview) return;
+    if (isMasteredReview || isSandboxMode) return;
     fetch(`${API_BASE}/api/vocab-lab/review`, {
       method: 'POST',
       headers: authHeaders(),
       body: JSON.stringify({ user_word_id: userWordId, is_correct: isCorrect }),
     }).catch(() => {});
-  }, [isMasteredReview]);
+  }, [isMasteredReview, isSandboxMode]);
+
+  // ── Word Family quick-add ──────────────────────────────────────────────────
+  const handleQuickAdd = useCallback(async (wordForm) => {
+    if (!wordForm || !wordForm.trim()) return;
+    try {
+      const res = await fetch(`${API_BASE}/api/vocab-lab/add`, {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({ word: wordForm.trim() }),
+      });
+      const data = await res.json();
+      if (res.status === 201) {
+        setQuickAddMessage(`Added "${wordForm}" to your list!`);
+      } else if (res.status === 200 && data.duplicate) {
+        setQuickAddMessage(`"${wordForm}" is already in your list`);
+      } else if (res.status === 206) {
+        setQuickAddMessage(`Multiple senses — add "${wordForm}" from the search bar`);
+      } else {
+        setQuickAddMessage(data.error || `Could not add "${wordForm}"`);
+      }
+    } catch (_) {
+      setQuickAddMessage('Network error — please try again');
+    }
+    setTimeout(() => setQuickAddMessage(''), 3000);
+  }, []);
 
   // ── Mode A: Check typed answer ─────────────────────────────────────────────
   const handleFlashcardSubmit = (e) => {
@@ -299,6 +334,8 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
               <span className="text-[10px] font-black uppercase tracking-widest text-white/60">
                 {isMasteredReview
                   ? '⭐  Mastered Words Review'
+                  : isFamilyMode
+                  ? '🌳  Word Families'
                   : mode === 'flashcard' ? '✍️  Fill in the Blank' : '💬  Sentence Builder'
                 }
               </span>
@@ -504,6 +541,36 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
                 </div>
               )}
 
+              {/* Word Family — quick-add related forms */}
+              {wordFamilyEntries.length > 0 && (
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2">Word Family</p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {wordFamilyEntries.map(([pos, form]) => (
+                      <div key={pos} className="flex items-center justify-between px-3 py-2 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <div>
+                          <p className="text-[10px] font-black uppercase text-slate-400">{pos}</p>
+                          <p className="text-sm font-bold text-slate-800 dark:text-white capitalize">{form}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickAdd(form)}
+                          className="w-7 h-7 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-500 hover:text-emerald-600 transition-colors"
+                          title={`Add "${form}" to your Vocab Lab`}
+                        >
+                          <Plus size={13} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  {quickAddMessage && (
+                    <p className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-2">
+                      <CheckCircle size={13} /> {quickAddMessage}
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* Sentence input */}
               <form onSubmit={handleSentenceSubmit} className="space-y-2">
                 <p className="text-xs font-black uppercase tracking-widest text-slate-400">
@@ -591,6 +658,68 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
                   </p>
                 )}
               </form>
+            </>
+          )}
+
+          {/* ════ MODE D: WORD FAMILIES ════ */}
+
+          {mode === 'family' && phase === 'question' && (
+            <>
+              {/* Word card */}
+              <div
+                className="rounded-2xl p-6 text-white"
+                style={{ background: `linear-gradient(135deg, ${brandPrimary}, ${brandDark})` }}
+              >
+                <p className="text-[10px] font-black uppercase tracking-widest text-white/60 mb-1">
+                  {currentWord.part_of_speech}
+                </p>
+                <h3 className="text-4xl font-black tracking-tight capitalize mb-2">{currentWord.word}</h3>
+                <p className="text-sm text-white/80 leading-relaxed">{currentWord.primary_definition}</p>
+              </div>
+
+              {/* Word Family Matrix */}
+              {wordFamilyEntries.length > 0 ? (
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-3">Word Family</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {wordFamilyEntries.map(([pos, form]) => (
+                      <div key={pos} className="flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <div>
+                          <p className="text-[10px] font-black uppercase text-slate-400 mb-0.5">{pos}</p>
+                          <p className="text-sm font-bold text-slate-800 dark:text-white capitalize">{form}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleQuickAdd(form)}
+                          className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-500 hover:text-emerald-600 transition-colors flex-shrink-0"
+                          title={`Add "${form}" to your Vocab Lab`}
+                        >
+                          <Plus size={15} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-center py-8">
+                  <p className="text-sm font-medium text-slate-400">No word family data available</p>
+                </div>
+              )}
+
+              {/* Context sentence */}
+              {currentWord.context_sentence && (
+                <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Example Sentence</p>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 italic">"{currentWord.context_sentence}"</p>
+                </div>
+              )}
+
+              {/* Quick-add confirmation */}
+              {quickAddMessage && (
+                <p className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
+                  <CheckCircle size={13} /> {quickAddMessage}
+                </p>
+              )}
             </>
           )}
 
@@ -692,6 +821,16 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
               style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
             >
               Next Word <ChevronRight size={18} />
+            </button>
+          )}
+
+          {mode === 'family' && phase === 'question' && (
+            <button
+              onClick={() => advanceRef.current()}
+              className="w-full py-3.5 rounded-2xl font-black text-white transition-all hover:opacity-90 hover:shadow-lg flex items-center justify-center gap-2"
+              style={{ background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
+            >
+              Got it <ChevronRight size={18} />
             </button>
           )}
         </div>
