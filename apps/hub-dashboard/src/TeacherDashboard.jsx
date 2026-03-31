@@ -1121,13 +1121,13 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
             </button>
             <button
-              onClick={() => window.location.href = `/vocab/?token=${localStorage.getItem('token')}`}
+              onClick={() => window.location.href = '/vocab-lab'}
               className="bg-gradient-to-br from-emerald-700 to-green-900 hover:from-emerald-800 hover:to-green-950 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
             >
               <RefreshCw size={22} className="text-white/90 mb-3" />
               <div>
-                <h3 className="text-sm font-black tracking-tight leading-tight">Vocab Builder</h3>
-                <p className="text-[10px] text-white/70 mt-0.5">Academic Word Bank</p>
+                <h3 className="text-sm font-black tracking-tight leading-tight">Vocab Lab</h3>
+                <p className="text-[10px] text-white/70 mt-0.5">SRS vocabulary engine</p>
               </div>
             </button>
           </div>

@@ -845,15 +845,15 @@ export default function Dashboard() {
            )}
 
            <button
-              onClick={() => window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}`}
+              onClick={() => navigate('/vocab-lab')}
               className="bg-gradient-to-br from-amber-800 to-stone-800 hover:from-amber-900 hover:to-stone-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
            >
               <div className="flex items-center justify-between mb-2">
                  <RefreshCw size={24} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">Word Bank</span>
+                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">SRS Engine</span>
               </div>
-              <h3 className="text-lg font-black tracking-tight leading-tight">Vocab Builder</h3>
-              <p className="text-[10px] text-white/80 mt-1">Academic Word Bank</p>
+              <h3 className="text-lg font-black tracking-tight leading-tight">Vocab Lab</h3>
+              <p className="text-[10px] text-white/80 mt-1">Spaced repetition system</p>
            </button>
 
         </div>

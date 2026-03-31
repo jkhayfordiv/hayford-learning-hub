@@ -9,6 +9,7 @@ import AuthSuccess from './AuthSuccess';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import WordBank from './components/WordBank';
+import VocabLabDashboard from './components/VocabLab/VocabLabDashboard';
 
 const AUTH_PAGES = ['/login', '/forgot-password', '/reset-password', '/auth/success'];
 
@@ -92,6 +93,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <WordBank user={JSON.parse(localStorage.getItem('user') || '{}')} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vocab-lab"
+            element={
+              <ProtectedRoute>
+                <VocabLabDashboard />
               </ProtectedRoute>
             }
           />
