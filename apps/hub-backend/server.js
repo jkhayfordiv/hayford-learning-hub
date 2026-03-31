@@ -176,6 +176,10 @@ app.use('/api/institutions', institutionsRoutes);
 const wordbankRoutes = require('./routes/wordbank');
 app.use('/api/wordbank', wordbankRoutes);
 
+// Vocab Lab routes (SRS-powered vocabulary engine)
+const vocabLabRoutes = require('./routes/vocabLab');
+app.use('/api/vocab-lab', vocabLabRoutes);
+
 // IELTS routes (Speaking, Writing, etc.)
 const ieltsRoutes = require('./routes/ielts');
 app.use('/api/ielts', ieltsRoutes);
