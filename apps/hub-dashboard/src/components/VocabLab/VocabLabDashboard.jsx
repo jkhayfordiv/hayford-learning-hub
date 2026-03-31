@@ -201,7 +201,14 @@ export default function VocabLabDashboard() {
       title: 'Speak It',
       desc: 'Pronunciation practice',
       color: 'from-rose-600 to-pink-700',
-      onClick: () => showToast('success', 'Speak It coming in Phase 4!'),
+      onClick: () => {
+        if (masteredWords.length > 0) {
+          setIsMasteredReview(true);
+          setIsStudying(true);
+        } else {
+          showToast('error', 'You need to master at least one word first! Keep reviewing to level up.');
+        }
+      },
     },
     {
       id: 'add',

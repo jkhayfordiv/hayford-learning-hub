@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   X, CheckCircle, XCircle, Loader2, ArrowRight, ChevronRight,
-  AlertCircle, Sparkles, BookOpen, RotateCcw, Brain,
+  AlertCircle, Sparkles, BookOpen, RotateCcw, Brain, Mic,
 } from 'lucide-react';
 
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
@@ -14,7 +14,9 @@ function blankSentence(sentence, word) {
 }
 
 function getMode(srsLevel) {
-  return srsLevel <= 2 ? 'flashcard' : 'sentence';
+  if (srsLevel >= 5) return 'speak';
+  if (srsLevel <= 2) return 'flashcard';
+  return 'sentence';
 }
 
 // Level 0-3: show hints. Level 4+: blind production (word + POS only)
@@ -106,12 +108,17 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
   const [aiFeedback,    setAiFeedback]    = useState(null);
   const [inputError,    setInputError]    = useState('');
   const [results,       setResults]       = useState([]);
+  const [isListening,   setIsListening]   = useState(false);
+  const [speechError,   setSpeechError]   = useState('');
 
   const mainInputRef    = useRef(null);
   const confirmInputRef = useRef(null);
+  const recognitionRef  = useRef(null);
 
   const currentWord = words[currentIndex];
-  const mode        = currentWord ? getMode(currentWord.srs_level) : null;
+  const mode        = currentWord
+    ? (isMasteredReview ? 'speak' : getMode(currentWord.srs_level))
+    : null;
   const showHints   = currentWord ? shouldShowHints(currentWord.srs_level) : true;
   const collocations = Array.isArray(currentWord?.collocations) ? currentWord.collocations : [];
   const blanked      = currentWord ? blankSentence(currentWord.context_sentence, currentWord.word) : '';
@@ -134,6 +141,9 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
   // ── Advance helper (stable via ref) ────────────────────────────────────────
   const advanceRef = useRef(null);
   advanceRef.current = () => {
+    recognitionRef.current?.stop();
+    setIsListening(false);
+    setSpeechError('');
     setInputValue('');
     setConfirmInput('');
     setAiFeedback(null);
@@ -146,6 +156,43 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
       setPhase('question');
     }
   };
+
+  // ── Speech Recognition ─────────────────────────────────────────────────────
+  const toggleListening = () => {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      setSpeechError('Speech recognition not supported — try Chrome or Edge, or type below.');
+      return;
+    }
+    if (isListening) {
+      recognitionRef.current?.stop();
+      return;
+    }
+    setSpeechError('');
+    const recognition = new SR();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    recognition.onstart  = () => setIsListening(true);
+    recognition.onend    = () => setIsListening(false);
+    recognition.onerror  = (e) => {
+      setIsListening(false);
+      if (e.error !== 'aborted' && e.error !== 'no-speech') {
+        setSpeechError('Could not understand — please try again or type below.');
+      }
+    };
+    recognition.onresult = (e) => {
+      const text = Array.from(e.results).map(r => r[0].transcript).join('');
+      setInputValue(text);
+      setInputError('');
+      if (e.results[e.results.length - 1].isFinal) setIsListening(false);
+    };
+    recognitionRef.current = recognition;
+    recognition.start();
+  };
+
+  // Stop recognition on unmount
+  useEffect(() => () => recognitionRef.current?.stop(), []);
 
   // ── Auto-advance after correct flashcard ───────────────────────────────────
   useEffect(() => {
@@ -479,7 +526,75 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
             </>
           )}
 
-          {mode === 'sentence' && phase === 'grading' && (
+          {/* ════ MODE C: SPEAK IT ════ */}
+
+          {mode === 'speak' && phase === 'question' && (
+            <>
+              {/* Blind word card */}
+              <div
+                className="rounded-2xl p-6 text-white"
+                style={{ background: `linear-gradient(135deg, ${brandPrimary}, ${brandDark})` }}
+              >
+                <p className="text-[10px] font-black uppercase tracking-widest text-white/60 mb-1">
+                  {currentWord.part_of_speech}
+                </p>
+                <h3 className="text-4xl font-black tracking-tight capitalize mb-3">{currentWord.word}</h3>
+                <p className="text-xs text-white/40 italic">Speak a sentence from memory</p>
+              </div>
+
+              {/* Mic button */}
+              <div className="flex flex-col items-center gap-3 py-2">
+                <div className="relative flex items-center justify-center">
+                  {isListening && (
+                    <span className="absolute inline-flex w-28 h-28 rounded-full bg-red-400/30 animate-ping" />
+                  )}
+                  <button
+                    type="button"
+                    onClick={toggleListening}
+                    className={`relative w-24 h-24 rounded-full flex items-center justify-center transition-all shadow-xl ${
+                      isListening
+                        ? 'bg-red-500 hover:bg-red-600 scale-110 ring-4 ring-red-300 ring-offset-2 dark:ring-offset-slate-800'
+                        : 'bg-rose-600 hover:bg-rose-700 hover:scale-105'
+                    }`}
+                  >
+                    <Mic size={40} className="text-white" />
+                  </button>
+                </div>
+                <p className={`text-sm font-bold transition-colors ${
+                  isListening ? 'text-red-500 dark:text-red-400' : 'text-slate-400'
+                }`}>
+                  {isListening ? '🔴 Listening...' : 'Tap to speak'}
+                </p>
+                {speechError && (
+                  <p className="flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-300 font-semibold bg-amber-50 dark:bg-amber-900/20 px-4 py-2 rounded-xl border border-amber-200 dark:border-amber-700 text-center">
+                    <AlertCircle size={13} className="flex-shrink-0" /> {speechError}
+                  </p>
+                )}
+              </div>
+
+              {/* Editable transcript */}
+              <form onSubmit={handleSentenceSubmit} className="space-y-2">
+                <p className="text-xs font-black uppercase tracking-widest text-slate-400">
+                  {inputValue ? 'Your sentence (edit if needed)' : 'Your sentence'}
+                </p>
+                <textarea
+                  ref={mainInputRef}
+                  value={inputValue}
+                  onChange={e => { setInputValue(e.target.value); setInputError(''); }}
+                  placeholder="Speak using the mic above, or type your sentence here..."
+                  rows={3}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-600 rounded-2xl px-5 py-3.5 text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-slate-400 dark:focus:border-slate-400 transition-colors resize-none"
+                />
+                {inputError && (
+                  <p className="flex items-center gap-1.5 text-xs text-red-600 font-semibold">
+                    <AlertCircle size={13} /> {inputError}
+                  </p>
+                )}
+              </form>
+            </>
+          )}
+
+          {(mode === 'sentence' || mode === 'speak') && phase === 'grading' && (
             <div className="flex flex-col items-center py-16 gap-4 text-center">
               <Loader2 size={44} className="animate-spin text-slate-400" />
               <div>
@@ -489,7 +604,7 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
             </div>
           )}
 
-          {mode === 'sentence' && phase === 'ai_feedback' && aiFeedback && (
+          {(mode === 'sentence' || mode === 'speak') && phase === 'ai_feedback' && aiFeedback && (
             <>
               {/* Result card */}
               <div className={`rounded-2xl p-6 border-2 ${
@@ -549,7 +664,7 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
             </button>
           )}
 
-          {phase === 'question' && mode === 'sentence' && (
+          {phase === 'question' && (mode === 'sentence' || mode === 'speak') && (
             <button
               onClick={handleSentenceSubmit}
               disabled={!inputValue.trim()}
