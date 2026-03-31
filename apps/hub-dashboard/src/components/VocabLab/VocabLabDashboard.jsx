@@ -9,6 +9,7 @@ import {
 import logo from '../../assets/logo.png';
 import StudySession from './StudySession';
 import FlashcardSandbox from './FlashcardSandbox';
+import VocabQuizModal from './VocabQuizModal';
 
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
@@ -82,6 +83,47 @@ export default function VocabLabDashboard() {
   const [isSandboxMode,   setIsSandboxMode]   = useState(false);
   const [isFamilyMode,    setIsFamilyMode]    = useState(false);
   const [isSandboxOpen, setIsSandboxOpen] = useState(false);
+  const [isQuizOpen,    setIsQuizOpen]    = useState(false);
+
+  // ── Quiz cooldown (1 hour) ─────────────────────────────────────────────────
+  const COOLDOWN_KEY = 'vocab_quiz_cooldown';
+  const COOLDOWN_MS  = 60 * 60 * 1000;
+  const getQuizCooldownRemaining = () => {
+    const ts = localStorage.getItem(COOLDOWN_KEY);
+    if (!ts) return 0;
+    const elapsed = Date.now() - parseInt(ts, 10);
+    return Math.max(0, COOLDOWN_MS - elapsed);
+  };
+  const [cooldownMs, setCooldownMs] = useState(getQuizCooldownRemaining);
+
+  useEffect(() => {
+    if (cooldownMs <= 0) return;
+    const interval = setInterval(() => {
+      const remaining = getQuizCooldownRemaining();
+      setCooldownMs(remaining);
+      if (remaining <= 0) clearInterval(interval);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [cooldownMs]);
+
+  const formatCooldown = (ms) => {
+    const totalSecs = Math.ceil(ms / 1000);
+    const mins = Math.floor(totalSecs / 60);
+    const secs = totalSecs % 60;
+    return mins > 0 ? `${mins}m` : `${secs}s`;
+  };
+
+  const handleGenerateQuiz = () => {
+    const starredCount = allWords.filter(w => w.is_starred).length;
+    if (starredCount < 5) {
+      showToast('error', 'You need at least 5 starred words to generate a quiz.');
+      return;
+    }
+    if (cooldownMs > 0) return;
+    localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
+    setCooldownMs(COOLDOWN_MS);
+    setIsQuizOpen(true);
+  };
 
   // My Lists modal + Word Family overlay
   const [listModal,       setListModal]       = useState(null); // { title, words }
@@ -561,6 +603,38 @@ export default function VocabLabDashboard() {
                     ))}
                   </div>
                 )}
+
+                {/* Generate AI Quiz button */}
+                {(() => {
+                  const onCooldown = cooldownMs > 0;
+                  const starredCount = allWords.filter(w => w.is_starred).length;
+                  const notEnough = starredCount < 5;
+                  const disabled = onCooldown || notEnough;
+                  return (
+                    <button
+                      onClick={handleGenerateQuiz}
+                      disabled={disabled}
+                      className={`mt-4 w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl font-black text-sm transition-all ${
+                        disabled
+                          ? 'bg-slate-100 dark:bg-slate-700/50 text-slate-400 dark:text-slate-500 cursor-not-allowed'
+                          : 'text-white shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95'
+                      }`}
+                      style={disabled ? {} : { background: `linear-gradient(to right, ${brandPrimary}, ${brandDark})` }}
+                      title={
+                        onCooldown ? `Available in ${formatCooldown(cooldownMs)}`
+                          : notEnough ? 'Star at least 5 words to unlock'
+                          : 'Generate a 5-question quiz from your starred words'
+                      }
+                    >
+                      <Sparkles size={15} />
+                      {onCooldown
+                        ? `Available in ${formatCooldown(cooldownMs)}`
+                        : notEnough
+                        ? `Star ${5 - starredCount} more word${5 - starredCount !== 1 ? 's' : ''} to unlock quiz`
+                        : 'Generate AI Quiz'}
+                    </button>
+                  );
+                })()}
               </div>
 
             </div>
@@ -568,6 +642,15 @@ export default function VocabLabDashboard() {
         )}
       </main>
 
+
+      {/* ══════════════ VOCAB QUIZ MODAL ══════════════ */}
+      {isQuizOpen && (
+        <VocabQuizModal
+          brandPrimary={brandPrimary}
+          brandDark={brandDark}
+          onClose={() => setIsQuizOpen(false)}
+        />
+      )}
 
       {/* ══════════════ DISAMBIGUATION MODAL ══════════════ */}
       {disambigOptions && (

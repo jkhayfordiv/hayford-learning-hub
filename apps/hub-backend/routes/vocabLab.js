@@ -607,4 +607,83 @@ Keep your feedback_text to 1-2 encouraging sentences appropriate for a language 
   }
 });
 
+// ============================================================================
+// POST /api/vocab-lab/generate-quiz
+// Generates a 5-question multiple-choice quiz from the user's starred words
+// ============================================================================
+const QUIZ_SCHEMA = {
+  type: SchemaType.OBJECT,
+  properties: {
+    quiz: {
+      type: SchemaType.ARRAY,
+      items: {
+        type: SchemaType.OBJECT,
+        properties: {
+          question:       { type: SchemaType.STRING },
+          options:        { type: SchemaType.ARRAY, items: { type: SchemaType.STRING } },
+          correct_answer: { type: SchemaType.STRING },
+          explanation:    { type: SchemaType.STRING },
+        },
+        required: ['question', 'options', 'correct_answer', 'explanation'],
+      },
+    },
+  },
+  required: ['quiz'],
+};
+
+router.post('/generate-quiz', auth, async (req, res) => {
+  const user_id = req.user.id;
+  const connection = await pool.getConnection();
+  try {
+    const [starred] = await connection.query(
+      `SELECT uv.id AS user_word_id, gw.word, gw.part_of_speech, gw.primary_definition, gw.context_sentence
+       FROM user_vocabulary uv
+       JOIN global_words gw ON gw.id = uv.global_word_id
+       WHERE uv.user_id = $1 AND uv.is_starred = true
+       ORDER BY RANDOM()
+       LIMIT 5`,
+      [user_id]
+    );
+    connection.release();
+
+    if (starred.length < 5) {
+      return res.status(400).json({
+        error: 'You need at least 5 starred words to generate a quiz.',
+      });
+    }
+
+    const wordList = starred.map(w => `"${w.word}" (${w.part_of_speech}): ${w.primary_definition}`).join('\n');
+
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      generationConfig: {
+        responseSchema: QUIZ_SCHEMA,
+        responseMimeType: 'application/json',
+      },
+    });
+
+    const prompt = `You are an EFL vocabulary quiz creator for A2-B1 English learners.
+
+Create a 5-question multiple-choice vocabulary quiz using EXACTLY these 5 target words (one question per word):
+${wordList}
+
+For each question:
+- Write a simple fill-in-the-blank sentence at A2-B1 CEFR level (under 15 words, basic grammar).
+- The blank (______) replaces the target word in the sentence.
+- Provide exactly 4 options: the 1 correct answer and 3 plausible distractor words of the same part of speech.
+- Write a short, friendly explanation (1 sentence) of why the correct answer is right.
+
+Return a JSON object with a "quiz" array of exactly 5 items.`;
+
+    const result = await model.generateContent(prompt);
+    const parsed = JSON.parse(result.response.text());
+
+    res.json({ quiz: parsed.quiz || [] });
+  } catch (err) {
+    if (connection) connection.release();
+    console.error('Error in POST /api/vocab-lab/generate-quiz:', err.message);
+    res.status(500).json({ error: 'Failed to generate quiz. Please try again.' });
+  }
+});
+
 module.exports = router;
