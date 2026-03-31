@@ -2,6 +2,19 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../db');
 const auth = require('../middleware/auth');
+const { GoogleGenerativeAI, SchemaType } = require('@google/generative-ai');
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+const GRADE_SCHEMA = {
+  type: SchemaType.OBJECT,
+  properties: {
+    word_used_correctly: { type: SchemaType.BOOLEAN },
+    grammar_acceptable:  { type: SchemaType.BOOLEAN },
+    feedback_text:       { type: SchemaType.STRING },
+  },
+  required: ['word_used_correctly', 'grammar_acceptable', 'feedback_text'],
+};
 
 // SRS interval schedule (days per level)
 const SRS_INTERVALS = {
@@ -299,6 +312,74 @@ router.patch('/star/:user_word_id', auth, async (req, res) => {
     connection.release();
     console.error('Error in PATCH /api/vocab-lab/star:', err.message);
     res.status(500).json({ error: 'Failed to update star status' });
+  }
+});
+
+// ============================================================================
+// POST /api/vocab-lab/grade
+// Grades a student's sentence for Mode B (Sentence Builder) using Gemini AI
+// ============================================================================
+router.post('/grade', auth, async (req, res) => {
+  const user_id = req.user.id;
+  const { user_word_id, sentence } = req.body;
+
+  if (!user_word_id || !sentence || !sentence.trim()) {
+    return res.status(400).json({ error: 'user_word_id and sentence are required' });
+  }
+
+  const connection = await pool.getConnection();
+
+  try {
+    // Fetch word data — enforce user ownership
+    const [rows] = await connection.query(
+      `SELECT uv.id, uv.srs_level, gw.word, gw.part_of_speech, gw.primary_definition
+       FROM user_vocabulary uv
+       JOIN global_words gw ON gw.id = uv.global_word_id
+       WHERE uv.id = $1 AND uv.user_id = $2`,
+      [user_word_id, user_id]
+    );
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Word not found or access denied' });
+    }
+
+    const { word, part_of_speech, primary_definition } = rows[0];
+
+    const prompt = `You are an English language tutor evaluating an EAP (English for Academic Purposes) student.
+
+Target vocabulary word: "${word}" (${part_of_speech})
+Definition: "${primary_definition}"
+Student's sentence: "${sentence}"
+
+Evaluate:
+1. Did the student use the word "${word}" correctly in terms of meaning and grammar?
+2. Is the overall grammar of the sentence acceptable for an intermediate EAP learner?
+
+Keep your feedback_text to 1-2 encouraging sentences appropriate for a language learner.`;
+
+    const model = genAI.getGenerativeModel({
+      model: 'gemini-2.5-flash',
+      generationConfig: {
+        responseSchema: GRADE_SCHEMA,
+        responseMimeType: 'application/json',
+      },
+    });
+
+    const result = await model.generateContent(prompt);
+    const text = result.response.text();
+    const parsed = JSON.parse(text);
+
+    res.json({
+      word_used_correctly: parsed.word_used_correctly,
+      grammar_acceptable:  parsed.grammar_acceptable,
+      feedback_text:       parsed.feedback_text,
+      is_correct:          parsed.word_used_correctly,
+    });
+  } catch (err) {
+    if (connection) connection.release();
+    console.error('Error in POST /api/vocab-lab/grade:', err.message);
+    res.status(500).json({ error: 'Failed to grade sentence' });
   }
 });
 

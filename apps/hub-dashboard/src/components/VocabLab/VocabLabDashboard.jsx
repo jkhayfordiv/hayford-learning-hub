@@ -6,6 +6,7 @@ import {
   Sparkles, Zap, ChevronRight, FlaskConical, User, LogOut,
 } from 'lucide-react';
 import logo from '../../assets/logo.png';
+import StudySession from './StudySession';
 
 const API_BASE = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
@@ -59,6 +60,7 @@ export default function VocabLabDashboard() {
   const [stats,        setStats]        = useState({ total_mastered: 0, total_learning: 0, total_words: 0 });
   const [isLoading,    setIsLoading]    = useState(true);
   const [toast,        setToast]        = useState(null);
+  const [isStudying,   setIsStudying]   = useState(false);
 
   // Add Word modal
   const [isAddModalOpen,    setIsAddModalOpen]    = useState(false);
@@ -315,7 +317,7 @@ export default function VocabLabDashboard() {
                   )}
 
                   <button
-                    onClick={() => showToast('success', 'Full review mode coming in Phase 4!')}
+                    onClick={() => { if (dueToday.length > 0) setIsStudying(true); }}
                     disabled={dueToday.length === 0}
                     className="inline-flex items-center gap-3 bg-white text-slate-900 font-black px-8 py-4 rounded-2xl text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:scale-100"
                   >
@@ -598,6 +600,17 @@ export default function VocabLabDashboard() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* ══════════════ STUDY SESSION ══════════════ */}
+      {isStudying && (
+        <StudySession
+          words={dueToday}
+          brandPrimary={brandPrimary}
+          brandDark={brandDark}
+          onClose={() => setIsStudying(false)}
+          onComplete={() => { setIsStudying(false); fetchDashboard(); }}
+        />
       )}
 
       {/* ══════════════ TOAST ══════════════ */}
