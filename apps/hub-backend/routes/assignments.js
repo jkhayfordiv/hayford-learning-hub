@@ -3,12 +3,30 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const requireTeacher = require('../middleware/requireTeacher');
 const { pool } = require('../db');
+const { ensureWordInGlobalWords, addWordToUserVocab } = require('../utils/vocabLabUtils');
+
+// Push a word list into each student's Vocab Lab (fire-and-forget errors per word)
+async function pushVocabWords(connection, words, studentIds) {
+  if (!words || !words.length || !studentIds.length) return;
+  for (const wordStr of words) {
+    if (!wordStr || !wordStr.trim()) continue;
+    try {
+      const globalWordRows = await ensureWordInGlobalWords(connection, wordStr);
+      const globalWord = globalWordRows[0];
+      for (const studentId of studentIds) {
+        await addWordToUserVocab(connection, studentId, globalWord.id);
+      }
+    } catch (err) {
+      console.warn(`[assignments] pushVocabWords: skipping "${wordStr}" —`, err.message);
+    }
+  }
+}
 
 // @route   POST api/assignments
 // @desc    Create a new assignment(s) for a specific student, entire class, or all students
 // @access  Private (Teacher/Admin only)
 router.post('/', requireTeacher, async (req, res) => {
-  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts } = req.body;
+  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, vocab_words } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
   let connection;
@@ -78,6 +96,9 @@ router.post('/', requireTeacher, async (req, res) => {
         [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
       );
       
+      if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
+        await pushVocabWords(connection, vocab_words, [parseInt(student_id, 10)]);
+      }
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
     } else if (class_id) {
       const classIdNum = parseInt(class_id, 10);
@@ -161,6 +182,9 @@ router.post('/', requireTeacher, async (req, res) => {
         }
       }
 
+      if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
+        await pushVocabWords(connection, vocab_words, students.map(s => s.id));
+      }
       return res.status(201).json({ success: true, message: `Assignment created for ${count} students in class.` });
     } else {
       // FIX #3: Assign to "all students" with multi-tenancy privacy walls
@@ -211,6 +235,9 @@ router.post('/', requireTeacher, async (req, res) => {
         }
       }
       
+      if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
+        await pushVocabWords(connection, vocab_words, students.map(s => s.id));
+      }
       return res.status(201).json({ success: true, message: `Assignment created for ${count} students.` });
     }
   } catch (error) {

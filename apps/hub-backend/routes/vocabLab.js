@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('../db');
 const auth = require('../middleware/auth');
+const requireTeacher = require('../middleware/requireTeacher');
 const { GoogleGenerativeAI, SchemaType } = require('@google/generative-ai');
+const { ensureWordInGlobalWords, addWordToUserVocab } = require('../utils/vocabLabUtils');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
@@ -183,8 +185,21 @@ router.post('/add', auth, async (req, res) => {
     }
 
     if (globalWordRows.length === 0) {
-      connection.release();
-      return res.status(404).json({ error: `"${word || sense_id}" was not found in the vocabulary dictionary` });
+      if (sense_id) {
+        // sense_id lookups can't fall back to AI — the sense must already exist
+        connection.release();
+        return res.status(404).json({ error: `Sense "${sense_id}" was not found in the dictionary.` });
+      }
+      // ── AI fallback: generate the word on-the-fly ────────────────────────────
+      try {
+        globalWordRows = await ensureWordInGlobalWords(connection, word);
+      } catch (genErr) {
+        connection.release();
+        if (genErr.code === 'INVALID_WORD') {
+          return res.status(400).json({ error: genErr.message });
+        }
+        return res.status(400).json({ error: genErr.message || `Failed to generate entry for "${word}". Check the spelling.` });
+      }
     }
 
     // Multiple senses found — ask frontend to disambiguate
@@ -337,6 +352,91 @@ router.patch('/star/:user_word_id', auth, async (req, res) => {
     connection.release();
     console.error('Error in PATCH /api/vocab-lab/star:', err.message);
     res.status(500).json({ error: 'Failed to update star status' });
+  }
+});
+
+// ============================================================================
+// POST /api/vocab-lab/assign
+// Teacher/Admin: push a list of words into each target student's Vocab Lab
+// Body: { words: string[], student_id?: number, class_id?: number }
+// ============================================================================
+router.post('/assign', requireTeacher, async (req, res) => {
+  const teacher_id = req.user.id;
+  const actor_role = req.user.role;
+  const { words, student_id, class_id } = req.body;
+
+  if (!words || !Array.isArray(words) || words.length === 0) {
+    return res.status(400).json({ error: 'words must be a non-empty array of strings' });
+  }
+  if (!student_id && !class_id) {
+    return res.status(400).json({ error: 'Either student_id or class_id is required' });
+  }
+
+  const connection = await pool.getConnection();
+
+  try {
+    // ── Resolve target students ───────────────────────────────────────────────
+    let students;
+    if (student_id) {
+      students = [{ id: parseInt(student_id, 10) }];
+    } else {
+      // Verify class access
+      const [classRows] = await connection.query(
+        `SELECT id, teacher_id, institution_id FROM classes WHERE id = $1`,
+        [class_id]
+      );
+      if (classRows.length === 0) {
+        connection.release();
+        return res.status(404).json({ error: 'Class not found.' });
+      }
+      const classInfo = classRows[0];
+      if (actor_role === 'teacher' && Number(classInfo.teacher_id) !== Number(teacher_id)) {
+        connection.release();
+        return res.status(403).json({ error: 'You can only assign to your own classes.' });
+      }
+
+      const [studentRows] = await connection.query(
+        `SELECT u.id FROM users u
+         JOIN class_enrollments ce ON u.id = ce.user_id
+         WHERE ce.class_id = $1 AND u.role = 'student'`,
+        [class_id]
+      );
+      students = studentRows;
+    }
+
+    if (students.length === 0) {
+      connection.release();
+      return res.status(400).json({ error: 'No students found for this target.' });
+    }
+
+    // ── Process each word ─────────────────────────────────────────────────────
+    const results = [];
+    for (const wordStr of words) {
+      if (!wordStr || !wordStr.trim()) continue;
+      try {
+        const globalWordRows = await ensureWordInGlobalWords(connection, wordStr);
+        const globalWord = globalWordRows[0];
+        let addedCount = 0;
+        for (const student of students) {
+          const { added } = await addWordToUserVocab(connection, student.id, globalWord.id);
+          if (added) addedCount++;
+        }
+        results.push({ word: globalWord.word, added_to: addedCount, status: 'ok' });
+      } catch (genErr) {
+        results.push({ word: wordStr, status: 'error', reason: genErr.message });
+      }
+    }
+
+    connection.release();
+    const okCount = results.filter(r => r.status === 'ok').length;
+    res.status(200).json({
+      message: `Vocab assignment complete. ${okCount}/${results.length} word(s) processed for ${students.length} student(s).`,
+      results,
+    });
+  } catch (err) {
+    connection.release();
+    console.error('Error in POST /api/vocab-lab/assign:', err.message);
+    res.status(500).json({ error: 'Failed to assign vocabulary' });
   }
 });
 
