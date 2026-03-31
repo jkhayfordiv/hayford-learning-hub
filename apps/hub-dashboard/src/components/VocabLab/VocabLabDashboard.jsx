@@ -61,6 +61,8 @@ export default function VocabLabDashboard() {
   const [isLoading,    setIsLoading]    = useState(true);
   const [toast,        setToast]        = useState(null);
   const [isStudying,   setIsStudying]   = useState(false);
+  const [isMasteredReview, setIsMasteredReview] = useState(false);
+  const [masteredWords, setMasteredWords] = useState([]);
 
   // Add Word modal
   const [isAddModalOpen,    setIsAddModalOpen]    = useState(false);
@@ -92,6 +94,7 @@ export default function VocabLabDashboard() {
       const data = await res.json();
       setDueToday(data.due_today || []);
       setStarredWords(data.starred_words || []);
+      setMasteredWords(data.mastered_words || []);
       setStats(data.stats || { total_mastered: 0, total_learning: 0, total_words: 0 });
     } catch (err) {
       showToast('error', err.message || 'Could not load Vocab Lab data');
@@ -388,15 +391,30 @@ export default function VocabLabDashboard() {
               <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
                 <h4 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-5">Your Progress</h4>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl border border-emerald-100 dark:border-emerald-800">
-                    <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/40 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <button
+                    onClick={() => {
+                      if (masteredWords.length > 0) {
+                        setIsMasteredReview(true);
+                        setIsStudying(true);
+                      } else {
+                        showToast('success', 'No mastered words yet — keep reviewing to level up!');
+                      }
+                    }}
+                    className="w-full flex items-center gap-4 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl border border-emerald-100 dark:border-emerald-800 hover:border-emerald-300 dark:hover:border-emerald-600 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-all group text-left"
+                  >
+                    <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/40 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800/60 transition-colors">
                       <Trophy size={20} className="text-emerald-600 dark:text-emerald-400" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-2xl font-black text-emerald-700 dark:text-emerald-400">{stats.total_mastered}</p>
                       <p className="text-xs font-bold text-emerald-600 dark:text-emerald-500 uppercase tracking-wide">Mastered Words</p>
                     </div>
-                  </div>
+                    {masteredWords.length > 0 && (
+                      <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
+                        Review →
+                      </span>
+                    )}
+                  </button>
                   <div className="flex items-center gap-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-2xl border border-blue-100 dark:border-blue-800">
                     <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/40 rounded-xl flex items-center justify-center flex-shrink-0">
                       <BarChart3 size={20} className="text-blue-600 dark:text-blue-400" />
@@ -605,11 +623,12 @@ export default function VocabLabDashboard() {
       {/* ══════════════ STUDY SESSION ══════════════ */}
       {isStudying && (
         <StudySession
-          words={dueToday}
+          words={isMasteredReview ? masteredWords : dueToday}
+          isMasteredReview={isMasteredReview}
           brandPrimary={brandPrimary}
           brandDark={brandDark}
-          onClose={() => setIsStudying(false)}
-          onComplete={() => { setIsStudying(false); fetchDashboard(); }}
+          onClose={() => { setIsStudying(false); setIsMasteredReview(false); }}
+          onComplete={() => { setIsStudying(false); setIsMasteredReview(false); fetchDashboard(); }}
         />
       )}
 

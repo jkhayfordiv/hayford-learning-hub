@@ -17,6 +17,11 @@ function getMode(srsLevel) {
   return srsLevel <= 2 ? 'flashcard' : 'sentence';
 }
 
+// Level 0-3: show hints. Level 4+: blind production (word + POS only)
+function shouldShowHints(srsLevel) {
+  return srsLevel <= 3;
+}
+
 // ─── Session Complete Screen ──────────────────────────────────────────────────
 function SessionComplete({ results, onComplete, brandPrimary, brandDark }) {
   const correct = results.filter(r => r.is_correct).length;
@@ -91,7 +96,7 @@ function SessionComplete({ results, onComplete, brandPrimary, brandDark }) {
 }
 
 // ─── Main StudySession Component ──────────────────────────────────────────────
-export default function StudySession({ words, onComplete, onClose, brandPrimary, brandDark }) {
+export default function StudySession({ words, onComplete, onClose, brandPrimary, brandDark, isMasteredReview = false }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [phase, setPhase] = useState('question');
   // phases: 'question' | 'correct' | 'wrong' | 'grading' | 'ai_feedback' | 'complete'
@@ -107,6 +112,7 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
 
   const currentWord = words[currentIndex];
   const mode        = currentWord ? getMode(currentWord.srs_level) : null;
+  const showHints   = currentWord ? shouldShowHints(currentWord.srs_level) : true;
   const collocations = Array.isArray(currentWord?.collocations) ? currentWord.collocations : [];
   const blanked      = currentWord ? blankSentence(currentWord.context_sentence, currentWord.word) : '';
 
@@ -148,14 +154,15 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
     return () => clearTimeout(t);
   }, [phase, currentIndex]);
 
-  // ── Fire-and-forget SRS update ─────────────────────────────────────────────
+  // ── Fire-and-forget SRS update (skipped in mastered review mode) ──────────
   const submitReview = useCallback((userWordId, isCorrect) => {
+    if (isMasteredReview) return;
     fetch(`${API_BASE}/api/vocab-lab/review`, {
       method: 'POST',
       headers: authHeaders(),
       body: JSON.stringify({ user_word_id: userWordId, is_correct: isCorrect }),
     }).catch(() => {});
-  }, []);
+  }, [isMasteredReview]);
 
   // ── Mode A: Check typed answer ─────────────────────────────────────────────
   const handleFlashcardSubmit = (e) => {
@@ -243,7 +250,10 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-white/60">
-                {mode === 'flashcard' ? '✍️  Fill in the Blank' : '💬  Sentence Builder'}
+                {isMasteredReview
+                  ? '⭐  Mastered Words Review'
+                  : mode === 'flashcard' ? '✍️  Fill in the Blank' : '💬  Sentence Builder'
+                }
               </span>
               <span className="text-[10px] text-white/40">·</span>
               <span className="text-[10px] font-bold text-white/60">
@@ -410,11 +420,16 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
                   {currentWord.part_of_speech}
                 </p>
                 <h3 className="text-4xl font-black tracking-tight capitalize mb-3">{currentWord.word}</h3>
-                <p className="text-sm text-white/80 leading-relaxed">{currentWord.primary_definition}</p>
+                {showHints && (
+                  <p className="text-sm text-white/80 leading-relaxed">{currentWord.primary_definition}</p>
+                )}
+                {!showHints && (
+                  <p className="text-xs text-white/40 italic">No hints — write from memory</p>
+                )}
               </div>
 
-              {/* Collocations */}
-              {collocations.length > 0 && (
+              {/* Collocations — only shown when hints are enabled */}
+              {showHints && collocations.length > 0 && (
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2">
                     Common collocations
@@ -429,6 +444,16 @@ export default function StudySession({ words, onComplete, onClose, brandPrimary,
                       </span>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* Blind mode badge */}
+              {!showHints && (
+                <div className="flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-xl">
+                  <AlertCircle size={14} className="text-amber-500 flex-shrink-0" />
+                  <p className="text-xs font-semibold text-amber-700 dark:text-amber-300">
+                    Blind production — use the word correctly from memory
+                  </p>
                 </div>
               )}
 

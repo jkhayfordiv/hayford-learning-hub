@@ -90,6 +90,30 @@ router.get('/dashboard', auth, async (req, res) => {
       [user_id]
     );
 
+    // Mastered words (srs_level >= 5) — for voluntary review sessions
+    const [masteredRows] = await connection.query(
+      `SELECT
+         uv.id            AS user_word_id,
+         uv.srs_level,
+         uv.next_review_date,
+         uv.is_starred,
+         uv.last_reviewed_at,
+         gw.id            AS global_word_id,
+         gw.sense_id,
+         gw.word,
+         gw.part_of_speech,
+         gw.primary_definition,
+         gw.collocations,
+         gw.word_family,
+         gw.context_sentence
+       FROM user_vocabulary uv
+       JOIN global_words gw ON gw.id = uv.global_word_id
+       WHERE uv.user_id = $1
+         AND uv.srs_level >= 5
+       ORDER BY gw.word ASC`,
+      [user_id]
+    );
+
     // Stats: mastered (srs_level >= 5) and total learning
     const [statsRows] = await connection.query(
       `SELECT
@@ -108,6 +132,7 @@ router.get('/dashboard', auth, async (req, res) => {
     res.json({
       due_today:     dueTodayRows,
       starred_words: starredRows,
+      mastered_words: masteredRows,
       stats: {
         total_mastered: parseInt(stats.total_mastered, 10),
         total_learning: parseInt(stats.total_learning, 10),
