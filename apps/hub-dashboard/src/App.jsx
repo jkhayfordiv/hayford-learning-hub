@@ -10,6 +10,7 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import WordBank from './components/WordBank';
 import VocabLabDashboard from './components/VocabLab/VocabLabDashboard';
+import SentenceBuilderPage from './components/VocabLab/SentenceBuilderPage';
 
 const AUTH_PAGES = ['/login', '/forgot-password', '/reset-password', '/auth/success'];
 
@@ -101,6 +102,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <VocabLabDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/sentence-builder"
+            element={
+              <ProtectedRoute>
+                <SentenceBuilderPage />
               </ProtectedRoute>
             }
           />

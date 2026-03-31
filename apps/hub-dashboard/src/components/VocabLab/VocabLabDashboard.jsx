@@ -255,12 +255,17 @@ export default function VocabLabDashboard() {
       id: 'sentence',
       icon: PenTool,
       title: 'Sentence Builder',
-      desc: 'Use words in context',
+      desc: 'Practice with starred words',
       color: 'from-violet-600 to-purple-700',
       onClick: () => {
-        const words = allWords.filter(w => w.srs_level < 5);
-        if (words.length === 0) { showToast('error', 'No learning words yet — add some words first!'); return; }
-        setSandboxWords(words); setIsSandboxMode(true); setIsFamilyMode(false); setIsMasteredReview(false); setIsStudying(true);
+        const starred = allWords.filter(w => w.is_starred);
+        if (starred.length === 0) {
+          showToast('error', 'Please star some words first to use the Sentence Builder!');
+          return;
+        }
+        const shuffled = [...starred].sort(() => Math.random() - 0.5);
+        const selected = shuffled.slice(0, 5);
+        navigate('/sentence-builder', { state: { words: selected } });
       },
     },
     {

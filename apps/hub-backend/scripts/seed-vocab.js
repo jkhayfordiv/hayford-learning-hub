@@ -44,7 +44,7 @@ Requirements:
 2. Provide a clear, student-friendly definition
 3. List 4-6 common academic collocations (phrases this word commonly appears with)
 4. Provide the word family (related forms: noun, verb, adjective, adverb, etc.)
-5. Create a natural academic context sentence demonstrating proper usage
+5. Create a context sentence (MUST be A2-B1 CEFR level: simple grammar, common words, under 15 words, no complex academic structures)
 6. Indicate if it's a separable phrasal verb (true/false)
 
 Return ONLY valid JSON matching this exact structure:

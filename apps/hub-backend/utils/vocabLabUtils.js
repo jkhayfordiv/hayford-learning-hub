@@ -83,7 +83,7 @@ Guidelines:
 - Focus on the primary ACADEMIC sense of the word.
 - collocations: 4-6 common academic collocations as short phrases.
 - word_family: only include forms that actually exist in English.
-- context_sentence: one natural, academic-register example sentence.`;
+- context_sentence: MUST be simple enough for an A2-B1 English learner to understand. Use basic grammar and high-frequency surrounding words. Do not use complex, PhD-level academic structures. Keep it under 15 words.`;
 
   let parsed;
   try {
