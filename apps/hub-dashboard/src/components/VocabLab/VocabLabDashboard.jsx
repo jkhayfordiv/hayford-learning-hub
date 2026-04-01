@@ -305,7 +305,10 @@ export default function VocabLabDashboard() {
           showToast('error', 'No learning words yet — add some words first!');
           return;
         }
-        navigate('/sentence-builder', { state: { words: learningWords } });
+        const shuffled = [...learningWords].sort(() => Math.random() - 0.5);
+        const wordStrings = shuffled.map(w => w.word);
+        sessionStorage.setItem('custom_practice_words', JSON.stringify(wordStrings));
+        window.location.href = '/vocab-tool';
       },
     },
     {
