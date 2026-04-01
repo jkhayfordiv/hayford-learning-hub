@@ -51,7 +51,7 @@ const upload = multer({
 // @route   POST /api/ielts/evaluate
 // @desc    Evaluate IELTS Speaking via real audio (Gemini multimodal) - supports multi-part submissions
 // @access  Private
-router.post('/evaluate', authenticateToken, upload.array('audio', 3), async (req, res) => {
+router.post('/evaluate', authenticateToken, upload.array('audio', 15), async (req, res) => {
   const requestId = `speak-audio-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
 
   try {
