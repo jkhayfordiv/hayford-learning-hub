@@ -351,7 +351,7 @@ export default function App() {
         </div>
         <div className="flex items-center gap-3">
           <button 
-             onClick={() => window.location.href = '/dashboard#vocab-lab'}
+             onClick={() => window.location.href = '/vocab-lab'}
              className="bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 hover:text-indigo-900 text-sm font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
           >
             <BookOpen size={16} /> Back to Vocab Lab
