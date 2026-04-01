@@ -178,7 +178,7 @@ const TASK_1_PROMPTS = [
   { id: 14, type: "Mixed Charts", title: "Water Consumption by Sector", instruction: "The pie charts compare how total water consumption was distributed across five sectors in a developed country in 2002 and 2022.", graphic: "mixed", panels: [{ title: "2002", graphic: "pie", data: [{ label: 'Agriculture', value: 53, color: '#22c55e' }, { label: 'Industry', value: 20, color: '#3b82f6' }, { label: 'Domestic', value: 15, color: '#ef4444' }, { label: 'Energy', value: 8, color: '#f59e0b' }, { label: 'Public Svcs', value: 4, color: '#8b5cf6' }] }, { title: "2022", graphic: "pie", data: [{ label: 'Agriculture', value: 42, color: '#22c55e' }, { label: 'Industry', value: 23, color: '#3b82f6' }, { label: 'Domestic', value: 18, color: '#ef4444' }, { label: 'Energy', value: 9, color: '#f59e0b' }, { label: 'Public Svcs', value: 8, color: '#8b5cf6' }] }] },
   { id: 15, type: "Line Graph", title: "Metals Prices in Global Markets", instruction: "The line graph compares average monthly prices of gold, silver and copper between 2020 and 2024.", data: [{ year: '2020', v1: 2300, v2: 16, v3: 3.1 }, { year: '2021', v1: 2050, v2: 24, v3: 4.6 }, { year: '2022', v1: 1680, v2: 41, v3: 2.9 }, { year: '2023', v1: 1210, v2: 19, v3: 5.4 }, { year: '2024', v1: 980, v2: 47, v3: 3.3 }], labels: { l1: "Gold (USD/oz)", l2: "Silver (USD/oz)", l3: "Copper (USD/lb)", yUnit: "Price (USD)" }, graphic: "line" },
   { id: 16, type: "Process", title: "Paper Recycling", instruction: "The diagram shows the process of recycling paper.", data: ["Waste Collection", "De-inking", "Pulping", "Rolling", "Drying", "New Paper"], graphic: "process" },
-  { id: 17, type: "Bar Chart", title: "Fruit Consumption", instruction: "The chart shows the average daily fruit consumption of adults in five different cities.", data: [{ label: 'City A', v1: 1.2, v2: 1.5 }, { label: 'City B', v1: 0.8, v2: 1.1 }, { label: 'City C', v1: 2.1, v2: 2.3 }, { label: 'City D', v1: 1.5, v2: 1.8 }, { label: 'City E', v1: 1.0, v2: 1.2 }], labels: { legend1: "Male", legend2: "Female", yUnit: "Portions" }, graphic: "bar" },
+  { id: 17, type: "Bar Chart", title: "Fruit Consumption", instruction: "The chart shows the average daily fruit consumption of adults in five different cities. The blue bars represent males, and the red bars represent females.", data: [{ label: 'City A', v1: 1.2, v2: 1.5 }, { label: 'City B', v1: 0.8, v2: 1.1 }, { label: 'City C', v1: 2.1, v2: 2.3 }, { label: 'City D', v1: 1.5, v2: 1.8 }, { label: 'City E', v1: 1.0, v2: 1.2 }], labels: { legend1: "Male", legend2: "Female", yUnit: "Portions" }, graphic: "bar" },
   { id: 18, type: "Table", title: "Urbanization Rates", instruction: "The table shows the percentage of the population living in urban areas in four world regions in 1990, 2000, and 2020.", data: [{ country: 'Africa', y1: 28, y2: 36, y3: 44 }, { country: 'Asia', y1: 32, y2: 40, y3: 52 }, { country: 'Europe', y1: 68, y2: 71, y3: 76 }, { country: 'N. America', y1: 73, y2: 77, y3: 83 }], headers: ["Region", "1990 (%)", "2000 (%)", "2020 (%)"], graphic: "table" },
   { id: 19, type: "Mixed Charts", title: "Student Accommodation Preferences", instruction: "The pie charts compare the preferred housing options of international students in a UK city in 2013 and 2023.", graphic: "mixed", panels: [{ title: "2013", graphic: "pie", data: [{ label: 'Uni Halls', value: 48, color: '#6366f1' }, { label: 'Private Rental', value: 22, color: '#ec4899' }, { label: 'Shared Flat', value: 14, color: '#06b6d4' }, { label: 'Homestay', value: 11, color: '#f59e0b' }, { label: 'Other', value: 5, color: '#94a3b8' }] }, { title: "2023", graphic: "pie", data: [{ label: 'Uni Halls', value: 34, color: '#6366f1' }, { label: 'Private Rental', value: 29, color: '#ec4899' }, { label: 'Shared Flat', value: 19, color: '#06b6d4' }, { label: 'Homestay', value: 12, color: '#f59e0b' }, { label: 'Other', value: 6, color: '#94a3b8' }] }] },
   { id: 20, type: "Line Graph", title: "Average Life Expectancy", instruction: "The line graph shows changes in average life expectancy (in years) in Japan, Brazil, and Nigeria between 1960 and 2020.", data: [{ year: '1960', v1: 67, v2: 54, v3: 40 }, { year: '1975', v1: 73, v2: 59, v3: 43 }, { year: '1990', v1: 79, v2: 66, v3: 46 }, { year: '2000', v1: 81, v2: 70, v3: 50 }, { year: '2010', v1: 83, v2: 73, v3: 54 }, { year: '2020', v1: 84, v2: 75, v3: 63 }], labels: { l1: "Japan", l2: "Brazil", l3: "Nigeria", yUnit: "Life Expectancy (years)" }, graphic: "line" },
@@ -524,7 +524,7 @@ const VisualRenderer = ({ prompt }) => {
 const getSystemPrompt = (writingTask, prompt) => {
   if (writingTask === 'task2') {
     return `You are an expert IELTS Writing Examiner.
-    Mark this IELTS Writing Task 2 essay accurately, but explain your feedback using clear student-friendly language.
+    Mark this IELTS Writing Task 2 essay accurately, but explain your feedback using SIMPLE, CLEAR language that a Band 4.5 student can understand while still being useful for a Band 7.5 student.
     Essay Prompt: ${prompt.instruction}.
 
     Grade strictly by the official IELTS Task 2 rubric:
@@ -538,9 +538,13 @@ const getSystemPrompt = (writingTask, prompt) => {
     - developed body paragraphs with relevant support/examples
     - a logical conclusion
 
-    CRITICAL FEEDBACK LENGTH INSTRUCTION:
-    Keep each criterion explanation to 1-2 concise sentences.
-    Keep tips brief and practical.
+    CRITICAL FEEDBACK LANGUAGE INSTRUCTION:
+    Use simple vocabulary and short sentences. Avoid complex academic terms.
+    Instead of "insufficient cohesive devices", say "not enough linking words".
+    Instead of "lexical sophistication", say "word choice" or "vocabulary".
+    Instead of "subordinate clauses", say "complex sentences".
+    Keep each criterion explanation to 1-2 SHORT, SIMPLE sentences.
+    Keep tips brief, practical, and easy to understand.
 
     CRITICAL INSTRUCTION FOR DIAGNOSTIC TAGS (TOP 3 FOCUS AREAS):
     Return only the 3 most important focus areas in "diagnostic_tags" (maximum 3 tags).
@@ -568,10 +572,14 @@ const getSystemPrompt = (writingTask, prompt) => {
   }
 
   return `You are a Senior IELTS Academic Examiner and EAP Specialist.
-    Target audience: Japanese students (ages 16-22) preparing for study abroad.
-    Tone: Direct, honest, and strictly academic. Avoid filler praise.
+    Target audience: Students (ages 16-22) preparing for study abroad.
+    Tone: Direct, honest, and helpful. Use SIMPLE, CLEAR language that a Band 4.5 student can understand.
+    
+    CRITICAL: The chart data below shows the EXACT values and labels. Do NOT invent or hallucinate data that is not present.
     Task 1 Prompt: ${prompt.instruction}.
     Chart Data: ${JSON.stringify(prompt.data || prompt.panels)}.
+    
+    IMPORTANT: If the chart shows colors or visual distinctions (e.g., "blue bars represent males, red bars represent females"), these are REAL features of the chart. The student MUST describe them. Do NOT penalize the student for mentioning colors or visual elements that are explicitly stated in the prompt.
 
     Evaluate the response on the four official IELTS Task 1 criteria. Assign each a Band Score (0-9.0, in 0.5 increments):
 
@@ -592,10 +600,11 @@ const getSystemPrompt = (writingTask, prompt) => {
     Overall Band Score: Average of the four criteria scores, rounded to nearest 0.5. Apply the Overview cap to TA before averaging.
 
     FEEDBACK RULES:
-    - Write in simple, clear English appropriate for intermediate learners.
-    - Per criterion: 1 sentence explaining why the score was given + 1 sentence with a specific, actionable fix.
-    - If overall band < 5.0: prioritise overview structure and basic data coverage in tips.
-    - If overall band > 6.5: focus on precise data selection, paraphrasing, and hedging language.
+    - Write in VERY SIMPLE, CLEAR English. Use short sentences and basic vocabulary.
+    - Avoid academic jargon. Say "linking words" not "cohesive devices". Say "word choice" not "lexical resource".
+    - Per criterion: 1 SHORT sentence explaining the score + 1 SHORT sentence with a specific, easy-to-follow fix.
+    - If overall band < 5.0: focus on overview structure and basic data coverage in tips.
+    - If overall band > 6.5: focus on precise data selection, paraphrasing, and advanced vocabulary.
 
     CRITICAL INSTRUCTION FOR DIAGNOSTIC TAGS (TOP 3 FOCUS AREAS):
     Return the 3 most critical areas for improvement in "diagnostic_tags" (maximum 3 tags).
@@ -1689,7 +1698,7 @@ function FeedbackView({ feedback, writingTask, originalText, saveMessage, onRese
               </button>
             ) : (
               <button 
-                onClick={() => window.location.href = '../index.html#/dashboard'} 
+                onClick={() => window.location.href = '/dashboard'} 
                 className="bg-slate-900 text-white px-12 py-5 rounded-2xl font-black hover:bg-black transition-all shadow-xl tracking-widest uppercase text-xs"
               >
                 Return to Dashboard

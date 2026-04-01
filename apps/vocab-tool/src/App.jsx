@@ -349,12 +349,20 @@ export default function App() {
             <span className="text-[10px] uppercase font-black tracking-widest text-slate-500">Adaptive Practice</span>
           </div>
         </div>
-        <button 
-           onClick={() => window.location.href = '/'}
-           className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 text-sm font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
-        >
-          <LayoutDashboard size={16} /> Hub
-        </button>
+        <div className="flex items-center gap-3">
+          <button 
+             onClick={() => window.location.href = '/dashboard#vocab-lab'}
+             className="bg-indigo-50 border border-indigo-200 text-indigo-700 hover:bg-indigo-100 hover:text-indigo-900 text-sm font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
+          >
+            <BookOpen size={16} /> Back to Vocab Lab
+          </button>
+          <button 
+             onClick={() => window.location.href = '/'}
+             className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 text-sm font-bold px-4 py-2 rounded-xl transition-colors flex items-center gap-2"
+          >
+            <LayoutDashboard size={16} /> Hub
+          </button>
+        </div>
       </header>
 
       <main className="flex-1 flex flex-col items-center justify-center p-6 text-center">
