@@ -137,7 +137,7 @@ export default function App() {
   }, [])
 
   // Assignment metadata
-  const [assignedParts, setAssignedParts] = useState(['1'])
+  const [assignedParts, setAssignedParts] = useState(['1', '2', '3'])
   
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -508,6 +508,36 @@ export default function App() {
                   </div>
                 )}
               </div>
+
+              {/* Grammar Errors Section */}
+              {Array.isArray(feedback.grammar_errors) && feedback.grammar_errors.length > 0 && (
+                <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm space-y-4">
+                  <h3 className="text-sm font-black uppercase tracking-wider text-red-600">Specific Grammar Errors</h3>
+                  <div className="space-y-3">
+                    {feedback.grammar_errors.map((err, idx) => (
+                      <div key={idx} className="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="bg-slate-700 text-white text-[10px] font-black w-5 h-5 rounded flex items-center justify-center">{idx + 1}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{err.category}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <div className="bg-red-50 border border-red-100 rounded-xl px-3 py-2">
+                            <p className="text-[9px] font-black uppercase text-red-400 mb-1">✕ You said</p>
+                            <p className="text-sm text-red-800 italic">"{err.heard}"</p>
+                          </div>
+                          <div className="bg-green-50 border border-green-100 rounded-xl px-3 py-2">
+                            <p className="text-[9px] font-black uppercase text-green-500 mb-1">✓ Better</p>
+                            <p className="text-sm text-green-800">"{err.correction}"</p>
+                          </div>
+                        </div>
+                        {err.explanation && (
+                          <p className="text-xs text-slate-500 pl-1">💡 {err.explanation}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <button
                 onClick={() => { window.location.href = '/dashboard' }}

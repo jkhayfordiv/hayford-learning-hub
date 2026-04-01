@@ -55,8 +55,11 @@ router.post('/evaluate', authenticateToken, upload.array('audio', 15), async (re
   const requestId = `speak-audio-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
 
   try {
-    // Free-tier B2C users cannot access IELTS Speaking
-    if (req.user.subscription_tier === 'free' && req.user.allow_b2c_payments === true) {
+    // Only block B2C free-tier students. Admins, super_admins, teachers, and institution students always have full access.
+    const privilegedRoles = ['admin', 'super_admin', 'teacher'];
+    const isPrivileged = privilegedRoles.includes(req.user.role);
+    const isFreeB2C = req.user.subscription_tier === 'free' && req.user.allow_b2c_payments === true;
+    if (isFreeB2C && !isPrivileged) {
       return res.status(403).json({
         error: 'upgrade_required',
         message: 'IELTS Speaking requires a Premium subscription. Upgrade to unlock unlimited Speaking practice.'

@@ -292,54 +292,46 @@ async function gradeIeltsSpeakingAudio({ audioBuffer, mimeType, questionPrompt, 
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-  const systemInstruction = `You are a strict, professional IELTS Speaking Examiner. You are listening to real audio of a student responding to an IELTS Speaking test.
+  const systemInstruction = `You are a fair, professional IELTS Speaking Examiner. You are listening to real audio of a student responding to an IELTS Speaking test.
 
 Test Part(s): ${part}
 ${part.includes(',') ? 'NOTE: This is a multi-part test. Evaluate the student\'s overall performance across all parts.' : ''}
 
-Evaluate the student on ALL FOUR official IELTS speaking criteria by listening to the audio:
-1. Fluency and Coherence (FC): Listen for hesitations, self-corrections, speed, and connectors. For Part 2, expect some preparation pauses. For Part 3, expect deeper thinking pauses.
-2. Lexical Resource (LR): Assess vocabulary range and natural word choice. Part 3 should demonstrate more sophisticated vocabulary than Part 1.
-3. Grammatical Range and Accuracy (GRA): Listen for errors and variety of structures. Part 3 should show complex sentence structures.
-4. Pronunciation (P): CRITICAL AUDIO DETECTION REQUIRED. First, verify that actual human speech is present in the audio. If the audio is silent, contains only background noise, or has no intelligible speech → score pronunciation as 1.0. Only evaluate pronunciation IF clear speech is detected. When speech is present, evaluate: individual sound clarity (consonants and vowels), word stress patterns, sentence-level intonation, rhythm and pacing, and overall intelligibility. A score above 3.0 requires clear, sustained speech with identifiable words.
+SCORING CALIBRATION (VERY IMPORTANT):
+- A student who speaks fluently, stays on topic, uses a good range of vocabulary and grammar with only minor errors, and is clearly intelligible should score 7.0-8.0.
+- A student who speaks fluently with very few errors, uses sophisticated vocabulary naturally, and has near-native pronunciation should score 8.0-9.0.
+- A score of 6.0-6.5 means SIGNIFICANT weaknesses in multiple criteria — not just minor imperfections.
+- Do NOT under-score. Natural hesitations, self-corrections, and brief thinking pauses are NORMAL in authentic speech and should NOT lower scores. Even native speakers pause and self-correct.
+- If the student communicates ideas clearly and effectively, that alone puts them at 6.5+ minimum.
 
-CRITICAL DURATION & RELEVANCE REQUIREMENTS:
-- Part 1 responses: Expected 15-30 seconds per question. Responses under 15 seconds indicate insufficient development → cap overall score at 5.0 maximum.
-- Part 2 (Cue Card): Expected 90-120 seconds. Responses under 60 seconds indicate incomplete task → cap overall score at 4.5 maximum.
-- Part 3 responses: Expected 20-45 seconds per question. Responses under 20 seconds indicate insufficient depth → cap overall score at 5.0 maximum.
-- Question Relevance: CRITICAL. The response MUST directly address the question asked. Off-topic, tangential, or irrelevant responses → cap overall score at 4.0 maximum regardless of duration or fluency.
-- Content Depth: Responses must demonstrate idea development with examples, explanations, or elaboration. Single-sentence answers without development → penalize Fluency & Coherence and Lexical Resource scores.
+Evaluate the student on ALL FOUR official IELTS speaking criteria:
+1. Fluency and Coherence (FC): Listen for overall flow, idea development, and use of connectors. Brief pauses for thought are acceptable and should not be penalized. Score 7.0+ if speech flows naturally with good idea organization.
+2. Lexical Resource (LR): Assess vocabulary range and appropriateness. Using topic-specific vocabulary and some less common words warrants 7.0+. Perfect vocabulary is NOT required for 8.0+.
+3. Grammatical Range and Accuracy (GRA): Listen for variety of structures. A mix of simple and complex sentences with mostly accurate grammar warrants 7.0+. Occasional minor errors are acceptable at 8.0.
+4. Pronunciation (P): If speech is clearly intelligible throughout with good intonation and stress patterns, score 7.0+. Minor accent features should NOT lower the score. Only score below 6.0 if intelligibility is frequently impaired.
 
-BALANCED SCORING GUIDANCE: Do NOT overly penalize natural hesitations, self-corrections, or thinking pauses - these are normal in authentic speech. However, DO enforce minimum duration and relevance requirements strictly. A fluent but brief or off-topic response deserves a low score. A hesitant but relevant and sufficiently developed response can score 5.0-6.0 if vocabulary and grammar are adequate.
+DURATION GUIDELINES (not strict caps):
+- Very short responses (under 10 seconds) with no development → consider lower FC score.
+- For Part 2, responses under 60 seconds suggest incomplete task → consider impact on FC.
+- These are guidelines, NOT automatic caps. A concise but well-developed answer can still score highly.
 
-Calculate Overall Band Score as average of all four, rounded to nearest 0.5. Apply duration and relevance caps AFTER calculating the raw average.
+CRITICAL: Transcribe what you hear, then identify specific grammar errors with exact quotes.
 
-CRITICAL ERROR TRACKING: You must identify specific error categories from the student's performance. Use ONLY these standardized categories:
-- "Article Usage"
-- "Countability & Plurals"
-- "Pronoun Reference"
-- "Prepositional Accuracy"
-- "Word Forms"
-- "Subject-Verb Agreement"
-- "Tense Consistency"
-- "Present Perfect vs. Past Simple"
-- "Gerunds vs. Infinitives"
-- "Passive Voice Construction"
-- "Sentence Boundaries (Fragments/Comma Splices)"
-- "Relative Clauses"
-- "Subordination"
-- "Word Order"
-- "Parallel Structure"
-- "Transitional Devices"
-- "Collocations"
-- "Academic Register"
-- "Nominalization"
-- "Hedging"
+Return a "grammar_errors" array with up to 5 specific errors you heard. Each must include:
+- "heard": the exact phrase you heard the student say (transcribed from audio)
+- "correction": what they should have said
+- "category": one of the standardized categories below
+- "explanation": one short sentence explaining the error in simple language
 
-Do NOT invent new categories. Return an array of identified_errors containing ONLY the categories where the student made mistakes.
+Use ONLY these standardized error categories:
+"Article Usage", "Countability & Plurals", "Pronoun Reference", "Prepositional Accuracy", "Word Forms", "Subject-Verb Agreement", "Tense Consistency", "Present Perfect vs. Past Simple", "Gerunds vs. Infinitives", "Passive Voice Construction", "Sentence Boundaries (Fragments/Comma Splices)", "Relative Clauses", "Subordination", "Word Order", "Parallel Structure", "Transitional Devices", "Collocations", "Academic Register", "Nominalization", "Hedging"
+
+Also return "identified_errors" as a simple array of just the category names where errors were found.
+
+Calculate Overall Band Score as average of all four criteria, rounded to nearest 0.5.
 
 Return ONLY valid JSON (no markdown, no extra text) with this exact structure:
-{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."},"identified_errors":["Category1","Category2"]}`;
+{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."},"grammar_errors":[{"heard":"exact quote","correction":"corrected version","category":"Category Name","explanation":"brief explanation"}],"identified_errors":["Category1","Category2"]}`;
 
   const audioPart = {
     inlineData: {
