@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Mic, Volume2, RotateCcw, ArrowRight, Play, AlertCircle, CheckCircle } from 'lucide-react'
 
 // Part 1 Questions Pool - Organized by Topic
 const PART_1_TOPICS = [
@@ -51,56 +52,6 @@ const PART_1_TOPICS = [
       "Have your music tastes changed over the years?",
       "Do you prefer listening to music alone or with others?"
     ]
-  },
-  {
-    topic: "Food & Cooking",
-    questions: [
-      "What is your favourite type of food?",
-      "Do you enjoy cooking? Why or why not?",
-      "What is a typical meal in your country?",
-      "Do you prefer eating at home or in restaurants?",
-      "Have your eating habits changed in recent years?"
-    ]
-  },
-  {
-    topic: "Technology & Internet",
-    questions: [
-      "How often do you use the internet?",
-      "What do you usually use the internet for?",
-      "Do you prefer using a computer or a smartphone?",
-      "How has technology changed your daily life?",
-      "Do you think people spend too much time online?"
-    ]
-  },
-  {
-    topic: "Travel & Holidays",
-    questions: [
-      "Do you enjoy traveling? Why or why not?",
-      "What was the last place you visited?",
-      "Do you prefer traveling alone or with others?",
-      "What type of holiday do you prefer - relaxing or adventurous?",
-      "Is there a place you would really like to visit?"
-    ]
-  },
-  {
-    topic: "Weather & Seasons",
-    questions: [
-      "What is the weather like in your country?",
-      "What is your favourite season of the year and why?",
-      "Does the weather affect your mood?",
-      "Do you prefer hot or cold weather?",
-      "How do you usually spend time in different seasons?"
-    ]
-  },
-  {
-    topic: "Shopping & Fashion",
-    questions: [
-      "Do you enjoy shopping? Why or why not?",
-      "How often do you go shopping?",
-      "Do you prefer shopping online or in physical stores?",
-      "Are you interested in fashion?",
-      "Do you think people spend too much money on clothes?"
-    ]
   }
 ]
 
@@ -135,7 +86,7 @@ const PART_2_CUE_CARDS = [
   }
 ]
 
-// Part 3 Discussion Questions - Organized by Topic
+// Part 3 Discussion Questions
 const PART_3_TOPICS = [
   {
     topic: "Technology and Society",
@@ -163,127 +114,11 @@ const PART_3_TOPICS = [
       "Should students be allowed to choose all their own subjects?",
       "What is the role of teachers in the age of online learning?"
     ]
-  },
-  {
-    topic: "Work and Career",
-    questions: [
-      "How has the concept of work-life balance changed in recent years?",
-      "Do you think people should stay in one career for their whole life?",
-      "What are the advantages and disadvantages of working from home?",
-      "Should there be a maximum working week of 40 hours?"
-    ]
-  },
-  {
-    topic: "Cultural Values and Traditions",
-    questions: [
-      "Do you think traditional values are still important in modern society?",
-      "How can countries preserve their cultural heritage?",
-      "Should young people be encouraged to follow traditional customs?",
-      "What happens when traditional culture conflicts with modern values?"
-    ]
-  },
-  {
-    topic: "Health and Lifestyle",
-    questions: [
-      "What can governments do to encourage healthier lifestyles?",
-      "Do you think people today are healthier than previous generations?",
-      "Should unhealthy foods be taxed more heavily?",
-      "How important is mental health compared to physical health?"
-    ]
-  },
-  {
-    topic: "Media and Information",
-    questions: [
-      "How has social media changed the way news is consumed?",
-      "Do you think there should be stricter controls on fake news?",
-      "What impact does celebrity culture have on young people?",
-      "Should journalists always remain completely neutral?"
-    ]
-  },
-  {
-    topic: "Globalization and Travel",
-    questions: [
-      "What are the main benefits of globalization?",
-      "Do you think tourism has more positive or negative effects?",
-      "Should there be limits on international travel to protect the environment?",
-      "How has globalization affected local cultures?"
-    ]
-  },
-  {
-    topic: "Urban Development",
-    questions: [
-      "What are the biggest challenges facing cities today?",
-      "Should governments prioritize public transportation over private cars?",
-      "Is it better to live in a city or in the countryside?",
-      "How can cities be made more sustainable?"
-    ]
-  },
-  {
-    topic: "Family and Relationships",
-    questions: [
-      "How have family structures changed in modern society?",
-      "Do you think extended families are still important today?",
-      "What is the ideal age to get married?",
-      "Should both parents share childcare responsibilities equally?"
-    ]
-  },
-  {
-    topic: "Crime and Justice",
-    questions: [
-      "What is the best way to reduce crime in society?",
-      "Should the focus of prisons be punishment or rehabilitation?",
-      "Do you think capital punishment is ever justified?",
-      "How can we prevent young people from becoming criminals?"
-    ]
-  },
-  {
-    topic: "Science and Innovation",
-    questions: [
-      "What scientific breakthrough would benefit humanity the most?",
-      "Should there be limits on scientific research?",
-      "How important is space exploration compared to solving Earth's problems?",
-      "Do the benefits of genetic engineering outweigh the risks?"
-    ]
-  },
-  {
-    topic: "Arts and Entertainment",
-    questions: [
-      "Should governments fund the arts?",
-      "Is traditional art still relevant in the digital age?",
-      "Do you think entertainment has become too commercialized?",
-      "What role does art play in society?"
-    ]
-  },
-  {
-    topic: "Economic Issues",
-    questions: [
-      "What is the best way to reduce income inequality?",
-      "Should wealthy people pay higher taxes?",
-      "Is economic growth always beneficial for society?",
-      "How can governments help people during economic crises?"
-    ]
-  },
-  {
-    topic: "Language and Communication",
-    questions: [
-      "Will English continue to be the dominant global language?",
-      "Should everyone learn a second language?",
-      "How important is it to preserve minority languages?",
-      "Has digital communication improved or damaged our ability to communicate?"
-    ]
   }
 ]
 
-function getRandomItems(array, count) {
-  const shuffled = [...array].sort(() => 0.5 - Math.random())
-  return shuffled.slice(0, count)
-}
-
 export default function App() {
-  // Force light theme
-  useEffect(() => {
-    document.documentElement.classList.remove('dark')
-  }, [])
+  useEffect(() => { document.documentElement.classList.remove('dark') }, [])
 
   // Auth
   const [token, setToken] = useState(null)
@@ -301,8 +136,8 @@ export default function App() {
     setAuthChecked(true)
   }, [])
 
-  // Assignment metadata (which parts to test)
-  const [assignedParts, setAssignedParts] = useState(['1']) // Default to Part 1 only
+  // Assignment metadata
+  const [assignedParts, setAssignedParts] = useState(['1'])
   
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -319,44 +154,41 @@ export default function App() {
     }
   }, [])
 
-  // Flow controller
-  const [currentPartIndex, setCurrentPartIndex] = useState(0)
-  const currentPart = assignedParts[currentPartIndex]
-  
-  // Part-specific content
+  // Content selection
   const [part1Topic] = useState(() => PART_1_TOPICS[Math.floor(Math.random() * PART_1_TOPICS.length)])
   const [part1Questions] = useState(() => part1Topic.questions)
   const [part2CueCard] = useState(() => PART_2_CUE_CARDS[Math.floor(Math.random() * PART_2_CUE_CARDS.length)])
   const [part3Topic] = useState(() => PART_3_TOPICS[Math.floor(Math.random() * PART_3_TOPICS.length)])
   const [part3Questions] = useState(() => part3Topic.questions)
+
+  // State machine: 'intro' | 'part1' | 'break1' | 'part2_prep' | 'part2_record' | 'break2' | 'part3' | 'break3' | 'complete' | 'feedback'
+  const [phase, setPhase] = useState('intro')
+  const [currentPartIndex, setCurrentPartIndex] = useState(0)
   
-  // Part 1 state
-  const [part1QuestionIndex, setPart1QuestionIndex] = useState(0)
+  // Part 1 & 3 domino state
+  const [currentQuestionIdx, setCurrentQuestionIdx] = useState(0)
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false)
+  const [isRecording, setIsRecording] = useState(false)
+  const [repeatUsesLeft, setRepeatUsesLeft] = useState(2)
+  const [audioBlobs, setAudioBlobs] = useState([]) // Array of {part, questionIdx, blob}
   
   // Part 2 state
-  const [part2PrepTime, setPart2PrepTime] = useState(60) // 1 minute prep
+  const [part2PrepTime, setPart2PrepTime] = useState(60)
   const [part2PrepComplete, setPart2PrepComplete] = useState(false)
-  const [part2RecordTime, setPart2RecordTime] = useState(120) // 2 minutes record
+  const [part2RecordTime, setPart2RecordTime] = useState(120)
   
-  // Part 3 state
-  const [part3QuestionIndex, setPart3QuestionIndex] = useState(0)
-  const [part3TimeRemaining, setPart3TimeRemaining] = useState(300) // 5 minutes
-  
-  // Recording state (per part)
-  const [isRecording, setIsRecording] = useState(false)
-  const [recordingSeconds, setRecordingSeconds] = useState(0)
+  // Recording refs
   const mediaRecorderRef = useRef(null)
   const audioChunksRef = useRef([])
-  const timerRef = useRef(null)
-  const partTimerRef = useRef(null)
+  const speechSynthRef = useRef(null)
   
-  // Completed parts storage
-  const [completedParts, setCompletedParts] = useState({})
+  // Mic permission
+  const [micPermission, setMicPermission] = useState(null) // null | 'granted' | 'denied'
+  const [error, setError] = useState('')
   
   // Submission
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [feedback, setFeedback] = useState(null)
-  const [error, setError] = useState('')
 
   const formatTime = (seconds) => {
     const m = String(Math.floor(seconds / 60)).padStart(2, '0')
@@ -364,89 +196,59 @@ export default function App() {
     return `${m}:${s}`
   }
 
-  // Part 2 prep timer
-  useEffect(() => {
-    if (currentPart === '2' && !part2PrepComplete && part2PrepTime > 0) {
-      const timer = setInterval(() => {
-        setPart2PrepTime(prev => {
-          if (prev <= 1) {
-            setPart2PrepComplete(true)
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-      return () => clearInterval(timer)
+  // ── Mic Permission Check ────────────────────────────────────────────────────
+  const requestMicPermission = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      stream.getTracks().forEach(track => track.stop())
+      setMicPermission('granted')
+      setError('')
+    } catch (err) {
+      setMicPermission('denied')
+      setError('Microphone access denied. Please allow microphone permissions in your browser settings.')
     }
-  }, [currentPart, part2PrepComplete, part2PrepTime])
+  }
 
-  // Part 2 record timer (auto-stop at 2 minutes)
-  useEffect(() => {
-    if (currentPart === '2' && isRecording && part2RecordTime > 0) {
-      const timer = setInterval(() => {
-        setPart2RecordTime(prev => {
-          if (prev <= 1) {
-            stopRecording()
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-      return () => clearInterval(timer)
+  // ── Audio Playback (Web Speech API) ────────────────────────────────────────
+  const playQuestionAudio = (questionText, onEnd) => {
+    window.speechSynthesis.cancel()
+    setIsPlayingAudio(true)
+    const utterance = new SpeechSynthesisUtterance(questionText)
+    utterance.rate = 0.9
+    utterance.pitch = 1.0
+    utterance.onend = () => {
+      setIsPlayingAudio(false)
+      if (onEnd) onEnd()
     }
-  }, [currentPart, isRecording, part2RecordTime])
+    speechSynthRef.current = utterance
+    window.speechSynthesis.speak(utterance)
+  }
 
-  // Part 3 timer
-  useEffect(() => {
-    if (currentPart === '3' && isRecording && part3TimeRemaining > 0) {
-      const timer = setInterval(() => {
-        setPart3TimeRemaining(prev => {
-          if (prev <= 1) {
-            stopRecording()
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-      return () => clearInterval(timer)
-    }
-  }, [currentPart, isRecording, part3TimeRemaining])
-
+  // ── Recording ───────────────────────────────────────────────────────────────
   const startRecording = async () => {
     setError('')
     audioChunksRef.current = []
-
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4'
       const recorder = new MediaRecorder(stream, { mimeType })
 
       recorder.ondataavailable = (e) => {
-        if (e.data && e.data.size > 0) {
-          audioChunksRef.current.push(e.data)
-        }
+        if (e.data && e.data.size > 0) audioChunksRef.current.push(e.data)
       }
 
       recorder.onstop = () => {
         const blob = new Blob(audioChunksRef.current, { type: mimeType })
-        // Save this part's audio
-        setCompletedParts(prev => ({
-          ...prev,
-          [currentPart]: blob
-        }))
-        stream.getTracks().forEach((track) => track.stop())
+        const currentPart = assignedParts[currentPartIndex]
+        setAudioBlobs(prev => [...prev, { part: currentPart, questionIdx: currentQuestionIdx, blob }])
+        stream.getTracks().forEach(track => track.stop())
       }
 
       recorder.start(250)
       mediaRecorderRef.current = recorder
       setIsRecording(true)
-      setRecordingSeconds(0)
-
-      timerRef.current = setInterval(() => {
-        setRecordingSeconds((prev) => prev + 1)
-      }, 1000)
     } catch (err) {
-      setError('Microphone access denied. Please allow microphone permissions and try again.')
+      setError('Failed to start recording. Please check microphone permissions.')
     }
   }
 
@@ -454,53 +256,134 @@ export default function App() {
     if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
       mediaRecorderRef.current.stop()
     }
-    clearInterval(timerRef.current)
     setIsRecording(false)
   }
 
-  const handleToggleRecording = () => {
-    if (isRecording) stopRecording()
-    else startRecording()
-  }
-
-  const handleNextPart = () => {
-    if (currentPartIndex < assignedParts.length - 1) {
-      setCurrentPartIndex(prev => prev + 1)
-      setRecordingSeconds(0)
-      // Reset part-specific state
-      if (assignedParts[currentPartIndex + 1] === '1') {
-        setPart1QuestionIndex(0)
-      } else if (assignedParts[currentPartIndex + 1] === '2') {
-        setPart2PrepTime(60)
-        setPart2PrepComplete(false)
-        setPart2RecordTime(120)
-      } else if (assignedParts[currentPartIndex + 1] === '3') {
-        setPart3QuestionIndex(0)
-        setPart3TimeRemaining(300)
+  // ── Domino Flow: Part 1 & 3 ────────────────────────────────────────────────
+  const handleDominoNext = () => {
+    stopRecording()
+    const currentPart = assignedParts[currentPartIndex]
+    const questions = currentPart === '1' ? part1Questions : part3Questions
+    
+    if (currentQuestionIdx < questions.length - 1) {
+      // Next question in same part
+      setCurrentQuestionIdx(prev => prev + 1)
+      setRepeatUsesLeft(2)
+      setTimeout(() => {
+        playQuestionAudio(questions[currentQuestionIdx + 1], () => startRecording())
+      }, 500)
+    } else {
+      // Part complete
+      if (currentPart === '1' && assignedParts.includes('2')) {
+        setPhase('break1')
+      } else if (currentPart === '1' && assignedParts.includes('3')) {
+        setPhase('break2')
+      } else if (currentPart === '3') {
+        setPhase('break3')
+      } else {
+        setPhase('complete')
       }
     }
+  }
+
+  const handleRepeatQuestion = () => {
+    if (repeatUsesLeft <= 0) return
+    stopRecording()
+    // Discard last blob for this question
+    setAudioBlobs(prev => prev.filter((item, idx) => idx !== prev.length - 1))
+    setRepeatUsesLeft(prev => prev - 1)
+    const currentPart = assignedParts[currentPartIndex]
+    const questions = currentPart === '1' ? part1Questions : part3Questions
+    setTimeout(() => {
+      playQuestionAudio(questions[currentQuestionIdx], () => startRecording())
+    }, 300)
+  }
+
+  // ── Part 2 Prep Timer ───────────────────────────────────────────────────────
+  useEffect(() => {
+    if (phase === 'part2_prep' && part2PrepTime > 0) {
+      const timer = setInterval(() => {
+        setPart2PrepTime(prev => {
+          if (prev <= 1) {
+            setPart2PrepComplete(true)
+            setPhase('part2_record')
+            setTimeout(() => startRecording(), 500)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      return () => clearInterval(timer)
+    }
+  }, [phase, part2PrepTime])
+
+  // ── Part 2 Record Timer ─────────────────────────────────────────────────────
+  useEffect(() => {
+    if (phase === 'part2_record' && isRecording && part2RecordTime > 0) {
+      const timer = setInterval(() => {
+        setPart2RecordTime(prev => {
+          if (prev <= 1) {
+            stopRecording()
+            if (assignedParts.includes('3')) {
+              setPhase('break2')
+            } else {
+              setPhase('break3')
+            }
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      return () => clearInterval(timer)
+    }
+  }, [phase, isRecording, part2RecordTime])
+
+  // ── Phase Transitions ───────────────────────────────────────────────────────
+  const startPart1 = () => {
+    setPhase('part1')
+    setCurrentPartIndex(0)
+    setCurrentQuestionIdx(0)
+    setRepeatUsesLeft(2)
+    setTimeout(() => {
+      playQuestionAudio(part1Questions[0], () => startRecording())
+    }, 1000)
+  }
+
+  const startPart2 = () => {
+    setPhase('part2_prep')
+    setCurrentPartIndex(assignedParts.indexOf('2'))
+    setPart2PrepTime(60)
+    setPart2PrepComplete(false)
+    setPart2RecordTime(120)
+  }
+
+  const startPart3 = () => {
+    setPhase('part3')
+    setCurrentPartIndex(assignedParts.indexOf('3'))
+    setCurrentQuestionIdx(0)
+    setRepeatUsesLeft(2)
+    setTimeout(() => {
+      playQuestionAudio(part3Questions[0], () => startRecording())
+    }, 1000)
   }
 
   const handleSkipPrep = () => {
     setPart2PrepComplete(true)
     setPart2PrepTime(0)
+    setPhase('part2_record')
+    setTimeout(() => startRecording(), 500)
   }
 
+  // ── Submission ──────────────────────────────────────────────────────────────
   const handleSubmitAll = async () => {
     setIsSubmitting(true)
     setError('')
-
     try {
       const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com')
-
-      // Combine all parts into one submission
       const formData = new FormData()
       
-      assignedParts.forEach(part => {
-        const blob = completedParts[part]
-        if (blob) {
-          formData.append('audio', blob, `part${part}.webm`)
-        }
+      audioBlobs.forEach((item, idx) => {
+        formData.append('audio', item.blob, `part${item.part}_q${item.questionIdx}.webm`)
       })
 
       formData.append('prompt', `IELTS Speaking Test - Parts: ${assignedParts.join(', ')}`)
@@ -508,9 +391,7 @@ export default function App() {
 
       const response = await fetch(`${apiBase}/api/ielts/evaluate`, {
         method: 'POST',
-        headers: {
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
+        headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
         body: formData,
       })
 
@@ -521,6 +402,7 @@ export default function App() {
 
       const result = await response.json()
       setFeedback(result)
+      setPhase('feedback')
     } catch (err) {
       setError(err.message || 'Failed to evaluate your response. Please try again.')
     } finally {
@@ -535,9 +417,7 @@ export default function App() {
       <main className="min-h-screen bg-slate-50 flex items-center justify-center p-6 font-sans">
         <div className="max-w-md w-full bg-white rounded-3xl p-10 border border-slate-200 shadow-xl text-center space-y-8">
           <div className="w-24 h-24 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center mx-auto border-2 border-indigo-100">
-            <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m0 0v2m0-2h2m-2 0H10m11-3.5a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <AlertCircle size={48} />
           </div>
           <div className="space-y-4">
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Access Restricted</h2>
@@ -556,7 +436,10 @@ export default function App() {
     )
   }
 
-  if (feedback) {
+  // ══════════════════════════════════════════════════════════════════════════
+  // FEEDBACK SCREEN
+  // ══════════════════════════════════════════════════════════════════════════
+  if (phase === 'feedback' && feedback) {
     return (
       <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans">
         <div className="max-w-4xl mx-auto space-y-10">
@@ -566,90 +449,72 @@ export default function App() {
               <p className="text-sm font-medium text-slate-500 uppercase tracking-[0.2em]">Parts {assignedParts.join(', ')} Complete</p>
             </div>
             <button
-                onClick={() => { window.location.href = '/dashboard' }}
-                className="bg-white border border-slate-200 text-slate-600 hover:text-slate-900 px-6 py-3 rounded-2xl font-bold text-sm shadow-sm transition-all hover:bg-slate-50"
+              onClick={() => { window.location.href = '/dashboard' }}
+              className="bg-white border border-slate-200 text-slate-600 hover:text-slate-900 px-6 py-3 rounded-2xl font-bold text-sm shadow-sm transition-all hover:bg-slate-50"
             >
-                Dashboard
+              Dashboard
             </button>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-5 space-y-6">
-                <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-2xl relative overflow-hidden group">
-                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent opacity-50"></div>
-                    <p className="relative text-xs font-black uppercase tracking-[0.25em] mb-6 text-indigo-300">Overall Band Score</p>
-                    <div className="relative text-[8rem] font-black leading-none mb-4 animate-in fade-in zoom-in duration-700">{feedback.scores?.overall ?? '—'}</div>
-                    <p className="relative text-lg font-medium text-slate-400">Out of 9.0</p>
-                </div>
+              <div className="bg-slate-900 text-white rounded-[2rem] p-12 text-center shadow-2xl relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-transparent opacity-50"></div>
+                <p className="relative text-xs font-black uppercase tracking-[0.25em] mb-6 text-indigo-300">Overall Band Score</p>
+                <div className="relative text-[8rem] font-black leading-none mb-4">{feedback.scores?.overall ?? '—'}</div>
+                <p className="relative text-lg font-medium text-slate-400">Out of 9.0</p>
+              </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { label: 'Fluency & Coherence', key: 'fluency', icon: 'M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z' },
-                    { label: 'Lexical Resource', key: 'lexical', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' },
-                    { label: 'Grammar Range', key: 'grammar', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z' },
-                    { label: 'Pronunciation', key: 'pronunciation', icon: 'M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z' },
-                  ].map(({ label, key, icon }) => {
-                    const score = feedback.scores?.[key] ?? 0;
-                    const percentage = (score / 9) * 100;
-                    const getColorClasses = (s) => {
-                      if (s >= 6.5) return { bg: 'bg-green-500', text: 'text-green-600', border: 'border-green-200', lightBg: 'bg-green-50' };
-                      if (s >= 5.0) return { bg: 'bg-blue-500', text: 'text-blue-600', border: 'border-blue-200', lightBg: 'bg-blue-50' };
-                      return { bg: 'bg-amber-500', text: 'text-amber-600', border: 'border-amber-200', lightBg: 'bg-amber-50' };
-                    };
-                    const colors = getColorClasses(score);
-                    
-                    return feedback.scores?.[key] !== undefined && (
-                      <div key={key} className={`bg-white border-2 ${colors.border} rounded-2xl p-5 shadow-md hover:shadow-lg transition-all`}>
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className={`w-8 h-8 ${colors.lightBg} ${colors.text} rounded-lg flex items-center justify-center flex-shrink-0`}>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} /></svg>
-                          </div>
-                          <p className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500 leading-tight">{label}</p>
-                        </div>
-                        <div className="flex items-end justify-between mb-2">
-                          <p className="text-4xl font-black text-slate-900">{score}</p>
-                          <p className="text-xs font-bold text-slate-400 mb-1">/ 9.0</p>
-                        </div>
-                        <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                          <div 
-                            className={`h-full ${colors.bg} rounded-full transition-all duration-700 ease-out`}
-                            style={{ width: `${percentage}%` }}
-                          ></div>
-                        </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: 'Fluency', key: 'fluency' },
+                  { label: 'Lexical', key: 'lexical' },
+                  { label: 'Grammar', key: 'grammar' },
+                  { label: 'Pronunciation', key: 'pronunciation' },
+                ].map(({ label, key }) => {
+                  const score = feedback.scores?.[key] ?? 0
+                  const percentage = (score / 9) * 100
+                  return feedback.scores?.[key] !== undefined && (
+                    <div key={key} className="bg-white border-2 border-slate-200 rounded-2xl p-5 shadow-md">
+                      <p className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500 mb-2">{label}</p>
+                      <p className="text-4xl font-black text-slate-900 mb-2">{score}</p>
+                      <div className="w-full bg-slate-100 rounded-full h-2">
+                        <div className="h-full bg-indigo-500 rounded-full" style={{ width: `${percentage}%` }}></div>
                       </div>
-                    )
-                  })}
-                </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
 
             <div className="lg:col-span-7 space-y-6">
-                <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm space-y-8">
-                    {[
-                    { key: 'strengths', label: 'Positive Indicators', icon: 'M5 13l4 4L19 7', color: 'text-green-600', bg: 'bg-green-50' },
-                    { key: 'weaknesses', label: 'Development Points', icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z', color: 'text-amber-600', bg: 'bg-amber-50' },
-                    { key: 'improvement_tip', label: 'Recommended Strategy', icon: 'M9.663 17h4.674a1 1 0 00.958-.713l.7-2.587A8 8 0 106.005 13.712l.71 2.575a1 1 0 00.958.713h1.99z', color: 'text-indigo-600', bg: 'bg-indigo-50' },
-                    ].map(({ key, label, icon, color, bg }) => (
-                    feedback.feedback?.[key] && (
-                        <div key={key} className="space-y-3">
-                            <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 ${bg} ${color} rounded-lg flex items-center justify-center`}>
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} /></svg>
-                                </div>
-                                <h3 className="text-sm font-black uppercase tracking-wider text-slate-900">{label}</h3>
-                            </div>
-                            <p className="text-slate-600 leading-relaxed font-medium pl-11">{feedback.feedback[key]}</p>
-                            <div className="h-px bg-slate-100 last:hidden"></div>
-                        </div>
-                    )
-                    ))}
-                </div>
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm space-y-6">
+                {feedback.feedback?.strengths && (
+                  <div>
+                    <h3 className="text-sm font-black uppercase tracking-wider text-green-600 mb-2">Strengths</h3>
+                    <p className="text-slate-600 leading-relaxed">{feedback.feedback.strengths}</p>
+                  </div>
+                )}
+                {feedback.feedback?.weaknesses && (
+                  <div>
+                    <h3 className="text-sm font-black uppercase tracking-wider text-amber-600 mb-2">Areas to Improve</h3>
+                    <p className="text-slate-600 leading-relaxed">{feedback.feedback.weaknesses}</p>
+                  </div>
+                )}
+                {feedback.feedback?.improvement_tip && (
+                  <div>
+                    <h3 className="text-sm font-black uppercase tracking-wider text-indigo-600 mb-2">Recommendation</h3>
+                    <p className="text-slate-600 leading-relaxed">{feedback.feedback.improvement_tip}</p>
+                  </div>
+                )}
+              </div>
 
-                <button
-                    onClick={() => { window.location.href = '/dashboard' }}
-                    className="w-full px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-                >
-                    Return to Dashboard
-                </button>
+              <button
+                onClick={() => { window.location.href = '/dashboard' }}
+                className="w-full px-8 py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold uppercase tracking-widest text-xs shadow-xl transition-all"
+              >
+                Return to Dashboard
+              </button>
             </div>
           </div>
         </div>
@@ -657,283 +522,362 @@ export default function App() {
     )
   }
 
-  // Main test interface
-  const allPartsComplete = assignedParts.every(part => completedParts[part])
-  const currentPartComplete = completedParts[currentPart]
-
+  // ══════════════════════════════════════════════════════════════════════════
+  // MAIN TEST INTERFACE
+  // ══════════════════════════════════════════════════════════════════════════
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans overflow-x-hidden">
+    <main className="min-h-screen bg-slate-50 text-slate-900 px-6 py-12 font-sans">
       <div className="max-w-3xl mx-auto space-y-12">
         <header className="flex items-center justify-between border-b border-slate-200 pb-8">
-            <div className="space-y-1">
-                <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-sangria">IELTS Speaking Test</p>
-                <h1 className="text-4xl font-black tracking-tighter text-slate-950">Part {currentPart}{assignedParts.length > 1 ? ` of ${assignedParts.length}` : ''}</h1>
-            </div>
-            <button
-                onClick={() => { window.location.href = '/dashboard' }}
-                className="bg-white border border-slate-200 text-slate-600 hover:text-slate-900 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all hover:bg-slate-50 uppercase tracking-widest"
-            >
-                Dashboard
-            </button>
+          <div className="space-y-1">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-indigo-600">IELTS Speaking Test</p>
+            <h1 className="text-4xl font-black tracking-tighter text-slate-950">
+              {phase === 'intro' && 'Get Ready'}
+              {phase === 'part1' && 'Part 1: Interview'}
+              {phase === 'break1' && 'Break'}
+              {phase === 'part2_prep' && 'Part 2: Preparation'}
+              {phase === 'part2_record' && 'Part 2: Long Turn'}
+              {phase === 'break2' && 'Break'}
+              {phase === 'part3' && 'Part 3: Discussion'}
+              {phase === 'break3' && 'Test Complete'}
+              {phase === 'complete' && 'Test Complete'}
+            </h1>
+          </div>
+          <button
+            onClick={() => { window.location.href = '/dashboard' }}
+            className="bg-white border border-slate-200 text-slate-600 hover:text-slate-900 px-5 py-2.5 rounded-xl font-bold text-xs shadow-sm transition-all hover:bg-slate-50 uppercase tracking-widest"
+          >
+            Dashboard
+          </button>
         </header>
 
-        {/* Progress Indicator */}
-        <div className="flex items-center gap-3">
-          {assignedParts.map((part, idx) => (
-            <div key={part} className="flex items-center gap-3">
-              <div className={`flex items-center justify-center w-10 h-10 rounded-full font-black text-sm ${
-                completedParts[part] ? 'bg-green-500 text-white' :
-                idx === currentPartIndex ? 'bg-brand-sangria text-white' :
-                'bg-slate-200 text-slate-400'
-              }`}>
-                {completedParts[part] ? '✓' : part}
+        {/* ── INTRO SCREEN ── */}
+        {phase === 'intro' && (
+          <section className="space-y-8">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center">
+                  <Mic size={32} className="text-indigo-600" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-slate-900">Welcome to the Speaking Test</h2>
+                  <p className="text-sm text-slate-500 mt-1">Parts: {assignedParts.join(', ')}</p>
+                </div>
               </div>
-              {idx < assignedParts.length - 1 && (
-                <div className={`h-1 w-12 rounded ${completedParts[part] ? 'bg-green-500' : 'bg-slate-200'}`}></div>
+
+              <div className="space-y-4 text-slate-600 leading-relaxed">
+                <p className="font-semibold text-slate-900">How this test works:</p>
+                <ul className="space-y-2 pl-5">
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-600 font-bold mt-1">•</span>
+                    <span>The examiner will ask you questions via <strong>audio playback</strong>.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-600 font-bold mt-1">•</span>
+                    <span>Your microphone will <strong>automatically start recording</strong> when the question ends.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-600 font-bold mt-1">•</span>
+                    <span>Click <strong>"Stop & Next"</strong> when you finish answering to move to the next question.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-600 font-bold mt-1">•</span>
+                    <span>You can use <strong>"Repeat Question"</strong> up to 2 times per task.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-indigo-600 font-bold mt-1">•</span>
+                    <span><strong>No pausing</strong> during active questions — this simulates real exam pressure.</span>
+                  </li>
+                </ul>
+              </div>
+
+              {micPermission === null && (
+                <button
+                  onClick={requestMicPermission}
+                  className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3"
+                >
+                  <Mic size={20} />
+                  Grant Microphone Access
+                </button>
+              )}
+
+              {micPermission === 'granted' && (
+                <button
+                  onClick={startPart1}
+                  className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3"
+                >
+                  <Play size={20} />
+                  Start Test
+                </button>
+              )}
+
+              {micPermission === 'denied' && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm font-medium flex items-center gap-3">
+                  <AlertCircle size={20} />
+                  <span>{error}</span>
+                </div>
               )}
             </div>
-          ))}
-        </div>
+          </section>
+        )}
 
-        {/* Part 1: Interview */}
-        {currentPart === '1' && (
+        {/* ── PART 1 ── */}
+        {phase === 'part1' && (
           <section className="space-y-6">
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 1: Introduction & Interview</h2>
                   <p className="text-xs text-slate-400 mt-1">Topic: {part1Topic.topic}</p>
                 </div>
-                <span className="bg-brand-sangria/10 text-brand-sangria px-4 py-2 rounded-xl font-bold text-xs">
-                  Question {part1QuestionIndex + 1} of {part1Questions.length}
+                <span className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl font-bold text-xs">
+                  Question {currentQuestionIdx + 1} of {part1Questions.length}
                 </span>
               </div>
-              
-              <div className="space-y-4">
-                {part1Questions.map((q, idx) => (
-                  <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
-                    idx === part1QuestionIndex ? 'border-brand-sangria bg-brand-sangria/10' : 'border-slate-200 bg-slate-50/50 opacity-60'
-                  }`}>
-                    <div className="flex items-start gap-3">
-                      <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                        idx === part1QuestionIndex ? 'bg-brand-sangria text-white' : 'bg-slate-300 text-slate-600'
-                      }`}>
-                        {idx + 1}
-                      </span>
-                      <p className={`text-sm font-medium leading-relaxed ${
-                        idx === part1QuestionIndex ? 'text-slate-900' : 'text-slate-500'
-                      }`}>
-                        {q}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
 
-              <div className="flex gap-3 mt-6">
-                <button
-                  onClick={() => setPart1QuestionIndex(prev => Math.max(0, prev - 1))}
-                  disabled={part1QuestionIndex === 0}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
-                >
-                  ← Previous
-                </button>
-                <button
-                  onClick={() => setPart1QuestionIndex(prev => Math.min(part1Questions.length - 1, prev + 1))}
-                  disabled={part1QuestionIndex === part1Questions.length - 1}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
-                >
-                  Next →
-                </button>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Part 2: Cue Card */}
-        {currentPart === '2' && (
-          <section className="space-y-6">
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
-              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-6">Part 2: Long Turn (Cue Card)</h2>
-              
-              {!part2PrepComplete ? (
-                <div className="text-center space-y-6">
-                  <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-brand-sangria'}`}>
-                    {formatTime(part2PrepTime)}
-                  </div>
-                  <p className="text-lg font-bold text-slate-600">Preparation Time</p>
-                  <p className="text-sm text-slate-500">You have 1 minute to prepare. You may take notes.</p>
-                  <button
-                    onClick={handleSkipPrep}
-                    className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest"
-                  >
-                    Skip Preparation
-                  </button>
+              {isPlayingAudio && (
+                <div className="flex items-center justify-center gap-4 py-12">
+                  <Volume2 size={32} className="text-indigo-600 animate-pulse" />
+                  <p className="text-lg font-bold text-slate-700">Examiner is speaking...</p>
                 </div>
-              ) : (
-                <div className="space-y-6">
-                  <div className="bg-brand-sangria/10 border-2 border-brand-sangria/20 rounded-2xl p-6">
-                    <p className="text-xl font-bold text-slate-900 mb-4">{part2CueCard.prompt}</p>
-                    <p className="text-sm font-bold text-slate-600 mb-3">You should say:</p>
-                    <ul className="space-y-2">
-                      {part2CueCard.points.map((point, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
-                          <span className="text-brand-sangria font-bold">•</span>
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  {isRecording && (
-                    <div className="text-center">
-                      <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-brand-sangria'}`}>
-                        {formatTime(part2RecordTime)}
-                      </div>
-                      <p className="text-sm text-slate-500 mt-2">Recording Time Remaining</p>
+              )}
+
+              {isRecording && !isPlayingAudio && (
+                <div className="text-center py-12 space-y-6">
+                  <div className="relative inline-block">
+                    <div className="absolute inset-0 bg-red-500/30 rounded-full animate-ping scale-150"></div>
+                    <div className="relative w-20 h-20 bg-red-500 rounded-full flex items-center justify-center">
+                      <Mic size={40} className="text-white" />
                     </div>
-                  )}
+                  </div>
+                  <p className="text-xl font-black text-slate-900">Recording Your Answer</p>
+                  <p className="text-sm text-slate-500">Speak naturally. Click "Stop & Next" when finished.</p>
+
+                  <div className="flex items-center justify-center gap-3 pt-4">
+                    <button
+                      onClick={handleDominoNext}
+                      className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center gap-2"
+                    >
+                      Stop & Next
+                      <ArrowRight size={18} />
+                    </button>
+
+                    <button
+                      onClick={handleRepeatQuestion}
+                      disabled={repeatUsesLeft === 0}
+                      className="px-6 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+                      title={`${repeatUsesLeft} uses left`}
+                    >
+                      <RotateCcw size={16} />
+                      Repeat ({repeatUsesLeft})
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
           </section>
         )}
 
-        {/* Part 3: Discussion */}
-        {currentPart === '3' && (
+        {/* ── BREAK 1 (after Part 1, before Part 2) ── */}
+        {phase === 'break1' && (
           <section className="space-y-6">
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-10 shadow-sm">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 3: Two-Way Discussion</h2>
-                  <p className="text-xs text-slate-400 mt-1">Topic: {part3Topic.topic}</p>
-                </div>
-                <div className={`px-4 py-2 rounded-xl font-bold text-xs ${
-                  part3TimeRemaining <= 60 ? 'bg-red-50 text-red-600 animate-pulse' : 'bg-slate-100 text-slate-600'
-                }`}>
-                  Time: {formatTime(part3TimeRemaining)}
-                </div>
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm text-center space-y-6">
+              <CheckCircle size={64} className="text-green-500 mx-auto" />
+              <div>
+                <h2 className="text-2xl font-black text-slate-900">Part 1 Complete</h2>
+                <p className="text-slate-500 mt-2">Take a moment to breathe. When ready, start Part 2.</p>
               </div>
+              <button
+                onClick={startPart2}
+                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all"
+              >
+                Start Part 2
+              </button>
+            </div>
+          </section>
+        )}
+
+        {/* ── PART 2 PREP ── */}
+        {phase === 'part2_prep' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm">
+              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-6">Part 2: Long Turn (Cue Card)</h2>
               
-              <div className="space-y-4">
-                {part3Questions.map((q, idx) => (
-                  <div key={idx} className={`p-4 rounded-2xl border-2 transition-all ${
-                    idx === part3QuestionIndex ? 'border-brand-navy bg-brand-navy/10' : 'border-slate-200 bg-slate-50/50 opacity-60'
-                  }`}>
-                    <div className="flex items-start gap-3">
-                      <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                        idx === part3QuestionIndex ? 'bg-brand-navy text-white' : 'bg-slate-300 text-slate-600'
-                      }`}>
-                        {idx + 1}
-                      </span>
-                      <p className={`text-sm font-medium leading-relaxed ${
-                        idx === part3QuestionIndex ? 'text-slate-900' : 'text-slate-500'
-                      }`}>
-                        {q}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <div className="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6 mb-6">
+                <p className="text-xl font-bold text-slate-900 mb-4">{part2CueCard.prompt}</p>
+                <p className="text-sm font-bold text-slate-600 mb-3">You should say:</p>
+                <ul className="space-y-2">
+                  {part2CueCard.points.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                      <span className="text-indigo-600 font-bold">•</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <div className="flex gap-3 mt-6">
+              <div className="text-center space-y-6">
+                <div className={`text-6xl font-black ${part2PrepTime <= 10 ? 'text-red-600 animate-pulse' : 'text-indigo-600'}`}>
+                  {formatTime(part2PrepTime)}
+                </div>
+                <p className="text-lg font-bold text-slate-600">Preparation Time</p>
+                <p className="text-sm text-slate-500">You have 1 minute to prepare. You may take notes.</p>
                 <button
-                  onClick={() => setPart3QuestionIndex(prev => Math.max(0, prev - 1))}
-                  disabled={part3QuestionIndex === 0}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
+                  onClick={handleSkipPrep}
+                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest"
                 >
-                  ← Previous
-                </button>
-                <button
-                  onClick={() => setPart3QuestionIndex(prev => Math.min(part3Questions.length - 1, prev + 1))}
-                  disabled={part3QuestionIndex === part3Questions.length - 1}
-                  className="bg-slate-100 hover:bg-slate-200 text-slate-600 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all disabled:opacity-40"
-                >
-                  Next →
+                  Skip Preparation
                 </button>
               </div>
             </div>
           </section>
         )}
 
-        {/* Recording Interface */}
-        {(currentPart === '1' || currentPart === '3' || (currentPart === '2' && part2PrepComplete)) && (
-          <section className="bg-slate-900 text-white rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-brand-sangria/10 to-transparent"></div>
-            
-            <div className="relative flex flex-col items-center gap-6">
-                <div className="flex flex-col items-center gap-3">
-                    <div className="relative">
-                        {isRecording && (
-                            <div className="absolute inset-0 bg-red-500/30 rounded-full animate-ping scale-150"></div>
-                        )}
-                        <button
-                            onClick={handleToggleRecording}
-                            disabled={currentPartComplete}
-                            className={`relative w-16 h-16 rounded-full border-4 flex items-center justify-center transition-all transform active:scale-95 group shadow-inner ${
-                                isRecording ? 'bg-white border-red-500' : currentPartComplete ? 'bg-green-500 border-green-600' : 'bg-brand-sangria border-brand-sangria/50 hover:bg-brand-sangria/90 hover:border-brand-sangria'
-                            }`}
-                        >
-                            {currentPartComplete ? (
-                                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                            ) : isRecording ? (
-                                <div className="w-5 h-5 bg-red-600 rounded-sm"></div>
-                            ) : (
-                                <svg className="w-7 h-7 text-white group-hover:text-white/90 transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                                </svg>
-                            )}
-                        </button>
+        {/* ── PART 2 RECORD ── */}
+        {phase === 'part2_record' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm">
+              <h2 className="text-sm font-black uppercase tracking-widest text-slate-500 mb-6">Part 2: Long Turn</h2>
+              
+              <div className="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-6 mb-6">
+                <p className="text-xl font-bold text-slate-900 mb-4">{part2CueCard.prompt}</p>
+                <ul className="space-y-2">
+                  {part2CueCard.points.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                      <span className="text-indigo-600 font-bold">•</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {isRecording && (
+                <div className="text-center space-y-6">
+                  <div className="relative inline-block">
+                    <div className="absolute inset-0 bg-red-500/30 rounded-full animate-ping scale-150"></div>
+                    <div className="relative w-20 h-20 bg-red-500 rounded-full flex items-center justify-center">
+                      <Mic size={40} className="text-white" />
                     </div>
-                    
-                    <div className="text-center space-y-0.5">
-                        <p className={`text-xs font-black uppercase tracking-[0.2em] ${
-                          currentPartComplete ? 'text-green-400' : isRecording ? 'text-red-400' : 'text-brand-sangria/70'
-                        }`}>
-                            {currentPartComplete ? 'Part Complete' : isRecording ? 'Recording Live' : 'Standby'}
-                        </p>
-                        <p className={`text-3xl font-black tabular-nums transition-all ${isRecording ? 'text-white' : 'text-slate-500'}`}>
-                            {formatTime(recordingSeconds)}
-                        </p>
-                    </div>
+                  </div>
+                  <div className={`text-4xl font-black ${part2RecordTime <= 30 ? 'text-red-600 animate-pulse' : 'text-indigo-600'}`}>
+                    {formatTime(part2RecordTime)}
+                  </div>
+                  <p className="text-sm text-slate-500">Recording Time Remaining (Auto-stops at 2 minutes)</p>
                 </div>
-
-                {currentPartComplete && !allPartsComplete && (
-                  <button
-                      onClick={handleNextPart}
-                      className="w-full max-w-sm py-4 bg-white hover:bg-slate-50 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
-                  >
-                      Continue to Part {assignedParts[currentPartIndex + 1]}
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </button>
-                )}
-
-                {allPartsComplete && (
-                  <button
-                      onClick={handleSubmitAll}
-                      disabled={isSubmitting}
-                      className="w-full max-w-sm py-4 bg-white hover:bg-slate-50 disabled:bg-slate-800/50 disabled:text-slate-600 font-black uppercase tracking-widest text-xs rounded-2xl text-slate-900 shadow-xl transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3"
-                  >
-                      {isSubmitting ? (
-                          <>
-                              <div className="w-4 h-4 border-4 border-slate-200 border-t-brand-sangria rounded-full animate-spin"></div>
-                              Analyzing Audio...
-                          </>
-                      ) : (
-                          <>
-                              Submit for Evaluation
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                          </>
-                      )}
-                  </button>
-                )}
+              )}
             </div>
-        </section>
+          </section>
+        )}
+
+        {/* ── BREAK 2 (after Part 2, before Part 3) ── */}
+        {phase === 'break2' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm text-center space-y-6">
+              <CheckCircle size={64} className="text-green-500 mx-auto" />
+              <div>
+                <h2 className="text-2xl font-black text-slate-900">Part 2 Complete</h2>
+                <p className="text-slate-500 mt-2">Take a moment to breathe. When ready, start Part 3.</p>
+              </div>
+              <button
+                onClick={startPart3}
+                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all"
+              >
+                Start Part 3
+              </button>
+            </div>
+          </section>
+        )}
+
+        {/* ── PART 3 ── */}
+        {phase === 'part3' && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-sm font-black uppercase tracking-widest text-slate-500">Part 3: Two-Way Discussion</h2>
+                  <p className="text-xs text-slate-400 mt-1">Topic: {part3Topic.topic}</p>
+                </div>
+                <span className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl font-bold text-xs">
+                  Question {currentQuestionIdx + 1} of {part3Questions.length}
+                </span>
+              </div>
+
+              {isPlayingAudio && (
+                <div className="flex items-center justify-center gap-4 py-12">
+                  <Volume2 size={32} className="text-indigo-600 animate-pulse" />
+                  <p className="text-lg font-bold text-slate-700">Examiner is speaking...</p>
+                </div>
+              )}
+
+              {isRecording && !isPlayingAudio && (
+                <div className="text-center py-12 space-y-6">
+                  <div className="relative inline-block">
+                    <div className="absolute inset-0 bg-red-500/30 rounded-full animate-ping scale-150"></div>
+                    <div className="relative w-20 h-20 bg-red-500 rounded-full flex items-center justify-center">
+                      <Mic size={40} className="text-white" />
+                    </div>
+                  </div>
+                  <p className="text-xl font-black text-slate-900">Recording Your Answer</p>
+                  <p className="text-sm text-slate-500">Speak naturally. Click "Stop & Next" when finished.</p>
+
+                  <div className="flex items-center justify-center gap-3 pt-4">
+                    <button
+                      onClick={handleDominoNext}
+                      className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center gap-2"
+                    >
+                      Stop & Next
+                      <ArrowRight size={18} />
+                    </button>
+
+                    <button
+                      onClick={handleRepeatQuestion}
+                      disabled={repeatUsesLeft === 0}
+                      className="px-6 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
+                      title={`${repeatUsesLeft} uses left`}
+                    >
+                      <RotateCcw size={16} />
+                      Repeat ({repeatUsesLeft})
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* ── BREAK 3 / COMPLETE ── */}
+        {(phase === 'break3' || phase === 'complete') && (
+          <section className="space-y-6">
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm text-center space-y-6">
+              <CheckCircle size={64} className="text-green-500 mx-auto" />
+              <div>
+                <h2 className="text-2xl font-black text-slate-900">Test Complete!</h2>
+                <p className="text-slate-500 mt-2">All parts finished. Submit your recording for AI evaluation.</p>
+              </div>
+              <button
+                onClick={handleSubmitAll}
+                disabled={isSubmitting}
+                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center justify-center gap-3 mx-auto"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Analyzing Audio...
+                  </>
+                ) : (
+                  <>
+                    Submit for Evaluation
+                    <ArrowRight size={18} />
+                  </>
+                )}
+              </button>
+            </div>
+          </section>
         )}
 
         {error && (
           <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-700 text-sm font-medium flex items-center gap-3">
-            <svg className="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            <AlertCircle size={20} />
             <span>{error}</span>
           </div>
         )}
