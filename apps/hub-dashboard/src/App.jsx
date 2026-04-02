@@ -11,6 +11,7 @@ import ResetPassword from './ResetPassword';
 import WordBank from './components/WordBank';
 import VocabLabDashboard from './components/VocabLab/VocabLabDashboard';
 import SentenceBuilderPage from './components/VocabLab/SentenceBuilderPage';
+import WritingLabApp from './components/WritingLab/WritingLabApp';
 
 const AUTH_PAGES = ['/login', '/forgot-password', '/reset-password', '/auth/success'];
 
@@ -102,6 +103,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <VocabLabDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/writing-lab"
+            element={
+              <ProtectedRoute>
+                <WritingLabApp user={JSON.parse(localStorage.getItem('user') || '{}')} />
               </ProtectedRoute>
             }
           />

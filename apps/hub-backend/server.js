@@ -188,6 +188,10 @@ app.use('/api/ielts', ieltsRoutes);
 const grammarRoutes = require('./routes/grammar');
 app.use('/api/grammar', grammarRoutes);
 
+// Writing Lab routes
+const writingLabRoutes = require('./routes/writingLab');
+app.use('/api/writing-lab', writingLabRoutes);
+
 // 404 for API routes - return JSON so clients don't get HTML
 app.use('/api', (req, res) => {
   res.status(404).json({ error: 'Not found', path: req.originalUrl });

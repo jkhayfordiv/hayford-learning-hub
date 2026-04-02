@@ -544,6 +544,36 @@ router.post('/submit', auth, async (req, res) => {
         }
       }
 
+      // If passed, record a milestone in student_scores for Recent Activity
+      if (passed && node_id !== 'node-0-diagnostic') {
+        try {
+          const nodeLabel = nodeDetails && nodeDetails.length > 0
+            ? `${node_id} (${nodeDetails[0].region} – ${nodeDetails[0].tier})`
+            : node_id;
+
+          // Find or create grammar-world module
+          let gwModuleId;
+          const [gwModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'grammar-world' LIMIT 1");
+          if (gwModules.length === 0) {
+            const [insertRes] = await connection.query(
+              "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('Grammar World', 'grammar-world', 'Grammar mastery node completions.') RETURNING id"
+            );
+            gwModuleId = insertRes[0]?.id ?? insertRes.insertId;
+          } else {
+            gwModuleId = gwModules[0].id;
+          }
+
+          await connection.query(
+            `INSERT INTO student_scores (student_id, module_id, submitted_text, word_count, overall_score, ai_feedback, diagnostic_data)
+             VALUES ($1, $2, $3, 0, $4, $5, '[]')`,
+            [req.user.id, gwModuleId, `Grammar World – ${nodeLabel}`, score, JSON.stringify({ feedback })]
+          );
+        } catch (milestoneErr) {
+          // Non-blocking: don't fail the response if milestone save fails
+          console.error('[Grammar] Failed to save milestone to student_scores:', milestoneErr.message);
+        }
+      }
+
       res.json({ score, passed, feedback });
     } finally {
       connection.release();

@@ -26,7 +26,7 @@ async function pushVocabWords(connection, words, studentIds) {
 // @desc    Create a new assignment(s) for a specific student, entire class, or all students
 // @access  Private (Teacher/Admin only)
 router.post('/', requireTeacher, async (req, res) => {
-  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, vocab_words } = req.body;
+  const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, vocab_words, writing_lab_config } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
   let connection;
@@ -73,6 +73,15 @@ router.post('/', requireTeacher, async (req, res) => {
     }
     const [resolvedListeningModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'listening' LIMIT 1");
 
+    // Ensure writing_lab module exists
+    const [wlModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'writing_lab' LIMIT 1");
+    if (wlModules.length === 0) {
+      await connection.query(
+        "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('Writing Lab', 'writing_lab', 'Guided paragraph and essay writing with AI feedback.')"
+      );
+    }
+    const [resolvedWLModule] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'writing_lab' LIMIT 1");
+
     if (aType === 'grammar-practice' && !grammar_topic_id) {
       return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
     }
@@ -84,16 +93,20 @@ router.post('/', requireTeacher, async (req, res) => {
         ? resolvedSpeakingModule?.[0]?.id
         : aType === 'listening'
           ? resolvedListeningModule?.[0]?.id
-          : module_id;
+          : aType === 'writing_lab'
+            ? resolvedWLModule?.[0]?.id
+            : module_id;
+
+    const wlConfigJson = aType === 'writing_lab' && writing_lab_config ? JSON.stringify(writing_lab_config) : null;
 
     if (student_id && student_id !== 'all') {
       // Assign to a specific student
       const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
       const speakingTaskPart = speaking_parts && speaking_parts.length > 0 ? speaking_parts[0] : (speaking_task_part || null);
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id`,
-        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
+        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date, writing_lab_config)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null, wlConfigJson]
       );
       
       if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
@@ -159,8 +172,8 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date, writing_lab_config)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
             [
               teacher_id,
               student.id,
@@ -173,7 +186,8 @@ router.post('/', requireTeacher, async (req, res) => {
               speakingTaskPart,
               speakingPartsJson,
               instructions || null,
-              due_date || null
+              due_date || null,
+              wlConfigJson
             ]
           );
           count++;
@@ -225,9 +239,9 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
-            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null]
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date, writing_lab_config)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null, wlConfigJson]
           );
           count++;
         } catch (dupError) {
@@ -297,7 +311,7 @@ router.get('/my-tasks', auth, async (req, res) => {
     const [tasks] = await connection.query(
       `SELECT a.id, a.assignment_type, a.grammar_topic_id, a.level_range, a.writing_task_type,
               a.speaking_task_part, a.speaking_parts, a.instructions, a.due_date, a.status, a.created_at,
-              a.teacher_comment, a.teacher_comment_read, a.feedback_date,
+              a.teacher_comment, a.teacher_comment_read, a.feedback_date, a.writing_lab_config,
               m.id as module_id, m.module_name, m.module_type,
               u.first_name as teacher_first_name, u.last_name as teacher_last_name,
               g.first_name as grader_first_name, g.last_name as grader_last_name
@@ -381,7 +395,7 @@ router.get('/', requireTeacher, async (req, res) => {
     // All users (Teacher, Admin, SuperAdmin) see their own assignments only
     const query = `
       SELECT a.id, a.assignment_type, a.grammar_topic_id, a.writing_task_type, a.speaking_task_part, a.speaking_parts, a.instructions, a.due_date, a.status, a.created_at,
-             a.teacher_comment, a.teacher_comment_read, a.feedback_date,
+             a.teacher_comment, a.teacher_comment_read, a.feedback_date, a.writing_lab_config,
              m.module_name, m.module_type,
              u.first_name as student_first_name, u.last_name as student_last_name,
              g.first_name as grader_first_name, g.last_name as grader_last_name

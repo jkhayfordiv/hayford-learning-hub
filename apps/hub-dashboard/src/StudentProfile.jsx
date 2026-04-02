@@ -147,6 +147,7 @@ export default function StudentProfile() {
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
   const [studentData, setStudentData] = useState(null);
+  const [studentWeaknesses, setStudentWeaknesses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedSubmission, setSelectedSubmission] = useState(null);
@@ -176,11 +177,14 @@ export default function StudentProfile() {
         setError('');
         setGrammarProgressError('');
         const token = localStorage.getItem('token');
-        const [scoresRes, grammarRes] = await Promise.all([
+        const [scoresRes, grammarRes, weaknessesRes] = await Promise.all([
           fetch(`${apiBase}/api/scores/student/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
           fetch(`${apiBase}/api/grammar-progress/student/${id}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+          fetch(`${apiBase}/api/users/${id}/weaknesses`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -195,6 +199,11 @@ export default function StudentProfile() {
             diagnostic_data: parseMaybeJson(submission.diagnostic_data),
           })),
         });
+
+        if (weaknessesRes.ok) {
+          const weaknessData = await weaknessesRes.json();
+          setStudentWeaknesses((weaknessData || []).map(w => ({ tag: w.category, count: w.error_count })));
+        }
 
         if (grammarRes.ok) {
           const grammarData = await grammarRes.json();
@@ -214,7 +223,7 @@ export default function StudentProfile() {
     fetchStudentProfile();
   }, [id, apiBase]);
 
-  const topWeaknesses = useMemo(() => getTopWeaknesses(studentData?.submissions || []), [studentData]);
+  const topWeaknesses = studentWeaknesses;
   const passedGrammarTopics = useMemo(() => {
     return (grammarProgress || [])
       .map((entry) => ({

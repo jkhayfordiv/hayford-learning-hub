@@ -66,8 +66,17 @@ const DEFAULT_ASSIGNMENT_FORM = {
   speaking_task_part: '1',
   speaking_parts: ['1'],
   instructions: '',
-  due_date: ''
+  due_date: '',
+  writing_lab_config: { level: 'paragraph', genre: 'Opinion / Argumentative', support_level: 'light' }
 };
+
+const WRITING_LAB_GENRES = [
+  'Opinion / Argumentative',
+  'Cause & Effect',
+  'Compare & Contrast',
+  'Problem & Solution',
+  'Descriptive / Narrative',
+];
 
 const GRAMMAR_TOPIC_LOOKUP = GRAMMAR_PRACTICE_SECTIONS.reduce((acc, section) => {
   for (const topic of section.topics) {
@@ -131,6 +140,12 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [isGrammarAssignModalOpen, setIsGrammarAssignModalOpen] = useState(false);
+  const [selectedWLSubmission, setSelectedWLSubmission] = useState(null);
+  const [isWLReviewModalOpen, setIsWLReviewModalOpen] = useState(false);
+  const [wlFeedbackText, setWlFeedbackText] = useState('');
+  const [wlFeedbackSaving, setWlFeedbackSaving] = useState(false);
+  const [wlFeedbackError, setWlFeedbackError] = useState('');
+  const [wlFeedbackSuccess, setWlFeedbackSuccess] = useState(false);
   const [grammarAssignTarget, setGrammarAssignTarget] = useState(null);
   const [selectedGrammarTopic, setSelectedGrammarTopic] = useState(null);
   const [expandedGrammarSections, setExpandedGrammarSections] = useState(
@@ -159,6 +174,50 @@ export default function TeacherDashboard({ user, onLogout }) {
   const [navigationView, setNavigationView] = useState('dashboard'); // dashboard, institutions, users, classes, class-details
   const [selectedClassId, setSelectedClassId] = useState(null); // For viewing class details
   const [preselectedClassId, setPreselectedClassId] = useState(null); // For pre-filling assignment form from ClassDetails
+
+  // App Visibility Settings (Phase 11)
+  const [appVisibility, setAppVisibility] = useState(null); // null = not yet loaded
+  const [appVisibilitySaving, setAppVisibilitySaving] = useState({});
+  const [appVisibilityError, setAppVisibilityError] = useState('');
+
+  const fetchAppVisibility = async () => {
+    if (!user.institution_id) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/institutions/${user.institution_id}/app-visibility`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAppVisibility(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch app visibility settings', err);
+    }
+  };
+
+  const handleToggleAppVisibility = async (app, newValue) => {
+    if (!user.institution_id) return;
+    setAppVisibilitySaving(prev => ({ ...prev, [app]: true }));
+    setAppVisibilityError('');
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/institutions/${user.institution_id}/app-visibility`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ app, show_on_dashboard: newValue }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || 'Failed to save');
+      }
+      setAppVisibility(prev => ({ ...prev, ['show_' + app + '_on_dashboard']: newValue }));
+    } catch (err) {
+      setAppVisibilityError(err.message);
+    } finally {
+      setAppVisibilitySaving(prev => ({ ...prev, [app]: false }));
+    }
+  };
 
   // Dark Mode Support
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -351,6 +410,49 @@ export default function TeacherDashboard({ user, onLogout }) {
     }
   };
 
+  const openWLSubmissionViewer = async (taskId) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/writing-lab/submissions?assignment_id=${taskId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to fetch Writing Lab submission');
+      const submission = Array.isArray(data) ? data.find(s => s.assignment_id === taskId) || data[0] : data;
+      if (!submission) { alert('No Writing Lab submission found for this assignment.'); return; }
+      setSelectedWLSubmission(submission);
+      setWlFeedbackText(submission.teacher_feedback || '');
+      setWlFeedbackError('');
+      setWlFeedbackSuccess(false);
+      setIsWLReviewModalOpen(true);
+    } catch (err) {
+      console.error('Fetch WL submission error:', err);
+      alert('Error fetching Writing Lab submission: ' + err.message);
+    }
+  };
+
+  const handleSaveWLFeedback = async () => {
+    if (!selectedWLSubmission) return;
+    setWlFeedbackSaving(true);
+    setWlFeedbackError('');
+    setWlFeedbackSuccess(false);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/writing-lab/submissions/${selectedWLSubmission.id}/feedback`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ teacher_feedback: wlFeedbackText })
+      });
+      if (!res.ok) { const d = await res.json(); throw new Error(d.error || 'Failed to save'); }
+      setWlFeedbackSuccess(true);
+      setTimeout(() => setIsWLReviewModalOpen(false), 1500);
+    } catch (err) {
+      setWlFeedbackError(err.message);
+    } finally {
+      setWlFeedbackSaving(false);
+    }
+  };
+
   const openSubmissionViewer = async (taskId) => {
     setIsReviewLoading(true);
     try {
@@ -460,6 +562,10 @@ export default function TeacherDashboard({ user, onLogout }) {
 
       if (payload.assignment_type !== 'writing') {
         payload.writing_task_type = null;
+      }
+
+      if (payload.assignment_type !== 'writing_lab') {
+        payload.writing_lab_config = null;
       }
       
       // Handle the new assign_to_type logic
@@ -1038,6 +1144,12 @@ export default function TeacherDashboard({ user, onLogout }) {
           >
             Grammar Analytics
           </button>
+          <button
+            onClick={() => { setActiveTab('settings'); if (!appVisibility) fetchAppVisibility(); }}
+            className={`py-4 font-bold text-sm border-b-2 transition-colors flex items-center gap-1.5 ${activeTab === 'settings' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
+          >
+            <Settings size={14} /> App Settings
+          </button>
 
         </div>
       )}
@@ -1514,6 +1626,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                         <option value="speaking">IELTS Speaking Practice</option>
                         <option value="vocabulary">Vocabulary Builder</option>
                         <option value="grammar-practice">Grammar Lab</option>
+                        <option value="writing_lab">Writing Lab</option>
                       </select>
                     </div>
 
@@ -1549,6 +1662,44 @@ export default function TeacherDashboard({ user, onLogout }) {
                           <option value="3">Part 3 - Discussion</option>
                           <option value="1,2,3">All Parts (Full Speaking Test)</option>
                         </select>
+                      </div>
+                    )}
+
+                    {assignmentForm.assignment_type === 'writing_lab' && (
+                      <div className="space-y-3 animate-in slide-in-from-top-1">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Writing Level</label>
+                          <select
+                            value={assignmentForm.writing_lab_config?.level || 'paragraph'}
+                            onChange={e => setAssignmentForm({ ...assignmentForm, writing_lab_config: { ...assignmentForm.writing_lab_config, level: e.target.value } })}
+                            className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                          >
+                            <option value="paragraph">Paragraph</option>
+                            <option value="essay">Essay</option>
+                          </select>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Genre</label>
+                          <select
+                            value={assignmentForm.writing_lab_config?.genre || 'Opinion / Argumentative'}
+                            onChange={e => setAssignmentForm({ ...assignmentForm, writing_lab_config: { ...assignmentForm.writing_lab_config, genre: e.target.value } })}
+                            className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                          >
+                            {WRITING_LAB_GENRES.map(g => <option key={g} value={g}>{g}</option>)}
+                          </select>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Support Level</label>
+                          <select
+                            value={assignmentForm.writing_lab_config?.support_level || 'light'}
+                            onChange={e => setAssignmentForm({ ...assignmentForm, writing_lab_config: { ...assignmentForm.writing_lab_config, support_level: e.target.value } })}
+                            className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-slate-900 focus:outline-none"
+                          >
+                            <option value="heavy">Heavy Scaffolding (sentence starters shown)</option>
+                            <option value="light">Light Guidance</option>
+                            <option value="independent">Independent (no prompts)</option>
+                          </select>
+                        </div>
                       </div>
                     )}
 
@@ -1847,7 +1998,13 @@ export default function TeacherDashboard({ user, onLogout }) {
                                     {group.students.map(s => (
                                       <div 
                                         key={s.id} 
-                                        onClick={s.status === 'completed' ? () => openSubmissionViewer(s.id) : undefined}
+                                        onClick={s.status === 'completed' ? () => {
+                                          if (group.assignment_type === 'writing_lab') {
+                                            openWLSubmissionViewer(s.id);
+                                          } else {
+                                            openSubmissionViewer(s.id);
+                                          }
+                                        } : undefined}
                                         className={`bg-white px-3 py-2 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm transition-all ${
                                           s.status === 'completed' 
                                             ? 'cursor-pointer hover:bg-slate-50 hover:shadow-md hover:border-slate-300' 
@@ -1924,6 +2081,81 @@ export default function TeacherDashboard({ user, onLogout }) {
           </>
         ) : activeTab === 'grammar-analytics' ? (
           <GrammarAnalytics />
+        ) : activeTab === 'settings' ? (
+          <div className="max-w-2xl">
+            <div className="mb-8">
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">App Settings</h2>
+              <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">
+                Control which apps appear as free-access tiles on the student dashboard.
+                Apps hidden here can still be assigned as homework and will remain accessible via student To-Do links.
+              </p>
+            </div>
+
+            {appVisibilityError && (
+              <div className="mb-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-xl px-4 py-3 text-sm font-medium">
+                {appVisibilityError}
+              </div>
+            )}
+
+            {appVisibility === null ? (
+              <div className="flex items-center gap-3 text-slate-500 py-12">
+                <div className="w-5 h-5 border-2 border-slate-300 border-t-transparent rounded-full animate-spin" />
+                Loading settings…
+              </div>
+            ) : (
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl divide-y divide-slate-100 dark:divide-slate-700 shadow-sm">
+                {[
+                  { app: 'writing',       label: 'IELTS Writing',       desc: 'AI-graded Task 1 & 2 practice',        enabled: true,                              key: 'show_writing_on_dashboard' },
+                  { app: 'speaking',      label: 'IELTS Speaking',      desc: 'AI examiner simulation (Parts 1–3)',   enabled: appVisibility.has_ielts_speaking,  key: 'show_speaking_on_dashboard' },
+                  { app: 'grammar_world', label: 'Grammar World Map',   desc: 'Gamified grammar mastery adventure',  enabled: appVisibility.has_grammar_world,   key: 'show_grammar_world_on_dashboard' },
+                  { app: 'vocab',         label: 'Vocab Lab',           desc: 'Spaced repetition vocabulary engine', enabled: true,                              key: 'show_vocab_on_dashboard' },
+                  { app: 'writing_lab',   label: 'Writing Lab',         desc: 'Guided paragraph & essay writing',    enabled: true,                              key: 'show_writing_lab_on_dashboard' },
+                ].map(({ app, label, desc, enabled, key }) => {
+                  const isOn = enabled && appVisibility[key] !== false;
+                  const isSaving = appVisibilitySaving[app];
+                  return (
+                    <div key={app} className="flex items-center justify-between gap-6 px-6 py-5">
+                      <div className="flex-1 min-w-0">
+                        <p className={`font-bold text-sm ${enabled ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500'}`}>
+                          {label}
+                          {!enabled && <span className="ml-2 text-[10px] font-black uppercase tracking-wider text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full">Not licensed</span>}
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{desc}</p>
+                      </div>
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        {isSaving && <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />}
+                        <button
+                          type="button"
+                          disabled={!enabled || isSaving}
+                          onClick={() => handleToggleAppVisibility(app, !isOn)}
+                          className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                            !enabled ? 'cursor-not-allowed opacity-40' : ''
+                          } ${isOn ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-600'}`}
+                          role="switch"
+                          aria-checked={isOn}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                              isOn ? 'translate-x-5' : 'translate-x-0'
+                            }`}
+                          />
+                        </button>
+                        <span className={`text-xs font-bold w-10 text-right ${
+                          isOn ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'
+                        }`}>
+                          {isOn ? 'ON' : 'OFF'}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            <p className="mt-4 text-xs text-slate-400 dark:text-slate-500 font-medium">
+              Note: Institution 1 (B2C / Freemium tier) always shows all licensed apps regardless of this setting.
+            </p>
+          </div>
         ) : null}
 
       {isGrammarAssignModalOpen && grammarAssignTarget && (
@@ -2402,6 +2634,85 @@ export default function TeacherDashboard({ user, onLogout }) {
           }}
           onSaveComment={handleSaveTeacherComment}
         />
+      )}
+
+      {/* Writing Lab Review Modal */}
+      {isWLReviewModalOpen && selectedWLSubmission && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            <div className="px-8 py-6 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-gradient-to-r from-teal-700 to-cyan-900">
+              <div>
+                <h2 className="text-2xl font-black text-white tracking-tight">Writing Lab Review</h2>
+                <p className="text-sm text-teal-100 mt-1">
+                  {selectedWLSubmission.first_name} {selectedWLSubmission.last_name}
+                  {selectedWLSubmission.configuration?.genre && ` · ${selectedWLSubmission.configuration.genre}`}
+                  {selectedWLSubmission.configuration?.level && ` (${selectedWLSubmission.configuration.level})`}
+                </p>
+              </div>
+              <button onClick={() => setIsWLReviewModalOpen(false)} className="p-2 hover:bg-white/20 rounded-full transition-colors">
+                <X size={24} className="text-white" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-8 space-y-6">
+              {selectedWLSubmission.final_score && (
+                <div className="flex items-center gap-6">
+                  <div className="flex-shrink-0 w-24 h-24 bg-gradient-to-br from-teal-500 to-cyan-700 rounded-2xl flex flex-col items-center justify-center text-white shadow-lg">
+                    <span className="text-3xl font-black">{selectedWLSubmission.final_score.band_equivalent ?? selectedWLSubmission.final_score.score}</span>
+                    <span className="text-[10px] uppercase font-bold tracking-widest">{selectedWLSubmission.final_score.band_equivalent ? 'Band' : 'Score'}</span>
+                  </div>
+                  <div>
+                    {selectedWLSubmission.final_score.feedback?.strengths && (
+                      <p className="text-sm text-slate-600 dark:text-slate-300"><span className="font-black text-emerald-600">Strengths:</span> {selectedWLSubmission.final_score.feedback.strengths}</p>
+                    )}
+                    {selectedWLSubmission.final_score.feedback?.weaknesses && (
+                      <p className="text-sm text-slate-600 dark:text-slate-300 mt-1"><span className="font-black text-amber-600">Weaknesses:</span> {selectedWLSubmission.final_score.feedback.weaknesses}</p>
+                    )}
+                    {selectedWLSubmission.final_score.feedback?.tip && (
+                      <p className="text-sm text-slate-600 dark:text-slate-300 mt-1"><span className="font-black text-sky-600">Tip:</span> {selectedWLSubmission.final_score.feedback.tip}</p>
+                    )}
+                  </div>
+                </div>
+              )}
+              <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+                <h3 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-4">Final Draft</h3>
+                <div className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap text-sm">
+                  {selectedWLSubmission.draft_2_text || <span className="text-slate-400 italic">No final draft submitted.</span>}
+                </div>
+              </div>
+              {Array.isArray(selectedWLSubmission.grammar_weaknesses_flagged) && selectedWLSubmission.grammar_weaknesses_flagged.length > 0 && (
+                <div>
+                  <h3 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-3">Grammar Weaknesses Flagged</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedWLSubmission.grammar_weaknesses_flagged.map((w, i) => (
+                      <span key={i} className="px-3 py-1 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800 rounded-full text-xs font-bold">
+                        {w.category || w}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div>
+                <h3 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-3">Teacher Feedback</h3>
+                {wlFeedbackError && <p className="text-xs text-red-600 font-bold mb-2">{wlFeedbackError}</p>}
+                {wlFeedbackSuccess && <p className="text-xs text-green-600 font-bold mb-2">Feedback saved!</p>}
+                <textarea
+                  rows={4}
+                  value={wlFeedbackText}
+                  onChange={e => setWlFeedbackText(e.target.value)}
+                  placeholder="Write your feedback for this student..."
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm font-medium text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+                />
+                <button
+                  onClick={handleSaveWLFeedback}
+                  disabled={wlFeedbackSaving || !wlFeedbackText.trim()}
+                  className="mt-3 px-6 py-2.5 bg-teal-700 text-white font-bold rounded-xl hover:bg-teal-800 transition-colors disabled:opacity-50 text-sm"
+                >
+                  {wlFeedbackSaving ? 'Saving…' : 'Save Feedback'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
     </main>

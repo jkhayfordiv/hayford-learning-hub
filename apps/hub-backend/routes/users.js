@@ -50,7 +50,12 @@ router.get('/me', auth, async (req, res) => {
               i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking,
               i.subscription_tier AS inst_tier, i.subscription_status,
               i.allow_b2c_payments,
-              i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
+              i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text,
+              COALESCE(i.show_writing_on_dashboard, true) AS show_writing_on_dashboard,
+              COALESCE(i.show_speaking_on_dashboard, true) AS show_speaking_on_dashboard,
+              COALESCE(i.show_grammar_world_on_dashboard, true) AS show_grammar_world_on_dashboard,
+              COALESCE(i.show_vocab_on_dashboard, true) AS show_vocab_on_dashboard,
+              COALESCE(i.show_writing_lab_on_dashboard, true) AS show_writing_lab_on_dashboard
        FROM users u
        LEFT JOIN institutions i ON u.institution_id = i.id
        WHERE u.id = $1`,
@@ -94,6 +99,11 @@ router.get('/me', auth, async (req, res) => {
       timezone: user.timezone || 'Asia/Tokyo',
       has_grammar_world: user.has_grammar_world !== false,
       has_ielts_speaking: user.has_ielts_speaking !== false,
+      show_writing_on_dashboard: user.show_writing_on_dashboard !== false,
+      show_speaking_on_dashboard: user.show_speaking_on_dashboard !== false,
+      show_grammar_world_on_dashboard: user.show_grammar_world_on_dashboard !== false,
+      show_vocab_on_dashboard: user.show_vocab_on_dashboard !== false,
+      show_writing_lab_on_dashboard: user.show_writing_lab_on_dashboard !== false,
       classes: enrollmentRows,
       class_id: enrollmentRows.length > 0 ? enrollmentRows[0].id : null,
       class_name: enrollmentRows.length > 0 ? enrollmentRows[0].class_name : null

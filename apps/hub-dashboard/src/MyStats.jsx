@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, AlertCircle, BarChart3, FileText, BookOpen } from 'lucide-react';
 
@@ -55,8 +55,12 @@ export default function MyStats() {
   const navigate = useNavigate();
   const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com');
 
+  let user = {};
+  try { user = JSON.parse(localStorage.getItem('user') || '{}'); } catch (e) {}
+
   const [scores, setScores] = useState([]);
   const [grammarProgress, setGrammarProgress] = useState([]);
+  const [topWeaknesses, setTopWeaknesses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -94,11 +98,26 @@ export default function MyStats() {
       }
     };
 
+    const fetchWeaknesses = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token || !user.id) return;
+        const res = await fetch(`${apiBase}/api/users/${user.id}/weaknesses`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setTopWeaknesses((data || []).map(w => ({ tag: w.category, count: w.error_count })));
+        }
+      } catch (err) {
+        console.error('Failed to fetch weaknesses:', err);
+      }
+    };
+
     fetchMyScores();
     fetchGrammarProgress();
+    fetchWeaknesses();
   }, [apiBase]);
-
-  const topWeaknesses = useMemo(() => aggregateWeaknesses(scores), [scores]);
 
   if (isLoading) {
     return <div className="min-h-screen bg-slate-50 flex items-center justify-center text-slate-500">Loading your stats...</div>;

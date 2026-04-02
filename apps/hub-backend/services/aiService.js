@@ -308,7 +308,7 @@ Evaluate the student on ALL FOUR official IELTS speaking criteria:
 1. Fluency and Coherence (FC): Listen for overall flow, idea development, and use of connectors. Brief pauses for thought are acceptable and should not be penalized. Score 7.0+ if speech flows naturally with good idea organization.
 2. Lexical Resource (LR): Assess vocabulary range and appropriateness. Using topic-specific vocabulary and some less common words warrants 7.0+. Perfect vocabulary is NOT required for 8.0+.
 3. Grammatical Range and Accuracy (GRA): Listen for variety of structures. A mix of simple and complex sentences with mostly accurate grammar warrants 7.0+. Occasional minor errors are acceptable at 8.0.
-4. Pronunciation (P): If speech is clearly intelligible throughout with good intonation and stress patterns, score 7.0+. Minor accent features should NOT lower the score. Only score below 6.0 if intelligibility is frequently impaired.
+4. Pronunciation (P): Score 8.0+ if the speech is clearly intelligible with natural rhythm and stress, even if a non-native accent is present. Score 7.0-7.5 if intelligible throughout with occasional mispronunciations that do NOT affect understanding. L1 interference, foreign accent, and occasional vowel/consonant substitutions are NORMAL and must NOT lower the score below 7.0 as long as the listener can understand without effort. Only score below 6.0 if intelligibility is FREQUENTLY impaired — meaning the listener regularly struggles to understand. A strong accent alone is NOT grounds for scoring below 7.0.
 
 DURATION GUIDELINES (not strict caps):
 - Very short responses (under 10 seconds) with no development → consider lower FC score.
@@ -317,11 +317,12 @@ DURATION GUIDELINES (not strict caps):
 
 CRITICAL: Transcribe what you hear, then identify specific grammar errors with exact quotes.
 
-Return a "grammar_errors" array with up to 5 specific errors you heard. Each must include:
+Return a "grammar_errors" array with up to 8 specific errors you heard. Each must include:
 - "heard": the exact phrase you heard the student say (transcribed from audio)
 - "correction": what they should have said
 - "category": one of the standardized categories below
-- "explanation": one short sentence explaining the error in simple language
+- "explanation": 1-2 sentences explaining the error clearly — what rule was broken and why the correction is better
+- "severity": either "minor" (does not affect communication) or "notable" (affects clarity or band score)
 
 Use ONLY these standardized error categories:
 "Article Usage", "Countability & Plurals", "Pronoun Reference", "Prepositional Accuracy", "Word Forms", "Subject-Verb Agreement", "Tense Consistency", "Present Perfect vs. Past Simple", "Gerunds vs. Infinitives", "Passive Voice Construction", "Sentence Boundaries (Fragments/Comma Splices)", "Relative Clauses", "Subordination", "Word Order", "Parallel Structure", "Transitional Devices", "Collocations", "Academic Register", "Nominalization", "Hedging"
@@ -331,7 +332,7 @@ Also return "identified_errors" as a simple array of just the category names whe
 Calculate Overall Band Score as average of all four criteria, rounded to nearest 0.5.
 
 Return ONLY valid JSON (no markdown, no extra text) with this exact structure:
-{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."},"grammar_errors":[{"heard":"exact quote","correction":"corrected version","category":"Category Name","explanation":"brief explanation"}],"identified_errors":["Category1","Category2"]}`;
+{"scores":{"fluency":0.0,"lexical":0.0,"grammar":0.0,"pronunciation":0.0,"overall":0.0},"feedback":{"strengths":"1-2 sentences.","weaknesses":"1-2 sentences.","improvement_tip":"One specific actionable tip."},"grammar_errors":[{"heard":"exact quote","correction":"corrected version","category":"Category Name","explanation":"1-2 sentence explanation","severity":"minor|notable"}],"identified_errors":["Category1","Category2"]}`;
 
   const audioPart = {
     inlineData: {
@@ -454,10 +455,79 @@ Please evaluate this response according to the grading criteria and provide your
   });
 }
 
+/**
+ * Grade a Writing Lab draft using AI
+ * @param {string} text - The student's draft text
+ * @param {string} level - 'paragraph' or 'essay'
+ * @param {string} genre - e.g. 'Opinion / Argumentative'
+ * @param {string} requestId - Unique identifier for logging
+ */
+async function gradeWritingLabDraft({ text, level, genre, requestId }) {
+  const prompt = `You are an expert EAP (English for Academic Purposes) writing instructor grading a student's ${level}-level ${genre} writing task.
+
+CRITICAL ERROR TRACKING: Identify specific grammar error categories from ONLY this list:
+"Article Usage", "Countability & Plurals", "Pronoun Reference", "Prepositional Accuracy", "Word Forms", "Subject-Verb Agreement", "Tense Consistency", "Present Perfect vs. Past Simple", "Gerunds vs. Infinitives", "Passive Voice Construction", "Sentence Boundaries (Fragments/Comma Splices)", "Relative Clauses", "Subordination", "Word Order", "Parallel Structure", "Transitional Devices", "Collocations", "Academic Register", "Nominalization", "Hedging"
+
+SCORING RUBRIC for a ${level}-level ${genre} task:
+- Task Achievement (25%): Does the writing fulfill the purpose of the genre? Is there a clear thesis/topic sentence?
+- Coherence & Cohesion (25%): Is there logical progression, use of transitions, and clear paragraph structure?
+- Lexical Resource (25%): Is vocabulary appropriate, varied, and used accurately for the genre?
+- Grammatical Range & Accuracy (25%): Variety of structures with minimal errors.
+
+Score 0-100 overall. Derive a band equivalent (rounded to nearest 0.5, range 1.0-9.0) using: 90+=9.0, 80-89=8.0, 70-79=7.0, 60-69=6.0, 50-59=5.5, 40-49=5.0, 30-39=4.5, below 30=4.0.
+
+Student's ${level} (genre: ${genre}):
+"""
+${text}
+"""
+
+Return ONLY valid JSON with this exact structure:
+{"score":75,"band_equivalent":6.5,"feedback":{"strengths":"1-2 sentences on what was done well.","weaknesses":"1-2 sentences on the main areas to improve.","tip":"One specific, actionable improvement tip."},"identified_errors":["Category1","Category2"],"grammar_weaknesses":[{"category":"Category Name","example":"exact problematic phrase from the text","correction":"suggested correction","explanation":"1 sentence"}]}
+
+No markdown. Return only the JSON object.`;
+
+  const result = await limiter.schedule(() => executeWithRetry(prompt, requestId));
+  return result;
+}
+
+/**
+ * Generate 3 actionable peer-review hints for a Writing Lab first draft.
+ * Does NOT rewrite the text — guides the student to self-correct.
+ * @param {string} text   - The student's first draft
+ * @param {string} genre  - e.g. 'Opinion / Argumentative'
+ * @param {string} level  - 'paragraph' or 'essay'
+ * @returns {Promise<Array<{category: string, message: string}>>}
+ */
+async function generatePeerReviewHints({ text, genre, level }) {
+  const requestId = `peer-review-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+
+  const prompt = `You are an expert English for Academic Purposes (EAP) writing tutor. The student is writing a ${level} in the ${genre} genre. Analyze their draft carefully. Identify 3 specific areas for improvement. Do NOT rewrite their text. Do NOT fix their grammar for them. Provide hints to guide them to self-correct. Focus on:
+1) Organization/Structure — is the ${level} clearly organized with a topic sentence, supporting points, and conclusion?
+2) Target Language/Transitions — are appropriate linking words and genre-specific phrases used effectively?
+3) One major grammar pattern — identify the single most important recurring grammar issue and ask a guiding question.
+
+Student's draft:
+"""
+${text}
+"""
+
+Return ONLY a strict JSON object with no markdown, no explanation, no extra text — just the raw JSON:
+{"hints":[{"category":"Organization / Structure","message":"..."},{"category":"Target Language & Transitions","message":"..."},{"category":"Grammar Focus","message":"..."}]}`;
+
+  const result = await limiter.schedule(() => executeWithRetry(prompt, requestId));
+
+  if (!result || !Array.isArray(result.hints)) {
+    throw new AiRequestError('Peer review response was malformed.');
+  }
+  return result.hints;
+}
+
 module.exports = {
   getVocabularyFeedback,
   gradeIeltsSpeaking,
   gradeIeltsSpeakingAudio,
   gradeGrammarActivity,
+  gradeWritingLabDraft,
+  generatePeerReviewHints,
   AiRequestError
 };

@@ -382,12 +382,14 @@ export default function App() {
       const apiBase = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : 'https://hayford-learning-hub.onrender.com')
       const formData = new FormData()
       
-      audioBlobs.forEach((item, idx) => {
+      audioBlobs.forEach((item) => {
         formData.append('audio', item.blob, `part${item.part}_q${item.questionIdx}.webm`)
       })
 
-      formData.append('prompt', `IELTS Speaking Test - Parts: ${assignedParts.join(', ')}`)
-      formData.append('part', assignedParts.join(','))
+      // Use the parts actually recorded, not all assigned parts
+      const completedParts = [...new Set(audioBlobs.map(b => b.part))].sort()
+      formData.append('prompt', `IELTS Speaking Test - Parts: ${completedParts.join(', ')}`)
+      formData.append('part', completedParts.join(','))
 
       const response = await fetch(`${apiBase}/api/ielts/evaluate`, {
         method: 'POST',
@@ -403,10 +405,40 @@ export default function App() {
       const result = await response.json()
       setFeedback(result)
       setPhase('feedback')
+
+      // Persist score to student_scores for Recent Activity & dashboard weaknesses
+      if (token) {
+        try {
+          await fetch(`${apiBase}/api/scores`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+            body: JSON.stringify({
+              module_type: 'speaking',
+              overall_score: result.scores?.overall ?? 0,
+              ai_feedback: result,
+              submitted_text: `IELTS Speaking – Part(s): ${completedParts.join(', ')}`,
+              word_count: 0,
+              diagnostic_tags: result.identified_errors || [],
+            }),
+          })
+        } catch (_) {
+          // Score save failure is non-blocking
+        }
+      }
     } catch (err) {
       setError(err.message || 'Failed to evaluate your response. Please try again.')
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  // ── Part 2 Stop Early ───────────────────────────────────────────────────────
+  const handleStopPart2Early = () => {
+    stopRecording()
+    if (assignedParts.includes('3')) {
+      setPhase('break2')
+    } else {
+      setPhase('break3')
     }
   }
 
@@ -715,14 +747,28 @@ export default function App() {
               <CheckCircle size={64} className="text-green-500 mx-auto" />
               <div>
                 <h2 className="text-2xl font-black text-slate-900">Part 1 Complete</h2>
-                <p className="text-slate-500 mt-2">Take a moment to breathe. When ready, start Part 2.</p>
+                <p className="text-slate-500 mt-2">Take a moment to breathe. You can continue to Part 2 or submit Part 1 only for scoring.</p>
               </div>
-              <button
-                onClick={startPart2}
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all"
-              >
-                Start Part 2
-              </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                  onClick={startPart2}
+                  className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center gap-2"
+                >
+                  <ArrowRight size={18} />
+                  Continue to Part 2
+                </button>
+                <button
+                  onClick={handleSubmitAll}
+                  disabled={isSubmitting}
+                  className="px-8 py-4 bg-slate-700 hover:bg-slate-900 disabled:bg-slate-400 text-white font-bold rounded-2xl shadow-sm transition-all flex items-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <><div className="w-4 h-4 border-4 border-white border-t-transparent rounded-full animate-spin"></div> Analyzing...</>
+                  ) : (
+                    <>Submit Part 1 for Scoring</>
+                  )}
+                </button>
+              </div>
             </div>
           </section>
         )}
@@ -793,6 +839,13 @@ export default function App() {
                     {formatTime(part2RecordTime)}
                   </div>
                   <p className="text-sm text-slate-500">Recording Time Remaining (Auto-stops at 2 minutes)</p>
+                  <button
+                    onClick={handleStopPart2Early}
+                    className="px-6 py-3 bg-slate-700 hover:bg-slate-900 text-white font-bold rounded-2xl transition-all text-sm flex items-center gap-2 mx-auto"
+                  >
+                    <CheckCircle size={16} />
+                    I'm Finished
+                  </button>
                 </div>
               )}
             </div>
@@ -805,15 +858,29 @@ export default function App() {
             <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm text-center space-y-6">
               <CheckCircle size={64} className="text-green-500 mx-auto" />
               <div>
-                <h2 className="text-2xl font-black text-slate-900">Part 2 Complete</h2>
-                <p className="text-slate-500 mt-2">Take a moment to breathe. When ready, start Part 3.</p>
+                <h2 className="text-2xl font-black text-slate-900">Parts 1 &amp; 2 Complete</h2>
+                <p className="text-slate-500 mt-2">Take a moment to breathe. You can continue to Part 3 or submit what you have for scoring.</p>
               </div>
-              <button
-                onClick={startPart3}
-                className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all"
-              >
-                Start Part 3
-              </button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                  onClick={startPart3}
+                  className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg transition-all flex items-center gap-2"
+                >
+                  <ArrowRight size={18} />
+                  Continue to Part 3
+                </button>
+                <button
+                  onClick={handleSubmitAll}
+                  disabled={isSubmitting}
+                  className="px-8 py-4 bg-slate-700 hover:bg-slate-900 disabled:bg-slate-400 text-white font-bold rounded-2xl shadow-sm transition-all flex items-center gap-2"
+                >
+                  {isSubmitting ? (
+                    <><div className="w-4 h-4 border-4 border-white border-t-transparent rounded-full animate-spin"></div> Analyzing...</>
+                  ) : (
+                    <>Submit Parts 1 &amp; 2 for Scoring</>
+                  )}
+                </button>
+              </div>
             </div>
           </section>
         )}

@@ -40,6 +40,24 @@ const verifyAdminOrAbove = (req, res, next) => {
   }
 };
 
+// Middleware to verify admin, teacher, or super_admin
+const verifyAdminOrTeacher = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'No token provided' });
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const role = decoded.user.role;
+    if (role !== 'super_admin' && role !== 'admin' && role !== 'teacher') {
+      return res.status(403).json({ error: 'Admin or Teacher access required' });
+    }
+    req.user = decoded.user;
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
 // GET all institutions with user counts
 router.get('/', verifyAdminOrAbove, async (req, res) => {
   try {
@@ -55,6 +73,13 @@ router.get('/', verifyAdminOrAbove, async (req, res) => {
         i.secondary_color,
         i.welcome_text,
         i.logo_url,
+        i.has_grammar_world,
+        i.has_ielts_speaking,
+        COALESCE(i.show_writing_on_dashboard, true) AS show_writing_on_dashboard,
+        COALESCE(i.show_speaking_on_dashboard, true) AS show_speaking_on_dashboard,
+        COALESCE(i.show_grammar_world_on_dashboard, true) AS show_grammar_world_on_dashboard,
+        COALESCE(i.show_vocab_on_dashboard, true) AS show_vocab_on_dashboard,
+        COALESCE(i.show_writing_lab_on_dashboard, true) AS show_writing_lab_on_dashboard,
         (
           SELECT COUNT(DISTINCT u.id)
           FROM users u
@@ -142,6 +167,82 @@ router.put('/:id', verifySuperAdmin, async (req, res) => {
   }
 });
 
+
+// GET current app visibility settings for an institution (admin/teacher of own institution, or super_admin)
+router.get('/:id/app-visibility', verifyAdminOrTeacher, async (req, res) => {
+  const { id } = req.params;
+
+  if (req.user.role !== 'super_admin' && req.user.institution_id !== parseInt(id, 10)) {
+    return res.status(403).json({ error: 'You can only view your own institution settings' });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    const [rows] = await connection.query(
+      `SELECT
+        COALESCE(show_writing_on_dashboard, true) AS show_writing_on_dashboard,
+        COALESCE(show_speaking_on_dashboard, true) AS show_speaking_on_dashboard,
+        COALESCE(show_grammar_world_on_dashboard, true) AS show_grammar_world_on_dashboard,
+        COALESCE(show_vocab_on_dashboard, true) AS show_vocab_on_dashboard,
+        COALESCE(show_writing_lab_on_dashboard, true) AS show_writing_lab_on_dashboard,
+        has_grammar_world,
+        has_ielts_speaking
+       FROM institutions WHERE id = $1`,
+      [id]
+    );
+    connection.release();
+    if (rows.length === 0) return res.status(404).json({ error: 'Institution not found' });
+    res.json(rows[0]);
+  } catch (err) {
+    console.error('DB Error in GET /api/institutions/:id/app-visibility:', err.message);
+    res.status(500).json({ error: 'Failed to fetch app visibility' });
+  }
+});
+
+// PATCH toggle app visibility on student dashboard (admin/teacher of own institution, or super_admin)
+router.patch('/:id/app-visibility', verifyAdminOrTeacher, async (req, res) => {
+  const { id } = req.params;
+  const { app, show_on_dashboard } = req.body;
+
+  const VALID_APPS = ['writing', 'speaking', 'grammar_world', 'vocab', 'writing_lab'];
+  const COLUMN_MAP = {
+    writing:      'show_writing_on_dashboard',
+    speaking:     'show_speaking_on_dashboard',
+    grammar_world:'show_grammar_world_on_dashboard',
+    vocab:        'show_vocab_on_dashboard',
+    writing_lab:  'show_writing_lab_on_dashboard',
+  };
+
+  if (!VALID_APPS.includes(app)) {
+    return res.status(400).json({ error: `Invalid app. Must be one of: ${VALID_APPS.join(', ')}` });
+  }
+  if (typeof show_on_dashboard !== 'boolean') {
+    return res.status(400).json({ error: 'show_on_dashboard must be a boolean' });
+  }
+
+  // Non-super_admin can only update their own institution
+  if (req.user.role !== 'super_admin' && req.user.institution_id !== parseInt(id, 10)) {
+    return res.status(403).json({ error: 'You can only manage your own institution settings' });
+  }
+
+  try {
+    const connection = await pool.getConnection();
+    const column = COLUMN_MAP[app];
+    const [result] = await connection.query(
+      `UPDATE institutions SET ${column} = $1 WHERE id = $2`,
+      [show_on_dashboard, id]
+    );
+    connection.release();
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
+    if (updated === 0) {
+      return res.status(404).json({ error: 'Institution not found' });
+    }
+    res.json({ success: true, app, show_on_dashboard });
+  } catch (err) {
+    console.error('DB Error in PATCH /api/institutions/:id/app-visibility:', err.message);
+    res.status(500).json({ error: 'Failed to update app visibility' });
+  }
+});
 
 // DELETE institution permanently
 router.delete('/:id', verifySuperAdmin, async (req, res) => {

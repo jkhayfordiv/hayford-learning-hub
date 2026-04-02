@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2, Lock, Star } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
@@ -120,6 +120,8 @@ export default function Dashboard() {
   const dropdownRef = useRef(null);
 
   const isFreeB2C = (user.subscription_tier === 'free') && (user.allow_b2c_payments === true || user.institution_id === 1);
+  // B2C bypass: institution 1 always sees all licensed apps + no class join/leave
+  const isB2CInstitution = user.institution_id === 1;
 
   // New Features: Dark Mode & Join Class
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
@@ -137,19 +139,35 @@ export default function Dashboard() {
     localStorage.getItem('limboModalDismissed') === 'true'
   );
 
-  // PHASE 4: User Weaknesses Tracking (computed client-side from scores, same source as My Stats)
-  const weaknesses = useMemo(() => aggregateWeaknesses(scores), [scores]);
+  // PHASE 4: User Weaknesses Tracking (fetched from user_weaknesses table)
+  const [weaknesses, setWeaknesses] = useState([]);
+
+  const fetchWeaknesses = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token || !user.id) return;
+      const res = await fetch(`${apiBase}/api/users/${user.id}/weaknesses`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setWeaknesses((data || []).map(w => ({ tag: w.category, count: w.error_count })));
+      }
+    } catch (err) {
+      console.error('Failed to fetch weaknesses', err);
+    }
+  };
 
   // Show more state for recent activities
   const [showAllRecentActivities, setShowAllRecentActivities] = useState(false);
   const [showAllWeaknesses, setShowAllWeaknesses] = useState(false);
 
   useEffect(() => {
-    // Show limbo modal if student has no class and hasn't dismissed it this session
-    if (user.role === 'student' && !user.class_id && !limboModalDismissed) {
+    // Show limbo modal if student has no class, hasn't dismissed it, and is not B2C (institution 1)
+    if (user.role === 'student' && !user.class_id && !limboModalDismissed && user.institution_id !== 1) {
       setShowLimboModal(true);
     }
-  }, [user.class_id, user.role, limboModalDismissed]);
+  }, [user.class_id, user.role, user.institution_id, limboModalDismissed]);
 
   useEffect(() => {
     if (theme === 'dark') document.documentElement.classList.add('dark');
@@ -365,6 +383,7 @@ export default function Dashboard() {
 
     fetchScores();
     fetchTasks();
+    fetchWeaknesses();
     if (isFreeB2C) fetchMonthlyUsage();
 
     const handleClickOutside = (event) => {
@@ -390,6 +409,7 @@ export default function Dashboard() {
         .then(res => res.ok ? res.json() : [])
         .then(data => setTasks(data))
         .catch(() => {});
+      fetchWeaknesses();
     };
 
     const onVisibilityChange = () => {
@@ -435,6 +455,7 @@ export default function Dashboard() {
       .then(res => res.ok ? res.json() : [])
       .then(data => setTasks(data))
       .catch(() => {});
+    fetchWeaknesses();
   };
 
   // Helper to calculate top 3 frequent errors for the student
@@ -661,21 +682,23 @@ export default function Dashboard() {
             >
               <BarChart3 size={18} /> My Stats
             </button>
-            {!user.class_id ? (
-              <button 
-                onClick={() => setIsJoinModalOpen(true)}
-                className="bg-brand-navy dark:bg-brand-copper text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-colors shadow-sm"
-              >
-                <Users size={18} /> Join a Class
-              </button>
-            ) : (
-              <button 
-                onClick={handleLeaveClass}
-                disabled={isLeaving}
-                className="bg-white dark:bg-slate-800 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Users size={18} /> {isLeaving ? 'Leaving...' : 'Leave Class'}
-              </button>
+            {!isB2CInstitution && (
+              !user.class_id ? (
+                <button 
+                  onClick={() => setIsJoinModalOpen(true)}
+                  className="bg-brand-navy dark:bg-brand-copper text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-slate-800 dark:hover:bg-[#a6682f] transition-colors shadow-sm"
+                >
+                  <Users size={18} /> Join a Class
+                </button>
+              ) : (
+                <button 
+                  onClick={handleLeaveClass}
+                  disabled={isLeaving}
+                  className="bg-white dark:bg-slate-800 border border-red-200 dark:border-red-900 text-red-600 dark:text-red-400 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Users size={18} /> {isLeaving ? 'Leaving...' : 'Leave Class'}
+                </button>
+              )
             )}
           </div>
         </div>
@@ -717,7 +740,9 @@ export default function Dashboard() {
                                 ? `Grammar Lab: ${task.grammar_topic_id?.replace(/[-_]/g, ' ') || 'Practice'}`
                                 : task.assignment_type === 'vocabulary'
                                   ? 'Vocabulary Builder'
-                                  : task.module_name}
+                                  : task.assignment_type === 'writing_lab'
+                                    ? (() => { const cfg = task.writing_lab_config || {}; return `Writing Lab${cfg.genre ? ': ' + cfg.genre : ''}${cfg.level ? ' (' + cfg.level.charAt(0).toUpperCase() + cfg.level.slice(1) + ')' : ''}`; })()
+                                    : task.module_name}
                         </div>
                       </div>
                     </div>
@@ -746,6 +771,8 @@ export default function Dashboard() {
                         window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                       } else if (task.assignment_type === 'speaking') {
                         window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
+                      } else if (task.assignment_type === 'writing_lab') {
+                        navigate(`/writing-lab?assignment_id=${task.id}`);
                       } else {
                         // IELTS Writing - pass writing_task_type (1, 2, or both)
                         const taskType = task.writing_task_type || '1';
@@ -761,7 +788,7 @@ export default function Dashboard() {
                           : 'bg-slate-900 text-white hover:bg-slate-950 dark:bg-amber-600 dark:hover:bg-amber-700'
                     }`}
                   >
-                    <PenTool size={18} /> {task.assignment_type === 'grammar-practice' ? 'Start Practice' : 'Start Assignment'}
+                    <PenTool size={18} /> {task.assignment_type === 'grammar-practice' ? 'Start Practice' : task.assignment_type === 'writing_lab' ? 'Open Writing Lab' : 'Start Assignment'}
                   </button>
                 </div>
               ))
@@ -771,7 +798,7 @@ export default function Dashboard() {
 
         {/* App Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-           {isFreeB2C && monthlyWritingUsed ? (
+           {(isB2CInstitution || user.show_writing_on_dashboard !== false) && isFreeB2C && monthlyWritingUsed ? (
              <button
                onClick={() => { setUpgradeModalContext('writing'); setShowUpgradeModal(true); }}
                className="bg-gradient-to-br from-slate-600 to-slate-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
@@ -783,7 +810,7 @@ export default function Dashboard() {
                <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Writing</h3>
                <p className="text-[10px] text-white/60 mt-1">1 free test used this month</p>
              </button>
-           ) : (
+           ) : (isB2CInstitution || user.show_writing_on_dashboard !== false) ? (
              <button
                onClick={() => {
                  const sessionId = crypto.randomUUID();
@@ -800,9 +827,9 @@ export default function Dashboard() {
                <h3 className="text-lg font-black tracking-tight leading-tight">IELTS Writing</h3>
                <p className="text-[10px] text-white/80 mt-1">Get instant band scores</p>
              </button>
-           )}
+           ) : null}
 
-           {user.has_ielts_speaking !== false && (
+           {user.has_ielts_speaking !== false && (isB2CInstitution || user.show_speaking_on_dashboard !== false) && (
              isFreeB2C ? (
                <button
                  onClick={() => { setUpgradeModalContext('speaking'); setShowUpgradeModal(true); }}
@@ -830,7 +857,7 @@ export default function Dashboard() {
              )
            )}
 
-           {user.has_grammar_world !== false && (
+           {user.has_grammar_world !== false && (isB2CInstitution || user.show_grammar_world_on_dashboard !== false) && (
              <button
                 onClick={() => window.location.href = `/grammar-world/?token=${localStorage.getItem('token')}`}
                 className="bg-gradient-to-br from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
@@ -844,17 +871,33 @@ export default function Dashboard() {
              </button>
            )}
 
-           <button
-              onClick={() => navigate('/vocab-lab')}
-              className="bg-gradient-to-br from-amber-800 to-stone-800 hover:from-amber-900 hover:to-stone-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
-           >
-              <div className="flex items-center justify-between mb-2">
+           {(isB2CInstitution || user.show_writing_lab_on_dashboard !== false) && (
+             <button
+               onClick={() => navigate('/writing-lab')}
+               className="bg-gradient-to-br from-teal-700 to-cyan-900 hover:from-teal-800 hover:to-cyan-950 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+             >
+               <div className="flex items-center justify-between mb-2">
+                 <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />
+                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">AI Guided</span>
+               </div>
+               <h3 className="text-lg font-black tracking-tight leading-tight">Writing Lab</h3>
+               <p className="text-[10px] text-white/80 mt-1">Paragraph & essay writing</p>
+             </button>
+           )}
+
+           {(isB2CInstitution || user.show_vocab_on_dashboard !== false) && (
+             <button
+               onClick={() => navigate('/vocab-lab')}
+               className="bg-gradient-to-br from-amber-800 to-stone-800 hover:from-amber-900 hover:to-stone-900 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+             >
+               <div className="flex items-center justify-between mb-2">
                  <RefreshCw size={24} className="text-white/90 group-hover:text-white transition-colors" />
                  <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">SRS Engine</span>
-              </div>
-              <h3 className="text-lg font-black tracking-tight leading-tight">Vocab Lab</h3>
-              <p className="text-[10px] text-white/80 mt-1">Spaced repetition system</p>
-           </button>
+               </div>
+               <h3 className="text-lg font-black tracking-tight leading-tight">Vocab Lab</h3>
+               <p className="text-[10px] text-white/80 mt-1">Spaced repetition system</p>
+             </button>
+           )}
 
         </div>
 
@@ -1072,8 +1115,8 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* PHASE 4.2: Student Limbo Modal - Appears when student has no class */}
-      {showLimboModal && user.role === 'student' && !user.class_id && (
+      {/* PHASE 4.2: Student Limbo Modal - Appears when student has no class (never for institution 1 / B2C) */}
+      {showLimboModal && user.role === 'student' && !user.class_id && user.institution_id !== 1 && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-brand-darkBg border dark:border-slate-800 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
             <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 bg-gradient-to-r from-brand-copper to-amber-600">

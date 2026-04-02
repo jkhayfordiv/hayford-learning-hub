@@ -27,6 +27,28 @@ router.post('/', auth, async (req, res) => {
       } else {
         module_id = vocabModules[0].id;
       }
+    } else if (type === 'speaking') {
+      // Check if speaking module exists, else create it
+      const [speakingModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'speaking' LIMIT 1");
+      if (speakingModules.length === 0) {
+        const [insertRes] = await connection.query(
+          "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('IELTS Speaking', 'speaking', 'Practise IELTS Speaking Parts 1, 2 and 3.')"
+        );
+        module_id = insertRes.insertId;
+      } else {
+        module_id = speakingModules[0].id;
+      }
+    } else if (type === 'grammar-world') {
+      // Check if grammar-world module exists, else create it
+      const [gwModules] = await connection.query("SELECT id FROM learning_modules WHERE module_type = 'grammar-world' LIMIT 1");
+      if (gwModules.length === 0) {
+        const [insertRes] = await connection.query(
+          "INSERT INTO learning_modules (module_name, module_type, description) VALUES ('Grammar World', 'grammar-world', 'Grammar mastery node completions.')"
+        );
+        module_id = insertRes.insertId;
+      } else {
+        module_id = gwModules[0].id;
+      }
     } else {
       // Ensure the default Writing module exists
       const [modules] = await connection.query('SELECT id FROM learning_modules WHERE id = 1');
