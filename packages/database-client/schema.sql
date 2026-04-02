@@ -548,6 +548,42 @@ BEGIN
     
     ALTER TABLE assigned_tasks
     ADD CONSTRAINT chk_assignment_type
-    CHECK (assignment_type IN ('writing', 'vocabulary', 'grammar-practice', 'speaking', 'listening'));
+    CHECK (assignment_type IN ('writing', 'vocabulary', 'grammar-practice', 'speaking', 'listening', 'writing_lab'));
 END
 $$;
+
+-- ============================================================================
+-- PHASE 11: GRANULAR DASHBOARD APP VISIBILITY (Migration 010)
+-- ============================================================================
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS show_writing_on_dashboard       BOOLEAN NOT NULL DEFAULT TRUE;
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS show_speaking_on_dashboard      BOOLEAN NOT NULL DEFAULT TRUE;
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS show_grammar_world_on_dashboard BOOLEAN NOT NULL DEFAULT TRUE;
+ALTER TABLE institutions ADD COLUMN IF NOT EXISTS show_vocab_on_dashboard         BOOLEAN NOT NULL DEFAULT TRUE;
+
+-- ============================================================================
+-- WRITING LAB SCHEMA (Migration 011)
+-- ============================================================================
+CREATE TABLE IF NOT EXISTS writing_lab_submissions (
+  id                         SERIAL PRIMARY KEY,
+  student_id                 INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  assignment_id              INTEGER REFERENCES assigned_tasks(id) ON DELETE SET NULL,
+  configuration              JSONB NOT NULL DEFAULT '{}',
+  planning_data              JSONB NOT NULL DEFAULT '{}',
+  draft_1_text               TEXT,
+  ai_hints                   JSONB,
+  draft_2_text               TEXT,
+  final_score                JSONB,
+  teacher_feedback           TEXT,
+  grammar_weaknesses_flagged JSONB,
+  status                     VARCHAR(20) NOT NULL DEFAULT 'configuring'
+                               CHECK (status IN ('configuring','planning','drafting','revising','submitted','graded')),
+  created_at                 TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at                 TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_writing_lab_student    ON writing_lab_submissions(student_id);
+CREATE INDEX IF NOT EXISTS idx_writing_lab_assignment ON writing_lab_submissions(assignment_id);
+CREATE INDEX IF NOT EXISTS idx_writing_lab_status     ON writing_lab_submissions(status);
+
+ALTER TABLE institutions   ADD COLUMN IF NOT EXISTS show_writing_lab_on_dashboard BOOLEAN NOT NULL DEFAULT TRUE;
+ALTER TABLE assigned_tasks ADD COLUMN IF NOT EXISTS writing_lab_config JSONB;

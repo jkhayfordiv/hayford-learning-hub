@@ -138,7 +138,9 @@ router.post('/login', async (req, res) => {
                i.subscription_tier AS institution_subscription_tier, 
                i.subscription_status AS institution_subscription_status, 
                i.allow_b2c_payments,
-               i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
+               i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text,
+               i.show_writing_on_dashboard, i.show_speaking_on_dashboard,
+               i.show_grammar_world_on_dashboard, i.show_vocab_on_dashboard, i.show_writing_lab_on_dashboard
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
         WHERE u.email = $1 AND u.role = ANY($2)
@@ -151,7 +153,9 @@ router.post('/login', async (req, res) => {
                i.subscription_tier AS institution_subscription_tier, 
                i.subscription_status AS institution_subscription_status, 
                i.allow_b2c_payments,
-               i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
+               i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text,
+               i.show_writing_on_dashboard, i.show_speaking_on_dashboard,
+               i.show_grammar_world_on_dashboard, i.show_vocab_on_dashboard, i.show_writing_lab_on_dashboard
         FROM users u
         LEFT JOIN institutions i ON u.institution_id = i.id
         WHERE u.email = $1 AND u.role = $2
@@ -235,7 +239,12 @@ router.post('/login', async (req, res) => {
         subscription_status: user.institution_subscription_status || 'active',
         allow_b2c_payments: user.allow_b2c_payments || false,
         stripe_customer_id: user.stripe_customer_id || null,
-        avatar_url: user.avatar_url
+        avatar_url: user.avatar_url,
+        show_writing_on_dashboard: user.show_writing_on_dashboard !== false,
+        show_speaking_on_dashboard: user.show_speaking_on_dashboard !== false,
+        show_grammar_world_on_dashboard: user.show_grammar_world_on_dashboard !== false,
+        show_vocab_on_dashboard: user.show_vocab_on_dashboard !== false,
+        show_writing_lab_on_dashboard: user.show_writing_lab_on_dashboard !== false
       }
     };
 
@@ -291,7 +300,9 @@ router.get('/google/callback', async (req, res) => {
     // Find user by google_id or email
     let [users] = await connection.query(
       `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status,
-              i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
+              i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text,
+              i.show_writing_on_dashboard, i.show_speaking_on_dashboard,
+              i.show_grammar_world_on_dashboard, i.show_vocab_on_dashboard, i.show_writing_lab_on_dashboard
        FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
        WHERE u.google_id = $1`,
       [profile.sub]
@@ -302,7 +313,9 @@ router.get('/google/callback', async (req, res) => {
       // Try by email to link existing account
       const [emailUsers] = await connection.query(
         `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status,
-                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
+                i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text,
+                i.show_writing_on_dashboard, i.show_speaking_on_dashboard,
+                i.show_grammar_world_on_dashboard, i.show_vocab_on_dashboard, i.show_writing_lab_on_dashboard
          FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
          WHERE u.email = $1 AND u.role = 'student'`,
         [profile.email]
@@ -325,7 +338,9 @@ router.get('/google/callback', async (req, res) => {
         // Fetch new user with joins (including branding)
         const [reFetched] = await connection.query(
           `SELECT u.*, i.subdomain, i.timezone, i.has_grammar_world, i.has_ielts_speaking, i.subscription_tier, i.subscription_status,
-                  i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text
+                  i.primary_color, i.secondary_color, i.logo_url, i.favicon_url, i.welcome_text,
+                  i.show_writing_on_dashboard, i.show_speaking_on_dashboard,
+                  i.show_grammar_world_on_dashboard, i.show_vocab_on_dashboard, i.show_writing_lab_on_dashboard
            FROM users u LEFT JOIN institutions i ON u.institution_id = i.id
            WHERE u.id = $1`,
           [result.insertId]
@@ -372,7 +387,12 @@ router.get('/google/callback', async (req, res) => {
         has_ielts_speaking: user.has_ielts_speaking !== false,
         subscription_tier: user.subscription_tier || 'free',
         subscription_status: user.subscription_status || 'active',
-        avatar_url: user.avatar_url
+        avatar_url: user.avatar_url,
+        show_writing_on_dashboard: user.show_writing_on_dashboard !== false,
+        show_speaking_on_dashboard: user.show_speaking_on_dashboard !== false,
+        show_grammar_world_on_dashboard: user.show_grammar_world_on_dashboard !== false,
+        show_vocab_on_dashboard: user.show_vocab_on_dashboard !== false,
+        show_writing_lab_on_dashboard: user.show_writing_lab_on_dashboard !== false
       }
     };
 
