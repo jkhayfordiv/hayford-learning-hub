@@ -772,7 +772,7 @@ export default function Dashboard() {
                       } else if (task.assignment_type === 'speaking') {
                         window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                       } else if (task.assignment_type === 'writing_lab') {
-                        navigate(`/writing-lab?assignment_id=${task.id}`);
+                        window.location.href = `/writing-lab?assignment_id=${task.id}`;
                       } else {
                         // IELTS Writing - pass writing_task_type (1, 2, or both)
                         const taskType = task.writing_task_type || '1';
@@ -873,7 +873,7 @@ export default function Dashboard() {
 
            {(isB2CInstitution || user.show_writing_lab_on_dashboard !== false) && (
              <button
-               onClick={() => navigate('/writing-lab')}
+               onClick={() => window.location.href = '/writing-lab/'}
                className="bg-gradient-to-br from-teal-700 to-cyan-900 hover:from-teal-800 hover:to-cyan-950 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
              >
                <div className="flex items-center justify-between mb-2">

@@ -130,7 +130,7 @@ function StarterPill({ text, onInsert }) {
   );
 }
 
-export default function WritingLabApp({ user }) {
+export default function App({ user }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const assignmentId = searchParams.get('assignment_id') ? parseInt(searchParams.get('assignment_id'), 10) : null;
@@ -326,7 +326,7 @@ export default function WritingLabApp({ user }) {
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => window.location.href = '/dashboard'}
               className="p-2 rounded-full hover:bg-white/20 transition-colors text-white"
             >
               <ArrowLeft size={20} />
@@ -801,17 +801,11 @@ export default function WritingLabApp({ user }) {
                           </div>
                         );
                       })}
-                      <div className="bg-teal-50 dark:bg-teal-900/20 rounded-2xl p-4 border border-teal-100 dark:border-teal-800">
-                        <p className="text-xs text-teal-700 dark:text-teal-300 font-medium leading-relaxed">
-                          ✏️ Read each hint carefully, then revise your draft on the left. These guide you — don't copy-paste fixes. When ready, submit for full AI grading.
-                        </p>
-                      </div>
                     </>
                   ) : (
-                    <div className="flex flex-col items-center justify-center h-40 text-center gap-3 text-slate-400">
-                      <Sparkles size={28} className="opacity-30" />
-                      <p className="text-sm font-medium">No hints loaded yet.</p>
-                      <p className="text-xs">Go back and click "Get AI Peer Review" on your draft.</p>
+                    <div className="h-full flex flex-col items-center justify-center text-center opacity-50 px-6">
+                      <Sparkles size={32} className="text-teal-400 mb-3" />
+                      <p className="text-sm font-bold text-slate-500">No suggestions yet. Let the AI tutor review your first draft!</p>
                     </div>
                   )}
                 </div>
@@ -823,156 +817,134 @@ export default function WritingLabApp({ user }) {
                 onClick={() => setStep(2)}
                 className="px-5 py-3 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-2"
               >
-                <ArrowLeft size={16} /> Back to Draft
+                <ArrowLeft size={16} /> Back
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting || wordCount(draft2) < 30}
-                className="flex-1 py-3.5 bg-gradient-to-r from-teal-700 to-cyan-800 hover:from-teal-800 hover:to-cyan-900 text-white font-black rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-60 text-base"
+                className="flex-1 py-3 bg-gradient-to-r from-emerald-600 to-green-700 hover:from-emerald-700 hover:to-green-800 text-white font-black rounded-2xl shadow transition-all flex items-center justify-center gap-2 disabled:opacity-60"
               >
-                {isSubmitting ? (
-                  <><Loader2 size={18} className="animate-spin" /> Grading your draft…</>
-                ) : (
-                  <><Send size={18} /> Submit Final Draft</>
-                )}
+                {isSubmitting ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
+                Submit Final Draft
               </button>
             </div>
           </div>
         )}
 
-        {/* ── STEP 4: Results ──────────────────────────────────────────────── */}
+        {/* ── STEP 4: Results ─────────────────────────────────────────────── */}
         {step === 4 && results && (
-          <div className="max-w-2xl mx-auto space-y-6">
-            {/* Trophy header */}
-            <div className="text-center py-6">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-teal-500 to-cyan-700 rounded-3xl shadow-xl mb-4">
-                <Trophy size={36} className="text-white" />
-              </div>
-              <h2 className="font-black text-3xl text-slate-900 dark:text-white tracking-tight">Draft Submitted!</h2>
-              <p className="text-slate-500 dark:text-slate-400 mt-1">Here's your AI feedback. Your teacher may also add comments.</p>
-            </div>
-
-            {/* Score card */}
-            {results.final_score && (
-              <div className={`bg-gradient-to-br ${bandColor(results.final_score.band_equivalent)} rounded-3xl p-6 text-white shadow-xl`}>
-                <div className="flex items-center gap-6">
-                  <div className="text-center">
-                    <p className="text-5xl font-black">{results.final_score.band_equivalent ?? results.final_score.score}</p>
-                    <p className="text-xs font-black uppercase tracking-widest opacity-80 mt-1">{results.final_score.band_equivalent ? 'Band Score' : 'Score / 100'}</p>
-                    {results.final_score.band_equivalent && (
-                      <p className="text-sm font-bold opacity-80 mt-0.5">{results.final_score.score} / 100</p>
-                    )}
+          <div className="max-w-2xl mx-auto animate-in zoom-in-95 duration-500">
+            <div className="bg-white dark:bg-slate-800 rounded-[2.5rem] border border-slate-200 dark:border-slate-700 shadow-xl overflow-hidden">
+              <div className={`py-12 text-center text-white bg-gradient-to-br ${bandColor(results.overall_score)} relative overflow-hidden`}>
+                <div className="absolute top-0 right-0 p-8 opacity-10">
+                  <Trophy size={160} />
+                </div>
+                <div className="relative z-10">
+                  <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-white/30">
+                    <Trophy size={40} className="text-white" />
                   </div>
-                  <div className="flex-1 space-y-2">
-                    {results.final_score.feedback?.strengths && (
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-70">Strengths</p>
-                        <p className="text-sm leading-snug">{results.final_score.feedback.strengths}</p>
+                  <h2 className="text-3xl font-black tracking-tight mb-2">Submission Complete!</h2>
+                  <p className="text-white/80 font-bold uppercase tracking-widest text-xs">Estimated Band Score</p>
+                  <div className="text-7xl font-black mt-2 drop-shadow-lg">{results.overall_score}</div>
+                </div>
+              </div>
+
+              <div className="p-8 space-y-8">
+                {/* Score Breakdown */}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { label: 'Content', score: results.content_score, icon: Target },
+                    { label: 'Organisation', score: results.organisation_score, icon: Layers },
+                    { label: 'Vocabulary', score: results.vocabulary_score, icon: ListChecks },
+                    { label: 'Grammar', score: results.grammar_score, icon: PenLine },
+                  ].map(stat => {
+                    const Icon = stat.icon;
+                    return (
+                      <div key={stat.label} className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-4 border border-slate-100 dark:border-slate-800">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Icon size={14} className="text-slate-400" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{stat.label}</span>
+                        </div>
+                        <div className="text-2xl font-black text-slate-900 dark:text-white">{stat.score}</div>
                       </div>
-                    )}
-                    {results.final_score.feedback?.weaknesses && (
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest opacity-70 mt-1">To Improve</p>
-                        <p className="text-sm leading-snug">{results.final_score.feedback.weaknesses}</p>
-                      </div>
-                    )}
+                    );
+                  })}
+                </div>
+
+                {/* AI Evaluation */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-teal-100 rounded-xl flex items-center justify-center">
+                      <Sparkles size={16} className="text-teal-700" />
+                    </div>
+                    <h3 className="font-black text-slate-900 dark:text-white text-lg">AI Evaluation</h3>
+                  </div>
+                  <div className="prose prose-slate dark:prose-invert max-w-none bg-slate-50 dark:bg-slate-900/40 p-6 rounded-3xl border border-slate-100 dark:border-slate-800">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_COMPONENTS}>
+                      {results.ai_evaluation}
+                    </ReactMarkdown>
                   </div>
                 </div>
-              </div>
-            )}
 
-            {/* Tip card */}
-            {results.final_score?.feedback?.tip && (
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-2xl p-4 flex items-start gap-3">
-                <Lightbulb size={16} className="text-amber-600 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">Top Tip</p>
-                  <p className="text-sm text-amber-900 dark:text-amber-200 font-medium">{results.final_score.feedback.tip}</p>
+                <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                  <button
+                    onClick={() => window.location.href = '/dashboard'}
+                    className="flex-1 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-2"
+                  >
+                    <ArrowLeft size={18} /> Back to Hub
+                  </button>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="flex-1 py-4 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-black rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
+                  >
+                    <RotateCcw size={18} /> Try Another
+                  </button>
                 </div>
               </div>
-            )}
-
-            {/* Grammar weakness chips */}
-            {results.grammar_weaknesses_flagged && results.grammar_weaknesses_flagged.length > 0 && (
-              <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
-                <h3 className="font-black text-sm uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
-                  <AlertCircle size={14} /> Grammar Areas to Focus On
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {results.grammar_weaknesses_flagged.map((w, i) => (
-                    <span key={i} className="px-3 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800 rounded-full text-xs font-bold">
-                      {w.category || w}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Actions */}
-            <div className="flex gap-3">
-              <button
-                onClick={() => navigate('/dashboard')}
-                className="flex-1 py-4 bg-gradient-to-r from-teal-700 to-cyan-800 hover:from-teal-800 hover:to-cyan-900 text-white font-black rounded-2xl shadow transition-all flex items-center justify-center gap-2"
-              >
-                <ArrowLeft size={18} /> Back to Dashboard
-              </button>
-              <button
-                onClick={() => {
-                  setStep(0);
-                  setSessionId(null);
-                  setConfig({ level: 'paragraph', genre: 'Opinion / Argumentative', support_level: 'light' });
-                  setPlanningData({ topic_sentence: '', details: ['', '', ''], conclusion: '' });
-                  setDraft1('');
-                  setDraft2('');
-                  setAiHints([]);
-                  setResults(null);
-                  setError('');
-                  setAssignmentLocked(false);
-                }}
-                className="px-5 py-4 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-2xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-2"
-              >
-                <RotateCcw size={16} /> New Writing
-              </button>
             </div>
           </div>
         )}
-      {/* ── Model Answer Slide-Over ──────────────────────────────────────── */}
+      </main>
+
+      {/* Model Answer Modal Overlay */}
       {showModelAnswer && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40 backdrop-blur-sm"
-            onClick={() => setShowModelAnswer(false)}
-          />
-          <div className="fixed right-0 top-0 h-full w-full max-w-lg bg-white dark:bg-slate-900 z-50 shadow-2xl flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-teal-700 to-cyan-900 shrink-0">
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-widest text-teal-200 mb-0.5">Model Answer</p>
-                <h3 className="font-black text-white text-base leading-tight">{config.genre}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white dark:bg-slate-800 w-full max-w-2xl max-h-[85vh] rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-white dark:bg-slate-800">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-teal-100 rounded-2xl flex items-center justify-center">
+                  <FileText size={20} className="text-teal-700" />
+                </div>
+                <div>
+                  <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight">Model Answer</h3>
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">{config.genre} · {config.level}</p>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-1 bg-white/20 rounded-full text-xs font-bold text-white capitalize">{config.level}</span>
-                <button
-                  onClick={() => setShowModelAnswer(false)}
-                  className="p-2 rounded-full hover:bg-white/20 transition-colors text-white"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+              <button
+                onClick={() => setShowModelAnswer(false)}
+                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors text-slate-400 hover:text-slate-900 dark:hover:text-white"
+              >
+                <X size={24} />
+              </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-6 py-6">
+            
+            <div className="flex-1 overflow-y-auto p-8 prose prose-slate dark:prose-invert max-w-none bg-slate-50/50 dark:bg-slate-900/30">
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={MD_COMPONENTS}>
-                {MODEL_ANSWERS[config.level]?.[config.genre] ?? MODEL_ANSWER_FALLBACK}
+                {MODEL_ANSWERS[config.level]?.[config.genre] || MODEL_ANSWER_FALLBACK}
               </ReactMarkdown>
             </div>
-            <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 shrink-0">
-              <p className="text-xs text-slate-500 dark:text-slate-400 text-center font-medium">
-                📖 Study the structure and vocabulary — then write your own original response.
-              </p>
+            
+            <div className="p-6 border-t border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-800 flex justify-center">
+              <button
+                onClick={() => setShowModelAnswer(false)}
+                className="px-8 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-xl hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
+              >
+                Close Model Answer
+              </button>
             </div>
           </div>
-        </>
+        </div>
       )}
-      </main>
     </div>
   );
 }

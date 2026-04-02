@@ -15,6 +15,7 @@ export default defineConfig({
       '/ielts-writing': { target: 'http://localhost:5174', changeOrigin: true },
       '/vocab-tool': { target: 'http://localhost:5175', changeOrigin: true },
       '/grammar-world': { target: 'http://localhost:5177', changeOrigin: true },
+      '/writing-lab': { target: 'http://localhost:5178', changeOrigin: true },
     },
   },
 })

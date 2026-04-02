@@ -23,6 +23,11 @@
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^vocab-tool/(.*)$ /vocab-tool/index.html [L]
 
+  RewriteRule ^writing-lab/index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^writing-lab/(.*)$ /writing-lab/index.html [L]
+
   RewriteRule ^grammar-lab/index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
