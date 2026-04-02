@@ -2,20 +2,32 @@
   "node_id": "time-matrix-07",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Future Forms",
-  "description": "Will for sudden decisions/predictions vs. Going to for concrete plans.",
+  "title": "Plans vs. Predictions",
+  "description": "Learning when to say 'will' vs 'going to' for the future.",
   "display_order": 7,
   "prerequisites": ["time-matrix-06"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# Talking About What's Next\n\nThere are two main ways we talk about the future: **WILL** and **BE GOING TO**. \n\nThink of the future like a journey. If you decide to take a train right now, that's different from a trip you planned two weeks ago. \n\n### 1. The 'Sudden' or 'Guess' Future (WILL)\nUse **WILL** when you are **guessing** or deciding **right now**.\n- If you are in a lab and a student says, \"I need a pencil,\" you say, \"I **will** lend you one.\"\n- If you are guessing the weather, you say, \"It **will** probably rain tomorrow.\"\n\n### 2. The 'Plan' Future (BE GOING TO)\nUse **BE GOING TO** when you have already **planned** something in your mind. \n- If you already signed up for a class, you say, \"I **am going to** take Biology this semester.\"\n- If the university already scheduled a meeting, we say, \"They **are going to** meet on Monday.\"\n\nRemember: Plans (be going to) are more solid and already decided. Predictions or sudden decisions (will) are made in the moment or by guessing.",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which future form is best for the situation?",
     "activity_data": {
       "questions": [
         {
-          "question": "Based on current trends, the population _____ by 2050.",
-          "options": ["will increase", "is going to increase", "increases", "increased"],
-          "correct_answer": 0,
+          "question": "Since the research budget is already approved, the department _____ new equipment next month.",
+          "options": ["will buy", "is going to buy", "buys", "bought"],
+          "correct_answer": "is going to buy",
+          "category": "Future Forms"
+        },
+        {
+          "question": "Experts believe that artificial intelligence _____ the global job market before 2035.",
+          "options": ["will change", "is going to change", "changes", "changeing"],
+          "correct_answer": "will change",
+          "category": "Future Forms"
+        },
+        {
+          "question": "I just checked my calendar. I _____ my professor at 3:00 PM today.",
+          "options": ["meet", "will meet", "am going to meet", "meeting"],
+          "correct_answer": "am going to meet",
           "category": "Future Forms"
         }
       ]

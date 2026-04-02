@@ -2,20 +2,32 @@
   "node_id": "time-matrix-08",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Future Continuous",
-  "description": "Projecting an ongoing action into the future.",
+  "title": "Busy in the Future",
+  "description": "Talking about an action in progress at a specific future time.",
   "display_order": 8,
   "prerequisites": ["time-matrix-07"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# What Will You Be Doing?\n\nThis form is for talking about what you will be **in the middle of** at a certain time in the future. We call this the 'Busy in the Future' tense. \n\nInstead of just saying \"I will play soccer tomorrow,\" you say, \"At 5:00 PM tomorrow, I **will be playing** soccer.\" This says you are busy with the action at that exact moment. \n\n### How to Make It\nUse **WILL BE** + **-ING**:\n- I **will be** research**ing**.\n- The scientists **will be** conduct**ing** a test. \n\n### When to Use It\nWe use this when we talk about our **academic schedules** or long projects: \n- **At 10:00 AM next week**, all of us **will be taking** the English final test.\n- **During the next three months**, the student group **will be working** on their project.\n\nIt feels more like a movie of the future. You are 'seeing' the person busy with the work at that time. It's great for showing that something takes a long time or will happen at a specific point on the map.",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which future form shows the action will be happening at a specific time?",
     "activity_data": {
       "questions": [
         {
-          "question": "This time next week, I _____ my dissertation.",
-          "options": ["will write", "will be writing", "write", "am writing"],
-          "correct_answer": 1,
+          "question": "At this time tomorrow, the student council _____ the new election rules.",
+          "options": ["will discuss", "discusses", "will be discussing", "discussed"],
+          "correct_answer": "will be discussing",
+          "category": "Future Continuous"
+        },
+        {
+          "question": "Next Tuesday at 2:00 PM, the professor _____ a presentation in the main lecture hall.",
+          "options": ["gives", "will be giving", "give", "given"],
+          "correct_answer": "will be giving",
+          "category": "Future Continuous"
+        },
+        {
+          "question": "The research team _____ the data while we are on summer break.",
+          "options": ["analyzes", "will analyzing", "will be analyzing", "analyze"],
+          "correct_answer": "will be analyzing",
           "category": "Future Continuous"
         }
       ]

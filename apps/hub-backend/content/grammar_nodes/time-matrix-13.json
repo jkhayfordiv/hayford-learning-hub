@@ -2,20 +2,32 @@
   "node_id": "time-matrix-13",
   "region": "The Time Matrix",
   "tier": "Silver",
-  "title": "The Great Divide",
-  "description": "Present Perfect vs. Simple Past.",
+  "title": "Finished Past vs. Still Connected",
+  "description": "Learning the difference between things that are OVER and things that are STILL CONNECTED to now.",
   "display_order": 13,
   "prerequisites": ["time-matrix-12"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# The Big Divide\n\nMany students find this part tricky. Let's make it simple! There are two ways to talk about the past: \n\n### 1. The 'Closed Box' (Simple Past)\nUse this when the time is **finished** and you say **when** it happened. \n- *\"I **finished** my homework **at 9 PM**.\"*\n- *\"I **went** to Tokyo **last year**.\"*\n- *\"Once, the university **built** a library.\"*\n\n### 2. The 'Open Bridge' (Present Perfect)\nUse this when the time is **not finished** or the action is **still true**.\n- *\"I **have finished** my homework.\"* (It is done right now!)\n- *\"I **have been** to Tokyo.\"* (At some point in my life, I don't say when.)\n- *\"The university **has built** a library.\"* (The library is still there today!)\n\n### The 'When' Test\nIf your sentence has a 'Time Word' like **yesterday**, **last week**, **at 5:00**, or **in 2023**, you must use the **Closed Box** (Simple Past). If there is no specific time, use the **Open Bridge** (Present Perfect).",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which word is correct for each situation?",
     "activity_data": {
       "questions": [
         {
-          "question": "I _____ to Paris last year.",
-          "options": ["have been", "went", "have gone", "was going"],
-          "correct_answer": 1,
+          "question": "The computer laboratory _____ into the university campus during the 1990s.",
+          "options": ["moves", "moved", "has moved", "moving"],
+          "correct_answer": "moved",
+          "category": "Present Perfect vs Past Simple"
+        },
+        {
+          "question": "Over the past few months, the student government _____ several new budget changes.",
+          "options": ["introduces", "introduced", "has introduced", "introducing"],
+          "correct_answer": "has introduced",
+          "category": "Present Perfect vs Past Simple"
+        },
+        {
+          "question": "The professor _____ for many different international organizations before coming to our university.",
+          "options": ["work", "worked", "has worked", "working"],
+          "correct_answer": "worked",
           "category": "Present Perfect vs Past Simple"
         }
       ]

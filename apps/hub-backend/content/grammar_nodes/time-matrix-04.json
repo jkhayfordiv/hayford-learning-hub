@@ -2,21 +2,33 @@
   "node_id": "time-matrix-04",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Simple Past: Regulars",
-  "description": "Establishing a completed narrative timeline.",
+  "title": "Finished Past: Regular Type",
+  "description": "Talking about things that are 100% finished using -ed.",
   "display_order": 4,
   "prerequisites": ["time-matrix-03"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# Talking About the Finished Past\n\nWhen we talk about things that happened and finished in the past, we usually add **-ed** to the end of the action word (verb). This is the 'Regular' type of past tense. \n\nThink of the past as a box that is now closed. If you did something yesterday, last week, or even two minutes ago, and it is totally finished, you use this form. For example, if you finished your homework at 9:00 PM, you can say, \"I **finished** my work.\" \n\n### Making the Form\nMost of the time, you just add **-ed**:\n- Walk $\\rightarrow$ Walked\n- Help $\\rightarrow$ Helped\n- Research $\\rightarrow$ Researched\n\nIf the word already ends in 'e', just add 'd':\n- Create $\\rightarrow$ Created\n- Analyze $\\rightarrow$ Analyzed\n\n### When to Use It\nWe often use time words to show the 'box' is closed:\n- **Yesterday** the team **discussed** the results.\n- **Last month**, the university **started** a new project.\n- **In 2023**, the scientist **published** her paper.\n\nRemember: Use this when the action is over and you are just telling the story of what happened.",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Read the academic sentences and choose the correct word to show the action is finished.",
     "activity_data": {
       "questions": [
         {
-          "question": "The researchers _____ the experiment last week.",
-          "options": ["conduct", "conducted", "conducting", "conducts"],
-          "correct_answer": 1,
-          "category": "Simple Past"
+          "question": "The department _____ the new laboratory safety rules during the meeting yesterday.",
+          "options": ["discuss", "discusses", "discussed", "discussing"],
+          "correct_answer": "discussed",
+          "category": "Simple Past Regular"
+        },
+        {
+          "question": "Last semester, the engineering students _____ a bridge model using 3D printing technology.",
+          "options": ["create", "created", "creating", "creates"],
+          "correct_answer": "created",
+          "category": "Simple Past Regular"
+        },
+        {
+          "question": "The research team _____ all the necessary data before the deadline passed.",
+          "options": ["collected", "collect", "collects", "collecting"],
+          "correct_answer": "collected",
+          "category": "Simple Past Regular"
         }
       ]
     },

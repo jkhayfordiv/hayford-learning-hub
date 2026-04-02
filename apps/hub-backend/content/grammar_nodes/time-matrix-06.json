@@ -2,20 +2,32 @@
   "node_id": "time-matrix-06",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Past Continuous",
-  "description": "Setting the background scene for a graded reader book report.",
+  "title": "The 'Was Doing' Past",
+  "description": "Talking about an action in progress at a specific past moment.",
   "display_order": 6,
   "prerequisites": ["time-matrix-05"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# Setting the Scene\n\nSometimes, we want to talk about what was **happening** in the past, rather than just what finished. We call this the 'Was Doing' past. \n\nImagine the past like a movie. The regular 'Finished' past is like clicking a picture of the end. But the 'Was Doing' past is like pausing the movie in the middle of a scene. \n\n### How to Make It\nUse **WAS** or **WERE** + **-ING**:\n- I **was** study**ing**.\n- They **were** research**ing**.\n\n### When to Use It\n1.  **Specific Moments**: \"At 9:00 PM yesterday, I **was studying** in the library.\"\n2.  **Setting the Scene**: \"While the professor **was explaining** the problem, a fire alarm went off.\" \n\nNotice that the 'was explaining' action was still going on when the alarm made a quick, finished sound (went off). \n\nIn university reports, we often use this to talk about things that were happening during a research project: \"While we **were observing** the test group, we noticed a small change.\"",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which word correctly describes the action in progress?",
     "activity_data": {
       "questions": [
         {
-          "question": "While the team _____ the data, a power outage occurred.",
-          "options": ["analyzed", "was analyzing", "analyzes", "is analyzing"],
-          "correct_answer": 1,
+          "question": "The university library was crowded because many students _____ for the final exam.",
+          "options": ["studied", "studies", "was studying", "were studying"],
+          "correct_answer": "were studying",
+          "category": "Past Continuous"
+        },
+        {
+          "question": "While the chemist _____ the solution, she found an unexpected chemical reaction.",
+          "options": ["mixing", "was mixing", "mix", "is mixing"],
+          "correct_answer": "was mixing",
+          "category": "Past Continuous"
+        },
+        {
+          "question": "During the laboratory trial, the equipment _____ to track movement every millisecond.",
+          "options": ["work", "working", "was working", "works"],
+          "correct_answer": "was working",
           "category": "Past Continuous"
         }
       ]

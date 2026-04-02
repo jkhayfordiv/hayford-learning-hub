@@ -2,20 +2,32 @@
   "node_id": "time-matrix-09",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Subject-Verb Agreement Basics",
-  "description": "Mastering the third-person singular 's'—a chronic spoken error.",
+  "title": "Making Words Match",
+  "description": "Learning how to match singular and plural subjects with their actions.",
   "display_order": 9,
   "prerequisites": ["time-matrix-08"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# Making the Match\n\nIn English, the person (subject) and the action (verb) must match. This is like wearing a pair of matching shoes. If one is different, it looks and sounds strange! \n\n### The Golden Rule\nWhen we talk about the present time:\n1.  **One Person (Singular)**: Add an **-s** to the action.\n    - *The professor **writes** a report.*\n    - *The student **helps** in the lab.*\n\n2.  **Many People (Plural)**: Do **NOT** add an -s.\n    - *The professors **write** a report.*\n    - *The students **help** in the lab.*\n\n### Why it Matters\nIn university writing, you will talk about many researchers and many projects. If you forget the **-s**, the reader might get confused. \n\nRemember: \n- **He/She/It** $\rightarrow$ adds **-s** (analyzes, works, shows)\n- **They/We** $\rightarrow$ no **-s** (analyze, work, show)\n\nNote: For words like 'I' and 'You', we also do not add the -s. (I work, you work).",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Choose the word that correctly matches the subject.",
     "activity_data": {
       "questions": [
         {
-          "question": "The student _____ hard every day.",
-          "options": ["study", "studies", "studying", "studied"],
-          "correct_answer": 1,
+          "question": "A senior professor _____ the research project every Monday morning.",
+          "options": ["lead", "leads", "leading", "leaded"],
+          "correct_answer": "leads",
+          "category": "Subject-Verb Agreement"
+        },
+        {
+          "question": "Many international students _____ on campus during the summer break.",
+          "options": ["stay", "stays", "staying", "stayed"],
+          "correct_answer": "stay",
+          "category": "Subject-Verb Agreement"
+        },
+        {
+          "question": "The software _____ all the data automatically to prevent errors.",
+          "options": ["calculate", "calculates", "calculating", "calculateed"],
+          "correct_answer": "calculates",
           "category": "Subject-Verb Agreement"
         }
       ]

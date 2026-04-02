@@ -2,20 +2,32 @@
   "node_id": "time-matrix-05",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Simple Past: Irregulars",
-  "description": "High-frequency academic irregulars: wrote, built, taught.",
+  "title": "Finished Past: Special Spellings",
+  "description": "Learning those 'special' past action words like went, wrote, and saw.",
   "display_order": 5,
   "prerequisites": ["time-matrix-04"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# What if it's not -ed? \n\nSome action words (verbs) like to be different. They don't follow the regular rule of adding -ed. We call these 'Irregular' verbs. \n\nThink of these like 'special' spellings you need to remember. They still talk about the **Finished Past** just like the regular ones. \n\n### Common Examples\nInstead of \"writed,\" we say **wrote**:\n- Today I **write** a report $\\rightarrow$ Yesterday I **wrote** a report.\n\nInstead of \"goed,\" we say **went**:\n- Today I **go** to the lab $\\rightarrow$ Last week I **went** to the lab.\n\n### Academic Irregulars\nYou will see these verbs a lot in university life:\n- **Build $\\rightarrow$ Built**: The team **built** a new computer system.\n- **Teach $\\rightarrow$ Taught**: The scientist **taught** many students.\n- **Show $\\rightarrow$ Shown** (or **Showed** in some cases, but **showed** is common for simple past): The data **showed** a strong result.\n- **Find $\\rightarrow$ Found**: The researchers **found** the answer last year.\n\nThese words still mean the action is 100% finished, even if the spelling is different. They belong in the same 'box' of past actions.",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which word correctly shows that the action finished in the past?",
     "activity_data": {
       "questions": [
         {
-          "question": "The professor _____ a new theory last year.",
-          "options": ["teached", "taught", "teach", "teaching"],
-          "correct_answer": 1,
+          "question": "The professor _____ a very helpful lecture about global economics last Friday.",
+          "options": ["gived", "gave", "gives", "giving"],
+          "correct_answer": "gave",
+          "category": "Simple Past Irregular"
+        },
+        {
+          "question": "The scientists _____ a significant increase in local temperatures after analyzing the data.",
+          "options": ["find", "founds", "finded", "found"],
+          "correct_answer": "found",
+          "category": "Simple Past Irregular"
+        },
+        {
+          "question": "An American university _____ the first successful digital computer in 1946.",
+          "options": ["built", "builded", "build", "building"],
+          "correct_answer": "built",
           "category": "Simple Past Irregular"
         }
       ]

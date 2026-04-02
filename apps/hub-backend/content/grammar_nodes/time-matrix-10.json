@@ -2,21 +2,33 @@
   "node_id": "time-matrix-10",
   "region": "The Time Matrix",
   "tier": "Bronze",
-  "title": "Subject-Verb Agreement Exceptions",
-  "description": "Tricky academic subjects: The data show, Everyone is, Neither of the studies.",
+  "title": "Tricky Matching Rules",
+  "description": "Learning how to handle 'everyone', groups, and other matching traps.",
   "display_order": 10,
   "prerequisites": ["time-matrix-09"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# Watch Out for the Trap!\n\nSometimes, it's hard to tell if we have one or many people (subjects). In university settings, there are three common 'traps' where students often miss the match. \n\n### Trap 1: Words like 'Everyone' and 'Each'\nEven though 'everyone' or 'everybody' means a lot of people, we treat it like **one** person. \n- **Incorrect**: \"Everyone **know** the answer.\"\n- **Correct**: \"Everyone **knows** the answer.\" (One person rule!)\n\n### Trap 2: Group Nouns\nWhen you talk about a 'team', a 'family', or a 'class', we are talking about **one group**. \n- **Correct**: \"The research team **arrives** early.\"\n- **Correct**: \"Each department **attends** the meeting.\"\n\n### Trap 3: The 'Of' Phrase\nDon't let a phrase with 'of' confuse you! Look at the main word, not the little one after 'of'. \n- \"The **box** of heavy books **is** on the table.\" (One box!)\n- \"A **group** of professors **was** invited.\" (One group!)\n\nThink about what the focus of your sentence is. Is it the big container, or the items inside?",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which word correctly matches the subject in these tricky situations?",
     "activity_data": {
       "questions": [
         {
-          "question": "The data _____ a clear trend.",
-          "options": ["shows", "show", "showing", "is showing"],
-          "correct_answer": 1,
-          "category": "Subject-Verb Agreement"
+          "question": "Everyone in the international business class _____ to bring a copy of the textbook tomorrow.",
+          "options": ["need", "needs", "needing", "needed"],
+          "correct_answer": "needs",
+          "category": "Subject-Verb Agreement Exceptions"
+        },
+        {
+          "question": "A collection of antique coins _____ donated to the university museum last week.",
+          "options": ["was", "were", "been", "being"],
+          "correct_answer": "was",
+          "category": "Subject-Verb Agreement Exceptions"
+        },
+        {
+          "question": "Each of the local high school students _____ a free lunch during the campus tour.",
+          "options": ["receive", "receives", "receiving", "received"],
+          "correct_answer": "receives",
+          "category": "Subject-Verb Agreement Exceptions"
         }
       ]
     },

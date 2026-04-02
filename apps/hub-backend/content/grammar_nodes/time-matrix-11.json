@@ -2,21 +2,33 @@
   "node_id": "time-matrix-11",
   "region": "The Time Matrix",
   "tier": "Silver",
-  "title": "Present Perfect 1: Experience",
-  "description": "Unspecified time: I have studied biology.",
+  "title": "Life Experience",
+  "description": "Talking about things you have done in your life without a specific time.",
   "display_order": 11,
   "prerequisites": ["time-matrix-10"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# What Have You Done? \n\nSometimes, it's not important **when** you did something. What counts is that you **have** done it. In university and jobs, we often talk about our experiences like this. \n\n### How to Make It\nUse **HAVE** or **HAS** + **the past form** (the 'Third' form of the verb, also called the Past Participle). \n- I **have been** to Tokyo.\n- The researcher **has published** many papers. \n\n### When to Use It\n1.  **Life Experiences**: \"Have you ever studied abroad?\" (In your whole life up to now.)\n2.  **Repeating Actions**: \"The university **has held** this event three times.\"\n\nWe usually don't say 'yesterday' or 'last week' here. If we have a specific time, we use the regular past tense (I went to Tokyo **yesterday**). Use this 'Life Experience' tense when you just want to say, \"Yes, I did that before!\" or \"No, I haven't tried that yet!\"",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which word correctly shows a life experience?",
     "activity_data": {
       "questions": [
         {
-          "question": "I _____ this book before.",
-          "options": ["read", "have read", "am reading", "was reading"],
-          "correct_answer": 1,
-          "category": "Present Perfect"
+          "question": "The university _____ several new buildings to accommodate more students.",
+          "options": ["build", "built", "has built", "is building"],
+          "correct_answer": "has built",
+          "category": "Present Perfect Experience"
+        },
+        {
+          "question": "_____ you ever visited the campus research center?",
+          "options": ["Did", "Have", "Were", "Are"],
+          "correct_answer": "Have",
+          "category": "Present Perfect Experience"
+        },
+        {
+          "question": "Dr. Miller _____ many articles about global warming during his long career.",
+          "options": ["write", "wrote", "has written", "writes"],
+          "correct_answer": "has written",
+          "category": "Present Perfect Experience"
         }
       ]
     },

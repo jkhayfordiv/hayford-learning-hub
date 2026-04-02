@@ -2,21 +2,33 @@
   "node_id": "time-matrix-12",
   "region": "The Time Matrix",
   "tier": "Silver",
-  "title": "Present Perfect 2: Unfinished Time",
-  "description": "Using Since and For correctly.",
+  "title": "Still Going",
+  "description": "Talking about things that started in the past and are still true now.",
   "display_order": 12,
   "prerequisites": ["time-matrix-11"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
+  "lesson_content_markdown": "# Actions That Haven't Stopped\n\nSometimes, things start in the past and they **still** haven't finished. It's like a bridge connecting your past to your present day. This is different from the 'Finished' past (I went to the store). \n\n### Use it with 'Since' and 'For'\n1.  **Since (a point in time)**: \"The university **has existed** **since** 1950.\"\n2.  **For (a length of time)**: \"We **have studied** Economics **for** three years.\"\n\nIn both examples, the actions are still true right now! \n\n### Why it's Important\nAt university, you will talk about long-term research or history that still affects you today. For example:\n- *\"The professor **has lived** in Japan **for** ten years.\"* (He still lives here!)\n- *\"The museum **has been** closed **since** last March.\"* (It is still closed!)\n\nNote: If you say \"I followed that rule for three years,\" it means you **don't** follow it anymore. Use the 'Still Going' tense to show it is **still true**.",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
+    "prompt_to_student": "Which word correctly shows a bridge from the past to the present?",
     "activity_data": {
       "questions": [
         {
-          "question": "She has worked here _____ 2015.",
-          "options": ["for", "since", "from", "during"],
-          "correct_answer": 1,
-          "category": "Present Perfect"
+          "question": "The student health center _____ students on campus for over fifty years.",
+          "options": ["help", "helped", "has helped", "is helping"],
+          "correct_answer": "has helped",
+          "category": "Present Perfect Duration"
+        },
+        {
+          "question": "Professor Sato _____ at this university since he finished his PhD in 2012.",
+          "options": ["teach", "teaches", "has taught", "taught"],
+          "correct_answer": "has taught",
+          "category": "Present Perfect Duration"
+        },
+        {
+          "question": "The economics database _____ unavailable to researchers for several days.",
+          "options": ["was", "be", "has been", "is staying"],
+          "correct_answer": "has been",
+          "category": "Present Perfect Duration"
         }
       ]
     },
