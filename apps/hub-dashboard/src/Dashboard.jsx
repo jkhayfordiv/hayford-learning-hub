@@ -886,14 +886,14 @@ export default function Dashboard() {
            {(isB2CInstitution || user.show_writing_lab_on_dashboard !== false) && (
              <button
                onClick={() => navigate('/writing-lab')}
-               className="bg-gradient-to-br from-teal-700 to-cyan-900 hover:from-teal-800 hover:to-cyan-950 p-6 rounded-2xl shadow-lg text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
+               className="bg-gradient-to-br from-amber-50 to-stone-100 hover:from-amber-100 hover:to-stone-200 p-6 rounded-2xl shadow-lg text-slate-800 flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group border border-amber-200"
              >
                <div className="flex items-center justify-between mb-2">
-                 <BookOpen size={24} className="text-white/90 group-hover:text-white transition-colors" />
-                 <span className="text-[10px] font-black uppercase text-white/70 tracking-widest">AI Guided</span>
+                 <PenTool size={24} className="text-slate-700 group-hover:text-slate-900 transition-colors" />
+                 <span className="text-[10px] font-black uppercase text-slate-500 tracking-widest">AI Guided</span>
                </div>
                <h3 className="text-lg font-black tracking-tight leading-tight">Writing Lab</h3>
-               <p className="text-[10px] text-white/80 mt-1">Paragraph & essay writing</p>
+               <p className="text-[10px] text-slate-600 mt-1">Paragraph & essay writing</p>
              </button>
            )}
 

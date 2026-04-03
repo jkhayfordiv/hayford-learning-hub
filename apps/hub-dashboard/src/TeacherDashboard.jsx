@@ -253,6 +253,14 @@ export default function TeacherDashboard({ user, onLogout }) {
         student_last_name: activity.student_last_name
       });
       setIsReviewModalOpen(true);
+      
+      // Mark submission as viewed and remove from recentActivity
+      fetch(`${apiBase}/api/scores/${activity.id}/mark-viewed`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).then(() => {
+        setRecentActivity(prev => prev.filter(a => a.id !== activity.id));
+      }).catch(() => {});
     } catch (err) {
       console.error('Fetch submission error:', err);
       alert('Error fetching submission: ' + err.message);
@@ -1242,7 +1250,7 @@ export default function TeacherDashboard({ user, onLogout }) {
         {/* Learning Apps */}
         <div className="mb-10">
           <h2 className="text-xl font-black text-slate-900 dark:text-white tracking-tight mb-4">Learning Apps</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <button
               onClick={() => { const s = crypto.randomUUID(); window.location.href = `/ielts-writing/?token=${localStorage.getItem('token')}&writingTask=both&sessionId=${s}`; }}
               className="p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
@@ -1282,6 +1290,16 @@ export default function TeacherDashboard({ user, onLogout }) {
               <div>
                 <h3 className="text-sm font-black tracking-tight leading-tight">Vocab Lab</h3>
                 <p className="text-[10px] text-white/70 mt-0.5">SRS vocabulary engine</p>
+              </div>
+            </button>
+            <button
+              onClick={() => window.location.href = '/writing-lab'}
+              className="bg-gradient-to-br from-amber-50 to-stone-100 hover:from-amber-100 hover:to-stone-200 p-5 rounded-2xl shadow-md text-slate-800 flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group border border-amber-200"
+            >
+              <PenTool size={22} className="text-slate-700 mb-3" />
+              <div>
+                <h3 className="text-sm font-black tracking-tight leading-tight">Writing Lab</h3>
+                <p className="text-[10px] text-slate-600 mt-0.5">Genre-based writing</p>
               </div>
             </button>
           </div>

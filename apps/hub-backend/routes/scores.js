@@ -386,7 +386,7 @@ router.get('/recent', requireTeacher, async (req, res) => {
     if (actor_role === 'super_admin') {
       query = `
         SELECT s.id, s.completed_at, s.overall_score, s.module_id,
-               s.teacher_comment, s.teacher_comment_read, s.feedback_date,
+               s.teacher_comment, s.teacher_comment_read, s.feedback_date, s.viewed_at,
                m.module_name, m.module_type,
                u.first_name as student_first_name, u.last_name as student_last_name,
                g.first_name as grader_first_name, g.last_name as grader_last_name
@@ -394,30 +394,31 @@ router.get('/recent', requireTeacher, async (req, res) => {
         JOIN users u ON s.student_id = u.id
         JOIN learning_modules m ON s.module_id = m.id
         LEFT JOIN users g ON s.grader_id = g.id
+        WHERE s.viewed_at IS NULL
         ORDER BY s.completed_at DESC LIMIT 10`;
       params = [];
     } else if (actor_role === 'admin' && actor_institution_id) {
       query = `
         SELECT s.id, s.completed_at, s.overall_score, s.module_id,
-               m.module_name, m.module_type,
+               m.module_name, m.module_type, s.viewed_at,
                u.first_name as student_first_name, u.last_name as student_last_name
         FROM student_scores s
         JOIN users u ON s.student_id = u.id
         JOIN learning_modules m ON s.module_id = m.id
-        WHERE u.institution_id = $1
+        WHERE u.institution_id = $1 AND s.viewed_at IS NULL
         ORDER BY s.completed_at DESC LIMIT 10`;
       params = [actor_institution_id];
     } else {
       // Teacher sees only their class students
       query = `
         SELECT s.id, s.completed_at, s.overall_score, s.module_id,
-               m.module_name, m.module_type,
+               m.module_name, m.module_type, s.viewed_at,
                u.first_name as student_first_name, u.last_name as student_last_name
         FROM student_scores s
         JOIN users u ON s.student_id = u.id
         JOIN learning_modules m ON s.module_id = m.id
         JOIN classes c ON u.class_id = c.id
-        WHERE c.teacher_id = $1
+        WHERE c.teacher_id = $1 AND s.viewed_at IS NULL
         ORDER BY s.completed_at DESC LIMIT 10`;
       params = [actor_id];
     }
@@ -429,6 +430,32 @@ router.get('/recent', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Recent activity error:', error);
     res.status(500).json({ error: 'Server Error fetching recent activity' });
+  }
+});
+
+// @route   PATCH api/scores/:id/mark-viewed
+// @desc    Mark a submission as viewed by teacher
+// @access  Private (Teacher/Admin only)
+router.patch('/:id/mark-viewed', requireTeacher, async (req, res) => {
+  const scoreId = req.params.id;
+  
+  try {
+    const connection = await pool.getConnection();
+    const [result] = await connection.query(
+      `UPDATE student_scores SET viewed_at = CURRENT_TIMESTAMP WHERE id = $1 AND viewed_at IS NULL`,
+      [scoreId]
+    );
+    connection.release();
+    
+    const updated = result?.affectedRows ?? result?.rowCount ?? 0;
+    if (updated === 0) {
+      return res.status(404).json({ error: 'Submission not found or already viewed' });
+    }
+    
+    res.json({ message: 'Submission marked as viewed' });
+  } catch (error) {
+    console.error('Mark viewed error:', error);
+    res.status(500).json({ error: 'Server Error marking submission as viewed' });
   }
 });
 

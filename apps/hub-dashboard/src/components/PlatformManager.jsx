@@ -1825,7 +1825,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
       {/* Edit Institution Modal */}
       {isEditInstitutionModalOpen && selectedInstitution && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
             <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-indigo-600">
               <h3 className="font-black text-2xl text-white tracking-tight">Edit Institution</h3>
               <p className="text-sm text-blue-100 mt-1">ID: {selectedInstitution.id}</p>
