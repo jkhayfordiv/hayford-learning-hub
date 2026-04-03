@@ -586,6 +586,70 @@ router.get('/assignment/:taskId', requireTeacher, async (req, res) => {
   }
 });
 
+// @route   GET api/scores/:id
+// @desc    Get a single score/submission by ID
+// @access  Private (Teacher/Admin only)
+router.get('/:id', requireTeacher, async (req, res) => {
+  const scoreId = req.params.id;
+  const actor_role = req.user.role;
+  const actor_id = req.user.id;
+  const actor_institution_id = req.user.institution_id;
+
+  try {
+    const connection = await pool.getConnection();
+    
+    const [scores] = await connection.query(`
+      SELECT 
+        s.*, 
+        u.first_name as student_first_name, u.last_name as student_last_name, u.email as student_email, u.institution_id as student_institution_id, u.class_id as student_class_id,
+        m.module_name, m.module_type,
+        g.first_name as grader_first_name, g.last_name as grader_last_name
+      FROM student_scores s
+      JOIN users u ON s.student_id = u.id
+      JOIN learning_modules m ON s.module_id = m.id
+      LEFT JOIN users g ON s.grader_id = g.id
+      WHERE s.id = $1
+    `, [scoreId]);
+
+    if (scores.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'Submission not found.' });
+    }
+
+    const submission = scores[0];
+
+    // Tenant isolation check
+    if (actor_role === 'admin' && submission.student_institution_id !== actor_institution_id) {
+      connection.release();
+      return res.status(403).json({ error: 'Access denied: student belongs to different institution' });
+    }
+    
+    if (actor_role === 'teacher') {
+      // Verify student is in a class taught by this teacher
+      const [classCheck] = await connection.query(
+        'SELECT id FROM classes WHERE id = $1 AND teacher_id = $2',
+        [submission.student_class_id, actor_id]
+      );
+      if (classCheck.length === 0) {
+        connection.release();
+        return res.status(403).json({ error: 'Access denied: student not in your class' });
+      }
+    }
+
+    connection.release();
+
+    res.json({
+      ...submission,
+      ai_feedback: typeof submission.ai_feedback === 'string' ? JSON.parse(submission.ai_feedback) : submission.ai_feedback,
+      diagnostic_data: typeof submission.diagnostic_data === 'string' ? JSON.parse(submission.diagnostic_data) : submission.diagnostic_data
+    });
+
+  } catch (error) {
+    console.error('Fetch score by ID error:', error);
+    res.status(500).json({ error: 'Server Error fetching submission' });
+  }
+});
+
 // @route   PATCH api/scores/:id/comment
 // @desc    Update teacher comment/feedback for a submission
 // @access  Private (Teacher/Admin only)

@@ -233,10 +233,32 @@ export default function TeacherDashboard({ user, onLogout }) {
     localStorage.setItem('theme', newTheme);
   };
 
-  // Handle opening submission review modal
-  const handleOpenSubmissionReview = (activity) => {
-    setSelectedSubmission(activity);
-    setIsReviewModalOpen(true);
+  // Ref for scrolling to Recent Activity section
+  const recentActivityRef = useRef(null);
+
+  // Handle opening submission review modal - fetch full submission data first
+  const handleOpenSubmissionReview = async (activity) => {
+    setIsReviewLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      // Fetch full submission data by score ID
+      const res = await fetch(`${apiBase}/api/scores/${activity.id}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to fetch submission');
+      setSelectedSubmission({
+        ...data,
+        student_first_name: activity.student_first_name,
+        student_last_name: activity.student_last_name
+      });
+      setIsReviewModalOpen(true);
+    } catch (err) {
+      console.error('Fetch submission error:', err);
+      alert('Error fetching submission: ' + err.message);
+    } finally {
+      setIsReviewLoading(false);
+    }
   };
 
   // PHASE 4.3: Bulk Action Handlers
@@ -1009,6 +1031,23 @@ export default function TeacherDashboard({ user, onLogout }) {
         </div>
 
         <div className="flex items-center gap-6 relative" ref={dropdownRef}>
+          {/* Notification pill for unviewed submissions */}
+          {recentActivity.length > 0 && (
+            <button
+              onClick={() => {
+                setActiveTab('overview');
+                setNavigationView('dashboard');
+                setTimeout(() => {
+                  recentActivityRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+              }}
+              className="flex items-center gap-2 px-3 py-1.5 bg-orange-500 hover:bg-orange-600 text-white font-bold text-xs rounded-full transition-colors shadow-md"
+              title="View recent submissions"
+            >
+              <FileText size={14} />
+              <span>{recentActivity.length}</span>
+            </button>
+          )}
           <button 
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors rounded-full border border-slate-200 dark:border-slate-600 cursor-pointer"
@@ -1558,10 +1597,15 @@ export default function TeacherDashboard({ user, onLogout }) {
         )}
 
         {/* Recent Activity Feed */}
-        <div className="mt-8 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+        <div ref={recentActivityRef} className="mt-8 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
           <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between bg-slate-50/50 dark:bg-slate-900/50">
             <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
               <FileText className="text-slate-400 dark:text-slate-500" /> Recent Learning Activity
+              {recentActivity.length > 0 && (
+                <span className="ml-2 px-2 py-0.5 bg-orange-500 text-white text-xs font-black rounded-full">
+                  {recentActivity.length}
+                </span>
+              )}
             </h3>
           </div>
           <div className="max-h-64 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-700">

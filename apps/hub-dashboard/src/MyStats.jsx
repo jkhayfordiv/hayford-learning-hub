@@ -172,9 +172,9 @@ export default function MyStats() {
                                 const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
                                 window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
                               }}
-                              className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity hover:bg-indigo-100"
+                              className="bg-slate-900 text-white px-2 py-0.5 rounded text-[10px] font-bold hover:bg-slate-700 transition-colors"
                             >
-                              Practice
+                              Practice →
                             </button>
                           )}
                         </div>
