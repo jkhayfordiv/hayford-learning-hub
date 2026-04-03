@@ -686,4 +686,104 @@ Return a JSON object with a "quiz" array of exactly 5 items.`;
   }
 });
 
+// ============================================================================
+// POST /api/vocab-lab/import-assignment/:assignmentId
+// Auto-imports vocabulary words from an assignment into the student's SRS queue
+// ============================================================================
+router.post('/import-assignment/:assignmentId', auth, async (req, res) => {
+  const user_id = req.user.id;
+  const assignment_id = req.params.assignmentId;
+
+  const connection = await pool.getConnection();
+  try {
+    // 1. Verify the assignment belongs to this student and is a vocabulary type
+    const [taskRows] = await connection.query(
+      `SELECT id, assignment_type, vocab_words, status
+       FROM assigned_tasks
+       WHERE id = $1 AND student_id = $2`,
+      [assignment_id, user_id]
+    );
+
+    if (taskRows.length === 0) {
+      connection.release();
+      return res.status(404).json({ error: 'Assignment not found or access denied' });
+    }
+
+    const task = taskRows[0];
+    if (task.assignment_type !== 'vocabulary') {
+      connection.release();
+      return res.status(400).json({ error: 'This is not a vocabulary assignment' });
+    }
+
+    // 2. Parse vocab_words (could be JSON array of words or comma-separated string)
+    let words = [];
+    if (task.vocab_words) {
+      try {
+        words = typeof task.vocab_words === 'string' 
+          ? JSON.parse(task.vocab_words) 
+          : task.vocab_words;
+      } catch (_) {
+        // Try comma-separated fallback
+        words = task.vocab_words.split(',').map(w => w.trim()).filter(Boolean);
+      }
+    }
+
+    if (!Array.isArray(words) || words.length === 0) {
+      connection.release();
+      return res.json({ 
+        message: 'No words to import from this assignment',
+        imported: 0,
+        skipped: 0
+      });
+    }
+
+    // 3. For each word, ensure it exists in global_words and add to user_vocabulary
+    let imported = 0;
+    let skipped = 0;
+    const errors = [];
+
+    for (const wordStr of words) {
+      try {
+        // Ensure word exists in global_words (will generate via AI if needed)
+        const globalWordRows = await ensureWordInGlobalWords(connection, wordStr);
+        
+        if (globalWordRows.length > 0) {
+          // Add first sense to user's vocabulary at SRS level 0
+          const result = await addWordToUserVocab(connection, user_id, globalWordRows[0].id);
+          if (result.added) {
+            imported++;
+          } else {
+            skipped++; // Already in user's vocabulary
+          }
+        }
+      } catch (err) {
+        console.error(`[vocab-lab] Failed to import word "${wordStr}":`, err.message);
+        errors.push({ word: wordStr, error: err.message });
+        skipped++;
+      }
+    }
+
+    // 4. Mark assignment as completed if all words were processed
+    if (imported > 0 || skipped === words.length) {
+      await connection.query(
+        `UPDATE assigned_tasks SET status = 'completed' WHERE id = $1`,
+        [assignment_id]
+      );
+    }
+
+    connection.release();
+    res.json({
+      message: `Imported ${imported} word(s) to your vocabulary queue`,
+      imported,
+      skipped,
+      errors: errors.length > 0 ? errors : undefined
+    });
+
+  } catch (err) {
+    if (connection) connection.release();
+    console.error('Error in POST /api/vocab-lab/import-assignment:', err.message);
+    res.status(500).json({ error: 'Failed to import assignment words' });
+  }
+});
+
 module.exports = router;

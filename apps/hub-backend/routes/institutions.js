@@ -135,7 +135,11 @@ router.post('/', verifySuperAdmin, async (req, res) => {
 // PUT update institution
 router.put('/:id', verifySuperAdmin, async (req, res) => {
   const { id } = req.params;
-  const { name, address, contact_email, primary_color, secondary_color, welcome_text, logo_url } = req.body;
+  const { 
+    name, address, contact_email, primary_color, secondary_color, welcome_text, logo_url,
+    show_writing_on_dashboard, show_speaking_on_dashboard, show_grammar_world_on_dashboard,
+    show_vocab_on_dashboard, show_writing_lab_on_dashboard
+  } = req.body;
 
   if (!name) {
     return res.status(400).json({ error: 'Institution name is required' });
@@ -149,11 +153,19 @@ router.put('/:id', verifySuperAdmin, async (req, res) => {
         primary_color = COALESCE($4, primary_color),
         secondary_color = COALESCE($5, secondary_color),
         welcome_text = COALESCE($6, welcome_text),
-        logo_url = COALESCE($7, logo_url)
-       WHERE id = $8`,
+        logo_url = COALESCE($7, logo_url),
+        show_writing_on_dashboard = COALESCE($8, show_writing_on_dashboard),
+        show_speaking_on_dashboard = COALESCE($9, show_speaking_on_dashboard),
+        show_grammar_world_on_dashboard = COALESCE($10, show_grammar_world_on_dashboard),
+        show_vocab_on_dashboard = COALESCE($11, show_vocab_on_dashboard),
+        show_writing_lab_on_dashboard = COALESCE($12, show_writing_lab_on_dashboard)
+       WHERE id = $13`,
       [name, address || null, contact_email || null,
        primary_color || null, secondary_color || null,
-       welcome_text || null, logo_url || null, id]
+       welcome_text || null, logo_url || null,
+       show_writing_on_dashboard ?? null, show_speaking_on_dashboard ?? null,
+       show_grammar_world_on_dashboard ?? null, show_vocab_on_dashboard ?? null,
+       show_writing_lab_on_dashboard ?? null, id]
     );
     connection.release();
     const updated = result?.affectedRows ?? result?.rowCount ?? 0;

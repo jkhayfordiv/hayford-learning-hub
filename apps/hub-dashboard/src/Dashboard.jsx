@@ -768,7 +768,8 @@ export default function Dashboard() {
                         speaking_parts: task.speaking_parts 
                       };
                       if (task.assignment_type === 'vocabulary') {
-                        window.location.href = `/vocab-tool/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
+                        // Open Vocab Lab (Daily Review) and auto-add assignment words to SRS
+                        window.location.href = `/vocab-lab/?token=${localStorage.getItem('token')}&assignment_id=${task.id}`;
                       } else if (task.assignment_type === 'speaking') {
                         window.location.href = `/ielts-speaking/?token=${localStorage.getItem('token')}&taskMeta=${encodeURIComponent(JSON.stringify(instructionsObj))}`;
                       } else if (task.assignment_type === 'writing_lab') {

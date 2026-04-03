@@ -161,6 +161,40 @@ export default function VocabLabDashboard() {
 
   useEffect(() => { fetchDashboard(); }, [fetchDashboard]);
 
+  // ── Auto-import assignment words when opened with assignment_id ──────────────
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const assignmentId = params.get('assignment_id');
+    if (!assignmentId) return;
+
+    const importAssignmentWords = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/vocab-lab/import-assignment/${assignmentId}`, {
+          method: 'POST',
+          headers: authHeaders(),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          if (data.imported > 0) {
+            showToast('success', `${data.imported} word(s) added to your learning queue!`);
+          } else if (data.skipped > 0) {
+            showToast('success', 'Assignment words are already in your vocabulary!');
+          }
+          // Refresh dashboard to show new words
+          fetchDashboard();
+          // Clean up URL
+          window.history.replaceState({}, '', window.location.pathname);
+        } else {
+          showToast('error', data.error || 'Failed to import assignment words');
+        }
+      } catch (err) {
+        console.error('Failed to import assignment words:', err);
+      }
+    };
+
+    importAssignmentWords();
+  }, []);
+
   // ── Add Word ───────────────────────────────────────────────────────────────
   const handleAddWord = async (e) => {
     e?.preventDefault();

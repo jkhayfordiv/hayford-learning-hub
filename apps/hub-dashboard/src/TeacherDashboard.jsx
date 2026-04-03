@@ -1183,12 +1183,6 @@ export default function TeacherDashboard({ user, onLogout }) {
           >
             Grammar Analytics
           </button>
-          <button
-            onClick={() => { setActiveTab('settings'); if (!appVisibility) fetchAppVisibility(); }}
-            className={`py-4 font-bold text-sm border-b-2 transition-colors flex items-center gap-1.5 ${activeTab === 'settings' ? 'border-amber-600 text-amber-700' : 'border-transparent text-slate-500 hover:text-slate-700'}`}
-          >
-            <Settings size={14} /> App Settings
-          </button>
 
         </div>
       )}
@@ -2125,81 +2119,6 @@ export default function TeacherDashboard({ user, onLogout }) {
           </>
         ) : activeTab === 'grammar-analytics' ? (
           <GrammarAnalytics />
-        ) : activeTab === 'settings' ? (
-          <div className="max-w-2xl">
-            <div className="mb-8">
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">App Settings</h2>
-              <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">
-                Control which apps appear as free-access tiles on the student dashboard.
-                Apps hidden here can still be assigned as homework and will remain accessible via student To-Do links.
-              </p>
-            </div>
-
-            {appVisibilityError && (
-              <div className="mb-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-xl px-4 py-3 text-sm font-medium">
-                {appVisibilityError}
-              </div>
-            )}
-
-            {appVisibility === null ? (
-              <div className="flex items-center gap-3 text-slate-500 py-12">
-                <div className="w-5 h-5 border-2 border-slate-300 border-t-transparent rounded-full animate-spin" />
-                Loading settings…
-              </div>
-            ) : (
-              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl divide-y divide-slate-100 dark:divide-slate-700 shadow-sm">
-                {[
-                  { app: 'writing',       label: 'IELTS Writing',       desc: 'AI-graded Task 1 & 2 practice',        enabled: true,                              key: 'show_writing_on_dashboard' },
-                  { app: 'speaking',      label: 'IELTS Speaking',      desc: 'AI examiner simulation (Parts 1–3)',   enabled: appVisibility.has_ielts_speaking,  key: 'show_speaking_on_dashboard' },
-                  { app: 'grammar_world', label: 'Grammar World Map',   desc: 'Gamified grammar mastery adventure',  enabled: appVisibility.has_grammar_world,   key: 'show_grammar_world_on_dashboard' },
-                  { app: 'vocab',         label: 'Vocab Lab',           desc: 'Spaced repetition vocabulary engine', enabled: true,                              key: 'show_vocab_on_dashboard' },
-                  { app: 'writing_lab',   label: 'Writing Lab',         desc: 'Guided paragraph & essay writing',    enabled: true,                              key: 'show_writing_lab_on_dashboard' },
-                ].map(({ app, label, desc, enabled, key }) => {
-                  const isOn = enabled && appVisibility[key] !== false;
-                  const isSaving = appVisibilitySaving[app];
-                  return (
-                    <div key={app} className="flex items-center justify-between gap-6 px-6 py-5">
-                      <div className="flex-1 min-w-0">
-                        <p className={`font-bold text-sm ${enabled ? 'text-slate-900 dark:text-white' : 'text-slate-400 dark:text-slate-500'}`}>
-                          {label}
-                          {!enabled && <span className="ml-2 text-[10px] font-black uppercase tracking-wider text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-full">Not licensed</span>}
-                        </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{desc}</p>
-                      </div>
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        {isSaving && <div className="w-4 h-4 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />}
-                        <button
-                          type="button"
-                          disabled={!enabled || isSaving}
-                          onClick={() => handleToggleAppVisibility(app, !isOn)}
-                          className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                            !enabled ? 'cursor-not-allowed opacity-40' : ''
-                          } ${isOn ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-600'}`}
-                          role="switch"
-                          aria-checked={isOn}
-                        >
-                          <span
-                            className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                              isOn ? 'translate-x-5' : 'translate-x-0'
-                            }`}
-                          />
-                        </button>
-                        <span className={`text-xs font-bold w-10 text-right ${
-                          isOn ? 'text-emerald-600 dark:text-emerald-400' : 'text-slate-400'
-                        }`}>
-                          {isOn ? 'ON' : 'OFF'}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            <p className="mt-4 text-xs text-slate-400 dark:text-slate-500 font-medium">
-              Note: Institution 1 (B2C / Freemium tier) always shows all licensed apps regardless of this setting.
-            </p>
-          </div>
         ) : null}
 
       {isGrammarAssignModalOpen && grammarAssignTarget && (

@@ -727,7 +727,12 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                       primary_color: inst.primary_color || '#800020',
                                       secondary_color: inst.secondary_color || '#F7E7CE',
                                       welcome_text: inst.welcome_text || '',
-                                      logo_url: inst.logo_url || ''
+                                      logo_url: inst.logo_url || '',
+                                      show_writing_on_dashboard: inst.show_writing_on_dashboard !== false,
+                                      show_speaking_on_dashboard: inst.show_speaking_on_dashboard !== false,
+                                      show_grammar_world_on_dashboard: inst.show_grammar_world_on_dashboard !== false,
+                                      show_vocab_on_dashboard: inst.show_vocab_on_dashboard !== false,
+                                      show_writing_lab_on_dashboard: inst.show_writing_lab_on_dashboard !== false
                                     });
                                     setIsEditInstitutionModalOpen(true);
                                   }}
@@ -1632,6 +1637,41 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
                 />
               </div>
+              {/* App Visibility Settings - Super Admin Only */}
+              <div className="border-t border-slate-200 dark:border-slate-700 pt-4 space-y-3">
+                <p className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">App Visibility</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 -mt-1">Control which apps appear on student dashboards for this institution.</p>
+                {[
+                  { key: 'show_writing_on_dashboard', label: 'IELTS Writing' },
+                  { key: 'show_speaking_on_dashboard', label: 'IELTS Speaking' },
+                  { key: 'show_grammar_world_on_dashboard', label: 'Grammar World' },
+                  { key: 'show_vocab_on_dashboard', label: 'Vocab Lab' },
+                  { key: 'show_writing_lab_on_dashboard', label: 'Writing Lab' },
+                ].map(({ key, label }) => {
+                  const isOn = editInstitutionForm[key] !== false;
+                  return (
+                    <div key={key} className="flex items-center justify-between py-2">
+                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{label}</span>
+                      <button
+                        type="button"
+                        onClick={() => setEditInstitutionForm({ ...editInstitutionForm, [key]: !isOn })}
+                        className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                          isOn ? 'bg-emerald-500' : 'bg-slate-300 dark:bg-slate-600'
+                        }`}
+                        role="switch"
+                        aria-checked={isOn}
+                      >
+                        <span
+                          className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                            isOn ? 'translate-x-5' : 'translate-x-0'
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+
               <div className="border-t border-slate-200 dark:border-slate-700 pt-4 space-y-4">
                 <p className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Branding</p>
                 <div className="grid grid-cols-2 gap-4">
