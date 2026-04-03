@@ -59,12 +59,14 @@ router.get('/all', requireTeacher, async (req, res) => {
       query = `
         SELECT c.*, i.name as institution_name, 
                u.first_name as teacher_first_name, u.last_name as teacher_last_name,
+               t.name as term_name, t.start_date as term_start, t.end_date as term_end, t.is_active as term_is_active,
                COUNT(DISTINCT ce.user_id) as student_count
         FROM classes c
         LEFT JOIN institutions i ON c.institution_id = i.id
         LEFT JOIN users u ON c.teacher_id = u.id
         LEFT JOIN class_enrollments ce ON ce.class_id = c.id
-        GROUP BY c.id, i.name, u.first_name, u.last_name
+        LEFT JOIN terms t ON c.term_id = t.id
+        GROUP BY c.id, i.name, u.first_name, u.last_name, t.name, t.start_date, t.end_date, t.is_active
         ORDER BY c.created_at DESC
       `;
       params = [];
@@ -73,13 +75,15 @@ router.get('/all', requireTeacher, async (req, res) => {
       query = `
         SELECT c.*, i.name as institution_name,
                u.first_name as teacher_first_name, u.last_name as teacher_last_name,
+               t.name as term_name, t.start_date as term_start, t.end_date as term_end, t.is_active as term_is_active,
                COUNT(DISTINCT ce.user_id) as student_count
         FROM classes c
         LEFT JOIN institutions i ON c.institution_id = i.id
         LEFT JOIN users u ON c.teacher_id = u.id
         LEFT JOIN class_enrollments ce ON ce.class_id = c.id
+        LEFT JOIN terms t ON c.term_id = t.id
         WHERE c.institution_id = $1
-        GROUP BY c.id, i.name, u.first_name, u.last_name
+        GROUP BY c.id, i.name, u.first_name, u.last_name, t.name, t.start_date, t.end_date, t.is_active
         ORDER BY c.created_at DESC
       `;
       params = [institution_id];
@@ -261,7 +265,7 @@ router.post('/join', auth, async (req, res) => {
 // @access  Private (Teacher only)
 router.put('/:id', requireTeacher, async (req, res) => {
   const class_id = req.params.id;
-  const { class_name, start_date, end_date } = req.body;
+  const { class_name, start_date, end_date, term_id } = req.body;
   const teacher_id = req.user.id;
   const actor_role = req.user.role;
   const actor_institution_id = req.user.institution_id;
@@ -298,12 +302,12 @@ router.put('/:id', requireTeacher, async (req, res) => {
     // Build UPDATE query with tenant isolation
     let updateQuery, updateParams;
     if (actor_role === 'super_admin') {
-      updateQuery = 'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3 WHERE id = $4';
-      updateParams = [class_name, start_date || null, end_date || null, class_id];
+      updateQuery = 'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3, term_id = $4 WHERE id = $5';
+      updateParams = [class_name, start_date || null, end_date || null, term_id || null, class_id];
     } else {
       // Admin/Teacher: add institution_id constraint
-      updateQuery = 'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3 WHERE id = $4 AND institution_id = $5';
-      updateParams = [class_name, start_date || null, end_date || null, class_id, actor_institution_id];
+      updateQuery = 'UPDATE classes SET class_name = $1, start_date = $2, end_date = $3, term_id = $4 WHERE id = $5 AND institution_id = $6';
+      updateParams = [class_name, start_date || null, end_date || null, term_id || null, class_id, actor_institution_id];
     }
     
     const [result] = await connection.query(updateQuery, updateParams);

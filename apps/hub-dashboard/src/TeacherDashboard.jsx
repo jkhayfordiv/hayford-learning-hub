@@ -523,6 +523,15 @@ export default function TeacherDashboard({ user, onLogout }) {
     fetchClassData();
     fetchAssignments();
     fetchRecentActivity();
+
+    // Silently check for expired terms and auto-archive classes/assignments
+    if (user.role === 'admin' || user.role === 'super_admin') {
+      const token = localStorage.getItem('token');
+      fetch(`${apiBase}/api/terms/check-archive`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).catch(() => {});
+    }
     
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

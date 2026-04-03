@@ -40,11 +40,21 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
   const [selectedInstitutionId, setSelectedInstitutionId] = useState('');
   const [isEditClassModalOpen, setIsEditClassModalOpen] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
-  const [classEditForm, setClassEditForm] = useState({ class_name: '', class_code: '', institution_id: '', start_date: '', end_date: '' });
+  const [classEditForm, setClassEditForm] = useState({ class_name: '', class_code: '', institution_id: '', start_date: '', end_date: '', term_id: '' });
+  const [classTermOptions, setClassTermOptions] = useState([]);
   const [studentSearchQuery, setStudentSearchQuery] = useState('');
   const [studentSearchResults, setStudentSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [expandedUserClasses, setExpandedUserClasses] = useState({});
+
+  // Term management state
+  const [terms, setTerms] = useState([]);
+  const [termsLoading, setTermsLoading] = useState(false);
+  const [selectedTermInstitution, setSelectedTermInstitution] = useState('');
+  const [isCreateTermModalOpen, setIsCreateTermModalOpen] = useState(false);
+  const [isEditTermModalOpen, setIsEditTermModalOpen] = useState(false);
+  const [selectedTerm, setSelectedTerm] = useState(null);
+  const [termForm, setTermForm] = useState({ name: '', start_date: '', end_date: '' });
 
   // Student profile quick-view modal
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
@@ -112,6 +122,81 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
     } finally {
       setPlatformLoading(false);
     }
+  };
+
+  // Term fetch & handlers
+  const fetchTerms = async (instId) => {
+    if (user.role !== 'super_admin') return;
+    setTermsLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const url = instId ? `${apiBase}/api/terms?institution_id=${instId}` : `${apiBase}/api/terms`;
+      const res = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
+      if (res.ok) setTerms(await res.json());
+    } catch (err) { console.error('Failed to fetch terms', err); }
+    finally { setTermsLoading(false); }
+  };
+
+  const handleCreateTerm = async (e) => {
+    e.preventDefault();
+    if (!selectedTermInstitution) return alert('Select an institution first');
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/terms`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ ...termForm, institution_id: selectedTermInstitution })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to create term');
+      setIsCreateTermModalOpen(false);
+      setTermForm({ name: '', start_date: '', end_date: '' });
+      fetchTerms(selectedTermInstitution);
+    } catch (err) { alert(err.message); }
+  };
+
+  const handleUpdateTerm = async (e) => {
+    e.preventDefault();
+    if (!selectedTerm) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/terms/${selectedTerm.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify(termForm)
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to update term');
+      setIsEditTermModalOpen(false);
+      setSelectedTerm(null);
+      fetchTerms(selectedTermInstitution);
+    } catch (err) { alert(err.message); }
+  };
+
+  const handleDeleteTerm = async (termId, termName) => {
+    if (!window.confirm(`Delete term "${termName}"? Classes will be unlinked but not deleted.`)) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/terms/${termId}`, {
+        method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete term');
+      fetchTerms(selectedTermInstitution);
+    } catch (err) { alert(err.message); }
+  };
+
+  const handleRunArchiveCheck = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`${apiBase}/api/terms/check-archive`, {
+        method: 'POST', headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Archive check failed');
+      alert(`${data.message}\nClasses archived: ${data.archived_classes}\nAssignments archived: ${data.archived_assignments}`);
+      if (selectedTermInstitution) fetchTerms(selectedTermInstitution);
+    } catch (err) { alert(err.message); }
   };
 
   // Event handlers
@@ -502,8 +587,8 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         <th className="px-6 py-2">Teacher</th>
                         {user.role === 'super_admin' && <th className="px-6 py-2">Institution</th>}
                         <th className="px-6 py-2">Students</th>
-                        <th className="px-6 py-2">Start Date</th>
-                        <th className="px-6 py-2">End Date</th>
+                        <th className="px-6 py-2">Term</th>
+                        <th className="px-6 py-2 text-center">Status</th>
                         <th className="px-6 py-2">Class Code</th>
                         <th className="px-6 py-2 text-right">Actions</th>
                       </tr>
@@ -522,8 +607,10 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                         const endIdx = startIdx + CLASSES_PER_PAGE;
                         const paginated = filtered.slice(startIdx, endIdx);
 
-                        return paginated.map((cls) => (
-                          <tr key={cls.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                        return paginated.map((cls) => {
+                          const isArchived = cls.is_active === false;
+                          return (
+                          <tr key={cls.id} className={`hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors ${isArchived ? 'opacity-60' : ''}`}>
                             <td className="px-6 py-3">
                               <button
                                 onClick={() => onViewClassDetails && onViewClassDetails(cls.id)}
@@ -543,11 +630,15 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                 {cls.student_count || 0}
                               </span>
                             </td>
-                            <td className="px-6 py-3 text-slate-500 dark:text-slate-400">
-                              {cls.start_date ? new Date(cls.start_date).toLocaleDateString() : 'N/A'}
+                            <td className="px-6 py-3 text-slate-500 dark:text-slate-400 text-xs">
+                              {cls.term_name || <span className="text-slate-300 dark:text-slate-600">—</span>}
                             </td>
-                            <td className="px-6 py-3 text-slate-500 dark:text-slate-400">
-                              {cls.end_date ? new Date(cls.end_date).toLocaleDateString() : 'Ongoing'}
+                            <td className="px-6 py-3 text-center">
+                              {isArchived ? (
+                                <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-0.5 rounded-lg font-bold text-[10px] uppercase">Archived</span>
+                              ) : (
+                                <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-lg font-bold text-[10px] uppercase">Active</span>
+                              )}
                             </td>
                             <td className="px-6 py-3">
                               <code className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1 rounded font-mono text-xs font-bold">
@@ -563,8 +654,17 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                                     class_code: cls.class_code,
                                     institution_id: cls.institution_id || '',
                                     start_date: cls.start_date ? cls.start_date.split('T')[0] : '',
-                                    end_date: cls.end_date ? cls.end_date.split('T')[0] : ''
+                                    end_date: cls.end_date ? cls.end_date.split('T')[0] : '',
+                                    term_id: cls.term_id || ''
                                   });
+                                  // Fetch terms for this class's institution
+                                  if (cls.institution_id) {
+                                    const token = localStorage.getItem('token');
+                                    fetch(`${apiBase}/api/terms?institution_id=${cls.institution_id}`, { headers: { 'Authorization': `Bearer ${token}` } })
+                                      .then(r => r.ok ? r.json() : [])
+                                      .then(data => setClassTermOptions(data))
+                                      .catch(() => setClassTermOptions([]));
+                                  }
                                   setStudentSearchQuery('');
                                   setStudentSearchResults([]);
                                   setIsEditClassModalOpen(true);
@@ -575,7 +675,7 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                               </button>
                             </td>
                           </tr>
-                        ));
+                        );});
                       })()}
                     </tbody>
                   </table>
@@ -803,6 +903,114 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                       </div>
                     );
                   })()}
+                </div>
+              )}
+            </div>
+          </div>
+          {/* Term Management Section */}
+          <div className="bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden mt-8">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 flex items-center justify-between">
+              <div>
+                <h3 className="font-black text-lg text-slate-900 dark:text-white tracking-tight">Semester / Term Management</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Define academic terms per institution. Classes linked to an ended term are automatically archived.</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleRunArchiveCheck}
+                  className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 px-3 py-2 rounded-xl font-bold text-xs transition-colors"
+                >
+                  Run Archive Check
+                </button>
+                <button
+                  onClick={() => { setTermForm({ name: '', start_date: '', end_date: '' }); setIsCreateTermModalOpen(true); }}
+                  className="flex items-center gap-2 bg-[#800000] hover:bg-[#600000] text-white px-3 py-2 rounded-xl font-bold text-xs transition-colors shadow-lg"
+                >
+                  <PlusCircle size={14} /> New Term
+                </button>
+              </div>
+            </div>
+            <div className="px-8 py-4">
+              <div className="flex items-center gap-4 mb-4">
+                <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Institution</label>
+                <select
+                  value={selectedTermInstitution}
+                  onChange={e => { setSelectedTermInstitution(e.target.value); if (e.target.value) fetchTerms(e.target.value); else setTerms([]); }}
+                  className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-xl text-sm font-medium focus:ring-2 focus:ring-[#800000] focus:outline-none dark:text-white"
+                >
+                  <option value="">Select institution...</option>
+                  {institutions.map(inst => <option key={inst.id} value={inst.id}>{inst.name}</option>)}
+                </select>
+              </div>
+
+              {!selectedTermInstitution ? (
+                <p className="text-sm text-slate-400 dark:text-slate-500 py-8 text-center">Select an institution to view its terms.</p>
+              ) : termsLoading ? (
+                <p className="text-sm text-slate-400 dark:text-slate-500 py-8 text-center">Loading terms...</p>
+              ) : terms.length === 0 ? (
+                <p className="text-sm text-slate-400 dark:text-slate-500 py-8 text-center">No terms defined for this institution yet.</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-slate-50 dark:bg-slate-900/50 text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-black border-b border-slate-200 dark:border-slate-700">
+                        <th className="px-4 py-2">ID</th>
+                        <th className="px-4 py-2">Name</th>
+                        <th className="px-4 py-2">Start</th>
+                        <th className="px-4 py-2">End</th>
+                        <th className="px-4 py-2 text-center">Classes</th>
+                        <th className="px-4 py-2 text-center">Status</th>
+                        <th className="px-4 py-2 text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-sm font-medium text-slate-700 dark:text-slate-300 divide-y divide-slate-100 dark:divide-slate-700">
+                      {terms.map(term => {
+                        const now = new Date();
+                        const ended = new Date(term.end_date) < now;
+                        const active = !ended && new Date(term.start_date) <= now;
+                        const upcoming = new Date(term.start_date) > now;
+                        return (
+                          <tr key={term.id} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                            <td className="px-4 py-3 font-bold text-[#800000] dark:text-[#a00000]">{term.id}</td>
+                            <td className="px-4 py-3 font-bold text-slate-900 dark:text-white">{term.name}</td>
+                            <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{new Date(term.start_date).toLocaleDateString()}</td>
+                            <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{new Date(term.end_date).toLocaleDateString()}</td>
+                            <td className="px-4 py-3 text-center">
+                              <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-lg font-bold text-xs">{parseInt(term.class_count) || 0}</span>
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                              {ended ? (
+                                <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-0.5 rounded-lg font-bold text-[10px] uppercase">Ended</span>
+                              ) : active ? (
+                                <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-lg font-bold text-[10px] uppercase">Active</span>
+                              ) : upcoming ? (
+                                <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-lg font-bold text-[10px] uppercase">Upcoming</span>
+                              ) : null}
+                            </td>
+                            <td className="px-4 py-3 text-right">
+                              <div className="flex gap-2 justify-end">
+                                <button
+                                  onClick={() => {
+                                    setSelectedTerm(term);
+                                    setTermForm({ name: term.name, start_date: term.start_date?.split('T')[0] || '', end_date: term.end_date?.split('T')[0] || '' });
+                                    setIsEditTermModalOpen(true);
+                                  }}
+                                  className="text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200 transition-colors"
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteTerm(term.id, term.name)}
+                                  className="text-xs font-bold text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200 transition-colors"
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               )}
             </div>
@@ -1509,6 +1717,20 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                   </select>
                 </div>
               )}
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Assigned Term</label>
+                <select
+                  value={classEditForm.term_id}
+                  onChange={e => setClassEditForm({...classEditForm, term_id: e.target.value})}
+                  className="w-full bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                >
+                  <option value="">No term assigned</option>
+                  {classTermOptions.map(t => (
+                    <option key={t.id} value={t.id}>{t.name} ({new Date(t.start_date).toLocaleDateString()} – {new Date(t.end_date).toLocaleDateString()})</option>
+                  ))}
+                </select>
+                <p className="text-[10px] text-slate-400 mt-0.5">Linking a class to a term enables automatic archiving when the term ends.</p>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-[10px] font-black tracking-widest uppercase text-slate-400">Start Date</label>
@@ -1892,6 +2114,119 @@ export default function PlatformManager({ user, apiBase, navigationView, classes
                 Close
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Create Term Modal */}
+      {isCreateTermModalOpen && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-amber-600 to-orange-600">
+              <h3 className="font-black text-2xl text-white tracking-tight">Create New Term</h3>
+              <p className="text-sm text-amber-100 mt-1">{institutions.find(i => String(i.id) === String(selectedTermInstitution))?.name || 'Select institution'}</p>
+            </div>
+            <form onSubmit={handleCreateTerm} className="p-8 space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Institution</label>
+                <select
+                  required
+                  value={selectedTermInstitution}
+                  onChange={e => setSelectedTermInstitution(e.target.value)}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 focus:outline-none dark:text-white"
+                >
+                  <option value="">Select institution...</option>
+                  {institutions.map(inst => <option key={inst.id} value={inst.id}>{inst.name}</option>)}
+                </select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Term Name *</label>
+                <input
+                  required type="text" value={termForm.name}
+                  onChange={e => setTermForm({ ...termForm, name: e.target.value })}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 focus:outline-none dark:text-white"
+                  placeholder="e.g., Fall 2025, Semester 1"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Start Date *</label>
+                  <input
+                    required type="date" value={termForm.start_date}
+                    onChange={e => setTermForm({ ...termForm, start_date: e.target.value })}
+                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 focus:outline-none dark:text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">End Date *</label>
+                  <input
+                    required type="date" value={termForm.end_date}
+                    onChange={e => setTermForm({ ...termForm, end_date: e.target.value })}
+                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-amber-500 focus:outline-none dark:text-white"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button type="button" onClick={() => setIsCreateTermModalOpen(false)}
+                  className="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl transition-colors">
+                  Cancel
+                </button>
+                <button type="submit"
+                  className="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg">
+                  Create Term
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Term Modal */}
+      {isEditTermModalOpen && selectedTerm && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200 dark:border-slate-700">
+            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-700 bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h3 className="font-black text-2xl text-white tracking-tight">Edit Term</h3>
+              <p className="text-sm text-blue-100 mt-1">ID: {selectedTerm.id}</p>
+            </div>
+            <form onSubmit={handleUpdateTerm} className="p-8 space-y-4">
+              <div className="space-y-1">
+                <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Term Name *</label>
+                <input
+                  required type="text" value={termForm.name}
+                  onChange={e => setTermForm({ ...termForm, name: e.target.value })}
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">Start Date *</label>
+                  <input
+                    required type="date" value={termForm.start_date}
+                    onChange={e => setTermForm({ ...termForm, start_date: e.target.value })}
+                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-black tracking-widest uppercase text-slate-400 dark:text-slate-500">End Date *</label>
+                  <input
+                    required type="date" value={termForm.end_date}
+                    onChange={e => setTermForm({ ...termForm, end_date: e.target.value })}
+                    className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:outline-none dark:text-white"
+                  />
+                </div>
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button type="button" onClick={() => { setIsEditTermModalOpen(false); setSelectedTerm(null); }}
+                  className="flex-1 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 rounded-xl transition-colors">
+                  Cancel
+                </button>
+                <button type="submit"
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg">
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

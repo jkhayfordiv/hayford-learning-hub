@@ -710,7 +710,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {isLoadingTasks ? (
               <div className="col-span-full border border-slate-200 dark:border-slate-700 rounded-2xl p-8 bg-white dark:bg-slate-800 text-center text-slate-400">Loading your tasks...</div>
-            ) : tasks.filter(t => t.status === 'pending').length === 0 ? (
+            ) : tasks.filter(t => t.status === 'pending' || t.status === 'archived').length === 0 ? (
               <div className="col-span-full border border-dashed border-slate-300 dark:border-slate-700 rounded-3xl p-10 bg-slate-50 dark:bg-slate-800/50 text-center flex flex-col items-center justify-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center"><BookOpen size={32} className="text-slate-400" /></div>
                 <div>
@@ -719,9 +719,14 @@ export default function Dashboard() {
                 </div>
               </div>
             ) : (
-              tasks.filter(t => t.status === 'pending').map(task => (
-                <div key={task.id} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group flex flex-col h-full">
-                  <div className="absolute top-0 left-0 w-1.5 h-full bg-slate-900 dark:bg-amber-600"></div>
+              tasks.filter(t => t.status === 'pending' || t.status === 'archived').map(task => (
+                <div key={task.id} className={`bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all relative overflow-hidden group flex flex-col h-full ${task.status === 'archived' ? 'opacity-60' : ''}`}>
+                  <div className={`absolute top-0 left-0 w-1.5 h-full ${task.status === 'archived' ? 'bg-slate-400' : 'bg-slate-900 dark:bg-amber-600'}`}></div>
+                  {task.status === 'archived' && (
+                    <div className="mb-3">
+                      <span className="bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider">Term Ended — View Only</span>
+                    </div>
+                  )}
                   <div className="flex-grow">
                     <div className="flex justify-between items-start mb-4">
                       <div>
@@ -755,6 +760,11 @@ export default function Dashboard() {
                       <User size={14} className="text-slate-400" /> Assigned by {task.teacher_first_name} {task.teacher_last_name}
                     </p>
                   </div>
+                  {task.status === 'archived' ? (
+                    <div className="w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 mt-auto bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed">
+                      <PenTool size={18} /> View Only
+                    </div>
+                  ) : (
                   <button 
                     onClick={() => {
                       if (task.assignment_type === 'grammar-practice') {
@@ -791,6 +801,7 @@ export default function Dashboard() {
                   >
                     <PenTool size={18} /> {task.assignment_type === 'grammar-practice' ? 'Start Practice' : task.assignment_type === 'writing_lab' ? 'Open Writing Lab' : 'Start Assignment'}
                   </button>
+                  )}
                 </div>
               ))
             )}

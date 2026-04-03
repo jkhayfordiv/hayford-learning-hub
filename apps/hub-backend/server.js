@@ -172,6 +172,10 @@ app.use('/api', platformRoutes);
 const institutionsRoutes = require('./routes/institutions');
 app.use('/api/institutions', institutionsRoutes);
 
+// Terms routes (Semester/Term management)
+const termsRoutes = require('./routes/terms');
+app.use('/api/terms', termsRoutes);
+
 // Word Bank routes (Student vocabulary management)
 const wordbankRoutes = require('./routes/wordbank');
 app.use('/api/wordbank', wordbankRoutes);
