@@ -817,15 +817,15 @@
         {
           "id": "q3_3",
           "type": "multiple_choice",
-          "question": "Find the error: 'The policy was designed to help the poor, but the government ignored them when making the final decision.'",
+          "question": "Which sentence has an unclear pronoun reference? 'The researchers presented the findings to the committee, but they were not convinced.'",
           "options": [
-            "policy",
-            "help",
-            "them",
-            "government"
+            "The sentence is clear.",
+            "'They' could refer to the researchers or the committee.",
+            "'They' should be 'it'.",
+            "The word 'findings' is the problem."
           ],
-          "correctAnswer": "them",
-          "explanation": "While 'the poor' is a group, the pronoun 'them' is often better replaced by 'this demographic' or 'this group' for higher academic clarity."
+          "correctAnswer": "'They' could refer to the researchers or the committee.",
+          "explanation": "This is a classic ambiguous reference. Were the researchers not convinced, or was the committee not convinced? The pronoun 'they' could refer to either group."
         },
         {
           "id": "q3_4",
@@ -960,15 +960,15 @@
         {
           "id": "q3_14",
           "type": "multiple_choice",
-          "question": "Identify the error: 'The committee met yesterday, and they decided to delay the vote.'",
+          "question": "Identify the pronoun error: 'The student forgot to bring their book, so he borrowed one from the library.'",
           "options": [
-            "committee",
-            "met",
-            "they",
-            "delay"
+            "their",
+            "he",
+            "one",
+            "No error."
           ],
-          "correctAnswer": "they",
-          "explanation": "'Committee' is singular in American English; it should be 'it decided'. (In UK English, 'they' is often accepted)."
+          "correctAnswer": "he",
+          "explanation": "Pronoun consistency error: the sentence starts with gender-neutral 'their' but switches to 'he'. It should be 'their...they' or 'his...he' throughout."
         },
         {
           "id": "q3_15",
@@ -1466,7 +1466,7 @@
             "None",
             "participants",
             "were",
-            "it"
+            "No error."
           ],
           "correctAnswer": "No error.",
           "explanation": "In modern English, 'none' can be followed by a plural verb when referring to plural individuals."

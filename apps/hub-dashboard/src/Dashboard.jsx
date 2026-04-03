@@ -1013,9 +1013,13 @@ export default function Dashboard() {
                             <div className="font-bold text-slate-900 dark:text-white">{score.module_name}</div>
                             <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{score.module_type}</div>
                           </div>
-                          {score.teacher_comment && !score.teacher_comment_read && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-black rounded-md border border-amber-200 dark:border-amber-700 animate-pulse">
-                              <MessageSquare size={12} /> New Feedback
+                          {score.teacher_comment && (
+                            <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-black rounded-md border ${
+                              score.teacher_comment_read 
+                                ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-700' 
+                                : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-700 animate-pulse'
+                            }`}>
+                              <MessageSquare size={12} /> {score.teacher_comment_read ? 'Teacher Feedback' : 'New Feedback'}
                             </span>
                           )}
                         </div>

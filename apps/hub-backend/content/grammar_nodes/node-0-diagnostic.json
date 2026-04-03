@@ -117,9 +117,9 @@
           "error_tag": "subordination"
         },
         {
-          "question": "Only after analyzing the data _____ the researchers realize the significance of their findings.",
-          "options": ["they did", "did they", "they", "do they"],
-          "correct_answer": "did they",
+          "question": "Only after analyzing the data _____ realize the significance of their findings.",
+          "options": ["the researchers", "did the researchers", "the researchers did", "do the researchers"],
+          "correct_answer": "did the researchers",
           "category": "The Architecture",
           "difficulty": "Silver",
           "error_tag": "word_order"
