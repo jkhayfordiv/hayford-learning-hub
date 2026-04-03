@@ -606,6 +606,21 @@ export default function TeacherDashboard({ user, onLogout }) {
       if (payload.assignment_type !== 'writing_lab') {
         payload.writing_lab_config = null;
       }
+
+      if (payload.assignment_type === 'vocabulary') {
+        const words = String(payload.instructions || '')
+          .split(/[\n,;]+/)
+          .map((w) => w.trim().toLowerCase())
+          .filter(Boolean);
+
+        payload.vocab_words = Array.from(new Set(words));
+
+        if (payload.vocab_words.length === 0) {
+          throw new Error('Please provide at least one target word for Vocabulary Builder.');
+        }
+      } else {
+        payload.vocab_words = null;
+      }
       
       // Handle the new assign_to_type logic
       if (payload.assign_to_type === 'all') {

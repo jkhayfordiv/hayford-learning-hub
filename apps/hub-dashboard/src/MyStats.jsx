@@ -48,8 +48,27 @@ const DIAGNOSTIC_TO_TOPIC_MAP = {
   'Collocations': '17_collocations',
   'Academic Register': '18_academic_register',
   'Nominalization': '19_nominalization',
-  'Hedging': '20_hedging'
+  'Hedging': '20_hedging',
+  'Sentence Boundaries (Fragments/Comma Splices)': '11_sentence_boundaries'
 };
+
+function resolveTopicIdForWeakness(tag) {
+  if (!tag) return null;
+  const raw = String(tag).trim();
+  if (DIAGNOSTIC_TO_TOPIC_MAP[raw]) return DIAGNOSTIC_TO_TOPIC_MAP[raw];
+
+  const withoutParens = raw.replace(/\s*\([^)]*\)\s*/g, '').trim();
+  if (DIAGNOSTIC_TO_TOPIC_MAP[withoutParens]) return DIAGNOSTIC_TO_TOPIC_MAP[withoutParens];
+
+  const lc = raw.toLowerCase();
+  const match = Object.keys(DIAGNOSTIC_TO_TOPIC_MAP).find(k => k.toLowerCase() === lc);
+  if (match) return DIAGNOSTIC_TO_TOPIC_MAP[match];
+
+  const matchNoParens = Object.keys(DIAGNOSTIC_TO_TOPIC_MAP).find(
+    k => k.replace(/\s*\([^)]*\)\s*/g, '').trim().toLowerCase() === withoutParens.toLowerCase()
+  );
+  return matchNoParens ? DIAGNOSTIC_TO_TOPIC_MAP[matchNoParens] : null;
+}
 
 export default function MyStats() {
   const navigate = useNavigate();
@@ -161,22 +180,27 @@ export default function MyStats() {
                 {topWeaknesses.map((item) => {
                   const maxCount = topWeaknesses[0]?.count || 1;
                   const width = Math.max(15, (item.count / maxCount) * 100);
+                  const topicId = resolveTopicIdForWeakness(item.tag);
                   return (
                     <div key={item.tag} className="group">
                       <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
                         <div className="flex items-center gap-2">
                           <span>{item.tag}</span>
-                          {DIAGNOSTIC_TO_TOPIC_MAP[item.tag] && (
-                            <button
-                              onClick={() => {
-                                const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
-                                window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
-                              }}
-                              className="bg-slate-900 text-white px-2 py-0.5 rounded text-[10px] font-bold hover:bg-slate-700 transition-colors"
-                            >
-                              Practice →
-                            </button>
-                          )}
+                          <button
+                            onClick={() => {
+                              if (!topicId) return;
+                              window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                            }}
+                            disabled={!topicId}
+                            className={`px-2 py-0.5 rounded text-[10px] font-bold transition-colors ${
+                              topicId
+                                ? 'bg-slate-900 text-white hover:bg-slate-700'
+                                : 'bg-slate-200 text-slate-500 cursor-not-allowed'
+                            }`}
+                            title={topicId ? 'Open grammar practice for this weakness' : 'No linked grammar topic yet'}
+                          >
+                            {topicId ? 'More Practice →' : 'Practice Unavailable'}
+                          </button>
                         </div>
                         <span>{item.count}</span>
                       </div>

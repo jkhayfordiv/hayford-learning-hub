@@ -5,6 +5,21 @@ require('dotenv').config();
 
 let poolInstance = null;
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableConnectError(error) {
+  const msg = String(error?.message || '').toLowerCase();
+  return (
+    msg.includes('timeout exceeded') ||
+    msg.includes('etimedout') ||
+    msg.includes('econnreset') ||
+    msg.includes('connection terminated') ||
+    msg.includes('could not connect')
+  );
+}
+
 function initDb() {
   if (!poolInstance) {
     if (!process.env.DATABASE_URL) {
@@ -22,7 +37,7 @@ function initDb() {
       ssl: process.env.PGSSL === 'false' ? false : { rejectUnauthorized: false },
       max: 10,                      // max simultaneous clients
       idleTimeoutMillis: 30000,     // close idle clients after 30s
-      connectionTimeoutMillis: 15000, // fail fast if Neon is cold-starting
+      connectionTimeoutMillis: 30000, // allow extra time for Neon/Render cold starts
       keepAlive: true,              // prevent idle TCP drops on Render
       keepAliveInitialDelayMillis: 10000,
       // Force IPv4 to avoid ENETUNREACH on Render
@@ -44,7 +59,29 @@ async function bootstrapDatabase() {
 const pool = {
   getConnection: async () => {
     const pgPool = initDb();
-    const client = await pgPool.connect();
+    const maxAttempts = 3;
+    const retryDelaysMs = [400, 1200, 2500];
+    let client;
+    let lastError;
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        client = await pgPool.connect();
+        break;
+      } catch (error) {
+        lastError = error;
+        const retryable = isRetryableConnectError(error);
+        if (!retryable || attempt === maxAttempts) {
+          throw error;
+        }
+        await sleep(retryDelaysMs[attempt - 1] || 2500);
+      }
+    }
+
+    if (!client) {
+      throw lastError || new Error('Failed to acquire DB connection');
+    }
+
     return {
       query: async (sql, params = []) => {
         const queryUpper = sql.trim().toUpperCase();

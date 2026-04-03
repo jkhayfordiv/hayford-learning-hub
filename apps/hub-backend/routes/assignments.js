@@ -5,6 +5,29 @@ const requireTeacher = require('../middleware/requireTeacher');
 const { pool } = require('../db');
 const { ensureWordInGlobalWords, addWordToUserVocab } = require('../utils/vocabLabUtils');
 
+function normalizeVocabWords(vocabWords, fallbackText) {
+  let raw = [];
+
+  if (Array.isArray(vocabWords)) {
+    raw = vocabWords;
+  } else if (typeof vocabWords === 'string') {
+    raw = vocabWords.split(/[\n,;]+/);
+  } else if (typeof fallbackText === 'string') {
+    raw = fallbackText.split(/[\n,;]+/);
+  }
+
+  const seen = new Set();
+  const cleaned = [];
+  for (const token of raw) {
+    const normalized = String(token || '').trim().toLowerCase();
+    if (!normalized || seen.has(normalized)) continue;
+    seen.add(normalized);
+    cleaned.push(normalized);
+  }
+
+  return cleaned;
+}
+
 // Push a word list into each student's Vocab Lab (fire-and-forget errors per word)
 async function pushVocabWords(connection, words, studentIds) {
   if (!words || !words.length || !studentIds.length) return;
@@ -14,7 +37,15 @@ async function pushVocabWords(connection, words, studentIds) {
       const globalWordRows = await ensureWordInGlobalWords(connection, wordStr);
       const globalWord = globalWordRows[0];
       for (const studentId of studentIds) {
-        await addWordToUserVocab(connection, studentId, globalWord.id);
+        const result = await addWordToUserVocab(connection, studentId, globalWord.id);
+        if (!result.added) {
+          await connection.query(
+            `UPDATE user_vocabulary
+             SET next_review_date = CURRENT_TIMESTAMP
+             WHERE user_id = $1 AND global_word_id = $2`,
+            [studentId, globalWord.id]
+          );
+        }
       }
     } catch (err) {
       console.warn(`[assignments] pushVocabWords: skipping "${wordStr}" —`, err.message);
@@ -29,6 +60,10 @@ router.post('/', requireTeacher, async (req, res) => {
   const { module_id, student_id, class_id, assignment_type, instructions, due_date, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, vocab_words, writing_lab_config } = req.body;
   const teacher_id = req.user.id;
   const aType = assignment_type || 'writing';
+  const parsedVocabWords = aType === 'vocabulary'
+    ? normalizeVocabWords(vocab_words, instructions)
+    : [];
+  const vocabWordsJson = parsedVocabWords.length > 0 ? JSON.stringify(parsedVocabWords) : null;
   let connection;
   
   try {
@@ -86,6 +121,10 @@ router.post('/', requireTeacher, async (req, res) => {
       return res.status(400).json({ error: 'grammar_topic_id is required for grammar-practice assignments.' });
     }
 
+    if (aType === 'vocabulary' && parsedVocabWords.length === 0) {
+      return res.status(400).json({ error: 'Please provide at least one target vocabulary word.' });
+    }
+
     // FIX: Don't default to module_id=1, use what frontend sends (Task 2 = module_id 2)
     const resolvedModuleId = aType === 'grammar-practice'
       ? resolvedGrammarModule?.[0]?.id
@@ -104,13 +143,13 @@ router.post('/', requireTeacher, async (req, res) => {
       const speakingPartsJson = speaking_parts ? JSON.stringify(speaking_parts) : (aType === 'speaking' ? '["1"]' : null);
       const speakingTaskPart = speaking_parts && speaking_parts.length > 0 ? speaking_parts[0] : (speaking_task_part || null);
       const [result] = await connection.query(
-        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date, writing_lab_config)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING id`,
-        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null, wlConfigJson]
+        `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, vocab_words, due_date, writing_lab_config)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id`,
+        [teacher_id, student_id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, vocabWordsJson, due_date || null, wlConfigJson]
       );
       
-      if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
-        await pushVocabWords(connection, vocab_words, [parseInt(student_id, 10)]);
+      if (aType === 'vocabulary' && parsedVocabWords.length > 0) {
+        await pushVocabWords(connection, parsedVocabWords, [parseInt(student_id, 10)]);
       }
       return res.status(201).json({ success: true, message: 'Assignment created.', id: result.insertId });
     } else if (class_id) {
@@ -172,8 +211,8 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date, writing_lab_config)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+            `INSERT INTO assigned_tasks (teacher_id, student_id, class_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, vocab_words, due_date, writing_lab_config)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
             [
               teacher_id,
               student.id,
@@ -186,6 +225,7 @@ router.post('/', requireTeacher, async (req, res) => {
               speakingTaskPart,
               speakingPartsJson,
               instructions || null,
+              vocabWordsJson,
               due_date || null,
               wlConfigJson
             ]
@@ -196,8 +236,8 @@ router.post('/', requireTeacher, async (req, res) => {
         }
       }
 
-      if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
-        await pushVocabWords(connection, vocab_words, students.map(s => s.id));
+      if (aType === 'vocabulary' && parsedVocabWords.length > 0) {
+        await pushVocabWords(connection, parsedVocabWords, students.map(s => s.id));
       }
       return res.status(201).json({ success: true, message: `Assignment created for ${count} students in class.` });
     } else {
@@ -239,9 +279,9 @@ router.post('/', requireTeacher, async (req, res) => {
       for (const student of students) {
         try {
           await connection.query(
-            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, due_date, writing_lab_config)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, due_date || null, wlConfigJson]
+            `INSERT INTO assigned_tasks (teacher_id, student_id, module_id, assignment_type, grammar_topic_id, level_range, writing_task_type, speaking_task_part, speaking_parts, instructions, vocab_words, due_date, writing_lab_config)
+             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+            [teacher_id, student.id, resolvedModuleId, aType, grammar_topic_id || null, level_range || null, writing_task_type || null, speakingTaskPart, speakingPartsJson, instructions || null, vocabWordsJson, due_date || null, wlConfigJson]
           );
           count++;
         } catch (dupError) {
@@ -249,8 +289,8 @@ router.post('/', requireTeacher, async (req, res) => {
         }
       }
       
-      if (aType === 'vocabulary' && vocab_words && vocab_words.length > 0) {
-        await pushVocabWords(connection, vocab_words, students.map(s => s.id));
+      if (aType === 'vocabulary' && parsedVocabWords.length > 0) {
+        await pushVocabWords(connection, parsedVocabWords, students.map(s => s.id));
       }
       return res.status(201).json({ success: true, message: `Assignment created for ${count} students.` });
     }

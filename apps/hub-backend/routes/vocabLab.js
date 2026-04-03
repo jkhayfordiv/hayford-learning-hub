@@ -518,7 +518,16 @@ router.post('/assign', requireTeacher, async (req, res) => {
         let addedCount = 0;
         for (const student of students) {
           const { added } = await addWordToUserVocab(connection, student.id, globalWord.id);
-          if (added) addedCount++;
+          if (added) {
+            addedCount++;
+          } else {
+            await connection.query(
+              `UPDATE user_vocabulary
+               SET next_review_date = CURRENT_TIMESTAMP
+               WHERE user_id = $1 AND global_word_id = $2`,
+              [student.id, globalWord.id]
+            );
+          }
         }
         results.push({ word: globalWord.word, added_to: addedCount, status: 'ok' });
       } catch (genErr) {

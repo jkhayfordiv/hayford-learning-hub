@@ -55,8 +55,27 @@ const DIAGNOSTIC_TO_TOPIC_MAP = {
   'Collocations': '17_collocations',
   'Academic Register': '18_academic_register',
   'Nominalization': '19_nominalization',
-  'Hedging': '20_hedging'
+  'Hedging': '20_hedging',
+  'Sentence Boundaries (Fragments/Comma Splices)': '11_sentence_boundaries'
 };
+
+function resolveTopicIdForWeakness(tag) {
+  if (!tag) return null;
+  const raw = String(tag).trim();
+  if (DIAGNOSTIC_TO_TOPIC_MAP[raw]) return DIAGNOSTIC_TO_TOPIC_MAP[raw];
+
+  const withoutParens = raw.replace(/\s*\([^)]*\)\s*/g, '').trim();
+  if (DIAGNOSTIC_TO_TOPIC_MAP[withoutParens]) return DIAGNOSTIC_TO_TOPIC_MAP[withoutParens];
+
+  const lc = raw.toLowerCase();
+  const match = Object.keys(DIAGNOSTIC_TO_TOPIC_MAP).find(k => k.toLowerCase() === lc);
+  if (match) return DIAGNOSTIC_TO_TOPIC_MAP[match];
+
+  const matchNoParens = Object.keys(DIAGNOSTIC_TO_TOPIC_MAP).find(
+    k => k.replace(/\s*\([^)]*\)\s*/g, '').trim().toLowerCase() === withoutParens.toLowerCase()
+  );
+  return matchNoParens ? DIAGNOSTIC_TO_TOPIC_MAP[matchNoParens] : null;
+}
 
 function parseMaybeJson(val) {
   if (!val) return null;
@@ -913,11 +932,11 @@ export default function Dashboard() {
 
         </div>
 
-        {/* Targeted Weaknesses Section */}
+        {/* Top Weaknesses Section */}
         <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <h3 className="font-black text-xl text-slate-900 dark:text-white tracking-tight mb-4 flex items-center gap-2">
             <svg className="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-            Targeted Weaknesses
+            Top Weaknesses
           </h3>
           {weaknesses.length === 0 && !isLoading ? (
             <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl p-8 shadow-sm text-center">
@@ -934,7 +953,7 @@ export default function Dashboard() {
                 const maxCount = weaknesses[0]?.count || 1;
                 const percentage = Math.max(15, (item.count / maxCount) * 100);
                 const severityDot = item.count >= maxCount * 0.7 ? 'bg-red-500' : item.count >= maxCount * 0.4 ? 'bg-amber-500' : 'bg-emerald-500';
-                const topicId = DIAGNOSTIC_TO_TOPIC_MAP[item.tag];
+                const topicId = resolveTopicIdForWeakness(item.tag);
                 return (
                   <div key={idx} className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
                     <div className="flex items-center gap-3">
@@ -955,16 +974,23 @@ export default function Dashboard() {
                         style={{ width: `${percentage}%` }}
                       ></div>
                     </div>
-                    {topicId && (
-                      <div className="flex justify-end">
-                        <button
-                          onClick={() => window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`}
-                          className="px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100 transition-colors"
-                        >
-                          Practice →
-                        </button>
-                      </div>
-                    )}
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => {
+                          if (!topicId) return;
+                          window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                        }}
+                        disabled={!topicId}
+                        className={`px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors ${
+                          topicId
+                            ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100'
+                            : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed'
+                        }`}
+                        title={topicId ? 'Open grammar practice for this weakness' : 'No linked grammar topic yet'}
+                      >
+                        {topicId ? 'More Practice →' : 'Practice Unavailable'}
+                      </button>
+                    </div>
                   </div>
                 );
               })}

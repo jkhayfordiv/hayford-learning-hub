@@ -9,7 +9,8 @@ const APPS = [
   { name: 'ielts-speaking', distPath: 'apps/ielts-speaking/dist', zipPath: 'ielts-speaking' },
   { name: 'vocab-tool', distPath: 'apps/vocab-tool/dist', zipPath: 'vocab-tool' },
   { name: 'grammar-lab', distPath: 'apps/grammar-lab/dist', zipPath: 'grammar-lab' },
-  { name: 'grammar-world', distPath: 'apps/grammar-world/dist', zipPath: 'grammar-world' }
+  { name: 'grammar-world', distPath: 'apps/grammar-world/dist', zipPath: 'grammar-world' },
+  { name: 'writing-lab', distPath: 'apps/writing-lab/dist', zipPath: 'writing-lab' }
 ];
 
 const OUTPUT_ZIP = 'hostinger-full-deploy.zip';

@@ -308,6 +308,10 @@ ADD COLUMN IF NOT EXISTS speaking_parts JSONB DEFAULT '["1"]'::jsonb;
 ALTER TABLE assigned_tasks
 ADD COLUMN IF NOT EXISTS level_range VARCHAR(10) DEFAULT NULL;
 
+-- Add vocab_words for vocabulary assignment target lists
+ALTER TABLE assigned_tasks
+ADD COLUMN IF NOT EXISTS vocab_words TEXT;
+
 -- Drop the expression-based unique index (causes issues with ON CONFLICT)
 -- Duplicate prevention is handled in application code via try/catch
 DROP INDEX IF EXISTS idx_assigned_tasks_dedup;
