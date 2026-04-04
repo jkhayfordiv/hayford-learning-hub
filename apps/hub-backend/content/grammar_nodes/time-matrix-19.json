@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-19",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Used To vs. Be Used To",
-  "description": "Navigating past habits vs. current familiarity.",
-  "display_order": 19,
-  "prerequisites": ["time-matrix-18"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "I _____ live in Tokyo, but now I live in Seoul.",
-          "options": ["used to", "am used to", "use to", "was used to"],
-          "correct_answer": 0,
-          "category": "Used To"
+    "node_id": "time-matrix-19",
+    "title": "The Choice: Active or Passive?",
+    "description": "Learning when to focus on the person (Active) or the object (Passive).",
+    "display_order": 19,
+    "prerequisites": ["time-matrix-18"],
+    "lesson_content_markdown": "# The Choice: Active or Passive?\n\nIn academic writing, you must choose whether to focus on the **person** (the researcher) or the **object** (the research). This is the difference between Active and Passive.\n\n### 1. Focus on the Person (Active)\nUse the active voice when the person is the most important part of the sentence.\n- **Example**: The professor **tests** the students. (Focus on the professor.)\n- **Example**: Researchers **found** a new way to clean the water.\n\n### 2. Focus on the Object (Passive)\nUse the passive voice when the action or the result is more important than the person.\n- **Example**: The students **are tested**. (Focus on the students.)\n- **Example**: A new way to clean the water **was found**. (The discovery is more important!)\n\n### 3. Making the Decision\n- **Scientific Reports**: Usually Passive (*\"The sample is heated\"*).\n- **General Stories**: Usually Active (*\"The student heated the sample\"*).\n- **The \"By\" Phrase**: If we still want to say who did it, we use \"by\".\n- **Example**: The email **was sent by** the office manager.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Choose between the active and passive voices based on the context of each sentence.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "The university library ___ by many students every day.",
+                    "options": [
+                        "is visited",
+                        "visit",
+                        "visits",
+                        "visiting"
+                    ],
+                    "correct_answer": "is visited"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The professor ___ the final scores this afternoon.",
+                    "options": [
+                        "will post",
+                        "is posted",
+                        "was posted",
+                        "posting"
+                    ],
+                    "correct_answer": "will post"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence correctly focuses on the object (the report)?",
+                    "options": [
+                        "The report was finished on time.",
+                        "The student finished the report.",
+                        "The student was finish the report.",
+                        "The report finish on time."
+                    ],
+                    "correct_answer": "The report was finished on time."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The new science lab ___ in 2023.",
+                    "options": [
+                        "was opened",
+                        "opened",
+                        "is opening",
+                        "open"
+                    ],
+                    "correct_answer": "was opened"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Wait! I ___ my lost keys on the campus bus.",
+                    "options": [
+                        "found",
+                        "was found",
+                        "have been found",
+                        "finding"
+                    ],
+                    "correct_answer": "found"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The survey results ___ to the department chairman last night.",
+                    "options": [
+                        "were sent",
+                        "sent",
+                        "was sent",
+                        "send"
+                    ],
+                    "correct_answer": "were sent"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ lunch in the campus cafeteria right now.",
+                    "options": [
+                        "are eating",
+                        "are eaten",
+                        "is eating",
+                        "eaten"
+                    ],
+                    "correct_answer": "are eating"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The books ___ in a special box in the basement.",
+                    "options": [
+                        "are kept",
+                        "keep",
+                        "kept",
+                        "is keep"
+                    ],
+                    "correct_answer": "are kept"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correctly active for yesterday?",
+                    "options": [
+                        "I finished my homework at 10 PM yesterday.",
+                        "I was finished my homework at 10 PM yesterday.",
+                        "I have finished my homework at 10 PM yesterday.",
+                        "My homework finished me at 10 PM yesterday."
+                    ],
+                    "correct_answer": "I finished my homework at 10 PM yesterday."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The science project ___ by Dr. Miller next week.",
+                    "options": [
+                        "will be graded",
+                        "will grade",
+                        "is grade",
+                        "grades"
+                    ],
+                    "correct_answer": "will be graded"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The classroom doors ___ (lock) by the janitor every evening.",
+                    "accepted_answers": ["are locked", "locked"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The professor ___ (already / give) us the results.",
+                    "accepted_answers": ["has already given", "already gave", "s already given"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "These computers ___ (buy) by the university in 2022.",
+                    "accepted_answers": ["were bought", "bought"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (receive) the email about the party yet?",
+                    "accepted_answers": ["Have;received", "have;received"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The secret ___ (keep) by the student government.",
+                    "accepted_answers": ["is kept", "kept"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Everything ___ (change) since the new president started.",
+                    "accepted_answers": ["has changed", "changed", "s changed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Ten new students ___ (invite) to the graduate program.",
+                    "accepted_answers": ["were invited", "invited"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (use) the library computer for three hours.",
+                    "accepted_answers": ["have used", "used", "ve used"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The message ___ (send) by the group leader.",
+                    "accepted_answers": ["was sent", "sent"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ the building (lock) after the classes end?",
+                    "accepted_answers": ["Is;locked", "is;locked"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The room *is clean* by the staff every morning.",
+                    "accepted_answers": ["is cleaned", "cleaned"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Yesterday, the report *was finish* by the student.",
+                    "accepted_answers": ["was finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *is reading* a very interesting book about science.",
+                    "accepted_answers": ["am reading", "reading"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The laboratory *were closed* during the holiday.",
+                    "accepted_answers": ["was closed", "closed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *have ate* all the food in the cafeteria.",
+                    "accepted_answers": ["have eaten", "ate", "ve eaten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "English *speak* by many people here.",
+                    "accepted_answers": ["is spoken", "is speaked", "spoken"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *give* a special prize last night.",
+                    "accepted_answers": ["was given", "given"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *already finished* our work since noon.",
+                    "accepted_answers": ["have already finished", "already finished", "ve already finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The keys *found* in the library yesterday.",
+                    "accepted_answers": ["were found", "found"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *has been study* for two hours before he left.",
+                    "accepted_answers": ["had been studying", "been studying", "d been studying"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }

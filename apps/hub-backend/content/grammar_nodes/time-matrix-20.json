@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-20",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "The Narrative Synthesizer",
-  "description": "Mixing Past Simple, Continuous, and Perfect seamlessly for a cohesive story.",
-  "display_order": 20,
-  "prerequisites": ["time-matrix-19"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "When I arrived, the meeting _____ for an hour.",
-          "options": ["started", "had started", "had been going", "was going"],
-          "correct_answer": 2,
-          "category": "Narrative Tenses"
+    "node_id": "time-matrix-20",
+    "title": "The Silver Boss Battle",
+    "description": "The ultimate test for the Silver Tier: Present Perfect, Past Perfect, and Passive Voice.",
+    "display_order": 20,
+    "prerequisites": ["time-matrix-19"],
+    "lesson_content_markdown": "# The Silver Boss Battle\n\nWelcome to the Silver Boss Battle! You have learned the complex sequences of the past and the objective voice of the academy. Now, it's time to put it all together.\n\n### 1. Review of Concepts\n- **Present Perfect**: *\"I have already seen it.\"* (Life experience or unfinished time.)\n- **Since vs. For**: *\"Since 2010\"* (start) vs. *\"For 10 years\"* (duration).\n- **Past Perfect**: *\"I had finished before he arrived.\"* (Earlier action.)\n- **Past Perfect Continuous**: *\"I had been working for hours.\"* (Duration before a past event.)\n- **Present & Past Passive**: *\"The test is shown / The test was shown.\"* (Focus on the object.)\n\n### 2. The Boss Strategy\n- **Check for Time Words**: Are there words like *yesterday*, *already*, or *by the time*?\n- **Check for Focus**: Is the focus on the **person** or the **object**?\n- **Check for Sequence**: Which event happened first in the past?\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you defeat the Silver Boss? This final challenge review all Silver lessons.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "By the time the professor walked in, the students ___ talking.",
+                    "options": [
+                        "had stopped",
+                        "have stopped",
+                        "stopped",
+                        "was stopping"
+                    ],
+                    "correct_answer": "had stopped"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university gates ___ every night at 11:00 PM.",
+                    "options": [
+                        "are locked",
+                        "locked",
+                        "is locked",
+                        "lock"
+                    ],
+                    "correct_answer": "are locked"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ in this dorm since September 2023.",
+                    "options": [
+                        "have lived",
+                        "lived",
+                        "live",
+                        "am living"
+                    ],
+                    "correct_answer": "have lived"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She ___ for two hours when her sister finally called her.",
+                    "options": [
+                        "had been studying",
+                        "was studying",
+                        "has been studying",
+                        "studies"
+                    ],
+                    "correct_answer": "had been studying"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence correctly uses the passive voice for a finished past event?",
+                    "options": [
+                        "The survey was conducted last year.",
+                        "The survey conducted last year.",
+                        "The survey is conducted last year.",
+                        "The survey were conducted last year."
+                    ],
+                    "correct_answer": "The survey was conducted last year."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Researchers ___ that the sample was ready for analysis.",
+                    "options": [
+                        "had found out",
+                        "have found out",
+                        "has found out",
+                        "found out"
+                    ],
+                    "correct_answer": "had found out"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The computer laboratory ___ by Dr. Jones next semester.",
+                    "options": [
+                        "will be managed",
+                        "will manage",
+                        "is managed",
+                        "managed"
+                    ],
+                    "correct_answer": "will be managed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correct for life experience?",
+                    "options": [
+                        "I have never eaten at that expensive cafeteria.",
+                        "I didn't never eat at that expensive cafeteria.",
+                        "I have never ate at that expensive cafeteria.",
+                        "I already eat never at that expensive cafeteria."
+                    ],
+                    "correct_answer": "I have never eaten at that expensive cafeteria."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The trees ___ two years ago by the university students.",
+                    "options": [
+                        "were planted",
+                        "was planted",
+                        "planted",
+                        "planting"
+                    ],
+                    "correct_answer": "were planted"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "He was tired because he ___ for twelve hours without a break.",
+                    "options": [
+                        "had been working",
+                        "worked",
+                        "has been working",
+                        "is working"
+                    ],
+                    "correct_answer": "had been working"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The email ___ (send) by the group leader yesterday.",
+                    "accepted_answers": ["was sent", "sent"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (never / be) to the library center before today.",
+                    "accepted_answers": ["had never been", "never were", "d never been"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (study) for three hours when the power went out.",
+                    "accepted_answers": ["had been studying", "been studying", "d been studying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (not rain) at all since the winter semester started.",
+                    "accepted_answers": ["has not rained", "hasn't rained", "s not rained"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (finish) your homework by the time he arrived?",
+                    "accepted_answers": ["Had;finished", "had;finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "New classes ___ (discuss) during the meeting right now.",
+                    "accepted_answers": ["are being discussed", "are discussed", "are discuss"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (not see) that movie yet.",
+                    "accepted_answers": ["have not seen", "haven't seen", "ve not seen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "His student ID card ___ (find) in the park late last night.",
+                    "accepted_answers": ["was found", "found"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How long ___ you (wait) before the bus came?",
+                    "accepted_answers": ["had;been waiting", "had;been waiting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The report ___ (print) by the library staff every morning.",
+                    "accepted_answers": ["is printed", "printed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *has been working* since two hours when she stopped.",
+                    "accepted_answers": ["had been working", "been working", "d been working"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The computers *is locked* at 8:00 every Saturday.",
+                    "accepted_answers": ["are locked", "locked"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Yesterday morning, the homework *was finish* by early.",
+                    "accepted_answers": ["was finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *never see* a lake before they move here.",
+                    "accepted_answers": ["had never seen", "never saw", "d never seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *is eating* in the cafeteria since October.",
+                    "accepted_answers": ["have been eating", "eating"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The keys *found* by the library manager today.",
+                    "accepted_answers": ["were found", "found"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *have finish* the work already.",
+                    "accepted_answers": ["have finished", "finished", "ve finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *waited* for since noon when she finally walked in.",
+                    "accepted_answers": ["had been waiting", "been waiting", "d been waiting"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The science research *was conduct* in 1999.",
+                    "accepted_answers": ["was conducted", "conducted"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Nothing *has changed* by the time the class began.",
+                    "accepted_answers": ["had changed", "changed", "d changed"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 250,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }
