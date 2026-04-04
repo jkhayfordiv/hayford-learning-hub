@@ -8,7 +8,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const { bootstrapDatabase, pool } = require('./db');
+const { bootstrapDatabase, pool, initDb } = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -217,7 +217,7 @@ async function startServer() {
       // Step 1: Database Keep-Alive (every 4 minutes)
       // Prevents Serverless Postgres (Neon) from cold-starting by sending a lightweight query.
       setInterval(() => {
-        pool.query('SELECT 1;')
+        initDb().query('SELECT 1;')
           .then(() => console.log('[DB] Keep-alive ping sent'))
           .catch(err => console.error('[DB] Keep-alive ping failed:', err.message));
       }, 240000);
