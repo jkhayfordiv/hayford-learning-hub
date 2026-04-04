@@ -13,22 +13,15 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
   };
 
   const handleSubmit = () => {
-    // Calculate score client-side
-    let correctCount = 0;
-    questions.forEach((question, idx) => {
-      if (selectedAnswers[idx] === question.correct_answer) {
-        correctCount++;
-      }
+    // Map selected indices to choice text for the backend
+    const answers = questions.map((q, idx) => {
+      const selectedIdx = selectedAnswers[idx];
+      return selectedIdx !== undefined ? q.options[selectedIdx] : null;
     });
 
-    const score = Math.round((correctCount / questions.length) * 100);
-    const passed = score >= 80;
-
-    // Convert selectedAnswers object to array for backend
-    const answers = questions.map((_, idx) => selectedAnswers[idx]);
-
     // Submit to backend
-    onSubmit({ answers, score, passed }, 'multiple_choice');
+    // Note: client-side score calculation is removed as the backend performs the authoritative grading
+    onSubmit({ answers }, 'multiple_choice');
   };
 
   const allAnswered = questions.every((_, idx) => selectedAnswers[idx] !== undefined);
