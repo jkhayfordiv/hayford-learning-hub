@@ -10,13 +10,14 @@ export const GRAMMAR_UI_LABELS = {
   "Gerunds vs. Infinitives": "Verbs with '-ing' or 'to'",
   "Passive Voice Construction": "Passive Voice",
   "Sentence Boundaries": "Complete Sentences",
+  "Sentence Boundaries (Fragments/Comma Splices)": "Complete Sentences",
   "Relative Clauses": "Adding Detail (who, which, that)",
-  "Subordination": "Connecting Ideas",
+  "Subordination": "Joining Sentences",
   "Word Order": "Word Order",
-  "Parallel Structure": "Matching Lists",
+  "Parallel Structure": "Matching Sentence Patterns",
   "Transitional Devices": "Linking Words",
-  "Collocations": "Words That Go Together",
+  "Collocations": "Common Word Pairs",
   "Academic Register": "Formal Writing",
   "Nominalization": "Making Verbs into Nouns",
-  "Hedging": "Careful Language"
+  "Hedging": "Softening Your Language"
 };
