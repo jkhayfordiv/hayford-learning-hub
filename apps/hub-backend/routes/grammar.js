@@ -326,15 +326,18 @@ router.post('/submit', auth, async (req, res) => {
           correctAnswers: questions.map(q => q.correct_answer)
         });
         
-        // Resolve correct_answer: may be an integer index or the answer string itself
-        const resolveAnswer = (q) => typeof q.correct_answer === 'number'
-          ? q.options[q.correct_answer]
-          : q.correct_answer;
+        // Resolve correct_answer: may be an integer index, a string, or an array of strings
+        const resolveAnswer = (q) => {
+          if (typeof q.correct_answer === 'number') return [q.options[q.correct_answer]];
+          if (Array.isArray(q.correct_answer)) return q.correct_answer;
+          if (q.correct_answer) return [q.correct_answer];
+          return [];
+        };
 
         for (let i = 0; i < questions.length; i++) {
-          const correctAnswer = resolveAnswer(questions[i]);
-          const match = user_response.answers[i] === correctAnswer;
-          console.log(`[DEBUG] Q${i}: "${user_response.answers[i]}" === "${correctAnswer}" = ${match}`);
+          const accepted = resolveAnswer(questions[i]).map(a => a.toLowerCase());
+          const match = accepted.includes((user_response.answers[i] || '').toLowerCase());
+          console.log(`[DEBUG] Q${i}: "${user_response.answers[i]}" in [${accepted.join(', ')}] = ${match}`);
           if (match) {
             correct++;
           }
@@ -345,8 +348,14 @@ router.post('/submit', auth, async (req, res) => {
         feedback = `You answered ${correct} out of ${questions.length} questions correctly.`;
         
         // Detailed results for MC
-        results = questions.map((q, i) => user_response.answers[i] === resolveAnswer(q));
-        correctAnswers = questions.map(q => resolveAnswer(q));
+        results = questions.map((q, i) => {
+          const accepted = resolveAnswer(q).map(a => String(a).toLowerCase());
+          return accepted.includes(String(user_response.answers[i] || '').toLowerCase());
+        });
+        correctAnswers = questions.map(q => {
+          const answers = resolveAnswer(q);
+          return answers.length > 0 ? answers[0] : '';
+        });
 
         console.log('[DEBUG] Final score:', { correct, total: questions.length, score, passed });
 
@@ -356,7 +365,7 @@ router.post('/submit', auth, async (req, res) => {
           
           for (let i = 0; i < questions.length; i++) {
             const correctAnswer = resolveAnswer(questions[i]);
-            if (user_response.answers[i] !== correctAnswer) {
+            if (!correctAnswer.includes((user_response.answers[i] || '').toLowerCase())) {
               wrongAnswers.push({
                 question_index: i,
                 error_tag: questions[i].error_tag,
@@ -392,12 +401,17 @@ router.post('/submit', auth, async (req, res) => {
           const q = questions[i];
           const userAnswer = (user_response.answers[i] || '').trim().toLowerCase();
           
-          // Hybrid support for new 'correct_answer' and old 'accepted_answers' formats
-          const acceptedAnswers = q.correct_answer 
-            ? [q.correct_answer.toLowerCase()]
-            : (q.accepted_answers || []).map(a => a.toLowerCase());
+          // Hybrid support for new 'correct_answer' (string or array) and old 'accepted_answers' formats
+          let accepted = [];
+          if (Array.isArray(q.correct_answer)) {
+            accepted = q.correct_answer.map(a => a.toLowerCase());
+          } else if (q.correct_answer) {
+            accepted = [q.correct_answer.toLowerCase()];
+          } else {
+            accepted = (q.accepted_answers || []).map(a => a.toLowerCase());
+          }
           
-          if (acceptedAnswers.includes(userAnswer)) {
+          if (accepted.includes(userAnswer)) {
             correct++;
           }
         }
@@ -409,12 +423,21 @@ router.post('/submit', auth, async (req, res) => {
         // Detailed results for Fill in the Blank
         results = questions.map((q, i) => {
           const userAnswer = (user_response.answers[i] || '').trim().toLowerCase();
-          const accepted = q.correct_answer 
-            ? [q.correct_answer.toLowerCase()]
-            : (q.accepted_answers || []).map(a => a.toLowerCase());
+          let accepted = [];
+          if (Array.isArray(q.correct_answer)) {
+            accepted = q.correct_answer.map(a => a.toLowerCase());
+          } else if (q.correct_answer) {
+            accepted = [q.correct_answer.toLowerCase()];
+          } else {
+            accepted = (q.accepted_answers || []).map(a => a.toLowerCase());
+          }
           return accepted.includes(userAnswer);
         });
-        correctAnswers = questions.map(q => q.correct_answer || (q.accepted_answers && q.accepted_answers[0]) || '');
+        const getFirstCorrect = (q) => {
+          if (Array.isArray(q.correct_answer)) return q.correct_answer[0];
+          return q.correct_answer || (q.accepted_answers && q.accepted_answers[0]) || '';
+        };
+        correctAnswers = questions.map(getFirstCorrect);
 
       } else if (activity_type === 'error_correction') {
         const questions = mastery_check.activity_data.questions || mastery_check.activity_data.errors || [];
@@ -428,12 +451,17 @@ router.post('/submit', auth, async (req, res) => {
           const q = questions[i];
           const userAnswer = (user_response.corrections[i] || '').trim().toLowerCase();
           
-          // Hybrid support for new 'correct_answer' and old 'accepted_corrections' formats
-          const acceptedAnswers = q.correct_answer
-            ? [q.correct_answer.toLowerCase()]
-            : (q.accepted_corrections || []).map(a => a.toLowerCase());
+          // Hybrid support for new 'correct_answer' (string or array) and old 'accepted_corrections' formats
+          let accepted = [];
+          if (Array.isArray(q.correct_answer)) {
+            accepted = q.correct_answer.map(a => a.toLowerCase());
+          } else if (q.correct_answer) {
+            accepted = [q.correct_answer.toLowerCase()];
+          } else {
+            accepted = (q.accepted_corrections || []).map(a => a.toLowerCase());
+          }
           
-          if (acceptedAnswers.includes(userAnswer)) {
+          if (accepted.includes(userAnswer)) {
             correct++;
           }
         }
@@ -445,12 +473,21 @@ router.post('/submit', auth, async (req, res) => {
         // Detailed results for Error Correction
         results = questions.map((q, i) => {
           const userAnswer = (user_response.corrections[i] || '').trim().toLowerCase();
-          const accepted = q.correct_answer
-            ? [q.correct_answer.toLowerCase()]
-            : (q.accepted_corrections || []).map(a => a.toLowerCase());
+          let accepted = [];
+          if (Array.isArray(q.correct_answer)) {
+            accepted = q.correct_answer.map(a => a.toLowerCase());
+          } else if (q.correct_answer) {
+            accepted = [q.correct_answer.toLowerCase()];
+          } else {
+            accepted = (q.accepted_corrections || []).map(a => a.toLowerCase());
+          }
           return accepted.includes(userAnswer);
         });
-        correctAnswers = questions.map(q => q.correct_answer || (q.accepted_corrections && q.accepted_corrections[0]) || '');
+        const getFirstCorrect = (q) => {
+          if (Array.isArray(q.correct_answer)) return q.correct_answer[0];
+          return q.correct_answer || (q.accepted_corrections && q.accepted_corrections[0]) || '';
+        };
+        correctAnswers = questions.map(getFirstCorrect);
       }
 
       // Save submission
