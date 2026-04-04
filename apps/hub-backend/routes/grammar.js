@@ -1098,6 +1098,47 @@ router.get('/admin/recent-submissions', auth, requireRole('teacher', 'admin', 's
   }
 });
 
+// PUT /api/grammar/nodes/:nodeId - Admin route to update a node's content
+router.put('/nodes/:nodeId', auth, requireRole('teacher', 'admin', 'super_admin'), async (req, res) => {
+  try {
+    const { nodeId } = req.params;
+    const newContent = req.body;
+
+    if (!newContent) {
+      return res.status(400).json({ error: 'Missing content payload' });
+    }
+
+    const connection = await pool.getConnection();
+    try {
+      await connection.query(`
+        UPDATE grammar_nodes 
+        SET content_json = $1::jsonb,
+            updated_at = CURRENT_TIMESTAMP
+        WHERE node_id = $2
+      `, [JSON.stringify(newContent), nodeId]);
+
+      // Attempt to save to local JSON file for persistence across deployments
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const filePath = path.join(__dirname, '..', 'content', 'grammar_nodes', `${nodeId}.json`);
+        if (fs.existsSync(filePath)) {
+          fs.writeFileSync(filePath, JSON.stringify(newContent, null, 4), 'utf8');
+        }
+      } catch (fsError) {
+        console.warn('Could not update local JSON file:', fsError.message);
+      }
+
+      res.json({ success: true, message: 'Node updated successfully' });
+    } finally {
+      connection.release();
+    }
+  } catch (error) {
+    console.error('Error updating grammar node:', error);
+    res.status(500).json({ error: 'Failed to update grammar node' });
+  }
+});
+
 module.exports = router;
 
 // GET /api/grammar/review-questions - Get random questions from completed nodes for spaced repetition

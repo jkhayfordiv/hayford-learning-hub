@@ -100,3 +100,17 @@ export const fetchReviewQuestions = async () => {
   
   return response.json();
 };
+
+export const updateNode = async (nodeId, newContent) => {
+  const response = await fetch(`${API_BASE_URL}/api/grammar/nodes/${nodeId}`, {
+    method: 'PUT',
+    headers: getHeaders(),
+    body: JSON.stringify(newContent),
+  });
+  
+  if (!response.ok) {
+    throw new Error('Failed to update node');
+  }
+  
+  return response.json();
+};

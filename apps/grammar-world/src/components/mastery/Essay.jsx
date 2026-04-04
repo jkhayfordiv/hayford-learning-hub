@@ -85,7 +85,10 @@ export default function Essay({ prompt, questions = [], onSubmit, status, feedba
       {showFeedback && feedbackMessage && (
         <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-5 mb-6">
           <h3 className="font-bold text-blue-900 mb-2">AI Instructor Feedback:</h3>
-          <p className="text-blue-800 leading-relaxed whitespace-pre-line">{feedbackMessage}</p>
+          <div 
+            className="text-blue-800 leading-relaxed whitespace-pre-line"
+            dangerouslySetInnerHTML={{ __html: feedbackMessage }} 
+          />
         </div>
       )}
 

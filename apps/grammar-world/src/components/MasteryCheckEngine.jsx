@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trophy, Award, Sparkles, Loader2, Info } from 'lucide-react';
+import { Trophy, Award, Sparkles, Loader2, Info, Settings } from 'lucide-react';
 import { submitMasteryCheck, fetchReviewQuestions } from '../services/api';
+import { getUser } from '../utils/auth';
 import MultipleChoice from './mastery/MultipleChoice';
 import ErrorCorrection from './mastery/ErrorCorrection';
 import FillInTheBlank from './mastery/FillInTheBlank';
 import AIGradedTextInput from './mastery/AIGradedTextInput';
 import StandardMixed from './mastery/StandardMixed';
 import Essay from './mastery/Essay';
+import AdminGodMode from './mastery/AdminGodMode';
 
 // Pure Fisher-Yates shuffle — no bias, returns a new array
 function shuffle(arr) {
@@ -57,7 +59,11 @@ export default function MasteryCheckEngine({ node, regionName }) {
   // replaced by the 10-question subset
   const [quizData, setQuizData] = useState(null);
   const [reviewCount, setReviewCount] = useState(0);
+  const [isGodMode, setIsGodMode] = useState(false);
   const navigate = useNavigate();
+
+  const user = getUser();
+  const isAdmin = user?.role === 'admin' || user?.role === 'super_admin';
 
   const masteryCheck = node?.mastery_check;
   const rewards = node?.rewards;
@@ -297,13 +303,34 @@ export default function MasteryCheckEngine({ node, regionName }) {
     }
   };
 
+  if (isGodMode && isAdmin) {
+    return (
+      <AdminGodMode 
+        node={node} 
+        onExit={() => setIsGodMode(false)} 
+      />
+    );
+  }
+
   return (
     <div className="bg-white rounded-xl p-8 shadow-soft">
-      <div className="mb-6">
-        <h2 className="font-serif text-3xl text-brand-primary mb-1">Mastery Check</h2>
-        <p className="text-gray-500 text-sm">
-          {questions.length} questions &mdash; Demonstrate your understanding to unlock the next node.
-        </p>
+      <div className="mb-6 flex justify-between items-start">
+        <div>
+          <h2 className="font-serif text-3xl text-brand-primary mb-1">Mastery Check</h2>
+          <p className="text-gray-500 text-sm">
+            {questions.length} questions &mdash; Demonstrate your understanding to unlock the next node.
+          </p>
+        </div>
+        {isAdmin && (
+          <button
+            onClick={() => setIsGodMode(true)}
+            className="flex items-center gap-2 text-red-600 hover:text-red-800 bg-red-50 px-3 py-1.5 rounded-lg font-semibold text-sm transition-colors border border-red-200"
+            title="Edit this curriculum node (God Mode)"
+          >
+            <Settings size={16} />
+            Edit Node
+          </button>
+        )}
       </div>
 
       {reviewCount > 0 && (

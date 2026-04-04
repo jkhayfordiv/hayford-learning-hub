@@ -390,7 +390,33 @@ Return ONLY valid JSON (no markdown, no extra text) with this exact structure:
 async function gradeGrammarActivity(userResponse, rubric, activityType) {
   const requestId = `grammar-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-  const prompt = `You are an expert EAP (English for Academic Purposes) grammar instructor.
+  let prompt = '';
+
+  if (activityType === 'essay') {
+    prompt = `You are a strict, expert IELTS/EAP grammar instructor grading a final Capstone.
+Your task is to evaluate a student's essay paragraph and provide strict, constructive feedback.
+
+CRITICAL RULES:
+1. Tunnel Vision: ONLY grade the usage of Present Perfect, Past Perfect, and Passive Voice. Ignore minor vocabulary, punctuation, or stylistic issues completely.
+2. Red Highlighting: You MUST return a corrected version of the student's text, but wrap ANY errors related to Present Perfect, Past Perfect, or Passive Voice in <span style="color: red; font-weight: bold;">erroneous text</span>. If they missed an element or used it improperly, show the error in red.
+3. Brevity: Provide a short, clear explanation of the proper use vs. improper use of the specific grammar point. Do not write a long essay.
+
+Grading Criteria (strictly use to determine score):
+${rubric}
+
+Student's Response:
+${userResponse}
+
+Respond with a JSON object containing:
+{
+  "passed": boolean (true if score >= 80%, false otherwise),
+  "score": number (0-100),
+  "feedback": string (Includes your short explanation AND the student's text with errors wrapped in the <span> tag as requested)
+}
+
+Return ONLY the JSON object. No markdown.`;
+  } else {
+    prompt = `You are an expert EAP (English for Academic Purposes) grammar instructor.
 Your task is to evaluate a student's grammar exercise response and provide constructive feedback.
 
 Grading Criteria:
@@ -409,6 +435,7 @@ Respond with a JSON object containing:
 }
 
 Be strict but fair. Focus on grammar accuracy, not content. Return ONLY the JSON object.`;
+  }
 
   const result = await limiter.schedule(() => executeWithRetry(prompt, requestId));
   return {
