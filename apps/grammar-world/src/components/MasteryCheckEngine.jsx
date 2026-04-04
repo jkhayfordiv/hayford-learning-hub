@@ -74,7 +74,6 @@ export default function MasteryCheckEngine({ node, regionName }) {
 
     initializeQuiz();
   }, [node?.node_id]); // Re-run when node changes
- Colesce
 
   const handleSubmit = async (userResponse, activityType) => {
     // Hard guard: prevent double-submit if already processing

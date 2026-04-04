@@ -1,38 +1,167 @@
 {
   "node_id": "time-matrix-09",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
-  "title": "Making Words Match",
-  "description": "Learning how to match singular and plural subjects with their actions.",
+  "title": "Matching the Subject and Action",
+  "description": "Learn the basic rules for matching your subject (who) with your action word (verb).",
   "display_order": 9,
   "prerequisites": ["time-matrix-08"],
-  "lesson_content_markdown": "# Making the Match\n\nIn English, the person (subject) and the action (verb) must match. This is like wearing a pair of matching shoes. If one is different, it looks and sounds strange! \n\n### The Golden Rule\nWhen we talk about the present time:\n1.  **One Person (Singular)**: Add an **-s** to the action.\n    - *The professor **writes** a report.*\n    - *The student **helps** in the lab.*\n\n2.  **Many People (Plural)**: Do **NOT** add an -s.\n    - *The professors **write** a report.*\n    - *The students **help** in the lab.*\n\n### Why it Matters\nIn university writing, you will talk about many researchers and many projects. If you forget the **-s**, the reader might get confused. \n\nRemember: \n- **He/She/It** $\rightarrow$ adds **-s** (analyzes, works, shows)\n- **They/We** $\rightarrow$ no **-s** (analyze, work, show)\n\nNote: For words like 'I' and 'You', we also do not add the -s. (I work, you work).",
+  "lesson_content_markdown": "# Matching the Subject and Action\n\nTo speak English correctly, you must match your **Subject** (the person or thing) with your **Action Word** (the verb). We call this Subject-Verb Agreement.\n\n### 1. The Golden Rule of -s\n\nIn the Present Simple, we add an **-s** to the action word if the subject is **He**, **She**, or **It** (one person or thing).\n\n- **I, You, We, They** → No extra letter (eat, play, study)\n- **He, She, It** → Add **-s** (eats, plays, studies)\n\n### 2. Examples with People\n\n- **My teacher** (She) → **gives** a lot of homework.\n- **The students** (They) → **give** a lot of homework. (Wait! This is wrong. Students do not give homework, they receive it!)\n- **The student** (He) → **receives** a high score.\n\n### 3. Examples with Things\n\n- **The bus** (It) → **stops** at the gate.\n- **The buses** (They) → **stop** at the gate.\n- **The math book** (It) → **cost** fifty dollars. (Error! Should be **costs**)\n\n### 4. Why is it important?\n\nNative speakers use this rule every time they speak. If you miss the **-s**, it is the most common mistake for learners.\n\n- **Correct**: He **likes** the game.\n- **Incorrect**: He **like** the game.\n\n---",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Choose the word that correctly matches the subject.",
+    "prompt_to_student": "Choose the correct word to finish the sentence about campus life.",
     "activity_data": {
       "questions": [
         {
-          "question": "A senior professor _____ the research project every Monday morning.",
-          "options": ["lead", "leads", "leading", "leaded"],
-          "correct_answer": "leads",
-          "category": "Subject-Verb Agreement"
+          "question": "My history teacher ___ very fast in every class.",
+          "options": ["speak", "speaks", "speaking", "spoken"],
+          "correct_answer": "speaks"
         },
         {
-          "question": "Many international students _____ on campus during the summer break.",
-          "options": ["stay", "stays", "staying", "stayed"],
-          "correct_answer": "stay",
-          "category": "Subject-Verb Agreement"
+          "question": "The students ___ their lunch in the cafeteria.",
+          "options": ["buy", "buys", "buying", "bought"],
+          "correct_answer": "buy"
         },
         {
-          "question": "The software _____ all the data automatically to prevent errors.",
-          "options": ["calculate", "calculates", "calculating", "calculateed"],
-          "correct_answer": "calculates",
-          "category": "Subject-Verb Agreement"
+          "question": "The science book ___ five long chapters.",
+          "options": ["has", "have", "having", "had"],
+          "correct_answer": "has"
+        },
+        {
+          "question": "He ___ to study in the quiet library.",
+          "options": ["like", "likes", "liking", "liked"],
+          "correct_answer": "likes"
+        },
+        {
+          "question": "The bus ___ at the front gate every morning.",
+          "options": ["stop", "stops", "stopping", "stopped"],
+          "correct_answer": "stops"
+        },
+        {
+          "question": "I ___ English with my friends on Fridays.",
+          "options": ["practice", "practices", "practicing", "practiced"],
+          "correct_answer": "practice"
+        },
+        {
+          "question": "She ___ a new blue pen for her test.",
+          "options": ["want", "wants", "wanting", "wanted"],
+          "correct_answer": "wants"
+        },
+        {
+          "question": "They ___ to play football on the field.",
+          "options": ["love", "loves", "loving", "loved"],
+          "correct_answer": "love"
+        },
+        {
+          "question": "The university ___ a very large gym.",
+          "options": ["provide", "provides", "providing", "provided"],
+          "correct_answer": "provides"
+        },
+        {
+          "question": "The clock on the wall ___ very loudly.",
+          "options": ["tick", "ticks", "ticking", "ticked"],
+          "correct_answer": "ticks"
+        },
+        {
+          "question": "We ___ our homework in the dorm room.",
+          "options": ["do", "does", "doing", "did"],
+          "correct_answer": "do"
+        },
+        {
+          "question": "My roommate ___ two small cats.",
+          "options": ["own", "owns", "owning", "owned"],
+          "correct_answer": "owns"
+        },
+        {
+          "question": "The professor ___ every student's name.",
+          "options": ["know", "knows", "knowing", "knew"],
+          "correct_answer": "knows"
+        },
+        {
+          "question": "The sun ___ into the window every morning.",
+          "options": ["shine", "shines", "shining", "shined"],
+          "correct_answer": "shines"
+        },
+        {
+          "question": "You ___ English very well, my friend.",
+          "options": ["speak", "speaks", "speaking", "spoke"],
+          "correct_answer": "speak"
+        },
+        {
+          "question": "The cafeteria ___ at 10 AM on Saturdays.",
+          "options": ["open", "opens", "opening", "opened"],
+          "correct_answer": "opens"
+        },
+        {
+          "question": "It ___ like a very cold day outside.",
+          "options": ["look", "looks", "looking", "looked"],
+          "correct_answer": "looks"
+        },
+        {
+          "question": "The children ___ in the school park after 4 PM.",
+          "options": ["play", "plays", "playing", "played"],
+          "correct_answer": "play"
+        },
+        {
+          "question": "He ___ for the bus near the front gate.",
+          "options": ["wait", "waits", "waiting", "waited"],
+          "correct_answer": "waits"
+        },
+        {
+          "question": "We ___ new words in our class every day.",
+          "options": ["learn", "learns", "learning", "learned"],
+          "correct_answer": "learn"
+        },
+        {
+          "question": "The bird ___ over the school every morning.",
+          "options": ["fly", "flies", "flying", "flew"],
+          "correct_answer": "flies"
+        },
+        {
+          "question": "I ___ a cup of water during the long lesson.",
+          "options": ["need", "needs", "needing", "needed"],
+          "correct_answer": "need"
+        },
+        {
+          "question": "The class ___ precisely at 9:00 AM.",
+          "options": ["begin", "begins", "beginning", "began"],
+          "correct_answer": "begins"
+        },
+        {
+          "question": "They ___ their heavy books in their bags.",
+          "options": ["carry", "carries", "carrying", "carried"],
+          "correct_answer": "carry"
+        },
+        {
+          "question": "The girl ___ a beautiful song for the club.",
+          "options": ["sing", "sings", "singing", "sang"],
+          "correct_answer": "sings"
+        },
+        {
+          "question": "We ___ the answer to this science problem.",
+          "options": ["understand", "understands", "understanding", "understood"],
+          "correct_answer": "understand"
+        },
+        {
+          "question": "The music at the party ___ very loud.",
+          "options": ["sound", "sounds", "sounding", "sounded"],
+          "correct_answer": "sounds"
+        },
+        {
+          "question": "She ___ her breakfast in her room.",
+          "options": ["eat", "eats", "eating", "ate"],
+          "correct_answer": "eats"
+        },
+        {
+          "question": "The library ___ many old books from England.",
+          "options": ["keep", "keeps", "keeping", "kept"],
+          "correct_answer": "keeps"
+        },
+        {
+          "question": "I ___ the science book is very interesting.",
+          "options": ["think", "thinks", "thinking", "thought"],
+          "correct_answer": "think"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,
