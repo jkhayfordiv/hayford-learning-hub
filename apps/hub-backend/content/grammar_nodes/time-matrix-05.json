@@ -1,38 +1,137 @@
 {
   "node_id": "time-matrix-05",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "Finished Past: Special Spellings",
   "description": "Learning those 'special' past action words like went, wrote, and saw.",
   "display_order": 5,
   "prerequisites": ["time-matrix-04"],
-  "lesson_content_markdown": "# What if it's not -ed? \n\nSome action words (verbs) like to be different. They don't follow the regular rule of adding -ed. We call these 'Irregular' verbs. \n\nThink of these like 'special' spellings you need to remember. They still talk about the **Finished Past** just like the regular ones. \n\n### Common Examples\nInstead of \"writed,\" we say **wrote**:\n- Today I **write** a report $\\rightarrow$ Yesterday I **wrote** a report.\n\nInstead of \"goed,\" we say **went**:\n- Today I **go** to the lab $\\rightarrow$ Last week I **went** to the lab.\n\n### Academic Irregulars\nYou will see these verbs a lot in university life:\n- **Build $\\rightarrow$ Built**: The team **built** a new computer system.\n- **Teach $\\rightarrow$ Taught**: The scientist **taught** many students.\n- **Show $\\rightarrow$ Shown** (or **Showed** in some cases, but **showed** is common for simple past): The data **showed** a strong result.\n- **Find $\\rightarrow$ Found**: The researchers **found** the answer last year.\n\nThese words still mean the action is 100% finished, even if the spelling is different. They belong in the same 'box' of past actions.",
+  "lesson_content_markdown": "# Finished Past: Special Spellings\n\nMany common words in English do NOT use **-ed** for the past. They change in special ways. We call these **Irregular Verbs**.\n\n### 1. Common Word Changes\n\n- **Go** → **Went** (I went to class.)\n- **Eat** → **Ate** (They ate lunch.)\n- **Write** → **Wrote** (She wrote a letter.)\n- **See** → **Saw** (We saw the teacher.)\n- **Read** → **Read** (Same word, but sounds like the color 'red')\n\n### 2. Time (Be Verbs)\n\n- **Am / Is** → **Was**\n- **Are** → **Were**\n\n- **Example**: Yesterday, I **was** in the library. \n- **Example**: They **were** happy after the test.\n\n### 3. Having and Doing\n\n- **Have** → **Had**\n- **Do** → **Did**\n\n- **Example**: He **had** a long lunch break.\n- **Example**: We **did** our homework together.\n\n---",
   "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Which word correctly shows that the action finished in the past?",
+    "type": "fill_in_the_blank",
+    "prompt_to_student": "Fill in the blank with the correct past form of the word in the brackets (). Only write one word.",
     "activity_data": {
       "questions": [
         {
-          "question": "The professor _____ a very helpful lecture about global economics last Friday.",
-          "options": ["gived", "gave", "gives", "giving"],
-          "correct_answer": "gave",
-          "category": "Simple Past Irregular"
+          "question": "Yesterday, they ___ (go) to the university shop.",
+          "correct_answer": "went"
         },
         {
-          "question": "The scientists _____ a significant increase in local temperatures after analyzing the data.",
-          "options": ["find", "founds", "finded", "found"],
-          "correct_answer": "found",
-          "category": "Simple Past Irregular"
+          "question": "I ___ (see) my history teacher in the cafeteria.",
+          "correct_answer": "saw"
         },
         {
-          "question": "An American university _____ the first successful digital computer in 1946.",
-          "options": ["built", "builded", "build", "building"],
-          "correct_answer": "built",
-          "category": "Simple Past Irregular"
+          "question": "She ___ (ate) a large sandwich for lunch.",
+          "correct_answer": "ate"
+        },
+        {
+          "question": "He ___ (write) his lab report yesterday night.",
+          "correct_answer": "wrote"
+        },
+        {
+          "question": "We ___ (do) all our homework in the library.",
+          "correct_answer": "did"
+        },
+        {
+          "question": "The students ___ (have) a fast break between classes.",
+          "correct_answer": "had"
+        },
+        {
+          "question": "I ___ (was) very tired after the English test.",
+          "correct_answer": "was"
+        },
+        {
+          "question": "They ___ (were) in the gym at 5:00 PM.",
+          "correct_answer": "were"
+        },
+        {
+          "question": "She ___ (read) the news book for ten minutes.",
+          "correct_answer": "read"
+        },
+        {
+          "question": "He ___ (gave) his friend a pencil for class.",
+          "correct_answer": "gave"
+        },
+        {
+          "question": "I ___ (drank) some cold water before the game.",
+          "correct_answer": "drank"
+        },
+        {
+          "question": "We ___ (sat) near the front door of the room.",
+          "correct_answer": "sat"
+        },
+        {
+          "question": "They ___ (came) to the university by bus.",
+          "correct_answer": "came"
+        },
+        {
+          "question": "The boy ___ (stood) up to speak to the teacher.",
+          "correct_answer": "stood"
+        },
+        {
+          "question": "She ___ (bought) a new school bag yesterday.",
+          "correct_answer": "bought"
+        },
+        {
+          "question": "I ___ (thought) the test was very easy.",
+          "correct_answer": "thought"
+        },
+        {
+          "question": "The student ___ (took) her books to the shelf.",
+          "correct_answer": "took"
+        },
+        {
+          "question": "We ___ (met) our friends in the student center.",
+          "correct_answer": "met"
+        },
+        {
+          "question": "He ___ (got) a very high score on his paper.",
+          "correct_answer": "got"
+        },
+        {
+          "question": "They ___ (began) the project last Wednesday.",
+          "correct_answer": "began"
+        },
+        {
+          "question": "She ___ (built) a paper model for art class.",
+          "correct_answer": "built"
+        },
+        {
+          "question": "I ___ (felt) sick during the morning lesson.",
+          "correct_answer": "felt"
+        },
+        {
+          "question": "The teacher ___ (said) that the library is closed.",
+          "correct_answer": "said"
+        },
+        {
+          "question": "He ___ (ran) to class because he was late.",
+          "correct_answer": "ran"
+        },
+        {
+          "question": "We ___ (knew) the answer to every question.",
+          "correct_answer": "knew"
+        },
+        {
+          "question": "She ___ (sent) an email to the school office.",
+          "correct_answer": "sent"
+        },
+        {
+          "question": "The boy ___ (slept) for eight hours last night.",
+          "correct_answer": "slept"
+        },
+        {
+          "question": "I ___ (spoke) to my mother on the phone.",
+          "correct_answer": "spoke"
+        },
+        {
+          "question": "They ___ (told) us a funny story about the cat.",
+          "correct_answer": "told"
+        },
+        {
+          "question": "She ___ (won) first prize in the school race.",
+          "correct_answer": "won"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,

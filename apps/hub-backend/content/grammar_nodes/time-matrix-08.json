@@ -1,38 +1,137 @@
 {
   "node_id": "time-matrix-08",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "Busy in the Future",
   "description": "Talking about an action in progress at a specific future time.",
   "display_order": 8,
   "prerequisites": ["time-matrix-07"],
-  "lesson_content_markdown": "# What Will You Be Doing?\n\nThis form is for talking about what you will be **in the middle of** at a certain time in the future. We call this the 'Busy in the Future' tense. \n\nInstead of just saying \"I will play soccer tomorrow,\" you say, \"At 5:00 PM tomorrow, I **will be playing** soccer.\" This says you are busy with the action at that exact moment. \n\n### How to Make It\nUse **WILL BE** + **-ING**:\n- I **will be** research**ing**.\n- The scientists **will be** conduct**ing** a test. \n\n### When to Use It\nWe use this when we talk about our **academic schedules** or long projects: \n- **At 10:00 AM next week**, all of us **will be taking** the English final test.\n- **During the next three months**, the student group **will be working** on their project.\n\nIt feels more like a movie of the future. You are 'seeing' the person busy with the work at that time. It's great for showing that something takes a long time or will happen at a specific point on the map.",
+  "lesson_content_markdown": "# Busy in the Future\n\nWe use the **Future Continuous** to talk about an action that will be in the middle of happening at a specific future time. This shows we are \"busy\" doing something right then.\n\n### 1. Formula: Will + Be + Doing Word (-ing)\n\nTo make this tense, you need **three** parts:\n\n**1. Will**\n- Always use **will**.\n\n**2. Be**\n- Always use the word **be** (not am, is, or are).\n\n**3. The Doing Word with -ing**\n- Example: **study** → **studying**\n- Example: **work** → **working**\n\n### 2. Examples:\n- At 8:00 tonight, I **will be studying** in the library.\n- Don't call them at 1:00 PM. They **will be having** lunch.\n- Tomorrow morning, we **will be sitting** in our science class.\n\n### 3. Why use it?\n- To show a future time is already busy with an activity.\n- To talk about a specific moment in the future.\n\n---",
   "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Which future form shows the action will be happening at a specific time?",
+    "type": "fill_in_the_blank",
+    "prompt_to_student": "Fill in the blank with the correct three-word future form (e.g., will be walking).",
     "activity_data": {
       "questions": [
         {
-          "question": "At this time tomorrow, the student council _____ the new election rules.",
-          "options": ["will discuss", "discusses", "will be discussing", "discussed"],
-          "correct_answer": "will be discussing",
-          "category": "Future Continuous"
+          "question": "I ___ (study) at 10:00 PM tonight.",
+          "correct_answer": "will be studying"
         },
         {
-          "question": "Next Tuesday at 2:00 PM, the professor _____ a presentation in the main lecture hall.",
-          "options": ["gives", "will be giving", "give", "given"],
-          "correct_answer": "will be giving",
-          "category": "Future Continuous"
+          "question": "They ___ (eat) lunch in the cafe at 12:30.",
+          "correct_answer": "will be eating"
         },
         {
-          "question": "The research team _____ the data while we are on summer break.",
-          "options": ["analyzes", "will analyzing", "will be analyzing", "analyze"],
-          "correct_answer": "will be analyzing",
-          "category": "Future Continuous"
+          "question": "She ___ (write) her report in the afternoon.",
+          "correct_answer": "will be writing"
+        },
+        {
+          "question": "He ___ (play) football on the field tomorrow.",
+          "correct_answer": "will be playing"
+        },
+        {
+          "question": "We ___ (wait) for the bus at 5:00.",
+          "correct_answer": "will be waiting"
+        },
+        {
+          "question": "The professor ___ (talk) during the morning class.",
+          "correct_answer": "will be talking"
+        },
+        {
+          "question": "I ___ (listen) to music in my dorm room.",
+          "correct_answer": "will be listening"
+        },
+        {
+          "question": "They ___ (carry) the boxes to the gym tomorrow.",
+          "correct_answer": "will be carrying"
+        },
+        {
+          "question": "The student ___ (sleep) in his room at 11 PM.",
+          "correct_answer": "will be sleeping"
+        },
+        {
+          "question": "He ___ (look) for a new book in the library.",
+          "correct_answer": "will be looking"
+        },
+        {
+          "question": "We ___ (prepare) for the party all day Sunday.",
+          "correct_answer": "will be preparing"
+        },
+        {
+          "question": "They ___ (run) in the race tomorrow morning.",
+          "correct_answer": "will be running"
+        },
+        {
+          "question": "The sun ___ (shine) into the room at midday.",
+          "correct_answer": "will be shining"
+        },
+        {
+          "question": "I ___ (think) about my family during the trip.",
+          "correct_answer": "will be thinking"
+        },
+        {
+          "question": "They ___ (close) the gate at 9:00 PM tonight.",
+          "correct_answer": "will be closing"
+        },
+        {
+          "question": "She ___ (talk) to the teacher after the lesson.",
+          "correct_answer": "will be talking"
+        },
+        {
+          "question": "The boy ___ (sit) on the bus at 8:00 AM.",
+          "correct_answer": "will be sitting"
+        },
+        {
+          "question": "We ___ (drink) tea in the coffee shop at 4:00.",
+          "correct_answer": "will be drinking"
+        },
+        {
+          "question": "They ___ (dance) at the club on Friday night.",
+          "correct_answer": "will be dancing"
+        },
+        {
+          "question": "I ___ (wait) for the professor in her office.",
+          "correct_answer": "will be waiting"
+        },
+        {
+          "question": "The clock ___ (tick) in the quiet museum.",
+          "correct_answer": "will be ticking"
+        },
+        {
+          "question": "She ___ (make) a cake for the campus party.",
+          "correct_answer": "will be making"
+        },
+        {
+          "question": "The rain ___ (fall) in the park tomorrow morning.",
+          "correct_answer": "will be falling"
+        },
+        {
+          "question": "They ___ (have) a fast meeting at 11:00.",
+          "correct_answer": "will be having"
+        },
+        {
+          "question": "The bird ___ (fly) south for the winter.",
+          "correct_answer": "will be flying"
+        },
+        {
+          "question": "We ___ (prepare) lunch for the university guests.",
+          "correct_answer": "will be preparing"
+        },
+        {
+          "question": "They ___ (watch) a show in the classroom.",
+          "correct_answer": "will be watching"
+        },
+        {
+          "question": "I ___ (clean) my desk after the semester ends.",
+          "correct_answer": "will be cleaning"
+        },
+        {
+          "question": "The teacher ___ (explain) the new project next week.",
+          "correct_answer": "will be explaining"
+        },
+        {
+          "question": "She ___ (walk) to the library early tomorrow.",
+          "correct_answer": "will be walking"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,

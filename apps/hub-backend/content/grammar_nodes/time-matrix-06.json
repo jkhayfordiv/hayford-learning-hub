@@ -1,38 +1,137 @@
 {
   "node_id": "time-matrix-06",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "The 'Was Doing' Past",
   "description": "Talking about an action in progress at a specific past moment.",
   "display_order": 6,
   "prerequisites": ["time-matrix-05"],
-  "lesson_content_markdown": "# Setting the Scene\n\nSometimes, we want to talk about what was **happening** in the past, rather than just what finished. We call this the 'Was Doing' past. \n\nImagine the past like a movie. The regular 'Finished' past is like clicking a picture of the end. But the 'Was Doing' past is like pausing the movie in the middle of a scene. \n\n### How to Make It\nUse **WAS** or **WERE** + **-ING**:\n- I **was** study**ing**.\n- They **were** research**ing**.\n\n### When to Use It\n1.  **Specific Moments**: \"At 9:00 PM yesterday, I **was studying** in the library.\"\n2.  **Setting the Scene**: \"While the professor **was explaining** the problem, a fire alarm went off.\" \n\nNotice that the 'was explaining' action was still going on when the alarm made a quick, finished sound (went off). \n\nIn university reports, we often use this to talk about things that were happening during a research project: \"While we **were observing** the test group, we noticed a small change.\"",
+  "lesson_content_markdown": "# The 'Was Doing' Past\n\nWe use the **Past Continuous** to talk about an action that was middle in progress at a past time. This shows us the action was happening right then.\n\n### 1. Formula: Past Be Verb + Doing Word (-ing)\n\nTo make this tense, you need **two** parts:\n\n**1. The correct Past Be Verb**\n- **I, He, She, It** (one person) use **was**\n- **You, We, They** (many people) use **were**\n\n**2. The Doing Word with -ing**\n- Example: **read** → **reading**\n- Example: **study** → **studying**\n\n### 2. Examples:\n- At 10:00 AM yesterday, I **was studying** in the library.\n- The students **were eating** lunch when I arrived.\n- It **was raining** when class finished.\n\n### 3. When to use it?\n\n- To show someone was middle in their activity.\n- To describe the background of a story.\n- **Example**: She **was sitting** in the park when the bird flew over.\n\n---",
   "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Which word correctly describes the action in progress?",
+    "type": "error_correction",
+    "prompt_to_student": "Find the ONE mistake in each sentence below. Type only the correct word or words to fix the sentence.",
     "activity_data": {
       "questions": [
         {
-          "question": "The university library was crowded because many students _____ for the final exam.",
-          "options": ["studied", "studies", "was studying", "were studying"],
-          "correct_answer": "were studying",
-          "category": "Past Continuous"
+          "question": "I was read a book when you called me.",
+          "correct_answer": "reading"
         },
         {
-          "question": "While the chemist _____ the solution, she found an unexpected chemical reaction.",
-          "options": ["mixing", "was mixing", "mix", "is mixing"],
-          "correct_answer": "was mixing",
-          "category": "Past Continuous"
+          "question": "They was walking to class at 9:00 AM.",
+          "correct_answer": "were walking"
         },
         {
-          "question": "During the laboratory trial, the equipment _____ to track movement every millisecond.",
-          "options": ["work", "working", "was working", "works"],
-          "correct_answer": "was working",
-          "category": "Past Continuous"
+          "question": "She were writing a long report yesterday evening.",
+          "correct_answer": "was writing"
+        },
+        {
+          "question": "The boy was play football during the break.",
+          "correct_answer": "playing"
+        },
+        {
+          "question": "We was eating lunch when the teacher entered.",
+          "correct_answer": "were eating"
+        },
+        {
+          "question": "The professor is talking for two hours yesterday morning.",
+          "correct_answer": "was talking"
+        },
+        {
+          "question": "Listen! I was not hear you because of the music.",
+          "correct_answer": "was not hearing"
+        },
+        {
+          "question": "Yesterday, they were carry big boxes to the gym.",
+          "correct_answer": "carrying"
+        },
+        {
+          "question": "The student were sleeping in the library yesterday.",
+          "correct_answer": "was sleeping"
+        },
+        {
+          "question": "He was looks for his keys during the long class.",
+          "correct_answer": "looking"
+        },
+        {
+          "question": "We are preparing for the test all night yesterday.",
+          "correct_answer": "were preparing"
+        },
+        {
+          "question": "They was running to the bus stop at 8 AM.",
+          "correct_answer": "were running"
+        },
+        {
+          "question": "The sun was shine through the tree when I saw it.",
+          "correct_answer": "shining"
+        },
+        {
+          "question": "I were thinking about my exam yesterday evening.",
+          "correct_answer": "was thinking"
+        },
+        {
+          "question": "They were close the shop when I arrived.",
+          "correct_answer": "closing"
+        },
+        {
+          "question": "She were talking on the phone during the lesson.",
+          "correct_answer": "was talking"
+        },
+        {
+          "question": "The boy was carried three books yesterday.",
+          "correct_answer": "carrying"
+        },
+        {
+          "question": "We was drinking tea when it began to rain.",
+          "correct_answer": "were drinking"
+        },
+        {
+          "question": "They were dances together last night.",
+          "correct_answer": "dancing"
+        },
+        {
+          "question": "I am waiting for the bus all day yesterday.",
+          "correct_answer": "was waiting"
+        },
+        {
+          "question": "The clock was tick very slowly during the test.",
+          "correct_answer": "ticking"
+        },
+        {
+          "question": "She was make a sandwich when the bell rang.",
+          "correct_answer": "making"
+        },
+        {
+          "question": "The rain is falling on the campus yesterday morning.",
+          "correct_answer": "was falling"
+        },
+        {
+          "question": "They were have a meeting in the student lounge.",
+          "correct_answer": "having"
+        },
+        {
+          "question": "The bird was fly over the school all day yesterday.",
+          "correct_answer": "flying"
+        },
+        {
+          "question": "We was preparing lunch in the small kitchen.",
+          "correct_answer": "were preparing"
+        },
+        {
+          "question": "They were watch a movie at 10 PM last night.",
+          "correct_answer": "watching"
+        },
+        {
+          "question": "I was cleans my room when my mother came.",
+          "correct_answer": "cleaning"
+        },
+        {
+          "question": "The teacher were explaining the test scores.",
+          "correct_answer": "was explaining"
+        },
+        {
+          "question": "She were walking to school when she saw me.",
+          "correct_answer": "was walking"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,

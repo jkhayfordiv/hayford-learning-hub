@@ -1,38 +1,167 @@
 {
   "node_id": "time-matrix-04",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "Finished Past: Regular Type",
   "description": "Talking about things that are 100% finished using -ed.",
   "display_order": 4,
   "prerequisites": ["time-matrix-03"],
-  "lesson_content_markdown": "# Talking About the Finished Past\n\nWhen we talk about things that happened and finished in the past, we usually add **-ed** to the end of the action word (verb). This is the 'Regular' type of past tense. \n\nThink of the past as a box that is now closed. If you did something yesterday, last week, or even two minutes ago, and it is totally finished, you use this form. For example, if you finished your homework at 9:00 PM, you can say, \"I **finished** my work.\" \n\n### Making the Form\nMost of the time, you just add **-ed**:\n- Walk $\\rightarrow$ Walked\n- Help $\\rightarrow$ Helped\n- Research $\\rightarrow$ Researched\n\nIf the word already ends in 'e', just add 'd':\n- Create $\\rightarrow$ Created\n- Analyze $\\rightarrow$ Analyzed\n\n### When to Use It\nWe often use time words to show the 'box' is closed:\n- **Yesterday** the team **discussed** the results.\n- **Last month**, the university **started** a new project.\n- **In 2023**, the scientist **published** her paper.\n\nRemember: Use this when the action is over and you are just telling the story of what happened.",
+  "lesson_content_markdown": "# Finished Past: Regular Type\n\nWe use the **Simple Past** to talk about things that happened and finished before now. This is the most common way to talk about the past.\n\n### 1. How to build it\n\nFor most words, you just add **-ed** to the end of the action word.\n\n- **Walk** → **Walked**\n- **Watch** → **Watched**\n- **Finish** → **Finished**\n\n### 2. Spelling Rules\n\n- If the word ends in **-e**, just add **-d**.\n  - Example: **Live** → **Lived**\n- If the word ends in a **Consonant + y**, change the **y** to **i** and add **-ed**.\n  - Example: **Study** → **Studied**\n- If the word is short and ends in a **Vowel + Consonant**, double the last letter.\n  - Example: **Stop** → **Stopped**\n\n### 3. Past Time Words\n\nWe often use these words to show the action is finished:\n- Yesterday\n- Last night / Last week / Last year\n- Two days ago / Three hours ago\n- In 2023\n\n### Examples:\n- I **finished** my homework last night.\n- She **studied** for the test in the library.\n- The students **talked** to the teacher after class.\n- We **watched** a movie in the student lounge yesterday.\n\n---",
   "mastery_check": {
     "type": "multiple_choice",
-    "prompt_to_student": "Read the academic sentences and choose the correct word to show the action is finished.",
+    "prompt_to_student": "Choose the correct past form of the word to finish the sentence.",
     "activity_data": {
       "questions": [
         {
-          "question": "The department _____ the new laboratory safety rules during the meeting yesterday.",
-          "options": ["discuss", "discusses", "discussed", "discussing"],
-          "correct_answer": "discussed",
-          "category": "Simple Past Regular"
+          "question": "Yesterday, I ___ to the campus library.",
+          "options": ["walked", "walk", "walking", "walks"],
+          "correct_answer": "walked"
         },
         {
-          "question": "Last semester, the engineering students _____ a bridge model using 3D printing technology.",
-          "options": ["create", "created", "creating", "creates"],
-          "correct_answer": "created",
-          "category": "Simple Past Regular"
+          "question": "She ___ her math homework last night.",
+          "options": ["finished", "finish", "finishes", "finishing"],
+          "correct_answer": "finished"
         },
         {
-          "question": "The research team _____ all the necessary data before the deadline passed.",
-          "options": ["collected", "collect", "collects", "collecting"],
-          "correct_answer": "collected",
-          "category": "Simple Past Regular"
+          "question": "They ___ for the big test three days ago.",
+          "options": ["studied", "studyed", "study", "studying"],
+          "correct_answer": "studied"
+        },
+        {
+          "question": "The student ___ his bus at the front gate.",
+          "options": ["stopped", "stoped", "stop", "stopping"],
+          "correct_answer": "stopped"
+        },
+        {
+          "question": "We ___ a comedy show yesterday evening.",
+          "options": ["watched", "watch", "watches", "watching"],
+          "correct_answer": "watched"
+        },
+        {
+          "question": "He ___ the teacher a question after class.",
+          "options": ["asked", "ask", "asks", "asking"],
+          "correct_answer": "asked"
+        },
+        {
+          "question": "The library ___ at 8:00 PM yesterday.",
+          "options": ["closed", "close", "closes", "closing"],
+          "correct_answer": "closed"
+        },
+        {
+          "question": "I ___ my friend at the university cafe.",
+          "options": ["helped", "help", "helps", "helping"],
+          "correct_answer": "helped"
+        },
+        {
+          "question": "The boys ___ football in the park last Sunday.",
+          "options": ["played", "play", "plays", "playing"],
+          "correct_answer": "played"
+        },
+        {
+          "question": "She ___ a cup of tea during the break.",
+          "options": ["wanted", "want", "wants", "wanting"],
+          "correct_answer": "wanted"
+        },
+        {
+          "question": "Yesterday, we ___ to some pop music.",
+          "options": ["listened", "listen", "listens", "listening"],
+          "correct_answer": "listened"
+        },
+        {
+          "question": "The professor ___ to the students for one hour.",
+          "options": ["talked", "talk", "talks", "talking"],
+          "correct_answer": "talked"
+        },
+        {
+          "question": "I ___ in a small house near the school in 2022.",
+          "options": ["lived", "live", "lives", "living"],
+          "correct_answer": "lived"
+        },
+        {
+          "question": "The student ___ to find his lost pen.",
+          "options": ["tried", "tryed", "try", "trying"],
+          "correct_answer": "tried"
+        },
+        {
+          "question": "Yesterday, they ___ to the local museum.",
+          "options": ["visited", "visit", "visits", "visiting"],
+          "correct_answer": "visited"
+        },
+        {
+          "question": "He ___ for the cafeteria to open.",
+          "options": ["waited", "wait", "waits", "waiting"],
+          "correct_answer": "waited"
+        },
+        {
+          "question": "We ___ our names on the sign-up sheet.",
+          "options": ["typed", "type", "types", "typing"],
+          "correct_answer": "typed"
+        },
+        {
+          "question": "The teacher ___ our names in the book.",
+          "options": ["checked", "check", "checks", "checking"],
+          "correct_answer": "checked"
+        },
+        {
+          "question": "I ___ a blue shirt to school yesterday.",
+          "options": ["liked", "like", "likes", "liking"],
+          "correct_answer": "liked"
+        },
+        {
+          "question": "They ___ their coffee before the lesson.",
+          "options": ["enjoyed", "enjoy", "enjoys", "enjoying"],
+          "correct_answer": "enjoyed"
+        },
+        {
+          "question": "The boy ___ the heavy door for his teacher.",
+          "options": ["opened", "open", "opens", "opening"],
+          "correct_answer": "opened"
+        },
+        {
+          "question": "She ___ her eyes after the long test.",
+          "options": ["rubbed", "rubed", "rub", "rubbing"],
+          "correct_answer": "rubbed"
+        },
+        {
+          "question": "We ___ every morning together last year.",
+          "options": ["danced", "dance", "dances", "dancing"],
+          "correct_answer": "danced"
+        },
+        {
+          "question": "The students ___ their bags on the floor.",
+          "options": ["dropped", "droped", "drop", "dropping"],
+          "correct_answer": "dropped"
+        },
+        {
+          "question": "He ___ about his family during the break.",
+          "options": ["chatted", "chat", "chats", "chatting"],
+          "correct_answer": "chatted"
+        },
+        {
+          "question": "I ___ the white board for the professor.",
+          "options": ["cleaned", "clean", "cleans", "cleaning"],
+          "correct_answer": "cleaned"
+        },
+        {
+          "question": "They ___ a new topic in science class.",
+          "options": ["learned", "learn", "learns", "learning"],
+          "correct_answer": "learned"
+        },
+        {
+          "question": "The group ___ a funny story.",
+          "options": ["shared", "share", "shares", "sharing"],
+          "correct_answer": "shared"
+        },
+        {
+          "question": "She ___ her bag on the chair.",
+          "options": ["placed", "place", "places", "placing"],
+          "correct_answer": "placed"
+        },
+        {
+          "question": "We ___ the teacher for her help.",
+          "options": ["thanked", "thank", "thanks", "thanking"],
+          "correct_answer": "thanked"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,
