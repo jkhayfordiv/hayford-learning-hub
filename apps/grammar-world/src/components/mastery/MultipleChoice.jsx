@@ -1,26 +1,40 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Loader, AlertCircle } from 'lucide-react';
+
+// Fisher-Yates shuffle algorithm
+const shuffleArray = (array) => {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+};
 
 export default function MultipleChoice({ prompt, activityData, onSubmit, assessmentStatus, feedbackMessage }) {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const questions = activityData?.questions || [];
 
-  const handleAnswerSelect = (questionIndex, optionIndex) => {
+  // Shuffle options for each question when the component mounts or activityData changes
+  const shuffledQuestions = useMemo(() => {
+    return questions.map(q => ({
+      ...q,
+      shuffledOptions: shuffleArray(q.options)
+    }));
+  }, [questions]);
+
+  const handleAnswerSelect = (questionIndex, optionText) => {
     setSelectedAnswers({
       ...selectedAnswers,
-      [questionIndex]: optionIndex,
+      [questionIndex]: optionText,
     });
   };
 
   const handleSubmit = () => {
-    // Map selected indices to choice text for the backend
-    const answers = questions.map((q, idx) => {
-      const selectedIdx = selectedAnswers[idx];
-      return selectedIdx !== undefined ? q.options[selectedIdx] : null;
-    });
+    // Collect all string answers
+    const answers = questions.map((_, idx) => selectedAnswers[idx] || null);
 
     // Submit to backend
-    // Note: client-side score calculation is removed as the backend performs the authoritative grading
     onSubmit({ answers }, 'multiple_choice');
   };
 
@@ -37,21 +51,21 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
       )}
 
       <div className="space-y-8 mb-6">
-        {questions.map((question, qIdx) => (
+        {shuffledQuestions.map((question, qIdx) => (
           <div key={qIdx} className="border-b border-gray-200 pb-6 last:border-b-0">
             <p className="font-semibold text-gray-800 mb-4">
               {qIdx + 1}. {question.question}
             </p>
             <div className="space-y-2">
-              {question.options.map((option, oIdx) => (
+              {question.shuffledOptions.map((option, oIdx) => (
                 <button
                   key={oIdx}
-                  onClick={() => handleAnswerSelect(qIdx, oIdx)}
+                  onClick={() => handleAnswerSelect(qIdx, option)}
                   disabled={isLoading}
                   className={`
                     w-full text-left px-4 py-3 rounded-xl border-2 transition-all
                     ${
-                      selectedAnswers[qIdx] === oIdx
+                      selectedAnswers[qIdx] === option
                         ? 'border-brand-primary bg-brand-primary/5 font-semibold'
                         : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50'
                     }

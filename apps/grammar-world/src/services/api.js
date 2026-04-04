@@ -89,3 +89,14 @@ export const submitMasteryCheck = async (nodeId, activityType, userResponse, mas
   
   return response.json();
 };
+export const fetchReviewQuestions = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/grammar/review-questions`, {
+    headers: getHeaders(),
+  });
+  
+  if (!response.ok) {
+    throw new Error('Failed to fetch review questions');
+  }
+  
+  return response.json();
+};

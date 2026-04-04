@@ -243,13 +243,14 @@ router.get('/progress', auth, async (req, res) => {
     const connection = await pool.getConnection();
     
     try {
-      // Get overall progress
+      // Get overall progress and total mastery points
       const [progress] = await connection.query(`
         SELECT 
           COUNT(*) as total_nodes,
           COUNT(CASE WHEN ugp.status = 'completed' THEN 1 END) as completed_nodes,
           COUNT(CASE WHEN ugp.status = 'in_progress' THEN 1 END) as in_progress_nodes,
-          COUNT(CASE WHEN ugp.status = 'unlocked' THEN 1 END) as unlocked_nodes
+          COUNT(CASE WHEN ugp.status = 'unlocked' THEN 1 END) as unlocked_nodes,
+          (SELECT COALESCE(SUM(mastery_points), 0) FROM user_mastery_stats WHERE user_id = $1) as total_mastery_points
         FROM grammar_nodes gn
         LEFT JOIN user_grammar_progress ugp ON gn.node_id = ugp.node_id AND ugp.user_id = $1
         WHERE gn.tier != 'Diagnostic'
@@ -488,11 +489,13 @@ router.post('/submit', auth, async (req, res) => {
       if (passed) {
         // Get node details
         const [nodeDetails] = await connection.query(`
-          SELECT region, tier FROM grammar_nodes WHERE node_id = $1
+          SELECT region, tier, content_json FROM grammar_nodes WHERE node_id = $1
         `, [node_id]);
 
         if (nodeDetails && nodeDetails.length > 0) {
-          const { region, tier } = nodeDetails[0];
+          const { region, tier, content_json } = nodeDetails[0];
+          const content = typeof content_json === 'string' ? JSON.parse(content_json) : content_json;
+          const pointsAwarded = content.rewards?.mastery_points || 100;
           
           // Update or create mastery stats
           const medalField = tier === 'Bronze' ? 'bronze_medals' 
@@ -503,15 +506,15 @@ router.post('/submit', auth, async (req, res) => {
             await connection.query(`
               INSERT INTO user_mastery_stats (
                 user_id, region, nodes_completed, ${medalField}, mastery_points, last_activity_at
-              ) VALUES ($1, $2, 1, 1, 100, CURRENT_TIMESTAMP)
+              ) VALUES ($1, $2, 1, 1, $3, CURRENT_TIMESTAMP)
               ON CONFLICT (user_id, region)
               DO UPDATE SET
                 nodes_completed = user_mastery_stats.nodes_completed + 1,
                 ${medalField} = user_mastery_stats.${medalField} + 1,
-                mastery_points = user_mastery_stats.mastery_points + 100,
+                mastery_points = user_mastery_stats.mastery_points + $3,
                 last_activity_at = CURRENT_TIMESTAMP,
                 updated_at = CURRENT_TIMESTAMP
-            `, [req.user.id, region]);
+            `, [req.user.id, region, pointsAwarded]);
           }
         }
 
@@ -961,3 +964,47 @@ router.get('/admin/recent-submissions', auth, requireRole('teacher', 'admin', 's
 });
 
 module.exports = router;
+
+// GET /api/grammar/review-questions - Get random questions from completed nodes for spaced repetition
+router.get('/review-questions', auth, async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    
+    try {
+      // Find completed nodes for this user
+      const [completed] = await connection.query(`
+        SELECT gn.content_json
+        FROM grammar_nodes gn
+        JOIN user_grammar_progress ugp ON gn.node_id = ugp.node_id
+        WHERE ugp.user_id = $1 AND ugp.status = 'completed' AND gn.tier != 'Diagnostic'
+      `, [req.user.id]);
+
+      if (completed.length === 0) {
+        return res.json({ questions: [] });
+      }
+
+      // Collect all questions from completed nodes
+      let allQuestions = [];
+      completed.forEach(node => {
+        const content = typeof node.content_json === 'string' 
+          ? JSON.parse(node.content_json) 
+          : node.content_json;
+          
+        if (content.mastery_check && content.mastery_check.activity_data && content.mastery_check.activity_data.questions) {
+          allQuestions = allQuestions.concat(content.mastery_check.activity_data.questions);
+        }
+      });
+
+      // Shuffle and take a few
+      const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 10); // Return up to 10, frontend will pick 2-3
+
+      res.json({ questions: selected });
+    } finally {
+      connection.release();
+    }
+  } catch (error) {
+    console.error('Error fetching review questions:', error);
+    res.status(500).json({ error: 'Failed to fetch review questions' });
+  }
+});
