@@ -959,7 +959,7 @@ export default function Dashboard() {
                       </span>
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-sm text-slate-900 dark:text-white leading-snug">
-                          {GRAMMAR_UI_LABELS[item.tag] || item.tag}
+                          {GRAMMAR_UI_LABELS[item.tag] || GRAMMAR_UI_LABELS[item.tag?.toLowerCase()] || item.tag}
                         </p>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
                           {item.count} {item.count === 1 ? 'error' : 'errors'} detected
@@ -980,15 +980,15 @@ export default function Dashboard() {
                           // Pass the raw tag name as topicId, Grammar Lab will decode and match it
                           window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(item.tag)}`;
                         }}
-                        disabled={!topicId}
+                        disabled={!topicId && !item.tag}
                         className={`px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors ${
-                          topicId
+                          (topicId || item.tag)
                             ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-700 dark:hover:bg-slate-100'
                             : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed'
                         }`}
-                        title={topicId ? 'Open grammar practice for this weakness' : 'No linked grammar topic yet'}
+                        title={(topicId || item.tag) ? 'Open grammar practice for this weakness' : 'No linked grammar topic yet'}
                       >
-                        {topicId ? 'More Practice →' : 'Practice Unavailable'}
+                        {(topicId || item.tag) ? 'More Practice →' : 'Practice Unavailable'}
                       </button>
                     </div>
                   </div>

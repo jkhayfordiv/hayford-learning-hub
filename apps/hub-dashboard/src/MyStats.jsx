@@ -186,22 +186,22 @@ export default function MyStats() {
                     <div key={item.tag} className="group">
                       <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
                         <div className="flex items-center gap-2">
-                          <span>{GRAMMAR_UI_LABELS[item.tag] || item.tag}</span>
+                          <span>{GRAMMAR_UI_LABELS[item.tag] || GRAMMAR_UI_LABELS[item.tag?.toLowerCase()] || item.tag}</span>
                           <button
                             onClick={() => {
                               if (!topicId && !item.tag) return;
                               // Pass the raw tag name as topicId, Grammar Lab will decode and match it
                               window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(item.tag)}`;
                             }}
-                            disabled={!topicId}
+                            disabled={!topicId && !item.tag}
                             className={`px-2 py-0.5 rounded text-[10px] font-bold transition-colors ${
-                              topicId
+                              (topicId || item.tag)
                                 ? 'bg-slate-900 text-white hover:bg-slate-700'
                                 : 'bg-slate-200 text-slate-500 cursor-not-allowed'
                             }`}
-                            title={topicId ? 'Open grammar practice for this weakness' : 'No linked grammar topic yet'}
+                            title={(topicId || item.tag) ? 'Open grammar practice for this weakness' : 'No linked grammar topic yet'}
                           >
-                            {topicId ? 'More Practice →' : 'Practice Unavailable'}
+                            {(topicId || item.tag) ? 'More Practice →' : 'Practice Unavailable'}
                           </button>
                         </div>
                         <span>{item.count}</span>

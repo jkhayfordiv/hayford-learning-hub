@@ -1,4 +1,5 @@
 export const GRAMMAR_UI_LABELS = {
+  // Human Readable Keys
   "Article Usage": "A, An, The (Articles)",
   "Countability & Plurals": "Singular & Plural Nouns",
   "Pronoun Reference": "Pronouns",
@@ -19,5 +20,27 @@ export const GRAMMAR_UI_LABELS = {
   "Collocations": "Common Word Pairs",
   "Academic Register": "Formal Writing",
   "Nominalization": "Making Verbs into Nouns",
-  "Hedging": "Softening Your Language"
+  "Hedging": "Softening Your Language",
+
+  // Snake Case Variants (often returned by API/DB)
+  "article_usage": "A, An, The (Articles)",
+  "countability_plurals": "Singular & Plural Nouns",
+  "pronoun_reference": "Pronouns",
+  "prepositional_accuracy": "Prepositions",
+  "word_forms": "Word Types",
+  "subject_verb_agreement": "Subject & Verb Matching",
+  "tense_consistency": "Keeping the Same Time",
+  "present_perfect_past_simple": "Past vs. Present Perfect",
+  "gerunds_infinitives": "Verbs with '-ing' or 'to'",
+  "passive_voice": "Passive Voice",
+  "sentence_boundaries": "Complete Sentences",
+  "relative_clauses": "Adding Detail (who, which, that)",
+  "subordination": "Joining Sentences",
+  "word_order": "Word Order",
+  "parallel_structure": "Matching Sentence Patterns",
+  "transitional_devices": "Linking Words",
+  "collocations": "Common Word Pairs",
+  "academic_register": "Formal Writing",
+  "nominalization": "Making Verbs into Nouns",
+  "hedging": "Softening Your Language"
 };
