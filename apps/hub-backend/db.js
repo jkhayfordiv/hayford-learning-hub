@@ -43,6 +43,12 @@ function initDb() {
       // Force IPv4 to avoid ENETUNREACH on Render
       family: 4
     });
+
+    // Step 3: Pool-level error listener — prevents silent crashes from idle client errors.
+    poolInstance.on('error', (err) => {
+      console.error('⚠️  Unexpected error on idle pg client:', err.message, err);
+    });
+
     console.log('📦 Postgres database (Neon) initialized (IPv4-first)');
   }
   return poolInstance;

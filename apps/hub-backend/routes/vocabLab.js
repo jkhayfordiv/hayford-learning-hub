@@ -41,9 +41,9 @@ function getNextReviewDate(newLevel) {
 // ============================================================================
 router.get('/dashboard', auth, async (req, res) => {
   const user_id = req.user.id;
-  const connection = await pool.getConnection();
-
+  let connection;
   try {
+    connection = await pool.getConnection();
     // Words due today (next_review_date <= NOW() or never reviewed yet)
     const [dueTodayRows] = await connection.query(
       `SELECT
@@ -165,9 +165,10 @@ router.get('/dashboard', auth, async (req, res) => {
       },
     });
   } catch (err) {
-    connection.release();
     console.error('Error in GET /api/vocab-lab/dashboard:', err.message);
     res.status(500).json({ error: 'Failed to fetch dashboard data' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -183,9 +184,9 @@ router.post('/add', auth, async (req, res) => {
     return res.status(400).json({ error: 'Either word or sense_id is required' });
   }
 
-  const connection = await pool.getConnection();
-
+  let connection;
   try {
+    connection = await pool.getConnection();
     let globalWordRows;
 
     if (sense_id) {
@@ -264,9 +265,10 @@ router.post('/add', auth, async (req, res) => {
       throw insertErr; // outer catch will release
     }
   } catch (err) {
-    connection.release();
     console.error('Error in POST /api/vocab-lab/add:', err.message);
     res.status(500).json({ error: 'Failed to add word to Vocab Lab' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -277,8 +279,9 @@ router.post('/add', auth, async (req, res) => {
 router.patch('/words/:id/star', auth, async (req, res) => {
   const user_id = req.user.id;
   const { id } = req.params;
-  const connection = await pool.getConnection();
+  let connection;
   try {
+    connection = await pool.getConnection();
     const [rows] = await connection.query(
       `UPDATE user_vocabulary
        SET is_starred = NOT is_starred
@@ -290,9 +293,10 @@ router.patch('/words/:id/star', auth, async (req, res) => {
     if (!rows.length) return res.status(404).json({ error: 'Word not found' });
     return res.json({ id: rows[0].id, is_starred: rows[0].is_starred });
   } catch (err) {
-    connection.release();
     console.error('Error in PATCH /api/vocab-lab/words/:id/star:', err.message);
     res.status(500).json({ error: 'Failed to toggle star' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -303,8 +307,9 @@ router.patch('/words/:id/star', auth, async (req, res) => {
 router.patch('/words/:id/reset', auth, async (req, res) => {
   const user_id = req.user.id;
   const { id } = req.params;
-  const connection = await pool.getConnection();
+  let connection;
   try {
+    connection = await pool.getConnection();
     const [rows] = await connection.query(
       `UPDATE user_vocabulary
        SET srs_level = 0, next_review_date = CURRENT_TIMESTAMP
@@ -316,9 +321,10 @@ router.patch('/words/:id/reset', auth, async (req, res) => {
     if (!rows.length) return res.status(404).json({ error: 'Word not found' });
     return res.json({ id: rows[0].id, srs_level: rows[0].srs_level });
   } catch (err) {
-    connection.release();
     console.error('Error in PATCH /api/vocab-lab/words/:id/reset:', err.message);
     res.status(500).json({ error: 'Failed to reset word' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -329,8 +335,9 @@ router.patch('/words/:id/reset', auth, async (req, res) => {
 router.delete('/words/:id', auth, async (req, res) => {
   const user_id = req.user.id;
   const { id } = req.params;
-  const connection = await pool.getConnection();
+  let connection;
   try {
+    connection = await pool.getConnection();
     const [rows] = await connection.query(
       `DELETE FROM user_vocabulary
        WHERE id = $1 AND user_id = $2
@@ -341,9 +348,10 @@ router.delete('/words/:id', auth, async (req, res) => {
     if (!rows.length) return res.status(404).json({ error: 'Word not found' });
     return res.json({ deleted: true, id: rows[0].id });
   } catch (err) {
-    connection.release();
     console.error('Error in DELETE /api/vocab-lab/words/:id:', err.message);
     res.status(500).json({ error: 'Failed to delete word' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -359,9 +367,10 @@ router.post('/review', auth, async (req, res) => {
     return res.status(400).json({ error: 'user_word_id and is_correct are required' });
   }
 
-  const connection = await pool.getConnection();
+  let connection;
 
   try {
+    connection = await pool.getConnection();
     // Fetch current row — enforce user ownership
     const [rows] = await connection.query(
       `SELECT id, srs_level
@@ -412,9 +421,10 @@ router.post('/review', auth, async (req, res) => {
       is_mastered:      isNowMastered,
     });
   } catch (err) {
-    connection.release();
     console.error('Error in POST /api/vocab-lab/review:', err.message);
     res.status(500).json({ error: 'Failed to update review result' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -426,9 +436,10 @@ router.patch('/star/:user_word_id', auth, async (req, res) => {
   const user_id = req.user.id;
   const { user_word_id } = req.params;
 
-  const connection = await pool.getConnection();
+  let connection;
 
   try {
+    connection = await pool.getConnection();
     const [result] = await connection.query(
       `UPDATE user_vocabulary
        SET is_starred = NOT is_starred
@@ -448,9 +459,10 @@ router.patch('/star/:user_word_id', auth, async (req, res) => {
       is_starred: result[0].is_starred,
     });
   } catch (err) {
-    connection.release();
     console.error('Error in PATCH /api/vocab-lab/star:', err.message);
     res.status(500).json({ error: 'Failed to update star status' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -471,9 +483,10 @@ router.post('/assign', requireTeacher, async (req, res) => {
     return res.status(400).json({ error: 'Either student_id or class_id is required' });
   }
 
-  const connection = await pool.getConnection();
+  let connection;
 
   try {
+    connection = await pool.getConnection();
     // ── Resolve target students ───────────────────────────────────────────────
     let students;
     if (student_id) {
@@ -542,9 +555,10 @@ router.post('/assign', requireTeacher, async (req, res) => {
       results,
     });
   } catch (err) {
-    connection.release();
     console.error('Error in POST /api/vocab-lab/assign:', err.message);
     res.status(500).json({ error: 'Failed to assign vocabulary' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -560,9 +574,10 @@ router.post('/grade', auth, async (req, res) => {
     return res.status(400).json({ error: 'user_word_id and sentence are required' });
   }
 
-  const connection = await pool.getConnection();
+  let connection;
 
   try {
+    connection = await pool.getConnection();
     // Fetch word data — enforce user ownership
     const [rows] = await connection.query(
       `SELECT uv.id, uv.srs_level, gw.word, gw.part_of_speech, gw.primary_definition
@@ -610,9 +625,10 @@ Keep your feedback_text to 1-2 encouraging sentences appropriate for a language 
       is_correct:          parsed.word_used_correctly,
     });
   } catch (err) {
-    if (connection) connection.release();
     console.error('Error in POST /api/vocab-lab/grade:', err.message);
     res.status(500).json({ error: 'Failed to grade sentence' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -642,8 +658,9 @@ const QUIZ_SCHEMA = {
 
 router.post('/generate-quiz', auth, async (req, res) => {
   const user_id = req.user.id;
-  const connection = await pool.getConnection();
+  let connection;
   try {
+    connection = await pool.getConnection();
     const [starred] = await connection.query(
       `SELECT uv.id AS user_word_id, gw.word, gw.part_of_speech, gw.primary_definition, gw.context_sentence
        FROM user_vocabulary uv
@@ -689,9 +706,10 @@ Return a JSON object with a "quiz" array of exactly 5 items.`;
 
     res.json({ quiz: parsed.quiz || [] });
   } catch (err) {
-    if (connection) connection.release();
     console.error('Error in POST /api/vocab-lab/generate-quiz:', err.message);
     res.status(500).json({ error: 'Failed to generate quiz. Please try again.' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -703,8 +721,9 @@ router.post('/import-assignment/:assignmentId', auth, async (req, res) => {
   const user_id = req.user.id;
   const assignment_id = req.params.assignmentId;
 
-  const connection = await pool.getConnection();
+  let connection;
   try {
+    connection = await pool.getConnection();
     // 1. Verify the assignment belongs to this student and is a vocabulary type
     const [taskRows] = await connection.query(
       `SELECT id, assignment_type, vocab_words, status
@@ -789,9 +808,10 @@ router.post('/import-assignment/:assignmentId', auth, async (req, res) => {
     });
 
   } catch (err) {
-    if (connection) connection.release();
     console.error('Error in POST /api/vocab-lab/import-assignment:', err.message);
     res.status(500).json({ error: 'Failed to import assignment words' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 

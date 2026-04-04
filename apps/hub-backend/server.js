@@ -213,6 +213,14 @@ async function startServer() {
     await bootstrapDatabase();
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`🚀 Hub Backend API is running on port ${PORT}`);
+      
+      // Step 1: Database Keep-Alive (every 4 minutes)
+      // Prevents Serverless Postgres (Neon) from cold-starting by sending a lightweight query.
+      setInterval(() => {
+        pool.query('SELECT 1;')
+          .then(() => console.log('[DB] Keep-alive ping sent'))
+          .catch(err => console.error('[DB] Keep-alive ping failed:', err.message));
+      }, 240000);
     });
   } catch (error) {
     console.error('Failed to bootstrap database schema:', error);

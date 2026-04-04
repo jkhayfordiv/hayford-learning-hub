@@ -8,10 +8,9 @@ const auth = require('../middleware/auth');
 // @access  Private (Student/Teacher/Admin)
 router.get('/', auth, async (req, res) => {
   const user_id = req.user.id;
-
+  let connection;
   try {
-    const connection = await pool.getConnection();
-    
+    connection = await pool.getConnection();
     const [words] = await connection.query(
       `SELECT id, word, source, created_at 
        FROM user_word_bank 
@@ -19,15 +18,14 @@ router.get('/', auth, async (req, res) => {
        ORDER BY created_at DESC`,
       [user_id]
     );
-    
-    connection.release();
-    
     res.json(words);
   } catch (err) {
     console.error('DB Error in GET /api/wordbank:', err.message);
     console.error('Full error:', err);
     if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to fetch word bank' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -45,42 +43,33 @@ router.post('/', auth, async (req, res) => {
   const cleanWord = word.trim().toLowerCase();
   const wordSource = source || 'manual';
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
-    
-    // Attempt to insert the word
-    try {
-      const [result] = await connection.query(
-        `INSERT INTO user_word_bank (user_id, word, source) 
-         VALUES ($1, $2, $3) 
-         RETURNING id, word, source, created_at`,
-        [user_id, cleanWord, wordSource]
-      );
-      
-      connection.release();
-      
-      return res.status(201).json({
-        message: 'Word added to your word bank',
-        word: result[0]
-      });
-    } catch (insertErr) {
-      connection.release();
-      
-      // Handle unique constraint violation (duplicate word)
-      if (insertErr.code === '23505' || insertErr.message.includes('unique')) {
-        return res.status(200).json({
-          message: 'Word already exists in your word bank',
-          duplicate: true
-        });
-      }
-      
-      throw insertErr;
-    }
+    connection = await pool.getConnection();
+    const [result] = await connection.query(
+      `INSERT INTO user_word_bank (user_id, word, source) 
+       VALUES ($1, $2, $3) 
+       RETURNING id, word, source, created_at`,
+      [user_id, cleanWord, wordSource]
+    );
+    return res.status(201).json({
+      message: 'Word added to your word bank',
+      word: result[0]
+    });
   } catch (err) {
+    // Handle unique constraint violation (duplicate word)
+    if (err.code === '23505' || err.message.includes('unique')) {
+      return res.status(200).json({
+        message: 'Word already exists in your word bank',
+        duplicate: true
+      });
+    }
     console.error('DB Error in POST /api/wordbank:', err.message);
     console.error('Full error:', err);
     if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to add word to word bank' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -95,30 +84,27 @@ router.delete('/:word_id', auth, async (req, res) => {
     return res.status(400).json({ error: 'Valid word ID is required' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
-    
+    connection = await pool.getConnection();
     // USER ISOLATION: Only delete if the word belongs to the authenticated user
     const [result] = await connection.query(
       `DELETE FROM user_word_bank 
        WHERE id = $1 AND user_id = $2`,
       [word_id, user_id]
     );
-    
     const deletedCount = result?.affectedRows ?? result?.rowCount ?? 0;
-    
-    connection.release();
-    
     if (deletedCount === 0) {
       return res.status(404).json({ error: 'Word not found or access denied' });
     }
-    
     res.json({ message: 'Word removed from your word bank' });
   } catch (err) {
     console.error('DB Error in DELETE /api/wordbank/:word_id:', err.message);
     console.error('Full error:', err);
     if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to delete word from word bank' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 

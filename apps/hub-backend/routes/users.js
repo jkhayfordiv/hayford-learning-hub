@@ -8,16 +8,16 @@ const { pool } = require('../db');
 // @desc    Get top weaknesses for a user (for dashboard display)
 // @access  Private
 router.get('/:id/weaknesses', auth, async (req, res) => {
+  const userId = parseInt(req.params.id, 10);
+
+  // Security: Users can only view their own weaknesses (unless admin/teacher)
+  if (req.user.role === 'student' && req.user.id !== userId) {
+    return res.status(403).json({ error: 'Access denied' });
+  }
+
+  let connection;
   try {
-    const userId = parseInt(req.params.id, 10);
-    
-    // Security: Users can only view their own weaknesses (unless admin/teacher)
-    if (req.user.role === 'student' && req.user.id !== userId) {
-      return res.status(403).json({ error: 'Access denied' });
-    }
-    
-    const connection = await pool.getConnection();
-    
+    connection = await pool.getConnection();
     const [weaknesses] = await connection.query(
       `SELECT category, error_count, last_updated
        FROM user_weaknesses
@@ -26,13 +26,12 @@ router.get('/:id/weaknesses', auth, async (req, res) => {
        LIMIT 5`,
       [userId]
     );
-    
-    connection.release();
-    
     res.json(weaknesses);
   } catch (error) {
     console.error('Get user weaknesses error:', error);
     res.status(500).json({ error: 'Failed to fetch weaknesses' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -40,9 +39,10 @@ router.get('/:id/weaknesses', auth, async (req, res) => {
 // @desc    Get current user's profile data
 // @access  Private
 router.get('/me', auth, async (req, res) => {
+  let connection;
   try {
-    const connection = await pool.getConnection();
-    
+    connection = await pool.getConnection();
+
     const [users] = await connection.query(
       `SELECT u.id, u.first_name, u.last_name, u.email, u.role, u.institution_id,
               u.subscription_tier AS user_tier, u.stripe_customer_id,
@@ -61,14 +61,13 @@ router.get('/me', auth, async (req, res) => {
        WHERE u.id = $1`,
       [req.user.id]
     );
-    
+
     if (users.length === 0) {
-      connection.release();
       return res.status(404).json({ error: 'User not found' });
     }
-    
+
     const user = users[0];
-    
+
     // Fetch enrolled classes for the user
     const [enrollmentRows] = await connection.query(
       `SELECT c.id, c.class_name, c.class_code, ce.joined_at
@@ -78,9 +77,7 @@ router.get('/me', auth, async (req, res) => {
        ORDER BY ce.joined_at DESC`,
       [user.id]
     );
-    
-    connection.release();
-    
+
     res.json({
       id: user.id,
       first_name: user.first_name,
@@ -111,6 +108,8 @@ router.get('/me', auth, async (req, res) => {
   } catch (error) {
     console.error('Get user profile error:', error);
     res.status(500).json({ error: 'Server error fetching user profile' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -130,8 +129,9 @@ router.post('/enroll-class', requireTeacher, async (req, res) => {
     return res.status(400).json({ error: 'Class ID is required.' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
 
     const [users] = await connection.query(
       'SELECT id, first_name, last_name, role FROM users WHERE LOWER(TRIM(email)) = LOWER($1)',
@@ -184,6 +184,8 @@ router.post('/enroll-class', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Enroll class error:', error);
     res.status(500).json({ error: 'Server error enrolling student in class.' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -199,8 +201,9 @@ router.delete('/unenroll-class', requireTeacher, async (req, res) => {
     return res.status(400).json({ error: 'User ID and Class ID are required.' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
 
     // TENANT ISOLATION: Verify class belongs to admin's institution
     if (actor_role !== 'super_admin') {
@@ -236,6 +239,8 @@ router.delete('/unenroll-class', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Unenroll class error:', error);
     res.status(500).json({ error: 'Server error unenrolling student from class.' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -249,8 +254,9 @@ router.delete('/me', auth, async (req, res) => {
     return res.status(403).json({ error: 'Only student accounts can be deleted from this endpoint.' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     const [result] = await connection.query('DELETE FROM users WHERE id = $1 AND role = $2', [userId, 'student']);
     const deleted = result?.affectedRows ?? result?.rowCount ?? 0;
     connection.release();
@@ -263,6 +269,8 @@ router.delete('/me', auth, async (req, res) => {
   } catch (error) {
     console.error('Delete account error:', error);
     return res.status(500).json({ error: 'Server error deleting account.' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -278,8 +286,9 @@ router.delete('/:id/classes', auth, async (req, res) => {
     return res.status(400).json({ error: 'Invalid student id.' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     const [users] = await connection.query(
       'SELECT id, first_name, last_name, role FROM users WHERE id = $1',
       [studentId]
@@ -334,6 +343,8 @@ router.delete('/:id/classes', auth, async (req, res) => {
   } catch (error) {
     console.error('Remove student from classes error:', error);
     return res.status(500).json({ error: 'Server error removing student from classes.' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -351,9 +362,10 @@ router.patch('/me/password', auth, async (req, res) => {
     return res.status(400).json({ error: 'New password must be at least 6 characters long' });
   }
 
+  let connection;
   try {
     const bcrypt = require('bcryptjs');
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
 
     // Get current user with password hash
     const [users] = await connection.query(
@@ -391,6 +403,8 @@ router.patch('/me/password', auth, async (req, res) => {
   } catch (error) {
     console.error('Password update error:', error);
     res.status(500).json({ error: 'Server error updating password' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -406,8 +420,9 @@ router.get('/search', requireTeacher, async (req, res) => {
     return res.status(400).json({ error: 'Search query must be at least 2 characters' });
   }
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     const searchTerm = `%${q.trim()}%`;
 
     // TENANT ISOLATION: Filter by institution for admins/teachers
@@ -463,6 +478,8 @@ router.get('/search', requireTeacher, async (req, res) => {
     console.error('Full error:', err);
     if (err.query) console.error('Failed query:', err.query);
     res.status(500).json({ error: 'Failed to search users' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 

@@ -11,8 +11,9 @@ router.post('/', auth, async (req, res) => {
   const student_id = req.user.id;
   const type = module_type || 'writing';
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
 
     let module_id = 1;
 
@@ -213,7 +214,6 @@ router.post('/', auth, async (req, res) => {
       console.warn('Score save: invalid taskId (not an integer)', taskId);
     }
 
-    connection.release();
     res.status(201).json({
       success: true,
       message: 'Score saved successfully!',
@@ -223,6 +223,8 @@ router.post('/', auth, async (req, res) => {
   } catch (error) {
     console.error('Save score error:', error);
     res.status(500).json({ error: 'Server Error writing to database', details: error.message });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -231,8 +233,9 @@ router.post('/', auth, async (req, res) => {
 // @access  Private
 router.get('/monthly-usage', auth, async (req, res) => {
   const student_id = req.user.id;
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     const [rows] = await connection.query(
       `SELECT COUNT(DISTINCT writing_session_id) AS writing_sessions
        FROM student_scores
@@ -241,11 +244,12 @@ router.get('/monthly-usage', auth, async (req, res) => {
          AND DATE_TRUNC('month', completed_at) = DATE_TRUNC('month', CURRENT_DATE)`,
       [student_id]
     );
-    connection.release();
     res.json({ writing_sessions_this_month: parseInt(rows[0]?.writing_sessions || 0, 10) });
   } catch (error) {
     console.error('Monthly usage error:', error);
     res.status(500).json({ error: 'Server Error fetching usage' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -255,8 +259,9 @@ router.get('/monthly-usage', auth, async (req, res) => {
 router.get('/my-scores', auth, async (req, res) => {
   const student_id = req.user.id;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     const [scores] = await connection.query(
       `SELECT s.id, s.submitted_text, s.word_count, s.overall_score, 
               s.completed_at, s.diagnostic_data, s.teacher_comment, s.teacher_comment_read, s.feedback_date,
@@ -269,13 +274,12 @@ router.get('/my-scores', auth, async (req, res) => {
        ORDER BY s.completed_at DESC`,
       [student_id]
     );
-
-    connection.release();
     res.json(scores);
-
   } catch (error) {
     console.error('Fetch scores error:', error);
     res.status(500).json({ error: 'Server Error reading from database' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -289,8 +293,9 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
   const actor_id = req.user.id;
   const actor_institution_id = req.user.institution_id;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
     // PHASE 2.2: Tenant isolation based on role
     let query, params;
@@ -360,12 +365,12 @@ router.get('/class-overview', requireTeacher, async (req, res) => {
     }
     
     const [overview] = await connection.query(query, params);
-    connection.release();
     res.json(overview);
-    
   } catch (error) {
     console.error('Class overview error:', error);
     res.status(500).json({ error: 'Server Error fetching class overview' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -377,8 +382,9 @@ router.get('/recent', requireTeacher, async (req, res) => {
   const actor_id = req.user.id;
   const actor_institution_id = req.user.institution_id;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
     // PHASE 2.2: Tenant isolation
     let query, params;
@@ -424,12 +430,12 @@ router.get('/recent', requireTeacher, async (req, res) => {
     }
     
     const [recent] = await connection.query(query, params);
-    connection.release();
     res.json(recent);
-    
   } catch (error) {
     console.error('Recent activity error:', error);
     res.status(500).json({ error: 'Server Error fetching recent activity' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -439,23 +445,23 @@ router.get('/recent', requireTeacher, async (req, res) => {
 router.patch('/:id/mark-viewed', requireTeacher, async (req, res) => {
   const scoreId = req.params.id;
   
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     const [result] = await connection.query(
       `UPDATE student_scores SET viewed_at = CURRENT_TIMESTAMP WHERE id = $1 AND viewed_at IS NULL`,
       [scoreId]
     );
-    connection.release();
-    
     const updated = result?.affectedRows ?? result?.rowCount ?? 0;
     if (updated === 0) {
       return res.status(404).json({ error: 'Submission not found or already viewed' });
     }
-    
     res.json({ message: 'Submission marked as viewed' });
   } catch (error) {
     console.error('Mark viewed error:', error);
     res.status(500).json({ error: 'Server Error marking submission as viewed' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -467,9 +473,10 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
   const actor_id = req.user.id;
   const actor_institution_id = req.user.institution_id;
 
+  let connection;
   try {
     const student_id = req.params.id;
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
     // PHASE 2.2: Verify the user is a student AND belongs to actor's scope
     const [userCheck] = await connection.query(
@@ -545,6 +552,8 @@ router.get('/student/:id', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Fetch student scores error:', error);
     res.status(500).json({ error: 'Server Error fetching student scores' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -557,8 +566,9 @@ router.get('/assignment/:taskId', requireTeacher, async (req, res) => {
   const actor_institution_id = req.user.institution_id;
   const taskId = req.params.taskId;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
     // Fetch the score linked to this assignment
     const [scores] = await connection.query(`
@@ -610,6 +620,8 @@ router.get('/assignment/:taskId', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Fetch assignment submission error:', error);
     res.status(500).json({ error: 'Server Error fetching submission' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -622,8 +634,9 @@ router.get('/:id', requireTeacher, async (req, res) => {
   const actor_id = req.user.id;
   const actor_institution_id = req.user.institution_id;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
     
     const [scores] = await connection.query(`
       SELECT 
@@ -674,6 +687,8 @@ router.get('/:id', requireTeacher, async (req, res) => {
   } catch (error) {
     console.error('Fetch score by ID error:', error);
     res.status(500).json({ error: 'Server Error fetching submission' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
@@ -687,8 +702,9 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
   const actor_role = req.user.role;
   const actor_institution_id = req.user.institution_id;
 
+  let connection;
   try {
-    const connection = await pool.getConnection();
+    connection = await pool.getConnection();
 
     // Verify ownership/permissions before updating
     const [scoreCheck] = await connection.query(`
@@ -730,12 +746,12 @@ router.patch('/:id/comment', requireTeacher, async (req, res) => {
       WHERE id = $3
     `, [teacher_comment, grader_id, scoreId]);
 
-    connection.release();
     res.json({ success: true, message: 'Feedback saved successfully.' });
-
   } catch (error) {
     console.error('Update teacher comment error:', error);
     res.status(500).json({ error: 'Server Error saving feedback' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 
