@@ -10,8 +10,10 @@ import { Loader, AlertCircle } from 'lucide-react';
  *   onSubmit     - fn(userResponse, activityType)
  *   status       - 'idle' | 'loading' | 'failed'
  *   feedbackMessage - string shown on failure
+ *   showFeedback - boolean (true after submit)
+ *   reviewResults - { results: bool[], correctAnswers: string[] }
  */
-export default function ErrorCorrection({ prompt, questions = [], onSubmit, status, feedbackMessage }) {
+export default function ErrorCorrection({ prompt, questions = [], onSubmit, status, feedbackMessage, showFeedback, reviewResults }) {
   // userCorrections: { [questionIndex]: string }
   const [userCorrections, setUserCorrections] = useState({});
 
@@ -49,15 +51,24 @@ export default function ErrorCorrection({ prompt, questions = [], onSubmit, stat
               type="text"
               value={userCorrections[idx] || ''}
               onChange={e => handleChange(idx, e.target.value)}
-              disabled={isLoading}
+              disabled={isLoading || showFeedback}
               placeholder="Type the correction here..."
               className={[
                 'w-full px-4 py-3 rounded-xl border-2 transition-all',
                 'focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50',
-                'border-gray-300 focus:border-brand-primary',
+                showFeedback
+                  ? reviewResults?.results[idx]
+                    ? 'border-green-500 bg-green-50'
+                    : 'border-red-500 bg-red-50'
+                  : 'border-gray-300 focus:border-brand-primary',
                 isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white',
               ].join(' ')}
             />
+            {showFeedback && !reviewResults?.results[idx] && (
+              <p className="mt-2 text-sm text-green-700 font-medium">
+                Correct answer: {reviewResults?.correctAnswers[idx]}
+              </p>
+            )}
           </div>
         ))}
       </div>
@@ -70,24 +81,26 @@ export default function ErrorCorrection({ prompt, questions = [], onSubmit, stat
       )}
 
       <div className="flex justify-center">
-        <button
-          onClick={handleSubmit}
-          disabled={!allAnswered || isLoading}
-          className={[
-            'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
-            !allAnswered || isLoading
-              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'text-white hover:shadow-xl',
-          ].join(' ')}
-          style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
-        >
-          {isLoading ? (
-            <span className="flex items-center gap-2">
-              <Loader className="animate-spin" size={20} />
-              Submitting...
-            </span>
-          ) : 'Submit'}
-        </button>
+        {!showFeedback && (
+          <button
+            onClick={handleSubmit}
+            disabled={!allAnswered || isLoading}
+            className={[
+              'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
+              !allAnswered || isLoading
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'text-white hover:shadow-xl',
+            ].join(' ')}
+            style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
+          >
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                <Loader className="animate-spin" size={20} />
+                Submitting...
+              </span>
+            ) : 'Submit'}
+          </button>
+        )}
       </div>
     </div>
   );

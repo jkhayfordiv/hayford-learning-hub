@@ -20,8 +20,10 @@ function shuffle(arr) {
  *   onSubmit     - fn(userResponse, activityType)
  *   status       - 'idle' | 'loading' | 'failed'
  *   feedbackMessage - string shown on failure
+ *   showFeedback - boolean (true after submit)
+ *   reviewResults - { results: bool[], correctAnswers: string[] }
  */
-export default function MultipleChoice({ prompt, questions = [], onSubmit, status, feedbackMessage }) {
+export default function MultipleChoice({ prompt, questions = [], onSubmit, status, feedbackMessage, showFeedback, reviewResults }) {
   // Shuffle each question's options once on mount / when questions change
   const shuffledQuestions = useMemo(
     () => questions.map(q => ({ ...q, shuffledOptions: shuffle(q.options || []) })),
@@ -64,20 +66,38 @@ export default function MultipleChoice({ prompt, questions = [], onSubmit, statu
               {q.shuffledOptions.map((option, oIdx) => (
                 <button
                   key={oIdx}
-                  onClick={() => handleSelect(qIdx, option)}
-                  disabled={isLoading}
+                  onClick={() => !showFeedback && handleSelect(qIdx, option)}
+                  disabled={isLoading || showFeedback}
                   className={[
                     'w-full text-left px-4 py-3 rounded-xl border-2 transition-all',
-                    selectedAnswers[qIdx] === option
-                      ? 'border-brand-primary bg-brand-primary/5 font-semibold'
-                      : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50',
-                    isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+                    // Feedback styling
+                    showFeedback
+                      ? selectedAnswers[qIdx] === option
+                        ? (reviewResults?.results[qIdx] 
+                            ? 'border-green-500 bg-green-50 font-semibold' // Correct Choice
+                            : 'border-red-500 bg-red-50' // Incorrect Choice
+                          )
+                        : (option === reviewResults?.correctAnswers[qIdx]
+                            ? 'border-green-500 border-dashed bg-white font-semibold' // Highlight Correct Answer if missed
+                            : 'border-gray-100 opacity-60'
+                          )
+                      // Choice styling
+                      : selectedAnswers[qIdx] === option
+                        ? 'border-brand-primary bg-brand-primary/5 font-semibold'
+                        : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50',
+                    
+                    isLoading || showFeedback ? 'cursor-default' : 'cursor-pointer',
                   ].join(' ')}
                 >
                   <span className="inline-block w-6 mr-2 font-mono text-gray-500">
                     {String.fromCharCode(65 + oIdx)}.
                   </span>
                   {option}
+                  {showFeedback && selectedAnswers[qIdx] === option && (
+                    <span className="float-right font-bold text-sm">
+                      {reviewResults?.results[qIdx] ? '✓ Correct' : '✗ Incorrect'}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
@@ -93,26 +113,28 @@ export default function MultipleChoice({ prompt, questions = [], onSubmit, statu
       )}
 
       <div className="flex justify-center">
-        <button
-          onClick={handleSubmit}
-          disabled={!allAnswered || isLoading}
-          className={[
-            'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
-            !allAnswered || isLoading
-              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              : 'text-white hover:shadow-xl',
-          ].join(' ')}
-          style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
-        >
-          {isLoading ? (
-            <span className="flex items-center gap-2">
-              <Loader className="animate-spin" size={20} />
-              Submitting...
-            </span>
-          ) : (
-            `Submit (${Object.keys(selectedAnswers).length}/${shuffledQuestions.length} answered)`
-          )}
-        </button>
+        {!showFeedback && (
+          <button
+            onClick={handleSubmit}
+            disabled={!allAnswered || isLoading}
+            className={[
+              'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
+              !allAnswered || isLoading
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                : 'text-white hover:shadow-xl',
+            ].join(' ')}
+            style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
+          >
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                <Loader className="animate-spin" size={20} />
+                Submitting...
+              </span>
+            ) : (
+              `Submit (${Object.keys(selectedAnswers).length}/${shuffledQuestions.length} answered)`
+            )}
+          </button>
+        )}
       </div>
     </div>
   );

@@ -50,6 +50,7 @@ export default function MasteryCheckEngine({ node, regionName }) {
   const [status, setStatus] = useState('initializing');
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [result, setResult] = useState(null);
+  const [reviewResults, setReviewResults] = useState(null); // { results: bool[], correctAnswers: string[] }
   // quizData holds the FULL mastery_check object but with activity_data.questions
   // replaced by the 10-question subset
   const [quizData, setQuizData] = useState(null);
@@ -126,11 +127,19 @@ export default function MasteryCheckEngine({ node, regionName }) {
       );
 
       setResult(response);
-      setStatus(response.passed ? 'success' : 'failed');
-      setFeedbackMessage(
-        response.feedback ||
-          (response.passed ? 'Excellent work!' : 'Please review the material and try again.'),
-      );
+      setReviewResults({
+        results: response.results,
+        correctAnswers: response.correctAnswers
+      });
+
+      if (response.passed) {
+        setFeedbackMessage(response.feedback || 'Excellent work! You can review your answers below before finishing.');
+      } else {
+        setFeedbackMessage(response.feedback || 'Please review your mistakes below and try again.');
+      }
+      
+      // We set status to idle (or a new 'review' status) so the quiz stays visible
+      setStatus('idle');
     } catch (error) {
       console.error('[MasteryCheckEngine] Submit error:', error);
       setStatus('failed');
@@ -169,7 +178,7 @@ export default function MasteryCheckEngine({ node, regionName }) {
   }
 
   // ─── Render: Success ───────────────────────────────────────────────────────
-  if (status === 'success') {
+  if (result?.passed && status === 'success') {
     return (
       <div className="bg-white rounded-xl p-8 shadow-soft border-4 border-brand-gold animate-fade-in">
         <div className="text-center mb-8">
@@ -250,6 +259,8 @@ export default function MasteryCheckEngine({ node, regionName }) {
     onSubmit: handleSubmit,
     status,
     feedbackMessage,
+    reviewResults,      // New: pass review data
+    showFeedback: !!reviewResults // New: boolean flag
   };
 
   const renderQuizComponent = () => {
@@ -292,6 +303,43 @@ export default function MasteryCheckEngine({ node, regionName }) {
       )}
 
       {renderQuizComponent()}
+
+      {/* Continue button for passed quizzes */}
+      {reviewResults && (
+        <div className="mt-12 flex flex-col items-center border-t border-gray-100 pt-8">
+          {result?.passed ? (
+            <>
+              <p className="text-brand-primary font-semibold mb-4 text-center">
+                Great job! You passed with {result.score}%.
+              </p>
+              <button
+                onClick={() => setStatus('success')}
+                className="bg-brand-navy text-white px-12 py-4 rounded-xl hover:bg-opacity-90 transition-all font-semibold text-lg shadow-lg hover:shadow-xl flex items-center gap-3"
+              >
+                Finish & Claim Rewards
+                <Trophy size={20} />
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="text-red-600 font-semibold mb-4 text-center">
+                Score: {result?.score}% (80% required to pass)
+              </p>
+              <button
+                onClick={() => {
+                  setReviewResults(null);
+                  setResult(null);
+                  setFeedbackMessage('');
+                  // Re-initialize might be needed or just let them try again
+                }}
+                className="bg-gray-800 text-white px-12 py-4 rounded-xl hover:bg-opacity-80 transition-all font-semibold text-lg shadow-lg hover:shadow-xl"
+              >
+                Try Again
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
