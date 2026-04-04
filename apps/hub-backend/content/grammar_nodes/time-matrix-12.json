@@ -1,41 +1,232 @@
 {
-  "node_id": "time-matrix-12",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Still Going",
-  "description": "Talking about things that started in the past and are still true now.",
-  "display_order": 12,
-  "prerequisites": ["time-matrix-11"],
-  "lesson_content_markdown": "# Actions That Haven't Stopped\n\nSometimes, things start in the past and they **still** haven't finished. It's like a bridge connecting your past to your present day. This is different from the 'Finished' past (I went to the store). \n\n### Use it with 'Since' and 'For'\n1.  **Since (a point in time)**: \"The university **has existed** **since** 1950.\"\n2.  **For (a length of time)**: \"We **have studied** Economics **for** three years.\"\n\nIn both examples, the actions are still true right now! \n\n### Why it's Important\nAt university, you will talk about long-term research or history that still affects you today. For example:\n- *\"The professor **has lived** in Japan **for** ten years.\"* (He still lives here!)\n- *\"The museum **has been** closed **since** last March.\"* (It is still closed!)\n\nNote: If you say \"I followed that rule for three years,\" it means you **don't** follow it anymore. Use the 'Still Going' tense to show it is **still true**.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Which word correctly shows a bridge from the past to the present?",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The student health center _____ students on campus for over fifty years.",
-          "options": ["help", "helped", "has helped", "is helping"],
-          "correct_answer": "has helped",
-          "category": "Present Perfect Duration"
-        },
-        {
-          "question": "Professor Sato _____ at this university since he finished his PhD in 2012.",
-          "options": ["teach", "teaches", "has taught", "taught"],
-          "correct_answer": "has taught",
-          "category": "Present Perfect Duration"
-        },
-        {
-          "question": "The economics database _____ unavailable to researchers for several days.",
-          "options": ["was", "be", "has been", "is staying"],
-          "correct_answer": "has been",
-          "category": "Present Perfect Duration"
+    "node_id": "time-matrix-12",
+    "title": "Unfinished Time: Since and For",
+    "description": "Talking about how long you have been doing something using since and for.",
+    "display_order": 12,
+    "prerequisites": ["time-matrix-11"],
+    "lesson_content_markdown": "# Unfinished Time: Since and For\n\nWe use the **Present Perfect** with **since** and **for** to talk about actions that started in the past and are still happening now. This tells us about **duration** or the **starting point**.\n\n### 1. Duration: For\nUse **for** when you talk about a **length of time** (how many minutes, hours, days, or years).\n\n- **Formula**: for + duration\n- **Example**: I have lived in this dorm **for six months**.\n- **Example**: She has studied science **for two hours**.\n\n### 2. Starting Point: Since\nUse **since** when you talk about the **specific time** an action started.\n\n- **Formula**: since + specific time point\n- **Example**: I have lived in this dorm **since September**.\n- **Example**: They have been friends **since 2022**.\n\n### 3. How long...?\nWe use **How long...?** to ask about the time an action has continued up until now.\n\n- **Example**: **How long** have you been in this class?\n- **Answer**: I've been in this class **for 30 minutes**.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Show that you understand how to talk about duration and starting points!",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "I have been a student at this university ___ 2023.",
+                    "options": [
+                        "since",
+                        "for",
+                        "at",
+                        "during"
+                    ],
+                    "correct_answer": "since"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "We have lived in the campus dorm ___ three semesters.",
+                    "options": [
+                        "for",
+                        "since",
+                        "ago",
+                        "at"
+                    ],
+                    "correct_answer": "for"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "How ___ have you worked in the university library?",
+                    "options": [
+                        "long",
+                        "much",
+                        "many",
+                        "often"
+                    ],
+                    "correct_answer": "long"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She ___ this professor since the first day of class.",
+                    "options": [
+                        "has known",
+                        "knows",
+                        "is knowing",
+                        "have known"
+                    ],
+                    "correct_answer": "has known"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "He has been in his office ___ nine o'clock this morning.",
+                    "options": [
+                        "since",
+                        "for",
+                        "ago",
+                        "at"
+                    ],
+                    "correct_answer": "since"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ three tests already this semester.",
+                    "options": [
+                        "have had",
+                        "has had",
+                        "had",
+                        "having"
+                    ],
+                    "correct_answer": "have had"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ very cold since the winter semester started.",
+                    "options": [
+                        "has been",
+                        "is",
+                        "was",
+                        "have been"
+                    ],
+                    "correct_answer": "has been"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I have studied in the student center ___ five hours.",
+                    "options": [
+                        "for",
+                        "since",
+                        "during",
+                        "ago"
+                    ],
+                    "correct_answer": "for"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Have you seen my roommate ___ this morning?",
+                    "options": [
+                        "since",
+                        "for",
+                        "during",
+                        "at"
+                    ],
+                    "correct_answer": "since"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "We ___ this car for ten years now.",
+                    "options": [
+                        "have had",
+                        "had",
+                        "having",
+                        "has had"
+                    ],
+                    "correct_answer": "have had"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I have (be) a student here ___ two years.",
+                    "accepted_answers": ["been;for", "been;for", "ve been;for"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (not see) their family since last year.",
+                    "accepted_answers": ["haven't seen", "have not seen", "ve not seen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He ___ (live) in that room for a long time.",
+                    "accepted_answers": ["has lived", "lived", "s lived"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (know) your best friend since childhood?",
+                    "accepted_answers": ["Have;known", "have;known"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (want) a new computer for three months.",
+                    "accepted_answers": ["has wanted", "wanted", "s wanted"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (have) this library book for one week.",
+                    "accepted_answers": ["have had", "had", "ve had"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (not hear) from the professor since Tuesday.",
+                    "accepted_answers": ["haven't heard", "have not heard", "ve not heard"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (be) very quiet since the classes ended.",
+                    "accepted_answers": ["has been", "been", "s been"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How long ___ your parents (work) at the university?",
+                    "accepted_answers": ["have;worked", "have;worked"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (be) friends for ten years.",
+                    "accepted_answers": ["have been", "been", "ve been"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I have been in this room *since* three hours.",
+                    "accepted_answers": ["for"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *has lived* here since three years.",
+                    "accepted_answers": ["for", "lived"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *has been* students since last year.",
+                    "accepted_answers": ["have been", "been", "ve been"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We have *be* in the gym since four o'clock.",
+                    "accepted_answers": ["been", "have been", "ve been"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *am known* him for a long time.",
+                    "accepted_answers": ["have known", "known", "ve known"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She has been sick *for* Monday.",
+                    "accepted_answers": ["since"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "How *much* have you been in this class?",
+                    "accepted_answers": ["long"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *have had* the same room since 2021.",
+                    "accepted_answers": ["have had", "had", "ve had"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *knowed* the answer for five minutes.",
+                    "accepted_answers": ["have known", "known", "ve known"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *have changed* since you left.",
+                    "accepted_answers": ["has changed", "changed", "s changed"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }

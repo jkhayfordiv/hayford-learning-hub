@@ -1,41 +1,232 @@
 {
-  "node_id": "time-matrix-11",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Life Experience",
-  "description": "Talking about things you have done in your life without a specific time.",
-  "display_order": 11,
-  "prerequisites": ["time-matrix-10"],
-  "lesson_content_markdown": "# What Have You Done? \n\nSometimes, it's not important **when** you did something. What counts is that you **have** done it. In university and jobs, we often talk about our experiences like this. \n\n### How to Make It\nUse **HAVE** or **HAS** + **the past form** (the 'Third' form of the verb, also called the Past Participle). \n- I **have been** to Tokyo.\n- The researcher **has published** many papers. \n\n### When to Use It\n1.  **Life Experiences**: \"Have you ever studied abroad?\" (In your whole life up to now.)\n2.  **Repeating Actions**: \"The university **has held** this event three times.\"\n\nWe usually don't say 'yesterday' or 'last week' here. If we have a specific time, we use the regular past tense (I went to Tokyo **yesterday**). Use this 'Life Experience' tense when you just want to say, \"Yes, I did that before!\" or \"No, I haven't tried that yet!\"",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Which word correctly shows a life experience?",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The university _____ several new buildings to accommodate more students.",
-          "options": ["build", "built", "has built", "is building"],
-          "correct_answer": "has built",
-          "category": "Present Perfect Experience"
-        },
-        {
-          "question": "_____ you ever visited the campus research center?",
-          "options": ["Did", "Have", "Were", "Are"],
-          "correct_answer": "Have",
-          "category": "Present Perfect Experience"
-        },
-        {
-          "question": "Dr. Miller _____ many articles about global warming during his long career.",
-          "options": ["write", "wrote", "has written", "writes"],
-          "correct_answer": "has written",
-          "category": "Present Perfect Experience"
+    "node_id": "time-matrix-11",
+    "title": "Life Experience: Have You Ever?",
+    "description": "Talking about things you have done in your life without a specific time.",
+    "display_order": 11,
+    "prerequisites": ["time-matrix-10"],
+    "lesson_content_markdown": "# Life Experience: Have You Ever?\n\nSometimes, it is not important **when** you did something. What counts is that you **have** done it at some point in your life. We use the **Present Perfect** for this.\n\n### 1. How to Make It\nUse **have** or **has** + the **Past Participle** (V3).\n\n- **Formula**: Subject + have/has + V3 (e.g., eaten, been, visited)\n- **Example**: I **have visited** the university library many times.\n- **Example**: She **has studied** English for a long time.\n\n### 2. Common Regular V3 Forms (-ed)\nMost past participles are the same as the simple past form.\n- visit \u2192 **visited**\n- study \u2192 **studied**\n- finish \u2192 **finished**\n\n### 3. Common Irregular V3 Forms\n- go \u2192 **gone / been** (Use \"been\" if you went and came back!)\n- eat \u2192 **eaten**\n- write \u2192 **written**\n- see \u2192 **seen**\n- do \u2192 **done**\n\n### 4. Have you ever...?\nWe use **ever** in questions to mean \"at any time in your life.\"\n- **Example**: **Have you ever** lost your student ID card?\n- **Example**: **Has she ever** eaten at the campus cafe?\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Show what you know about life experiences! Follow the instructions for each question.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "Choose the correct sentence about experience.",
+                    "options": [
+                        "I have saw that professor before.",
+                        "I have seen that professor before.",
+                        "I see that professor before.",
+                        "I seen that professor before."
+                    ],
+                    "correct_answer": "I have seen that professor before."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Has he ever ___ a marathon for charity?",
+                    "options": [
+                        "run",
+                        "ran",
+                        "runs",
+                        "running"
+                    ],
+                    "correct_answer": "run"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ to the top floor of the library yet.",
+                    "options": [
+                        "haven't been",
+                        "didn't be",
+                        "hasn't been",
+                        "not was"
+                    ],
+                    "correct_answer": "haven't been"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which question is correct?",
+                    "options": [
+                        "Have you ever eaten sushi?",
+                        "Did you ever eaten sushi?",
+                        "Have you ever eat sushi?",
+                        "Has you ever eaten sushi?"
+                    ],
+                    "correct_answer": "Have you ever eaten sushi?"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She ___ three different languages in her life.",
+                    "options": [
+                        "has learned",
+                        "have learned",
+                        "has learn",
+                        "learn"
+                    ],
+                    "correct_answer": "has learned"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "We ___ this science project already.",
+                    "options": [
+                        "have finished",
+                        "finished",
+                        "has finished",
+                        "finishing"
+                    ],
+                    "correct_answer": "have finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ to the new university gym many times.",
+                    "options": [
+                        "have been",
+                        "has been",
+                        "was",
+                        "were"
+                    ],
+                    "correct_answer": "have been"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "My roommate ___ her key in the classroom.",
+                    "options": [
+                        "has lost",
+                        "have lost",
+                        "losted",
+                        "losing"
+                    ],
+                    "correct_answer": "has lost"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence uses the correct V3 form?",
+                    "options": [
+                        "I have written my report.",
+                        "I have wrote my report.",
+                        "I have write my report.",
+                        "I have writing my report."
+                    ],
+                    "correct_answer": "I have written my report."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Have you ___ your homework yet?",
+                    "options": [
+                        "done",
+                        "did",
+                        "do",
+                        "does"
+                    ],
+                    "correct_answer": "done"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (visit) the campus center three times this week.",
+                    "accepted_answers": ["have visited", "visited", "ve visited"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (see) that movie at the university theater before.",
+                    "accepted_answers": ["has seen", "seen", "s seen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (not eat) lunch yet. Let's go to the cafe!",
+                    "accepted_answers": ["haven't eaten", "have not eaten", "avent eaten"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you ever (be) to a graduation ceremony?",
+                    "accepted_answers": ["Have;been", "have;been"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The professor ___ (give) us the assignment already.",
+                    "accepted_answers": ["has given", "given", "s given"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (read) that book for my English class.",
+                    "accepted_answers": ["have read", "read", "ve read"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He ___ (never try) the food at the new cafeteria.",
+                    "accepted_answers": ["has never tried", "never tried", "s never tried"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (finish) their presentation for the group.",
+                    "accepted_answers": ["have finished", "finished", "ve finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (not rain) at the university all day.",
+                    "accepted_answers": ["hasn't rained", "has not rained", "s not rained"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "My friends ___ (buy) tickets for the campus concert.",
+                    "accepted_answers": ["have bought", "bought", "ve bought"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *have went* to that library before.",
+                    "accepted_answers": ["have been", "been", "ve been", "have gone", "gone"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *have seen* the new science building.",
+                    "accepted_answers": ["has seen", "seen", "s seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *has finished* the test early.",
+                    "accepted_answers": ["have finished", "finished", "ve finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *have forgot* our books in the room.",
+                    "accepted_answers": ["have forgotten", "forgotten", "ve forgotten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *has eat* at the cafeteria today.",
+                    "accepted_answers": ["has eaten", "eaten", "s eaten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *seen* that professor many times.",
+                    "accepted_answers": ["have seen", "seen", "ve seen", "s seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Have you ever *drink* the special campus tea?",
+                    "accepted_answers": ["drunk", "have drunk"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *have been* clean since this morning.",
+                    "accepted_answers": ["has been", "been", "s been"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *losted* my student card twice this year.",
+                    "accepted_answers": ["have lost", "lost", "ve lost"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *never seen* the university museum.",
+                    "accepted_answers": ["have never seen", "never seen", "ve never seen"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }
