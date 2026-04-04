@@ -488,6 +488,43 @@ router.post('/submit', auth, async (req, res) => {
           return q.correct_answer || (q.accepted_corrections && q.accepted_corrections[0]) || '';
         };
         correctAnswers = questions.map(getFirstCorrect);
+      } else if (activity_type === 'standard_mixed') {
+        const questions = mastery_check.activity_data.questions;
+        let correct = 0;
+        
+        if (!user_response.answers || !Array.isArray(user_response.answers)) {
+          throw new Error('Invalid user_response: answers array is missing or invalid');
+        }
+
+        const resolveAnswer = (q) => {
+          if (typeof q.correct_answer === 'number') return [q.options[q.correct_answer]];
+          if (Array.isArray(q.correct_answer)) return q.correct_answer;
+          if (q.correct_answer) return [q.correct_answer];
+          // Fallbacks for older formats if they appear in mixed
+          if (q.accepted_answers) return q.accepted_answers;
+          if (q.accepted_corrections) return q.accepted_corrections;
+          return [];
+        };
+
+        results = [];
+        correctAnswers = [];
+
+        for (let i = 0; i < questions.length; i++) {
+          const q = questions[i];
+          const userAnswer = (user_response.answers[i] || '').trim().toLowerCase();
+          const accepted = resolveAnswer(q).map(a => String(a).toLowerCase());
+          const isMatch = accepted.includes(userAnswer);
+          
+          if (isMatch) correct++;
+          results.push(isMatch);
+          
+          const answers = resolveAnswer(q);
+          correctAnswers.push(answers.length > 0 ? answers[0] : '');
+        }
+
+        score = Math.round((correct / questions.length) * 100);
+        passed = score >= 80;
+        feedback = `Final Defense Results: ${correct} out of ${questions.length} successful.`;
       }
 
       // Save submission

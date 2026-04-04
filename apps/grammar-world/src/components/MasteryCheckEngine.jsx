@@ -6,6 +6,7 @@ import MultipleChoice from './mastery/MultipleChoice';
 import ErrorCorrection from './mastery/ErrorCorrection';
 import FillInTheBlank from './mastery/FillInTheBlank';
 import AIGradedTextInput from './mastery/AIGradedTextInput';
+import StandardMixed from './mastery/StandardMixed';
 
 // Pure Fisher-Yates shuffle — no bias, returns a new array
 function shuffle(arr) {
@@ -273,6 +274,8 @@ export default function MasteryCheckEngine({ node, regionName }) {
         return <FillInTheBlank {...commonProps} />;
       case 'ai_graded_text_input':
         return <AIGradedTextInput {...commonProps} aiRubric={ai_grading_rubric} />;
+      case 'standard_mixed':
+        return <StandardMixed {...commonProps} />;
       default:
         return (
           <div className="bg-white rounded-xl p-8 shadow-soft text-center">
