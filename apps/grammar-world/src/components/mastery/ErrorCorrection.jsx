@@ -1,49 +1,33 @@
 import { useState } from 'react';
 import { Loader, AlertCircle } from 'lucide-react';
 
-export default function ErrorCorrection({ prompt, activityData, onSubmit, assessmentStatus, feedbackMessage }) {
+/**
+ * ErrorCorrection
+ *
+ * Props:
+ *   prompt       - instruction string
+ *   questions    - array of { question, correct_answer } (10 items from engine)
+ *   onSubmit     - fn(userResponse, activityType)
+ *   status       - 'idle' | 'loading' | 'failed'
+ *   feedbackMessage - string shown on failure
+ */
+export default function ErrorCorrection({ prompt, questions = [], onSubmit, status, feedbackMessage }) {
+  // userCorrections: { [questionIndex]: string }
   const [userCorrections, setUserCorrections] = useState({});
-  const questions = activityData?.questions || activityData?.errors || [];
 
-  const handleCorrectionChange = (errorIndex, value) => {
-    setUserCorrections({
-      ...userCorrections,
-      [errorIndex]: value,
-    });
-  };
-
-  const sanitizeInput = (input) => {
-    return input.trim().toLowerCase();
+  const handleChange = (idx, value) => {
+    setUserCorrections(prev => ({ ...prev, [idx]: value }));
   };
 
   const handleSubmit = () => {
-    // Calculate score client-side with flexible validation
-    let correctCount = 0;
-    questions.forEach((q, idx) => {
-      const userAnswer = sanitizeInput(userCorrections[idx] || '');
-      // Handle both new 'correct_answer' and old 'accepted_corrections' formats
-      const acceptedAnswers = q.correct_answer 
-        ? [sanitizeInput(q.correct_answer)]
-        : (q.accepted_corrections || []).map(ans => sanitizeInput(ans));
-      
-      if (acceptedAnswers.includes(userAnswer)) {
-        correctCount++;
-      }
-    });
-
-    const score = Math.round((correctCount / questions.length) * 100);
-    const passed = score >= 80;
-
-    // Convert userCorrections object to array for backend
-    const corrections = questions.map((_, idx) => userCorrections[idx] || '');
-
-    // Submit to backend
-    onSubmit({ corrections, score, passed }, 'error_correction');
+    const corrections = questions.map((_, idx) => (userCorrections[idx] || '').trim());
+    onSubmit({ corrections }, 'error_correction');
   };
 
-  const allAnswered = questions.length > 0 && questions.every((_, idx) => userCorrections[idx]?.trim());
-  const isLoading = assessmentStatus === 'loading';
-  const hasFailed = assessmentStatus === 'failed';
+  const allAnswered = questions.length > 0 &&
+    questions.every((_, idx) => userCorrections[idx]?.trim());
+  const isLoading = status === 'loading';
+  const hasFailed = status === 'failed';
 
   return (
     <div>
@@ -53,40 +37,26 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
         </div>
       )}
 
-      {activityData?.sentence && (
-        <div className="bg-gray-50 rounded-xl p-6 mb-6">
-          <h3 className="font-semibold text-gray-800 mb-3">Find and Fix the Mistakes:</h3>
-          <p className="text-gray-700 leading-relaxed font-mono text-sm whitespace-pre-line">
-            {activityData.sentence}
-          </p>
-        </div>
-      )}
-
       <div className="space-y-6 mb-6">
         {questions.map((q, idx) => (
           <div key={idx} className="border border-gray-200 rounded-xl p-4">
-            <label className="block mb-2">
-              <span className="font-semibold text-gray-800 mb-2 block">
+            <label className="block mb-3">
+              <span className="font-semibold text-gray-800 block mb-2">
                 {idx + 1}. {q.question}
               </span>
-              {q.incorrect_word && (
-                <span className="text-sm text-gray-600 italic">
-                  Mistake: Fix "{q.incorrect_word}"
-                </span>
-              )}
             </label>
             <input
               type="text"
               value={userCorrections[idx] || ''}
-              onChange={(e) => handleCorrectionChange(idx, e.target.value)}
+              onChange={e => handleChange(idx, e.target.value)}
               disabled={isLoading}
-              placeholder="Write the correct word..."
-              className={`
-                w-full px-4 py-3 rounded-xl border-2 transition-all
-                focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50
-                ${isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
-                border-gray-300 focus:border-brand-primary
-              `}
+              placeholder="Type the correction here..."
+              className={[
+                'w-full px-4 py-3 rounded-xl border-2 transition-all',
+                'focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50',
+                'border-gray-300 focus:border-brand-primary',
+                isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white',
+              ].join(' ')}
             />
           </div>
         ))}
@@ -103,14 +73,12 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
         <button
           onClick={handleSubmit}
           disabled={!allAnswered || isLoading}
-          className={`
-            px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all
-            ${
-              !allAnswered || isLoading
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'text-white hover:shadow-xl'
-            }
-          `}
+          className={[
+            'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
+            !allAnswered || isLoading
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'text-white hover:shadow-xl',
+          ].join(' ')}
           style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
         >
           {isLoading ? (
@@ -118,9 +86,7 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
               <Loader className="animate-spin" size={20} />
               Submitting...
             </span>
-          ) : (
-            'Submit'
-          )}
+          ) : 'Submit'}
         </button>
       </div>
     </div>

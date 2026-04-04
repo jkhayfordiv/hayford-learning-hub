@@ -1,46 +1,50 @@
 import { useState, useMemo } from 'react';
 import { Loader, AlertCircle } from 'lucide-react';
 
-// Fisher-Yates shuffle algorithm
-const shuffleArray = (array) => {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
+// Fisher-Yates shuffle (pure — returns new array)
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    [a[i], a[j]] = [a[j], a[i]];
   }
-  return shuffled;
-};
+  return a;
+}
 
-export default function MultipleChoice({ prompt, activityData, onSubmit, assessmentStatus, feedbackMessage }) {
+/**
+ * MultipleChoice
+ *
+ * Props:
+ *   prompt       - instruction string shown above the questions
+ *   questions    - array of { question, options[], correct_answer } (10 items from engine)
+ *   onSubmit     - fn(userResponse, activityType)
+ *   status       - 'idle' | 'loading' | 'failed'
+ *   feedbackMessage - string shown on failure
+ */
+export default function MultipleChoice({ prompt, questions = [], onSubmit, status, feedbackMessage }) {
+  // Shuffle each question's options once on mount / when questions change
+  const shuffledQuestions = useMemo(
+    () => questions.map(q => ({ ...q, shuffledOptions: shuffle(q.options || []) })),
+    [questions],
+  );
+
+  // selectedAnswers: { [questionIndex]: selectedOptionText }
   const [selectedAnswers, setSelectedAnswers] = useState({});
-  const questions = activityData?.questions || [];
 
-  // Shuffle options for each question when the component mounts or activityData changes
-  const shuffledQuestions = useMemo(() => {
-    return questions.map(q => ({
-      ...q,
-      shuffledOptions: shuffleArray(q.options)
-    }));
-  }, [questions]);
-
-  const handleAnswerSelect = (questionIndex, optionText) => {
-    setSelectedAnswers({
-      ...selectedAnswers,
-      [questionIndex]: optionText,
-    });
+  const handleSelect = (qIdx, optionText) => {
+    setSelectedAnswers(prev => ({ ...prev, [qIdx]: optionText }));
   };
 
   const handleSubmit = () => {
-    // Collect all string answers
-    const answers = questions.map((_, idx) => selectedAnswers[idx] || null);
-
-    // Submit to backend
+    // Build answers array aligned to the original (shuffled) question order
+    const answers = shuffledQuestions.map((_, idx) => selectedAnswers[idx] ?? null);
     onSubmit({ answers }, 'multiple_choice');
   };
 
-  const allAnswered = questions.every((_, idx) => selectedAnswers[idx] !== undefined);
-  const isLoading = assessmentStatus === 'loading';
-  const hasFailed = assessmentStatus === 'failed';
+  const allAnswered = shuffledQuestions.length > 0 &&
+    shuffledQuestions.every((_, idx) => selectedAnswers[idx] != null);
+  const isLoading = status === 'loading';
+  const hasFailed = status === 'failed';
 
   return (
     <div>
@@ -51,28 +55,28 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
       )}
 
       <div className="space-y-8 mb-6">
-        {shuffledQuestions.map((question, qIdx) => (
+        {shuffledQuestions.map((q, qIdx) => (
           <div key={qIdx} className="border-b border-gray-200 pb-6 last:border-b-0">
             <p className="font-semibold text-gray-800 mb-4">
-              {qIdx + 1}. {question.question}
+              {qIdx + 1}. {q.question}
             </p>
             <div className="space-y-2">
-              {question.shuffledOptions.map((option, oIdx) => (
+              {q.shuffledOptions.map((option, oIdx) => (
                 <button
                   key={oIdx}
-                  onClick={() => handleAnswerSelect(qIdx, option)}
+                  onClick={() => handleSelect(qIdx, option)}
                   disabled={isLoading}
-                  className={`
-                    w-full text-left px-4 py-3 rounded-xl border-2 transition-all
-                    ${
-                      selectedAnswers[qIdx] === option
-                        ? 'border-brand-primary bg-brand-primary/5 font-semibold'
-                        : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50'
-                    }
-                    ${isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-                  `}
+                  className={[
+                    'w-full text-left px-4 py-3 rounded-xl border-2 transition-all',
+                    selectedAnswers[qIdx] === option
+                      ? 'border-brand-primary bg-brand-primary/5 font-semibold'
+                      : 'border-gray-200 hover:border-brand-primary hover:bg-gray-50',
+                    isLoading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
+                  ].join(' ')}
                 >
-                  <span className="inline-block w-6 mr-2">{String.fromCharCode(65 + oIdx)}.</span>
+                  <span className="inline-block w-6 mr-2 font-mono text-gray-500">
+                    {String.fromCharCode(65 + oIdx)}.
+                  </span>
                   {option}
                 </button>
               ))}
@@ -92,14 +96,12 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
         <button
           onClick={handleSubmit}
           disabled={!allAnswered || isLoading}
-          className={`
-            px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all
-            ${
-              !allAnswered || isLoading
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'text-white hover:shadow-xl'
-            }
-          `}
+          className={[
+            'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
+            !allAnswered || isLoading
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'text-white hover:shadow-xl',
+          ].join(' ')}
           style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
         >
           {isLoading ? (
@@ -108,7 +110,7 @@ export default function MultipleChoice({ prompt, activityData, onSubmit, assessm
               Submitting...
             </span>
           ) : (
-            'Submit'
+            `Submit (${Object.keys(selectedAnswers).length}/${shuffledQuestions.length} answered)`
           )}
         </button>
       </div>

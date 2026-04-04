@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Trophy, Award, Sparkles, Loader2, Info } from 'lucide-react';
 import { submitMasteryCheck, fetchReviewQuestions } from '../services/api';
@@ -7,10 +7,51 @@ import ErrorCorrection from './mastery/ErrorCorrection';
 import FillInTheBlank from './mastery/FillInTheBlank';
 import AIGradedTextInput from './mastery/AIGradedTextInput';
 
+// Pure Fisher-Yates shuffle — no bias, returns a new array
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// Build the final 10-question set from current bank + optional review pool.
+// ALWAYS returns exactly min(10, currentBank.length) questions.
+function buildQuiz(currentBank, reviewPool) {
+  const QUIZ_SIZE = 10;
+
+  // Determine how many review questions to inject (0–3), capped by pool size
+  const maxReview = Math.min(3, reviewPool.length);
+  const targetReview = maxReview > 0 ? Math.floor(Math.random() * maxReview) + 1 : 0;
+
+  // Shuffle both pools independently
+  const shuffledCurrent = shuffle(currentBank);
+  const shuffledReview = shuffle(reviewPool);
+
+  // Deduplicate review against current bank by question text
+  const currentTexts = new Set(shuffledCurrent.map(q => q.question));
+  const uniqueReview = shuffledReview.filter(q => !currentTexts.has(q.question));
+
+  // Pick review questions first, then fill remainder from current bank
+  const selectedReview = uniqueReview.slice(0, targetReview);
+  const neededCurrent = QUIZ_SIZE - selectedReview.length;
+  const selectedCurrent = shuffledCurrent.slice(0, neededCurrent);
+
+  // Merge, do a final shuffle, and hard-cap at QUIZ_SIZE
+  const final = shuffle([...selectedCurrent, ...selectedReview]).slice(0, QUIZ_SIZE);
+
+  return { questions: final, reviewCount: selectedReview.length };
+}
+
 export default function MasteryCheckEngine({ node, regionName }) {
-  const [assessmentStatus, setAssessmentStatus] = useState('initializing'); // initializing, idle, loading, success, failed
+  // 'initializing' prevents ANY quiz render until math is complete
+  const [status, setStatus] = useState('initializing');
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [result, setResult] = useState(null);
+  // quizData holds the FULL mastery_check object but with activity_data.questions
+  // replaced by the 10-question subset
   const [quizData, setQuizData] = useState(null);
   const [reviewCount, setReviewCount] = useState(0);
   const navigate = useNavigate();
@@ -18,90 +59,81 @@ export default function MasteryCheckEngine({ node, regionName }) {
   const masteryCheck = node?.mastery_check;
   const rewards = node?.rewards;
 
-  // Spaced Repetition Logic - Initialize Quiz
+  // ─── Quiz Initialization ───────────────────────────────────────────────────
   useEffect(() => {
     if (!masteryCheck) return;
 
+    let cancelled = false; // guard against stale async closures
+
     const initializeQuiz = async () => {
+      setStatus('initializing');
+      setQuizData(null);
+
+      // Fetch review pool — fail gracefully, never crash the quiz
+      let reviewPool = [];
       try {
-        setAssessmentStatus('initializing');
-        setQuizData(null); // Clear old data to force loading UI
-        
-        // Fetch potential review questions
-        let reviewPool = [];
-        try {
-          const res = await fetchReviewQuestions();
-          reviewPool = res.questions || [];
-        } catch (err) {
-          console.warn('Failed to fetch review questions, proceeding with current node only', err);
-        }
-
-        const currentBank = [...(masteryCheck.activity_data?.questions || [])];
-        const shuffledCurrent = currentBank.sort(() => 0.5 - Math.random());
-        
-        // Define target review count (2-3)
-        const targetReviewCount = Math.floor(Math.random() * 2) + 2; // 2 or 3
-        
-        // Pick unique review questions
-        const selectedReview = reviewPool
-          .sort(() => 0.5 - Math.random())
-          .slice(0, targetReviewCount);
-
-        // Calculate how many current questions we need to reach exactly 10
-        const neededCurrent = 10 - selectedReview.length;
-        const selectedCurrent = shuffledCurrent.slice(0, neededCurrent);
-
-        // Final merge and shuffle
-        const finalQuestions = [...selectedCurrent, ...selectedReview]
-          .sort(() => 0.5 - Math.random())
-          .slice(0, 10); // Hard cut at 10 just in case
-        
-        setQuizData({
-          ...masteryCheck,
-          activity_data: {
-            ...masteryCheck.activity_data,
-            questions: finalQuestions
-          }
-        });
-        setReviewCount(selectedReview.length);
-        setAssessmentStatus('idle');
+        const res = await fetchReviewQuestions();
+        reviewPool = Array.isArray(res.questions) ? res.questions : [];
       } catch (err) {
-        console.error('Quiz Initialization Error:', err);
-        setAssessmentStatus('failed');
-        setFeedbackMessage('Failed to prepare the quiz. Please refresh.');
+        console.warn('[MasteryCheckEngine] Review fetch failed, using current node only:', err.message);
       }
+
+      if (cancelled) return;
+
+      const currentBank = Array.isArray(masteryCheck.activity_data?.questions)
+        ? masteryCheck.activity_data.questions
+        : [];
+
+      if (currentBank.length === 0) {
+        setStatus('failed');
+        setFeedbackMessage('No questions found for this node. Please contact support.');
+        return;
+      }
+
+      const { questions, reviewCount: rc } = buildQuiz(currentBank, reviewPool);
+
+      if (cancelled) return;
+
+      setQuizData({
+        ...masteryCheck,
+        activity_data: {
+          ...masteryCheck.activity_data,
+          questions, // exactly 10 (or fewer if bank is tiny)
+        },
+      });
+      setReviewCount(rc);
+      setStatus('idle');
     };
 
     initializeQuiz();
-  }, [node?.node_id]); // Re-run when node changes
 
+    return () => { cancelled = true; };
+  }, [node?.node_id]); // only re-run when the actual node changes
+
+  // ─── Submit Handler ────────────────────────────────────────────────────────
   const handleSubmit = async (userResponse, activityType) => {
-    // Hard guard: prevent double-submit if already processing
-    if (assessmentStatus === 'loading' || assessmentStatus === 'initializing') return;
+    if (status === 'loading' || status === 'initializing') return;
 
     try {
-      setAssessmentStatus('loading');
+      setStatus('loading');
       setFeedbackMessage('');
 
       const response = await submitMasteryCheck(
         node.node_id,
         activityType,
         userResponse,
-        quizData // Send the subsetted/merged quiz to match backend grading
+        quizData,
       );
 
       setResult(response);
-
-      if (response.passed) {
-        setAssessmentStatus('success');
-        setFeedbackMessage(response.feedback || 'Excellent work!');
-      } else {
-        setAssessmentStatus('failed');
-        setFeedbackMessage(response.feedback || 'Please review the material and try again.');
-      }
+      setStatus(response.passed ? 'success' : 'failed');
+      setFeedbackMessage(
+        response.feedback ||
+          (response.passed ? 'Excellent work!' : 'Please review the material and try again.'),
+      );
     } catch (error) {
-      console.error('Error submitting mastery check:', error);
-      setAssessmentStatus('failed');
+      console.error('[MasteryCheckEngine] Submit error:', error);
+      setStatus('failed');
       setFeedbackMessage('An error occurred. Please try again.');
     }
   };
@@ -111,7 +143,33 @@ export default function MasteryCheckEngine({ node, regionName }) {
     navigate(`/region/${slug}`);
   };
 
-  if (assessmentStatus === 'success') {
+  // ─── Render: Loading ───────────────────────────────────────────────────────
+  if (status === 'initializing') {
+    return (
+      <div className="bg-white rounded-xl p-20 shadow-soft flex flex-col items-center justify-center min-h-[400px]">
+        <div className="relative">
+          <Loader2 className="animate-spin text-brand-primary" size={64} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Sparkles className="text-brand-gold animate-pulse" size={24} />
+          </div>
+        </div>
+        <p className="text-brand-navy font-bold text-xl mt-8 animate-pulse">Generating Lesson...</p>
+        <p className="text-gray-400 text-sm mt-2">Mixing in past review questions...</p>
+      </div>
+    );
+  }
+
+  // ─── Render: No mastery check ──────────────────────────────────────────────
+  if (!masteryCheck) {
+    return (
+      <div className="bg-white rounded-xl p-8 shadow-soft text-center">
+        <p className="text-gray-600">No mastery check available for this node.</p>
+      </div>
+    );
+  }
+
+  // ─── Render: Success ───────────────────────────────────────────────────────
+  if (status === 'success') {
     return (
       <div className="bg-white rounded-xl p-8 shadow-soft border-4 border-brand-gold animate-fade-in">
         <div className="text-center mb-8">
@@ -124,7 +182,6 @@ export default function MasteryCheckEngine({ node, regionName }) {
           </p>
         </div>
 
-        {/* Rewards Display */}
         <div className="bg-gradient-to-br from-brand-gold from-opacity-10 to-transparent rounded-xl p-6 mb-6">
           <div className="flex items-center justify-center gap-8">
             <div className="text-center">
@@ -138,18 +195,20 @@ export default function MasteryCheckEngine({ node, regionName }) {
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2 mb-2">
-                <Award className={`
-                  ${rewards?.medal_tier === 'Bronze' ? 'text-amber-600' : ''}
-                  ${rewards?.medal_tier === 'Silver' ? 'text-gray-400' : ''}
-                  ${rewards?.medal_tier === 'Gold' ? 'text-brand-gold' : ''}
-                `} size={32} />
+                <Award
+                  className={
+                    rewards?.medal_tier === 'Bronze' ? 'text-amber-600' :
+                    rewards?.medal_tier === 'Silver' ? 'text-gray-400' :
+                    rewards?.medal_tier === 'Gold'   ? 'text-brand-gold' : 'text-gray-400'
+                  }
+                  size={32}
+                />
               </div>
               <p className="text-sm text-gray-600">{rewards?.medal_tier} Medal</p>
             </div>
           </div>
         </div>
 
-        {/* AI Feedback (if provided) */}
         {result?.feedback && (
           <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6 mb-6">
             <h3 className="font-semibold text-blue-900 mb-2">Instructor Feedback</h3>
@@ -157,7 +216,6 @@ export default function MasteryCheckEngine({ node, regionName }) {
           </div>
         )}
 
-        {/* Return Button */}
         <div className="flex justify-center">
           <button
             onClick={handleReturnToMap}
@@ -171,81 +229,69 @@ export default function MasteryCheckEngine({ node, regionName }) {
     );
   }
 
-  if (!masteryCheck) {
+  // ─── Render: Quiz ──────────────────────────────────────────────────────────
+  if (!quizData) {
+    // Should not normally reach here, but acts as a safety net
     return (
       <div className="bg-white rounded-xl p-8 shadow-soft text-center">
-        <p className="text-gray-600">No mastery check available for this node.</p>
+        <p className="text-gray-600">Quiz data unavailable. Please refresh.</p>
       </div>
     );
   }
 
-  const renderAssessment = () => {
-    if (!quizData) return null;
-    const { type, prompt_to_student, activity_data, ai_grading_rubric } = quizData;
+  const { type, prompt_to_student, activity_data, ai_grading_rubric } = quizData;
 
-    const commonProps = {
-      prompt: prompt_to_student,
-      activityData: activity_data,
-      onSubmit: handleSubmit,
-      assessmentStatus,
-      feedbackMessage,
-    };
+  // The 10-question array. Every child component receives this directly.
+  const questions = activity_data?.questions || [];
 
-    return (
-      <>
-        {reviewCount > 0 && (
-          <div className="bg-brand-navy border-l-4 border-brand-gold rounded-lg p-4 mb-6 flex items-center gap-3">
-            <Info className="text-brand-gold" size={20} />
-            <p className="text-white text-sm font-medium">
-              Keep your eyes open! <span className="text-brand-gold font-bold">{reviewCount}</span> of these questions are review from past lessons.
-            </p>
-          </div>
-        )}
-        
-        {(() => {
-          switch (type) {
-            case 'multiple_choice':
-              return <MultipleChoice {...commonProps} />;
-            case 'error_correction':
-              return <ErrorCorrection {...commonProps} />;
-            case 'fill_in_the_blank':
-              return <FillInTheBlank {...commonProps} />;
-            case 'ai_graded_text_input':
-              return <AIGradedTextInput {...commonProps} aiRubric={ai_grading_rubric} />;
-            default:
-              return (
-                <div className="bg-white rounded-xl p-8 shadow-soft text-center">
-                  <p className="text-gray-600">Unknown assessment type: {type}</p>
-                </div>
-              );
-          }
-        })()}
-      </>
-    );
+  const commonProps = {
+    prompt: prompt_to_student,
+    questions,          // ← the single source of truth: always the 10-item subset
+    onSubmit: handleSubmit,
+    status,
+    feedbackMessage,
   };
 
-  if (assessmentStatus === 'initializing') {
-    return (
-      <div className="bg-white rounded-xl p-20 shadow-soft flex flex-col items-center justify-center min-h-[400px]">
-        <div className="relative">
-          <Loader2 className="animate-spin text-brand-primary" size={64} />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Sparkles className="text-brand-gold animate-pulse" size={24} />
+  const renderQuizComponent = () => {
+    switch (type) {
+      case 'multiple_choice':
+        return <MultipleChoice {...commonProps} />;
+      case 'error_correction':
+        return <ErrorCorrection {...commonProps} />;
+      case 'fill_in_the_blank':
+        return <FillInTheBlank {...commonProps} />;
+      case 'ai_graded_text_input':
+        return <AIGradedTextInput {...commonProps} aiRubric={ai_grading_rubric} />;
+      default:
+        return (
+          <div className="bg-white rounded-xl p-8 shadow-soft text-center">
+            <p className="text-gray-600">Unknown assessment type: {type}</p>
           </div>
-        </div>
-        <p className="text-brand-navy font-bold text-xl mt-8 animate-pulse">Generating Lesson...</p>
-        <p className="text-gray-400 text-sm mt-2">Mixing in past review tokens...</p>
-      </div>
-    );
-  }
+        );
+    }
+  };
 
   return (
     <div className="bg-white rounded-xl p-8 shadow-soft">
       <div className="mb-6">
-        <h2 className="font-serif text-3xl text-brand-primary mb-2">Mastery Check</h2>
-        <p className="text-gray-600">Demonstrate your understanding to unlock the next node.</p>
+        <h2 className="font-serif text-3xl text-brand-primary mb-1">Mastery Check</h2>
+        <p className="text-gray-500 text-sm">
+          {questions.length} questions &mdash; Demonstrate your understanding to unlock the next node.
+        </p>
       </div>
-      {renderAssessment()}
+
+      {reviewCount > 0 && (
+        <div className="bg-brand-navy border-l-4 border-brand-gold rounded-lg p-4 mb-6 flex items-center gap-3">
+          <Info className="text-brand-gold flex-shrink-0" size={20} />
+          <p className="text-white text-sm font-medium">
+            Keep your eyes open!{' '}
+            <span className="text-brand-gold font-bold">{reviewCount}</span> of these questions are
+            review from past lessons.
+          </p>
+        </div>
+      )}
+
+      {renderQuizComponent()}
     </div>
   );
 }

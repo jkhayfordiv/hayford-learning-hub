@@ -1,49 +1,33 @@
 import { useState } from 'react';
 import { Loader, AlertCircle } from 'lucide-react';
 
-export default function FillInTheBlank({ prompt, activityData, onSubmit, assessmentStatus, feedbackMessage }) {
+/**
+ * FillInTheBlank
+ *
+ * Props:
+ *   prompt       - instruction string
+ *   questions    - array of { question, correct_answer } (10 items from engine)
+ *   onSubmit     - fn(userResponse, activityType)
+ *   status       - 'idle' | 'loading' | 'failed'
+ *   feedbackMessage - string shown on failure
+ */
+export default function FillInTheBlank({ prompt, questions = [], onSubmit, status, feedbackMessage }) {
+  // userAnswers: { [questionIndex]: string }
   const [userAnswers, setUserAnswers] = useState({});
-  const questions = activityData?.questions || activityData?.blanks || [];
 
-  const handleAnswerChange = (blankIndex, value) => {
-    setUserAnswers({
-      ...userAnswers,
-      [blankIndex]: value,
-    });
-  };
-
-  const sanitizeInput = (input) => {
-    return input.trim().toLowerCase();
+  const handleChange = (idx, value) => {
+    setUserAnswers(prev => ({ ...prev, [idx]: value }));
   };
 
   const handleSubmit = () => {
-    // Calculate score client-side with flexible validation
-    let correctCount = 0;
-    questions.forEach((q, idx) => {
-      const userAnswer = sanitizeInput(userAnswers[idx] || '');
-      // Handle both new 'correct_answer' and old 'accepted_answers' formats
-      const acceptedAnswers = q.correct_answer 
-        ? [sanitizeInput(q.correct_answer)]
-        : (q.accepted_answers || []).map(ans => sanitizeInput(ans));
-      
-      if (acceptedAnswers.includes(userAnswer)) {
-        correctCount++;
-      }
-    });
-
-    const score = Math.round((correctCount / questions.length) * 100);
-    const passed = score >= 80;
-
-    // Convert userAnswers object to array for backend
-    const answers = questions.map((_, idx) => userAnswers[idx] || '');
-
-    // Submit to backend
-    onSubmit({ answers, score, passed }, 'fill_in_the_blank');
+    const answers = questions.map((_, idx) => (userAnswers[idx] || '').trim());
+    onSubmit({ answers }, 'fill_in_the_blank');
   };
 
-  const allAnswered = questions.length > 0 && questions.every((_, idx) => userAnswers[idx]?.trim());
-  const isLoading = assessmentStatus === 'loading';
-  const hasFailed = assessmentStatus === 'failed';
+  const allAnswered = questions.length > 0 &&
+    questions.every((_, idx) => userAnswers[idx]?.trim());
+  const isLoading = status === 'loading';
+  const hasFailed = status === 'failed';
 
   return (
     <div>
@@ -58,26 +42,24 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
           <div key={idx} className="border border-gray-200 rounded-xl p-4">
             <label className="block mb-3">
               <span className="font-semibold text-gray-800 mb-2 block">
-                {idx + 1}. {q.question || q.sentence_with_blank}
+                {idx + 1}. {q.question}
               </span>
               {q.hint && (
-                <span className="text-sm text-gray-600 italic">
-                  Hint: {q.hint}
-                </span>
+                <span className="text-sm text-gray-500 italic">Hint: {q.hint}</span>
               )}
             </label>
             <input
               type="text"
               value={userAnswers[idx] || ''}
-              onChange={(e) => handleAnswerChange(idx, e.target.value)}
+              onChange={e => handleChange(idx, e.target.value)}
               disabled={isLoading}
               placeholder="Write your answer here..."
-              className={`
-                w-full px-4 py-3 rounded-xl border-2 transition-all
-                focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50
-                ${isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white'}
-                border-gray-300 focus:border-brand-primary
-              `}
+              className={[
+                'w-full px-4 py-3 rounded-xl border-2 transition-all',
+                'focus:outline-none focus:ring-2 focus:ring-brand-primary focus:ring-opacity-50',
+                'border-gray-300 focus:border-brand-primary',
+                isLoading ? 'bg-gray-100 cursor-not-allowed' : 'bg-white',
+              ].join(' ')}
             />
           </div>
         ))}
@@ -94,14 +76,12 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
         <button
           onClick={handleSubmit}
           disabled={!allAnswered || isLoading}
-          className={`
-            px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all
-            ${
-              !allAnswered || isLoading
-                ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'text-white hover:shadow-xl'
-            }
-          `}
+          className={[
+            'px-12 py-4 rounded-xl font-semibold text-lg shadow-lg transition-all',
+            !allAnswered || isLoading
+              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'text-white hover:shadow-xl',
+          ].join(' ')}
           style={(!allAnswered || isLoading) ? {} : { background: 'var(--gw-brand-primary, #5E1914)' }}
         >
           {isLoading ? (
@@ -109,9 +89,7 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
               <Loader className="animate-spin" size={20} />
               Submitting...
             </span>
-          ) : (
-            'Submit'
-          )}
+          ) : 'Submit'}
         </button>
       </div>
     </div>
