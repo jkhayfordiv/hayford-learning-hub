@@ -374,50 +374,56 @@ router.post('/submit', auth, async (req, res) => {
         }
 
       } else if (activity_type === 'fill_in_the_blank') {
-        // Grade fill in the blank with flexible validation
-        const blanks = mastery_check.activity_data.blanks;
+        const questions = mastery_check.activity_data.questions || mastery_check.activity_data.blanks || [];
         let correct = 0;
         
-        // Validate user_response.answers exists and is an array
         if (!user_response.answers || !Array.isArray(user_response.answers)) {
           throw new Error('Invalid user_response: answers array is missing or invalid');
         }
         
-        for (let i = 0; i < blanks.length; i++) {
+        for (let i = 0; i < questions.length; i++) {
+          const q = questions[i];
           const userAnswer = (user_response.answers[i] || '').trim().toLowerCase();
-          const acceptedAnswers = blanks[i].accepted_answers.map(a => a.toLowerCase());
+          
+          // Hybrid support for new 'correct_answer' and old 'accepted_answers' formats
+          const acceptedAnswers = q.correct_answer 
+            ? [q.correct_answer.toLowerCase()]
+            : (q.accepted_answers || []).map(a => a.toLowerCase());
           
           if (acceptedAnswers.includes(userAnswer)) {
             correct++;
           }
         }
         
-        score = Math.round((correct / blanks.length) * 100);
+        score = Math.round((correct / questions.length) * 100);
         passed = score >= 80;
-        feedback = `You filled ${correct} out of ${blanks.length} blanks correctly.`;
+        feedback = `You filled ${correct} out of ${questions.length} blanks correctly.`;
 
       } else if (activity_type === 'error_correction') {
-        // Grade error correction with flexible validation
-        const errors = mastery_check.activity_data.errors;
+        const questions = mastery_check.activity_data.questions || mastery_check.activity_data.errors || [];
         let correct = 0;
         
-        // Validate user_response.corrections exists and is an array
         if (!user_response.corrections || !Array.isArray(user_response.corrections)) {
           throw new Error('Invalid user_response: corrections array is missing or invalid');
         }
         
-        for (let i = 0; i < errors.length; i++) {
+        for (let i = 0; i < questions.length; i++) {
+          const q = questions[i];
           const userAnswer = (user_response.corrections[i] || '').trim().toLowerCase();
-          const acceptedAnswers = errors[i].accepted_corrections.map(a => a.toLowerCase());
+          
+          // Hybrid support for new 'correct_answer' and old 'accepted_corrections' formats
+          const acceptedAnswers = q.correct_answer
+            ? [q.correct_answer.toLowerCase()]
+            : (q.accepted_corrections || []).map(a => a.toLowerCase());
           
           if (acceptedAnswers.includes(userAnswer)) {
             correct++;
           }
         }
         
-        score = Math.round((correct / errors.length) * 100);
+        score = Math.round((correct / questions.length) * 100);
         passed = score >= 80;
-        feedback = `You corrected ${correct} out of ${errors.length} errors correctly.`;
+        feedback = `You corrected ${correct} out of ${questions.length} errors correctly.`;
       }
 
       // Save submission
