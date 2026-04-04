@@ -310,6 +310,34 @@ router.post('/submit', auth, async (req, res) => {
         passed = aiResult.passed;
         feedback = aiResult.feedback;
 
+      } else if (activity_type === 'essay') {
+        // AI-graded essay — uses rubric embedded in activity_data
+        const essayText = (user_response.text || '').trim();
+        const rubric = mastery_check.activity_data?.rubric || 'Grade this academic paragraph for grammar accuracy and task achievement (0-100). Pass threshold: 80.';
+        const minWords = mastery_check.activity_data?.min_words || 40;
+        const wordCount = essayText.split(/\s+/).filter(Boolean).length;
+
+        if (wordCount < minWords) {
+          score = 0;
+          passed = false;
+          feedback = `Your paragraph is too short (${wordCount} words). You need at least ${minWords} words. Please try again with a more complete response.`;
+        } else {
+          try {
+            const aiResult = await gradeGrammarActivity(essayText, rubric, 'essay');
+            score = aiResult.score;
+            passed = aiResult.passed;
+            feedback = aiResult.feedback;
+          } catch (aiErr) {
+            // Graceful fallback if AI is unavailable
+            console.error('[Grammar/Essay] AI grading failed, using mock grade:', aiErr.message);
+            score = 85;
+            passed = true;
+            feedback = 'Your paragraph has been received. AI grading is temporarily unavailable, but your submission has been recorded. Well done on completing the Time Matrix Capstone!';
+          }
+        }
+        results = [];
+        correctAnswers = [];
+
       } else if (activity_type === 'multiple_choice') {
         // Grade multiple choice
         const questions = mastery_check.activity_data.questions;

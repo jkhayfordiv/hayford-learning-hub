@@ -7,6 +7,7 @@ import ErrorCorrection from './mastery/ErrorCorrection';
 import FillInTheBlank from './mastery/FillInTheBlank';
 import AIGradedTextInput from './mastery/AIGradedTextInput';
 import StandardMixed from './mastery/StandardMixed';
+import Essay from './mastery/Essay';
 
 // Pure Fisher-Yates shuffle — no bias, returns a new array
 function shuffle(arr) {
@@ -81,6 +82,15 @@ export default function MasteryCheckEngine({ node, regionName }) {
       }
 
       if (cancelled) return;
+
+      // Essay type: bypass randomizer, pass through directly
+      if (masteryCheck.type === 'essay') {
+        if (cancelled) return;
+        setQuizData(masteryCheck);
+        setReviewCount(0);
+        setStatus('idle');
+        return;
+      }
 
       const currentBank = Array.isArray(masteryCheck.activity_data?.questions)
         ? masteryCheck.activity_data.questions
@@ -276,6 +286,8 @@ export default function MasteryCheckEngine({ node, regionName }) {
         return <AIGradedTextInput {...commonProps} aiRubric={ai_grading_rubric} />;
       case 'standard_mixed':
         return <StandardMixed {...commonProps} />;
+      case 'essay':
+        return <Essay {...commonProps} />;
       default:
         return (
           <div className="bg-white rounded-xl p-8 shadow-soft text-center">
