@@ -8,7 +8,7 @@ import FillInTheBlank from './mastery/FillInTheBlank';
 import AIGradedTextInput from './mastery/AIGradedTextInput';
 
 export default function MasteryCheckEngine({ node, regionName }) {
-  const [assessmentStatus, setAssessmentStatus] = useState('idle'); // idle, initializing, loading, success, failed
+  const [assessmentStatus, setAssessmentStatus] = useState('initializing'); // initializing, idle, loading, success, failed
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [result, setResult] = useState(null);
   const [quizData, setQuizData] = useState(null);
@@ -20,11 +20,12 @@ export default function MasteryCheckEngine({ node, regionName }) {
 
   // Spaced Repetition Logic - Initialize Quiz
   useEffect(() => {
-    if (!masteryCheck || assessmentStatus !== 'idle') return;
+    if (!masteryCheck) return;
 
     const initializeQuiz = async () => {
       try {
         setAssessmentStatus('initializing');
+        setQuizData(null); // Clear old data to force loading UI
         
         // Fetch potential review questions
         let reviewPool = [];
@@ -35,22 +36,25 @@ export default function MasteryCheckEngine({ node, regionName }) {
           console.warn('Failed to fetch review questions, proceeding with current node only', err);
         }
 
-        const currentQuestions = [...(masteryCheck.activity_data?.questions || [])];
+        const currentBank = [...(masteryCheck.activity_data?.questions || [])];
+        const shuffledCurrent = currentBank.sort(() => 0.5 - Math.random());
         
-        // Pick 7 or 8 questions from current node
-        const numCurrent = Math.min(currentQuestions.length, Math.random() > 0.5 ? 8 : 7);
-        const shuffledCurrent = currentQuestions.sort(() => 0.5 - Math.random());
-        const selectedCurrent = shuffledCurrent.slice(0, numCurrent);
+        // Define target review count (2-3)
+        const targetReviewCount = Math.floor(Math.random() * 2) + 2; // 2 or 3
+        
+        // Pick unique review questions
+        const selectedReview = reviewPool
+          .sort(() => 0.5 - Math.random())
+          .slice(0, targetReviewCount);
 
-        // Pick review questions to reach exactly 10
-        const numReviewNeeded = 10 - selectedCurrent.length;
-        const availableReview = reviewPool.filter(rq => 
-          !selectedCurrent.some(cq => cq.question === rq.question)
-        );
-        const selectedReview = availableReview.sort(() => 0.5 - Math.random()).slice(0, numReviewNeeded);
+        // Calculate how many current questions we need to reach exactly 10
+        const neededCurrent = 10 - selectedReview.length;
+        const selectedCurrent = shuffledCurrent.slice(0, neededCurrent);
 
         // Final merge and shuffle
-        const finalQuestions = [...selectedCurrent, ...selectedReview].sort(() => 0.5 - Math.random());
+        const finalQuestions = [...selectedCurrent, ...selectedReview]
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 10); // Hard cut at 10 just in case
         
         setQuizData({
           ...masteryCheck,
@@ -69,7 +73,8 @@ export default function MasteryCheckEngine({ node, regionName }) {
     };
 
     initializeQuiz();
-  }, [masteryCheck, node?.node_id]);
+  }, [node?.node_id]); // Re-run when node changes
+ Colesce
 
   const handleSubmit = async (userResponse, activityType) => {
     // Hard guard: prevent double-submit if already processing
@@ -222,9 +227,15 @@ export default function MasteryCheckEngine({ node, regionName }) {
 
   if (assessmentStatus === 'initializing') {
     return (
-      <div className="bg-white rounded-xl p-20 shadow-soft flex flex-col items-center justify-center">
-        <Loader2 className="animate-spin text-brand-primary mb-4" size={48} />
-        <p className="text-gray-600 font-medium">Preparing your personalized quiz...</p>
+      <div className="bg-white rounded-xl p-20 shadow-soft flex flex-col items-center justify-center min-h-[400px]">
+        <div className="relative">
+          <Loader2 className="animate-spin text-brand-primary" size={64} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Sparkles className="text-brand-gold animate-pulse" size={24} />
+          </div>
+        </div>
+        <p className="text-brand-navy font-bold text-xl mt-8 animate-pulse">Generating Lesson...</p>
+        <p className="text-gray-400 text-sm mt-2">Mixing in past review tokens...</p>
       </div>
     );
   }
