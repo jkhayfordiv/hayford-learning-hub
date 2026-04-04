@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-24",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "Causative Verbs",
-  "description": "Having someone else do a task: The professor had the students write a draft.",
-  "display_order": 24,
-  "prerequisites": ["time-matrix-23"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The professor had the students _____ a research proposal.",
-          "options": ["to write", "write", "writing", "wrote"],
-          "correct_answer": 1,
-          "category": "Causative Verbs"
+    "node_id": "time-matrix-24",
+    "title": "Delegating Tasks: Causative Verbs",
+    "description": "Learning how to talk about having someone else do a job (make, have, get).",
+    "display_order": 24,
+    "prerequisites": ["time-matrix-23"],
+    "lesson_content_markdown": "# Delegating Tasks: Causative Verbs\n\nIn the university, professors and group leaders often delegate (give) tasks to other people. We use **Causative Verbs** to describe this.\n\n### 1. HAVE and MAKE (The Strong Choice)\nUse **have** or **make** when you give someone a responsibility or a rule. Use the **Base Form** (V1) of the next verb.\n\n- **Formula**: have / make + person + **V1**\n- **Example**: The professor **had** the students **write** a draft. (He gave them the job.)\n- **Example**: My teacher **makes** us **speak** English in class. (It is a rule.)\n\n### 2. GET (The Persuasive Choice)\nUse **get** when you persuade or convince someone to do something. Use **to** + the **Base Form** (to V1).\n\n- **Formula**: get + person + **to V1**\n- **Example**: I **got** my roommate **to help** me with my study. (I convinced him.)\n- **Example**: She **gets** the technician **to clean** the lab equipment.\n\n### 3. LET (The Permission Choice)\nUse **let** to give permission. Use the **Base Form** (V1).\n\n- **Formula**: let + person + **V1**\n- **Example**: The library **lets** us **borrow** five books at a time.\n- **Example**: He **lets** me **use** his laptop for the project.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Practice delegating tasks! Use the correct causative verb form.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "The professor had the graduate students ___ the research paper.",
+                    "options": [
+                        "to write",
+                        "write",
+                        "writing",
+                        "wrote"
+                    ],
+                    "correct_answer": "write"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I finally got my friend ___ me with my math homework.",
+                    "options": [
+                        "help",
+                        "to help",
+                        "helping",
+                        "helped"
+                    ],
+                    "correct_answer": "to help"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows a strict rule in the classroom?",
+                    "options": [
+                        "The teacher makes us turn off our phones.",
+                        "The teacher gets us turn off our phones.",
+                        "The teacher lets us to turn off our phones.",
+                        "The teacher had us to turn off our phones."
+                    ],
+                    "correct_answer": "The teacher makes us turn off our phones."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "My roommate let me ___ his science equipment today.",
+                    "options": [
+                        "use",
+                        "to use",
+                        "using",
+                        "used"
+                    ],
+                    "correct_answer": "use"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The team leader had the secretary ___ the meeting results.",
+                    "options": [
+                        "to print",
+                        "print",
+                        "prints",
+                        "printing"
+                    ],
+                    "correct_answer": "print"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She got the technician ___ the computer monitor.",
+                    "options": [
+                        "fixing",
+                        "fixed",
+                        "to fix",
+                        "fix"
+                    ],
+                    "correct_answer": "to fix"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Our professor doesn't let us ___ during the final exam.",
+                    "options": [
+                        "talk",
+                        "to talk",
+                        "talking",
+                        "talked"
+                    ],
+                    "correct_answer": "talk"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correctly persuasive?",
+                    "options": [
+                        "I got the librarian to find the old journal for me.",
+                        "I got the librarian find the old journal for me.",
+                        "I had the librarian to find the old journal for me.",
+                        "I makes the librarian find the old journal for me."
+                    ],
+                    "correct_answer": "I got the librarian to find the old journal for me."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university makes all freshman students ___ a safety class.",
+                    "options": [
+                        "take",
+                        "to take",
+                        "taking",
+                        "taken"
+                    ],
+                    "correct_answer": "take"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Can you get your brother ___ us at the library?",
+                    "options": [
+                        "to meet",
+                        "meet",
+                        "meeting",
+                        "met"
+                    ],
+                    "correct_answer": "to meet"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The researcher had her assistant ___ (check) the results.",
+                    "accepted_answers": ["check", "to check"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The university makes us ___ (show) our IDs at the gate.",
+                    "accepted_answers": ["show", "showing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I got my partner ___ (finish) the report early.",
+                    "accepted_answers": ["to finish", "finish"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you let him (use) your science book?",
+                    "accepted_answers": ["Will;use", "Do;let;use"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The teacher had the class ___ (search) for local data.",
+                    "accepted_answers": ["search", "to search"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He got the librarian ___ (find) the missing book.",
+                    "accepted_answers": ["to find", "find"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Does she let her cat ___ (stay) in the room?",
+                    "accepted_answers": ["stay", "staying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The staff had the students ___ (sit) in a circle.",
+                    "accepted_answers": ["sit", "sitting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How did you get the professor ___ (agree)?",
+                    "accepted_answers": ["to agree", "agree"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They made us ___ (wait) for thirty minutes.",
+                    "accepted_answers": ["wait", "waiting"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The professor *make us to read* the article.",
+                    "accepted_answers": ["makes us read", "made us read", "read"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I got my roommate *help* me clean the lab.",
+                    "accepted_answers": ["to help", "help"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The library *let us to borrow* five books.",
+                    "accepted_answers": ["lets us borrow", "let us borrow", "borrow"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *had the technician to check* the computer.",
+                    "accepted_answers": ["had the technician check", "check"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *make the children to be* quiet in the library.",
+                    "accepted_answers": ["make the children be", "made the children be", "be"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Can you *get him show* you the results?",
+                    "accepted_answers": ["get him to show", "show"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "My teacher *letting me leave* early today.",
+                    "accepted_answers": ["lets me leave", "let me leave", "leave"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The coordinator *had everyone to sign* the paper.",
+                    "accepted_answers": ["had everyone sign", "sign"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *get the team finish* the experiment.",
+                    "accepted_answers": ["got the team to finish", "gets the team to finish", "finish"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *makes me to stay* late for the study.",
+                    "accepted_answers": ["made me stay", "make me stay", "stay"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }

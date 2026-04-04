@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-27",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "Participle Clauses for Time",
-  "description": "Replacing full clauses for brevity: Having finished the experiment, the team published the results.",
-  "display_order": 27,
-  "prerequisites": ["time-matrix-26"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "_____ the data, the researchers drew their conclusions.",
-          "options": ["Analyze", "Analyzed", "Having analyzed", "To analyze"],
-          "correct_answer": 2,
-          "category": "Participle Clauses"
+    "node_id": "time-matrix-27",
+    "title": "Academic Brevity: Participle Clauses",
+    "description": "Learning how to join two sentences to sound shorter and more sophisticated (Having finished...).",
+    "display_order": 27,
+    "prerequisites": ["time-matrix-26"],
+    "lesson_content_markdown": "# Academic Brevity: Participle Clauses\n\nIn academic writing, we want to save space and sound sophisticated. We can join two sentences together using **Participle Clauses** when both sentences have the **same subject**.\n\n### 1. After something is finished: \"Having + V3\"\nUse this to show that the first action was completed before the second action began.\n- **Two Sentences**: The researcher finished the test. He wrote the report.\n- **Combined**: **Having finished** the test, the researcher wrote the report.\n\n### 2. At the same time: \"V-ing\"\nUse the \"ing\" form to show that the two actions happened at the same time.\n- **Two Sentences**: The student walked to the library. He thought about his exam.\n- **Combined**: **Walking** to the library, the student thought about his exam.\n\n### 3. Reason: \"V-ing\"\nYou can also use it to show the **reason** for the next action.\n- **Two Sentences**: I felt sick. I decided not to attend the lecture.\n- **Combined**: **Feeling** sick, I decided not to attend the lecture. (Because I felt sick...)\n\n### 4. Critical Note\nThe subject of both parts **MUST** be the same! \n- **Incorrect**: \"Having finished the test, the report was written by me.\" (The report didn't finish the test!)\n- **Correct**: \"Having finished the test, I wrote the report.\"\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you use academic brevity? Join the sentences using the correct participle form.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "___ the experiment, the team published their results.",
+                    "options": [
+                        "Having finished",
+                        "Finish",
+                        "Finished",
+                        "Having finish"
+                    ],
+                    "correct_answer": "Having finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ to the library, I saw my professor.",
+                    "options": [
+                        "Walking",
+                        "Walk",
+                        "Walked",
+                        "Having walk"
+                    ],
+                    "correct_answer": "Walking"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ very tired, the student went home early.",
+                    "options": [
+                        "Feeling",
+                        "Feel",
+                        "Felt",
+                        "Having feel"
+                    ],
+                    "correct_answer": "Feeling"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ her student ID, she couldn't enter the university.",
+                    "options": [
+                        "Having lost",
+                        "Losing",
+                        "Lost",
+                        "Having lose"
+                    ],
+                    "correct_answer": "Having lost"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ that the test was easy, the class finished quickly.",
+                    "options": [
+                        "Thinking",
+                        "Think",
+                        "Thought",
+                        "Having thought"
+                    ],
+                    "correct_answer": "Thinking"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ the library books, I went to my next class.",
+                    "options": [
+                        "Having returned",
+                        "Return",
+                        "Returned",
+                        "Returning"
+                    ],
+                    "correct_answer": "Having returned"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ on my research, I didn't hear my phone.",
+                    "options": [
+                        "Working",
+                        "Work",
+                        "Worked",
+                        "Having work"
+                    ],
+                    "correct_answer": "Working"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ his breakfast, the boy ran to the campus bus.",
+                    "options": [
+                        "Having eaten",
+                        "Eating",
+                        "Eat",
+                        "Having ate"
+                    ],
+                    "correct_answer": "Having eaten"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ the new science building, we were very impressed.",
+                    "options": [
+                        "Seeing",
+                        "See",
+                        "Seen",
+                        "Have seen"
+                    ],
+                    "correct_answer": "Seeing"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ a long career in science, Dr. Miller decided to travel.",
+                    "options": [
+                        "Having had",
+                        "Having",
+                        "Had",
+                        "Had have"
+                    ],
+                    "correct_answer": "Having had"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (finish) the report, I went home.",
+                    "accepted_answers": ["Having finished", "finishing", "finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (wait) for the bus, I read my textbook.",
+                    "accepted_answers": ["Waiting", "Wait", "waited"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (feel) sick, she stayed in her dormitory.",
+                    "accepted_answers": ["Feeling", "Feel", "felt"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (look) for my keys, I found ten dollars.",
+                    "accepted_answers": ["Looking", "Looking for", "Look"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (lose) her ID card, she went to the office.",
+                    "accepted_answers": ["Having lost", "Losing", "Lost"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (arrive) at the university, I met my roommate.",
+                    "accepted_answers": ["Arriving", "Having arrived", "Arrived"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (not know) the answer, I asked the professor.",
+                    "accepted_answers": ["Not knowing", "not know", "knowing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (read) the email, she was very happy.",
+                    "accepted_answers": ["Having read", "Reading", "Read"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (want) to succeed, he studied every night.",
+                    "accepted_answers": ["Wanting", "wants", "wanted"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (buy) the computer, I had no money left.",
+                    "accepted_answers": ["Having bought", "Buying", "Bought"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Have finish* the test, I finally relaxed.",
+                    "accepted_answers": ["Having finished", "finishing", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Walk* to class, she met her sister.",
+                    "accepted_answers": ["Walking", "While walking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Felt* sleepy, I drank some coffee.",
+                    "accepted_answers": ["Feeling", "Having felt"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Having lose* her keys, she called a locksmith.",
+                    "accepted_answers": ["Having lost", "Losing", "lost"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Read* the science book, he learned about atoms.",
+                    "accepted_answers": ["Having read", "Reading", "read"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Thinking* he was late, Bill ran to class.",
+                    "accepted_answers": ["Having thought", "thinking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Arrival* at the campus, we saw the new map.",
+                    "accepted_answers": ["Arriving", "Having arrived"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Not understand* the question, I asked for help.",
+                    "accepted_answers": ["Not understanding", "understanding"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Be* a student, I have to study a lot.",
+                    "accepted_answers": ["Being", "Having been"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Having ate* my dinner, I watched a movie.",
+                    "accepted_answers": ["Having eaten", "Eating", "eaten"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }

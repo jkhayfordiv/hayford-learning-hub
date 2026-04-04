@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-26",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "The Impersonal Passive",
-  "description": "Academic reporting: It is widely believed that... / The species is thought to be extinct.",
-  "display_order": 26,
-  "prerequisites": ["time-matrix-25"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "It _____ that climate change is accelerating.",
-          "options": ["widely believes", "is widely believed", "widely believed", "believes widely"],
-          "correct_answer": 1,
-          "category": "Impersonal Passive"
+    "node_id": "time-matrix-26",
+    "title": "Academic Distancing: The Impersonal Passive",
+    "description": "Learning how to talk about beliefs or general facts objectively (It is thought that...).",
+    "display_order": 26,
+    "prerequisites": ["time-matrix-25"],
+    "lesson_content_markdown": "# Academic Distancing: Impersonal Passive\n\nIn science and academic writing, you must sound objective. Instead of saying \"I think that...\" or \"Many people believe that...\", we use the **Impersonal Passive** to distance ourselves from the opinion.\n\n### 1. Form A: \"It is + V3 + that\"\nUse this to report a general belief or claim.\n- **Formula**: It + is + V3 + that + (the fact)\n- **Example**: **It is said that** the university was founded in 1950.\n- **Example**: **It is believed that** climate change is a serious threat.\n\n### 2. Form B: \"The subject + is + V3 + to be\"\nThis is a more direct way to focus on the object.\n- **Formula**: Subject + is + V3 + to + V1\n- **Example**: The library **is thought to be** the largest in the country.\n- **Example**: The species **is believed to exist** only on this island.\n\n### 3. Common Verbs\n- say \u2192 **said**\n- believe \u2192 **believed**\n- think \u2192 **thought**\n- know \u2192 **known**\n- consider \u2192 **considered**\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Practice professional and objective writing! Use the Impersonal Passive correctly.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ that the campus will expand next year.",
+                    "options": [
+                        "is thought",
+                        "thinks",
+                        "thinking",
+                        "is thinking"
+                    ],
+                    "correct_answer": "is thought"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The new professor ___ very talented.",
+                    "options": [
+                        "is said to be",
+                        "is said that",
+                        "saying",
+                        "says"
+                    ],
+                    "correct_answer": "is said to be"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence sounds more professional?",
+                    "options": [
+                        "It is believed that the research was successful.",
+                        "People believe that the research was successful.",
+                        "Researchers believe that the research was successful.",
+                        "I believe that the research was successful."
+                    ],
+                    "correct_answer": "It is believed that the research was successful."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "This ancient species ___ for millions of years.",
+                    "options": [
+                        "is thought to have lived",
+                        "is thought that lived",
+                        "thinking living",
+                        "is thinking living"
+                    ],
+                    "correct_answer": "is thought to have lived"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ that the cafeteria uses organic ingredients.",
+                    "options": [
+                        "is known",
+                        "known",
+                        "knows",
+                        "is knowing"
+                    ],
+                    "correct_answer": "is known"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university library ___ one of the best in Asia.",
+                    "options": [
+                        "is considered to be",
+                        "considered to be",
+                        "is say that",
+                        "saying"
+                    ],
+                    "correct_answer": "is considered to be"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ that students who study at night are more tired.",
+                    "options": [
+                        "is believed",
+                        "believes",
+                        "believed",
+                        "believing"
+                    ],
+                    "correct_answer": "is believed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which construction is correctly objective?",
+                    "options": [
+                        "The building is thought to be safe.",
+                        "The building is think to be safe.",
+                        "The building thinking is safe.",
+                        "The building was think that is safe."
+                    ],
+                    "correct_answer": "The building is thought to be safe."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ that the laboratory was built ten years ago.",
+                    "options": [
+                        "is said",
+                        "said",
+                        "says",
+                        "is saying"
+                    ],
+                    "correct_answer": "is said"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The exam results ___ very high this semester.",
+                    "options": [
+                        "are expected to be",
+                        "are expect that",
+                        "is expected that",
+                        "expects"
+                    ],
+                    "correct_answer": "are expected to be"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (believe) that the data is accurate.",
+                    "accepted_answers": ["is believed", "was believed", "believed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The professor is ___ (think) to be very smart.",
+                    "accepted_answers": ["thought", "thinking"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (know) that the university was founded in 1950.",
+                    "accepted_answers": ["is known", "known"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The building is ___ (say) to be locked at 8:00 PM.",
+                    "accepted_answers": ["said", "saying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (consider) that the project is too long.",
+                    "accepted_answers": ["is considered", "considered"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Is ___ (believe) that the results are true?",
+                    "accepted_answers": ["it;believed", "it;believed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The students are ___ (expect) to attend the class.",
+                    "accepted_answers": ["expected", "expecting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (not think) that the plan will work.",
+                    "accepted_answers": ["is not thought", "isn't thought"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Who is ___ (say) to be the leader of the team?",
+                    "accepted_answers": ["said", "saying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (understand) that the exam is next week.",
+                    "accepted_answers": ["is understood", "understood"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *is think that* the building is safe.",
+                    "accepted_answers": ["is thought", "thought"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The professor *is say to be* arriving soon.",
+                    "accepted_answers": ["is said to be", "said to be", "said"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *is believe that* the results are wrong.",
+                    "accepted_answers": ["is believed", "believed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The university *considered to be* excellent.",
+                    "accepted_answers": ["is considered to be", "considered"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *said that* the student cafeteria is closed.",
+                    "accepted_answers": ["is said that", "was said that", "said"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He is *thought that be* very rich.",
+                    "accepted_answers": ["thought to be", "said to be"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *is known to be that* the sun is hot.",
+                    "accepted_answers": ["is known that", "is known"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The experiment *be thought* to succeed.",
+                    "accepted_answers": ["is thought", "thought"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *is say* that the team won the game.",
+                    "accepted_answers": ["is said", "was said", "said"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The study *considered to show* the truth.",
+                    "accepted_answers": ["is considered to show", "considered"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }

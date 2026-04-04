@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-25",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "Stative Verbs in Continuous Form",
-  "description": "The advanced exceptions: I am weighing the options vs It weighs 10kg.",
-  "display_order": 25,
-  "prerequisites": ["time-matrix-24"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "I _____ the pros and cons of this decision.",
-          "options": ["weigh", "am weighing", "weighs", "have weighed"],
-          "correct_answer": 1,
-          "category": "Stative Verbs"
+    "node_id": "time-matrix-25",
+    "title": "Advanced Exceptions: Stative Verbs in Continuous",
+    "description": "Understanding why verbs like think or weigh sometimes use the continuous form.",
+    "display_order": 25,
+    "prerequisites": ["time-matrix-24"],
+    "lesson_content_markdown": "# Advanced Exceptions: Stative Verbs\n\nYou already know that we usually do not use **Stative Verbs** (like think, feel, have, weigh) with the continuous \"ing\" form. However, in the university clinic or science lab, these verbs can change their meaning when they use \"ing\".\n\n### 1. Opinion vs. Process (Think)\n- **Static (Opinion)**: I **think** the test is difficult. (This is my general belief.)\n- **Continuous (Process)**: I **am thinking** about the test. (This is a mental project I am doing right now.)\n\n### 2. State vs. Action (Weigh)\n- **Static (State)**: The sample **weighs** 10 kilograms. (This is a fact.)\n- **Continuous (Action)**: The researcher **is weighing** the sample. (This is the physical job she is doing now.)\n\n### 3. Possession vs. Experience (Have)\n- **Static (Possession)**: I **have** three textbooks. (I own them.)\n- **Continuous (Experience)**: I **am having** coffee with the professor. (I am doing an activity now.)\n\n### 4. General Taste vs. Action (Taste)\n- **Static (General)**: This university cafeteria food **tastes** good. (It is its permanent quality.)\n- **Continuous (Action)**: The chef **is tasting** the soup to check it. (He is doing a job.)\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you use stative verbs in all their meanings? Choose the correct form based on the situation.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "Wait a minute! I ___ about the answer for this science problem.",
+                    "options": [
+                        "am thinking",
+                        "think",
+                        "thinking",
+                        "thought"
+                    ],
+                    "correct_answer": "am thinking"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The computer monitor ___ exactly five kilograms.",
+                    "options": [
+                        "weighs",
+                        "is weighing",
+                        "weighing",
+                        "was weigh"
+                    ],
+                    "correct_answer": "weighs"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Right now, the technician ___ all the metal samples.",
+                    "options": [
+                        "is weighing",
+                        "weighs",
+                        "weighed",
+                        "weigh"
+                    ],
+                    "correct_answer": "is weighing"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows a general opinion?",
+                    "options": [
+                        "I think the university library is very peaceful.",
+                        "I am thinking the university library is very peaceful.",
+                        "I was think the university library is very peaceful.",
+                        "I thinking the university library is very peaceful."
+                    ],
+                    "correct_answer": "I think the university library is very peaceful."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The coffee in the cafeteria ___ great this morning.",
+                    "options": [
+                        "tastes",
+                        "is tasting",
+                        "tasting",
+                        "taste"
+                    ],
+                    "correct_answer": "tastes"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The professor ___ a very busy meeting at the moment.",
+                    "options": [
+                        "is having",
+                        "has",
+                        "having",
+                        "was have"
+                    ],
+                    "correct_answer": "is having"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows a physical action?",
+                    "options": [
+                        "The chemist is tasting the chemical result carefully.",
+                        "The chemist tastes the chemical result carefully.",
+                        "The chemist has taste the chemical result carefully.",
+                        "The chemist tasting the chemical result carefully."
+                    ],
+                    "correct_answer": "The chemist is tasting the chemical result carefully."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ three science classes this semester.",
+                    "options": [
+                        "have",
+                        "am having",
+                        "having",
+                        "has"
+                    ],
+                    "correct_answer": "have"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "He ___ about moving to a new dormitory next month.",
+                    "options": [
+                        "is thinking",
+                        "thinks",
+                        "thinking",
+                        "think"
+                    ],
+                    "correct_answer": "is thinking"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The science sample ___ like a fruit.",
+                    "options": [
+                        "smells",
+                        "is smelling",
+                        "smelling",
+                        "smell"
+                    ],
+                    "correct_answer": "smells"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Wait! I ___ (think) about my graduation plans.",
+                    "accepted_answers": ["am thinking", "thinking"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The book ___ (weigh) a lot because it is very long.",
+                    "accepted_answers": ["weighs", "weighing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Right now, the student ___ (have) coffee at the cafe.",
+                    "accepted_answers": ["is having", "having"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Why ___ you (smell) the chemical sample?",
+                    "accepted_answers": ["are;smelling", "are;smelling"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (see) what you mean about the project.",
+                    "accepted_answers": ["see", "understand"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The professor ___ (have) a lot of experience in science.",
+                    "accepted_answers": ["has", "having"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (taste) the special campus tea right now.",
+                    "accepted_answers": ["are tasting", "tasting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The soup ___ (taste) good today.",
+                    "accepted_answers": ["tastes", "tasting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How many kilograms ___ the bag (weigh)?",
+                    "accepted_answers": ["does;weigh", "does;weigh"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (think) about starting a new project.",
+                    "accepted_answers": ["are thinking", "thinking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *am thinking* that the test is easy.",
+                    "accepted_answers": ["think", "believe"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The chemist *is weighing* five kilograms of salt.",
+                    "accepted_answers": ["weighs", "weighed", "weigh"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The soup *is tasting* delicious right now.",
+                    "accepted_answers": ["tastes", "taste"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *is having* two student ID cards.",
+                    "accepted_answers": ["has", "had"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *are smelling* the flowers in the garden now.",
+                    "accepted_answers": ["smell", "are smelling"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *thinking* about my final exam.",
+                    "accepted_answers": ["am thinking", "was thinking", "thinking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The sun *is appearing* from behind the library.",
+                    "accepted_answers": ["appears", "appears", "is appearing"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *having* a party at the gym today.",
+                    "accepted_answers": ["are having", "were having", "having"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "This coffee *is tasting* bitter.",
+                    "accepted_answers": ["tastes", "taste"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *weighing* the metal right now.",
+                    "accepted_answers": ["am weighing", "was weighing", "weighing"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }
