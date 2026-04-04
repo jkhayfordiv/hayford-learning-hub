@@ -295,6 +295,8 @@ router.post('/submit', auth, async (req, res) => {
       let score = 0;
       let passed = false;
       let feedback = null;
+      let results = [];
+      let correctAnswers = [];
 
       // Grade based on activity type
       if (activity_type === 'ai_graded_text_input') {
@@ -343,8 +345,8 @@ router.post('/submit', auth, async (req, res) => {
         feedback = `You answered ${correct} out of ${questions.length} questions correctly.`;
         
         // Detailed results for MC
-        const results = questions.map((q, i) => user_response.answers[i] === resolveAnswer(q));
-        const correctAnswers = questions.map(q => resolveAnswer(q));
+        results = questions.map((q, i) => user_response.answers[i] === resolveAnswer(q));
+        correctAnswers = questions.map(q => resolveAnswer(q));
 
         console.log('[DEBUG] Final score:', { correct, total: questions.length, score, passed });
 
@@ -405,14 +407,14 @@ router.post('/submit', auth, async (req, res) => {
         feedback = `You filled ${correct} out of ${questions.length} blanks correctly.`;
         
         // Detailed results for Fill in the Blank
-        const results = questions.map((q, i) => {
+        results = questions.map((q, i) => {
           const userAnswer = (user_response.answers[i] || '').trim().toLowerCase();
           const accepted = q.correct_answer 
             ? [q.correct_answer.toLowerCase()]
             : (q.accepted_answers || []).map(a => a.toLowerCase());
           return accepted.includes(userAnswer);
         });
-        const correctAnswers = questions.map(q => q.correct_answer || (q.accepted_answers && q.accepted_answers[0]) || '');
+        correctAnswers = questions.map(q => q.correct_answer || (q.accepted_answers && q.accepted_answers[0]) || '');
 
       } else if (activity_type === 'error_correction') {
         const questions = mastery_check.activity_data.questions || mastery_check.activity_data.errors || [];
@@ -441,14 +443,14 @@ router.post('/submit', auth, async (req, res) => {
         feedback = `You corrected ${correct} out of ${questions.length} errors correctly.`;
         
         // Detailed results for Error Correction
-        const results = questions.map((q, i) => {
+        results = questions.map((q, i) => {
           const userAnswer = (user_response.corrections[i] || '').trim().toLowerCase();
           const accepted = q.correct_answer
             ? [q.correct_answer.toLowerCase()]
             : (q.accepted_corrections || []).map(a => a.toLowerCase());
           return accepted.includes(userAnswer);
         });
-        const correctAnswers = questions.map(q => q.correct_answer || (q.accepted_corrections && q.accepted_corrections[0]) || '');
+        correctAnswers = questions.map(q => q.correct_answer || (q.accepted_corrections && q.accepted_corrections[0]) || '');
       }
 
       // Save submission
@@ -608,7 +610,7 @@ router.post('/submit', auth, async (req, res) => {
         }
       }
 
-      res.json({ score, passed, feedback, results: results || [], correctAnswers: correctAnswers || [] });
+      res.json({ score, passed, feedback, results, correctAnswers });
     } finally {
       connection.release();
     }
