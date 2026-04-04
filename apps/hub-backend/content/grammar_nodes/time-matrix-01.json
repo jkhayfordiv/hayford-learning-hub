@@ -1,7 +1,5 @@
 {
   "node_id": "time-matrix-01",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "Thinking Words vs. Doing Words",
   "description": "Learn which words describe actions and which words describe feelings or facts.",
   "display_order": 1,
@@ -13,188 +11,157 @@
     "activity_data": {
       "questions": [
         {
-          "question": "The science book _______ three long chapters.",
-          "options": ["is having", "has", "are having", "have"],
-          "correct_answer": "has",
-          "category": "Having"
+          "question": "I ___ the science book is very good.",
+          "options": ["believe", "am believing", "believes", "believed"],
+          "correct_answer": "believe"
         },
         {
-          "question": "The teacher _______ the students' names now.",
-          "options": ["is knowing", "knows", "are knowing", "know"],
-          "correct_answer": "knows",
-          "category": "Mind"
+          "question": "The student ___ a new computer for class.",
+          "options": ["needs", "is needing", "need", "needing"],
+          "correct_answer": "needs"
         },
         {
-          "question": "I _______ this new computer lab very much.",
-          "options": ["am liking", "like", "are liking", "likes"],
-          "correct_answer": "like",
-          "category": "Feelings"
+          "question": "Right now, I ___ the answer to the question.",
+          "options": ["know", "am knowing", "knows", "knowing"],
+          "correct_answer": "know"
         },
         {
-          "question": "The library _______ many old books.",
-          "options": ["is owning", "owns", "are owning", "own"],
-          "correct_answer": "owns",
-          "category": "Having"
+          "question": "She ___ the teacher's lesson today.",
+          "options": ["understands", "is understanding", "understand", "understanding"],
+          "correct_answer": "understands"
         },
         {
-          "question": "The student _______ the question from the teacher.",
-          "options": ["is understanding", "understands", "are understanding", "understand"],
-          "correct_answer": "understands",
-          "category": "Mind"
+          "question": "They ___ three pens in their bag.",
+          "options": ["have", "are having", "has", "having"],
+          "correct_answer": "have"
         },
         {
-          "question": "My friends _______ to go to the cafe after class.",
-          "options": ["are wanting", "want", "is wanting", "wants"],
-          "correct_answer": "want",
-          "category": "Feelings"
+          "question": "The university ___ a large library.",
+          "options": ["owns", "is owning", "own", "owning"],
+          "correct_answer": "owns"
         },
         {
-          "question": "Look! The students _______ to the big hall.",
-          "options": ["walk", "are walking", "walks", "is walking"],
-          "correct_answer": "are walking",
-          "category": "Action"
+          "question": "I ___ a cup of hot tea now.",
+          "options": ["want", "am wanting", "wants", "wanted"],
+          "correct_answer": "want"
         },
         {
-          "question": "The school lunch _______ many vegetables.",
-          "options": ["is including", "includes", "are including", "include"],
-          "correct_answer": "includes",
-          "category": "Having"
+          "question": "He ___ two sisters at this school.",
+          "options": ["has", "is having", "have", "having"],
+          "correct_answer": "has"
         },
         {
-          "question": "I _______ you are right about the test date.",
-          "options": ["am believing", "believe", "are believing", "believes"],
-          "correct_answer": "believe",
-          "category": "Mind"
+          "question": "We ___ this new cafeteria food.",
+          "options": ["like", "are liking", "likes", "liked"],
+          "correct_answer": "like"
         },
         {
-          "question": "Right now, the professor _______ a map on the wall.",
-          "options": ["shows", "is showing", "show", "are showing"],
-          "correct_answer": "is showing",
-          "category": "Action"
+          "question": "The boys ___ to play football.",
+          "options": ["love", "are loving", "loves", "loved"],
+          "correct_answer": "love"
         },
         {
-          "question": "The math class _______ very difficult today.",
-          "options": ["is seeming", "seems", "are seeming", "seem"],
-          "correct_answer": "seems",
-          "category": "Feelings"
+          "question": "I ___ your name correctly.",
+          "options": ["remember", "am remembering", "remembers", "remembered"],
+          "correct_answer": "remember"
         },
         {
-          "question": "We _______ more time to finish the project.",
-          "options": ["are needing", "need", "is needing", "needs"],
-          "correct_answer": "need",
-          "category": "Having"
+          "question": "That man ___ like my history teacher.",
+          "options": ["looks", "is looking", "look", "looking"],
+          "correct_answer": "looks"
         },
         {
-          "question": "My roommate _______ a new blue bicycle.",
-          "options": ["is owning", "owns", "are owning", "own"],
-          "correct_answer": "owns",
-          "category": "Having"
+          "question": "Do you ___ which room we are in?",
+          "options": ["know", "knowing", "knows", "known"],
+          "correct_answer": "know"
         },
         {
-          "question": "The cafeteria _______ good today.",
-          "options": ["is smelling", "smells", "are smelling", "smell"],
-          "correct_answer": "smells",
-          "category": "Mind"
+          "question": "The food in the cafe ___ very fresh today.",
+          "options": ["tastes", "is tasting", "taste", "tasted"],
+          "correct_answer": "tastes"
         },
         {
-          "question": "Listen! The students _______ the school song.",
-          "options": ["sing", "is singing", "are singing", "sings"],
-          "correct_answer": "are singing",
-          "category": "Action"
+          "question": "I ___ my big bag for the trip.",
+          "options": ["need", "am needing", "needs", "needed"],
+          "correct_answer": "need"
         },
         {
-          "question": "I _______ my keys for the locker.",
-          "options": ["am needing", "need", "is needing", "needs"],
-          "correct_answer": "need",
-          "category": "Having"
+          "question": "The professor ___ my homework is late.",
+          "options": ["thinks", "is thinking", "think", "thought"],
+          "correct_answer": "thinks"
         },
         {
-          "question": "The student _______ the answer to the first question.",
-          "options": ["is knowing", "knows", "are knowing", "know"],
-          "correct_answer": "knows",
-          "category": "Mind"
+          "question": "We ___ English is an important language.",
+          "options": ["know", "are knowing", "knows", "known"],
+          "correct_answer": "know"
         },
         {
-          "question": "They _______ a new football team at school.",
-          "options": ["start", "starts", "is starting", "are starting"],
-          "correct_answer": "are starting",
-          "category": "Action"
+          "question": "The student ___ very tired after the test.",
+          "options": ["seems", "is seeming", "seem", "seemed"],
+          "correct_answer": "seems"
         },
         {
-          "question": "The small bag _______ some pens and paper.",
-          "options": ["is containing", "contains", "are containing", "contain"],
-          "correct_answer": "contains",
-          "category": "Having"
+          "question": "I ___ you are a very kind person.",
+          "options": ["believe", "am believing", "believes", "believed"],
+          "correct_answer": "believe"
         },
         {
-          "question": "I _______ very happy in this English class.",
-          "options": ["am feeling", "feel", "is feeling", "feels"],
-          "correct_answer": "feel",
-          "category": "Feelings"
+          "question": "They ___ a large house near the campus.",
+          "options": ["own", "are owning", "owns", "owned"],
+          "correct_answer": "own"
         },
         {
-          "question": "The boy _______ a heavy bag to the bus stop.",
-          "options": ["carry", "carries", "is carrying", "are carrying"],
-          "correct_answer": "is carrying",
-          "category": "Action"
+          "question": "He ___ the meaning of this word.",
+          "options": ["understands", "is understanding", "understand", "understood"],
+          "correct_answer": "understands"
         },
         {
-          "question": "We _______ tea more than coffee.",
-          "options": ["are preferring", "prefer", "is preferring", "prefers"],
-          "correct_answer": "prefer",
-          "category": "Feelings"
+          "question": "I ___ pizza for dinner today.",
+          "options": ["want", "am wanting", "wants", "wanted"],
+          "correct_answer": "want"
         },
         {
-          "question": "The computer _______ to my brother.",
-          "options": ["is belonging", "belongs", "are belonging", "belong"],
-          "correct_answer": "belongs",
-          "category": "Having"
+          "question": "The teacher ___ every student in the class.",
+          "options": ["likes", "is liking", "like", "liked"],
+          "correct_answer": "likes"
         },
         {
-          "question": "The girl _______ on a chair near the window.",
-          "options": ["sit", "sits", "is sitting", "are sitting"],
-          "correct_answer": "is sitting",
-          "category": "Action"
+          "question": "This coffee ___ very bitter.",
+          "options": ["tastes", "is tasting", "taste", "tasting"],
+          "correct_answer": "tastes"
         },
         {
-          "question": "I _______ why he is angry.",
-          "options": ["am not understanding", "don't understand", "am not understand", "doesn't understand"],
-          "correct_answer": "don't understand",
-          "category": "Mind"
+          "question": "I ___ my keys are in my pocket.",
+          "options": ["believe", "am believing", "believes", "believed"],
+          "correct_answer": "believe"
         },
         {
-          "question": "The university _______ a large park.",
-          "options": ["is having", "has", "are having", "have"],
-          "correct_answer": "has",
-          "category": "Having"
+          "question": "The library ___ many old books.",
+          "options": ["has", "is having", "have", "having"],
+          "correct_answer": "has"
         },
         {
-          "question": "He _______ chocolate cake.",
-          "options": ["is hating", "hates", "are hating", "hate"],
-          "correct_answer": "hates",
-          "category": "Feelings"
+          "question": "We ___ a break after this long class.",
+          "options": ["need", "are needing", "needs", "needed"],
+          "correct_answer": "need"
         },
         {
-          "question": "The children _______ in the garden.",
-          "options": ["play", "plays", "is playing", "are playing"],
-          "correct_answer": "are playing",
-          "category": "Action"
+          "question": "The girl ___ her friend's face.",
+          "options": ["recognizes", "is recognizing", "recognize", "recognized"],
+          "correct_answer": "recognizes"
         },
         {
-          "question": "The new student _______ very kind.",
-          "options": ["is seeming", "seems", "are seeming", "seem"],
-          "correct_answer": "seems",
-          "category": "Mind"
+          "question": "I ___ I am ready for the test.",
+          "options": ["think", "am thinking", "thinks", "thought"],
+          "correct_answer": "think"
         },
         {
-          "question": "I _______ to buy a new dictionary.",
-          "options": ["am wanting", "want", "is wanting", "wants"],
-          "correct_answer": "want",
-          "category": "Feelings"
+          "question": "He ___ to go home now.",
+          "options": ["wants", "is wanting", "want", "wanted"],
+          "correct_answer": "wants"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,

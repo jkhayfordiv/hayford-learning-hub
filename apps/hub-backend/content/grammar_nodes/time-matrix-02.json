@@ -1,170 +1,137 @@
 {
   "node_id": "time-matrix-02",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "Always True",
   "description": "Learn how to talk about things that happen every day or things that are always true.",
   "display_order": 2,
   "prerequisites": ["time-matrix-01"],
-  "lesson_content_markdown": "# Always True (Present Simple)\n\nWe use the **Present Simple** tense to speak about three main things:\n\n### 1. Facts (Always True)\n\nThese are things that do not change.\n\n- The library **opens** at 8 AM every day.\n- The sun **rises** in the east.\n- Water **boils** at 100 degrees Celsius.\n\n### 2. Habits (Daily Life)\n\nThese are things that you do many times. \n\n- I **go** to the cafe every morning.\n- Students **submit** their homework on Fridays.\n- My teacher **speaks** English very well.\n\n### 3. Rules and Systems\n\n- The bus **stops** near the school.\n- The gym **closes** at 9 PM on weekends.\n\n### How to build the sentence:\n\n**I, You, We, They**\n- **Action**: No change to the word.\n- **Example**: I **study** math.\n\n**He, She, It (or one person/thing)**\n- **Action**: Add **-s** or **-es**.\n- **Example**: He **studies** math.\n\n**Important Note:** When the subject is ONE person or thing (like \"My friend\" or \"The library\"), we MUST add **-s**.\n\n- **I study** (0% change) \n- **My friend studies** (+s change) \n- **The buses arrive** (Plural - 0% change) \n- **The bus arrives** (Singular - +s change) \n\n-----",
+  "lesson_content_markdown": "# Always True (Present Simple)\n\nWe use the **Present Simple** tense to speak about three main things:\n\n### 1. Facts (Always True)\n\nThese are things that do not change.\n\n- The library **opens** at 8 AM every day.\n- The sun **rises** in the east.\n- Water **boils** at 100 degrees Celsius.\n\n### 2. Habits (Daily Life)\n\nThese are things that you do many times. \n\n- I **go** to the cafe every morning.\n- Students **submit** their homework on Fridays.\n- My teacher **speaks** English very well.\n\n### 3. Rules and Systems\n\n- The bus **stops** near the school.\n- The gym **closes** at 9 PM on weekends.\n\n### How to build the sentence:\n\n**I, You, We, They**\n- **Action**: No change to the word.\n- **Example**: I **study** math.\n\n**He, She, It (or one person/thing)**\n- **Action**: Add **-s** or **-es**.\n- **Example**: He **studies** math.\n\n**Important Note:** When the subject is ONE person or thing (like \"My friend\" or \"The library\"), we MUST add **-s**.\n\n- **I study** (0% change) \n- **My friend studies** (+s change) \n- **The buses arrive** (Plural - 0% change) \n- **The bus arrives** (Singular - +s change) \n\n---",
   "mastery_check": {
     "type": "fill_in_the_blank",
     "prompt_to_student": "Fill in the blank with the correct form of the verb in the brackets (). Use the Present Simple.",
     "activity_data": {
-      "blanks": [
+      "questions": [
         {
-          "sentence_with_blank": "The university library _______ at 8:00 every morning. (open)",
-          "accepted_answers": ["opens"],
-          "hint": "Third person singular"
+          "question": "The history teacher ___ (talk) very fast in every class.",
+          "correct_answer": "talks"
         },
         {
-          "sentence_with_blank": "Most students _______ the bus to campus. (take)",
-          "accepted_answers": ["take"],
-          "hint": "Plural subject"
+          "question": "We ___ (buy) coffee in the morning before the lesson.",
+          "correct_answer": "buy"
         },
         {
-          "sentence_with_blank": "My teacher _______ many books on history. (read)",
-          "accepted_answers": ["reads"],
-          "hint": "Third person singular"
+          "question": "The library ___ (open) at 9:00 AM.",
+          "correct_answer": "opens"
         },
         {
-          "sentence_with_blank": "I _______ to the gym on Mondays and Wednesdays. (go)",
-          "accepted_answers": ["go"],
-          "hint": "First person"
+          "question": "I ___ (read) a new chapter every night.",
+          "correct_answer": "read"
         },
         {
-          "sentence_with_blank": "The school cafe _______ good coffee for 200 yen. (sell)",
-          "accepted_answers": ["sells"],
-          "hint": "Third person singular"
+          "question": "My friends ___ (go) to the gym after school.",
+          "correct_answer": "go"
         },
         {
-          "sentence_with_blank": "We _______ lunch in the cafeteria at 12 PM. (eat)",
-          "accepted_answers": ["eat"],
-          "hint": "First person plural"
+          "question": "The professor ___ (give) a test every Friday.",
+          "correct_answer": "gives"
         },
         {
-          "sentence_with_blank": "The chemistry lab _______ a lot of water. (use)",
-          "accepted_answers": ["uses"],
-          "hint": "Third person singular"
+          "question": "Students ___ (clean) their desks at the end of class.",
+          "correct_answer": "clean"
         },
         {
-          "sentence_with_blank": "You _______ a red pencil for the art class. (need)",
-          "accepted_answers": ["need"],
-          "hint": "Second person"
+          "question": "She ___ (like) her English class very much.",
+          "correct_answer": "likes"
         },
         {
-          "sentence_with_blank": "The students _______ their home projects on time. (finish)",
-          "accepted_answers": ["finish"],
-          "hint": "Plural subject"
+          "question": "The bus ___ (stop) in front of the gate.",
+          "correct_answer": "stops"
         },
         {
-          "sentence_with_blank": "Professor Lee _______ very slowly. (speak)",
-          "accepted_answers": ["speaks"],
-          "hint": "Third person singular"
+          "question": "You ___ (speak) English very well.",
+          "correct_answer": "speak"
         },
         {
-          "sentence_with_blank": "The sun _______ the classroom in the morning. (warm)",
-          "accepted_answers": ["warms"],
-          "hint": "Third person singular"
+          "question": "He ___ (write) his homework with a black pen.",
+          "correct_answer": "writes"
         },
         {
-          "sentence_with_blank": "They _______ football together every Saturday. (play)",
-          "accepted_answers": ["play"],
-          "hint": "Third person plural"
+          "question": "The sun ___ (shine) into the windows of the room.",
+          "correct_answer": "shines"
         },
         {
-          "sentence_with_blank": "The science book _______ three long chapters. (have)",
-          "accepted_answers": ["has"],
-          "hint": "Irregular third person"
+          "question": "They ___ (have) three classes on Monday.",
+          "correct_answer": "have"
         },
         {
-          "sentence_with_blank": "Water _______ into ice in very cold weather. (turn)",
-          "accepted_answers": ["turns"],
-          "hint": "Third person singular"
+          "question": "The food in the cafe ___ (taste) like home.",
+          "correct_answer": "tastes"
         },
         {
-          "sentence_with_blank": "I _______ my emails every hour. (check)",
-          "accepted_answers": ["check"],
-          "hint": "First person"
+          "question": "I ___ (want) to be a doctor one day.",
+          "correct_answer": "want"
         },
         {
-          "sentence_with_blank": "The girl _______ to music on the train. (listen)",
-          "accepted_answers": ["listens"],
-          "hint": "Third person singular"
+          "question": "The music at the party ___ (sound) very loud.",
+          "correct_answer": "sounds"
         },
         {
-          "sentence_with_blank": "The university _______ five big buildings. (own)",
-          "accepted_answers": ["owns"],
-          "hint": "Third person singular"
+          "question": "We ___ (walk) to the library together.",
+          "correct_answer": "walk"
         },
         {
-          "sentence_with_blank": "He _______ many questions in class. (ask)",
-          "accepted_answers": ["asks"],
-          "hint": "Third person singular"
+          "question": "The boy ___ (carry) a heavy bag to the room.",
+          "correct_answer": "carries"
         },
         {
-          "sentence_with_blank": "We _______ the classroom after each lesson. (clean)",
-          "accepted_answers": ["clean"],
-          "hint": "First person plural"
+          "question": "My father ___ (work) near the university.",
+          "correct_answer": "works"
         },
         {
-          "sentence_with_blank": "The clock _______ very quiet. (be)",
-          "accepted_answers": ["is"],
-          "hint": "The be verb"
+          "question": "The cat ___ (sleep) under the tree.",
+          "correct_answer": "sleeps"
         },
         {
-          "sentence_with_blank": "The school _______ on Sundays. (close)",
-          "accepted_answers": ["closes"],
-          "hint": "Third person singular"
+          "question": "They ___ (drink) water during the game.",
+          "correct_answer": "drink"
         },
         {
-          "sentence_with_blank": "Students _______ hard before the big test. (study)",
-          "accepted_answers": ["study"],
-          "hint": "Plural subject"
+          "question": "The girl ___ (sing) for the music club.",
+          "correct_answer": "sings"
         },
         {
-          "sentence_with_blank": "The computer _______ a lot of paper. (print)",
-          "accepted_answers": ["prints"],
-          "hint": "Third person singular"
+          "question": "He ___ (need) more time to finish the book.",
+          "correct_answer": "needs"
         },
         {
-          "sentence_with_blank": "I _______ many new words every day. (learn)",
-          "accepted_answers": ["learn"],
-          "hint": "First person"
+          "question": "I ___ (know) your sister very well.",
+          "correct_answer": "know"
         },
         {
-          "sentence_with_blank": "My brother _______ a long walk in the park. (take)",
-          "accepted_answers": ["takes"],
-          "hint": "Third person singular"
+          "question": "The winter ___ (bring) cold snow to the campus.",
+          "correct_answer": "brings"
         },
         {
-          "sentence_with_blank": "The birds _______ near the school. (sing)",
-          "accepted_answers": ["sing"],
-          "hint": "Plural subject"
+          "question": "We ___ (understand) the teacher's lesson.",
+          "correct_answer": "understand"
         },
         {
-          "sentence_with_blank": "She _______ a blue dress for graduation. (wear)",
-          "accepted_answers": ["wears"],
-          "hint": "Third person singular"
+          "question": "The clock on the wall ___ (tick) loudly.",
+          "correct_answer": "ticks"
         },
         {
-          "sentence_with_blank": "We _______ the answers together. (find)",
-          "accepted_answers": ["find"],
-          "hint": "First person plural"
+          "question": "She ___ (play) the piano in the student center.",
+          "correct_answer": "plays"
         },
         {
-          "sentence_with_blank": "The cat _______ in the garden. (sleep)",
-          "accepted_answers": ["sleeps"],
-          "hint": "Third person singular"
+          "question": "The class ___ (begin) at 10:00 every Tuesday.",
+          "correct_answer": "begins"
         },
         {
-          "sentence_with_blank": "He _______ his breakfast very early. (eat)",
-          "accepted_answers": ["eats"],
-          "hint": "Third person singular"
+          "question": "They ___ (live) in the new student dorm.",
+          "correct_answer": "live"
         }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,

@@ -1,7 +1,5 @@
 {
   "node_id": "time-matrix-03",
-  "region": "The Time Matrix",
-  "tier": "Bronze",
   "title": "Right Now",
   "description": "Learn how to talk about things that are happening at this very moment.",
   "display_order": 3,
@@ -11,41 +9,129 @@
     "type": "error_correction",
     "prompt_to_student": "Find the ONE mistake in each sentence below. Type only the correct word or words to fix the sentence.",
     "activity_data": {
-      "sentence": "1. I studying in the big library today.\n2. The student are reading a new science book.\n3. Look! My friends is walking to the cafe.\n4. He writing his homework now.\n5. We is eating dinner in the cafeteria.\n6. You am listening to the teacher.\n7. The girl is runing in the gym.\n8. I am not read my email now.\n9. They are play football on the school field.\n10. She am using the old computer.\n11. The teacher is speak slowly today.\n12. We are sit on the blue chairs.\n13. He are carrying a heavy bag.\n14. I am not understand the difficult question.\n15. The sun are warming the classroom.\n16. My roommate is sleep in the bedroom.\n17. They is starting a new project.\n18. Look! The taxi is stoping near the gate.\n19. You is wearing a new hat.\n20. The children are play together.\n21. He is takking a long walk.\n22. I am write a letter to my mother.\n23. The cat are sleeping in the garden.\n24. We am watching a movie on the phone.\n25. She is makes a cup of hot tea.\n26. The new student are studying hard.\n27. I is feeling very happy today.\n28. They are help the teacher now.\n29. The boy is use a red pencil.\n30. He is not go home now.",
-      "errors": [
-        { "word_index": 1, "incorrect_word": "studying", "accepted_corrections": ["am studying"] },
-        { "word_index": 2, "incorrect_word": "are", "accepted_corrections": ["is"] },
-        { "word_index": 3, "incorrect_word": "is", "accepted_corrections": ["are"] },
-        { "word_index": 4, "incorrect_word": "writing", "accepted_corrections": ["is writing"] },
-        { "word_index": 5, "incorrect_word": "is", "accepted_corrections": ["are"] },
-        { "word_index": 6, "incorrect_word": "am", "accepted_corrections": ["are"] },
-        { "word_index": 7, "incorrect_word": "runing", "accepted_corrections": ["running"] },
-        { "word_index": 8, "incorrect_word": "read", "accepted_corrections": ["reading"] },
-        { "word_index": 9, "incorrect_word": "play", "accepted_corrections": ["playing"] },
-        { "word_index": 10, "incorrect_word": "am", "accepted_corrections": ["is"] },
-        { "word_index": 11, "incorrect_word": "speak", "accepted_corrections": ["speaking"] },
-        { "word_index": 12, "incorrect_word": "sit", "accepted_corrections": ["sitting"] },
-        { "word_index": 13, "incorrect_word": "are", "accepted_corrections": ["is"] },
-        { "word_index": 14, "incorrect_word": "understand", "accepted_corrections": ["understanding"] },
-        { "word_index": 15, "incorrect_word": "are", "accepted_corrections": ["is"] },
-        { "word_index": 16, "incorrect_word": "sleep", "accepted_corrections": ["sleeping"] },
-        { "word_index": 17, "incorrect_word": "is", "accepted_corrections": ["are"] },
-        { "word_index": 18, "incorrect_word": "stoping", "accepted_corrections": ["stopping"] },
-        { "word_index": 19, "incorrect_word": "is", "accepted_corrections": ["are"] },
-        { "word_index": 20, "incorrect_word": "play", "accepted_corrections": ["playing"] },
-        { "word_index": 21, "incorrect_word": "takking", "accepted_corrections": ["taking"] },
-        { "word_index": 22, "incorrect_word": "write", "accepted_corrections": ["writing"] },
-        { "word_index": 23, "incorrect_word": "are", "accepted_corrections": ["is"] },
-        { "word_index": 24, "incorrect_word": "am", "accepted_corrections": ["are"] },
-        { "word_index": 25, "incorrect_word": "makes", "accepted_corrections": ["making"] },
-        { "word_index": 26, "incorrect_word": "are", "accepted_corrections": ["is"] },
-        { "word_index": 27, "incorrect_word": "is", "accepted_corrections": ["am"] },
-        { "word_index": 28, "incorrect_word": "help", "accepted_corrections": ["helping"] },
-        { "word_index": 29, "incorrect_word": "use", "accepted_corrections": ["using"] },
-        { "word_index": 30, "incorrect_word": "go", "accepted_corrections": ["going"] }
+      "questions": [
+        {
+          "question": "I am read a book in the library now.",
+          "correct_answer": "reading"
+        },
+        {
+          "question": "They are walk to the student center at the moment.",
+          "correct_answer": "walking"
+        },
+        {
+          "question": "She is write a long letter to her mother.",
+          "correct_answer": "writing"
+        },
+        {
+          "question": "The boy are playing football on the field.",
+          "correct_answer": "is playing"
+        },
+        {
+          "question": "We is eating lunch in the big cafe right now.",
+          "correct_answer": "are eating"
+        },
+        {
+          "question": "The teacher am explaining the new lesson.",
+          "correct_answer": "is explaining"
+        },
+        {
+          "question": "Listen! The students is singing a song.",
+          "correct_answer": "are"
+        },
+        {
+          "question": "I are waiting for the bus near the gate.",
+          "correct_answer": "am"
+        },
+        {
+          "question": "They am studying English in the classroom.",
+          "correct_answer": "are"
+        },
+        {
+          "question": "The coffee is taste very good today.",
+          "correct_answer": "tastes"
+        },
+        {
+          "question": "You is sitting on my favorite chair.",
+          "correct_answer": "are"
+        },
+        {
+          "question": "The cat is sleep under the professor's desk.",
+          "correct_answer": "sleeping"
+        },
+        {
+          "question": "He is look for his blue pen on the floor.",
+          "correct_answer": "looking"
+        },
+        {
+          "question": "We are prepare for the big test on Monday.",
+          "correct_answer": "preparing"
+        },
+        {
+          "question": "They are run to catch the bus right now.",
+          "correct_answer": "running"
+        },
+        {
+          "question": "Look! The sun is shine through the window.",
+          "correct_answer": "shining"
+        },
+        {
+          "question": "I am think about the next holiday.",
+          "correct_answer": "thinking"
+        },
+        {
+          "question": "The library is close for the long weekend.",
+          "correct_answer": "closing"
+        },
+        {
+          "question": "They are talk about their favorite sports.",
+          "correct_answer": "talking"
+        },
+        {
+          "question": "The student is carry three heavy books.",
+          "correct_answer": "carrying"
+        },
+        {
+          "question": "He am drinking cold water after the game.",
+          "correct_answer": "is"
+        },
+        {
+          "question": "She is dance in the music room tonight.",
+          "correct_answer": "dancing"
+        },
+        {
+          "question": "We are watch a movie in the student lounge.",
+          "correct_answer": "watching"
+        },
+        {
+          "question": "The bird is fly over the university trees.",
+          "correct_answer": "flying"
+        },
+        {
+          "question": "I is finishing my homework before dinner.",
+          "correct_answer": "am"
+        },
+        {
+          "question": "They is having a meeting in the office.",
+          "correct_answer": "are"
+        },
+        {
+          "question": "The clock is tick very slowly in class.",
+          "correct_answer": "ticking"
+        },
+        {
+          "question": "She is make a sandwich for her lunch.",
+          "correct_answer": "making"
+        },
+        {
+          "question": "Look! The rain is fall on the grass.",
+          "correct_answer": "falling"
+        },
+        {
+          "question": "We am waiting for the teacher to arrive.",
+          "correct_answer": "are"
+        }
       ]
-    },
-    "ai_grading_rubric": null
+    }
   },
   "rewards": {
     "mastery_points": 100,
