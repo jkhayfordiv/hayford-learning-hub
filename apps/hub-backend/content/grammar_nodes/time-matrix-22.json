@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-22",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "Advanced Passive 1",
-  "description": "Present/Past Perfect Passive: The results have been analyzed.",
-  "display_order": 22,
-  "prerequisites": ["time-matrix-21"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The results _____ by the committee.",
-          "options": ["have analyzed", "have been analyzed", "has been analyzed", "analyzed"],
-          "correct_answer": 1,
-          "category": "Advanced Passive"
+    "node_id": "time-matrix-22",
+    "title": "The Advanced Passive 1: Perfect Passives",
+    "description": "Using passive voice with present and past perfect tenses for official research results.",
+    "display_order": 22,
+    "prerequisites": ["time-matrix-21"],
+    "lesson_content_markdown": "# The Advanced Passive 1: Perfect Passives\n\nIn university reports, we often use the **Present Perfect Passive** to talk about research that is finished and important for the present. We also use the **Past Perfect Passive** to talk about something finished in the deep past.\n\n### 1. Present Perfect Passive\nUse this to report results that are still important today.\n- **Formula**: have / has + **been** + **V3**.\n- **Example**: The data **has been analyzed**. (Focus is on the data, not the person.)\n- **Example**: Thousands of students **have been registered**.\n\n### 2. Past Perfect Passive\nUse this for an object that was changed **before** another past action.\n- **Formula**: **had** + **been** + **V3**.\n- **Example**: The building **had been opened** before the storm arrived.\n\n### 3. Difference: Active vs. Passive\n- **Active**: The scientist has analyzed the results. (Scientist is focus.)\n- **Passive**: The results **have been analyzed** by the scientist. (Results are focus!)\n\n### 4. Common Verbs\n- do \u2192 **done**\n- write \u2192 **written**\n- analyze \u2192 **analyzed**\n- conduct \u2192 **conducted**\n- discuss \u2192 **discussed**\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you handle the most formal voice of the academy? Practice using the Perfect Passives.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "The final results of the experiment ___ in the university journal.",
+                    "options": [
+                        "have been published",
+                        "has been published",
+                        "published",
+                        "are publish"
+                    ],
+                    "correct_answer": "have been published"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The library ___ by the staff before the campus closed for winter.",
+                    "options": [
+                        "had been cleaned",
+                        "has been cleaned",
+                        "cleaned",
+                        "had clean"
+                    ],
+                    "correct_answer": "had been cleaned"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correctly in the Present Perfect Passive?",
+                    "options": [
+                        "The survey has been completed by the team.",
+                        "The survey has completed by the team.",
+                        "The survey have been completed by the team.",
+                        "The survey was being completed by the team."
+                    ],
+                    "correct_answer": "The survey has been completed by the team."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "All the laboratory samples ___ manually.",
+                    "options": [
+                        "have been tested",
+                        "has been tested",
+                        "tested",
+                        "are test"
+                    ],
+                    "correct_answer": "have been tested"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The building ___ ten years before the university started the new program.",
+                    "options": [
+                        "had been built",
+                        "has been built",
+                        "was build",
+                        "is building"
+                    ],
+                    "correct_answer": "had been built"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Millions of dollars ___ for the new medical research center.",
+                    "options": [
+                        "have been spent",
+                        "has been spent",
+                        "spent",
+                        "was spend"
+                    ],
+                    "correct_answer": "have been spent"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correctly in the Past Perfect Passive?",
+                    "options": [
+                        "The report had been written before the deadline.",
+                        "The report has been written before the deadline.",
+                        "The report was written before the deadline.",
+                        "The report will have been written before the deadline."
+                    ],
+                    "correct_answer": "The report had been written before the deadline."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The student government ___ many new laws this year.",
+                    "options": [
+                        "has been given",
+                        "has give",
+                        "have been given",
+                        "was given"
+                    ],
+                    "correct_answer": "has been given"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The room ___ by the janitor every night this week.",
+                    "options": [
+                        "has been locked",
+                        "had been locked",
+                        "locked",
+                        "is locking"
+                    ],
+                    "correct_answer": "has been locked"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Everything ___ in preparation for the conference tonight.",
+                    "options": [
+                        "has been done",
+                        "have been done",
+                        "done",
+                        "doing"
+                    ],
+                    "correct_answer": "has been done"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The assignment ___ (finish) by most students.",
+                    "accepted_answers": ["has been finished", "been finished", "s been finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The data ___ (analyze) before the meeting started.",
+                    "accepted_answers": ["had been analyzed", "been analyzed", "d been analyzed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Many trees ___ (plant) on the university campus already.",
+                    "accepted_answers": ["have been planted", "been planted", "ve been planted"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ the building (lock) before you left?",
+                    "accepted_answers": ["Had;been locked", "had;been locked"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The sample ___ (heat) to sixty degrees.",
+                    "accepted_answers": ["has been heated", "been heated", "s been heated"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The rules ___ (discuss) during the orientation.",
+                    "accepted_answers": ["have been discussed", "been discussed", "ve been discussed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The problem ___ (not solve) yet.",
+                    "accepted_answers": ["has not been solved", "hasn't been solved", "s not been solved"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "A new planet ___ (find) by the campus astronomers.",
+                    "accepted_answers": ["has been found", "been found", "s been found"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How many emails ___ (send) so far?",
+                    "accepted_answers": ["have been sent", "been sent"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The science labs ___ (use) for many years.",
+                    "accepted_answers": ["have been used", "been used", "ve been used"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The report *has finish* by the students.",
+                    "accepted_answers": ["has been finished", "been finished", "s been finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The project *had being finished* before the bell rang.",
+                    "accepted_answers": ["had been finished", "been finished", "d been finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Many results *was analyzed* this week.",
+                    "accepted_answers": ["have been analyzed", "been analyzed", "ve been analyzed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The data *has analyzed* by the computer.",
+                    "accepted_answers": ["has been analyzed", "been analyzed", "s been analyzed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Your keys *have finded* on the floor.",
+                    "accepted_answers": ["have been found", "been found", "ve been found"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The professor's book *had been wrote* in 2005.",
+                    "accepted_answers": ["had been written", "written", "d been written"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The university *been opened* since sixty years ago.",
+                    "accepted_answers": ["has been open", "has been opened", "s been opened"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The tests *have send* out already.",
+                    "accepted_answers": ["have been sent", "sent", "ve been sent"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The building *had been broke* by the storm.",
+                    "accepted_answers": ["had been broken", "broken", "d been broken"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *have done* by the student government.",
+                    "accepted_answers": ["has been done", "been done", "s been done"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }

@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-23",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "Advanced Passive 2",
-  "description": "Passive with Modals: It must be noted that... / The data cannot be ignored.",
-  "display_order": 23,
-  "prerequisites": ["time-matrix-22"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The findings _____ carefully before publication.",
-          "options": ["must review", "must be reviewed", "must reviewed", "must be reviewing"],
-          "correct_answer": 1,
-          "category": "Passive with Modals"
+    "node_id": "time-matrix-23",
+    "title": "The Advanced Passive 2: Modal Passives",
+    "description": "Using passive voice with modal verbs for formal notes and academic warnings.",
+    "display_order": 23,
+    "prerequisites": ["time-matrix-22"],
+    "lesson_content_markdown": "# The Advanced Passive 2: Modal Passives\n\nIn academic writing, we use **Modals** (must, can, should, must not) with the passive voice to give instructions, warnings, or discuss possibilities.\n\n### 1. How to Make It\nUse the **Modal** + **be** + **Past Participle** (V3).\n\n- **Formula**: Modal + be + V3\n- **Example (Instructions)**: It **should be noted** that the data was collected manually.\n- **Example (Warnings)**: The lab equipment **must not be touched**.\n- **Example (Possibility)**: These results **can be found** on the university website.\n\n### 2. Common Modals in Passive\n- **Must be**: Action is very important/required. (*\"The door must be locked.\"*)\n- **Should be**: Action is recommended. (*\"The sample should be cooled.\"*)\n- **Can be**: Action is possible. (*\"This book can be borrowed.\"*)\n- **Must not be**: Action is forbidden. (*\"Safety rules must not be ignored.\"*)\n\n### 3. Subject-Verb Focus\nNotice that the object (data, equipment, results) starts the sentence. This sounds more objective and formal than saying \"You must not touch the equipment.\"\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you use formal modals in the passive voice? Practice for academic writing.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "The university library rules ___ by all students.",
+                    "options": [
+                        "must be followed",
+                        "must follow",
+                        "must followed",
+                        "following"
+                    ],
+                    "correct_answer": "must be followed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ that the study was conducted over three years.",
+                    "options": [
+                        "should be noted",
+                        "should note",
+                        "should be note",
+                        "noting"
+                    ],
+                    "correct_answer": "should be noted"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correctly in the modal passive?",
+                    "options": [
+                        "The report can be found online.",
+                        "The report can find online.",
+                        "The report can be find online.",
+                        "The report can finding online."
+                    ],
+                    "correct_answer": "The report can be found online."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Chemicals ___ in the science lab without a teacher.",
+                    "options": [
+                        "must not be used",
+                        "must not use",
+                        "must not be use",
+                        "not use"
+                    ],
+                    "correct_answer": "must not be used"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The classroom doors ___ after the final class.",
+                    "options": [
+                        "should be locked",
+                        "should locked",
+                        "should being locked",
+                        "locking"
+                    ],
+                    "correct_answer": "should be locked"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Student ID cards ___ in a safe place at all times.",
+                    "options": [
+                        "must be kept",
+                        "must keep",
+                        "must had kept",
+                        "keeping"
+                    ],
+                    "correct_answer": "must be kept"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows a recommendation for a research paper?",
+                    "options": [
+                        "Final results should be discussed in the last page.",
+                        "Final results should discuss in the last page.",
+                        "Final results should been discussed in the last page.",
+                        "Final results should being discuss in the last page."
+                    ],
+                    "correct_answer": "Final results should be discussed in the last page."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "These books ___ from the university library only for two weeks.",
+                    "options": [
+                        "can be borrowed",
+                        "can borrow",
+                        "can borrowed",
+                        "borrowing"
+                    ],
+                    "correct_answer": "can be borrowed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Water ___ near the computer equipment.",
+                    "options": [
+                        "must not be placed",
+                        "must not place",
+                        "must not been placed",
+                        "not place"
+                    ],
+                    "correct_answer": "must not be placed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The science samples ___ carefully.",
+                    "options": [
+                        "must be handled",
+                        "must handle",
+                        "must had handled",
+                        "handling"
+                    ],
+                    "correct_answer": "must be handled"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The data ___ (cannot / ignore). It is very important.",
+                    "accepted_answers": ["cannot be ignored", "can't be ignored", "can not be ignored"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (must / note) that the test was difficult.",
+                    "accepted_answers": ["must be noted", "be noted", "noted"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Rules ___ (should / follow) by all freshman students.",
+                    "accepted_answers": ["should be followed", "be followed", "followed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ information (be / found) on the campus board?",
+                    "accepted_answers": ["Can;be found", "can;be found"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The homework ___ (must / finish) by Friday evening.",
+                    "accepted_answers": ["must be finished", "be finished", "finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "These files ___ (cannot / open) without the password.",
+                    "accepted_answers": ["cannot be opened", "can't be opened", "can not be opened"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The laboratory ___ (should / clean) every Saturday.",
+                    "accepted_answers": ["should be cleaned", "be cleaned", "cleaned"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "A doctor ___ (must / call) in an emergency.",
+                    "accepted_answers": ["must be called", "be called", "called"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ books (be / borrowed) for three weeks?",
+                    "accepted_answers": ["Should;be borrowed", "should;be borrowed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "This computer ___ (must not / use) for playing games.",
+                    "accepted_answers": ["must not be used", "mustn't be used"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The data *must ignored* by the researcher.",
+                    "accepted_answers": ["must be ignored", "be ignored", "ignored"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *should been noted* that the building is old.",
+                    "accepted_answers": ["should be noted", "be noted", "noted"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The results *can being found* on the university internet.",
+                    "accepted_answers": ["can be found", "be found", "found"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The student *must not be touch* the expensive microscope.",
+                    "accepted_answers": ["must not touch", "must not be touched"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Rules *should follow* by the participants.",
+                    "accepted_answers": ["should be followed", "be followed", "followed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Safety *must maintain* at all times.",
+                    "accepted_answers": ["must be maintained", "be maintained", "maintained"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Information *cannot be find* in the old book.",
+                    "accepted_answers": ["cannot be found", "can't be found", "found"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The final report *must finish* by morning.",
+                    "accepted_answers": ["must be finished", "be finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The science equipment *should be handle* carefully.",
+                    "accepted_answers": ["should be handled", "be handled", "handled"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "A map *can see* near the campus entrance.",
+                    "accepted_answers": ["can be seen", "be seen", "seen"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }

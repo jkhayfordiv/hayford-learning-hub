@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-21",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "Future Perfect",
-  "description": "Projecting completed data: By 2050, the population will have doubled.",
-  "display_order": 21,
-  "prerequisites": ["time-matrix-20"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "By 2050, scientists _____ a cure for cancer.",
-          "options": ["will find", "will have found", "will be finding", "find"],
-          "correct_answer": 1,
-          "category": "Future Perfect"
+    "node_id": "time-matrix-21",
+    "title": "Projecting Data: Future Perfect",
+    "description": "Talking about things that will be completed by a specific time in the future.",
+    "display_order": 21,
+    "prerequisites": ["time-matrix-20"],
+    "lesson_content_markdown": "# Projecting Data: Future Perfect\n\nWhen we talk about the future in research, we often project that something will be **finished** by a certain time. We use the **Future Perfect** for this.\n\n### 1. The Timeline\nImagine it is 2024 now. You plan to finish your university degree in 2026.\n- **Point in Future**: 2026.\n- **Completed Action**: Finishing the degree.\n- **The Sentence**: *\"By 2026, I **will have finished** my degree.\"*\n\n### 2. How to Make It\nUse **will have** + the **Past Participle** (V3).\n\n- **Formula**: Subject + will have + V3 (e.g., finished, discovered, moved)\n- **Example**: By next month, the science team **will have analyzed** all the samples.\n\n### 3. Common Keyword: \"By\"\nWe almost always use **by** or **by the time** with the Future Perfect to show the deadline.\n- **Example**: **By 2050**, the world population **will have grown** by two billion people.\n- **Example**: **By the time** you arrive, I **will have cooked** dinner.\n\n### 4. Why use it?\nIt helps you talk about **goals** and **results** in the future, not just actions that are happening.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you project results correctly? Practice using the Future Perfect correctly.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "By 2050, researchers ___ a cure for this dangerous virus.",
+                    "options": [
+                        "will have found",
+                        "will find",
+                        "had found",
+                        "finding"
+                    ],
+                    "correct_answer": "will have found"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "By the end of this semester, we ___ all the science experiments.",
+                    "options": [
+                        "will have finished",
+                        "will finish",
+                        "have finished",
+                        "finish"
+                    ],
+                    "correct_answer": "will have finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows a completed goal in the future?",
+                    "options": [
+                        "By next year, the university will have opened a new library.",
+                        "By next year, the university will open a new library.",
+                        "By next year, the university is opening a new library.",
+                        "By next year, the university opened a new library."
+                    ],
+                    "correct_answer": "By next year, the university will have opened a new library."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ my graduate research by 2027.",
+                    "options": [
+                        "will have completed",
+                        "will complete",
+                        "completing",
+                        "finished"
+                    ],
+                    "correct_answer": "will have completed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "By the time you wake up, the sun ___.",
+                    "options": [
+                        "will have risen",
+                        "rises",
+                        "will rise",
+                        "risen"
+                    ],
+                    "correct_answer": "will have risen"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ ten thousand books by the end of the month.",
+                    "options": [
+                        "will have sold",
+                        "sell",
+                        "sold",
+                        "selling"
+                    ],
+                    "correct_answer": "will have sold"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "By next week, the library ___ all the new students.",
+                    "options": [
+                        "will have registered",
+                        "registers",
+                        "registered",
+                        "registering"
+                    ],
+                    "correct_answer": "will have registered"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The world ___ double the amount of energy by 2040.",
+                    "options": [
+                        "will have used",
+                        "used",
+                        "will used",
+                        "uses"
+                    ],
+                    "correct_answer": "will have used"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "By 6:00 PM tonight, the cafeteria ___ thousands of meals.",
+                    "options": [
+                        "will have served",
+                        "serve",
+                        "serving",
+                        "served"
+                    ],
+                    "correct_answer": "will have served"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ the project (end) by next Friday night?",
+                    "options": [
+                        "Will;have ended",
+                        "Will;end",
+                        "Did;end",
+                        "Has;ended"
+                    ],
+                    "correct_answer": "Will;have ended"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "By 2026, I ___ (finish) my university studies.",
+                    "accepted_answers": ["will have finished", "ll have finished", "finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The computer ___ (save) all the data by the morning.",
+                    "accepted_answers": ["will have saved", "ll have saved", "saved"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "By next year, the team ___ (discover) a new planet.",
+                    "accepted_answers": ["will have discovered", "ll have discovered", "discovered"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ the sun (rise) by the time they start the race?",
+                    "accepted_answers": ["Will;have risen", "will;have risen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (write) their reports before the deadline.",
+                    "accepted_answers": ["will have written", "ll have written", "written"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "By next month, she ___ (learn) how to use the lab equipment.",
+                    "accepted_answers": ["will have learned", "ll have learned", "learned"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (not finish) the experiment by tomorrow morning.",
+                    "accepted_answers": ["will not have finished", "won't have finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "By 2030, many people ___ (move) to the city.",
+                    "accepted_answers": ["will have moved", "ll have moved", "moved"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How many books ___ the students (read) by summer?",
+                    "accepted_answers": ["will;have read", "will;have read"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The construction ___ (end) by next February.",
+                    "accepted_answers": ["will have ended", "ll have ended", "ended"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "By next week, I *will finish* my science project.",
+                    "accepted_answers": ["will have finished", "ll have finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "By 2025, she *has graduated* from the university.",
+                    "accepted_answers": ["will have graduated", "ll have graduated", "graduated"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *will have see* the results by Friday morning.",
+                    "accepted_answers": ["will have seen", "seen", "ll have seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "By the time we arrive, the party *have started*.",
+                    "accepted_answers": ["will have started", "ll have started", "started"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *will have eat* dinner by 8:00 tonight.",
+                    "accepted_answers": ["will have eaten", "eaten", "ll have eaten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Will you *finish* the report by tomorrow?",
+                    "accepted_answers": ["have finished", "finish"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "By January, the water *will have freeze* completely.",
+                    "accepted_answers": ["will have frozen", "frozen", "ll have frozen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The students *will have forgot* the lesson by next year.",
+                    "accepted_answers": ["will have forgotten", "forgotten", "ll have forgotten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *was finished* by the time the bell rings.",
+                    "accepted_answers": ["will have been finished", "will have finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *will have spoke* to the professor by noon.",
+                    "accepted_answers": ["will have spoken", "spoken", "ll have spoken"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }
