@@ -1,41 +1,192 @@
 {
-  "node_id": "time-matrix-13",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Finished Past vs. Still Connected",
-  "description": "Learning the difference between things that are OVER and things that are STILL CONNECTED to now.",
-  "display_order": 13,
-  "prerequisites": ["time-matrix-12"],
-  "lesson_content_markdown": "# The Big Divide\n\nMany students find this part tricky. Let's make it simple! There are two ways to talk about the past: \n\n### 1. The 'Closed Box' (Simple Past)\nUse this when the time is **finished** and you say **when** it happened. \n- *\"I **finished** my homework **at 9 PM**.\"*\n- *\"I **went** to Tokyo **last year**.\"*\n- *\"Once, the university **built** a library.\"*\n\n### 2. The 'Open Bridge' (Present Perfect)\nUse this when the time is **not finished** or the action is **still true**.\n- *\"I **have finished** my homework.\"* (It is done right now!)\n- *\"I **have been** to Tokyo.\"* (At some point in my life, I don't say when.)\n- *\"The university **has built** a library.\"* (The library is still there today!)\n\n### The 'When' Test\nIf your sentence has a 'Time Word' like **yesterday**, **last week**, **at 5:00**, or **in 2023**, you must use the **Closed Box** (Simple Past). If there is no specific time, use the **Open Bridge** (Present Perfect).",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Which word is correct for each situation?",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The computer laboratory _____ into the university campus during the 1990s.",
-          "options": ["moves", "moved", "has moved", "moving"],
-          "correct_answer": "moved",
-          "category": "Present Perfect vs Past Simple"
-        },
-        {
-          "question": "Over the past few months, the student government _____ several new budget changes.",
-          "options": ["introduces", "introduced", "has introduced", "introducing"],
-          "correct_answer": "has introduced",
-          "category": "Present Perfect vs Past Simple"
-        },
-        {
-          "question": "The professor _____ for many different international organizations before coming to our university.",
-          "options": ["work", "worked", "has worked", "working"],
-          "correct_answer": "worked",
-          "category": "Present Perfect vs Past Simple"
+    "node_id": "time-matrix-13",
+    "title": "The Great Divide: Past vs. Present Perfect",
+    "description": "Learning when to use simple past (finished) or present perfect (unfinished/connected).",
+    "display_order": 13,
+    "prerequisites": ["time-matrix-12"],
+    "lesson_content_markdown": "# The Great Divide: Past vs. Present Perfect\n\nMany students find this choice difficult, but there is one simple secret: **Check the time.**\n\n### 1. Simple Past (Finished Past)\nUse this when you say exactly **when** something happened. The time is \"closed.\"\n\n- **Keywords**: yesterday, last week, in 2022, two hours ago, when I was a child.\n- **Example**: I **saw** the professor **yesterday**. (I can't change yesterday!)\n- **Example**: We **finished** the test **at 2 PM**.\n\n### 2. Present Perfect (Unfinished/Connected Past)\nUse this when the time is not finished, or you don't say exactly when it happened. The \"bridge\" is still open to the present.\n\n- **Keywords**: since, for, ever, never, already, yet, this week.\n- **Example**: I **have seen** the professor **three times this week**. (The week is not over!)\n- **Example**: She **has worked** at the university **since 2010**.\n\n### 3. The Comparison\n- **Past**: I **ate** lunch at 12:00. (Specific time, finished.)\n- **Present Perfect**: I **have already eaten** lunch. (Finished, but connected to my energy now!)\n- **Past**: They **lived** in London in 2015. (They don't live there now.)\n- **Present Perfect**: They **have lived** in London for 10 years. (They still live there!)\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you handle the Great Divide? Choose carefully between the finished past and the connected present.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ the university president yesterday at the ceremony.",
+                    "options": ["saw", "have seen", "seen", "was seen"],
+                    "correct_answer": "saw"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She ___ this science book for three hours now.",
+                    "options": ["has read", "read", "reads", "readed"],
+                    "correct_answer": "has read"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "We ___ our final presentation last Monday.",
+                    "options": ["finished", "have finished", "finish", "finishing"],
+                    "correct_answer": "finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ you ever visited the campus research center?",
+                    "options": ["Have", "Did", "Were", "Are"],
+                    "correct_answer": "Have"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ to the new gym three times this week.",
+                    "options": ["have been", "were", "go", "went"],
+                    "correct_answer": "have been"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "In 2021, the university ___ a new science building.",
+                    "options": ["built", "has built", "builds", "building"],
+                    "correct_answer": "built"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ my student ID card five minutes ago.",
+                    "options": ["found", "have found", "find", "founding"],
+                    "correct_answer": "found"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "He ___ for that company since he graduated.",
+                    "options": ["has worked", "worked", "is working", "work"],
+                    "correct_answer": "has worked"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correct for yesterday?",
+                    "options": [
+                        "I went to the library yesterday.",
+                        "I have gone to the library yesterday.",
+                        "I have been to the library yesterday.",
+                        "I go to the library yesterday."
+                    ],
+                    "correct_answer": "I went to the library yesterday."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is correct for life experience?",
+                    "options": [
+                        "I have eaten at that cafe many times.",
+                        "I ate at that cafe many times yesterday.",
+                        "I have eat at that cafe before.",
+                        "I already eat at that cafe."
+                    ],
+                    "correct_answer": "I have eaten at that cafe many times."
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (study) for five hours yesterday.",
+                    "accepted_answers": ["studied", "was studying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (study) for five hours today. I am tired!",
+                    "accepted_answers": ["have studied", "studied", "ve studied"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (already / write) her English report.",
+                    "accepted_answers": ["has already written", "already wrote", "s already written"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (buy) a new computer last year.",
+                    "accepted_answers": ["bought"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (buy) three new computers since 2022.",
+                    "accepted_answers": ["have bought", "bought", "ve bought"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (see) the new professor this morning?",
+                    "accepted_answers": ["Did;see", "Have;seen", "Have;seen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (not be) to the campus museum yet.",
+                    "accepted_answers": ["haven't been", "have not been", "avent been"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The sun ___ (rise) at 6:00 AM today.",
+                    "accepted_answers": ["rose"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He ___ (be) a doctor for ten years now.",
+                    "accepted_answers": ["has been", "s been"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (lose) my pen on the bus yesterday.",
+                    "accepted_answers": ["lost"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *have seen* her at the party last night.",
+                    "accepted_answers": ["saw"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *has lived* here since three years.",
+                    "accepted_answers": ["has lived here for", "has lived", "lived"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *have finished* the work two hours ago.",
+                    "accepted_answers": ["finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *never saw* a real elephant before today.",
+                    "accepted_answers": ["has never seen", "never saw", "s never seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Did you ever *visited* the national park?",
+                    "accepted_answers": ["visit", "Have you ever visited"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *have ate* lunch at 12:00 yesterday.",
+                    "accepted_answers": ["ate"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *lived* here since January.",
+                    "accepted_answers": ["have lived", "s lived", "ve lived"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Wait! I *have forgot* my keys in the car.",
+                    "accepted_answers": ["have forgotten", "forgot", "ve forgotten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The university *has opened* in 1965.",
+                    "accepted_answers": ["opened"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *already finished* my homework this morning.",
+                    "accepted_answers": ["have already finished", "already finished", "ve already finished"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }

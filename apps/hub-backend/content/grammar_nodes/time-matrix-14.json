@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-14",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Present Perfect Continuous",
-  "description": "Emphasizing the duration of ongoing research or study.",
-  "display_order": 14,
-  "prerequisites": ["time-matrix-13"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The team _____ on this project for six months.",
-          "options": ["works", "has worked", "has been working", "is working"],
-          "correct_answer": 2,
-          "category": "Present Perfect Continuous"
+    "node_id": "time-matrix-14",
+    "title": "The Deep Past",
+    "description": "Using the Past Perfect to talk about an action that happened BEFORE another past action.",
+    "display_order": 14,
+    "prerequisites": ["time-matrix-13"],
+    "lesson_content_markdown": "# The Deep Past: Past Perfect\n\nSometimes we talk about the past, but then we want to talk about something that happened even **earlier**. We call this the \"Deep Past\" or the **Past Perfect**.\n\n### 1. The Timeline\nImagine two events in the past:\n1.  **Event 1 (Deep Past)**: I ate breakfast.\n2.  **Event 2 (Past)**: I went to class.\n\nTo show that breakfast happened first, we say: \n- *\"I **had eaten** breakfast before I **went** to class.\"*\n\n### 2. How to Make It\nUse **had** + the **Past Participle** (V3).\n\n- **Formula**: Subject + had + V3 (e.g., done, finished, seen)\n- **Example**: By the time the professor arrived, the students **had already finished** their talk.\n\n### 3. Common Keywords\n- **Before**: I had finished studying **before** my friends called.\n- **By the time**: **By the time** we reached the library, it **had closed**.\n- **Already**: They **had already lived** there when the fire started.\n\n### 4. Why use it?\nIt helps make the order of your story clear when you are already talking about the past.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you handle the Deep Past? Show the correct order of events.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "By the time we arrived, the movie ___ already ___.",
+                    "options": [
+                        "had, started",
+                        "has, started",
+                        "was, starting",
+                        "is, starting"
+                    ],
+                    "correct_answer": "had, started"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She ___ her homework before her friends came to visit.",
+                    "options": [
+                        "had finished",
+                        "finished",
+                        "has finished",
+                        "was finishing"
+                    ],
+                    "correct_answer": "had finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ to that city many times before I moved there.",
+                    "options": [
+                        "had been",
+                        "have been",
+                        "was",
+                        "were"
+                    ],
+                    "correct_answer": "had been"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university ___ its new library before the semester began.",
+                    "options": [
+                        "had opened",
+                        "has opened",
+                        "opened",
+                        "is opening"
+                    ],
+                    "correct_answer": "had opened"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows the correct past order?",
+                    "options": [
+                        "I had already eaten when my father called.",
+                        "I had call when my father already eaten.",
+                        "I already ate when my father has called.",
+                        "I was eating when my father already call."
+                    ],
+                    "correct_answer": "I had already eaten when my father called."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ for the exam all night, so they were very tired.",
+                    "options": [
+                        "had studied",
+                        "have studied",
+                        "studied",
+                        "studying"
+                    ],
+                    "correct_answer": "had studied"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "He ___ a new car before he moved to the campus.",
+                    "options": [
+                        "had bought",
+                        "bought",
+                        "has bought",
+                        "buy"
+                    ],
+                    "correct_answer": "had bought"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "We ___ our lunch when the lecture started.",
+                    "options": [
+                        "had already finished",
+                        "already finished",
+                        "have already finished",
+                        "finish"
+                    ],
+                    "correct_answer": "had already finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ an email to the teacher before the deadline.",
+                    "options": [
+                        "had sent",
+                        "send",
+                        "have sent",
+                        "sent"
+                    ],
+                    "correct_answer": "had sent"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The library ___ by the time I finished my study.",
+                    "options": [
+                        "had closed",
+                        "closed",
+                        "has closed",
+                        "close"
+                    ],
+                    "correct_answer": "had closed"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (already / go) home when I reached her office.",
+                    "accepted_answers": ["had already gone", "already went", "d already gone"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (never / see) a computer until I was ten years old.",
+                    "accepted_answers": ["had never seen", "never saw", "d never seen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (finish) the report before the meeting began.",
+                    "accepted_answers": ["had finished", "finished", "d finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (meet) the professor before this class started?",
+                    "accepted_answers": ["Had;met", "had;met"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (buy) the tickets before we went to the cinema.",
+                    "accepted_answers": ["had bought", "bought", "d bought"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The rain ___ (stop) when we walked out of the classroom.",
+                    "accepted_answers": ["had stopped", "stopped", "d stopped"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He ___ (already / eat) breakfast when his roommate woke up.",
+                    "accepted_answers": ["had already eaten", "already ate", "d already eaten"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (read) the book before I saw the movie.",
+                    "accepted_answers": ["had read", "read", "d read"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The library ___ (close) by the time they arrived.",
+                    "accepted_answers": ["had closed", "closed", "d closed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (already / learn) English before she came to this university.",
+                    "accepted_answers": ["had already learned", "already learned", "d already learned"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *have already finished* my lunch when you called me.",
+                    "accepted_answers": ["had already finished", "already finished", "d already finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "By the time we reached the gym, it *has closed*.",
+                    "accepted_answers": ["had closed", "closed", "d closed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *never see* a lake before she went to Canada.",
+                    "accepted_answers": ["had never seen", "never saw", "d never seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *was lived* here for three years before they moved.",
+                    "accepted_answers": ["had lived", "lived", "d lived"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We *already eaten* our dinner when the game started.",
+                    "accepted_answers": ["had already eaten", "already ate", "d already eaten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *has forget* his books before he walked to class.",
+                    "accepted_answers": ["had forgotten", "forgot", "d forgotten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *wrote* the report before I went home yesterday.",
+                    "accepted_answers": ["had written", "wrote", "d written"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Nothing *has changed* by the time he came back.",
+                    "accepted_answers": ["had changed", "changed", "d changed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Had you *ever see* that movie before last night?",
+                    "accepted_answers": ["ever seen", "seen"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *never been* to a science museum until last month.",
+                    "accepted_answers": ["had never been", "never were", "d never been"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }

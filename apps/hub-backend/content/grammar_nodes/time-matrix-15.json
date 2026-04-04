@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-15",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Past Perfect",
-  "description": "Sequencing two past events: By the time the study was published, the author had died.",
-  "display_order": 15,
-  "prerequisites": ["time-matrix-14"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "By the time we arrived, the lecture _____ already _____.",
-          "options": ["has, started", "had, started", "was, starting", "is, starting"],
-          "correct_answer": 1,
-          "category": "Past Perfect"
+    "node_id": "time-matrix-15",
+    "title": "Duration in the Deep Past",
+    "description": "Using Past Perfect Continuous to show how long something was happening before another past event.",
+    "display_order": 15,
+    "prerequisites": ["time-matrix-14"],
+    "lesson_content_markdown": "# Duration in the Deep Past\n\nSometimes we want to show **how long** an action continued before another past event. We use the **Past Perfect Continuous** for this.\n\n### 1. The Timeline\nImagine you were studying for three hours, and then your friend arrived.\n- **Event 1 (Long Action)**: I was studying for 3 hours.\n- **Event 2 (Interruption)**: My friend arrived.\n- **Combined**: *\"I **had been studying** for three hours when my friend arrived.\"*\n\n### 2. How to Make It\nUse **had** + **been** + **V-ing**.\n\n- **Formula**: Subject + had + been + doing word (ing)\n- **Example**: She **had been working** at the university since 2018 when she was promoted.\n\n### 3. Why use it?\nIt shows that an action was *in progress* and had a *duration* before something else happened in the past.\n\n- **Past Continuous**: I **was studying** when the phone rang. (One moment is focus.)\n- **Past Perfect Continuous**: I **had been studying** for two hours when the phone rang. (The **length of time** is focus.)\n\n### 4. Common Keywords\n- **For**: I had been waiting **for** 30 minutes.\n- **Since**: They had been playing **since** noon.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you show the duration of actions in the deep past?",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "He ___ for two hours when the professor finally arrived.",
+                    "options": [
+                        "had been waiting",
+                        "has been waiting",
+                        "was waiting",
+                        "waiting"
+                    ],
+                    "correct_answer": "had been waiting"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They ___ since 9:00 AM before the rain started.",
+                    "options": [
+                        "had been playing",
+                        "played",
+                        "was playing",
+                        "have been playing"
+                    ],
+                    "correct_answer": "had been playing"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "She ___ on her computer for three hours before it crashed.",
+                    "options": [
+                        "had been working",
+                        "worked",
+                        "has been working",
+                        "working"
+                    ],
+                    "correct_answer": "had been working"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows a deep past duration?",
+                    "options": [
+                        "I had been studying for three hours when the light went out.",
+                        "I have been studying for three hours when the light went out.",
+                        "I was studying for three hours when the light had gone out.",
+                        "I am studying since three hours when the light go out."
+                    ],
+                    "correct_answer": "I had been studying for three hours when the light went out."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "We ___ for the bus in the cold for twenty minutes.",
+                    "options": [
+                        "had been standing",
+                        "have been standing",
+                        "were standing",
+                        "stand"
+                    ],
+                    "correct_answer": "had been standing"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "By the time he finished university, he ___ in that lab for four years.",
+                    "options": [
+                        "had been working",
+                        "worked",
+                        "has been working",
+                        "work"
+                    ],
+                    "correct_answer": "had been working"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The professor ___ for 20 minutes when the first student walked in.",
+                    "options": [
+                        "had been talking",
+                        "talked",
+                        "is talking",
+                        "has been talking"
+                    ],
+                    "correct_answer": "had been talking"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "My friends ___ before the game was cancelled.",
+                    "options": [
+                        "had been training",
+                        "wait",
+                        "have been training",
+                        "training"
+                    ],
+                    "correct_answer": "had been training"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ all day, so I was very hungry at dinner.",
+                    "options": [
+                        "had been busy",
+                        "had been working",
+                        "was working",
+                        "working"
+                    ],
+                    "correct_answer": "had been working"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which question asks about duration in the deep past?",
+                    "options": [
+                        "How long had you been waiting before he called?",
+                        "How much were you waiting before he called?",
+                        "How long have you been waiting before he called?",
+                        "How often had you being waiting before he called?"
+                    ],
+                    "correct_answer": "How long had you been waiting before he called?"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (study) for three hours when my computer died.",
+                    "accepted_answers": ["had been studying", "been studying", "d been studying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He ___ (wait) for the professor since noon when he finally saw her.",
+                    "accepted_answers": ["had been waiting", "been waiting", "d been waiting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (walk) through the campus for thirty minutes before it rained.",
+                    "accepted_answers": ["had been walking", "been walking", "d been walking"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ the professor (give) instructions for a long time when you arrived?",
+                    "accepted_answers": ["Had;been giving", "had;been giving"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (use) the same laboratory since last summer.",
+                    "accepted_answers": ["had been using", "been using", "d been using"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (try) to open the locked door for ten minutes.",
+                    "accepted_answers": ["had been trying", "been trying", "d been trying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "My roommate ___ (not listen) to the radio when I came in.",
+                    "accepted_answers": ["had not been listening", "hadn't been listening", "d not been listening"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (snow) for two hours when the university closed.",
+                    "accepted_answers": ["had been snowing", "been snowing", "d been snowing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How long ___ you (look) for your phone before you found it?",
+                    "accepted_answers": ["had;been looking", "had;been looking"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (prepare) for the campus party all day Saturday.",
+                    "accepted_answers": ["had been preparing", "been preparing", "d been preparing"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *have been studying* for two hours when the light went out.",
+                    "accepted_answers": ["had been studying", "been studying", "d been studying"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He *were waiting* for since noon before she arrived.",
+                    "accepted_answers": ["had been waiting", "been waiting", "d been waiting"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *had being training* for months before the final game.",
+                    "accepted_answers": ["had been training", "been training", "d been training"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "We had *be walking* for five miles before we found the library.",
+                    "accepted_answers": ["been walking", "had been walking", "d been walking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *has been working* at that university for ten years before she quit.",
+                    "accepted_answers": ["had been working", "been working", "d been working"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *was rained* since three o'clock before the picnic began.",
+                    "accepted_answers": ["had been raining", "been raining", "d been raining"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "How long *was you been looking* for that book?",
+                    "accepted_answers": ["had you been looking", "have you been looking", "d you been looking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *have been playing* football for an hour when it began to rain.",
+                    "accepted_answers": ["had been playing", "been playing", "d been playing"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *had be eating* my lunch when the professor called my name.",
+                    "accepted_answers": ["had been eating", "been eating", "d been eating"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *had being going* well until the last minute.",
+                    "accepted_answers": ["had been going", "been going", "d been going"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }
