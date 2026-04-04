@@ -326,7 +326,7 @@ export default function App({ user }) {
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => window.location.href = '/dashboard'}
+              onClick={() => navigate('/dashboard')}
               className="p-2 rounded-full hover:bg-white/20 transition-colors text-white"
             >
               <ArrowLeft size={20} />
@@ -888,7 +888,7 @@ export default function App({ user }) {
 
                 <div className="pt-4 flex flex-col sm:flex-row gap-3">
                   <button
-                    onClick={() => window.location.href = '/dashboard'}
+                    onClick={() => navigate('/dashboard')}
                     className="flex-1 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-100 transition-all flex items-center justify-center gap-2"
                   >
                     <ArrowLeft size={18} /> Back to Hub

@@ -222,15 +222,11 @@ export default function TeacherDashboard({ user, onLogout }) {
   // Dark Mode Support
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
 
-  useEffect(() => {
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
-  }, [theme]);
-
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+    // document.documentElement class update is now handled globally in BrandingInjector (App.jsx)
   };
 
   // Ref for scrolling to Recent Activity section
@@ -1298,7 +1294,7 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
             </button>
             <button
-              onClick={() => window.location.href = '/vocab-lab'}
+              onClick={() => navigate('/vocab-lab')}
               className="bg-gradient-to-br from-emerald-700 to-green-900 hover:from-emerald-800 hover:to-green-950 p-5 rounded-2xl shadow-md text-white flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group"
             >
               <RefreshCw size={22} className="text-white/90 mb-3" />
@@ -1308,7 +1304,7 @@ export default function TeacherDashboard({ user, onLogout }) {
               </div>
             </button>
             <button
-              onClick={() => window.location.href = '/writing-lab'}
+              onClick={() => navigate('/writing-lab')}
               className="bg-gradient-to-br from-amber-50 to-stone-100 hover:from-amber-100 hover:to-stone-200 p-5 rounded-2xl shadow-md text-slate-800 flex flex-col justify-between transition-all hover:scale-105 cursor-pointer group border border-amber-200"
             >
               <PenTool size={22} className="text-slate-700 mb-3" />

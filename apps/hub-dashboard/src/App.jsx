@@ -15,7 +15,7 @@ import WritingLabApp from './components/WritingLab/WritingLabApp';
 
 const AUTH_PAGES = ['/login', '/forgot-password', '/reset-password', '/auth/success'];
 
-// Injects institution branding (colors, favicon, title) from localStorage into CSS custom properties
+// Injects institution branding (colors, favicon, title) and theme (dark mode) from localStorage
 // Re-runs on every route change so branding is always in sync
 function BrandingInjector() {
   const location = useLocation();
@@ -24,7 +24,7 @@ function BrandingInjector() {
     const isAuthPage = AUTH_PAGES.some(p => location.pathname.startsWith(p));
 
     try {
-      // On auth/sign-in pages always use the Hayford default — never a stale institution brand
+      // 1. Handle Brand Injection
       const branding = isAuthPage ? {} : JSON.parse(localStorage.getItem('branding') || '{}');
       const root = document.documentElement;
 
@@ -42,6 +42,15 @@ function BrandingInjector() {
         document.head.appendChild(link);
       }
       link.href = faviconHref;
+
+      // 2. Handle Dark Mode Injection
+      // This ensures that pages like /writing-lab maintain dark mode state even after reloads
+      const theme = localStorage.getItem('theme') || 'light';
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
     } catch (e) {
       // Silently fail - branding is cosmetic, not critical
     }
@@ -59,7 +68,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <BrandingInjector />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-white dark:bg-slate-950">
         <Routes>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/login" element={<LoginPage />} />

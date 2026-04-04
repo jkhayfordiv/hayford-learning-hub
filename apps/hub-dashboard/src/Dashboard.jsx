@@ -188,15 +188,11 @@ export default function Dashboard() {
     }
   }, [user.class_id, user.role, user.institution_id, limboModalDismissed]);
 
-  useEffect(() => {
-    if (theme === 'dark') document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
-  }, [theme]);
-
   const toggleTheme = () => {
      const newTheme = theme === 'light' ? 'dark' : 'light';
      setTheme(newTheme);
      localStorage.setItem('theme', newTheme);
+     // document.documentElement class update is now handled globally in BrandingInjector (App.jsx)
   };
 
   const handleJoinClass = async () => {
@@ -539,7 +535,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0A1930] font-sans">
+    <div className="min-h-screen bg-white dark:bg-slate-950 font-sans">
       {/* Top Navbar */}
       <header
         className="border-b border-black/10 px-8 py-4 flex items-center justify-between sticky top-0 z-40"
