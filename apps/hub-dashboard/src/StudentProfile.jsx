@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, AlertCircle, BarChart3, FileText, ChevronDown } from 'lucide-react';
+import { ArrowLeft, AlertCircle, BarChart3, FileText, ChevronDown, X } from 'lucide-react';
+import { GRAMMAR_UI_LABELS } from './utils/grammarLabels';
 import SubmissionReviewModal from './components/SubmissionReviewModal';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
@@ -361,7 +362,7 @@ export default function StudentProfile() {
                   return (
                     <div key={item.tag}>
                       <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
-                        <span>{item.tag}</span>
+                        <span>{GRAMMAR_UI_LABELS[item.tag] || item.tag}</span>
                         <span>{item.count}</span>
                       </div>
                       <div className="h-2 rounded-full bg-slate-200 overflow-hidden">
@@ -383,7 +384,7 @@ export default function StudentProfile() {
               <div className="space-y-3">
                 {passedGrammarTopics.map((entry) => (
                   <div key={entry.topic} className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                    <p className="text-xs font-black text-slate-700 uppercase tracking-wide">{entry.topic}</p>
+                    <p className="text-xs font-black text-slate-700 uppercase tracking-wide">{GRAMMAR_UI_LABELS[entry.topic] || entry.topic}</p>
                     <p className="text-sm text-slate-600 mt-1">Passed: {entry.passedLevels.map((level) => `L${level}`).join(', ')}</p>
                   </div>
                 ))}
@@ -501,7 +502,7 @@ export default function StudentProfile() {
                                   : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
                               }`}
                             >
-                              <p className="font-bold text-sm leading-tight">{topic.label}</p>
+                              <p className="font-bold text-sm leading-tight">{GRAMMAR_UI_LABELS[topic.label] || topic.label}</p>
                               <p className={`text-[10px] uppercase tracking-widest mt-1 ${isSelected ? 'text-slate-300' : 'text-slate-400'}`}>
                                 topicId: {topic.topicId}
                               </p>

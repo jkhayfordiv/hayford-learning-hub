@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, User, Shield, Calendar, CheckCircle2, FileText, ChevronRight, PenTool, Settings, HelpCircle, ChevronDown, HelpCircle as HelpIcon, X, Moon, Sun, Users, RefreshCw, BarChart3, MessageSquare, CreditCard, Loader2, Lock, Star } from 'lucide-react';
 import TeacherDashboard from './TeacherDashboard';
 import StudentFeedbackModal from './components/StudentFeedbackModal';
+import { GRAMMAR_UI_LABELS } from './utils/grammarLabels';
 import logo from './assets/logo.png';
 
 const DIAGNOSTIC_DICTIONARY = {
@@ -957,7 +958,9 @@ export default function Dashboard() {
                         {idx + 1}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="font-bold text-sm text-slate-900 dark:text-white leading-snug">{item.tag}</p>
+                        <p className="font-bold text-sm text-slate-900 dark:text-white leading-snug">
+                          {GRAMMAR_UI_LABELS[item.tag] || item.tag}
+                        </p>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
                           {item.count} {item.count === 1 ? 'error' : 'errors'} detected
                         </p>
@@ -973,8 +976,9 @@ export default function Dashboard() {
                     <div className="flex justify-end">
                       <button
                         onClick={() => {
-                          if (!topicId) return;
-                          window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                          if (!topicId && !item.tag) return;
+                          // Pass the raw tag name as topicId, Grammar Lab will decode and match it
+                          window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(item.tag)}`;
                         }}
                         disabled={!topicId}
                         className={`px-3 py-1.5 rounded-lg font-bold text-[10px] uppercase tracking-wider transition-colors ${

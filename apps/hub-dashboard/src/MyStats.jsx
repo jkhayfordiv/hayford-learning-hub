@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, AlertCircle, BarChart3, FileText, BookOpen } from 'lucide-react';
+import { GRAMMAR_UI_LABELS } from './utils/grammarLabels';
 
 function parseMaybeJson(value) {
   if (!value) return null;
@@ -185,11 +186,12 @@ export default function MyStats() {
                     <div key={item.tag} className="group">
                       <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-1">
                         <div className="flex items-center gap-2">
-                          <span>{item.tag}</span>
+                          <span>{GRAMMAR_UI_LABELS[item.tag] || item.tag}</span>
                           <button
                             onClick={() => {
-                              if (!topicId) return;
-                              window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${topicId}`;
+                              if (!topicId && !item.tag) return;
+                              // Pass the raw tag name as topicId, Grammar Lab will decode and match it
+                              window.location.href = `/grammar-lab?token=${localStorage.getItem('token')}&topicId=${encodeURIComponent(item.tag)}`;
                             }}
                             disabled={!topicId}
                             className={`px-2 py-0.5 rounded text-[10px] font-bold transition-colors ${
@@ -225,7 +227,7 @@ export default function MyStats() {
                 {grammarProgress.map((topic) => (
                   <div key={topic.error_category} className="border border-slate-200 rounded-lg p-3">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-xs font-bold text-slate-900">{topic.error_category}</h3>
+                      <h3 className="text-xs font-bold text-slate-900">{GRAMMAR_UI_LABELS[topic.error_category] || topic.error_category}</h3>
                       <span className="text-[10px] font-black px-2 py-0.5 rounded bg-green-50 text-green-700 border border-green-200">
                         Level {topic.current_level}
                       </span>

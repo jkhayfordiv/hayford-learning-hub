@@ -6,6 +6,7 @@ import PlatformManager from './components/PlatformManager';
 import ClassDetails from './components/ClassDetails';
 import SubmissionReviewModal from './components/SubmissionReviewModal';
 import GrammarAnalytics from './components/GrammarAnalytics';
+import { GRAMMAR_UI_LABELS } from './utils/grammarLabels';
 
 const GRAMMAR_PRACTICE_SECTIONS = [
   {
@@ -2686,7 +2687,7 @@ export default function TeacherDashboard({ user, onLogout }) {
                   <div className="flex flex-wrap gap-2">
                     {selectedWLSubmission.grammar_weaknesses_flagged.map((w, i) => (
                       <span key={i} className="px-3 py-1 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800 rounded-full text-xs font-bold">
-                        {w.category || w}
+                        {GRAMMAR_UI_LABELS[w.category || w] || (w.category || w)}
                       </span>
                     ))}
                   </div>

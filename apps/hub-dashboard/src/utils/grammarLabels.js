@@ -1,0 +1,22 @@
+export const GRAMMAR_UI_LABELS = {
+  "Article Usage": "A, An, The (Articles)",
+  "Countability & Plurals": "Singular & Plural Nouns",
+  "Pronoun Reference": "Pronouns",
+  "Prepositional Accuracy": "Prepositions",
+  "Word Forms": "Word Types",
+  "Subject-Verb Agreement": "Subject & Verb Matching",
+  "Tense Consistency": "Keeping the Same Time",
+  "Present Perfect vs. Past Simple": "Past vs. Present Perfect",
+  "Gerunds vs. Infinitives": "Verbs with '-ing' or 'to'",
+  "Passive Voice Construction": "Passive Voice",
+  "Sentence Boundaries": "Complete Sentences",
+  "Relative Clauses": "Adding Detail (who, which, that)",
+  "Subordination": "Connecting Ideas",
+  "Word Order": "Word Order",
+  "Parallel Structure": "Matching Lists",
+  "Transitional Devices": "Linking Words",
+  "Collocations": "Words That Go Together",
+  "Academic Register": "Formal Writing",
+  "Nominalization": "Making Verbs into Nouns",
+  "Hedging": "Careful Language"
+};

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Users, TrendingUp, AlertTriangle, FileText, Award, Sparkles, RefreshCw } from 'lucide-react';
 import { fetchCohortProgress, fetchHeatMap, fetchRecentSubmissions } from '../services/grammarApi';
+import { GRAMMAR_UI_LABELS } from '../utils/grammarLabels';
 
 export default function GrammarAnalytics() {
   const [cohortData, setCohortData] = useState(null);
@@ -72,6 +73,7 @@ export default function GrammarAnalytics() {
   };
 
   const formatErrorTag = (tag) => {
+    if (GRAMMAR_UI_LABELS[tag]) return GRAMMAR_UI_LABELS[tag];
     return tag
       .split('_')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))

@@ -4,7 +4,13 @@ const topicModules = import.meta.glob('./data/*.json', { eager: true })
 
 function parseTopicIdFromQuery() {
   const params = new URLSearchParams(window.location.search)
-  return (params.get('topicId') || '01_article_usage').trim().toLowerCase()
+  const raw = params.get('topicId') || '01_article_usage'
+  try {
+    // Safely handle encoded multi-word topics (e.g. Article%20Usage)
+    return decodeURIComponent(raw).trim().toLowerCase()
+  } catch (e) {
+    return raw.trim().toLowerCase()
+  }
 }
 
 function sampleQuestions(questionBank, count = 10) {
@@ -22,11 +28,17 @@ function resolveTopic(topicId) {
     data: mod.default || mod,
   }))
 
+  // 1. Try exact filename match (e.g. 01_article_usage)
   const exactPath = entries.find(({ path }) => path.endsWith(`/${topicId}.json`))
   if (exactPath) return exactPath.data
 
+  // 2. Try matching against the internal topicId property
   const byTopicId = entries.find(({ data }) => String(data?.topicId || '').toLowerCase() === topicId)
   if (byTopicId) return byTopicId.data
+
+  // 3. Try matching against the student-facing topicName (e.g. "Article Usage" -> "article usage")
+  const byTopicName = entries.find(({ data }) => String(data?.topicName || '').toLowerCase().trim() === topicId)
+  if (byTopicName) return byTopicName.data
 
   const fallback = entries.find(({ path }) => path.endsWith('/01_article_usage.json'))
   return fallback?.data || null
