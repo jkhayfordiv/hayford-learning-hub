@@ -38,7 +38,10 @@
                                                                   },
                                                                   {
                                                                       "question":  "They was walking to the gym when it began to rain.",
-                                                                      "correct_answer":  "were walking"
+                                                                      "correct_answer":  [
+                                                                                             "were",
+                                                                                             "were walking"
+                                                                                         ]
                                                                   },
                                                                   {
                                                                       "question":  "She is going to bought a new car next week.",
@@ -54,11 +57,17 @@
                                                                   },
                                                                   {
                                                                       "question":  "We was preparing for the science test all night yesterday.",
-                                                                      "correct_answer":  "were preparing"
+                                                                      "correct_answer":  [
+                                                                                             "were",
+                                                                                             "were preparing"
+                                                                                         ]
                                                                   },
                                                                   {
                                                                       "question":  "Wait! I am going to help you with that heavy door.",
-                                                                      "correct_answer":  "will help"
+                                                                      "correct_answer":  [
+                                                                                             "will help",
+                                                                                             "will"
+                                                                                         ]
                                                                   },
                                                                   {
                                                                       "question":  "Everyone like the new food in the campus cafeteria.",
@@ -70,7 +79,11 @@
                                                                   },
                                                                   {
                                                                       "question":  "Tomorrow morning, I will waiting for you at the bus stop.",
-                                                                      "correct_answer":  "will be waiting"
+                                                                      "correct_answer":  [
+                                                                                             "will be waiting",
+                                                                                             "will wait",
+                                                                                             "wait"
+                                                                                         ]
                                                                   },
                                                                   {
                                                                       "question":  "Somebody are knocking on the classroom door.",
@@ -114,7 +127,10 @@
                                                                   },
                                                                   {
                                                                       "question":  "Last night, she was carried a heavy box to her room.",
-                                                                      "correct_answer":  "was carrying"
+                                                                      "correct_answer":  [
+                                                                                             "carried",
+                                                                                             "was carrying"
+                                                                                         ]
                                                                   },
                                                                   {
                                                                       "question":  "They will being playing football at 4 PM tomorrow.",
