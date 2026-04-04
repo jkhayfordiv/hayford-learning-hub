@@ -1,20 +1,232 @@
 {
-  "node_id": "time-matrix-28",
-  "region": "The Time Matrix",
-  "tier": "Gold",
-  "title": "The Matrix Capstone",
-  "description": "A comprehensive AI-graded essay paragraph synthesizing all Time Matrix concepts.",
-  "display_order": 28,
-  "prerequisites": ["time-matrix-27"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "ai_graded_text_input",
-    "prompt_to_student": "Write a comprehensive paragraph demonstrating mastery of verb tenses and aspects covered in The Time Matrix pathway.",
-    "activity_data": {},
-    "ai_grading_rubric": "Evaluate the student's paragraph for correct usage of multiple tenses including present simple, present continuous, past tenses, perfect aspects, and passive voice. The paragraph should demonstrate sophisticated control of time relationships and academic writing style. Pass threshold: 80%."
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Gold"
-  }
+    "node_id": "time-matrix-28",
+    "title": "The Matrix Capstone: Final Defense",
+    "description": "The ultimate assessment of 'The Time Matrix' curriculum: Synthesis and professional data reporting.",
+    "display_order": 28,
+    "prerequisites": ["time-matrix-27"],
+    "lesson_content_markdown": "# The Matrix Capstone: Final Defense\n\nYou have survived the journey through the Time Matrix. From the simple past to the sophisticated causative and participle clauses of the academy, you are now ready for the **Final Defense**.\n\n### 1. The Strategy: Synthesis\nIn a professional research report, you do not use only one tense. You synthesize multiple structures to show logic and cause.\n\n- **Sequence**: Use **Past Perfect** to show what happened first.\n- **Brevity**: Use **Participle Clauses** to save space in your abstract.\n- **Objectivity**: Use **Impersonal Passives** to sound objective and scientific.\n- **Delegation**: Use **Causatives** to show who was responsible for the tasks.\n\n### 2. Final Checklist\n- Did you use the **Base Form** (V1) for have/make causatives?\n- Did you use **been + V3** for perfect passives?\n- Did you use **Having + V3** for completed participle clauses?\n- Are your life experiences in the **Present Perfect**?\n\nTake your time. This is the final step to earning your **Gold Medal** in the Time Matrix.\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "This is it! Prove your mastery of all Time Matrix concepts in this final grand assessment.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "___ the preliminary tests, the professor authorized the full experiment.",
+                    "options": [
+                        "Having finished",
+                        "Finished",
+                        "Finish",
+                        "To finish"
+                    ],
+                    "correct_answer": "Having finished"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The data ___ by the end of the semester, allowing for a 2026 publication.",
+                    "options": [
+                        "will have been analyzed",
+                        "will analyze",
+                        "analyzed",
+                        "is analyzing"
+                    ],
+                    "correct_answer": "will have been analyzed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence correctly distills the results objectively?",
+                    "options": [
+                        "It is thought that the temperature increase was significant.",
+                        "People think that the temperature increase was significant.",
+                        "I believe that the temperature increase was significant.",
+                        "They think that the temperature increase was significant."
+                    ],
+                    "correct_answer": "It is thought that the temperature increase was significant."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university ___ its laboratory equipment every three years.",
+                    "options": [
+                        "has replaced",
+                        "is replace",
+                        "replaces",
+                        "was replace"
+                    ],
+                    "correct_answer": "replaces"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "By the time the journal accepted the paper, the team ___ two more tests.",
+                    "options": [
+                        "had conducted",
+                        "conduct",
+                        "have conducted",
+                        "was conducting"
+                    ],
+                    "correct_answer": "had conducted"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The researcher ___ the technician ___ the results before 5:00 PM.",
+                    "options": [
+                        "had;check",
+                        "had;to check",
+                        "got;check",
+                        "make;to check"
+                    ],
+                    "correct_answer": "had;check"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "It ___ that the new chemical compound was unstable.",
+                    "options": [
+                        "was discovered",
+                        "was discover",
+                        "discovered",
+                        "discover"
+                    ],
+                    "correct_answer": "was discovered"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "___ the campus, the student realized he was in the wrong building.",
+                    "options": [
+                        "Entering",
+                        "Entered",
+                        "Enter",
+                        "To entering"
+                    ],
+                    "correct_answer": "Entering"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The final results ___ to all participants by tomorrow night.",
+                    "options": [
+                        "will have been sent",
+                        "will send",
+                        "sent",
+                        "are send"
+                    ],
+                    "correct_answer": "will have been sent"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The study ___ successfully for over two decades.",
+                    "options": [
+                        "has been running",
+                        "runs",
+                        "runned",
+                        "is running"
+                    ],
+                    "correct_answer": "has been running"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "It ___ (believe) that the data is 100% correct.",
+                    "accepted_answers": ["is believed", "was believed", "believed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (finish) our research, we submitted the final paper.",
+                    "accepted_answers": ["Having finished", "finishing", "finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I ___ (have) the student ___ (record) all the results.",
+                    "accepted_answers": ["had;record", "made;record"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The results ___ (not analyze) yet. Please wait.",
+                    "accepted_answers": ["have not been analyzed", "haven't been analyzed", "ve not been analyzed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "By 2030, scientists ___ (solve) this medical problem.",
+                    "accepted_answers": ["will have solved", "ll have solved", "solved"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ she (ever / visit) the research center before today?",
+                    "accepted_answers": ["Had;ever visited", "has;ever visited"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ (want) to learn more, I decided to join the team.",
+                    "accepted_answers": ["Wanting", "Wanted", "wants"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The building ___ (damage) during the storm last semester.",
+                    "accepted_answers": ["was damaged", "damaged"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How many samples ___ (test) so far this week?",
+                    "accepted_answers": ["have been tested", "been tested"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The safety rules ___ (must / follow) by everyone in the room.",
+                    "accepted_answers": ["must be followed", "be followed", "followed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "It *is think that* the university is very old.",
+                    "accepted_answers": ["is thought", "thought"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The professor *get us to check* the data yesterday.",
+                    "accepted_answers": ["got us to check", "get us to check", "check"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Have finish* the science project, we went home.",
+                    "accepted_answers": ["Having finished", "finishing", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The species *be thought* to be extinct.",
+                    "accepted_answers": ["is thought", "thought"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *has read* the book by the time the class began.",
+                    "accepted_answers": ["had read", "read", "d read"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *was change* since the new rules started.",
+                    "accepted_answers": ["has changed", "has been changed", "changed"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The emails *will have been send* by 5:00 tonight.",
+                    "accepted_answers": ["will have been sent", "sent", "will be sent"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "*Walk* to the library, I saw a rare bird.",
+                    "accepted_answers": ["Walking", "While walking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The experiment *should not been done* without a teacher.",
+                    "accepted_answers": ["should not be done", "shouldn't be done", "done"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *have be live* here for three years now.",
+                    "accepted_answers": ["have been living", "have lived", "ve been living"]
+                }
+            ]
+        }
+    },
+    "rewards": {
+        "mastery_points": 250,
+        "medal_tier": "Gold"
+    },
+    "region": "The Time Matrix",
+    "tier": "Gold"
 }
