@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-16",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Past Perfect Continuous",
-  "description": "Explaining the cause of a past state.",
-  "display_order": 16,
-  "prerequisites": ["time-matrix-15"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "She was tired because she _____ all night.",
-          "options": ["studied", "had studied", "had been studying", "has been studying"],
-          "correct_answer": 2,
-          "category": "Past Perfect Continuous"
+    "node_id": "time-matrix-16",
+    "title": "Cause of the Past: Past Perfect Continuous",
+    "description": "Explaining the cause of a past state using 'had been -ing'.",
+    "display_order": 16,
+    "prerequisites": ["time-matrix-15"],
+    "lesson_content_markdown": "# Cause of the Past: Past Perfect Continuous\n\nSometimes, we want to explain **why** something was true in the past. If the cause was an action that had a duration, we use the **Past Perfect Continuous**.\n\n### 1. The Timeline\nImagine your roommate was very tired yesterday.\n- **The State (Past)**: My roommate was tired.\n- **The Cause (Earlier Action)**: He was studying for 5 hours.\n- **Combined**: *\"My roommate was tired because he **had been studying** for five hours.\"*\n\n### 2. How to Make It\nUse **had** + **been** + **V-ing**.\n\n- **Formula**: Subject + had + been + doing word (ing)\n- **Example**: The laboratory floor was wet because the technician **had been cleaning** it.\n\n### 3. Difference: Past Perfect vs. Past Perfect Continuous\n- **Past Perfect**: He was happy because he **had finished** the test. (The result of a completed action.)\n- **Past Perfect Continuous**: He was tired because he **had been working** out. (The focus is on the action happening for a long time.)\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you explain the cause of past situations correctly?",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "She was very tired because she ___ all night for the science exam.",
+                    "options": [
+                        "had been studying",
+                        "has been studying",
+                        "studied",
+                        "was studying"
+                    ],
+                    "correct_answer": "had been studying"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The grass was wet because it ___ since the early morning.",
+                    "options": [
+                        "had been raining",
+                        "is raining",
+                        "has been raining",
+                        "rained"
+                    ],
+                    "correct_answer": "had been raining"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The student was out of breath because he ___ to catch the campus bus.",
+                    "options": [
+                        "had been running",
+                        "runned",
+                        "ran",
+                        "was run"
+                    ],
+                    "correct_answer": "had been running"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I was hungry because I ___ in the library all day.",
+                    "options": [
+                        "had been working",
+                        "worked",
+                        "am working",
+                        "have worked"
+                    ],
+                    "correct_answer": "had been working"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence shows the cause of a past state?",
+                    "options": [
+                        "His eyes were red because he had been using the computer too long.",
+                        "His eyes are red because he has being used the computer.",
+                        "His eyes was red because he had use the computer.",
+                        "His eyes were red because he was use the computer."
+                    ],
+                    "correct_answer": "His eyes were red because he had been using the computer too long."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "They were dirty because they ___ football in the mud.",
+                    "options": [
+                        "had been playing",
+                        "played",
+                        "have been playing",
+                        "were playing"
+                    ],
+                    "correct_answer": "had been playing"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The professor was angry because the students ___ during the lecture.",
+                    "options": [
+                        "had been talking",
+                        "talked",
+                        "has talked",
+                        "talking"
+                    ],
+                    "correct_answer": "had been talking"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The room was hot because the sun ___ through the window all day.",
+                    "options": [
+                        "had been shining",
+                        "shined",
+                        "s shining",
+                        "shining"
+                    ],
+                    "correct_answer": "had been shining"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "I ___ for twenty minutes when the bus arrived.",
+                    "options": [
+                        "had been waiting",
+                        "waited",
+                        "have been waiting",
+                        "waiting"
+                    ],
+                    "correct_answer": "had been waiting"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The technician was sleepy because he ___ in the lab for twelve hours.",
+                    "options": [
+                        "had been working",
+                        "works",
+                        "has been working",
+                        "worked"
+                    ],
+                    "correct_answer": "had been working"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "He was tired because he ___ (study) for three hours.",
+                    "accepted_answers": ["had been studying", "been studying", "d been studying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "I was hungry because I ___ (not eat) lunch.",
+                    "accepted_answers": ["had not eaten", "hadn't eaten", "d not eaten"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The floor was wet because she ___ (wash) it.",
+                    "accepted_answers": ["had been washing", "been washing", "d been washing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (wait) long when the professor finally arrived?",
+                    "accepted_answers": ["Had;been waiting", "had;been waiting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "They ___ (prepare) for the party all afternoon.",
+                    "accepted_answers": ["had been preparing", "been preparing", "d been preparing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "She ___ (try) to call you for an hour before she gave up.",
+                    "accepted_answers": ["had been trying", "been trying", "d been trying"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The air was cold because the wind ___ (blow) from the north.",
+                    "accepted_answers": ["had been blowing", "been blowing", "d been blowing"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "We ___ (look) for the classroom for twenty minutes.",
+                    "accepted_answers": ["had been looking", "been looking", "d been looking"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "How long ___ your friend (wait) for the results?",
+                    "accepted_answers": ["had;been waiting", "had;been waiting"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The student ___ (not listen) to the lecture.",
+                    "accepted_answers": ["had not been listening", "hadn't been listening", "d not been listening"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I was tired because I *have been working* all day yesterday.",
+                    "accepted_answers": ["had been working", "been working", "d been working"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The ground was wet because it *has been raining* for hours.",
+                    "accepted_answers": ["had been raining", "been raining", "d been raining"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "She *was tried* to open the door for ten minutes.",
+                    "accepted_answers": ["had been trying", "been trying", "d been trying"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *had being waiting* for twenty minutes before I arrived.",
+                    "accepted_answers": ["had been waiting", "been waiting", "d been waiting"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *was dirty* because the children played in the mud.",
+                    "accepted_answers": ["had been playing", "been playing", "d been playing"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The professor *has been talking* for an hour when the class ended.",
+                    "accepted_answers": ["had been talking", "been talking", "d been talking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "He was sick because he *eated* too much cafeteria food.",
+                    "accepted_answers": ["had been eating", "eaten", "had eaten"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "I *is looking* for my lost key all day Sunday.",
+                    "accepted_answers": ["had been looking", "been looking", "d been looking"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The room *had be smelling* like chemicals since yesterday.",
+                    "accepted_answers": ["had been smelling", "been smelling", "s been smelling"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "They *was preparing* for the test since morning.",
+                    "accepted_answers": ["had been preparing", "been preparing", "d been preparing"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }

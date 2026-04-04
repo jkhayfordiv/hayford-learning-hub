@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-18",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Intro to Passive Voice: Past",
-  "description": "The survey was conducted in 2022.",
-  "display_order": 18,
-  "prerequisites": ["time-matrix-17"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The survey _____ last year.",
-          "options": ["conducted", "was conducted", "is conducted", "conducts"],
-          "correct_answer": 1,
-          "category": "Passive Voice"
+    "node_id": "time-matrix-18",
+    "title": "Reporting the Past: Past Passive",
+    "description": "Using the past passive voice to report finished events.",
+    "display_order": 18,
+    "prerequisites": ["time-matrix-17"],
+    "lesson_content_markdown": "# Reporting the Past: Past Passive\n\nThe **Past Passive** is used when we want to talk about something that happened in the past, but the object is more important than the person who did the action.\n\n### 1. How to Make It\nUse the **Past Be Verb** (was / were) + the **Past Participle** (V3).\n\n- **Formula**: was/were + V3\n- **Example**: The email **was sent** yesterday at 5:00.\n- **Example**: The surveys **were conducted** in 2022.\n\n### 2. Singular vs. Plural\n- **Singular**: The book **was written** in 1990.\n- **Plural**: The books **were written** in 1990.\n\n### 3. When to use it?\n- **Reporting**: \"The results **were published** in the university journal.\"\n- **History**: \"The new building **was opened** last semester.\"\n- **Science**: \"The sample **was cooled** to 0 degrees.\"\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Report the past accurately! Practice using the Past Passive voice.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "The university ___ in 1965.",
+                    "options": [
+                        "was founded",
+                        "founded",
+                        "founding",
+                        "were founded"
+                    ],
+                    "correct_answer": "was founded"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The test results ___ on the board yesterday morning.",
+                    "options": [
+                        "were shown",
+                        "was shown",
+                        "showed",
+                        "shows"
+                    ],
+                    "correct_answer": "were shown"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence correctly reports the past?",
+                    "options": [
+                        "The report was finished on Monday.",
+                        "The report were finish on Monday.",
+                        "The report finished on Monday.",
+                        "The report was finishing on Monday."
+                    ],
+                    "correct_answer": "The report was finished on Monday."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The classroom doors ___ at 10:00 PM last night.",
+                    "options": [
+                        "were locked",
+                        "was locked",
+                        "locked",
+                        "lock"
+                    ],
+                    "correct_answer": "were locked"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "My bicycle ___ from the campus gate yesterday.",
+                    "options": [
+                        "was stolen",
+                        "were stolen",
+                        "stole",
+                        "stealing"
+                    ],
+                    "correct_answer": "was stolen"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university concert ___ by hundreds of students.",
+                    "options": [
+                        "was attended",
+                        "attended",
+                        "was attend",
+                        "attend"
+                    ],
+                    "correct_answer": "was attended"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The new dormitories ___ last year.",
+                    "options": [
+                        "were built",
+                        "was built",
+                        "built",
+                        "building"
+                    ],
+                    "correct_answer": "were built"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence uses the Past Passive correctly?",
+                    "options": [
+                        "The dinner was served early.",
+                        "The dinner was serve early.",
+                        "The dinner served early.",
+                        "The dinner were served early."
+                    ],
+                    "correct_answer": "The dinner was served early."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The survey ___ in many different classes.",
+                    "options": [
+                        "was conducted",
+                        "conducted",
+                        "conducting",
+                        "conducts"
+                    ],
+                    "correct_answer": "was conducted"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The emails ___ to all the students last night.",
+                    "options": [
+                        "were sent",
+                        "sent",
+                        "was sent",
+                        "sends"
+                    ],
+                    "correct_answer": "were sent"
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The book ___ (write) by a famous professor in 2010.",
+                    "accepted_answers": ["was written", "written"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The computers ___ (not use) during the holiday.",
+                    "accepted_answers": ["were not used", "weren't used", "not used"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The science report ___ (finish) on Tuesday night.",
+                    "accepted_answers": ["was finished", "finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ the building (lock) after the party?",
+                    "accepted_answers": ["Was;locked", "was;locked"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The cafeteria ___ (clean) early this morning.",
+                    "accepted_answers": ["was cleaned", "cleaned"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Many languages ___ (spoken) during the meeting yesterday.",
+                    "accepted_answers": ["were spoken", "spoken"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The keys ___ (find) in the library office.",
+                    "accepted_answers": ["were found", "found"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The information ___ (give) to us by the campus office.",
+                    "accepted_answers": ["was given", "given"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (choose) for the university team last year?",
+                    "accepted_answers": ["Were;chosen", "were;chosen"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The trees ___ (plant) to celebrate the university's 50th year.",
+                    "accepted_answers": ["were planted", "planted"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The assignment *was finish* yesterday.",
+                    "accepted_answers": ["was finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The tests *were take* in the science lab.",
+                    "accepted_answers": ["were taken", "taken"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "These books *was written* in 1960.",
+                    "accepted_answers": ["were written", "written"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The student *given* a prize for her research.",
+                    "accepted_answers": ["was given", "given"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The windows *was broken* during the storm.",
+                    "accepted_answers": ["were broken", "broken"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "English *was speak* during the international party.",
+                    "accepted_answers": ["was spoken", "spoken"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The classroom *were taught* by a new teacher last month.",
+                    "accepted_answers": ["was taught", "taught"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *was lose* at the park yesterday.",
+                    "accepted_answers": ["was lost", "lost"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The message *were send* last night.",
+                    "accepted_answers": ["was sent", "sent"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The survey *conducted* in 2021 by the team.",
+                    "accepted_answers": ["was conducted", "conducted"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }

@@ -1,29 +1,232 @@
 {
-  "node_id": "time-matrix-17",
-  "region": "The Time Matrix",
-  "tier": "Silver",
-  "title": "Intro to Passive Voice: Present",
-  "description": "Shifting focus from the researcher to the object: The sample is tested.",
-  "display_order": 17,
-  "prerequisites": ["time-matrix-16"],
-  "lesson_content_markdown": "# Coming Soon\n\nThis module is currently locked.",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Select the correct answer.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The experiment _____ in a controlled environment.",
-          "options": ["conducts", "is conducted", "conducting", "conducted"],
-          "correct_answer": 1,
-          "category": "Passive Voice"
+    "node_id": "time-matrix-17",
+    "title": "The Academic Shift: Present Passive",
+    "description": "Introduction to shifting focus from the person to the action or object.",
+    "display_order": 17,
+    "prerequisites": ["time-matrix-16"],
+    "lesson_content_markdown": "# The Academic Shift: Present Passive\n\nSometimes, we do not care **who** did the action. We care more about **what** was done. This is very common in science and academic writing.\n\n### 1. Active vs. Passive\n- **Active**: The professor **tests** the student. (Focus is on the professor.)\n- **Passive**: The student **is tested** by the professor. (Focus is on the student.)\n\n### 2. How to Make the Present Passive\nUse the **Be Verb** (am / is / are) + the **Past Participle** (V3).\n\n- **Singular**: The report **is written**.\n- **Plural**: The reports **are written**.\n\n### 3. Why use it?\n- **Objectivity**: In science, we often say \"The sample **is heated**\" instead of \"I heat the sample.\"\n- **Unknown Subject**: \"My backpack **is stolen**!\" (I don't know who did it.)\n\n### 4. Common Verbs\n- write \u2192 **written**\n- study \u2192 **studied**\n- use \u2192 **used**\n- show \u2192 **shown**\n- give \u2192 **given**\n\n---",
+    "mastery_check": {
+        "type": "standard_mixed",
+        "prompt_to_student": "Can you shift the focus to the object? Practice using the Present Passive voice.",
+        "activity_data": {
+            "questions": [
+                {
+                    "type": "multiple_choice",
+                    "question": "The university library ___ by thousands of students every week.",
+                    "options": [
+                        "is used",
+                        "used",
+                        "using",
+                        "are used"
+                    ],
+                    "correct_answer": "is used"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The final reports ___ in the science laboratory.",
+                    "options": [
+                        "are written",
+                        "written",
+                        "is written",
+                        "write"
+                    ],
+                    "correct_answer": "are written"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which sentence is in the passive voice?",
+                    "options": [
+                        "The test is taken by the freshman.",
+                        "The freshman take the test.",
+                        "The freshman is taking the test.",
+                        "The freshman takes the test."
+                    ],
+                    "correct_answer": "The test is taken by the freshman."
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "English ___ in many different countries.",
+                    "options": [
+                        "is spoken",
+                        "spoke",
+                        "speaking",
+                        "are spoken"
+                    ],
+                    "correct_answer": "is spoken"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The university gates ___ at 11:00 PM every night.",
+                    "options": [
+                        "are locked",
+                        "locked",
+                        "is locked",
+                        "lock"
+                    ],
+                    "correct_answer": "are locked"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The campus cafe ___ on Sundays.",
+                    "options": [
+                        "is closed",
+                        "closed",
+                        "close",
+                        "are closed"
+                    ],
+                    "correct_answer": "is closed"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Every student ___ a university ID card.",
+                    "options": [
+                        "is given",
+                        "give",
+                        "gave",
+                        "are give"
+                    ],
+                    "correct_answer": "is given"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "The results ___ on the classroom wall.",
+                    "options": [
+                        "are shown",
+                        "shown",
+                        "show",
+                        "is showing"
+                    ],
+                    "correct_answer": "are shown"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Many computers ___ in the computer center.",
+                    "options": [
+                        "are found",
+                        "find",
+                        "found",
+                        "is found"
+                    ],
+                    "correct_answer": "are found"
+                },
+                {
+                    "type": "multiple_choice",
+                    "question": "Which passive sentence is plural?",
+                    "options": [
+                        "The apples are grown in that garden.",
+                        "The apple is grown in that garden.",
+                        "The apple grow in that garden.",
+                        "The apples grow in that garden."
+                    ],
+                    "correct_answer": "The apples are grown in that garden."
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The homework ___ (finish) by the student every week.",
+                    "accepted_answers": ["is finished", "finished"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The email ___ (not send) yet.",
+                    "accepted_answers": ["is not sent", "isn't sent", "not sent"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Many trees ___ (plant) near the university library.",
+                    "accepted_answers": ["are planted", "planted"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ the building (clean) every Monday?",
+                    "accepted_answers": ["Is;cleaned", "is;cleaned"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Dinner ___ (serve) in the cafeteria at 6:00.",
+                    "accepted_answers": ["is served", "served"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "New ideas ___ (discuss) during the class meeting.",
+                    "accepted_answers": ["are discussed", "discussed"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The books ___ (arrange) by the librarian.",
+                    "accepted_answers": ["are arranged", "arranged"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "The test ___ (take) online.",
+                    "accepted_answers": ["is taken", "taken"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "___ you (invite) to the party at the gym?",
+                    "accepted_answers": ["Are;invited", "are;invited"]
+                },
+                {
+                    "type": "fill_in_the_blank",
+                    "question": "Science ___ (study) in this building.",
+                    "accepted_answers": ["is studied", "studied"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The assignment *is finish* by most students.",
+                    "accepted_answers": ["is finished", "finished"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The computers *are use* in the library.",
+                    "accepted_answers": ["are used", "used"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "These books *is written* by a famous professor.",
+                    "accepted_answers": ["are written", "written"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The student *given* a new book today.",
+                    "accepted_answers": ["is given", "given"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The door *is lock* every night.",
+                    "accepted_answers": ["is locked", "locked"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Many languages *are speak* in this classroom.",
+                    "accepted_answers": ["are spoken", "spoken"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The class *are taught* by Dr. Smith.",
+                    "accepted_answers": ["is taught", "taught"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "Everything *is clean* early in the morning.",
+                    "accepted_answers": ["is cleaned", "cleaned"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The information *are found* on the website.",
+                    "accepted_answers": ["is found", "found"]
+                },
+                {
+                    "type": "error_correction",
+                    "question": "The letter *is send* by the administrator.",
+                    "accepted_answers": ["is sent", "sent"]
+                }
+            ]
         }
-      ]
     },
-    "ai_grading_rubric": null
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Silver"
-  }
+    "rewards": {
+        "mastery_points": 100,
+        "medal_tier": "Silver"
+    },
+    "region": "The Time Matrix",
+    "tier": "Silver"
 }
