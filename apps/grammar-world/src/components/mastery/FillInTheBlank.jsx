@@ -3,7 +3,7 @@ import { Loader, AlertCircle } from 'lucide-react';
 
 export default function FillInTheBlank({ prompt, activityData, onSubmit, assessmentStatus, feedbackMessage }) {
   const [userAnswers, setUserAnswers] = useState({});
-  const blanks = activityData?.blanks || [];
+  const questions = activityData?.questions || activityData?.blanks || [];
 
   const handleAnswerChange = (blankIndex, value) => {
     setUserAnswers({
@@ -19,26 +19,29 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
   const handleSubmit = () => {
     // Calculate score client-side with flexible validation
     let correctCount = 0;
-    blanks.forEach((blank, idx) => {
+    questions.forEach((q, idx) => {
       const userAnswer = sanitizeInput(userAnswers[idx] || '');
-      const acceptedAnswers = blank.accepted_answers.map(ans => sanitizeInput(ans));
+      // Handle both new 'correct_answer' and old 'accepted_answers' formats
+      const acceptedAnswers = q.correct_answer 
+        ? [sanitizeInput(q.correct_answer)]
+        : (q.accepted_answers || []).map(ans => sanitizeInput(ans));
       
       if (acceptedAnswers.includes(userAnswer)) {
         correctCount++;
       }
     });
 
-    const score = Math.round((correctCount / blanks.length) * 100);
+    const score = Math.round((correctCount / questions.length) * 100);
     const passed = score >= 80;
 
     // Convert userAnswers object to array for backend
-    const answers = blanks.map((_, idx) => userAnswers[idx] || '');
+    const answers = questions.map((_, idx) => userAnswers[idx] || '');
 
     // Submit to backend
     onSubmit({ answers, score, passed }, 'fill_in_the_blank');
   };
 
-  const allAnswered = blanks.every((_, idx) => userAnswers[idx]?.trim());
+  const allAnswered = questions.length > 0 && questions.every((_, idx) => userAnswers[idx]?.trim());
   const isLoading = assessmentStatus === 'loading';
   const hasFailed = assessmentStatus === 'failed';
 
@@ -51,15 +54,15 @@ export default function FillInTheBlank({ prompt, activityData, onSubmit, assessm
       )}
 
       <div className="space-y-6 mb-6">
-        {blanks.map((blank, idx) => (
+        {questions.map((q, idx) => (
           <div key={idx} className="border border-gray-200 rounded-xl p-4">
             <label className="block mb-3">
               <span className="font-semibold text-gray-800 mb-2 block">
-                {idx + 1}. {blank.sentence_with_blank}
+                {idx + 1}. {q.question || q.sentence_with_blank}
               </span>
-              {blank.hint && (
+              {q.hint && (
                 <span className="text-sm text-gray-600 italic">
-                  Hint: {blank.hint}
+                  Hint: {q.hint}
                 </span>
               )}
             </label>

@@ -3,7 +3,7 @@ import { Loader, AlertCircle } from 'lucide-react';
 
 export default function ErrorCorrection({ prompt, activityData, onSubmit, assessmentStatus, feedbackMessage }) {
   const [userCorrections, setUserCorrections] = useState({});
-  const errors = activityData?.errors || [];
+  const questions = activityData?.questions || activityData?.errors || [];
 
   const handleCorrectionChange = (errorIndex, value) => {
     setUserCorrections({
@@ -19,26 +19,29 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
   const handleSubmit = () => {
     // Calculate score client-side with flexible validation
     let correctCount = 0;
-    errors.forEach((error, idx) => {
+    questions.forEach((q, idx) => {
       const userAnswer = sanitizeInput(userCorrections[idx] || '');
-      const acceptedAnswers = error.accepted_corrections.map(ans => sanitizeInput(ans));
+      // Handle both new 'correct_answer' and old 'accepted_corrections' formats
+      const acceptedAnswers = q.correct_answer 
+        ? [sanitizeInput(q.correct_answer)]
+        : (q.accepted_corrections || []).map(ans => sanitizeInput(ans));
       
       if (acceptedAnswers.includes(userAnswer)) {
         correctCount++;
       }
     });
 
-    const score = Math.round((correctCount / errors.length) * 100);
+    const score = Math.round((correctCount / questions.length) * 100);
     const passed = score >= 80;
 
     // Convert userCorrections object to array for backend
-    const corrections = errors.map((_, idx) => userCorrections[idx] || '');
+    const corrections = questions.map((_, idx) => userCorrections[idx] || '');
 
     // Submit to backend
     onSubmit({ corrections, score, passed }, 'error_correction');
   };
 
-  const allAnswered = errors.every((_, idx) => userCorrections[idx]?.trim());
+  const allAnswered = questions.length > 0 && questions.every((_, idx) => userCorrections[idx]?.trim());
   const isLoading = assessmentStatus === 'loading';
   const hasFailed = assessmentStatus === 'failed';
 
@@ -60,12 +63,17 @@ export default function ErrorCorrection({ prompt, activityData, onSubmit, assess
       )}
 
       <div className="space-y-6 mb-6">
-        {errors.map((error, idx) => (
+        {questions.map((q, idx) => (
           <div key={idx} className="border border-gray-200 rounded-xl p-4">
             <label className="block mb-2">
-              <span className="font-semibold text-gray-800">
-                Mistake {idx + 1}: Fix "{error.incorrect_word}"
+              <span className="font-semibold text-gray-800 mb-2 block">
+                {idx + 1}. {q.question}
               </span>
+              {q.incorrect_word && (
+                <span className="text-sm text-gray-600 italic">
+                  Mistake: Fix "{q.incorrect_word}"
+                </span>
+              )}
             </label>
             <input
               type="text"
