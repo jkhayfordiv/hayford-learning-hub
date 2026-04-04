@@ -1,170 +1,324 @@
 {
-  "node_id": "time-matrix-07",
-  "title": "Plans vs. Predictions",
-  "description": "Learning when to say 'will' vs 'going to' for the future.",
-  "display_order": 7,
-  "prerequisites": ["time-matrix-06"],
-  "lesson_content_markdown": "# Plans vs. Predictions\n\nIn English, we talk about the future in different ways depending on our situation.\n\n### 1. Future Plans: Be + Going to\n\nWe use **going to** when we have already decided on a plan.\n\n- **Formula**: Be Verb (am/is/are) + **going to** + do something.\n- **Example**: I **am going to study** in the library tonight. (I already decided this!)\n- **Example**: They **are going to go** to the cafeteria after class.\n\n### 2. General Predictions: Will\n\nWe use **will** when we talk about a general idea or guess about the future.\n\n- **Formula**: **will** + do something.\n- **Example**: I think it **will rain** tomorrow. (This is my guess.)\n- **Example**: The library **will be** busy on Monday.\n\n### 3. Decisions Right Now: Will\n\nUse **will** when you decide something exactly at this moment.\n\n- **Example**: Wait! I **will help** you with those bags.\n- **Example**: I'm cold. I **will close** the window now.\n\n---",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Choose the best word or words for the sentence about the future.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "Wait! I ___ help you with that heavy box.",
-          "options": ["will", "am going to", "going to", "was"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "I ___ my homework in the library tonight. I already have my books.",
-          "options": ["am going to do", "will do", "doing", "did"],
-          "correct_answer": "am going to do"
-        },
-        {
-          "question": "The sky is blue. I think it ___ be a beautiful day.",
-          "options": ["will", "is going to", "going to", "was"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "She ___ a cup of tea after the next class. She has her cup ready.",
-          "options": ["is going to have", "will have", "has", "having"],
-          "correct_answer": "is going to have"
-        },
-        {
-          "question": "I'm sure they ___ win the football game tomorrow.",
-          "options": ["will", "going to", "am going to", "did"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "We ___ at the university cafe at 12:00. It is our daily plan.",
-          "options": ["are going to meet", "will meet", "meets", "met"],
-          "correct_answer": "are going to meet"
-        },
-        {
-          "question": "It's late. I ___ go home now.",
-          "options": ["will", "is going to", "was", "going"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "The professor ___ the test scores next week.",
-          "options": ["will give", "giving", "gave", "is going to"],
-          "correct_answer": "will give"
-        },
-        {
-          "question": "I ___ to the gym tonight. I have my gym bag under my desk.",
-          "options": ["am going to go", "will go", "go", "going"],
-          "correct_answer": "am going to go"
-        },
-        {
-          "question": "I think this room ___ be very hot in the summer.",
-          "options": ["will", "is going to", "was", "does"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "Look at those black clouds! It ___ rain very soon.",
-          "options": ["is going to", "will", "going to", "rained"],
-          "correct_answer": "is going to"
-        },
-        {
-          "question": "I ___ my mother this afternoon. I already told her.",
-          "options": ["am going to call", "will call", "calls", "calling"],
-          "correct_answer": "am going to call"
-        },
-        {
-          "question": "Someone is at the door. I ___ open it.",
-          "options": ["will", "am going to", "was", "open"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "The university ___ a new dorm next year.",
-          "options": ["will build", "is built", "builds", "building"],
-          "correct_answer": "will build"
-        },
-        {
-          "question": "We ___ a movie together on Saturday. We bought the tickets.",
-          "options": ["are going to watch", "will watch", "watch", "watching"],
-          "correct_answer": "are going to watch"
-        },
-        {
-          "question": "I'm hungry. I ___ buy a sandwich.",
-          "options": ["will", "am going to", "was", "bought"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "They ___ for the exam in the student center tomorrow evening.",
-          "options": ["are going to study", "will study", "study", "studied"],
-          "correct_answer": "are going to study"
-        },
-        {
-          "question": "I think the library ___ close early on the holiday.",
-          "options": ["will", "is going to", "closed", "closing"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "She ___ a new computer for school tomorrow morning.",
-          "options": ["is going to buy", "will buy", "bought", "buying"],
-          "correct_answer": "is going to buy"
-        },
-        {
-          "question": "Wait! I ___ bring your lost pen to you.",
-          "options": ["will", "am going to", "going to", "bringing"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "We ___ English history in our next semester.",
-          "options": ["will learn", "is learning", "learned", "learns"],
-          "correct_answer": "will learn"
-        },
-        {
-          "question": "I ___ my blue bag to class tomorrow.",
-          "options": ["am going to carry", "will carry", "carried", "carrying"],
-          "correct_answer": "am going to carry"
-        },
-        {
-          "question": "I think the professor ___ like our presentation.",
-          "options": ["will", "is going to", "was", "does"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "The bus ___ at the front gate in five minutes.",
-          "options": ["will stop", "am going to", "stops", "stopped"],
-          "correct_answer": "will stop"
-        },
-        {
-          "question": "They ___ a funny show in the gym tonight. I already have a seat.",
-          "options": ["are going to watch", "will watch", "watching", "watched"],
-          "correct_answer": "are going to watch"
-        },
-        {
-          "question": "Oh no! I lost my pencil. I ___ go find it.",
-          "options": ["will", "am going to", "was", "find"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "She ___ a letter to her family on Sunday.",
-          "options": ["is going to write", "will write", "wrote", "writing"],
-          "correct_answer": "is going to write"
-        },
-        {
-          "question": "I think the students ___ be happy with the new cafe menu.",
-          "options": ["will", "is going to", "going to", "were"],
-          "correct_answer": "will"
-        },
-        {
-          "question": "He ___ for the cafeteria to open tomorrow morning. He always does.",
-          "options": ["is going to wait", "will wait", "wait", "waiting"],
-          "correct_answer": "is going to wait"
-        },
-        {
-          "question": "Listen! I ___ show you the answer to that problem.",
-          "options": ["will", "am going to", "going to", "was"],
-          "correct_answer": "will"
-        }
-      ]
-    }
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Bronze"
-  }
+    "node_id":  "time-matrix-07",
+    "title":  "Plans vs. Predictions",
+    "description":  "Learning when to say \u0027will\u0027 vs \u0027going to\u0027 for the future.",
+    "display_order":  7,
+    "prerequisites":  [
+                          "time-matrix-06"
+                      ],
+    "lesson_content_markdown":  "# Plans vs. Predictions\n\nIn English, we talk about the future in different ways depending on our situation.\n\n### 1. Future Plans: Be + Going to\n\nWe use **going to** when we have already decided on a plan.\n\n- **Formula**: Be Verb (am/is/are) + **going to** + do something.\n- **Example**: I **am going to study** in the library tonight. (I already decided this!)\n- **Example**: They **are going to go** to the cafeteria after class.\n\n### 2. General Predictions: Will\n\nWe use **will** when we talk about a general idea or guess about the future.\n\n- **Formula**: **will** + do something.\n- **Example**: I think it **will rain** tomorrow. (This is my guess.)\n- **Example**: The library **will be** busy on Monday.\n\n### 3. Decisions Right Now: Will\n\nUse **will** when you decide something exactly at this moment.\n\n- **Example**: Wait! I **will help** you with those bags.\n- **Example**: I\u0027m cold. I **will close** the window now.\n\n---",
+    "mastery_check":  {
+                          "type":  "multiple_choice",
+                          "prompt_to_student":  "Choose the best word or words for the sentence about the future.",
+                          "activity_data":  {
+                                                "questions":  [
+                                                                  {
+                                                                      "question":  "Wait! I ___ help you with that heavy box.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "am going to",
+                                                                                      "going to",
+                                                                                      "was"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ my homework in the library tonight. I already have my books.",
+                                                                      "options":  [
+                                                                                      "am going to do",
+                                                                                      "will do",
+                                                                                      "doing",
+                                                                                      "did"
+                                                                                  ],
+                                                                      "correct_answer":  "am going to do"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The sky is blue. I think it ___ be a beautiful day.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "is going to",
+                                                                                      "going to",
+                                                                                      "was"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She ___ a cup of tea after the next class. She has her cup ready.",
+                                                                      "options":  [
+                                                                                      "is going to have",
+                                                                                      "will have",
+                                                                                      "has",
+                                                                                      "having"
+                                                                                  ],
+                                                                      "correct_answer":  "is going to have"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I\u0027m sure they ___ win the football game tomorrow.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "going to",
+                                                                                      "am going to",
+                                                                                      "did"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ at the university cafe at 12:00. It is our daily plan.",
+                                                                      "options":  [
+                                                                                      "are going to meet",
+                                                                                      "will meet",
+                                                                                      "meets",
+                                                                                      "met"
+                                                                                  ],
+                                                                      "correct_answer":  "are going to meet"
+                                                                  },
+                                                                  {
+                                                                      "question":  "It\u0027s late. I ___ go home now.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "is going to",
+                                                                                      "was",
+                                                                                      "going"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The professor ___ the test scores next week.",
+                                                                      "options":  [
+                                                                                      "will give",
+                                                                                      "giving",
+                                                                                      "gave",
+                                                                                      "is going to"
+                                                                                  ],
+                                                                      "correct_answer":  "will give"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ to the gym tonight. I have my gym bag under my desk.",
+                                                                      "options":  [
+                                                                                      "am going to go",
+                                                                                      "will go",
+                                                                                      "go",
+                                                                                      "going"
+                                                                                  ],
+                                                                      "correct_answer":  "am going to go"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I think this room ___ be very hot in the summer.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "is going to",
+                                                                                      "was",
+                                                                                      "does"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Look at those black clouds! It ___ rain very soon.",
+                                                                      "options":  [
+                                                                                      "is going to",
+                                                                                      "will",
+                                                                                      "going to",
+                                                                                      "rained"
+                                                                                  ],
+                                                                      "correct_answer":  "is going to"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ my mother this afternoon. I already told her.",
+                                                                      "options":  [
+                                                                                      "am going to call",
+                                                                                      "will call",
+                                                                                      "calls",
+                                                                                      "calling"
+                                                                                  ],
+                                                                      "correct_answer":  "am going to call"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Someone is at the door. I ___ open it.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "am going to",
+                                                                                      "was",
+                                                                                      "open"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The university ___ a new dorm next year.",
+                                                                      "options":  [
+                                                                                      "will build",
+                                                                                      "is built",
+                                                                                      "builds",
+                                                                                      "building"
+                                                                                  ],
+                                                                      "correct_answer":  "will build"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ a movie together on Saturday. We bought the tickets.",
+                                                                      "options":  [
+                                                                                      "are going to watch",
+                                                                                      "will watch",
+                                                                                      "watch",
+                                                                                      "watching"
+                                                                                  ],
+                                                                      "correct_answer":  "are going to watch"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I\u0027m hungry. I ___ buy a sandwich.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "am going to",
+                                                                                      "was",
+                                                                                      "bought"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ for the exam in the student center tomorrow evening.",
+                                                                      "options":  [
+                                                                                      "are going to study",
+                                                                                      "will study",
+                                                                                      "study",
+                                                                                      "studied"
+                                                                                  ],
+                                                                      "correct_answer":  "are going to study"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I think the library ___ close early on the holiday.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "is going to",
+                                                                                      "closed",
+                                                                                      "closing"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She ___ a new computer for school tomorrow morning.",
+                                                                      "options":  [
+                                                                                      "is going to buy",
+                                                                                      "will buy",
+                                                                                      "bought",
+                                                                                      "buying"
+                                                                                  ],
+                                                                      "correct_answer":  "is going to buy"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Wait! I ___ bring your lost pen to you.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "am going to",
+                                                                                      "going to",
+                                                                                      "bringing"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ English history in our next semester.",
+                                                                      "options":  [
+                                                                                      "will learn",
+                                                                                      "is learning",
+                                                                                      "learned",
+                                                                                      "learns"
+                                                                                  ],
+                                                                      "correct_answer":  "will learn"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ my blue bag to class tomorrow.",
+                                                                      "options":  [
+                                                                                      "am going to carry",
+                                                                                      "will carry",
+                                                                                      "carried",
+                                                                                      "carrying"
+                                                                                  ],
+                                                                      "correct_answer":  "am going to carry"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I think the professor ___ like our presentation.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "is going to",
+                                                                                      "was",
+                                                                                      "does"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The bus ___ at the front gate in five minutes.",
+                                                                      "options":  [
+                                                                                      "will stop",
+                                                                                      "am going to",
+                                                                                      "stops",
+                                                                                      "stopped"
+                                                                                  ],
+                                                                      "correct_answer":  "will stop"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ a funny show in the gym tonight. I already have a seat.",
+                                                                      "options":  [
+                                                                                      "are going to watch",
+                                                                                      "will watch",
+                                                                                      "watching",
+                                                                                      "watched"
+                                                                                  ],
+                                                                      "correct_answer":  "are going to watch"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Oh no! I lost my pencil. I ___ go find it.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "am going to",
+                                                                                      "was",
+                                                                                      "find"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She ___ a letter to her family on Sunday.",
+                                                                      "options":  [
+                                                                                      "is going to write",
+                                                                                      "will write",
+                                                                                      "wrote",
+                                                                                      "writing"
+                                                                                  ],
+                                                                      "correct_answer":  "is going to write"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I think the students ___ be happy with the new cafe menu.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "is going to",
+                                                                                      "going to",
+                                                                                      "were"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He ___ for the cafeteria to open tomorrow morning. He always does.",
+                                                                      "options":  [
+                                                                                      "is going to wait",
+                                                                                      "will wait",
+                                                                                      "wait",
+                                                                                      "waiting"
+                                                                                  ],
+                                                                      "correct_answer":  "is going to wait"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Listen! I ___ show you the answer to that problem.",
+                                                                      "options":  [
+                                                                                      "will",
+                                                                                      "am going to",
+                                                                                      "going to",
+                                                                                      "was"
+                                                                                  ],
+                                                                      "correct_answer":  "will"
+                                                                  }
+                                                              ]
+                                            }
+                      },
+    "rewards":  {
+                    "mastery_points":  100,
+                    "medal_tier":  "Bronze"
+                },
+    "region":  "The Time Matrix",
+    "tier":  "Bronze"
 }

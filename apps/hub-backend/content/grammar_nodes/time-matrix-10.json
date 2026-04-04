@@ -1,140 +1,144 @@
 {
-  "node_id": "time-matrix-10",
-  "title": "Tricky Subjects & The Bronze Boss",
-  "description": "The final test of the Bronze Tier. Learn about tricky subjects and review everything you've learned so far.",
-  "display_order": 10,
-  "prerequisites": ["time-matrix-09"],
-  "lesson_content_markdown": "# Tricky Subjects & The Bronze Boss\n\nYou have learned a lot! You know how to talk about the Past, the Present, and the Future. But there are some final \"Tricky Subjects\" you must learn to finish the Bronze level.\n\n### 1. Tricky Singular Subjects\n\nSome words look like there are many people, but they use the **singular (-s)** form.\n\n- **Everyone** → Everyone **is** happy. (Not: Everyone are)\n- **Everybody** → Everybody **likes** lunch. (Not: Everybody like)\n- **Everything** → Everything **was** ready last night.\n- **Someone / Somebody** → Someone **is** in the room.\n\n### 2. Tricky Things\n\n- **The news** → The news **is** 10 minutes long. (The news looks plural with -s, but it is singular!)\n- **Physics / Mathematics** → Math **is** difficult. (The subject looks plural, but it is one thing.)\n\n### 3. BOSS REVIEW: THE BRONZE PATHWAY\n\nThis is your final test! You must remember:\n\n- **The Past**: I **went** to class yesterday. (Irregular)\n- **The 'Was Doing' Past**: I **was studying** when you called. (Continuous)\n- **The Future**: I **am going to buy** tickets tomorrow. (Plan)\n- **The Busy Future**: At 9 PM tomorrow, I **will be sleeping**. (Continuous)\n- **Thinking Words**: I **know** the answer. (No -ing!)\n\n---",
-  "mastery_check": {
-    "type": "error_correction",
-    "prompt_to_student": "Find the ONE mistake in each sentence below. Type only the correct word or words to fix the sentence. This is the Bronze Boss fight!",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "Everyone in the classroom are reading a science book.",
-          "correct_answer": "is"
-        },
-        {
-          "question": "Yesterday, I write a long report for the history teacher.",
-          "correct_answer": "wrote"
-        },
-        {
-          "question": "The news about the university were very interesting.",
-          "correct_answer": "was"
-        },
-        {
-          "question": "Everything on my desk are very clean today.",
-          "correct_answer": "is"
-        },
-        {
-          "question": "At 10 PM tonight, I will being sleeping in my dorm room.",
-          "correct_answer": "will be"
-        },
-        {
-          "question": "I am understanding the professor's new lesson now.",
-          "correct_answer": "understand"
-        },
-        {
-          "question": "They was walking to the gym when it began to rain.",
-          "correct_answer": "were walking"
-        },
-        {
-          "question": "She is going to bought a new car next week.",
-          "correct_answer": "buy"
-        },
-        {
-          "question": "The children plays in the park under the trees every morning.",
-          "correct_answer": "play"
-        },
-        {
-          "question": "Look! The sun is shine through the library window.",
-          "correct_answer": "shining"
-        },
-        {
-          "question": "We was preparing for the science test all night yesterday.",
-          "correct_answer": "were preparing"
-        },
-        {
-          "question": "Wait! I am going to help you with that heavy door.",
-          "correct_answer": "will help"
-        },
-        {
-          "question": "Everyone like the new food in the campus cafeteria.",
-          "correct_answer": "likes"
-        },
-        {
-          "question": "I saw my teacher yesterday and he was give me a book.",
-          "correct_answer": "gave"
-        },
-        {
-          "question": "Tomorrow morning, I will waiting for you at the bus stop.",
-          "correct_answer": "will be waiting"
-        },
-        {
-          "question": "Somebody are knocking on the classroom door.",
-          "correct_answer": "is"
-        },
-        {
-          "question": "Yesterday night, they ate dinner and then they goes home.",
-          "correct_answer": "went"
-        },
-        {
-          "question": "Mathematics are a very important subject for every student.",
-          "correct_answer": "is"
-        },
-        {
-          "question": "I have two pens and my friend have three pens.",
-          "correct_answer": "has"
-        },
-        {
-          "question": "At this moment, the students is waiting for the bus.",
-          "correct_answer": "are"
-        },
-        {
-          "question": "He was watching a movie when his father was calling him.",
-          "correct_answer": "called"
-        },
-        {
-          "question": "I am sure you is going to pass the final exam.",
-          "correct_answer": "are"
-        },
-        {
-          "question": "The news from the radio tell us about the university party.",
-          "correct_answer": "tells"
-        },
-        {
-          "question": "Everything in my bag were lost in the park yesterday.",
-          "correct_answer": "was"
-        },
-        {
-          "question": "He am studying English history this semester.",
-          "correct_answer": "is"
-        },
-        {
-          "question": "Last night, she was carried a heavy box to her room.",
-          "correct_answer": "was carrying"
-        },
-        {
-          "question": "They will being playing football at 4 PM tomorrow.",
-          "correct_answer": "will be"
-        },
-        {
-          "question": "Everyone know that the library is open until late.",
-          "correct_answer": "knows"
-        },
-        {
-          "question": "I did not liked the soup in the cafeteria last Friday.",
-          "correct_answer": "like"
-        },
-        {
-          "question": "The professor is look for his papers in the office now.",
-          "correct_answer": "looking"
-        }
-      ]
-    }
-  },
-  "rewards": {
-    "mastery_points": 250,
-    "medal_tier": "Bronze"
-  }
+    "node_id":  "time-matrix-10",
+    "title":  "Tricky Subjects \u0026 The Bronze Boss",
+    "description":  "The final test of the Bronze Tier. Learn about tricky subjects and review everything you\u0027ve learned so far.",
+    "display_order":  10,
+    "prerequisites":  [
+                          "time-matrix-09"
+                      ],
+    "lesson_content_markdown":  "# Tricky Subjects \u0026 The Bronze Boss\n\nYou have learned a lot! You know how to talk about the Past, the Present, and the Future. But there are some final \"Tricky Subjects\" you must learn to finish the Bronze level.\n\n### 1. Tricky Singular Subjects\n\nSome words look like there are many people, but they use the **singular (-s)** form.\n\n- **Everyone** â†’ Everyone **is** happy. (Not: Everyone are)\n- **Everybody** â†’ Everybody **likes** lunch. (Not: Everybody like)\n- **Everything** â†’ Everything **was** ready last night.\n- **Someone / Somebody** â†’ Someone **is** in the room.\n\n### 2. Tricky Things\n\n- **The news** â†’ The news **is** 10 minutes long. (The news looks plural with -s, but it is singular!)\n- **Physics / Mathematics** â†’ Math **is** difficult. (The subject looks plural, but it is one thing.)\n\n### 3. BOSS REVIEW: THE BRONZE PATHWAY\n\nThis is your final test! You must remember:\n\n- **The Past**: I **went** to class yesterday. (Irregular)\n- **The \u0027Was Doing\u0027 Past**: I **was studying** when you called. (Continuous)\n- **The Future**: I **am going to buy** tickets tomorrow. (Plan)\n- **The Busy Future**: At 9 PM tomorrow, I **will be sleeping**. (Continuous)\n- **Thinking Words**: I **know** the answer. (No -ing!)\n\n---",
+    "mastery_check":  {
+                          "type":  "error_correction",
+                          "prompt_to_student":  "Find the ONE mistake in each sentence below. Type only the correct word or words to fix the sentence. This is the Bronze Boss fight!",
+                          "activity_data":  {
+                                                "questions":  [
+                                                                  {
+                                                                      "question":  "Everyone in the classroom are reading a science book.",
+                                                                      "correct_answer":  "is"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Yesterday, I write a long report for the history teacher.",
+                                                                      "correct_answer":  "wrote"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The news about the university were very interesting.",
+                                                                      "correct_answer":  "was"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Everything on my desk are very clean today.",
+                                                                      "correct_answer":  "is"
+                                                                  },
+                                                                  {
+                                                                      "question":  "At 10 PM tonight, I will being sleeping in my dorm room.",
+                                                                      "correct_answer":  "will be"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I am understanding the professor\u0027s new lesson now.",
+                                                                      "correct_answer":  "understand"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They was walking to the gym when it began to rain.",
+                                                                      "correct_answer":  "were walking"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She is going to bought a new car next week.",
+                                                                      "correct_answer":  "buy"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The children plays in the park under the trees every morning.",
+                                                                      "correct_answer":  "play"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Look! The sun is shine through the library window.",
+                                                                      "correct_answer":  "shining"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We was preparing for the science test all night yesterday.",
+                                                                      "correct_answer":  "were preparing"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Wait! I am going to help you with that heavy door.",
+                                                                      "correct_answer":  "will help"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Everyone like the new food in the campus cafeteria.",
+                                                                      "correct_answer":  "likes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I saw my teacher yesterday and he was give me a book.",
+                                                                      "correct_answer":  "gave"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Tomorrow morning, I will waiting for you at the bus stop.",
+                                                                      "correct_answer":  "will be waiting"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Somebody are knocking on the classroom door.",
+                                                                      "correct_answer":  "is"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Yesterday night, they ate dinner and then they goes home.",
+                                                                      "correct_answer":  "went"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Mathematics are a very important subject for every student.",
+                                                                      "correct_answer":  "is"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I have two pens and my friend have three pens.",
+                                                                      "correct_answer":  "has"
+                                                                  },
+                                                                  {
+                                                                      "question":  "At this moment, the students is waiting for the bus.",
+                                                                      "correct_answer":  "are"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He was watching a movie when his father was calling him.",
+                                                                      "correct_answer":  "called"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I am sure you is going to pass the final exam.",
+                                                                      "correct_answer":  "are"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The news from the radio tell us about the university party.",
+                                                                      "correct_answer":  "tells"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Everything in my bag were lost in the park yesterday.",
+                                                                      "correct_answer":  "was"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He am studying English history this semester.",
+                                                                      "correct_answer":  "is"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Last night, she was carried a heavy box to her room.",
+                                                                      "correct_answer":  "was carrying"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They will being playing football at 4 PM tomorrow.",
+                                                                      "correct_answer":  "will be"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Everyone know that the library is open until late.",
+                                                                      "correct_answer":  "knows"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I did not liked the soup in the cafeteria last Friday.",
+                                                                      "correct_answer":  "like"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The professor is look for his papers in the office now.",
+                                                                      "correct_answer":  "looking"
+                                                                  }
+                                                              ]
+                                            }
+                      },
+    "rewards":  {
+                    "mastery_points":  250,
+                    "medal_tier":  "Bronze"
+                },
+    "region":  "The Time Matrix",
+    "tier":  "Bronze"
 }

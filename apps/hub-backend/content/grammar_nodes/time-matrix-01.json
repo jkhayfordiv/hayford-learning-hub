@@ -1,170 +1,324 @@
 {
-  "node_id": "time-matrix-01",
-  "title": "Thinking Words vs. Doing Words",
-  "description": "Learn which words describe actions and which words describe feelings or facts.",
-  "display_order": 1,
-  "prerequisites": [],
-  "lesson_content_markdown": "# Thinking Words vs. Doing Words\n\nIn English, we have two types of words for what we do: **Doing Words** and **Thinking Words**.\n\n### 1. Doing Words (Action Verbs)\n\nDoing words describe something you can see. You can use the **-ing** form for these words when they are happening now.\n\n**Examples of Doing Words:**\n- **Eat**: I am eating my lunch now.\n- **Read**: You are reading a book.\n- **Walk**: The students are walking to class.\n\n### 2. Thinking Words (State Verbs)\n\nThinking words describe feelings, opinions, or facts. You **cannot** see these actions. We almost never use **-ing** for these words, even if they are true now.\n\n#### Categories of Thinking Words:\n\n**Mind (Thinking)**\n- **Understand**: I understand the homework. (Not: I am understanding)\n- **Believe**: I believe you.\n- **Know**: He knows my name.\n\n**Feelings**\n- **Like**: I like this school.\n- **Love**: She loves coffee.\n- **Want**: They want a break.\n\n**Having things**\n- **Have**: I have a red pen. (Not: I am having a red pen)\n- **Own**: The school owns three buses.\n- **Need**: You need a pencil.\n\n### Why does it matter?\n\nIf you use **-ing** with a thinking word, it sounds strange to native speakers. \n\n- **Correct**: I **know** the answer.\n- **Incorrect**: I am knowing the answer.\n\n---",
-  "mastery_check": {
-    "type": "multiple_choice",
-    "prompt_to_student": "Choose the best word to finish the sentence about campus life.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "I ___ the science book is very good.",
-          "options": ["believe", "am believing", "believes", "believed"],
-          "correct_answer": "believe"
-        },
-        {
-          "question": "The student ___ a new computer for class.",
-          "options": ["needs", "is needing", "need", "needing"],
-          "correct_answer": "needs"
-        },
-        {
-          "question": "Right now, I ___ the answer to the question.",
-          "options": ["know", "am knowing", "knows", "knowing"],
-          "correct_answer": "know"
-        },
-        {
-          "question": "She ___ the teacher's lesson today.",
-          "options": ["understands", "is understanding", "understand", "understanding"],
-          "correct_answer": "understands"
-        },
-        {
-          "question": "They ___ three pens in their bag.",
-          "options": ["have", "are having", "has", "having"],
-          "correct_answer": "have"
-        },
-        {
-          "question": "The university ___ a large library.",
-          "options": ["owns", "is owning", "own", "owning"],
-          "correct_answer": "owns"
-        },
-        {
-          "question": "I ___ a cup of hot tea now.",
-          "options": ["want", "am wanting", "wants", "wanted"],
-          "correct_answer": "want"
-        },
-        {
-          "question": "He ___ two sisters at this school.",
-          "options": ["has", "is having", "have", "having"],
-          "correct_answer": "has"
-        },
-        {
-          "question": "We ___ this new cafeteria food.",
-          "options": ["like", "are liking", "likes", "liked"],
-          "correct_answer": "like"
-        },
-        {
-          "question": "The boys ___ to play football.",
-          "options": ["love", "are loving", "loves", "loved"],
-          "correct_answer": "love"
-        },
-        {
-          "question": "I ___ your name correctly.",
-          "options": ["remember", "am remembering", "remembers", "remembered"],
-          "correct_answer": "remember"
-        },
-        {
-          "question": "That man ___ like my history teacher.",
-          "options": ["looks", "is looking", "look", "looking"],
-          "correct_answer": "looks"
-        },
-        {
-          "question": "Do you ___ which room we are in?",
-          "options": ["know", "knowing", "knows", "known"],
-          "correct_answer": "know"
-        },
-        {
-          "question": "The food in the cafe ___ very fresh today.",
-          "options": ["tastes", "is tasting", "taste", "tasted"],
-          "correct_answer": "tastes"
-        },
-        {
-          "question": "I ___ my big bag for the trip.",
-          "options": ["need", "am needing", "needs", "needed"],
-          "correct_answer": "need"
-        },
-        {
-          "question": "The professor ___ my homework is late.",
-          "options": ["thinks", "is thinking", "think", "thought"],
-          "correct_answer": "thinks"
-        },
-        {
-          "question": "We ___ English is an important language.",
-          "options": ["know", "are knowing", "knows", "known"],
-          "correct_answer": "know"
-        },
-        {
-          "question": "The student ___ very tired after the test.",
-          "options": ["seems", "is seeming", "seem", "seemed"],
-          "correct_answer": "seems"
-        },
-        {
-          "question": "I ___ you are a very kind person.",
-          "options": ["believe", "am believing", "believes", "believed"],
-          "correct_answer": "believe"
-        },
-        {
-          "question": "They ___ a large house near the campus.",
-          "options": ["own", "are owning", "owns", "owned"],
-          "correct_answer": "own"
-        },
-        {
-          "question": "He ___ the meaning of this word.",
-          "options": ["understands", "is understanding", "understand", "understood"],
-          "correct_answer": "understands"
-        },
-        {
-          "question": "I ___ pizza for dinner today.",
-          "options": ["want", "am wanting", "wants", "wanted"],
-          "correct_answer": "want"
-        },
-        {
-          "question": "The teacher ___ every student in the class.",
-          "options": ["likes", "is liking", "like", "liked"],
-          "correct_answer": "likes"
-        },
-        {
-          "question": "This coffee ___ very bitter.",
-          "options": ["tastes", "is tasting", "taste", "tasting"],
-          "correct_answer": "tastes"
-        },
-        {
-          "question": "I ___ my keys are in my pocket.",
-          "options": ["believe", "am believing", "believes", "believed"],
-          "correct_answer": "believe"
-        },
-        {
-          "question": "The library ___ many old books.",
-          "options": ["has", "is having", "have", "having"],
-          "correct_answer": "has"
-        },
-        {
-          "question": "We ___ a break after this long class.",
-          "options": ["need", "are needing", "needs", "needed"],
-          "correct_answer": "need"
-        },
-        {
-          "question": "The girl ___ her friend's face.",
-          "options": ["recognizes", "is recognizing", "recognize", "recognized"],
-          "correct_answer": "recognizes"
-        },
-        {
-          "question": "I ___ I am ready for the test.",
-          "options": ["think", "am thinking", "thinks", "thought"],
-          "correct_answer": "think"
-        },
-        {
-          "question": "He ___ to go home now.",
-          "options": ["wants", "is wanting", "want", "wanted"],
-          "correct_answer": "wants"
-        }
-      ]
-    }
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Bronze"
-  }
+    "node_id":  "time-matrix-01",
+    "title":  "Thinking Words vs. Doing Words",
+    "description":  "Learn which words describe actions and which words describe feelings or facts.",
+    "display_order":  1,
+    "prerequisites":  [
+
+                      ],
+    "lesson_content_markdown":  "# Thinking Words vs. Doing Words\n\nIn English, we have two types of words for what we do: **Doing Words** and **Thinking Words**.\n\n### 1. Doing Words (Action Verbs)\n\nDoing words describe something you can see. You can use the **-ing** form for these words when they are happening now.\n\n**Examples of Doing Words:**\n- **Eat**: I am eating my lunch now.\n- **Read**: You are reading a book.\n- **Walk**: The students are walking to class.\n\n### 2. Thinking Words (State Verbs)\n\nThinking words describe feelings, opinions, or facts. You **cannot** see these actions. We almost never use **-ing** for these words, even if they are true now.\n\n#### Categories of Thinking Words:\n\n**Mind (Thinking)**\n- **Understand**: I understand the homework. (Not: I am understanding)\n- **Believe**: I believe you.\n- **Know**: He knows my name.\n\n**Feelings**\n- **Like**: I like this school.\n- **Love**: She loves coffee.\n- **Want**: They want a break.\n\n**Having things**\n- **Have**: I have a red pen. (Not: I am having a red pen)\n- **Own**: The school owns three buses.\n- **Need**: You need a pencil.\n\n### Why does it matter?\n\nIf you use **-ing** with a thinking word, it sounds strange to native speakers. \n\n- **Correct**: I **know** the answer.\n- **Incorrect**: I am knowing the answer.\n\n---",
+    "mastery_check":  {
+                          "type":  "multiple_choice",
+                          "prompt_to_student":  "Choose the best word to finish the sentence about campus life.",
+                          "activity_data":  {
+                                                "questions":  [
+                                                                  {
+                                                                      "question":  "I ___ the science book is very good.",
+                                                                      "options":  [
+                                                                                      "believe",
+                                                                                      "am believing",
+                                                                                      "believes",
+                                                                                      "believed"
+                                                                                  ],
+                                                                      "correct_answer":  "believe"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The student ___ a new computer for class.",
+                                                                      "options":  [
+                                                                                      "needs",
+                                                                                      "is needing",
+                                                                                      "need",
+                                                                                      "needing"
+                                                                                  ],
+                                                                      "correct_answer":  "needs"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Right now, I ___ the answer to the question.",
+                                                                      "options":  [
+                                                                                      "know",
+                                                                                      "am knowing",
+                                                                                      "knows",
+                                                                                      "knowing"
+                                                                                  ],
+                                                                      "correct_answer":  "know"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She ___ the teacher\u0027s lesson today.",
+                                                                      "options":  [
+                                                                                      "understands",
+                                                                                      "is understanding",
+                                                                                      "understand",
+                                                                                      "understanding"
+                                                                                  ],
+                                                                      "correct_answer":  "understands"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ three pens in their bag.",
+                                                                      "options":  [
+                                                                                      "have",
+                                                                                      "are having",
+                                                                                      "has",
+                                                                                      "having"
+                                                                                  ],
+                                                                      "correct_answer":  "have"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The university ___ a large library.",
+                                                                      "options":  [
+                                                                                      "owns",
+                                                                                      "is owning",
+                                                                                      "own",
+                                                                                      "owning"
+                                                                                  ],
+                                                                      "correct_answer":  "owns"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ a cup of hot tea now.",
+                                                                      "options":  [
+                                                                                      "want",
+                                                                                      "am wanting",
+                                                                                      "wants",
+                                                                                      "wanted"
+                                                                                  ],
+                                                                      "correct_answer":  "want"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He ___ two sisters at this school.",
+                                                                      "options":  [
+                                                                                      "has",
+                                                                                      "is having",
+                                                                                      "have",
+                                                                                      "having"
+                                                                                  ],
+                                                                      "correct_answer":  "has"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ this new cafeteria food.",
+                                                                      "options":  [
+                                                                                      "like",
+                                                                                      "are liking",
+                                                                                      "likes",
+                                                                                      "liked"
+                                                                                  ],
+                                                                      "correct_answer":  "like"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The boys ___ to play football.",
+                                                                      "options":  [
+                                                                                      "love",
+                                                                                      "are loving",
+                                                                                      "loves",
+                                                                                      "loved"
+                                                                                  ],
+                                                                      "correct_answer":  "love"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ your name correctly.",
+                                                                      "options":  [
+                                                                                      "remember",
+                                                                                      "am remembering",
+                                                                                      "remembers",
+                                                                                      "remembered"
+                                                                                  ],
+                                                                      "correct_answer":  "remember"
+                                                                  },
+                                                                  {
+                                                                      "question":  "That man ___ like my history teacher.",
+                                                                      "options":  [
+                                                                                      "looks",
+                                                                                      "is looking",
+                                                                                      "look",
+                                                                                      "looking"
+                                                                                  ],
+                                                                      "correct_answer":  "looks"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Do you ___ which room we are in?",
+                                                                      "options":  [
+                                                                                      "know",
+                                                                                      "knowing",
+                                                                                      "knows",
+                                                                                      "known"
+                                                                                  ],
+                                                                      "correct_answer":  "know"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The food in the cafe ___ very fresh today.",
+                                                                      "options":  [
+                                                                                      "tastes",
+                                                                                      "is tasting",
+                                                                                      "taste",
+                                                                                      "tasted"
+                                                                                  ],
+                                                                      "correct_answer":  "tastes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ my big bag for the trip.",
+                                                                      "options":  [
+                                                                                      "need",
+                                                                                      "am needing",
+                                                                                      "needs",
+                                                                                      "needed"
+                                                                                  ],
+                                                                      "correct_answer":  "need"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The professor ___ my homework is late.",
+                                                                      "options":  [
+                                                                                      "thinks",
+                                                                                      "is thinking",
+                                                                                      "think",
+                                                                                      "thought"
+                                                                                  ],
+                                                                      "correct_answer":  "thinks"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ English is an important language.",
+                                                                      "options":  [
+                                                                                      "know",
+                                                                                      "are knowing",
+                                                                                      "knows",
+                                                                                      "known"
+                                                                                  ],
+                                                                      "correct_answer":  "know"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The student ___ very tired after the test.",
+                                                                      "options":  [
+                                                                                      "seems",
+                                                                                      "is seeming",
+                                                                                      "seem",
+                                                                                      "seemed"
+                                                                                  ],
+                                                                      "correct_answer":  "seems"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ you are a very kind person.",
+                                                                      "options":  [
+                                                                                      "believe",
+                                                                                      "am believing",
+                                                                                      "believes",
+                                                                                      "believed"
+                                                                                  ],
+                                                                      "correct_answer":  "believe"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ a large house near the campus.",
+                                                                      "options":  [
+                                                                                      "own",
+                                                                                      "are owning",
+                                                                                      "owns",
+                                                                                      "owned"
+                                                                                  ],
+                                                                      "correct_answer":  "own"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He ___ the meaning of this word.",
+                                                                      "options":  [
+                                                                                      "understands",
+                                                                                      "is understanding",
+                                                                                      "understand",
+                                                                                      "understood"
+                                                                                  ],
+                                                                      "correct_answer":  "understands"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ pizza for dinner today.",
+                                                                      "options":  [
+                                                                                      "want",
+                                                                                      "am wanting",
+                                                                                      "wants",
+                                                                                      "wanted"
+                                                                                  ],
+                                                                      "correct_answer":  "want"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The teacher ___ every student in the class.",
+                                                                      "options":  [
+                                                                                      "likes",
+                                                                                      "is liking",
+                                                                                      "like",
+                                                                                      "liked"
+                                                                                  ],
+                                                                      "correct_answer":  "likes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "This coffee ___ very bitter.",
+                                                                      "options":  [
+                                                                                      "tastes",
+                                                                                      "is tasting",
+                                                                                      "taste",
+                                                                                      "tasting"
+                                                                                  ],
+                                                                      "correct_answer":  "tastes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ my keys are in my pocket.",
+                                                                      "options":  [
+                                                                                      "believe",
+                                                                                      "am believing",
+                                                                                      "believes",
+                                                                                      "believed"
+                                                                                  ],
+                                                                      "correct_answer":  "believe"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The library ___ many old books.",
+                                                                      "options":  [
+                                                                                      "has",
+                                                                                      "is having",
+                                                                                      "have",
+                                                                                      "having"
+                                                                                  ],
+                                                                      "correct_answer":  "has"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ a break after this long class.",
+                                                                      "options":  [
+                                                                                      "need",
+                                                                                      "are needing",
+                                                                                      "needs",
+                                                                                      "needed"
+                                                                                  ],
+                                                                      "correct_answer":  "need"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The girl ___ her friend\u0027s face.",
+                                                                      "options":  [
+                                                                                      "recognizes",
+                                                                                      "is recognizing",
+                                                                                      "recognize",
+                                                                                      "recognized"
+                                                                                  ],
+                                                                      "correct_answer":  "recognizes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ I am ready for the test.",
+                                                                      "options":  [
+                                                                                      "think",
+                                                                                      "am thinking",
+                                                                                      "thinks",
+                                                                                      "thought"
+                                                                                  ],
+                                                                      "correct_answer":  "think"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He ___ to go home now.",
+                                                                      "options":  [
+                                                                                      "wants",
+                                                                                      "is wanting",
+                                                                                      "want",
+                                                                                      "wanted"
+                                                                                  ],
+                                                                      "correct_answer":  "wants"
+                                                                  }
+                                                              ]
+                                            }
+                      },
+    "rewards":  {
+                    "mastery_points":  100,
+                    "medal_tier":  "Bronze"
+                },
+    "region":  "The Time Matrix",
+    "tier":  "Bronze"
 }

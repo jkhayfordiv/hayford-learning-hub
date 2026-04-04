@@ -1,140 +1,144 @@
 {
-  "node_id": "time-matrix-02",
-  "title": "Always True",
-  "description": "Learn how to talk about things that happen every day or things that are always true.",
-  "display_order": 2,
-  "prerequisites": ["time-matrix-01"],
-  "lesson_content_markdown": "# Always True (Present Simple)\n\nWe use the **Present Simple** tense to speak about three main things:\n\n### 1. Facts (Always True)\n\nThese are things that do not change.\n\n- The library **opens** at 8 AM every day.\n- The sun **rises** in the east.\n- Water **boils** at 100 degrees Celsius.\n\n### 2. Habits (Daily Life)\n\nThese are things that you do many times. \n\n- I **go** to the cafe every morning.\n- Students **submit** their homework on Fridays.\n- My teacher **speaks** English very well.\n\n### 3. Rules and Systems\n\n- The bus **stops** near the school.\n- The gym **closes** at 9 PM on weekends.\n\n### How to build the sentence:\n\n**I, You, We, They**\n- **Action**: No change to the word.\n- **Example**: I **study** math.\n\n**He, She, It (or one person/thing)**\n- **Action**: Add **-s** or **-es**.\n- **Example**: He **studies** math.\n\n**Important Note:** When the subject is ONE person or thing (like \"My friend\" or \"The library\"), we MUST add **-s**.\n\n- **I study** (0% change) \n- **My friend studies** (+s change) \n- **The buses arrive** (Plural - 0% change) \n- **The bus arrives** (Singular - +s change) \n\n---",
-  "mastery_check": {
-    "type": "fill_in_the_blank",
-    "prompt_to_student": "Fill in the blank with the correct form of the verb in the brackets (). Use the Present Simple.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "The history teacher ___ (talk) very fast in every class.",
-          "correct_answer": "talks"
-        },
-        {
-          "question": "We ___ (buy) coffee in the morning before the lesson.",
-          "correct_answer": "buy"
-        },
-        {
-          "question": "The library ___ (open) at 9:00 AM.",
-          "correct_answer": "opens"
-        },
-        {
-          "question": "I ___ (read) a new chapter every night.",
-          "correct_answer": "read"
-        },
-        {
-          "question": "My friends ___ (go) to the gym after school.",
-          "correct_answer": "go"
-        },
-        {
-          "question": "The professor ___ (give) a test every Friday.",
-          "correct_answer": "gives"
-        },
-        {
-          "question": "Students ___ (clean) their desks at the end of class.",
-          "correct_answer": "clean"
-        },
-        {
-          "question": "She ___ (like) her English class very much.",
-          "correct_answer": "likes"
-        },
-        {
-          "question": "The bus ___ (stop) in front of the gate.",
-          "correct_answer": "stops"
-        },
-        {
-          "question": "You ___ (speak) English very well.",
-          "correct_answer": "speak"
-        },
-        {
-          "question": "He ___ (write) his homework with a black pen.",
-          "correct_answer": "writes"
-        },
-        {
-          "question": "The sun ___ (shine) into the windows of the room.",
-          "correct_answer": "shines"
-        },
-        {
-          "question": "They ___ (have) three classes on Monday.",
-          "correct_answer": "have"
-        },
-        {
-          "question": "The food in the cafe ___ (taste) like home.",
-          "correct_answer": "tastes"
-        },
-        {
-          "question": "I ___ (want) to be a doctor one day.",
-          "correct_answer": "want"
-        },
-        {
-          "question": "The music at the party ___ (sound) very loud.",
-          "correct_answer": "sounds"
-        },
-        {
-          "question": "We ___ (walk) to the library together.",
-          "correct_answer": "walk"
-        },
-        {
-          "question": "The boy ___ (carry) a heavy bag to the room.",
-          "correct_answer": "carries"
-        },
-        {
-          "question": "My father ___ (work) near the university.",
-          "correct_answer": "works"
-        },
-        {
-          "question": "The cat ___ (sleep) under the tree.",
-          "correct_answer": "sleeps"
-        },
-        {
-          "question": "They ___ (drink) water during the game.",
-          "correct_answer": "drink"
-        },
-        {
-          "question": "The girl ___ (sing) for the music club.",
-          "correct_answer": "sings"
-        },
-        {
-          "question": "He ___ (need) more time to finish the book.",
-          "correct_answer": "needs"
-        },
-        {
-          "question": "I ___ (know) your sister very well.",
-          "correct_answer": "know"
-        },
-        {
-          "question": "The winter ___ (bring) cold snow to the campus.",
-          "correct_answer": "brings"
-        },
-        {
-          "question": "We ___ (understand) the teacher's lesson.",
-          "correct_answer": "understand"
-        },
-        {
-          "question": "The clock on the wall ___ (tick) loudly.",
-          "correct_answer": "ticks"
-        },
-        {
-          "question": "She ___ (play) the piano in the student center.",
-          "correct_answer": "plays"
-        },
-        {
-          "question": "The class ___ (begin) at 10:00 every Tuesday.",
-          "correct_answer": "begins"
-        },
-        {
-          "question": "They ___ (live) in the new student dorm.",
-          "correct_answer": "live"
-        }
-      ]
-    }
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Bronze"
-  }
+    "node_id":  "time-matrix-02",
+    "title":  "Always True",
+    "description":  "Learn how to talk about things that happen every day or things that are always true.",
+    "display_order":  2,
+    "prerequisites":  [
+                          "time-matrix-01"
+                      ],
+    "lesson_content_markdown":  "# Always True (Present Simple)\n\nWe use the **Present Simple** tense to speak about three main things:\n\n### 1. Facts (Always True)\n\nThese are things that do not change.\n\n- The library **opens** at 8 AM every day.\n- The sun **rises** in the east.\n- Water **boils** at 100 degrees Celsius.\n\n### 2. Habits (Daily Life)\n\nThese are things that you do many times. \n\n- I **go** to the cafe every morning.\n- Students **submit** their homework on Fridays.\n- My teacher **speaks** English very well.\n\n### 3. Rules and Systems\n\n- The bus **stops** near the school.\n- The gym **closes** at 9 PM on weekends.\n\n### How to build the sentence:\n\n**I, You, We, They**\n- **Action**: No change to the word.\n- **Example**: I **study** math.\n\n**He, She, It (or one person/thing)**\n- **Action**: Add **-s** or **-es**.\n- **Example**: He **studies** math.\n\n**Important Note:** When the subject is ONE person or thing (like \"My friend\" or \"The library\"), we MUST add **-s**.\n\n- **I study** (0% change) \n- **My friend studies** (+s change) \n- **The buses arrive** (Plural - 0% change) \n- **The bus arrives** (Singular - +s change) \n\n---",
+    "mastery_check":  {
+                          "type":  "fill_in_the_blank",
+                          "prompt_to_student":  "Fill in the blank with the correct form of the verb in the brackets (). Use the Present Simple.",
+                          "activity_data":  {
+                                                "questions":  [
+                                                                  {
+                                                                      "question":  "The history teacher ___ (talk) very fast in every class.",
+                                                                      "correct_answer":  "talks"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ (buy) coffee in the morning before the lesson.",
+                                                                      "correct_answer":  "buy"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The library ___ (open) at 9:00 AM.",
+                                                                      "correct_answer":  "opens"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ (read) a new chapter every night.",
+                                                                      "correct_answer":  "read"
+                                                                  },
+                                                                  {
+                                                                      "question":  "My friends ___ (go) to the gym after school.",
+                                                                      "correct_answer":  "go"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The professor ___ (give) a test every Friday.",
+                                                                      "correct_answer":  "gives"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Students ___ (clean) their desks at the end of class.",
+                                                                      "correct_answer":  "clean"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She ___ (like) her English class very much.",
+                                                                      "correct_answer":  "likes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The bus ___ (stop) in front of the gate.",
+                                                                      "correct_answer":  "stops"
+                                                                  },
+                                                                  {
+                                                                      "question":  "You ___ (speak) English very well.",
+                                                                      "correct_answer":  "speak"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He ___ (write) his homework with a black pen.",
+                                                                      "correct_answer":  "writes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The sun ___ (shine) into the windows of the room.",
+                                                                      "correct_answer":  "shines"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ (have) three classes on Monday.",
+                                                                      "correct_answer":  "have"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The food in the cafe ___ (taste) like home.",
+                                                                      "correct_answer":  "tastes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ (want) to be a doctor one day.",
+                                                                      "correct_answer":  "want"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The music at the party ___ (sound) very loud.",
+                                                                      "correct_answer":  "sounds"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ (walk) to the library together.",
+                                                                      "correct_answer":  "walk"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The boy ___ (carry) a heavy bag to the room.",
+                                                                      "correct_answer":  "carries"
+                                                                  },
+                                                                  {
+                                                                      "question":  "My father ___ (work) near the university.",
+                                                                      "correct_answer":  "works"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The cat ___ (sleep) under the tree.",
+                                                                      "correct_answer":  "sleeps"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ (drink) water during the game.",
+                                                                      "correct_answer":  "drink"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The girl ___ (sing) for the music club.",
+                                                                      "correct_answer":  "sings"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He ___ (need) more time to finish the book.",
+                                                                      "correct_answer":  "needs"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I ___ (know) your sister very well.",
+                                                                      "correct_answer":  "know"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The winter ___ (bring) cold snow to the campus.",
+                                                                      "correct_answer":  "brings"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We ___ (understand) the teacher\u0027s lesson.",
+                                                                      "correct_answer":  "understand"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The clock on the wall ___ (tick) loudly.",
+                                                                      "correct_answer":  "ticks"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She ___ (play) the piano in the student center.",
+                                                                      "correct_answer":  "plays"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The class ___ (begin) at 10:00 every Tuesday.",
+                                                                      "correct_answer":  "begins"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They ___ (live) in the new student dorm.",
+                                                                      "correct_answer":  "live"
+                                                                  }
+                                                              ]
+                                            }
+                      },
+    "rewards":  {
+                    "mastery_points":  100,
+                    "medal_tier":  "Bronze"
+                },
+    "region":  "The Time Matrix",
+    "tier":  "Bronze"
 }

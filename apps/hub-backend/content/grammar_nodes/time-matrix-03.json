@@ -1,140 +1,144 @@
 {
-  "node_id": "time-matrix-03",
-  "title": "Right Now",
-  "description": "Learn how to talk about things that are happening at this very moment.",
-  "display_order": 3,
-  "prerequisites": ["time-matrix-02"],
-  "lesson_content_markdown": "# Right Now (Present Continuous)\n\nWe use the **Present Continuous** to talk about things happening at this moment. This is for activity that is currently taking place.\n\n### Formula: Be Verb + Doing Word (-ing)\n\nTo make this tense, you need **two** parts:\n\n**1. The correct Be Verb**\n- **I** use **am**\n- **He, She, It** (one person) use **is**\n- **You, We, They** (many people) use **are**\n\n**2. The Doing Word with -ing**\n- Example: **read** → **reading**\n- Example: **study** → **studying**\n\n### Examples:\n- **I am studying** now.\n- **The boy is playing**.\n- **The students are reading**.\n\n### Negative (No)\nSimply add the word **not** after the be verb.\n- I **am not** eating lunch.\n- She **is not** writing a letter.\n- They **are not** walking to school.\n\n### Spelling Rules for -ing:\n\n- Most words: **add -ing** (walk → walking)\n- Words ending in '-e': **drop -e** (write → writing)\n- Short words (CVC): **double the last letter** (sit → sitting, run → running)\n\n### Key Words for 'Right Now':\n\n- Now\n- At the moment\n- Today\n- Look! / Listen!\n\n---",
-  "mastery_check": {
-    "type": "error_correction",
-    "prompt_to_student": "Find the ONE mistake in each sentence below. Type only the correct word or words to fix the sentence.",
-    "activity_data": {
-      "questions": [
-        {
-          "question": "I am read a book in the library now.",
-          "correct_answer": "reading"
-        },
-        {
-          "question": "They are walk to the student center at the moment.",
-          "correct_answer": "walking"
-        },
-        {
-          "question": "She is write a long letter to her mother.",
-          "correct_answer": "writing"
-        },
-        {
-          "question": "The boy are playing football on the field.",
-          "correct_answer": "is playing"
-        },
-        {
-          "question": "We is eating lunch in the big cafe right now.",
-          "correct_answer": "are eating"
-        },
-        {
-          "question": "The teacher am explaining the new lesson.",
-          "correct_answer": "is explaining"
-        },
-        {
-          "question": "Listen! The students is singing a song.",
-          "correct_answer": "are"
-        },
-        {
-          "question": "I are waiting for the bus near the gate.",
-          "correct_answer": "am"
-        },
-        {
-          "question": "They am studying English in the classroom.",
-          "correct_answer": "are"
-        },
-        {
-          "question": "The coffee is taste very good today.",
-          "correct_answer": "tastes"
-        },
-        {
-          "question": "You is sitting on my favorite chair.",
-          "correct_answer": "are"
-        },
-        {
-          "question": "The cat is sleep under the professor's desk.",
-          "correct_answer": "sleeping"
-        },
-        {
-          "question": "He is look for his blue pen on the floor.",
-          "correct_answer": "looking"
-        },
-        {
-          "question": "We are prepare for the big test on Monday.",
-          "correct_answer": "preparing"
-        },
-        {
-          "question": "They are run to catch the bus right now.",
-          "correct_answer": "running"
-        },
-        {
-          "question": "Look! The sun is shine through the window.",
-          "correct_answer": "shining"
-        },
-        {
-          "question": "I am think about the next holiday.",
-          "correct_answer": "thinking"
-        },
-        {
-          "question": "The library is close for the long weekend.",
-          "correct_answer": "closing"
-        },
-        {
-          "question": "They are talk about their favorite sports.",
-          "correct_answer": "talking"
-        },
-        {
-          "question": "The student is carry three heavy books.",
-          "correct_answer": "carrying"
-        },
-        {
-          "question": "He am drinking cold water after the game.",
-          "correct_answer": "is"
-        },
-        {
-          "question": "She is dance in the music room tonight.",
-          "correct_answer": "dancing"
-        },
-        {
-          "question": "We are watch a movie in the student lounge.",
-          "correct_answer": "watching"
-        },
-        {
-          "question": "The bird is fly over the university trees.",
-          "correct_answer": "flying"
-        },
-        {
-          "question": "I is finishing my homework before dinner.",
-          "correct_answer": "am"
-        },
-        {
-          "question": "They is having a meeting in the office.",
-          "correct_answer": "are"
-        },
-        {
-          "question": "The clock is tick very slowly in class.",
-          "correct_answer": "ticking"
-        },
-        {
-          "question": "She is make a sandwich for her lunch.",
-          "correct_answer": "making"
-        },
-        {
-          "question": "Look! The rain is fall on the grass.",
-          "correct_answer": "falling"
-        },
-        {
-          "question": "We am waiting for the teacher to arrive.",
-          "correct_answer": "are"
-        }
-      ]
-    }
-  },
-  "rewards": {
-    "mastery_points": 100,
-    "medal_tier": "Bronze"
-  }
+    "node_id":  "time-matrix-03",
+    "title":  "Right Now",
+    "description":  "Learn how to talk about things that are happening at this very moment.",
+    "display_order":  3,
+    "prerequisites":  [
+                          "time-matrix-02"
+                      ],
+    "lesson_content_markdown":  "# Right Now (Present Continuous)\n\nWe use the **Present Continuous** to talk about things happening at this moment. This is for activity that is currently taking place.\n\n### Formula: Be Verb + Doing Word (-ing)\n\nTo make this tense, you need **two** parts:\n\n**1. The correct Be Verb**\n- **I** use **am**\n- **He, She, It** (one person) use **is**\n- **You, We, They** (many people) use **are**\n\n**2. The Doing Word with -ing**\n- Example: **read** â†’ **reading**\n- Example: **study** â†’ **studying**\n\n### Examples:\n- **I am studying** now.\n- **The boy is playing**.\n- **The students are reading**.\n\n### Negative (No)\nSimply add the word **not** after the be verb.\n- I **am not** eating lunch.\n- She **is not** writing a letter.\n- They **are not** walking to school.\n\n### Spelling Rules for -ing:\n\n- Most words: **add -ing** (walk â†’ walking)\n- Words ending in \u0027-e\u0027: **drop -e** (write â†’ writing)\n- Short words (CVC): **double the last letter** (sit â†’ sitting, run â†’ running)\n\n### Key Words for \u0027Right Now\u0027:\n\n- Now\n- At the moment\n- Today\n- Look! / Listen!\n\n---",
+    "mastery_check":  {
+                          "type":  "error_correction",
+                          "prompt_to_student":  "Find the ONE mistake in each sentence below. Type only the correct word or words to fix the sentence.",
+                          "activity_data":  {
+                                                "questions":  [
+                                                                  {
+                                                                      "question":  "I am read a book in the library now.",
+                                                                      "correct_answer":  "reading"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They are walk to the student center at the moment.",
+                                                                      "correct_answer":  "walking"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She is write a long letter to her mother.",
+                                                                      "correct_answer":  "writing"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The boy are playing football on the field.",
+                                                                      "correct_answer":  "is playing"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We is eating lunch in the big cafe right now.",
+                                                                      "correct_answer":  "are eating"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The teacher am explaining the new lesson.",
+                                                                      "correct_answer":  "is explaining"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Listen! The students is singing a song.",
+                                                                      "correct_answer":  "are"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I are waiting for the bus near the gate.",
+                                                                      "correct_answer":  "am"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They am studying English in the classroom.",
+                                                                      "correct_answer":  "are"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The coffee is taste very good today.",
+                                                                      "correct_answer":  "tastes"
+                                                                  },
+                                                                  {
+                                                                      "question":  "You is sitting on my favorite chair.",
+                                                                      "correct_answer":  "are"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The cat is sleep under the professor\u0027s desk.",
+                                                                      "correct_answer":  "sleeping"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He is look for his blue pen on the floor.",
+                                                                      "correct_answer":  "looking"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We are prepare for the big test on Monday.",
+                                                                      "correct_answer":  "preparing"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They are run to catch the bus right now.",
+                                                                      "correct_answer":  "running"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Look! The sun is shine through the window.",
+                                                                      "correct_answer":  "shining"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I am think about the next holiday.",
+                                                                      "correct_answer":  "thinking"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The library is close for the long weekend.",
+                                                                      "correct_answer":  "closing"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They are talk about their favorite sports.",
+                                                                      "correct_answer":  "talking"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The student is carry three heavy books.",
+                                                                      "correct_answer":  "carrying"
+                                                                  },
+                                                                  {
+                                                                      "question":  "He am drinking cold water after the game.",
+                                                                      "correct_answer":  "is"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She is dance in the music room tonight.",
+                                                                      "correct_answer":  "dancing"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We are watch a movie in the student lounge.",
+                                                                      "correct_answer":  "watching"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The bird is fly over the university trees.",
+                                                                      "correct_answer":  "flying"
+                                                                  },
+                                                                  {
+                                                                      "question":  "I is finishing my homework before dinner.",
+                                                                      "correct_answer":  "am"
+                                                                  },
+                                                                  {
+                                                                      "question":  "They is having a meeting in the office.",
+                                                                      "correct_answer":  "are"
+                                                                  },
+                                                                  {
+                                                                      "question":  "The clock is tick very slowly in class.",
+                                                                      "correct_answer":  "ticking"
+                                                                  },
+                                                                  {
+                                                                      "question":  "She is make a sandwich for her lunch.",
+                                                                      "correct_answer":  "making"
+                                                                  },
+                                                                  {
+                                                                      "question":  "Look! The rain is fall on the grass.",
+                                                                      "correct_answer":  "falling"
+                                                                  },
+                                                                  {
+                                                                      "question":  "We am waiting for the teacher to arrive.",
+                                                                      "correct_answer":  "are"
+                                                                  }
+                                                              ]
+                                            }
+                      },
+    "rewards":  {
+                    "mastery_points":  100,
+                    "medal_tier":  "Bronze"
+                },
+    "region":  "The Time Matrix",
+    "tier":  "Bronze"
 }
